@@ -1,0 +1,58 @@
+#=====================
+# Recorder inlcudes
+#=====================
+
+    domains:
+        - light
+        - media_player
+        - switch
+
+    entity_globs:
+        - sensor.bloomhole_*
+        - sensor.consumption_*
+        - sensor.shelly_*
+        - sensor.speedtest_*
+        - sensor.total_*
+        - sensor.network_*
+        - sensor.*power*
+        - sensor.*energy*
+        - sensor.*gas*
+        - sensor.*energie*
+        - sensor.dagelijks*
+        - sensor.maandelijks*
+        - sensor.daily*
+        - sensor.monthly*
+        - sensor.yearly*
+        - sensor.jaarlijks*
+
+    entities:
+        - sensor.auto_backup
+        - sensor.bloom_data_cpu_load_total
+        - sensor.bloom_data_drive1_status
+        - sensor.bloom_data_drive2_status
+        - sensor.bloom_data_drive3_status
+        - sensor.bloom_data_drive4_status
+        - sensor.bloom_data_drive_1_temperature
+        - sensor.bloom_data_drive_2_temperature
+        - sensor.bloom_data_drive_3_temperature
+        - sensor.bloom_data_drive_4_temperature
+        - sensor.bloom_data_security
+        - sensor.bloom_data_temperature
+        - sensor.bloom_data_volume_1_status
+        - sensor.bloom_data_volume_1_used_space
+        - sensor.bloom_data_volume_1_volume_used
+        - sensor.bloom_data_network_down
+        - sensor.bloom_data_network_up
+        - sensor.database_size
+        - sensor.disk_use_percent
+        - sensor.lamp_hoekje_consumption_last_month
+        - sensor.monitored_snapshots
+        - sensor.schakelaar_lamp_hoekje
+        - sensor.toon_gas_used_cnt
+        - sensor.toon_gas_used_last_hour
+        - sensor.toon_p1_power_use_cnt_low
+        - sensor.toon_p1_power_use_high
+        - sensor.experiabox_v10_kib_s_received
+        - sensor.experiabox_v10_kib_s_sent
+        - sensor.wasmachine_klaar
+        - input_number.nighttime

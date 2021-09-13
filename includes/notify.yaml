@@ -1,0 +1,18 @@
+#=====================
+# Notify Groups
+#=====================
+
+  - name: all_mobile
+    platform: group
+    services:
+      - service: mobile_app_telefoon_duncan
+      - service: mobile_app_telefoon_sabrine
+
+  - name: all
+    platform: group
+    services:
+      - service: mobile_app_telefoon_duncan
+      - service: mobile_app_telefoon_sabrine
+      - service: woonkamer_tv
+      - service: mobile_app_tablet_fynn
+      - service: mobile_app_tablet_luca

@@ -1,0 +1,209 @@
+#================================
+# Toon climate
+#================================
+
+climate:
+
+  - platform: toon_climate
+    name: TOON Thermostat
+    host: !secret toon_ip
+    port: !secret toon_poort
+    scan_interval: 60
+
+  #===============
+  # Automations
+  #===============
+
+automation:
+
+  - alias: Set Climate to Vacation when away for more than a day
+    trigger:
+    - platform: state
+      entity_id: group.people
+      to: not_home
+      for: 
+        hours: 24
+    condition:
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: climate.toon_thermostat
+        attribute: preset_modes
+        state: eco
+    action:
+    - service: climate.set_preset_mode
+      data:
+        preset_mode: eco
+      target:
+        entity_id: climate.toon_thermostat
+    id: 5b9d4568a9c449258a135702cd0a116a
+
+  - alias: Set Climate to Comfort when back from vacation
+    trigger:
+    - platform: numeric_state
+      entity_id: proximity.home
+      below: 20
+    condition:
+    - condition: state
+      entity_id: group.people
+      state: not_home
+      for: 
+        hours: 24
+    action:
+    - service: climate.set_preset_mode
+      data:
+        preset_mode: comfort
+      target:
+        entity_id: climate.toon_thermostat
+    id: 5b9d4568a9c449258a3a9502cd0a116a
+
+  #===============
+  # Sensors
+  #===============
+
+sensor:
+
+    #================================
+    # Toon smartmeter
+    #================================
+  - platform: toon_smartmeter
+    host: !secret toon_ip
+    port: !secret toon_poort
+    scan_interval: 10
+    resources:
+      - gasused
+      - gasusedcnt
+      - elecusageflowpulse
+      - elecusagecntpulse
+      - elecusageflowlow
+      - elecusagecntlow
+      - elecusageflowhigh
+      - elecusagecnthigh
+      - elecsolar
+      - elecsolarcnt
+      - heat
+
+    #================================
+    # Toon boilerstatus
+    #================================
+  - platform: toon_boilerstatus
+    host: !secret toon_ip
+    port: !secret toon_poort
+    scan_interval: 10
+    resources:
+      - boilersetpoint
+      - boilerintemp
+      - boilerouttemp
+      - boilerpressure
+      - boilermodulationlevel
+      - roomtemp
+      - roomtempsetpoint
+
+    #================================
+    # Gas en Elektra
+    #================================ 
+
+  - platform: template
+    sensors:
+      energy_cost_today:
+        friendly_name: 'Energie Kosten Vandaag'
+        value_template: "{{ ((states('sensor.dagelijks_energie_verbruik_laag')|float + states('sensor.dagelijks_energie_verbruik_hoog')|float) * ( states('input_number.energy_cost')|float) + states('input_number.energy_cost_daily')|float )|round(2)}}"
+        unit_of_measurement: "€"
+        icon_template: mdi:currency-eur
+
+  - platform: template
+    sensors:
+      gas_cost_today:
+        friendly_name: 'Gas Kosten Vandaag'
+        value_template: "{{ (states('sensor.dagelijks_gas_verbruik')|float * states('input_number.gas_cost')|float + states('input_number.gas_cost_daily')|float)|round(2) }}"
+        unit_of_measurement: "€"
+        icon_template: mdi:currency-eur
+
+  - platform: template
+    sensors:
+      total_cost_today:
+        friendly_name: 'Totale Kosten Vandaag'
+        value_template: "{{ (states('sensor.energy_cost_today')|float + states('sensor.gas_cost_today')|float )|round(2) }}"
+        unit_of_measurement: "€"
+        icon_template: mdi:currency-eur
+
+  - platform: template
+    sensors:
+      energy_cost_this_month:
+        friendly_name: 'Energie Kosten Deze Maand'
+        value_template: "{{ (((states('sensor.maandelijks_energie_verbruik_laag')|float + states('sensor.maandelijks_energie_verbruik_hoog')|float) * ( states('input_number.energy_cost')|float)) + ((states('input_number.energy_cost_daily')|float) * (states('sensor.days_this_month')|float)) )|round(2)}}"
+        unit_of_measurement: "€"
+        icon_template: mdi:currency-eur
+
+  - platform: template
+    sensors:
+      energy_cost_this_year:
+        friendly_name: 'Energie Kosten Dit Jaar'
+        value_template: "{{ (((states('sensor.jaarlijks_energie_verbruik_laag')|float + states('sensor.jaarlijks_energie_verbruik_hoog')|float) * ( states('input_number.energy_cost')|float)) + ((states('input_number.energy_cost_daily')|float) * (states('sensor.days_this_year')|float)) )|round(2)}}"
+        unit_of_measurement: "€"
+        icon_template: mdi:currency-eur
+
+  - platform: template
+    sensors:
+      gas_cost_this_month:
+        friendly_name: 'Gas Kosten Deze Maand'
+        value_template: "{{ ((states('sensor.maandelijks_gas_verbruik')|float ) * ( states('input_number.gas_cost')|float) + (states('input_number.gas_cost_daily')|float) * (states('sensor.days_this_month')|float) )|round(2)}}"
+        unit_of_measurement: "€"
+        icon_template: mdi:currency-eur
+
+  - platform: template
+    sensors:
+      total_cost_this_month:
+        friendly_name: 'Totale Kosten Deze Maand'
+        value_template: "{{ (states('sensor.energy_cost_this_month')|float + states('sensor.gas_cost_this_month')|float )|round(2) }}"
+        unit_of_measurement: "€"
+        icon_template: mdi:currency-eur
+
+  - platform: template
+    sensors:
+      power_usage:
+        friendly_name: 'Energie Gebruik'
+        value_template: "{{ (states('sensor.toon_p1_power_use_high')|float + states('sensor.toon_p1_power_use_low')|float )|round(2) }}"
+        unit_of_measurement: "W"
+        icon_template: mdi:flash-outline
+
+  - platform: template
+    sensors:
+      total_energy_this_month:
+        friendly_name: 'Energie Verbruik Deze Maand'
+        value_template: "{{ (states('sensor.maandelijks_energie_verbruik_laag')|float + states('sensor.maandelijks_energie_verbruik_hoog')|float )|round(2) }}"
+        unit_of_measurement: "kWh"
+        icon_template: mdi:flash-outline
+
+  - platform: template
+    sensors:
+      total_energy_this_year:
+        friendly_name: 'Energie Verbruik Dit Jaar'
+        value_template: "{{ (states('sensor.jaarlijks_energie_verbruik_laag')|float + states('sensor.jaarlijks_energie_verbruik_hoog')|float )|round(2) }}"
+        unit_of_measurement: "kWh"
+        icon_template: mdi:flash-outline
+
+    #================================
+    # Empty Entities
+    #================================
+
+  - platform: template
+    sensors:
+        kosten:
+            friendly_name: Kosten
+            icon_template: mdi:currency-eur
+            value_template: " "
+
+  - platform: template
+    sensors:
+        daily_usage:
+            friendly_name: Dagelijks Verbruik
+            icon_template: mdi:clock-outline
+            value_template: " "
+            
+  - platform: template
+    sensors:
+        monthly_usage:
+            friendly_name: Maandelijks Verbruik
+            icon_template: mdi:calendar-month
+            value_template: " "

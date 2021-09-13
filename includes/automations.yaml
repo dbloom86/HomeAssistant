@@ -1,0 +1,374 @@
+#================================  
+# Switch Boiler on Holiday
+#================================
+
+- alias: Turn off Boiler when Holiday
+  trigger:
+  - platform: state
+    entity_id: climate.toon_thermostat
+    attribute: preset_mode
+    to: eco
+    from: comfort
+  action:
+    service: switch.turn_off
+    entity_id: switch.shelly_shplg_s_9a53ab
+  id: f8a0c07e00a24377b78773bab12dd157
+
+- alias: Turn on Boiler when home
+  trigger:
+  - platform: state
+    entity_id: climate.toon_thermostat
+    attribute: preset_mode
+    from: eco
+    to: comfort
+  action:
+    service: switch.turn_on
+    entity_id: switch.shelly_shplg_s_9a53ab
+  id: 5f450d9467d244c597dd1645f33f358c
+
+#================================  
+# Lampjes Overkapping
+#================================
+
+- alias: Turn on Lampjes Overkapping at sunset
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: -00:30:00
+  - platform: state
+    entity_id: group.ouders
+    from: 'not_home'
+    to: 'home'
+  condition:
+  - condition: template
+    value_template: '{{ now().month >= 4 and now().month <= 10 }}'
+  - condition: sun
+    after: sunset
+    after_offset: -00:30:00
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: person.duncan
+      state: 'home'
+    - condition: state
+      entity_id: person.sabrine
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'on'
+  action:
+    service: light.turn_on
+    entity_id: light.shelly_shsw_1_40f52000c449
+  id: 5b9dad4da9c449258a3a9502cd0a116a
+
+- alias: Turn off Lampjes Overkapping at 23:30
+  trigger:
+  - platform: time
+    at: '23:30:00'
+  condition:
+    condition: state
+    entity_id: light.shelly_shsw_1_40f52000c449
+    state: 'on'
+  action:
+    service: light.turn_off
+    entity_id: light.shelly_shsw_1_40f52000c449
+  id: 110c40fe846e4a8e8ad9e29092c7d334
+
+#================================  
+# Addons
+#================================
+
+  #================================  
+  # Samba Backup
+  #================================
+
+- alias: Restore Samba Backup sensor on startup
+  trigger:
+  - event: start
+    platform: homeassistant
+  action:
+  - service: hassio.addon_restart
+    data:
+      addon: 15d21743_samba_backup
+  id: ba754efce6f94fc19d2947a7eb127fea
+
+  #================================  
+  # Updates
+  #================================
+
+- alias: Addons have updates
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.updater_addons
+    to: 'on'
+  action:
+    service: notify.mobile_app_telefoon_duncan
+    data:
+      title: Addons have updates
+      message: Updates available for {{ states('sensor.supervisor_updates') }} HA
+        addon{% if states('sensor.supervisor_updates') | int > 1 %}s{% endif %}
+      data:
+        group: updates
+        icon_url: /local/Custom_Icons/addons-ico.png
+        clickAction: /hassio/dashboard
+  id: 32d6b6ff7ffd42e5b4d3374d8bddef70
+
+#================================  
+# Home Assistant
+#================================
+
+  #================================  
+  # Theme Switcher
+  #================================
+
+- alias: Theme Switcher at Sunset and Sunrise
+  trigger:
+  - platform: state
+    entity_id: sun.sun
+  action:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: sun.sun
+        state: above_horizon
+      sequence:
+      - service: frontend.set_theme
+        data:
+          name: bloom-theme-light
+      - service: input_number.set_value
+        target:
+          entity_id: input_number.nighttime
+        data:
+          value: 0
+    - conditions:
+      - condition: state
+        entity_id: sun.sun
+        state: below_horizon
+      sequence:
+      - service: frontend.set_theme
+        data:
+          name: bloom-theme-dark
+      - service: input_number.set_value
+        target:
+          entity_id: input_number.nighttime
+        data:
+          value: 1
+  id: f361a4ce325047d2bfb38b5bf46a4077
+
+  #================================  
+  # Update template sensors
+  #================================
+
+- alias: System - Update Template Sensors
+  initial_state: true
+  trigger:
+    platform: time_pattern
+    minutes: /25
+  action:
+  - service: homeassistant.update_entity
+    entity_id:
+    - sensor.total_automations
+    - sensor.total_binary_sensors
+    - sensor.total_cameras
+    - sensor.total_counters
+    - sensor.total_devicetrackers
+    - sensor.total_entities
+    - sensor.total_groups
+    - sensor.total_input_booleans
+    - sensor.total_input_datetimes
+    - sensor.total_input_numbers
+    - sensor.total_input_selects
+    - sensor.total_input_texts
+    - sensor.total_lights
+    - sensor.total_media_players
+    - sensor.total_persons
+    - sensor.total_remotes
+    - sensor.total_scenes
+    - sensor.total_scripts
+    - sensor.total_sensors
+    - sensor.total_switches
+    - sensor.total_timers
+    - sensor.total_zones
+    - sensor.total_tasmota_devices
+    - sensor.domains_in_use
+    - sensor.total_shelly_devices
+    - sensor.outdated_shelly_devices
+  id: 3fe07bd3a8a4424ebf5395df92b65b00
+
+  #================================  
+  # Updates
+  #================================
+
+- alias: HA has an update
+  trigger:
+  - platform: state
+    entity_id: sensor.updater_core
+    to: 'on'
+  action:
+    service: notify.mobile_app_telefoon_duncan
+    data:
+      title: Update for HA available
+      message: '{{ state_attr(''sensor.updater_core'', ''current_version'') }} ==>
+        {{ state_attr(''sensor.updater_core'', ''newest_version'') }}'
+      data:
+        group: updates
+        icon_url: /local/Pictures/addons/ha-logo.png
+        clickAction: /hassio/dashboard
+  id: fb2e6e01da51489faa8bee310353b4f0
+
+- alias: HassOS has an update
+  trigger:
+  - platform: state
+    entity_id: sensor.hassos_updates
+    to: 'on'
+  action:
+    service: notify.mobile_app_telefoon_duncan
+    data:
+      title: Update for HassOS available
+      message: '{{ states.sensor.home_assistant_operating_system_version.state }} ==>
+        {{ states.sensor.home_assistant_operating_system_newest_version.state }}'
+      data:
+        group: updates
+        icon_url: /local/Pictures/addons/ha-logo.png
+        clickAction: /hassio/dashboard
+  id: c54768ea8c124070bb24724250943d38
+
+- alias: Supervisor has an update
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.updater_supervisor
+    to: 'on'
+  action:
+    service: notify.mobile_app_telefoon_duncan
+    data:
+      title: Update for Supervisor available
+      message: '{{ state_attr(''sensor.supervisor_updates'', ''current_version'')
+        }} ==> {{ state_attr(''sensor.supervisor_updates'', ''newest_version'') }}'
+      data:
+        group: updates
+        icon_url: /local/Pictures/addons/ha-logo.png
+        clickAction: /hassio/dashboard
+  id: df11340c84784621a4e90ad21399a25e
+
+- alias: Audio has an update
+  trigger:
+  - platform: state
+    entity_id: sensor.updater_audio
+    to: 'on'
+  action:
+    service: notify.mobile_app_telefoon_duncan
+    data:
+      title: Update for Audio available
+      message: '{{ state_attr(''sensor.updater_audio'', ''current_version'') }} ==>
+        {{ state_attr(''sensor.updater_audio'', ''newest_version'') }}'
+      data:
+        group: updates
+        icon_url: /local/Custom_Icons/audio-ico.png
+        clickAction: /hassio/dashboard
+  id: b33a2c9993834587a8390adb6d75c09e
+
+- alias: DNS has an update
+  trigger:
+  - platform: state
+    entity_id: sensor.updater_dns
+    to: 'on'
+  action:
+    service: notify.mobile_app_telefoon_duncan
+    data:
+      title: Update for DNS available
+      message: '{{ state_attr(''sensor.updater_dns'', ''current_version'') }} ==>
+        {{ state_attr(''sensor.updater_dns'', ''newest_version'') }}'
+      data:
+        group: updates
+        icon_url: /local/Custom_Icons/dns-ico.png
+        clickAction: /hassio/dashboard
+  id: 06cb6eea2b9e433b845b38f2ba18fea4
+
+- alias: CLI has an update
+  trigger:
+  - platform: state
+    entity_id: sensor.updater_dns
+    to: 'on'
+  action:
+    service: notify.mobile_app_telefoon_duncan
+    data:
+      title: Update for CLI available
+      message: '{{ state_attr(''sensor.updater_cli'', ''current_version'') }} ==>
+        {{ state_attr(''sensor.updater_cli'', ''newest_version'') }}'
+      data:
+        group: updates
+        icon_url: /local/Custom_Icons/cli-ico.png
+        clickAction: /hassio/dashboard
+  id: fc668c66c20f4784a731d29e52bf668d
+
+- alias: Multicast has an update
+  trigger:
+  - platform: state
+    entity_id: sensor.updater_multicast
+    to: 'on'
+  action:
+    service: notify.mobile_app_telefoon_duncan
+    data:
+      title: Update for Multicast available
+      message: '{{ state_attr(''sensor.updater_multicast'', ''current_version'') }}
+        ==> {{ state_attr(''sensor.updater_multicast'', ''newest_version'') }}'
+      data:
+        group: updates
+        icon_url: /local/Custom_Icons/multicast-ico.png
+        clickAction: /hassio/dashboard
+  id: b6f34148791b48c5895239e107e54ba9
+
+- alias: Observer has an update
+  trigger:
+  - platform: state
+    entity_id: sensor.updater_observer
+    to: 'on'
+  action:
+    service: notify.mobile_app_telefoon_duncan
+    data:
+      title: Update for Observer available
+      message: '{{ state_attr(''sensor.updater_observer'', ''current_version'') }}
+        ==> {{ state_attr(''sensor.updater_observer'', ''newest_version'') }}'
+      data:
+        group: updates
+        icon_url: /local/Custom_Icons/observer-ico.png
+        clickAction: /hassio/dashboard
+  id: 039cbb4281124426b682aa5283b6e3b6
+
+- alias: HACS has updates
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.updater_hacs
+    to: 'on'
+  action:
+    service: notify.mobile_app_telefoon_duncan
+    data:
+      title: HACS has updates
+      message: '{% for repo in states.sensor.hacs.attributes.repositories %} {{repo.display_name
+        }} {{ repo[''installed_version''] }} -> {{ repo[''available_version''] }}
+        {% endfor %}'
+      data:
+        subtitle: Updates available in {{ states('sensor.hacs') }} HACS repo{% if
+          states('sensor.hacs') | int > 1 %}s{% endif %}
+        group: updates
+        icon_url: /local/Custom_Icons/HACS-3d-ico.png
+        clickAction: /hacs/entry
+  id: 724ee89d019740f69e32677db22a24be
+
+#================================  
+# Guest Mode Reset
+#================================
+
+- alias: Guest Mode Reset
+  trigger:
+  - platform: time
+    at: '05:00:00'
+  condition:
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'on'
+  action:
+    - service: input_boolean.turn_off
+      target:
+        entity_id: input_boolean.guest_mode
+  id: f8a0c07e00a24325b78773bab12dd157

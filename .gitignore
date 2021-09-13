@@ -1,21 +1,44 @@
 # An * ensures that everything will be ignored.
 *
-# You can whitelist files/folders with !, these will not be ignored.
+
+# Whitelist file types
 !*.yaml
-!.gitignore
+!*.py
 !*.md
+!*.json
+!*.js
+!*.js.gz
 
-# Ignore folders.
-.storage
-.cloud
-.google.token
-packages/google_assistant/
-packages/ha_dockermon/
-packages/pihole/
+# Whitelist Folders
+!custom_components/
+!custom_components/**/
+!custom_compnents/**/**
+!blueprints/
+!blueprints/**/
+!blueprints/**/**
+!includes/
+!includes/**
+!packages/
+!packages/*/
+!packages/*/**
+!themes/
+!themes/*/
+!themes/*/**
+!www/
+!www/community/
+!www/community/**/
+!www/community/**/**
+!lovelace/
+!lovelace/**
 
-# Ensure these files are ignored, otherwise your secret data/credentials will leak.
+# Whitelist files
+!configuration.yaml
+
+#blacklist specific items
+packages/google_assistant
+packages/ha_dockermon
+packages/pihole
 secrets.yaml
-known_devices.yaml
 known_devices_old.yaml
 google_calendars.yaml
-update.sh
+.gitignore

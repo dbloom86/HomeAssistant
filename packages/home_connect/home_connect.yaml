@@ -1,0 +1,58 @@
+#================================
+# Home Connect (Siemens en Bosch)
+#================================
+
+home_connect:
+  client_id: !secret home_connect_client_id
+  client_secret: !secret home_connect_secret
+
+  #===============
+  # Sensors
+  #===============
+
+sensor:
+
+    #================================
+    # Wasmachine
+    #================================
+
+  - platform: template
+    sensors:
+        wasmachine_status:
+          friendly_name: Wasmachine Status
+          value_template: >-
+            {% if states('sensor.shelly_shplg_s_9d9823_current_consumption')|float > 7 %}
+                Washing
+            {% elif states('sensor.shelly_shplg_s_9d9823_current_consumption')|float > 0 %}
+                Idle
+            {% else %}
+                Off
+            {%- endif %}
+
+  #===============
+  # Automations
+  #===============
+
+automation:
+
+    #================================  
+    # Wasmachine
+    #================================
+
+  - alias: Notification Washer Ready
+    trigger:
+    - platform: state
+      entity_id: sensor.wasmachine_status
+      from: Washing
+      to: Idle
+      for:
+        minutes: 2
+    action:
+      service: notify.all_mobile
+      data:
+        title: De wasmachine is klaar
+        message: Wil je de wasmachine uitzetten?
+        data:
+          group: wasmachine
+          icon_url: /local/Custom_Icons/wasmachine-ico.png
+    id: 69f61c8b6bd1447aa49592ef3d50f831

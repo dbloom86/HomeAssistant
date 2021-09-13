@@ -1,0 +1,30 @@
+#=======================
+# Addons
+#=======================
+
+  - platform: threshold
+    name: Updater Addons
+    entity_id: sensor.supervisor_updates
+    upper: 0.5
+
+#=======================
+# HACS
+#=======================
+
+  - platform: threshold
+    name: Updater HACS
+    entity_id: sensor.hacs
+    upper: 0.5
+
+#=======================
+# Supervisor
+#=======================
+
+  - platform: template
+    sensors:
+      # True if there's an update available for supervisor
+      updater_supervisor:
+        friendly_name: 'Updater Supervisor'
+        device_class: problem
+        value_template: "{{ state_attr('sensor.supervisor_updates', 'update_available') }}"
+        availability_template: "{{ states('sensor.supervisor_updates') | int(-1) > -1 }}"

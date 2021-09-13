@@ -1,0 +1,84 @@
+#================================
+# Tasmota
+#================================
+
+  #============
+  # Switches
+  #============
+
+switch:
+
+  - platform: mqtt
+    state_topic: "stat/tasmotas/upgrade"
+    command_topic: "cmnd/tasmotas/upgrade"
+    payload_on: "1"
+    payload_off: "0"
+    name: Upgrade Tasmota Firmware
+
+  #============
+  # Scripts
+  #============
+
+script:
+
+  get_tasmota_firmware:
+      alias: Get Tasmota Firmware
+      sequence:
+        - service: mqtt.publish
+          data:
+            topic: "cmnd/tasmotas/status"
+            payload: "2"
+
+  #============
+  # Automations
+  #============
+
+automation:
+
+  - alias: 'Get Tasmota Firmware Versions Hourly'
+    trigger:
+      - platform: time_pattern
+        minutes: '/30'
+    action:
+        service: script.get_tasmota_firmware
+    id: 5795a568a9c449258a3a9502cd0a116a
+
+  #============
+  # Sensors
+  #============
+
+sensor:
+
+  - platform: rest
+    name: Sonoff - newest version
+    resource: https://api.github.com/repos/arendst/Tasmota/releases/latest
+    value_template: '{{ value_json.tag_name }}'
+    scan_interval: 86400
+    headers:
+      Accept: application/vnd.github.v3+json
+      Content-Type: application/json
+      User-Agent: Home Assistant REST sensor 
+
+  - platform: mqtt
+    name: "Bureaulamp 1 Firmware"
+    state_topic: "stat/Light_Desk_1/STATUS2"
+    value_template: "v{{value_json['StatusFWR'].Version[0:5] }}"
+    force_update: true
+    
+  - platform: mqtt
+    name: "Bureaulamp 2 Firmware"
+    state_topic: "stat/Light_Desk_2/STATUS2"
+    value_template: "v{{value_json['StatusFWR'].Version[0:5] }}"
+    force_update: true
+    
+  - platform: mqtt
+    name: "Bureaulamp 3 Firmware"
+    state_topic: "stat/Light_Desk_3/STATUS2"
+    value_template: "v{{value_json['StatusFWR'].Version[0:5] }}"
+    force_update: true    
+
+  - platform: template
+    sensors:
+        tasmota_devices_needing_upgrade:
+            friendly_name: Tasmota Devices Needing Upgrade
+            value_template: "{{ states|selectattr('entity_id','in',state_attr('group.tasmota_firmware','entity_id'))|rejectattr('state','eq',states.sensor.sonoff_newest_version.state)|list|count}}"

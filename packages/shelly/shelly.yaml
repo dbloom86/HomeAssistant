@@ -1,0 +1,23 @@
+#================================
+# Shelly
+#================================
+
+shelly:
+  discovery: true  #add all devices (default)
+  username: !secret shelly_user
+  password: !secret shelly_password
+  sensors:
+      - all #show all sensors
+  devices:
+      - id: "40F52000C449"
+        name: Lampjes Overkapping
+        light_switch: true
+      - id: "9a5381"
+        name: CV
+      - id: "9d9823"
+        name: Wasmachine
+      - id: "9a53ab"
+        name: Boiler
+      - id: "40F520009959"
+        name: Spotjes Dakkapel
+        light_switch: true

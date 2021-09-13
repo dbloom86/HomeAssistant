@@ -1,0 +1,13 @@
+mqtt:
+  hostname: 127.0.0.1
+  port: 1234 #defaults to 1883
+  user: test
+  password: test
+deviceName: test
+client_id: test
+timezone: Europe/Brussels
+update_interval: 60 #Defaults to 60
+check_wifi_strength: true
+check_available_updates: true
+external_drives:
+  Drive1: /boot/

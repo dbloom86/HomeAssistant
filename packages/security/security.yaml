@@ -1,0 +1,136 @@
+#================================
+# Security
+#================================
+
+  #===============
+  # Sensors
+  #===============
+
+sensor:
+
+    #================================  
+    # CO Sensor
+    #================================
+
+  - platform: template
+    sensors:
+        co_alarm:
+            value_template: >-
+                {% if is_state('binary_sensor.carbon_monoxide_sensor_co_alarm_carbon_monoxide_detected', 'off') %}
+                    Safe
+                {% else %}
+                    Alarm
+                {% endif %}
+
+  #===============
+  # Automations
+  #===============
+
+automation:
+
+    #================================  
+    # Batteries
+    #================================
+
+  - alias: CO sensor replace battery
+    trigger:
+    - platform: state
+      entity_id: binary_sensor.carbon_monoxide_sensor_power_management_replace_battery_soon
+      to: 'on'
+    action:
+      service: notify.mobile_app_telefoon_duncan
+      data:
+        title: Vervang CO sensor batterij
+        message: Vervang batterij, batterij heeft nog {{ states('sensor.carbon_monoxide_sensor_battery_level')
+          }}%
+        data:
+          group: home_security
+          icon_url: /local/Custom_Icons/battery-empty-ico.png
+    id: 455a2a32ded547c086c3e626a5f9ae7d
+
+    #================================  
+    # CO detected
+    #================================
+
+  - alias: CO Alarm
+    trigger:
+    - platform: state
+      entity_id: binary_sensor.carbon_monoxide_sensor_co_alarm_carbon_monoxide_detected
+      to: 'on'
+    action:
+      service: notify.all
+      data:
+        title: Koolmonixide Alarm
+        message: Koolmonoxide niveau {{ states('sensor.carbon_monoxide_sensor_carbon_monoxide_co_level')
+          }}ppm. Zet de ramen open!
+        data:
+          group: home_security
+          icon_url: /local/Custom_Icons/co-alarm-ico.png
+    id: 2d0712c99bfe4c08b1bb407e0bbf7946
+
+  - alias: Turn off CV when CO detected
+    trigger:
+    - platform: state
+      entity_id: binary_sensor.carbon_monoxide_sensor_co_alarm_carbon_monoxide_detected
+      to: 'on'
+    action:
+      service: switch.turn_off
+      entity_id: switch.shelly_shplg_s_9a5381
+    id: d140650d91ff426aa64fe5582f788a60
+
+    #================================  
+    # Replacements
+    #================================
+
+  - alias: CO sensor replacement needed
+    trigger:
+    - platform: state
+      entity_id: binary_sensor.carbon_monoxide_sensor_co_alarm_replacement_required
+      to: 'on'
+    action:
+      service: notify.mobile_app_telefoon_duncan
+      data:
+        title: Vervang CO sensor
+        message: CO sensor end-of-life, graag vervangen
+        data:
+          group: home_security
+          icon_url: /local/Custom_Icons/co-sensor-replace-ico.png
+    id: 61fc1f4ccb8a44bea4702584e8b02bb0
+
+    #================================  
+    # Overheat
+    #================================
+
+  - alias: CO sensor overheat detected
+    trigger:
+    - platform: state
+      entity_id: binary_sensor.carbon_monoxide_sensor_heat_alarm_overheat_detected
+      to: 'on'
+    action:
+      service: notify.all
+      data:
+        title: Brand!
+        message: CO sensor oververhit, mogelijk brand bij CV
+        data:
+          group: home_security
+          icon_url: /local/Custom_Icons/co-sensor-overheated-ico.png
+    id: d0a456044c9042fab421c8e715f7b6be
+
+    #================================  
+    # Hardware failure
+    #================================
+
+  - alias: CO sensor hardware failure
+    trigger:
+    - platform: state
+      entity_id: binary_sensor.carbon_monoxide_sensor_system_system_hardware_failure
+      to: 'on'
+    action:
+      service: notify.mobile_app_telefoon_duncan
+      data:
+        title: Vervang CO sensor
+        message: CO sensor hardware failure, graag vervangen
+        data:
+          group: home_security
+          icon_url: /local/Custom_Icons/co-sensor-replace-ico.png
+    id: 17d0a0dca25c4651aaff4607936f2a17

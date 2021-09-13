@@ -1,0 +1,2962 @@
+{
+    "version": 1,
+    "key": "lovelace.lovelace_mobile",
+    "data": {
+        "config": {
+            "background": "var(--background-image)",
+            "icon": "mdi:home-assistant",
+            "title": "Fam Bloom",
+            "kiosk_mode": {
+                "user_settings": [
+                    {
+                        "users": [
+                            "wall tablets"
+                        ],
+                        "hide_sidebar": true
+                    },
+                    {
+                        "users": [
+                            "Duncan",
+                            "Sabrine"
+                        ],
+                        "hide_header": true
+                    }
+                ]
+            },
+            "views": [
+                {
+                    "title": "Mobile",
+                    "path": "mobile",
+                    "icon": "mdi:home",
+                    "visible": [
+                        {
+                            "user": "edf6650cd84b44ba853cfd5ba02fa72c"
+                        },
+                        {
+                            "user": "914ff3c93def4ff6a59b7eb6296ef2d3"
+                        },
+                        {
+                            "user": "13dccb69229d47919faec8fa377f33c9"
+                        }
+                    ],
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "custom:mod-card",
+                            "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n",
+                            "card": {
+                                "type": "custom:simple-thermostat",
+                                "entity": "climate.toon_thermostat",
+                                "header": {
+                                    "name": "Thermostaat",
+                                    "icon": "mdi:fire"
+                                },
+                                "step_size": "0.5",
+                                "layout": {
+                                    "step": "row"
+                                }
+                            }
+                        },
+                        {
+                            "type": "custom:button-card",
+                            "name": "Schoonmaken",
+                            "icon": "mdi:robot-vacuum",
+                            "aspect_ratio": "4/1",
+                            "show_label": true,
+                            "tap_action": {
+                                "action": "navigate",
+                                "navigation_path": "/lovelace-mobile/schoonmaken"
+                            },
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "entity": "input_boolean.guest_mode",
+                                    "icon": "mdi:account-child"
+                                }
+                            ],
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        },
+                        {
+                            "type": "horizontal-stack",
+                            "cards": [
+                                {
+                                    "type": "custom:button-card",
+                                    "name": "Personen",
+                                    "icon": "mdi:account-group",
+                                    "aspect_ratio": "1/1",
+                                    "show_label": true,
+                                    "tap_action": {
+                                        "action": "navigate",
+                                        "navigation_path": "/lovelace-mobile/persons"
+                                    },
+                                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                                },
+                                {
+                                    "type": "custom:button-card",
+                                    "name": "System",
+                                    "icon": "mdi:server",
+                                    "aspect_ratio": "1/1",
+                                    "show_label": true,
+                                    "tap_action": {
+                                        "action": "navigate",
+                                        "navigation_path": "/lovelace-mobile/system_mobile"
+                                    },
+                                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                                },
+                                {
+                                    "type": "custom:button-card",
+                                    "name": "Home Security",
+                                    "icon": "mdi:security",
+                                    "aspect_ratio": "1/1",
+                                    "show_label": true,
+                                    "tap_action": {
+                                        "action": "navigate",
+                                        "navigation_path": "/lovelace-mobile/home-security"
+                                    },
+                                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "type": "custom:text-divider-row",
+                                    "text": "Ruimtes"
+                                }
+                            ],
+                            "style": "ha-card {\n  background: none;\n  box-shadow: none;\n}\n"
+                        },
+                        {
+                            "type": "horizontal-stack",
+                            "cards": [
+                                {
+                                    "type": "custom:button-card",
+                                    "name": "Woonkamer",
+                                    "icon": "mdi:sofa",
+                                    "aspect_ratio": "1/1",
+                                    "show_label": true,
+                                    "tap_action": {
+                                        "action": "navigate",
+                                        "navigation_path": "/lovelace-mobile/woonkamer"
+                                    },
+                                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                                },
+                                {
+                                    "type": "custom:button-card",
+                                    "name": "Keuken",
+                                    "icon": "mdi:chef-hat",
+                                    "aspect_ratio": "1/1",
+                                    "show_label": true,
+                                    "tap_action": {
+                                        "action": "navigate",
+                                        "navigation_path": "/lovelace-mobile/keuken"
+                                    },
+                                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                                },
+                                {
+                                    "type": "custom:button-card",
+                                    "name": "Toilet",
+                                    "icon": "mdi:toilet",
+                                    "aspect_ratio": "1/1",
+                                    "show_label": true,
+                                    "tap_action": {
+                                        "action": "navigate",
+                                        "navigation_path": "/lovelace-mobile/toilet"
+                                    },
+                                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "horizontal-stack",
+                            "cards": [
+                                {
+                                    "type": "custom:button-card",
+                                    "name": "Hal",
+                                    "icon": "mdi:key",
+                                    "aspect_ratio": "1/1",
+                                    "show_label": true,
+                                    "tap_action": {
+                                        "action": "navigate",
+                                        "navigation_path": "/lovelace-mobile/hal"
+                                    },
+                                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                                },
+                                {
+                                    "type": "custom:button-card",
+                                    "name": "Overloop",
+                                    "icon": "mdi:stairs",
+                                    "aspect_ratio": "1/1",
+                                    "show_label": true,
+                                    "tap_action": {
+                                        "action": "navigate",
+                                        "navigation_path": "/lovelace-mobile/overloop"
+                                    },
+                                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                                },
+                                {
+                                    "type": "custom:button-card",
+                                    "name": "Kamer S & D",
+                                    "icon": "mdi:bed-king",
+                                    "aspect_ratio": "1/1",
+                                    "show_label": true,
+                                    "tap_action": {
+                                        "action": "navigate",
+                                        "navigation_path": "/lovelace-mobile/slaapkamer-sab-dunc"
+                                    },
+                                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "horizontal-stack",
+                            "cards": [
+                                {
+                                    "type": "custom:button-card",
+                                    "name": "Kamer Luca",
+                                    "icon": "mdi:bed",
+                                    "aspect_ratio": "1/1",
+                                    "show_label": true,
+                                    "tap_action": {
+                                        "action": "navigate",
+                                        "navigation_path": "/lovelace-mobile/slaapkamer-luca"
+                                    },
+                                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                                },
+                                {
+                                    "type": "custom:button-card",
+                                    "name": "Kamer Fynn",
+                                    "icon": "mdi:bed",
+                                    "aspect_ratio": "1/1",
+                                    "show_label": true,
+                                    "tap_action": {
+                                        "action": "navigate",
+                                        "navigation_path": "/lovelace-mobile/slaapkamer-fynn"
+                                    },
+                                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                                },
+                                {
+                                    "type": "custom:button-card",
+                                    "name": "Badkamer",
+                                    "icon": "mdi:shower",
+                                    "aspect_ratio": "1/1",
+                                    "show_label": true,
+                                    "tap_action": {
+                                        "action": "navigate",
+                                        "navigation_path": "/lovelace-mobile/badkamer"
+                                    },
+                                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "custom:button-card",
+                            "name": "Zolder",
+                            "icon": "mdi:briefcase",
+                            "aspect_ratio": "3/1",
+                            "show_label": true,
+                            "tap_action": {
+                                "action": "navigate",
+                                "navigation_path": "/lovelace-mobile/zolder"
+                            },
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        },
+                        {
+                            "type": "horizontal-stack",
+                            "cards": [
+                                {
+                                    "type": "custom:button-card",
+                                    "name": "Achtertuin",
+                                    "icon": "mdi:shovel",
+                                    "aspect_ratio": "1/1",
+                                    "show_label": true,
+                                    "tap_action": {
+                                        "action": "navigate",
+                                        "navigation_path": "/lovelace-mobile/achtertuin"
+                                    },
+                                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                                },
+                                {
+                                    "type": "custom:button-card",
+                                    "name": "Oprit",
+                                    "icon": "mdi:car",
+                                    "aspect_ratio": "1/1",
+                                    "show_label": true,
+                                    "tap_action": {
+                                        "action": "navigate",
+                                        "navigation_path": "/lovelace-mobile/oprit"
+                                    },
+                                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                                },
+                                {
+                                    "type": "custom:button-card",
+                                    "name": "Schuur",
+                                    "icon": "mdi:barn",
+                                    "aspect_ratio": "1/1",
+                                    "show_label": true,
+                                    "tap_action": {
+                                        "action": "navigate",
+                                        "navigation_path": "/lovelace-mobile/schuur"
+                                    },
+                                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "title": "Persons",
+                    "path": "persons",
+                    "icon": "mdi:account-group",
+                    "visible": [
+                        {
+                            "user": "edf6650cd84b44ba853cfd5ba02fa72c"
+                        },
+                        {
+                            "user": "914ff3c93def4ff6a59b7eb6296ef2d3"
+                        },
+                        {
+                            "user": "13dccb69229d47919faec8fa377f33c9"
+                        }
+                    ],
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "custom:button-card",
+                            "color_type": "label-card",
+                            "color": "var(--ha-card-background)",
+                            "name": "Home",
+                            "tap_action": {
+                                "action": "navigate",
+                                "navigation_path": "/lovelace-mobile/mobile"
+                            },
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        },
+                        {
+                            "type": "custom:banner-card",
+                            "heading": "\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc66\u200d\ud83d\udc66 Personen",
+                            "entities": null,
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        },
+                        {
+                            "type": "horizontal-stack",
+                            "cards": [
+                                {
+                                    "type": "picture-elements",
+                                    "image": "/local/Pictures/duncan_status.png",
+                                    "elements": [
+                                        {
+                                            "style": {
+                                                "color": "white",
+                                                "top": "92%",
+                                                "left": "50%",
+                                                "font-size": "20px"
+                                            },
+                                            "type": "state-label",
+                                            "entity": "sensor.duncan_presence"
+                                        },
+                                        {
+                                            "style": {
+                                                "color": "white",
+                                                "top": "73%",
+                                                "left": "88%"
+                                            },
+                                            "type": "state-label",
+                                            "entity": "sensor.telefoon_duncan_batterijniveau"
+                                        },
+                                        {
+                                            "style": {
+                                                "color": "white",
+                                                "top": "73%",
+                                                "left": "12%"
+                                            },
+                                            "type": "state-label",
+                                            "entity": "proximity.home_duncan"
+                                        }
+                                    ],
+                                    "style": "ha-card {\n  border: solid 2px var(--primary-color);\n  background-color: rgba(255, 255, 255, 0);\n}    \n"
+                                },
+                                {
+                                    "type": "picture-elements",
+                                    "image": "/local/Pictures/sabrine_status.png",
+                                    "elements": [
+                                        {
+                                            "style": {
+                                                "color": "white",
+                                                "top": "92%",
+                                                "left": "50%",
+                                                "font-size": "20px"
+                                            },
+                                            "type": "state-label",
+                                            "entity": "sensor.sabrine_presence"
+                                        },
+                                        {
+                                            "style": {
+                                                "color": "white",
+                                                "top": "73%",
+                                                "left": "88%"
+                                            },
+                                            "type": "state-label",
+                                            "entity": "sensor.telefoon_sabrine_batterijniveau"
+                                        },
+                                        {
+                                            "style": {
+                                                "color": "white",
+                                                "top": "73%",
+                                                "left": "12%"
+                                            },
+                                            "type": "state-label",
+                                            "entity": "proximity.home_sabrine"
+                                        }
+                                    ],
+                                    "style": "ha-card {\n  border: solid 2px var(--primary-color);\n  background-color: rgba(255, 255, 255, 0);\n}                      \n"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "horizontal-stack",
+                            "cards": [
+                                {
+                                    "type": "picture-elements",
+                                    "image": "/local/Pictures/luca_status.png",
+                                    "elements": [
+                                        {
+                                            "style": {
+                                                "color": "white",
+                                                "top": "92%",
+                                                "left": "50%",
+                                                "font-size": "20px"
+                                            },
+                                            "type": "state-label",
+                                            "entity": "sensor.luca_presence"
+                                        },
+                                        {
+                                            "style": {
+                                                "color": "white",
+                                                "top": "73%",
+                                                "left": "88%"
+                                            },
+                                            "type": "state-label",
+                                            "entity": "sensor.tablet_luca_batterijniveau"
+                                        },
+                                        {
+                                            "style": {
+                                                "color": "white",
+                                                "top": "73%",
+                                                "left": "12%"
+                                            },
+                                            "type": "state-label",
+                                            "entity": "proximity.home_luca"
+                                        }
+                                    ],
+                                    "style": "ha-card {\n  border: solid 2px var(--primary-color);\n  background-color: rgba(255, 255, 255, 0);\n}    \n"
+                                },
+                                {
+                                    "type": "picture-elements",
+                                    "image": "/local/Pictures/fynn_status.png",
+                                    "elements": [
+                                        {
+                                            "style": {
+                                                "color": "white",
+                                                "top": "92%",
+                                                "left": "50%",
+                                                "font-size": "20px"
+                                            },
+                                            "type": "state-label",
+                                            "entity": "sensor.fynn_presence"
+                                        },
+                                        {
+                                            "style": {
+                                                "color": "white",
+                                                "top": "73%",
+                                                "left": "88%"
+                                            },
+                                            "type": "state-label",
+                                            "entity": "sensor.tablet_fynn_batterijniveau"
+                                        },
+                                        {
+                                            "style": {
+                                                "color": "white",
+                                                "top": "73%",
+                                                "left": "12%"
+                                            },
+                                            "type": "state-label",
+                                            "entity": "proximity.home_fynn"
+                                        }
+                                    ],
+                                    "style": "ha-card {\n  border: solid 2px var(--primary-color);\n  background-color: rgba(255, 255, 255, 0);\n}                      \n"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "map",
+                            "aspect_ratio": "16x9",
+                            "default_zoom": 20,
+                            "entities": [
+                                {
+                                    "entity": "zone.home"
+                                },
+                                {
+                                    "entity": "person.duncan"
+                                },
+                                {
+                                    "entity": "person.sabrine"
+                                },
+                                {
+                                    "entity": "person.luca"
+                                },
+                                {
+                                    "entity": "person.fynn"
+                                }
+                            ],
+                            "style": "ha-card {\n  border: solid 2px var(--primary-color);\n  background-color: rgba(255, 255, 255, 0);\n}       \n"
+                        }
+                    ]
+                },
+                {
+                    "title": "Woonkamer",
+                    "path": "woonkamer",
+                    "icon": "mdi:sofa",
+                    "visible": [
+                        {
+                            "user": "edf6650cd84b44ba853cfd5ba02fa72c"
+                        },
+                        {
+                            "user": "914ff3c93def4ff6a59b7eb6296ef2d3"
+                        },
+                        {
+                            "user": "13dccb69229d47919faec8fa377f33c9"
+                        }
+                    ],
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "custom:button-card",
+                            "color_type": "label-card",
+                            "color": "var(--ha-card-background)",
+                            "name": "Home",
+                            "tap_action": {
+                                "action": "navigate",
+                                "navigation_path": "/lovelace-mobile/mobile"
+                            },
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        },
+                        {
+                            "type": "custom:banner-card",
+                            "heading": "\ud83d\udecb Woonkamer",
+                            "entities": [
+                                "light.lampen_woonkamer",
+                                {
+                                    "attribute": "current_temperature",
+                                    "entity": "climate.toon_thermostat",
+                                    "name": "Temperatuur"
+                                },
+                                {
+                                    "entity": "media_player.woonkamer_tv",
+                                    "size": 2,
+                                    "name": "TV"
+                                },
+                                {
+                                    "entity": "media_player.sonos_woonkamer",
+                                    "name": "Sonos"
+                                }
+                            ],
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        }
+                    ]
+                },
+                {
+                    "title": "Keuken",
+                    "path": "keuken",
+                    "icon": "mdi:chef-hat",
+                    "visible": [
+                        {
+                            "user": "edf6650cd84b44ba853cfd5ba02fa72c"
+                        },
+                        {
+                            "user": "914ff3c93def4ff6a59b7eb6296ef2d3"
+                        },
+                        {
+                            "user": "13dccb69229d47919faec8fa377f33c9"
+                        }
+                    ],
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "custom:button-card",
+                            "color_type": "label-card",
+                            "color": "var(--ha-card-background)",
+                            "name": "Home",
+                            "tap_action": {
+                                "action": "navigate",
+                                "navigation_path": "/lovelace-mobile/mobile"
+                            },
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        },
+                        {
+                            "type": "custom:banner-card",
+                            "heading": "\ud83d\udc69\u200d\ud83c\udf73 Keuken",
+                            "entities": [
+                                "light.lampen_keuken"
+                            ],
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        },
+                        {
+                            "type": "horizontal-stack",
+                            "cards": [
+                                {
+                                    "type": "custom:button-card",
+                                    "entity": "switch.shelly_shplg_s_9a53ab",
+                                    "aspect_ratio": "1/1",
+                                    "name": "Boiler",
+                                    "entity_picture": "/local/Custom_Icons/boiler-ico.png",
+                                    "size": "50%",
+                                    "show_entity_picture": true,
+                                    "styles": {
+                                        "card": [
+                                            {
+                                                "background-color": "var(--ha-card-background)"
+                                            }
+                                        ],
+                                        "grid": [
+                                            {
+                                                "grid-template-areas": "\"i i verbruik\" \"n n n\""
+                                            },
+                                            {
+                                                "grid-template-columns": "50% 25% 25%"
+                                            },
+                                            {
+                                                "grid-template-rows": "85% 15%"
+                                            }
+                                        ],
+                                        "name": [
+                                            {
+                                                "justify-self": "center"
+                                            },
+                                            {
+                                                "font-size": "15px"
+                                            },
+                                            {
+                                                "align-items": "middle"
+                                            }
+                                        ],
+                                        "img_cell": [
+                                            {
+                                                "justify-content": "start"
+                                            },
+                                            {
+                                                "align-items": "middle"
+                                            },
+                                            {
+                                                "grid-column-start": 1
+                                            },
+                                            {
+                                                "grid-column-end": 4
+                                            }
+                                        ],
+                                        "custom_fields": {
+                                            "verbruik": [
+                                                {
+                                                    "align-self": "center"
+                                                },
+                                                {
+                                                    "justify-self": "end"
+                                                },
+                                                {
+                                                    "font-size": "12px"
+                                                },
+                                                {
+                                                    "padding-right": "10px"
+                                                },
+                                                {
+                                                    "paddin-top": "50px"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "state": [
+                                        {
+                                            "value": "off",
+                                            "styles": {
+                                                "card": [
+                                                    {
+                                                        "filter": "opacity(50%)"
+                                                    }
+                                                ],
+                                                "icon": [
+                                                    {
+                                                        "filter": "grayscale(100%)"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "value": "on",
+                                            "styles": null
+                                        }
+                                    ],
+                                    "custom_fields": {
+                                        "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['sensor.maandelijks_verbruik_boiler'].state} Kwh</span></span>`\n]]]\n"
+                                    },
+                                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                                },
+                                {
+                                    "type": "custom:gap-card"
+                                },
+                                {
+                                    "type": "custom:gap-card"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "title": "Toilet",
+                    "path": "toilet",
+                    "icon": "mdi:toilet",
+                    "visible": [
+                        {
+                            "user": "edf6650cd84b44ba853cfd5ba02fa72c"
+                        },
+                        {
+                            "user": "914ff3c93def4ff6a59b7eb6296ef2d3"
+                        },
+                        {
+                            "user": "13dccb69229d47919faec8fa377f33c9"
+                        }
+                    ],
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "custom:button-card",
+                            "color_type": "label-card",
+                            "color": "var(--ha-card-background)",
+                            "name": "Home",
+                            "tap_action": {
+                                "action": "navigate",
+                                "navigation_path": "/lovelace-mobile/mobile"
+                            },
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        },
+                        {
+                            "type": "custom:banner-card",
+                            "heading": "\ud83d\udebd Toilet",
+                            "entities": [
+                                "light.lampen_toilet"
+                            ],
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        }
+                    ]
+                },
+                {
+                    "title": "Hal",
+                    "path": "hal",
+                    "icon": "mdi:key",
+                    "visible": [
+                        {
+                            "user": "edf6650cd84b44ba853cfd5ba02fa72c"
+                        },
+                        {
+                            "user": "914ff3c93def4ff6a59b7eb6296ef2d3"
+                        },
+                        {
+                            "user": "13dccb69229d47919faec8fa377f33c9"
+                        }
+                    ],
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "custom:button-card",
+                            "color_type": "label-card",
+                            "color": "var(--ha-card-background)",
+                            "name": "Home",
+                            "tap_action": {
+                                "action": "navigate",
+                                "navigation_path": "/lovelace-mobile/mobile"
+                            },
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        },
+                        {
+                            "type": "custom:banner-card",
+                            "heading": "\ud83d\udeaa Hal",
+                            "entities": [
+                                "light.lampen_hal"
+                            ],
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        }
+                    ]
+                },
+                {
+                    "title": "Overloop",
+                    "path": "overloop",
+                    "icon": "mdi:stairs",
+                    "visible": [
+                        {
+                            "user": "edf6650cd84b44ba853cfd5ba02fa72c"
+                        },
+                        {
+                            "user": "914ff3c93def4ff6a59b7eb6296ef2d3"
+                        },
+                        {
+                            "user": "13dccb69229d47919faec8fa377f33c9"
+                        }
+                    ],
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "custom:button-card",
+                            "color_type": "label-card",
+                            "color": "var(--ha-card-background)",
+                            "name": "Home",
+                            "tap_action": {
+                                "action": "navigate",
+                                "navigation_path": "/lovelace-mobile/mobile"
+                            },
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        },
+                        {
+                            "type": "custom:banner-card",
+                            "heading": "\ud83d\udeb6 Overloop",
+                            "entities": [
+                                "light.lampen_overloop"
+                            ],
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        }
+                    ]
+                },
+                {
+                    "title": "Slaapkamer_Sab_Dunc",
+                    "path": "slaapkamer-sab-dunc",
+                    "icon": "mdi:bed-king",
+                    "visible": [
+                        {
+                            "user": "edf6650cd84b44ba853cfd5ba02fa72c"
+                        },
+                        {
+                            "user": "914ff3c93def4ff6a59b7eb6296ef2d3"
+                        },
+                        {
+                            "user": "13dccb69229d47919faec8fa377f33c9"
+                        }
+                    ],
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "custom:button-card",
+                            "color_type": "label-card",
+                            "color": "var(--ha-card-background)",
+                            "name": "Home",
+                            "tap_action": {
+                                "action": "navigate",
+                                "navigation_path": "/lovelace-mobile/mobile"
+                            },
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        },
+                        {
+                            "type": "custom:banner-card",
+                            "heading": "\ud83d\udc6b Kamer Sab & Dunc",
+                            "entities": [
+                                "light.lampen_kamer_S_D",
+                                {
+                                    "entity": "media_player.bloomtv",
+                                    "name": "TV"
+                                }
+                            ],
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        }
+                    ]
+                },
+                {
+                    "title": "Slaapkamer Luca",
+                    "path": "slaapkamer-luca",
+                    "icon": "mdi:bed",
+                    "visible": [
+                        {
+                            "user": "edf6650cd84b44ba853cfd5ba02fa72c"
+                        },
+                        {
+                            "user": "914ff3c93def4ff6a59b7eb6296ef2d3"
+                        },
+                        {
+                            "user": "c2b2a106f0164c2cb765a0fe143e4c62"
+                        },
+                        {
+                            "user": "13dccb69229d47919faec8fa377f33c9"
+                        }
+                    ],
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "custom:button-card",
+                            "color_type": "label-card",
+                            "color": "var(--ha-card-background)",
+                            "name": "Home",
+                            "tap_action": {
+                                "action": "navigate",
+                                "navigation_path": "/lovelace-mobile/mobile"
+                            },
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        },
+                        {
+                            "type": "custom:banner-card",
+                            "heading": "\ud83d\udecc Kamer Luca",
+                            "entities": [
+                                "light.lampen_kamer_luca"
+                            ],
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        }
+                    ]
+                },
+                {
+                    "title": "Slaapkamer Fynn",
+                    "path": "slaapkamer-fynn",
+                    "icon": "mdi:bed",
+                    "visible": [
+                        {
+                            "user": "edf6650cd84b44ba853cfd5ba02fa72c"
+                        },
+                        {
+                            "user": "914ff3c93def4ff6a59b7eb6296ef2d3"
+                        },
+                        {
+                            "user": "41e3fb720a994f7ba3d48306ed7aa9a2"
+                        },
+                        {
+                            "user": "13dccb69229d47919faec8fa377f33c9"
+                        }
+                    ],
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "custom:button-card",
+                            "color_type": "label-card",
+                            "color": "var(--ha-card-background)",
+                            "name": "Home",
+                            "tap_action": {
+                                "action": "navigate",
+                                "navigation_path": "/lovelace-mobile/mobile"
+                            },
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        },
+                        {
+                            "type": "custom:banner-card",
+                            "heading": "\ud83d\udecc Kamer Fynn",
+                            "entities": [
+                                {
+                                    "entity": "light.lampen_kamer_fynn",
+                                    "name": "Lampen"
+                                }
+                            ],
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        },
+                        {
+                            "type": "horizontal-stack",
+                            "cards": [
+                                {
+                                    "type": "custom:button-card",
+                                    "entity": "light.lamp_hoekje",
+                                    "aspect_ratio": "1/1",
+                                    "name": "Lamp Hoekje",
+                                    "entity_picture": "/local/Custom_Icons/lamp_hoekje-ico.png",
+                                    "size": "50%",
+                                    "show_entity_picture": true,
+                                    "hold_action": {
+                                        "action": "more-info"
+                                    },
+                                    "styles": {
+                                        "card": [
+                                            {
+                                                "background-color": "var(--ha-card-background)"
+                                            }
+                                        ],
+                                        "grid": [
+                                            {
+                                                "grid-template-areas": "\"i i verbruik\" \"n n n\""
+                                            },
+                                            {
+                                                "grid-template-columns": "50% 25% 25%"
+                                            },
+                                            {
+                                                "grid-template-rows": "85% 15%"
+                                            }
+                                        ],
+                                        "name": [
+                                            {
+                                                "justify-self": "center"
+                                            },
+                                            {
+                                                "font-size": "15px"
+                                            },
+                                            {
+                                                "align-items": "middle"
+                                            }
+                                        ],
+                                        "img_cell": [
+                                            {
+                                                "justify-content": "start"
+                                            },
+                                            {
+                                                "align-items": "middle"
+                                            },
+                                            {
+                                                "grid-column-start": 1
+                                            },
+                                            {
+                                                "grid-column-end": 4
+                                            }
+                                        ],
+                                        "custom_fields": {
+                                            "verbruik": [
+                                                {
+                                                    "align-self": "center"
+                                                },
+                                                {
+                                                    "justify-self": "end"
+                                                },
+                                                {
+                                                    "font-size": "12px"
+                                                },
+                                                {
+                                                    "padding-right": "10px"
+                                                },
+                                                {
+                                                    "paddin-top": "50px"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "state": [
+                                        {
+                                            "value": "off",
+                                            "styles": {
+                                                "card": [
+                                                    {
+                                                        "filter": "opacity(50%)"
+                                                    }
+                                                ],
+                                                "icon": [
+                                                    {
+                                                        "filter": "grayscale(100%)"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "value": "on",
+                                            "styles": null
+                                        }
+                                    ],
+                                    "custom_fields": {
+                                        "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['light.lamp_hoekje'].state}</span></span>`\n]]]\n"
+                                    },
+                                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                                },
+                                {
+                                    "type": "custom:button-card",
+                                    "entity": "sensor.schakelaar_lamp_hoekje",
+                                    "aspect_ratio": "1/1",
+                                    "name": "Schakelaar Lamp Hoekje",
+                                    "entity_picture": "/local/Custom_Icons/schakelaar_lamp_hoekje-ico.png",
+                                    "size": "50%",
+                                    "show_entity_picture": true,
+                                    "styles": {
+                                        "card": [
+                                            {
+                                                "background-color": "var(--ha-card-background)"
+                                            }
+                                        ],
+                                        "grid": [
+                                            {
+                                                "grid-template-areas": "\"i i verbruik\" \"n n n\""
+                                            },
+                                            {
+                                                "grid-template-columns": "50% 25% 25%"
+                                            },
+                                            {
+                                                "grid-template-rows": "85% 15%"
+                                            }
+                                        ],
+                                        "name": [
+                                            {
+                                                "justify-self": "center"
+                                            },
+                                            {
+                                                "font-size": "15px"
+                                            },
+                                            {
+                                                "align-items": "middle"
+                                            }
+                                        ],
+                                        "img_cell": [
+                                            {
+                                                "justify-content": "start"
+                                            },
+                                            {
+                                                "align-items": "middle"
+                                            },
+                                            {
+                                                "grid-column-start": 1
+                                            },
+                                            {
+                                                "grid-column-end": 4
+                                            }
+                                        ],
+                                        "custom_fields": {
+                                            "verbruik": [
+                                                {
+                                                    "align-self": "center"
+                                                },
+                                                {
+                                                    "justify-self": "end"
+                                                },
+                                                {
+                                                    "font-size": "12px"
+                                                },
+                                                {
+                                                    "padding-right": "10px"
+                                                },
+                                                {
+                                                    "paddin-top": "50px"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "custom_fields": {
+                                        "verbruik": "[[[\n  return `<span>Battery <span style=\"color: var(--text-color-sensor);\">${states['sensor.schakelaar_lamp_hoekje'].state}%</span></span>`\n]]]\n"
+                                    },
+                                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                                },
+                                {
+                                    "type": "custom:gap-card"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "title": "Badkamer",
+                    "path": "badkamer",
+                    "icon": "mdi:shower",
+                    "visible": [
+                        {
+                            "user": "edf6650cd84b44ba853cfd5ba02fa72c"
+                        },
+                        {
+                            "user": "914ff3c93def4ff6a59b7eb6296ef2d3"
+                        },
+                        {
+                            "user": "13dccb69229d47919faec8fa377f33c9"
+                        }
+                    ],
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "custom:button-card",
+                            "color_type": "label-card",
+                            "color": "var(--ha-card-background)",
+                            "name": "Home",
+                            "tap_action": {
+                                "action": "navigate",
+                                "navigation_path": "/lovelace-mobile/mobile"
+                            },
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        },
+                        {
+                            "type": "custom:banner-card",
+                            "heading": "\ud83d\udec1 Badkamer",
+                            "entities": [
+                                "light.lampen_badkamer"
+                            ],
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        }
+                    ]
+                },
+                {
+                    "title": "Zolder",
+                    "path": "zolder",
+                    "icon": "mdi:briefcase",
+                    "visible": [
+                        {
+                            "user": "edf6650cd84b44ba853cfd5ba02fa72c"
+                        },
+                        {
+                            "user": "914ff3c93def4ff6a59b7eb6296ef2d3"
+                        },
+                        {
+                            "user": "13dccb69229d47919faec8fa377f33c9"
+                        }
+                    ],
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "custom:button-card",
+                            "color_type": "label-card",
+                            "color": "var(--ha-card-background)",
+                            "name": "Home",
+                            "tap_action": {
+                                "action": "navigate",
+                                "navigation_path": "/lovelace-mobile/mobile"
+                            },
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        },
+                        {
+                            "type": "custom:banner-card",
+                            "heading": "\ud83d\udcbb Zolder",
+                            "entities": [
+                                {
+                                    "entity": "light.lampen_zolder",
+                                    "name": "Lampen"
+                                }
+                            ],
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        },
+                        {
+                            "type": "horizontal-stack",
+                            "cards": [
+                                {
+                                    "type": "custom:button-card",
+                                    "entity": "light.bureaulamp",
+                                    "aspect_ratio": "1/1",
+                                    "name": "Bureaulamp",
+                                    "entity_picture": "/local/Custom_Icons/bureaulamp-ico.png",
+                                    "size": "50%",
+                                    "show_entity_picture": true,
+                                    "styles": {
+                                        "card": [
+                                            {
+                                                "background-color": "var(--ha-card-background)"
+                                            }
+                                        ],
+                                        "grid": [
+                                            {
+                                                "grid-template-areas": "\"i i verbruik\" \"n n n\""
+                                            },
+                                            {
+                                                "grid-template-columns": "50% 25% 25%"
+                                            },
+                                            {
+                                                "grid-template-rows": "85% 15%"
+                                            }
+                                        ],
+                                        "name": [
+                                            {
+                                                "justify-self": "center"
+                                            },
+                                            {
+                                                "font-size": "15px"
+                                            },
+                                            {
+                                                "align-items": "middle"
+                                            }
+                                        ],
+                                        "img_cell": [
+                                            {
+                                                "justify-content": "start"
+                                            },
+                                            {
+                                                "align-items": "middle"
+                                            },
+                                            {
+                                                "grid-column-start": 1
+                                            },
+                                            {
+                                                "grid-column-end": 4
+                                            }
+                                        ],
+                                        "custom_fields": {
+                                            "verbruik": [
+                                                {
+                                                    "align-self": "center"
+                                                },
+                                                {
+                                                    "justify-self": "end"
+                                                },
+                                                {
+                                                    "font-size": "12px"
+                                                },
+                                                {
+                                                    "padding-right": "10px"
+                                                },
+                                                {
+                                                    "paddin-top": "50px"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "state": [
+                                        {
+                                            "value": "off",
+                                            "styles": {
+                                                "card": [
+                                                    {
+                                                        "filter": "opacity(50%)"
+                                                    }
+                                                ],
+                                                "icon": [
+                                                    {
+                                                        "filter": "grayscale(100%)"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "value": "on",
+                                            "styles": null
+                                        }
+                                    ],
+                                    "custom_fields": {
+                                        "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['light.bureaulamp'].state}</span></span>`\n]]]\n"
+                                    },
+                                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                                },
+                                {
+                                    "type": "custom:button-card",
+                                    "entity": "light.shelly_shsw_1_40f520009959",
+                                    "aspect_ratio": "1/1",
+                                    "name": "Spotjes Dakkapel",
+                                    "entity_picture": "/local/Custom_Icons/spotjes-dakkapel-ico.png",
+                                    "size": "50%",
+                                    "show_entity_picture": true,
+                                    "styles": {
+                                        "card": [
+                                            {
+                                                "background-color": "var(--ha-card-background)"
+                                            }
+                                        ],
+                                        "grid": [
+                                            {
+                                                "grid-template-areas": "\"i i verbruik\" \"n n n\""
+                                            },
+                                            {
+                                                "grid-template-columns": "50% 25% 25%"
+                                            },
+                                            {
+                                                "grid-template-rows": "85% 15%"
+                                            }
+                                        ],
+                                        "name": [
+                                            {
+                                                "justify-self": "center"
+                                            },
+                                            {
+                                                "font-size": "15px"
+                                            },
+                                            {
+                                                "align-items": "middle"
+                                            }
+                                        ],
+                                        "img_cell": [
+                                            {
+                                                "justify-content": "start"
+                                            },
+                                            {
+                                                "align-items": "middle"
+                                            },
+                                            {
+                                                "grid-column-start": 1
+                                            },
+                                            {
+                                                "grid-column-end": 4
+                                            }
+                                        ],
+                                        "custom_fields": {
+                                            "verbruik": [
+                                                {
+                                                    "align-self": "center"
+                                                },
+                                                {
+                                                    "justify-self": "end"
+                                                },
+                                                {
+                                                    "font-size": "12px"
+                                                },
+                                                {
+                                                    "padding-right": "10px"
+                                                },
+                                                {
+                                                    "paddin-top": "50px"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "state": [
+                                        {
+                                            "value": "off",
+                                            "styles": {
+                                                "card": [
+                                                    {
+                                                        "filter": "opacity(50%)"
+                                                    }
+                                                ],
+                                                "icon": [
+                                                    {
+                                                        "filter": "grayscale(100%)"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "value": "on",
+                                            "styles": null
+                                        }
+                                    ],
+                                    "custom_fields": {
+                                        "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['light.shelly_shsw_1_40f520009959'].state}</span></span>`\n]]]\n"
+                                    },
+                                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                                },
+                                {
+                                    "type": "custom:button-card",
+                                    "entity": "switch.shelly_shplg_s_9d9823",
+                                    "aspect_ratio": "1/1",
+                                    "name": "Wasmachine",
+                                    "entity_picture": "/local/Custom_Icons/wasmachine-ico.png",
+                                    "size": "50%",
+                                    "show_entity_picture": true,
+                                    "styles": {
+                                        "card": [
+                                            {
+                                                "background-color": "var(--ha-card-background)"
+                                            }
+                                        ],
+                                        "grid": [
+                                            {
+                                                "grid-template-areas": "\"i i verbruik\" \"n n n\""
+                                            },
+                                            {
+                                                "grid-template-columns": "50% 25% 25%"
+                                            },
+                                            {
+                                                "grid-template-rows": "85% 15%"
+                                            }
+                                        ],
+                                        "name": [
+                                            {
+                                                "justify-self": "center"
+                                            },
+                                            {
+                                                "font-size": "15px"
+                                            },
+                                            {
+                                                "align-items": "middle"
+                                            }
+                                        ],
+                                        "img_cell": [
+                                            {
+                                                "justify-content": "start"
+                                            },
+                                            {
+                                                "align-items": "middle"
+                                            },
+                                            {
+                                                "grid-column-start": 1
+                                            },
+                                            {
+                                                "grid-column-end": 4
+                                            }
+                                        ],
+                                        "custom_fields": {
+                                            "verbruik": [
+                                                {
+                                                    "align-self": "center"
+                                                },
+                                                {
+                                                    "justify-self": "end"
+                                                },
+                                                {
+                                                    "font-size": "12px"
+                                                },
+                                                {
+                                                    "padding-right": "10px"
+                                                },
+                                                {
+                                                    "paddin-top": "50px"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "state": [
+                                        {
+                                            "value": "off",
+                                            "styles": {
+                                                "card": [
+                                                    {
+                                                        "filter": "opacity(50%)"
+                                                    }
+                                                ],
+                                                "icon": [
+                                                    {
+                                                        "filter": "grayscale(100%)"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "value": "on",
+                                            "styles": null
+                                        }
+                                    ],
+                                    "custom_fields": {
+                                        "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['sensor.maandelijks_verbruik_wasmachine'].state} Kwh</span></span>`\n]]]\n"
+                                    },
+                                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "horizontal-stack",
+                            "cards": [
+                                {
+                                    "type": "custom:button-card",
+                                    "entity": "switch.shelly_shplg_s_9a5381",
+                                    "aspect_ratio": "1/1",
+                                    "name": "CV",
+                                    "entity_picture": "/local/Custom_Icons/remeha_avanta-ico.png",
+                                    "size": "50%",
+                                    "show_entity_picture": true,
+                                    "styles": {
+                                        "card": [
+                                            {
+                                                "background-color": "var(--ha-card-background)"
+                                            }
+                                        ],
+                                        "grid": [
+                                            {
+                                                "grid-template-areas": "\"i i verbruik\" \"n n n\""
+                                            },
+                                            {
+                                                "grid-template-columns": "50% 25% 25%"
+                                            },
+                                            {
+                                                "grid-template-rows": "85% 15%"
+                                            }
+                                        ],
+                                        "name": [
+                                            {
+                                                "justify-self": "center"
+                                            },
+                                            {
+                                                "font-size": "15px"
+                                            },
+                                            {
+                                                "align-items": "middle"
+                                            }
+                                        ],
+                                        "img_cell": [
+                                            {
+                                                "justify-content": "start"
+                                            },
+                                            {
+                                                "align-items": "middle"
+                                            },
+                                            {
+                                                "grid-column-start": 1
+                                            },
+                                            {
+                                                "grid-column-end": 4
+                                            }
+                                        ],
+                                        "custom_fields": {
+                                            "verbruik": [
+                                                {
+                                                    "align-self": "center"
+                                                },
+                                                {
+                                                    "justify-self": "end"
+                                                },
+                                                {
+                                                    "font-size": "12px"
+                                                },
+                                                {
+                                                    "padding-right": "10px"
+                                                },
+                                                {
+                                                    "paddin-top": "50px"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "state": [
+                                        {
+                                            "value": "off",
+                                            "styles": {
+                                                "card": [
+                                                    {
+                                                        "filter": "opacity(50%)"
+                                                    }
+                                                ],
+                                                "icon": [
+                                                    {
+                                                        "filter": "grayscale(100%)"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "value": "on",
+                                            "styles": null
+                                        }
+                                    ],
+                                    "custom_fields": {
+                                        "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['sensor.maandelijks_verbruik_cv'].state} Kwh</span></span>`\n]]]\n"
+                                    },
+                                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                                },
+                                {
+                                    "type": "custom:gap-card"
+                                },
+                                {
+                                    "type": "custom:gap-card"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "title": "Achtertuin",
+                    "path": "achtertuin",
+                    "icon": "mdi:shovel",
+                    "visible": [
+                        {
+                            "user": "edf6650cd84b44ba853cfd5ba02fa72c"
+                        },
+                        {
+                            "user": "914ff3c93def4ff6a59b7eb6296ef2d3"
+                        },
+                        {
+                            "user": "13dccb69229d47919faec8fa377f33c9"
+                        }
+                    ],
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "custom:button-card",
+                            "color_type": "label-card",
+                            "color": "var(--ha-card-background)",
+                            "name": "Home",
+                            "tap_action": {
+                                "action": "navigate",
+                                "navigation_path": "/lovelace-mobile/mobile"
+                            },
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        },
+                        {
+                            "type": "custom:banner-card",
+                            "heading": "\ud83c\udf40 Achtertuin",
+                            "entities": [
+                                {
+                                    "entity": "light.lampen_achtertuin",
+                                    "name": "Lampen"
+                                }
+                            ],
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        },
+                        {
+                            "type": "horizontal-stack",
+                            "cards": [
+                                {
+                                    "type": "custom:button-card",
+                                    "entity": "light.shelly_shsw_1_40f52000c449",
+                                    "aspect_ratio": "1/1",
+                                    "name": "Lampjes Overkapping",
+                                    "entity_picture": "/local/Custom_Icons/lampjes_overkapping-ico.png",
+                                    "size": "50%",
+                                    "show_entity_picture": true,
+                                    "styles": {
+                                        "card": [
+                                            {
+                                                "background-color": "var(--ha-card-background)"
+                                            }
+                                        ],
+                                        "grid": [
+                                            {
+                                                "grid-template-areas": "\"i i verbruik\" \"n n n\""
+                                            },
+                                            {
+                                                "grid-template-columns": "50% 25% 25%"
+                                            },
+                                            {
+                                                "grid-template-rows": "85% 15%"
+                                            }
+                                        ],
+                                        "name": [
+                                            {
+                                                "justify-self": "center"
+                                            },
+                                            {
+                                                "font-size": "15px"
+                                            },
+                                            {
+                                                "align-items": "middle"
+                                            }
+                                        ],
+                                        "img_cell": [
+                                            {
+                                                "justify-content": "start"
+                                            },
+                                            {
+                                                "align-items": "middle"
+                                            },
+                                            {
+                                                "grid-column-start": 1
+                                            },
+                                            {
+                                                "grid-column-end": 4
+                                            }
+                                        ],
+                                        "custom_fields": {
+                                            "verbruik": [
+                                                {
+                                                    "align-self": "center"
+                                                },
+                                                {
+                                                    "justify-self": "end"
+                                                },
+                                                {
+                                                    "font-size": "12px"
+                                                },
+                                                {
+                                                    "padding-right": "10px"
+                                                },
+                                                {
+                                                    "paddin-top": "50px"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "state": [
+                                        {
+                                            "value": "off",
+                                            "styles": {
+                                                "card": [
+                                                    {
+                                                        "filter": "opacity(50%)"
+                                                    }
+                                                ],
+                                                "icon": [
+                                                    {
+                                                        "filter": "grayscale(100%)"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "value": "on",
+                                            "styles": null
+                                        }
+                                    ],
+                                    "custom_fields": {
+                                        "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['light.shelly_shsw_1_40f52000c449'].state}</span></span>`\n]]]\n"
+                                    },
+                                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                                },
+                                {
+                                    "type": "custom:gap-card"
+                                },
+                                {
+                                    "type": "custom:gap-card"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "title": "Oprit",
+                    "path": "oprit",
+                    "icon": "mdi:car",
+                    "visible": [
+                        {
+                            "user": "edf6650cd84b44ba853cfd5ba02fa72c"
+                        },
+                        {
+                            "user": "914ff3c93def4ff6a59b7eb6296ef2d3"
+                        },
+                        {
+                            "user": "13dccb69229d47919faec8fa377f33c9"
+                        }
+                    ],
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "custom:button-card",
+                            "color_type": "label-card",
+                            "color": "var(--ha-card-background)",
+                            "name": "Home",
+                            "tap_action": {
+                                "action": "navigate",
+                                "navigation_path": "/lovelace-mobile/mobile"
+                            },
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        },
+                        {
+                            "type": "custom:banner-card",
+                            "heading": "\ud83d\ude99 Oprit",
+                            "entities": [
+                                "light.lampen_oprit"
+                            ],
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        }
+                    ]
+                },
+                {
+                    "title": "Schuur",
+                    "path": "schuur",
+                    "icon": "mdi:barn",
+                    "visible": [
+                        {
+                            "user": "edf6650cd84b44ba853cfd5ba02fa72c"
+                        },
+                        {
+                            "user": "914ff3c93def4ff6a59b7eb6296ef2d3"
+                        },
+                        {
+                            "user": "13dccb69229d47919faec8fa377f33c9"
+                        }
+                    ],
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "custom:button-card",
+                            "color_type": "label-card",
+                            "color": "var(--ha-card-background)",
+                            "name": "Home",
+                            "tap_action": {
+                                "action": "navigate",
+                                "navigation_path": "/lovelace-mobile/mobile"
+                            },
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        },
+                        {
+                            "type": "custom:banner-card",
+                            "heading": "\ud83d\udeb2 Schuur",
+                            "entities": [
+                                "light.lampen_schuur"
+                            ],
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        }
+                    ]
+                },
+                {
+                    "title": "System Mobile",
+                    "path": "system_mobile",
+                    "icon": "mdi:server",
+                    "visible": [
+                        {
+                            "user": "edf6650cd84b44ba853cfd5ba02fa72c"
+                        },
+                        {
+                            "user": "914ff3c93def4ff6a59b7eb6296ef2d3"
+                        },
+                        {
+                            "user": "13dccb69229d47919faec8fa377f33c9"
+                        }
+                    ],
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "custom:button-card",
+                            "color_type": "label-card",
+                            "color": "var(--ha-card-background)",
+                            "name": "Home",
+                            "tap_action": {
+                                "action": "navigate",
+                                "navigation_path": "/lovelace-mobile/mobile"
+                            },
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        },
+                        {
+                            "type": "custom:banner-card",
+                            "heading": "\ud83d\udda5 System",
+                            "entities": null,
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        },
+                        {
+                            "type": "horizontal-stack",
+                            "cards": [
+                                {
+                                    "type": "custom:button-card",
+                                    "entity": "sensor.bloom_data_safety",
+                                    "name": "Bloom-Data Safety",
+                                    "aspect_ratio": "3/1",
+                                    "state": [
+                                        {
+                                            "value": "Unsafe",
+                                            "icon": "mdi:alert",
+                                            "color": "#ff4d4d"
+                                        },
+                                        {
+                                            "value": "Safe",
+                                            "icon": "mdi:shield-check",
+                                            "color": "#00e64d"
+                                        }
+                                    ],
+                                    "style": "ha-card {\n  box-shadow: none;\n  background: none;\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                                },
+                                {
+                                    "type": "custom:button-card",
+                                    "entity": "sensor.cert_expiry_days_bloom_data",
+                                    "name": "Bloom-Data Certificate",
+                                    "aspect_ratio": "3/1",
+                                    "state": [
+                                        {
+                                            "value": "expired",
+                                            "icon": "mdi:alert",
+                                            "color": "#ff4d4d"
+                                        },
+                                        {
+                                            "operator": "default",
+                                            "icon": "mdi:shield-check",
+                                            "color": "#00e64d"
+                                        }
+                                    ],
+                                    "style": "ha-card {\n  box-shadow: none;\n  background: none;\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "horizontal-stack",
+                            "cards": [
+                                {
+                                    "type": "custom:button-card",
+                                    "entity": "sensor.bloom_data_safety_disk_1",
+                                    "name": "Disk 1",
+                                    "aspect_ratio": "2/1",
+                                    "styles": {
+                                        "card": [
+                                            {
+                                                "font-size": "15px"
+                                            }
+                                        ]
+                                    },
+                                    "state": [
+                                        {
+                                            "value": "Unsafe",
+                                            "icon": "mdi:alert",
+                                            "color": "#ff4d4d"
+                                        },
+                                        {
+                                            "value": "Safe",
+                                            "icon": "mdi:shield-check",
+                                            "color": "#00e64d"
+                                        }
+                                    ],
+                                    "style": "ha-card {\n  box-shadow: none;\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                                },
+                                {
+                                    "type": "custom:button-card",
+                                    "entity": "sensor.bloom_data_safety_disk_2",
+                                    "name": "Disk 2",
+                                    "aspect_ratio": "2/1",
+                                    "styles": {
+                                        "card": [
+                                            {
+                                                "font-size": "15px"
+                                            }
+                                        ]
+                                    },
+                                    "state": [
+                                        {
+                                            "value": "Unsafe",
+                                            "icon": "mdi:alert",
+                                            "color": "#ff4d4d"
+                                        },
+                                        {
+                                            "value": "Safe",
+                                            "icon": "mdi:shield-check",
+                                            "color": "#00e64d"
+                                        }
+                                    ],
+                                    "style": "ha-card {\n  box-shadow: none;\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                                },
+                                {
+                                    "type": "custom:button-card",
+                                    "entity": "sensor.bloom_data_safety_disk_3",
+                                    "name": "Disk 3",
+                                    "aspect_ratio": "2/1",
+                                    "styles": {
+                                        "card": [
+                                            {
+                                                "font-size": "15px"
+                                            }
+                                        ]
+                                    },
+                                    "state": [
+                                        {
+                                            "value": "Unsafe",
+                                            "icon": "mdi:alert",
+                                            "color": "#ff4d4d"
+                                        },
+                                        {
+                                            "value": "Safe",
+                                            "icon": "mdi:shield-check",
+                                            "color": "#00e64d"
+                                        }
+                                    ],
+                                    "style": "ha-card {\n  box-shadow: none;\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                                },
+                                {
+                                    "type": "custom:button-card",
+                                    "entity": "sensor.bloom_data_safety_disk_4",
+                                    "name": "Disk 4",
+                                    "aspect_ratio": "2/1",
+                                    "styles": {
+                                        "card": [
+                                            {
+                                                "font-size": "15px"
+                                            }
+                                        ]
+                                    },
+                                    "state": [
+                                        {
+                                            "value": "Unsafe",
+                                            "icon": "mdi:alert",
+                                            "color": "#ff4d4d"
+                                        },
+                                        {
+                                            "value": "Safe",
+                                            "icon": "mdi:shield-check",
+                                            "color": "#00e64d"
+                                        }
+                                    ],
+                                    "style": "ha-card {\n  box-shadow: none;\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "entity": "input_select.pihole_time",
+                                    "name": "Disable Bloomhole Time (seconds)"
+                                }
+                            ],
+                            "show_header_toggle": false,
+                            "style": "ha-card {\n  box-shadow: none;\n  border: solid 1px var(--primary-color);\n}\n"
+                        },
+                        {
+                            "type": "markdown",
+                            "content": "<ha-icon icon=\"mdi:home-assistant\"></ha-icon>&nbsp;Add-on updates: &nbsp;&nbsp; {{ states.sensor.supervisor_updates.state }}\n\n> {% for addon in states.sensor.supervisor_updates.addons %}\n> {{ addon.name }}&nbsp; {{ addon.installed }} -> {{ addon.version }}\n> {% endfor %}\n<ha-icon icon=\"hacs:hacs\"></ha-icon>&nbsp;HACS updates: &nbsp;&nbsp; {{ states.sensor.hacs.state }}\n\n> {% for repo in states.sensor.hacs.attributes.repositories %}\n>    **{{repo.display_name }}** {{ repo[\"installed_version\"] }} -> {{ repo[\"available_version\"] }}\n> {% endfor %}\n|          | &nbsp;&nbsp;&nbsp;&nbsp;Current&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |   Latest  |\n|--- |:---: |:---:|\n| Supervisor&nbsp;&nbsp;&nbsp;    | {{ states.sensor.supervisor_updates.attributes.current_version }} | {{ states.sensor.supervisor_updates.attributes.newest_version }} | \n|Audio | {{ states.sensor.updater_audio.attributes.current_version }} | {{ states.sensor.updater_audio.attributes.newest_version }} | \n|CLI           | {{ states.sensor.updater_cli.attributes.current_version }} | {{ states.sensor.updater_cli.attributes.newest_version }} | \n|Core           | {{ states.sensor.updater_core.attributes.current_version }} | {{ states.sensor.updater_core.attributes.newest_version }} | \n|DNS| {{states.sensor.updater_dns.attributes.current_version }} |  {{ states.sensor.updater_dns.attributes.newest_version }} | \n|Multicast| {{ states.sensor.updater_multicast.attributes.current_version }} |  {{ states.sensor.updater_multicast.attributes.newest_version }} |\n|Observer     | {{ states.sensor.updater_observer.attributes.current_version }} |  {{ states.sensor.updater_observer.attributes.newest_version }} |\n",
+                            "style": "ha-card {\n  box-shadow: none;\n  border: solid 1px var(--primary-color);\n  font-size: 12px;\n}\n"
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "entity": "sensor.outdated_shelly_devices",
+                                    "name": "Shelly Devices Needing Upgrade"
+                                },
+                                {
+                                    "entity": "sensor.tasmota_devices_needing_upgrade",
+                                    "name": "Tasmota Devices Needing Upgrade"
+                                }
+                            ],
+                            "show_header_toggle": false,
+                            "style": "ha-card {\n  box-shadow: none;\n  border: solid 1px var(--primary-color);\n}\n"
+                        },
+                        {
+                            "type": "custom:auto-entities",
+                            "show_empty": false,
+                            "card": {
+                                "type": "entities",
+                                "show_header_toggle": false,
+                                "style": {
+                                    ".": "#states > * {\n  margin: -1px -15px !important;\n}\nha-card {\n  height: 100%;\n  box-shadow: none;\n  background-color: var(--ha-card-background);\n  border: solid 1px var(--primary-color);\n}\n"
+                                }
+                            },
+                            "filter": {
+                                "include": [
+                                    {
+                                        "entity_id": "switch.shelly*firmware*"
+                                    }
+                                ]
+                            },
+                            "sort": "entity_id"
+                        },
+                        {
+                            "type": "custom:button-card",
+                            "entity": "switch.upgrade_tasmota_firmware",
+                            "show_entity_picture": true,
+                            "aspect_ratio": "4/1",
+                            "size": "15%",
+                            "hold_action": {
+                                "action": "toggle"
+                            },
+                            "style": "ha-card {\n  box-shadow: none;\n  border: solid 1px var(--primary-color);\n}\n"
+                        }
+                    ]
+                },
+                {
+                    "title": "home security",
+                    "path": "home-security",
+                    "icon": "mdi:security",
+                    "visible": [
+                        {
+                            "user": "edf6650cd84b44ba853cfd5ba02fa72c"
+                        },
+                        {
+                            "user": "914ff3c93def4ff6a59b7eb6296ef2d3"
+                        },
+                        {
+                            "user": "13dccb69229d47919faec8fa377f33c9"
+                        }
+                    ],
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "custom:button-card",
+                            "color_type": "label-card",
+                            "color": "var(--ha-card-background)",
+                            "name": "Home",
+                            "tap_action": {
+                                "action": "navigate",
+                                "navigation_path": "/lovelace-mobile/mobile"
+                            },
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        },
+                        {
+                            "type": "custom:banner-card",
+                            "heading": "\ud83d\udee1 Security",
+                            "entities": null,
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        },
+                        {
+                            "type": "horizontal-stack",
+                            "cards": [
+                                {
+                                    "type": "custom:button-card",
+                                    "entity": "sensor.carbon_monoxide_sensor_carbon_monoxide_co_level",
+                                    "aspect_ratio": "1/1",
+                                    "name": "CO level",
+                                    "entity_picture": "/local/Custom_Icons/co-sensor-ico.png",
+                                    "size": "50%",
+                                    "show_entity_picture": true,
+                                    "styles": {
+                                        "card": [
+                                            {
+                                                "background-color": "var(--ha-card-background)"
+                                            }
+                                        ],
+                                        "grid": [
+                                            {
+                                                "grid-template-areas": "\"i i verbruik\" \"n n n\""
+                                            },
+                                            {
+                                                "grid-template-columns": "50% 25% 25%"
+                                            },
+                                            {
+                                                "grid-template-rows": "85% 15%"
+                                            }
+                                        ],
+                                        "name": [
+                                            {
+                                                "justify-self": "center"
+                                            },
+                                            {
+                                                "font-size": "15px"
+                                            },
+                                            {
+                                                "align-items": "middle"
+                                            }
+                                        ],
+                                        "img_cell": [
+                                            {
+                                                "justify-content": "start"
+                                            },
+                                            {
+                                                "align-items": "middle"
+                                            },
+                                            {
+                                                "grid-column-start": 1
+                                            },
+                                            {
+                                                "grid-column-end": 4
+                                            }
+                                        ],
+                                        "custom_fields": {
+                                            "verbruik": [
+                                                {
+                                                    "align-self": "center"
+                                                },
+                                                {
+                                                    "justify-self": "end"
+                                                },
+                                                {
+                                                    "font-size": "12px"
+                                                },
+                                                {
+                                                    "padding-right": "10px"
+                                                },
+                                                {
+                                                    "paddin-top": "50px"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "custom_fields": {
+                                        "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['sensor.carbon_monoxide_sensor_carbon_monoxide_co_level'].state} ppm</span></span>`\n]]]\n"
+                                    },
+                                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                                },
+                                {
+                                    "type": "custom:button-card",
+                                    "entity": "binary_sensor.carbon_monoxide_sensor_co_alarm_carbon_monoxide_detected",
+                                    "aspect_ratio": "1/1",
+                                    "name": "CO Alert",
+                                    "size": "50%",
+                                    "show_entity_picture": true,
+                                    "styles": {
+                                        "card": [
+                                            {
+                                                "background-color": "var(--ha-card-background)"
+                                            }
+                                        ],
+                                        "grid": [
+                                            {
+                                                "grid-template-areas": "\"i i verbruik\" \"n n n\""
+                                            },
+                                            {
+                                                "grid-template-columns": "50% 25% 25%"
+                                            },
+                                            {
+                                                "grid-template-rows": "85% 15%"
+                                            }
+                                        ],
+                                        "name": [
+                                            {
+                                                "justify-self": "center"
+                                            },
+                                            {
+                                                "font-size": "15px"
+                                            },
+                                            {
+                                                "align-items": "middle"
+                                            }
+                                        ],
+                                        "img_cell": [
+                                            {
+                                                "justify-content": "start"
+                                            },
+                                            {
+                                                "align-items": "middle"
+                                            },
+                                            {
+                                                "grid-column-start": 1
+                                            },
+                                            {
+                                                "grid-column-end": 4
+                                            }
+                                        ],
+                                        "custom_fields": {
+                                            "verbruik": [
+                                                {
+                                                    "align-self": "center"
+                                                },
+                                                {
+                                                    "justify-self": "end"
+                                                },
+                                                {
+                                                    "font-size": "12px"
+                                                },
+                                                {
+                                                    "padding-right": "10px"
+                                                },
+                                                {
+                                                    "paddin-top": "50px"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "state": [
+                                        {
+                                            "value": "off",
+                                            "entity_picture": "/local/Custom_Icons/shield-ok-ico.png"
+                                        },
+                                        {
+                                            "value": "on",
+                                            "entity_picture": "/local/Custom_Icons/co-alarm-ico.png",
+                                            "styles": {
+                                                "card": [
+                                                    {
+                                                        "animation": "blink 2s ease infinite"
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ],
+                                    "custom_fields": {
+                                        "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['sensor.co_alarm'].state}</span></span>`\n]]]\n"
+                                    },
+                                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                                },
+                                {
+                                    "type": "custom:gap-card"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "title": "Schoonmaken",
+                    "path": "schoonmaken",
+                    "icon": "mdi:robot-vacuum",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "custom:button-card",
+                            "color_type": "label-card",
+                            "color": "var(--ha-card-background)",
+                            "name": "Home",
+                            "tap_action": {
+                                "action": "navigate",
+                                "navigation_path": "/lovelace-mobile/mobile"
+                            },
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        },
+                        {
+                            "type": "custom:mod-card",
+                            "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n",
+                            "card": {
+                                "type": "custom:xiaomi-vacuum-card",
+                                "entity": "vacuum.miep",
+                                "image": "/local/Pictures/Robomiep-icon.jpg",
+                                "name": "Miep",
+                                "vendor": "xiaomi",
+                                "buttons": {
+                                    "start": false,
+                                    "stop": false,
+                                    "locate": false
+                                },
+                                "attributes": {
+                                    "main_brush": {
+                                        "label": "Borstels: "
+                                    },
+                                    "side_brush": {
+                                        "label": "Zij borstels: "
+                                    }
+                                },
+                                "style": "ha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                            }
+                        },
+                        {
+                            "type": "custom:mod-card",
+                            "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n",
+                            "card": {
+                                "type": "picture-entity",
+                                "entity": "camera.robomiep_camera",
+                                "image": "https://demo.home-assistant.io/stub_config/bedroom.png",
+                                "show_name": false,
+                                "show_state": false,
+                                "camera_image": "camera.robomiep_camera",
+                                "tap_action": {
+                                    "action": "none"
+                                },
+                                "hold_action": {
+                                    "action": "none"
+                                }
+                            }
+                        },
+                        {
+                            "type": "custom:mod-card",
+                            "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n  padding: 0.8em;\n}\n",
+                            "card": {
+                                "type": "vertical-stack",
+                                "cards": [
+                                    {
+                                        "type": "custom:button-card",
+                                        "color_type": "label-card",
+                                        "color": "var(--ha-card-background)",
+                                        "name": "Begane Grond",
+                                        "tap_action": {
+                                            "action": "call-service",
+                                            "service": "vacuum.send_command",
+                                            "service_data": {
+                                                "command": "load_multi_map",
+                                                "params": 0,
+                                                "device_id": "122a8a65b1a8e6870391ff4dd677c276"
+                                            }
+                                        },
+                                        "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                                    },
+                                    {
+                                        "type": "horizontal-stack",
+                                        "cards": [
+                                            {
+                                                "type": "custom:button-card",
+                                                "aspect_ratio": "1/1",
+                                                "entity": "vacuum.miep",
+                                                "name": "Woonkamer",
+                                                "entity_picture": "/local/Pictures/clean_living.png",
+                                                "size": "50%",
+                                                "show_entity_picture": true,
+                                                "tap_action": {
+                                                    "action": "call-service",
+                                                    "service": "script.vacuum_living"
+                                                },
+                                                "styles": {
+                                                    "card": [
+                                                        {
+                                                            "background-color": "var(--ha-card-background)"
+                                                        }
+                                                    ],
+                                                    "name": [
+                                                        {
+                                                            "justify-self": "center"
+                                                        },
+                                                        {
+                                                            "font-size": "15px"
+                                                        },
+                                                        {
+                                                            "align-items": "middle"
+                                                        }
+                                                    ]
+                                                },
+                                                "state": [
+                                                    {
+                                                        "value": "docked",
+                                                        "styles": {
+                                                            "card": [
+                                                                {
+                                                                    "filter": "opacity(50%)"
+                                                                }
+                                                            ],
+                                                            "icon": [
+                                                                {
+                                                                    "filter": "grayscale(100%)"
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    {
+                                                        "value": "on",
+                                                        "styles": null
+                                                    }
+                                                ],
+                                                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                                            },
+                                            {
+                                                "type": "custom:button-card",
+                                                "aspect_ratio": "1/1",
+                                                "entity": "vacuum.miep",
+                                                "name": "Keuken",
+                                                "entity_picture": "/local/Pictures/clean_kitchen.png",
+                                                "size": "50%",
+                                                "show_entity_picture": true,
+                                                "tap_action": {
+                                                    "action": "call-service",
+                                                    "service": "script.vacuum_kitchen"
+                                                },
+                                                "styles": {
+                                                    "card": [
+                                                        {
+                                                            "background-color": "var(--ha-card-background)"
+                                                        }
+                                                    ],
+                                                    "name": [
+                                                        {
+                                                            "justify-self": "center"
+                                                        },
+                                                        {
+                                                            "font-size": "15px"
+                                                        },
+                                                        {
+                                                            "align-items": "middle"
+                                                        }
+                                                    ]
+                                                },
+                                                "state": [
+                                                    {
+                                                        "value": "docked",
+                                                        "styles": {
+                                                            "card": [
+                                                                {
+                                                                    "filter": "opacity(50%)"
+                                                                }
+                                                            ],
+                                                            "icon": [
+                                                                {
+                                                                    "filter": "grayscale(100%)"
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    {
+                                                        "value": "on",
+                                                        "styles": null
+                                                    }
+                                                ],
+                                                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                                            },
+                                            {
+                                                "type": "custom:button-card",
+                                                "aspect_ratio": "1/1",
+                                                "entity": "vacuum.miep",
+                                                "name": "Keuken en Woonkamer",
+                                                "entity_picture": "/local/Pictures/clean_kitchen_living.png",
+                                                "size": "50%",
+                                                "show_entity_picture": true,
+                                                "tap_action": {
+                                                    "action": "call-service",
+                                                    "service": "script.vacuum_kitchen_living"
+                                                },
+                                                "styles": {
+                                                    "card": [
+                                                        {
+                                                            "background-color": "var(--ha-card-background)"
+                                                        }
+                                                    ],
+                                                    "name": [
+                                                        {
+                                                            "justify-self": "center"
+                                                        },
+                                                        {
+                                                            "font-size": "15px"
+                                                        },
+                                                        {
+                                                            "align-items": "middle"
+                                                        }
+                                                    ]
+                                                },
+                                                "state": [
+                                                    {
+                                                        "value": "docked",
+                                                        "styles": {
+                                                            "card": [
+                                                                {
+                                                                    "filter": "opacity(50%)"
+                                                                }
+                                                            ],
+                                                            "icon": [
+                                                                {
+                                                                    "filter": "grayscale(100%)"
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    {
+                                                        "value": "on",
+                                                        "styles": null
+                                                    }
+                                                ],
+                                                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                                            },
+                                            {
+                                                "type": "custom:button-card",
+                                                "aspect_ratio": "1/1",
+                                                "entity": "vacuum.miep",
+                                                "name": "Hal",
+                                                "entity_picture": "/local/Pictures/clean_hall.png",
+                                                "size": "50%",
+                                                "show_entity_picture": true,
+                                                "tap_action": {
+                                                    "action": "call-service",
+                                                    "service": "script.vacuum_hall"
+                                                },
+                                                "styles": {
+                                                    "card": [
+                                                        {
+                                                            "background-color": "var(--ha-card-background)"
+                                                        }
+                                                    ],
+                                                    "name": [
+                                                        {
+                                                            "justify-self": "center"
+                                                        },
+                                                        {
+                                                            "font-size": "15px"
+                                                        },
+                                                        {
+                                                            "align-items": "middle"
+                                                        }
+                                                    ]
+                                                },
+                                                "state": [
+                                                    {
+                                                        "value": "docked",
+                                                        "styles": {
+                                                            "card": [
+                                                                {
+                                                                    "filter": "opacity(50%)"
+                                                                }
+                                                            ],
+                                                            "icon": [
+                                                                {
+                                                                    "filter": "grayscale(100%)"
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    {
+                                                        "value": "on",
+                                                        "styles": null
+                                                    }
+                                                ],
+                                                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "custom:mod-card",
+                            "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n  padding: 0.8em;\n}\n",
+                            "card": {
+                                "type": "vertical-stack",
+                                "cards": [
+                                    {
+                                        "type": "custom:button-card",
+                                        "color_type": "label-card",
+                                        "color": "var(--ha-card-background)",
+                                        "name": "Verdieping",
+                                        "tap_action": {
+                                            "action": "call-service",
+                                            "service": "vacuum.send_command",
+                                            "service_data": {
+                                                "command": "load_multi_map",
+                                                "params": 1,
+                                                "device_id": "122a8a65b1a8e6870391ff4dd677c276"
+                                            }
+                                        },
+                                        "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                                    },
+                                    {
+                                        "type": "horizontal-stack",
+                                        "cards": [
+                                            {
+                                                "type": "custom:button-card",
+                                                "aspect_ratio": "1/1",
+                                                "entity": "vacuum.miep",
+                                                "name": "Overloop",
+                                                "entity_picture": "/local/Pictures/clean_overloop.png",
+                                                "size": "50%",
+                                                "show_entity_picture": true,
+                                                "tap_action": {
+                                                    "action": "call-service",
+                                                    "service": "script.vacuum_overloop"
+                                                },
+                                                "styles": {
+                                                    "card": [
+                                                        {
+                                                            "background-color": "var(--ha-card-background)"
+                                                        }
+                                                    ],
+                                                    "name": [
+                                                        {
+                                                            "justify-self": "center"
+                                                        },
+                                                        {
+                                                            "font-size": "15px"
+                                                        },
+                                                        {
+                                                            "align-items": "middle"
+                                                        }
+                                                    ]
+                                                },
+                                                "state": [
+                                                    {
+                                                        "value": "docked",
+                                                        "styles": {
+                                                            "card": [
+                                                                {
+                                                                    "filter": "opacity(50%)"
+                                                                }
+                                                            ],
+                                                            "icon": [
+                                                                {
+                                                                    "filter": "grayscale(100%)"
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    {
+                                                        "value": "on",
+                                                        "styles": null
+                                                    }
+                                                ],
+                                                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                                            },
+                                            {
+                                                "type": "custom:button-card",
+                                                "aspect_ratio": "1/1",
+                                                "entity": "vacuum.miep",
+                                                "name": "Fynn",
+                                                "entity_picture": "/local/Pictures/clean_fynn.png",
+                                                "size": "50%",
+                                                "show_entity_picture": true,
+                                                "tap_action": {
+                                                    "action": "call-service",
+                                                    "service": "script.vacuum_fynn"
+                                                },
+                                                "styles": {
+                                                    "card": [
+                                                        {
+                                                            "background-color": "var(--ha-card-background)"
+                                                        }
+                                                    ],
+                                                    "name": [
+                                                        {
+                                                            "justify-self": "center"
+                                                        },
+                                                        {
+                                                            "font-size": "15px"
+                                                        },
+                                                        {
+                                                            "align-items": "middle"
+                                                        }
+                                                    ]
+                                                },
+                                                "state": [
+                                                    {
+                                                        "value": "docked",
+                                                        "styles": {
+                                                            "card": [
+                                                                {
+                                                                    "filter": "opacity(50%)"
+                                                                }
+                                                            ],
+                                                            "icon": [
+                                                                {
+                                                                    "filter": "grayscale(100%)"
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    {
+                                                        "value": "on",
+                                                        "styles": null
+                                                    }
+                                                ],
+                                                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                                            },
+                                            {
+                                                "type": "custom:button-card",
+                                                "aspect_ratio": "1/1",
+                                                "entity": "vacuum.miep",
+                                                "name": "Luca",
+                                                "entity_picture": "/local/Pictures/clean_luca.png",
+                                                "size": "50%",
+                                                "show_entity_picture": true,
+                                                "tap_action": {
+                                                    "action": "call-service",
+                                                    "service": "script.vacuum_luca"
+                                                },
+                                                "styles": {
+                                                    "card": [
+                                                        {
+                                                            "background-color": "var(--ha-card-background)"
+                                                        }
+                                                    ],
+                                                    "name": [
+                                                        {
+                                                            "justify-self": "center"
+                                                        },
+                                                        {
+                                                            "font-size": "15px"
+                                                        },
+                                                        {
+                                                            "align-items": "middle"
+                                                        }
+                                                    ]
+                                                },
+                                                "state": [
+                                                    {
+                                                        "value": "docked",
+                                                        "styles": {
+                                                            "card": [
+                                                                {
+                                                                    "filter": "opacity(50%)"
+                                                                }
+                                                            ],
+                                                            "icon": [
+                                                                {
+                                                                    "filter": "grayscale(100%)"
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    {
+                                                        "value": "on",
+                                                        "styles": null
+                                                    }
+                                                ],
+                                                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "horizontal-stack",
+                                        "cards": [
+                                            {
+                                                "type": "custom:button-card",
+                                                "aspect_ratio": "1/1",
+                                                "entity": "vacuum.miep",
+                                                "name": "Sab en Dunc",
+                                                "entity_picture": "/local/Pictures/clean_slaap.png",
+                                                "size": "50%",
+                                                "show_entity_picture": true,
+                                                "tap_action": {
+                                                    "action": "call-service",
+                                                    "service": "script.vacuum_sleep"
+                                                },
+                                                "styles": {
+                                                    "card": [
+                                                        {
+                                                            "background-color": "var(--ha-card-background)"
+                                                        }
+                                                    ],
+                                                    "name": [
+                                                        {
+                                                            "justify-self": "center"
+                                                        },
+                                                        {
+                                                            "font-size": "15px"
+                                                        },
+                                                        {
+                                                            "align-items": "middle"
+                                                        }
+                                                    ]
+                                                },
+                                                "state": [
+                                                    {
+                                                        "value": "docked",
+                                                        "styles": {
+                                                            "card": [
+                                                                {
+                                                                    "filter": "opacity(50%)"
+                                                                }
+                                                            ],
+                                                            "icon": [
+                                                                {
+                                                                    "filter": "grayscale(100%)"
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    {
+                                                        "value": "on",
+                                                        "styles": null
+                                                    }
+                                                ],
+                                                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                                            },
+                                            {
+                                                "type": "custom:button-card",
+                                                "aspect_ratio": "1/1",
+                                                "entity": "vacuum.miep",
+                                                "name": "Badkamer",
+                                                "entity_picture": "/local/Pictures/clean_bad.png",
+                                                "size": "50%",
+                                                "show_entity_picture": true,
+                                                "tap_action": {
+                                                    "action": "call-service",
+                                                    "service": "script.vacuum_bathroom"
+                                                },
+                                                "styles": {
+                                                    "card": [
+                                                        {
+                                                            "background-color": "var(--ha-card-background)"
+                                                        }
+                                                    ],
+                                                    "name": [
+                                                        {
+                                                            "justify-self": "center"
+                                                        },
+                                                        {
+                                                            "font-size": "15px"
+                                                        },
+                                                        {
+                                                            "align-items": "middle"
+                                                        }
+                                                    ]
+                                                },
+                                                "state": [
+                                                    {
+                                                        "value": "docked",
+                                                        "styles": {
+                                                            "card": [
+                                                                {
+                                                                    "filter": "opacity(50%)"
+                                                                }
+                                                            ],
+                                                            "icon": [
+                                                                {
+                                                                    "filter": "grayscale(100%)"
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    {
+                                                        "value": "on",
+                                                        "styles": null
+                                                    }
+                                                ],
+                                                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                                            },
+                                            {
+                                                "type": "custom:button-card",
+                                                "aspect_ratio": "1/1",
+                                                "entity": "vacuum.miep",
+                                                "name": "Hele verdieping",
+                                                "entity_picture": "/local/Pictures/clean_verdieping.png",
+                                                "size": "50%",
+                                                "show_entity_picture": true,
+                                                "tap_action": {
+                                                    "action": "call-service",
+                                                    "service": "script.vacuum_floor1"
+                                                },
+                                                "styles": {
+                                                    "card": [
+                                                        {
+                                                            "background-color": "var(--ha-card-background)"
+                                                        }
+                                                    ],
+                                                    "name": [
+                                                        {
+                                                            "justify-self": "center"
+                                                        },
+                                                        {
+                                                            "font-size": "15px"
+                                                        },
+                                                        {
+                                                            "align-items": "middle"
+                                                        }
+                                                    ]
+                                                },
+                                                "state": [
+                                                    {
+                                                        "value": "docked",
+                                                        "styles": {
+                                                            "card": [
+                                                                {
+                                                                    "filter": "opacity(50%)"
+                                                                }
+                                                            ],
+                                                            "icon": [
+                                                                {
+                                                                    "filter": "grayscale(100%)"
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    {
+                                                        "value": "on",
+                                                        "styles": null
+                                                    }
+                                                ],
+                                                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,34 @@
+#=====================
+# Zolder
+#=====================
+
+  - platform: group
+    name: Lampen Zolder
+    entities:
+      - light.bureaulamp
+      - light.shelly_shsw_1_40f520009959
+
+  - platform: group
+    name: Bureaulamp
+    entities:
+      - light.bureaulamp1
+      - light.bureaulamp2
+      - light.bureaulamp3
+
+#=====================
+# Achtertuin
+#=====================
+
+  - platform: group
+    name: Lampen Achtertuin
+    entities:
+      - light.shelly_shsw_1_40f52000c449
+
+#=====================
+# Slaapkamer Fynn
+#=====================
+
+  - platform: group
+    name: Lampen Kamer Fynn
+    entities:
+      - light.lamp_hoekje

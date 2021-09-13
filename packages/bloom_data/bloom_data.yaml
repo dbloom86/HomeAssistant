@@ -1,0 +1,231 @@
+#================================
+# Bloom-Data
+#================================
+
+  #===============
+  # Sensors
+  #===============
+
+sensor:
+
+    #================================  
+    # Certificates
+    #================================
+
+  - platform: cert_expiry
+    host: bloom-data.synology.me    
+    
+  - platform: template
+    sensors:
+        cert_expiry_days_bloom_data:
+            friendly_name: Certificate Expiry Bloom-Data
+            value_template: >-
+                {% set expiration_date = (as_timestamp(states.sensor.cert_expiry_timestamp_bloom_data_synology_me.state) | int) %}
+                {% set todays_date = (now().strftime("%s") | int ) %}
+                {% if todays_date > expiration_date %}
+                  {% set countdown = "Expired" %}
+                {% else %}
+                  {% set countdown = ((expiration_date - todays_date | int) / 24 / 60 / 60) | round(0) %}
+                {% endif %}
+                {{countdown}}
+            entity_picture_template: >-
+                {% if states('sensor.cert_expiry_days_bloom_data')|float > 10 %}
+                  /local/Custom_Icons/certificate-ok-ico.png
+                {% else %}
+                  /local/Custom_Icons/certificate-nok-ico.png
+                {% endif %}
+            unit_of_measurement: 'days'
+
+    #================================
+    # Security
+    #================================
+
+  - platform: template
+    sensors:
+      bloom_data_security:
+        value_template: >-
+          {% if is_state('binary_sensor.bloom_data_security_status', 'off') %}
+            Safe
+          {% else %}
+            Unsafe
+          {% endif %}
+          
+  - platform: template
+    sensors:
+        bloom_data_update:
+            value_template: >-
+                {% if is_state('binary_sensor.bloom_data_update_available', 'off') %}
+                    Up-To-Date
+                {% else %}
+                    Needs Update
+                {% endif %}
+
+  - platform: template
+    sensors:
+        bloom_data_uptime:
+            friendly_name: Bloom-Data Uptime
+            value_template: "{{ as_timestamp(strptime(states('sensor.bloom_data_last_boot') , '%Y-%m-%dT%H:%M:%S')) | timestamp_custom('%d days, %-H hrs and %-M mins') }}"
+
+  - platform: template
+    sensors:
+      bloom_data_safety:
+        value_template: >-
+          {% if is_state('binary_sensor.bloom_data_security_status', 'on') %}
+            Unsafe
+          {% elif not is_state('sensor.bloom_data_volume_1_status', 'normal') %}
+            Unsafe
+          {% else %}
+            Safe
+          {% endif %}
+
+    #================================
+    # Disk 1
+    #================================
+
+  - platform: template
+    sensors:
+        bloom_data_disk_1_age:
+            value_template: >-
+                {% if is_state('binary_sensor.bloom_data_drive_1_below_min_remaining_life', 'off') %}
+                    Safe
+                {% else %}
+                    Unsafe
+                {% endif %}
+
+  - platform: template
+    sensors:
+        bloom_data_disk_1_sectors:
+            value_template: >-
+                {% if is_state('binary_sensor.bloom_data_drive_1_exceeded_max_bad_sectors', 'off') %}
+                    Safe
+                {% else %}
+                    Unsafe
+                {% endif %}
+
+  - platform: template
+    sensors:
+      bloom_data_safety_disk_1:
+        value_template: >-
+          {% if is_state('binary_sensor.bloom_data_drive_1_below_min_remaining_life', 'on') %}
+            Unsafe
+          {% elif is_state('binary_sensor.bloom_data_drive_1_exceeded_max_bad_sectors', 'on') %}
+            Unsafe
+          {% elif not is_state('sensor.bloom_data_drive_1_status', 'normal') %}
+            Unsafe
+          {% else %}
+            Safe
+          {% endif %}
+
+    #================================
+    # Disk 2
+    #================================
+
+  - platform: template
+    sensors:
+        bloom_data_disk_2_age:
+            value_template: >-
+                {% if is_state('binary_sensor.bloom_data_drive_2_below_min_remaining_life', 'off') %}
+                    Safe
+                {% else %}
+                    Unsafe
+                {% endif %}
+
+  - platform: template
+    sensors:
+        bloom_data_disk_2_sectors:
+            value_template: >-
+                {% if is_state('binary_sensor.bloom_data_drive_2_exceeded_max_bad_sectors', 'off') %}
+                    Safe
+                {% else %}
+                    Unsafe
+                {% endif %}
+
+  - platform: template
+    sensors:
+      bloom_data_safety_disk_2:
+        value_template: >-
+          {% if is_state('binary_sensor.bloom_data_drive_2_below_min_remaining_life', 'on') %}
+            Unsafe
+          {% elif is_state('binary_sensor.bloom_data_drive_2_exceeded_max_bad_sectors', 'on') %}
+            Unsafe
+          {% elif not is_state('sensor.bloom_data_drive_2_status', 'normal') %}
+            Unsafe
+          {% else %}
+            Safe
+          {% endif %}
+
+    #================================
+    # Disk 3
+    #================================
+
+  - platform: template
+    sensors:
+        bloom_data_disk_3_age:
+            value_template: >-
+                {% if is_state('binary_sensor.bloom_data_drive_3_below_min_remaining_life', 'off') %}
+                    Safe
+                {% else %}
+                    Unsafe
+                {% endif %}
+
+  - platform: template
+    sensors:
+        bloom_data_disk_3_sectors:
+            value_template: >-
+                {% if is_state('binary_sensor.bloom_data_drive_3_exceeded_max_bad_sectors', 'off') %}
+                    Safe
+                {% else %}
+                    Unsafe
+                {% endif %}
+
+  - platform: template
+    sensors:
+      bloom_data_safety_disk_3:
+        value_template: >-
+          {% if is_state('binary_sensor.bloom_data_drive_3_below_min_remaining_life', 'on') %}
+            Unsafe
+          {% elif is_state('binary_sensor.bloom_data_drive_3_exceeded_max_bad_sectors', 'on') %}
+            Unsafe
+          {% elif not is_state('sensor.bloom_data_drive_3_status', 'normal') %}
+            Unsafe
+          {% else %}
+            Safe
+          {% endif %}
+
+    #================================
+    # Disk 4
+    #================================
+
+  - platform: template
+    sensors:
+        bloom_data_disk_4_age:
+            value_template: >-
+                {% if is_state('binary_sensor.bloom_data_drive_4_below_min_remaining_life', 'off') %}
+                    Safe
+                {% else %}
+                    Unsafe
+                {% endif %}
+
+  - platform: template
+    sensors:
+        bloom_data_disk_4_sectors:
+            value_template: >-
+                {% if is_state('binary_sensor.bloom_data_drive_4_exceeded_max_bad_sectors', 'off') %}
+                    Safe
+                {% else %}
+                    Unsafe
+                {% endif %}
+
+  - platform: template
+    sensors:
+      bloom_data_safety_disk_4:
+        value_template: >-
+          {% if is_state('binary_sensor.bloom_data_drive_4_below_min_remaining_life', 'on') %}
+            Unsafe
+          {% elif is_state('binary_sensor.bloom_data_drive_4_exceeded_max_bad_sectors', 'on') %}
+            Unsafe
+          {% elif not is_state('sensor.bloom_data_drive_4_status', 'normal') %}
+            Unsafe
+          {% else %}
+            Safe
+          {% endif %}

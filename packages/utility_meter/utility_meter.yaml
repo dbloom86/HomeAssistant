@@ -1,0 +1,115 @@
+#================================
+# Utility Meter
+#================================ 
+
+utility_meter:
+
+  #================================
+  # Energy and Gas
+  #================================ 
+
+  monthly_energy_low:
+    source: sensor.toon_p1_power_use_cnt_low
+    cycle: monthly
+    name: Maandelijks Energie Verbruik Laag
+
+  monthly_energy_high:
+    source: sensor.toon_p1_power_use_cnt_high
+    cycle: monthly
+    name: Maandelijks Energie Verbruik Hoog
+    
+  daily_energy_low:
+    source: sensor.toon_p1_power_use_cnt_low
+    cycle: daily
+    name: Dagelijks Energie Verbruik Laag
+
+  daily_energy_high:
+    source: sensor.toon_p1_power_use_cnt_high
+    cycle: daily
+    name: Dagelijks Energie Verbruik Hoog
+
+  yearly_energy_low:
+    source: sensor.toon_p1_power_use_cnt_low
+    cycle: yearly
+    name: Jaarlijks Energie Verbruik Laag
+
+  yearly_energy_high:
+    source: sensor.toon_p1_power_use_cnt_high
+    cycle: yearly
+    name: Jaarlijks Energie Verbruik Hoog
+
+  monthly_gas:
+    source: sensor.toon_gas_used_cnt
+    cycle: monthly
+    name: Maandelijks Gas Verbruik
+    
+  daily_gas:
+    source: sensor.toon_gas_used_cnt
+    cycle: daily
+    name: Dagelijks Gas Verbruik
+
+  yearly_gas:
+    source: sensor.toon_gas_used_cnt
+    cycle: yearly
+    name: Jaarlijks Gas Verbruik
+
+  #================================
+  # Devices
+  #================================ 
+
+  monthly_cv:
+    source: sensor.shelly_shplg_s_9a5381_total_consumption
+    cycle: monthly
+    name: Maandelijks Verbruik CV
+
+  monthly_washer:
+    source: sensor.shelly_shplg_s_9d9823_total_consumption
+    cycle: monthly
+    name: Maandelijks Verbruik Wasmachine
+
+  monthly_boiler:
+    source: sensor.shelly_shplg_s_9a53ab_total_consumption
+    cycle: monthly
+    name: Maandelijks Verbruik Boiler
+
+  #================================
+  # Input Numbers
+  #================================ 
+
+input_number:
+
+  energy_cost:
+    name: Energie kosten per kWh
+    min: 0
+    max: 5
+    step: 0.001
+    mode: box
+    icon: mdi:currency-eur
+    unit_of_measurement: €
+
+  energy_cost_daily:
+    name: Energie kosten per dag
+    min: -5
+    max: 5
+    step: 0.001
+    mode: box
+    icon: mdi:currency-eur
+    unit_of_measurement: €  
+
+  gas_cost:
+    name: Gas kosten per m3
+    min: 0
+    max: 5
+    step: 0.001
+    mode: box
+    icon: mdi:currency-eur
+    unit_of_measurement: €
+
+  gas_cost_daily:
+    name: Gas kosten per dag
+    min: -5
+    max: 5
+    step: 0.001
+    mode: box
+    icon: mdi:currency-eur
+    unit_of_measurement: €  

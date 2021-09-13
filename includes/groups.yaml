@@ -1,0 +1,124 @@
+##########
+# GROUPS #
+##########
+People:
+    entities:
+        - person.duncan
+        - person.sabrine
+        - person.luca
+        - person.fynn
+
+Ouders:
+    entities:
+        - person.duncan
+        - person.sabrine
+
+Kids:
+    entities:
+        - person.luca
+        - person.fynn
+
+Tasmota:
+    entities:
+        - light.bureaulamp1
+        - light.bureaulamp2
+        - light.bureaulamp3
+
+tasmota_firmware:
+    entities:
+        - sensor.bureaulamp_1_firmware
+        - sensor.bureaulamp_2_firmware
+        - sensor.bureaulamp_3_firmware
+
+Shelly:
+    entities:
+        - light.shelly_shsw_1_40f52000c449
+        - switch.shelly_shplg_s_9a5381
+        - switch.shelly_shplg_s_9d9823
+        - switch.shelly_shplg_s_9a53ab
+        - light.shelly_shsw_1_40f520009959
+
+#########
+# ROOMS #
+#########
+
+Woonkamer:
+    entities:
+        - media_player.sonos_woonkamer
+        - media_player.woonkamer_tv
+
+Hal:
+    entities:
+
+Toilet:
+    entities:
+
+Keuken:
+    entities:
+        - switch.shelly_shplg_s_9a53ab
+    
+Overloop:
+    entities:
+
+Slaapkamer:
+    entities:
+        - media_player.bloomtv
+    
+Slaapkamer_Luca:
+    entities:
+    
+Slaapkamer_Fynn:
+    entities:
+        - light.lamp_hoekje
+        
+Badkamer:
+    entities:
+    
+Studeerkamer:
+    entities:
+        - light.bureaulamp
+        - light.tasmota_bureaulamp1
+        - light.tasmota_bureaulamp2
+        - light.tasmota_bureaulamp3
+        - switch.shelly_shplg_s_9a5381
+        - switch.shelly_shplg_s_9d9823
+        - light.shelly_shsw_1_40f520009959
+
+Schuur:
+    entities:
+
+Voortuin:
+    entities:
+
+Achtertuin:
+    entities:
+        - light.shelly_shsw_1_40f52000c449
+
+#########
+# AREAS #
+#########
+
+Beneden:
+    entities:
+        - group.Woonkamer
+        - group.Hal
+        - group.Toilet
+        - group.Keuken
+        
+Verdieping:
+    entities:
+        - group.Overloop
+        - group.Slaapkamer
+        - group.Slaapkamer_Luca
+        - group.Slaapkamer_Fynn
+        
+Zolder:
+    entities:
+        - group.Studeerkamer
+        
+Buiten:
+    entities:
+        - group.Schuur
+        - group.Voortuin
+        - group.Overkapping
+        - group.Achtertuin

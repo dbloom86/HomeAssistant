@@ -1,0 +1,158 @@
+#================================  
+# Afval
+#================================
+
+sensor.circulus_berkel_afval_gft:
+  entity_picture: /local/Custom_Icons/gft-400px.png
+  
+sensor.circulus_berkel_afval_papier:
+  entity_picture: /local/Custom_Icons/papier-en-karton-400px.png
+  
+sensor.circulus_berkel_afval_pmd:
+  entity_picture: /local/Custom_Icons/pbd-400px.png
+
+#================================  
+# Counters
+#================================  
+
+sensor.domains_in_use:
+  unit_of_measurement: " "
+  entity_picture: /local/Custom_Icons/domains-ico.png
+
+sensor.total_entities:
+  entity_picture: /local/Custom_Icons/entity-icon.png
+  
+sensor.total_automations:
+  entity_picture: /local/Custom_Icons/auto-icon.png
+  
+sensor.total_binary_sensors:
+  entity_picture: /local/Custom_Icons/binary-ico.png
+  
+sensor.total_cameras:
+  entity_picture: /local/Custom_Icons/camera-ico.png
+  
+sensor.total_counters:
+  entity_picture: /local/Custom_Icons/counter-ico.png
+  
+sensor.total_devicetrackers:
+  entity_picture: /local/Custom_Icons/devices-ico.png
+  
+sensor.total_groups:
+  entity_picture: /local/Custom_Icons/group-ico.png
+  
+sensor.total_input_booleans:
+  entity_picture: /local/Custom_Icons/boolean-ico.png
+  
+sensor.total_input_datetimes:
+  entity_picture: /local/Custom_Icons/datetime-ico.png
+  
+sensor.total_input_numbers:
+  entity_picture: /local/Custom_Icons/numbers-ico.png
+  
+sensor.total_input_selects:
+  entity_picture: /local/Custom_Icons/selects-ico.png
+  
+sensor.total_input_texts:
+  entity_picture: /local/Custom_Icons/texts-ico.png
+  
+sensor.total_lights:
+  entity_picture: /local/Custom_Icons/lights-ico.png
+  
+sensor.total_media_players:
+  entity_picture: /local/Custom_Icons/player-ico.png
+  
+sensor.total_persons:
+  entity_picture: /local/Custom_Icons/people-ico.png
+  
+sensor.total_remotes:
+  entity_picture: /local/Custom_Icons/remote-ico.png
+  
+sensor.total_scenes:
+  entity_picture: /local/Custom_Icons/scenes-ico.png
+  
+sensor.total_scripts:
+  entity_picture: /local/Custom_Icons/script-ico.png
+  
+sensor.total_sensors:
+  entity_picture: /local/Custom_Icons/sensor-ico.png
+  
+sensor.total_switches:
+  entity_picture: /local/Custom_Icons/switch-ico.png
+  
+sensor.total_timers:
+  entity_picture: /local/Custom_Icons/timer-ico.png
+  
+sensor.total_zones:
+  entity_picture: /local/Custom_Icons/Zone-ico.png
+  
+sensor.total_tasmota_devices:
+  entity_picture: /local/Custom_Icons/Tasmota-3d-icon.png
+  
+sensor.total_shelly_devices:
+  entity_picture: /local/Custom_Icons/shelly-ico.png
+  
+sensor.outdated_shelly_devices:  
+  entity_picture: /local/Custom_Icons/shelly-ico.png
+
+sensor.tasmota_devices_needing_upgrade:
+  entity_picture: /local/Custom_Icons/Tasmota-3d-icon.png
+
+#================================  
+# PrintServer
+#================================
+  
+sensor.canonmg2555:
+  entity_picture: /local/Custom_Icons/canon-mg2555s-ico.png
+  
+#================================  
+# Firmware
+#================================  
+
+sensor.sonoff_newest_version:
+  entity_picture: /local/Custom_Icons/Tasmota-3d-icon.png
+  
+switch.upgrade_tasmota_firmware:
+  entity_picture: /local/Custom_Icons/upgrade-ico.png  
+  
+sensor.bureaulamp_1_firmware:
+  entity_picture: /local/Custom_Icons/bureaulamp-ico.png  
+  
+sensor.bureaulamp_2_firmware:
+  entity_picture: /local/Custom_Icons/bureaulamp-ico.png  
+  
+sensor.bureaulamp_3_firmware:
+  entity_picture: /local/Custom_Icons/bureaulamp-ico.png
+  
+switch.shelly_shplg_s_9d9823_firmware_update:
+  icon: mdi:package-up
+  entity_picture: /local/Custom_Icons/upgrade-ico.png
+  
+switch.shelly_shplg_s_9a5381_firmware_update:
+  icon: mdi:package-up
+  entity_picture: /local/Custom_Icons/upgrade-ico.png
+  
+switch.shelly_shsw_1_40f52000c449_firmware_update:
+  icon: mdi:package-up
+  entity_picture: /local/Custom_Icons/upgrade-ico.png
+  
+switch.shelly_shplg_s_9a53ab_firmware_update:
+  icon: mdi:package-up  
+  entity_picture: /local/Custom_Icons/upgrade-ico.png
+
+switch.shelly_shsw_1_40f520009959_firmware_update:
+  icon: mdi:package-up  
+  entity_picture: /local/Custom_Icons/upgrade-ico.png
+  
+#================================  
+# Zones
+#================================  
+
+zone.home:
+  radius: 25
+  
+#================================  
+# Pihole
+#================================
+
+input_select.pihole_time:
+  entity_picture: /local/Custom_Icons/pihole-ico.png

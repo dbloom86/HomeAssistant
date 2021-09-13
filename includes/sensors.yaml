@@ -1,0 +1,703 @@
+  #================================
+  # Date & Time
+  #================================
+  - platform: time_date
+    display_options:
+      - 'time'
+      - 'date'
+      - 'date_time'
+      - 'date_time_utc'
+      - 'date_time_iso'
+      - 'time_date'
+      - 'time_utc'
+      - 'beat'
+
+  - platform: template
+    sensors:
+      simple_date:
+        friendly_name: "Simple Date"
+        value_template: "{{ as_timestamp(now()) | timestamp_custom('%A %d %B %Y') }}"
+
+  - platform: template
+    sensors:
+      simple_tomorrow:
+        friendly_name: "Simple Tomorrow"
+        value_template: "{{(as_timestamp(now())+ (86400)) | timestamp_custom('%A %d %B %Y',true)}}"     
+
+  - platform: template
+    sensors:
+        days_this_month:
+            friendly_name: "Dagen deze maand"
+            value_template: >-
+              {% set this = now().replace(hour=0).replace(minute=0).replace(second=0).replace(microsecond=0) %}
+              {% set next = this.month + 1 if this.month + 1 <= 12 else 1 %}
+              {% set first = this.replace(day=1) %}
+              {% set last = this.replace(month=next, day=1) %}
+              {{ (last.date() - first.date()).days }}
+            unit_of_measurement: days
+
+  - platform: template
+    sensors:
+        days_this_year:
+            friendly_name: "Dagen dit jaar"
+            value_template: >-
+              {% set this = now() %}
+              {% set next = this.year + 1 %}
+              {% set last = this.replace(year=next, day=1) %}
+              {% set first = this.replace(day=1) %}
+              {{(last.date() - first.date()).days}}
+            unit_of_measurement: days
+
+  #================================
+  # Counters
+  #================================
+  - platform: template
+    sensors:
+      
+      #----- Count All Domains
+      domains_in_use:
+        friendly_name: Domains in use
+        value_template: >
+            {%- for d in states | groupby('domain') %}
+            {% if loop.first %}{{loop.length}} 
+            {% endif %}
+            {%- endfor %}
+            
+      #----- Count All Entities
+      total_entities:
+        friendly_name: 'Entities'
+        icon_template: mdi:code-tags
+        value_template: "{{ states | count }}"    
+    
+      #----- Count Automations
+      total_automations:
+        friendly_name: 'Automations'
+        icon_template: mdi:robot
+        value_template: "{{ states.automation | list | length }}"
+
+      #----- Count Binary Sensors
+      total_binary_sensors:
+        friendly_name: 'Binary Sensors'
+        icon_template: mdi:checkbox-multiple-marked-circle
+        value_template: "{{ states.binary_sensor | list | length }}"
+
+      #----- Count Cameras
+      total_cameras:
+        friendly_name: 'Cameras'
+        icon_template: mdi:cctv
+        value_template: "{{ states.camera | list | length }}"
+
+      #----- Count Counters (haha)
+      total_counters:
+        friendly_name: 'Counters'
+        icon_template: mdi:counter
+        value_template: "{{ states.counter | list | length }}"
+
+      #----- Count Device Trackers
+      total_devicetrackers:
+        friendly_name: 'Devices'
+        icon_template: mdi:cellphone-link
+        value_template: "{{ states.device_tracker | list | length }}"
+
+      #----- Count Groups
+      total_groups:
+        friendly_name: 'Groups'
+        icon_template: mdi:group
+        value_template: "{{ states.group | list | length }}"
+
+      #----- Count Input Booleans
+      total_input_booleans:
+        friendly_name: 'Input Booleans'
+        icon_template: mdi:toggle-switch
+        value_template: "{{ states.input_boolean | list | length }}"
+
+      #----- Count Input Datetimes
+      total_input_datetimes:
+        friendly_name: 'Input Datetimes'
+        icon_template: mdi:calendar-clock
+        value_template: "{{ states.input_datetime | list | length }}"
+
+      #----- Count Input Numbers
+      total_input_numbers:
+        friendly_name: 'Input Numbers'
+        icon_template: mdi:numeric
+        value_template: "{{ states.input_number | list | length }}"
+
+      #----- Count Input Selects
+      total_input_selects:
+        friendly_name: 'Input Selects'
+        icon_template: mdi:format-align-justify
+        value_template: "{{ states.input_select | list | length }}"
+
+      #----- Count Input Texts
+      total_input_texts:
+        friendly_name: 'Input Texts'
+        icon_template: mdi:alphabetical
+        value_template: "{{ states.input_text | list | length }}"
+
+      #----- Count Lights
+      total_lights:
+        friendly_name: 'Lights'
+        icon_template: mdi:lightbulb-on
+        value_template: "{{ states.light | list | length }}"
+
+      #----- Count Media Players
+      total_media_players:
+        friendly_name: 'Media Players'
+        icon_template: mdi:cast-connected
+        value_template: "{{ states.media_player | list | length }}"
+
+      #----- Count Persons
+      total_persons:
+        friendly_name: 'Persons'
+        icon_template: mdi:account-multiple
+        value_template: "{{ states.person | list | length }}"
+
+      #----- Count Remotes
+      total_remotes:
+        friendly_name: 'Remotes'
+        icon_template: mdi:remote
+        value_template: "{{ states.remote | list | length }}"
+
+      #----- Count Scenes
+      total_scenes:
+        friendly_name: 'Scenes'
+        icon_template: mdi:palette
+        value_template: "{{ states.scene | list | length }}"
+
+      #----- Count Scripts
+      total_scripts:
+        friendly_name: 'Scripts'
+        icon_template: mdi:script-text-outline
+        value_template: "{{ states.script | list | length }}"
+
+      #----- Count Sensors
+      total_sensors:
+        friendly_name: 'Sensors'
+        icon_template: mdi:pulse
+        value_template: "{{ states.sensor | list | length }}"
+
+      #----- Count Switches
+      total_switches:
+        friendly_name: 'Switches'
+        icon_template: mdi:power-socket-us
+        value_template: "{{ states.switch | list | length }}"
+
+      #----- Count Timers
+      total_timers:
+        friendly_name: 'Timers'
+        icon_template: mdi:timer
+        value_template: "{{ states.timer | list | length }}"
+
+      #----- Count Zones
+      total_zones:
+        friendly_name: 'Zones'
+        icon_template: mdi:map-marker-radius
+        value_template: "{{ states.zone | list | length }}"
+
+      #----- Count Tasmota Devices
+      total_tasmota_devices:
+        friendly_name: 'Tasmota'
+        icon_template: mdi:tasmota
+        value_template: "{{states.light |selectattr('entity_id','in',state_attr('group.Tasmota','entity_id'))| map(attribute='name') | list|count }}"   
+        
+      #----- Count Shelly Devices
+      total_shelly_devices:
+        friendly_name: 'Shelly'
+        icon_template: mdi:flash
+        value_template: "{{states.switch |selectattr('entity_id','in',state_attr('group.shelly','entity_id'))| map(attribute='name') | list|count }}"
+        
+      #----- Count Shelly Devices That need a firmware upgrade
+      outdated_shelly_devices:
+        friendly_name: 'Shelly firmware'
+        icon_template: mdi:flash
+        value_template:  >-
+            {% set ns = namespace(count=0) %}
+            {% set iter = states.switch | map(attribute='attributes.has_firmware_update') | list %}
+            {% for name in iter %}
+            {% if 'true' in (name | string).lower() %}
+            {% set ns.count = ns.count + 1 %}
+            {% endif %}
+            {% endfor %}
+            {{ ns.count }}
+    
+  #================================
+  # Internal IP
+  #================================
+  - platform: command_line
+    command: "ip route get 1 | awk '{print $NF;exit}'"
+    
+  #================================
+  # External IP
+  #================================    
+  - platform: dnsip
+  - platform: dnsip
+    hostname: bloomassistant.duckdns.org
+    name: public ip
+    
+  #================================
+  # CPU Temperature
+  #================================
+  - platform: command_line
+    name: CPU Temperature
+    command: "cat /sys/class/thermal/thermal_zone0/temp"
+    unit_of_measurement: "°C"
+    value_template: '{{ value | multiply(0.001) | round(1) }}'
+  
+  #================================  
+  # System
+  #================================
+  - platform: systemmonitor
+    resources:
+        - type: disk_use_percent
+          arg: /
+        - type: memory_use_percent
+        - type: swap_use_percent
+        - type: processor_use
+        - type: last_boot
+        - type: network_in
+          arg: eth0
+        - type: network_out
+          arg: eth0
+        - type: throughput_network_in
+          arg: eth0
+        - type: throughput_network_out
+          arg: eth0
+        
+  #================================  
+  # Uptime
+  #================================    
+  - platform: uptime
+    
+  - platform: template
+    sensors:
+    
+      #================================
+      # Raspberry Pi Uptime
+      #================================          
+      rpi_uptime:
+        friendly_name: RPi Uptime
+        value_template: >
+          {% set up_time = as_timestamp(now()) - as_timestamp(states('sensor.last_boot')) %}
+
+          {% set minutes = (up_time // 60) | int %}
+          {% set hours = (minutes // 60) %}
+          {% set days = (hours // 24) %}
+          {% set weeks = (days // 7) %}
+
+          {% set minutes = (minutes % 60) %}
+          {% set hours =  (hours % 24) %}
+          {% set days = (days % 7) %}
+
+          {% macro phrase(value, name) %}
+                    {%- set value = value %}
+                    {%- set end = 's' if value > 1 else '' %}
+                    {{- '{} {}{}'.format(value, name, end) if value | int > 0 else '' }}
+          {%- endmacro %}
+                    
+          {% set text = [ phrase(weeks, 'week'), phrase(days, 'day'), phrase(hours, 'hr'), phrase(minutes, 'min') ] | select('!=','') | list | join(', ') %}
+          {% set last_comma = text.rfind(',') %}
+          {% if last_comma != -1 %}
+            {% set text = text[:last_comma] + ' and' + text[last_comma + 1:] %}
+          {% endif %}
+          
+          {{ text }}
+
+  #================================  
+  # Home Assistant
+  #================================
+
+    #================================
+    # Home Assistant Uptime
+    #================================
+
+  - platform: template
+    sensors:
+
+      ha_uptime:
+        friendly_name: RPi Uptime
+        value_template: >
+          {% set up_time = as_timestamp(now()) - as_timestamp(states('sensor.uptime')) %}
+
+          {% set minutes = (up_time // 60) | int %}
+          {% set hours = (minutes // 60) %}
+          {% set days = (hours // 24) %}
+          {% set weeks = (days // 7) %}
+
+          {% set minutes = (minutes % 60) %}
+          {% set hours =  (hours % 24) %}
+          {% set days = (days % 7) %}
+
+          {% macro phrase(value, name) %}
+                    {%- set value = value %}
+                    {%- set end = 's' if value > 1 else '' %}
+                    {{- '{} {}{}'.format(value, name, end) if value | int > 0 else '' }}
+          {%- endmacro %}
+                    
+          {% set text = [ phrase(weeks, 'week'), phrase(days, 'day'), phrase(hours, 'hr'), phrase(minutes, 'min') ] | select('!=','') | list | join(', ') %}
+          {% set last_comma = text.rfind(',') %}
+          {% if last_comma != -1 %}
+            {% set text = text[:last_comma] + ' and' + text[last_comma + 1:] %}
+          {% endif %}
+          
+          {{ text }}
+
+    #================================
+    # Software
+    #================================
+
+  - platform: version
+    name: version_available
+    source: hassio
+    image: raspberrypi4
+    
+  - platform: template
+    sensors:
+      hassos_update_available:
+        friendly_name: "HassOS Update Available"
+        value_template: >-
+            {% if (states.binary_sensor.home_assistant_operating_system_update_available.state == "off") %}
+                100
+            {% else %}
+                50
+            {% endif %}
+
+  - platform: template
+    sensors:
+      ha_update_available:
+        friendly_name: "HA Update Available"
+        value_template: >-
+            {% if (states.sensor.updater_core.state == "off") %}
+                100
+            {% else %}
+                50
+            {% endif %}        
+        
+  - platform: version
+    name: version_current
+    source: local
+    
+  - platform: command_line
+    name: Supervisor updates
+    command: 'curl http://supervisor/supervisor/info -H "Authorization: Bearer $(printenv SUPERVISOR_TOKEN)" | jq ''{"newest_version":.data.version_latest,"current_version":.data.version,"update_available":.data.update_available,"addons":[.data.addons[] | select(.update_available)]}'''
+    value_template: "{{ value_json.addons | length }}"
+    scan_interval: 1440
+    json_attributes:
+    - newest_version
+    - current_version
+    - update_available
+    - addons
+
+  - platform: template
+    sensors:
+      supervisor_updates_available:
+        friendly_name: "Supervisor Updates Available"
+        value_template: "{{ state_attr('sensor.supervisor_updates', 'update_available') }}"
+
+  - platform: template
+    sensors:
+      supervisor_update_available:
+        friendly_name: "Supervisor Update Available"
+        value_template: >-
+            {% if (states.sensor.supervisor_updates_available.state == "False") %}
+                100
+            {% else %}
+                50
+            {% endif %}
+
+  - platform: command_line
+    name: Updater Audio
+    command: 'curl http://supervisor/audio/info -H "Authorization: Bearer $(printenv SUPERVISOR_TOKEN)" | jq ''{"newest_version":.data.version_latest,"current_version":.data.version, "update_available":.data.update_available}'''
+    value_template: "{% if value_json.update_available %}on{% else %}off{% endif %}"
+    json_attributes:
+    - update_available
+    - newest_version
+    - current_version
+
+  - platform: command_line
+    name: Updater DNS
+    command: 'curl http://supervisor/dns/info -H "Authorization: Bearer $(printenv SUPERVISOR_TOKEN)" | jq ''{"newest_version":.data.version_latest,"current_version":.data.version, "update_available":.data.update_available}'''
+    value_template: "{% if value_json.update_available %}on{% else %}off{% endif %}"
+    json_attributes:
+    - update_available
+    - newest_version
+    - current_version
+
+  - platform: command_line
+    name: Updater CLI
+    command: 'curl http://supervisor/cli/info -H "Authorization: Bearer $(printenv SUPERVISOR_TOKEN)" | jq ''{"newest_version":.data.version_latest,"current_version":.data.version, "update_available":.data.update_available}'''
+    value_template: "{% if value_json.update_available %}on{% else %}off{% endif %}"
+    json_attributes:
+    - update_available
+    - newest_version
+    - current_version
+
+  - platform: command_line
+    name: Updater Multicast
+    command: 'curl http://supervisor/multicast/info -H "Authorization: Bearer $(printenv SUPERVISOR_TOKEN)" | jq ''{"newest_version":.data.version_latest,"current_version":.data.version, "update_available":.data.update_available}'''
+    value_template: "{% if value_json.update_available %}on{% else %}off{% endif %}"
+    json_attributes:
+    - update_available
+    - newest_version
+    - current_version
+
+  - platform: command_line
+    name: Updater Observer
+    command: 'curl http://supervisor/observer/info -H "Authorization: Bearer $(printenv SUPERVISOR_TOKEN)" | jq ''{"newest_version":.data.version_latest,"current_version":.data.version, "update_available":.data.update_available}'''
+    value_template: "{% if value_json.update_available %}on{% else %}off{% endif %}"
+    json_attributes:
+    - update_available
+    - newest_version
+    - current_version
+
+  # Alternate updater sensor for core since binary_sensor.updater is very slow to recognize updates
+  - platform: command_line
+    name: Updater Core
+    command: 'curl http://supervisor/core/info -H "Authorization: Bearer $(printenv SUPERVISOR_TOKEN)" | jq ''{"newest_version":.data.version_latest,"current_version":.data.version, "update_available":.data.update_available}'''
+    value_template: "{% if value_json.update_available %}on{% else %}off{% endif %}"
+    json_attributes:
+    - update_available
+    - newest_version
+    - current_version 
+
+
+  #================================  
+  # Addons
+  #================================  
+
+    #================================
+    # Home Assistant Config Checker
+    #================================
+    
+  - platform: template
+    sensors:
+        check_config_update_available:
+            friendly_name: "Check Config Update Available"
+            value_template: >-
+                {% if ( states.binary_sensor.check_home_assistant_configuration_update_available.state == 'off' ) %}
+                    100
+                {% else %}
+                    50
+                {% endif %}
+
+    #================================
+    # DuckDNS
+    #================================
+    
+  - platform: template
+    sensors:
+        duckdns_update_available:
+            friendly_name: "DuckDNS Update Available"
+            value_template: >-
+                {% if ( states.binary_sensor.duck_dns_update_available.state == 'off' ) %}
+                    100
+                {% else %}
+                    50
+                {% endif %}
+
+    #================================
+    # Mosquitto MQTT Broker
+    #================================
+
+  - platform: template
+    sensors:
+        mosquitto_update_available:
+            friendly_name: "Mosquitto Update Available"
+            value_template: >-
+                {% if ( states.binary_sensor.mosquitto_broker_update_available.state == 'off' ) %}
+                    100
+                {% else %}
+                    50
+                {% endif %}
+
+    #================================
+    # Samba Backup
+    #================================
+    
+  - platform: template
+    sensors:
+        samba_backup_update_available:
+            friendly_name: "Samba Backup Update Available"
+            value_template: >-
+                {% if ( states.binary_sensor.samba_backup_update_available.state == 'off' ) %}
+                    100
+                {% else %}
+                    50
+                {% endif %}
+
+  - platform: template
+    sensors:
+      local_snapshots:
+        friendly_name: "Local Backups"
+        unit_of_measurement: ' '
+        value_template: "{{ state_attr('sensor.samba_backup', 'backups_local') }}"
+        
+  - platform: template
+    sensors:
+      remote_snapshots:
+        friendly_name: "Remote Backups"
+        unit_of_measurement: ' '
+        value_template: "{{ state_attr('sensor.samba_backup', 'backups_remote') }}"        
+
+  - platform: template
+    sensors:
+      latest_snapshot:
+        friendly_name: "Latest Backups"
+        unit_of_measurement: ' '
+        value_template: "{{ as_timestamp(strptime(state_attr('sensor.samba_backup', 'last_backup'), '%Y-%m-%d %H:%M:%S')) | timestamp_custom('%d-%m-%Y') }}" 
+
+    #================================
+    # Samba Share
+    #================================
+    
+  - platform: template
+    sensors:
+        samba_share_update_available:
+            friendly_name: "Samba Share Update Available"
+            value_template: >-
+                {% if ( states.binary_sensor.samba_share_update_available.state == 'off' ) %}
+                    100
+                {% else %}
+                    50
+                {% endif %}
+
+    #================================
+    # TasmoAdmin
+    #================================
+    
+  - platform: template
+    sensors:
+        tasmoadmin_update_available:
+            friendly_name: "TasmoAdmin Update Available"
+            value_template: >-
+                {% if ( states.binary_sensor.tasmoadmin_update_available.state == 'off' ) %}
+                    100
+                {% else %}
+                    50
+                {% endif %}
+
+    #================================
+    # SSH & Webterminal
+    #================================
+    
+  - platform: template
+    sensors:
+        terminal_ssh_update_available:
+            friendly_name: "Terminal SSH Update Available"
+            value_template: >-
+                {% if ( states.binary_sensor.ssh_web_terminal_update_available.state == 'off' ) %}
+                    100
+                {% else %}
+                    50
+                {% endif %}
+
+    #================================
+    # Visual Studio Code
+    #================================
+    
+  - platform: template
+    sensors:
+        visualstudiocode_update_available:
+            friendly_name: "Visual Studio Code Update Available"
+            value_template: >-
+                {% if ( states.binary_sensor.visual_studio_code_update_available.state == 'off' ) %}
+                    100
+                {% else %}
+                    50
+                {% endif %}
+
+    #================================
+    # Z-Wave JS
+    #================================
+    
+  - platform: template
+    sensors:
+        zwavejs_update_available:
+            friendly_name: "Z-Wave JS Update Available"
+            value_template: >-
+                {% if ( states.binary_sensor.z_wave_js_update_available.state == 'off' ) %}
+                    100
+                {% else %}
+                    50
+                {% endif %}
+
+    #================================
+    # Glances
+    #================================
+    
+  - platform: template
+    sensors:
+        glances_update_available:
+            friendly_name: "Glances Update Available"
+            value_template: >-
+                {% if ( states.binary_sensor.glances_update_available.state == 'off' ) %}
+                    100
+                {% else %}
+                    50
+                {% endif %}
+
+  #================================
+  # CUPS
+  #================================
+
+  - platform: cups
+    host: 192.168.2.207
+    is_cups_server: true
+    printers:
+      - CanonMG2555
+
+  #================================
+  # Person Tracking
+  #================================
+
+  - platform: template
+    sensors:
+        duncan_presence:
+            value_template: >-
+                {% if is_state('device_tracker.telefoon_duncan', 'unknown') %}
+                    Away
+                {% else %}
+                    {{ states.device_tracker.telefoon_duncan.state}}
+                {% endif %}  
+
+  - platform: template
+    sensors:
+        sabrine_presence:
+            value_template: >-
+                {% if is_state('device_tracker.telefoon_sabrine', 'unknown') %}
+                    Away
+                {% else %}
+                    {{ states.device_tracker.telefoon_sabrine.state}}
+                {% endif %}
+
+  - platform: template
+    sensors:
+        luca_presence:
+            value_template: >-
+                {% if is_state('device_tracker.tablet_luca', 'unknown') %}
+                    Away
+                {% else %}
+                    {{ states.device_tracker.tablet_luca.state}}
+                {% endif %}
+
+  - platform: template
+    sensors:
+        fynn_presence:
+            value_template: >-
+                {% if is_state('device_tracker.tablet_fynn', 'unknown') %}
+                    Away
+                {% else %}
+                    {{ states.device_tracker.tablet_fynn.state}}
+                {% endif %}
+
+  #================================
+  # Database Size
+  #================================
+
+  - platform: sql
+    db_url: !secret maria_db_url
+    queries:
+      - name: Database size
+        query: 'SELECT table_schema "database", Round(Sum(data_length + index_length) / 1024 / 1024, 1) "value" FROM information_schema.tables WHERE table_schema="harepository" GROUP BY table_schema;'
+        column: "value"
+        unit_of_measurement: MB

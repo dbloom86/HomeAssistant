@@ -1,0 +1,157 @@
+#================================
+# Afval
+#================================
+
+  #===============
+  # Sensors
+  #===============
+
+sensor:
+
+    #================================
+    # Afvalkalender
+    #================================      
+
+  - platform: afvalbeheer
+    wastecollector: Circulus-Berkel
+    resources:
+      - gft
+      - papier
+      - pmd
+    postcode: !secret postcode
+    streetnumber: !secret huisnummer
+    upcomingsensor: 1 
+    dateformat: '%d %B %Y' 
+    dateonly: 1
+    name: "afval" 
+    nameprefix: 1
+    builtinicons: 0       
+    dutch: 1
+    disableicons: 0
+    
+  - platform: template
+    sensors:
+      trash_color:
+        friendly_name: afvalkleur
+        value_template: >-
+            {% if (states.sensor.circulus_berkel_afval_vandaag == "gft") %}
+                green
+            {% elif (states.sensor.circulus_berkel_afval_vandaag == "papier") %}
+                blue
+            {% elif (states.sensor.circulus_berkel_afval_vandaag == "pmd") %}
+                orange
+            {% else %}
+                grey
+            {% endif %}
+            
+  - platform: template
+    sensors:
+      trash_color_tomorrow:
+        friendly_name: afvalkleur
+        value_template: >-
+            {% if (states.sensor.circulus_berkel_afval_morgen == "gft") %}
+                green
+            {% elif (states.sensor.circulus_berkel_afval_morgen == "papier") %}
+                blue
+            {% elif (states.sensor.circulus_berkel_afval_morgen == "pmd") %}
+                orange
+            {% else %}
+                grey
+            {% endif %}
+
+  #===============
+  # Automations
+  #===============
+
+automation:
+
+  #================================  
+  # Notifications
+  #================================
+
+  - alias: PMD wordt opgehaald
+    trigger:
+    - platform: time
+      at: '19:00:00'
+    condition:
+    - condition: state
+      entity_id: sensor.circulus_berkel_afval_morgen
+      state: pmd
+    action:
+      service: notify.mobile_app_telefoon_duncan
+      data:
+        title: PMD wordt morgen opgehaald
+        message: Zet de oranje container aan de weg.
+        data:
+          sticky: true
+          tag: afval
+          persistent: true
+          group: Afval
+          icon_url: /local/Custom_Icons/container-pmd-ico.png
+    id: 00a157bda32b4ceeb6f6e0b5abd3f0bd
+
+  - alias: GFT wordt opgehaald
+    trigger:
+    - platform: time
+      at: '19:00:00'
+    condition:
+    - condition: state
+      entity_id: sensor.circulus_berkel_afval_morgen
+      state: gft
+    action:
+      service: notify.mobile_app_telefoon_duncan
+      data:
+        title: GFT wordt morgen opgehaald
+        message: Zet de groene container aan de weg.
+        data:
+          sticky: true
+          tag: afval
+          persistent: true
+          group: Afval
+          icon_url: /local/Custom_Icons/container-gft-ico.png
+    id: 0a0fb345b86c41fc97eec6534e0d2896
+
+  - alias: Papier wordt opgehaald
+    trigger:
+    - platform: time
+      at: '19:00:00'
+    condition:
+    - condition: state
+      entity_id: sensor.circulus_berkel_afval_morgen
+      state: papier
+    action:
+      service: notify.mobile_app_telefoon_duncan
+      data:
+        title: Papier wordt morgen opgehaald
+        message: Zet de blauwe container aan de weg.
+        data:
+          sticky: true
+          tag: afval
+          persistent: true
+          group: Afval
+          icon_url: /local/Custom_Icons/container-papier-ico.png
+    id: 89c0c6be42e449b58bb0917bba3805d4
+
+  - alias: Verwijderen afval notification
+    trigger:
+    - platform: time
+      at: 08:00:00
+    condition:
+      condition: or
+      conditions:
+      - condition: state
+        entity_id: sensor.circulus_berkel_afval_vandaag
+        state: pmd
+      - condition: state
+        entity_id: sensor.circulus_berkel_afval_vandaag
+        state: gft
+      - condition: state
+        entity_id: sensor.circulus_berkel_afval_vandaag
+        state: papier
+    action:
+      service: notify.mobile_app_telefoon_duncan
+      data:
+        message: clear_notification
+        data:
+          tag: afval
+    id: 827852f6512441b7bfcd864471651ae3

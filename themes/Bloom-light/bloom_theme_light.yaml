@@ -1,0 +1,264 @@
+---
+#
+# Eigen Thema
+#
+bloom-theme-light:
+  card-mod-theme: bloom-theme-light
+  # Global
+  background-image: "center / cover no-repeat fixed url('/local/Wallpapers/light.jpg')"
+  lovelace-background: var(--background-image)
+  primary-color: "#0066cc"
+  light-primary-color: "#2c2c2e"  # light gray (icons on left menu)
+  primary-background-color: "#e5e5ea"  # systemGray5 dark mode
+  secondary-background-color: rgba(255, 255, 255, 0.7)
+  divider-color: "#0066cc"
+  accent-color: rgba(255, 159, 9, 1)
+  # Code editor
+  code-editor-background-color: "#d9d9d9"
+  codemirror-keyword: "#C792EA"
+  codemirror-operator: "#89DDFF"
+  codemirror-variable: "#f07178"
+  codemirror-variable-2: "#EEFFFF"
+  codemirror-variable-3: "#DECB6B"
+  codemirror-builtin: "#FFCB6B"
+  codemirror-atom: "#F78C6C"
+  codemirror-number: "#FF5370"
+  codemirror-def: "#82AAFF"
+  codemirror-string: "#339933"
+  codemirror-string-2: "#f07178"
+  codemirror-comment: "#545454"
+  codemirror-tag: "#FF5370"
+  codemirror-meta: "#FFCB6B"
+  codemirror-attribute: "#C792EA"
+  codemirror-property: "#C792EA"
+  codemirror-qualifier: "#DECB6B"
+  codemirror-type: "#DECB6B"
+  # Text
+  primary-font-family: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"
+  paper-font-common-base_-_font-family: "var(--primary-font-family)"
+  paper-font-common-code_-_font-family: "var(--primary-font-family)"
+  paper-font-body1_-_font-family: "var(--primary-font-family)"
+  paper-font-subhead_-_font-family: "var(--primary-font-family)"
+  paper-font-headline_-_font-family: "var(--primary-font-family)"
+  paper-font-caption_-_font-family: "var(--primary-font-family)"
+  paper-font-title_-_font-family: "var(--primary-font-family)"
+  primary-text-color: "#464a47"
+  secondary-text-color: "#000000"
+  text-primary-color: "#464a47"
+  disabled-text-color: "#232323"  # XXX: https://github.com/basnijholt/lovelace-ios-dark-mode-theme/issues/2
+  text-dark-color: "#464a47"
+  # Sidebar Menu
+  sidebar-background-color: var(--primary-background-color)
+  sidebar-icon-color: var(--light-primary-color)
+  sidebar-text-color: var(--light-primary-color)
+  sidebar-selected-background-color: var(--primary-background-color)
+  sidebar-selected-icon-color: "#8e8e93"
+  sidebar-selected-text-color: var(--sidebar-selected-icon-color)
+  # Text divider row
+  text-divider-color: var(--primary-color)
+  text-divider-font-size: 25px
+  text-divider-line-size: 1px
+  text-divider-font-weight: bold   # normal or bold
+  text-divider-margin-top: 0.1em       # margin on top of the row
+  text-divider-margin-bottom: 0em    # margin at the bottom of the row
+  text-divider-text: "#464a47"
+  # States and Badges
+  #state-icon-color: "#FFF"
+  #state-icon-active-color: rgba(255, 214, 10, 1)
+  #paper-item-icon-active-color: rgba(255, 214, 10, 1)
+  #state-icon-unavailable-color: var(--disabled-text-color)
+  # Sliders
+  paper-slider-knob-color: "#FFF"
+  paper-slider-knob-start-color: var(--paper-slider-knob-color)
+  paper-slider-pin-color: var(--paper-slider-knob-color)
+  paper-slider-active-color: "#007aff"  # from Apple systemBlue dark mode
+  paper-slider-secondary-color: var(--paper-slider-knob-color)
+  paper-slider-container-color: rgba(255, 255, 255, 0.5)
+  paper-slider-font-color: "#000"
+  ha-slider-background: none !important
+  # Labels
+  label-badge-background-color: "#23232E"
+  label-badge-text-color: "#F1F1F1"
+  label-badge-red: rgba(255, 159, 9, 0.7)  # from Apple systemOrange dark mode
+  # Cards
+  card-background-color: var(--secondary-background-color)  # Unused entities table background
+  paper-listbox-background-color: var(--primary-background-color)
+  ha-card-border-radius: 10px
+  ha-card-background: rgba(245, 245, 245, 0.4)
+  paper-card-background-color: var(--ha-card-background)
+  ha-card-border: solid 2px var(--primary-color)
+  # Banner Cards
+  banner-card-heading-size: 2em
+  # Toggles
+  paper-toggle-button-checked-button-color: "#484848"
+  paper-toggle-button-checked-bar-color: "#484848"
+  paper-toggle-button-unchecked-button-color: var(--paper-toggle-button-checked-button-color)
+  paper-toggle-button-unchecked-bar-color: var(--disabled-text-color)
+  # Table row
+  table-row-background-color: var(--primary-background-color)
+  table-row-alternative-background-color: var(--secondary-background-color)
+  # Switches
+  switch-checked-color: "#30d257"  # XXX: remove when https://github.com/home-assistant/home-assistant-polymer/pull/4203 is in HA
+  switch-checked-track-color: "#30d158"  # from Apple systemGreen dark mode
+  switch-checked-button-color: "#FFF"
+  # Other
+  paper-dialog-background-color: rgba(200, 200, 200, 0.8)  # e.g., background of more-info
+  paper-item-icon-color: "#333333"  # also should mini-media-player icon white (but doesn't work by itself)
+  more-info-header-background: rgba(230, 230, 230, 0.5)
+  lumo-body-text-color: var(--primary-text-color)  # see https://github.com/basnijholt/lovelace-ios-dark-mode-theme/issues/42
+  app-header-background-color: rgba(155, 155, 155, 0.8)
+  markdown-code-background-color: "#d6d6d6"
+  # Custom
+  bar-card-border-radius: 3px
+  mcg-title-letter-spacing: .0em
+  mini-media-player-base-color: white
+  mini-media-player-icon-color: white
+  # theme-mod
+  card-mod-root-yaml: |
+    paper-tabs$: |
+      .not-visible {
+        display: none;
+      }
+      /*Uncomment this if you want the header on the bottom
+      #selectionBar {
+        bottom: unset !important;
+      }
+      */
+    ha-app-layout$: |
+      /* This corrects top padding for the view. */
+      #contentContainer {
+        /* Change this to 0px if you want the header on the bottom */
+        padding-top: 48px !important;
+      }
+    ha-button-menu$mwc-menu$mwc-menu-surface$: |
+      .mdc-menu-surface {
+        margin: 10px;
+        box-shadow: var(--ha-card-box-shadow, 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12));
+      }
+    .: |
+      /* This hides the unused portion of the header. */
+      app-toolbar {
+        height: 0;
+      }
+      /* This forces background-color and text-color. */
+      .edit-mode, app-header, app-toolbar {
+        background-color: var(--primary-background-color) !important;
+        color: var(--primary-text-color) !important;
+      }
+      /* Uncomment this if you want the header on the bottom
+      app-header {
+        top: calc(100vh - 60px) !important;
+        bottom: 0 !important;
+        transform: unset !important;
+      }
+      hui-masonry-view {
+        padding-bottom: 60px !important;
+      }
+      */
+      /* This gives the header in edit mode a different look from the standard header. */
+      app-header.edit-mode {
+        border-bottom: 2px var(--primary-color) solid;
+        padding-bottom: 10px;
+      }
+      /* Make the color of the plus white instead of black. */
+      #add-view ha-svg-icon {
+        color: #EEE !important;
+      }
+      /* Bring voice button back down */
+      app-toolbar:not([class="edit-mode"]) mwc-icon-button[label] {
+        top: 0;
+        right: calc(48px * 1);
+        z-index: 2;
+        position: absolute;
+      }
+      /* Bring help button back in */
+      a[href="https://www.home-assistant.io/lovelace/"] > mwc-icon-button {
+        right: calc(48px * 2);
+        position: absolute;
+        z-index: 2;
+      }
+      /* Bring close button back in */
+      mwc-icon-button[title="Close"] {
+        top: 0;
+        left: 0;
+        position: absolute;
+        z-index: 2;
+      }
+      /* Bring add view button back in */
+      mwc-icon-button#add-view {
+        position: fixed;
+        right: 48px;
+      }
+      /* Bring edit UI overflow menu back in */
+      ha-button-menu {
+        top: 0;
+        right: 0;
+        z-index: 2;
+        position: absolute;
+        /*Uncomment this out to hide the overflow menu
+        display: none;
+        */
+      }
+      /* Hide the title */
+      app-toolbar > [main-title] {
+        display: none;
+      }
+      /* Hide buttons that are taking up space, but invisible */
+      menu-button[style="visibility: hidden;"] {
+        display: none;
+      }
+      /* Bring sidebar button back in */
+      ha-menu-button {
+        z-index: 2;
+        top: 24px;
+      }
+      /* Set margin on left to be smaller,
+      and set the bar color to be the primary color
+      instead of white */
+      paper-tabs {
+        --paper-tabs-selection-bar-color: var(--primary-color) !important;
+        margin-left: 48px !important;
+      }
+      /* When not in edit mode, shrink the left margin */
+      app-toolbar:not(.edit-mode) > div > paper-tabs {
+        margin-left: 6px !important;
+      }
+      /* Color selected tabs */
+      paper-tab[aria-selected="true"] > ha-icon {
+        color: var(--primary-color) !important;
+      }
+      paper-tab[aria-selected="true"] {
+        color: var(--primary-color) !important;
+      }
+      /* Styles for mobile */
+      @media (orientation: portrait) {
+        /* Hide sidebar button and keep room for the overflow menu button */
+        paper-tabs {
+          margin-left: 5px !important;
+          margin-right: 48px !important;
+        }
+        /* Hide voice button */
+        mwc-icon-button[label="Start conversation"] {
+          display: none !important;
+        }
+        /* Hide sidebar button */
+        ha-menu-button {
+          display: none !important;
+        }
+      }
+      /* Make help button have contrast */
+      app-toolbar a {
+        color: var(--primary-text-color) !important;
+      }
+      ha-app-layout {
+        background: var(--background-image) !important;
+        background-size: cover;
+      }
+      app-header {
+        background: var(--background-1) !important;
+        backdrop-filter: var(--bg-filter);
+        box-shadow:  var(--theme-box-shadow);
+      }
+      app-toolbar {
+        background: none !important;
+      }
