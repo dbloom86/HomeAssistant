@@ -1,3 +1,3 @@
-# HomeAssistant
-Duncans Home Assistant Config
+# Duncans Home Assistant Config
+
 
