@@ -1,0 +1,21 @@
+# An * ensures that everything will be ignored.
+*
+# You can whitelist files/folders with !, these will not be ignored.
+!*.yaml
+!.gitignore
+!*.md
+
+# Ignore folders.
+.storage
+.cloud
+.google.token
+packages/google_assistant/
+packages/ha_dockermon/
+packages/pihole/
+
+# Ensure these files are ignored, otherwise your secret data/credentials will leak.
+secrets.yaml
+known_devices.yaml
+known_devices_old.yaml
+google_calendars.yaml
+update.sh
