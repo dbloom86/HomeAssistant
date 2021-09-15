@@ -205,7 +205,7 @@
       total_shelly_devices:
         friendly_name: 'Shelly'
         icon_template: mdi:flash
-        value_template: "{{states.switch |selectattr('entity_id','in',state_attr('group.shelly','entity_id'))| map(attribute='name') | list|count }}"
+        value_template: "{{states |selectattr('entity_id','in',state_attr('group.shelly','entity_id'))| map(attribute='name') | list|count }}"
         
       #----- Count Shelly Devices That need a firmware upgrade
       outdated_shelly_devices:
@@ -213,7 +213,7 @@
         icon_template: mdi:flash
         value_template:  >-
             {% set ns = namespace(count=0) %}
-            {% set iter = states.switch | map(attribute='attributes.has_firmware_update') | list %}
+            {% set iter = states |selectattr('entity_id','in',state_attr('group.shelly','entity_id'))| map(attribute='attributes.has_firmware_update') | list %}
             {% for name in iter %}
             {% if 'true' in (name | string).lower() %}
             {% set ns.count = ns.count + 1 %}
