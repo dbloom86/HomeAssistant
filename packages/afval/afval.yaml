@@ -135,7 +135,7 @@ automation:
   - alias: Verwijderen afval notification
     trigger:
     - platform: time
-      at: 08:00:00
+      at: 07:30:00
     condition:
       condition: or
       conditions:
