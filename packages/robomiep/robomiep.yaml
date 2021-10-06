@@ -3,6 +3,47 @@
 #================================ 
 
   #=====================
+  # Input Booleans
+  #=====================
+
+input_boolean:
+
+    #=====================
+    # Kamers
+    #=====================
+  woonkamer:
+    name: Woonkamer
+    initial: off
+
+  keuken:
+    name: Keuken
+    initial: off
+
+  hal:
+    name: Hal
+    initial: off
+
+  overloop:
+    name: Overloop
+    initial: off
+
+  kamer_fynn:
+    name: Kamer Fynn
+    initial: off
+
+  kamer_luca:
+    name: Kamer Luca
+    initial: off
+
+  slaapkamer:
+    name: Slaapkamer
+    initial: off
+
+  badkamer:
+    name: Badkamer
+    initial: off
+
+  #=====================
   # Map
   #=====================
 
@@ -78,7 +119,13 @@ automation:
     trigger:
     - platform: time
       at: '19:15:00'
-    condition: []
+    condition:
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: climate.toon_thermostat
+        attribute: preset_modes
+        state: eco
     action:
     - service: xiaomi_miio.vacuum_clean_segment
       target:
@@ -210,3 +257,51 @@ script:
         entity_id: vacuum.miep
       data:
         segments: [16,18,19,20]
+
+    #=====================
+    # Stofzuigen BG
+    #=====================
+  stofzuig_bg:
+    alias: "Stofzuig Begane Grond"
+    sequence:
+    - choose:
+        - conditions:
+            - condition: template
+              value_template: '{{states.input_boolean.woonkamer == on}}'
+            - condition: template
+              value_template: '{{states.input_boolean.keuken == on}}'
+            - condition: template
+              value_template: '{{states.input_boolean.hal == off}}'
+          sequence:
+            - service: script.vacuum_kitchen_living
+        - conditions:
+            - condition: template
+              value_template: '{{states.input_boolean.woonkamer == on}}'
+            - condition: template
+              value_template: '{{states.input_boolean.keuken == off}}'
+            - condition: template
+              value_template: '{{states.input_boolean.hal == off}}'
+          sequence:
+            - service: script.vacuum_living
+        - conditions:
+            - condition: template
+              value_template: '{{states.input_boolean.woonkamer == off}}'
+            - condition: template
+              value_template: '{{states.input_boolean.keuken == on}}'
+            - condition: template
+              value_template: '{{states.input_boolean.hal == off}}'
+          sequence:
+            - service: script.vacuum_kitchen
+        - conditions:
+            - condition: template
+              value_template: '{{states.input_boolean.hal == on}}'
+            - condition: template
+              value_template: '{{states.input_boolean.woonkamer == off}}'
+            - condition: template
+              value_template: '{{states.input_boolean.keuken == off}}'
+          sequence: 
+            - service: script.vacuum_hall
+      default:
+        - service: browser_mod.toast
+          data:
+            message: "Wat je wil kan niet. Probeer de schoon te maken ruimtes aan te passen."
