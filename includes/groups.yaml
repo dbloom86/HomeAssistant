@@ -38,6 +38,17 @@ Shelly:
         - switch.shelly_shplg_s_9a53ab
         - light.shelly_shsw_1_40f520009959
 
+cleaning_rooms:
+    entities:
+        - input_boolean.woonkamer
+        - input_boolean.keuken
+        - input_boolean.hal
+        - input_boolean.overloop
+        - input_boolean.kamer_luca
+        - input_boolean.kamer_fynn
+        - input_boolean.slaapkamer
+        - input_boolean.badkamer
+
 #########
 # ROOMS #
 #########

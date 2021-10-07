@@ -2328,7 +2328,10 @@
                                 "buttons": {
                                     "start": false,
                                     "stop": false,
-                                    "locate": false
+                                    "locate": false,
+                                    "return": {
+                                        "service": "script.miep_return_to_dock"
+                                    }
                                 },
                                 "attributes": {
                                     "main_brush": {
@@ -2369,15 +2372,10 @@
                                         "type": "custom:button-card",
                                         "color_type": "label-card",
                                         "color": "var(--ha-card-background)",
-                                        "name": "Begane Grond",
+                                        "name": "Start stofzuigen BG",
                                         "tap_action": {
                                             "action": "call-service",
-                                            "service": "vacuum.send_command",
-                                            "service_data": {
-                                                "command": "load_multi_map",
-                                                "params": 0,
-                                                "device_id": "122a8a65b1a8e6870391ff4dd677c276"
-                                            }
+                                            "service": "script.stofzuig_bg"
                                         },
                                         "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
                                     },
@@ -2387,15 +2385,11 @@
                                             {
                                                 "type": "custom:button-card",
                                                 "aspect_ratio": "1/1",
-                                                "entity": "vacuum.miep",
+                                                "entity": "input_boolean.woonkamer",
                                                 "name": "Woonkamer",
                                                 "entity_picture": "/local/Pictures/clean_living.png",
                                                 "size": "50%",
                                                 "show_entity_picture": true,
-                                                "tap_action": {
-                                                    "action": "call-service",
-                                                    "service": "script.vacuum_living"
-                                                },
                                                 "styles": {
                                                     "card": [
                                                         {
@@ -2416,7 +2410,7 @@
                                                 },
                                                 "state": [
                                                     {
-                                                        "value": "docked",
+                                                        "value": "off",
                                                         "styles": {
                                                             "card": [
                                                                 {
@@ -2440,15 +2434,11 @@
                                             {
                                                 "type": "custom:button-card",
                                                 "aspect_ratio": "1/1",
-                                                "entity": "vacuum.miep",
+                                                "entity": "input_boolean.keuken",
                                                 "name": "Keuken",
                                                 "entity_picture": "/local/Pictures/clean_kitchen.png",
                                                 "size": "50%",
                                                 "show_entity_picture": true,
-                                                "tap_action": {
-                                                    "action": "call-service",
-                                                    "service": "script.vacuum_kitchen"
-                                                },
                                                 "styles": {
                                                     "card": [
                                                         {
@@ -2469,7 +2459,7 @@
                                                 },
                                                 "state": [
                                                     {
-                                                        "value": "docked",
+                                                        "value": "off",
                                                         "styles": {
                                                             "card": [
                                                                 {
@@ -2493,68 +2483,11 @@
                                             {
                                                 "type": "custom:button-card",
                                                 "aspect_ratio": "1/1",
-                                                "entity": "vacuum.miep",
-                                                "name": "Keuken en Woonkamer",
-                                                "entity_picture": "/local/Pictures/clean_kitchen_living.png",
-                                                "size": "50%",
-                                                "show_entity_picture": true,
-                                                "tap_action": {
-                                                    "action": "call-service",
-                                                    "service": "script.vacuum_kitchen_living"
-                                                },
-                                                "styles": {
-                                                    "card": [
-                                                        {
-                                                            "background-color": "var(--ha-card-background)"
-                                                        }
-                                                    ],
-                                                    "name": [
-                                                        {
-                                                            "justify-self": "center"
-                                                        },
-                                                        {
-                                                            "font-size": "15px"
-                                                        },
-                                                        {
-                                                            "align-items": "middle"
-                                                        }
-                                                    ]
-                                                },
-                                                "state": [
-                                                    {
-                                                        "value": "docked",
-                                                        "styles": {
-                                                            "card": [
-                                                                {
-                                                                    "filter": "opacity(50%)"
-                                                                }
-                                                            ],
-                                                            "icon": [
-                                                                {
-                                                                    "filter": "grayscale(100%)"
-                                                                }
-                                                            ]
-                                                        }
-                                                    },
-                                                    {
-                                                        "value": "on",
-                                                        "styles": null
-                                                    }
-                                                ],
-                                                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
-                                            },
-                                            {
-                                                "type": "custom:button-card",
-                                                "aspect_ratio": "1/1",
-                                                "entity": "vacuum.miep",
+                                                "entity": "input_boolean.hal",
                                                 "name": "Hal",
                                                 "entity_picture": "/local/Pictures/clean_hall.png",
                                                 "size": "50%",
                                                 "show_entity_picture": true,
-                                                "tap_action": {
-                                                    "action": "call-service",
-                                                    "service": "script.vacuum_hall"
-                                                },
                                                 "styles": {
                                                     "card": [
                                                         {
@@ -2575,7 +2508,7 @@
                                                 },
                                                 "state": [
                                                     {
-                                                        "value": "docked",
+                                                        "value": "off",
                                                         "styles": {
                                                             "card": [
                                                                 {
@@ -2611,15 +2544,10 @@
                                         "type": "custom:button-card",
                                         "color_type": "label-card",
                                         "color": "var(--ha-card-background)",
-                                        "name": "Verdieping",
+                                        "name": "Start stofzuigen Verdieping",
                                         "tap_action": {
                                             "action": "call-service",
-                                            "service": "vacuum.send_command",
-                                            "service_data": {
-                                                "command": "load_multi_map",
-                                                "params": 1,
-                                                "device_id": "122a8a65b1a8e6870391ff4dd677c276"
-                                            }
+                                            "service": "script.stofzuig_v1"
                                         },
                                         "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
                                     },
@@ -2629,15 +2557,11 @@
                                             {
                                                 "type": "custom:button-card",
                                                 "aspect_ratio": "1/1",
-                                                "entity": "vacuum.miep",
+                                                "entity": "input_boolean.overloop",
                                                 "name": "Overloop",
                                                 "entity_picture": "/local/Pictures/clean_overloop.png",
                                                 "size": "50%",
                                                 "show_entity_picture": true,
-                                                "tap_action": {
-                                                    "action": "call-service",
-                                                    "service": "script.vacuum_overloop"
-                                                },
                                                 "styles": {
                                                     "card": [
                                                         {
@@ -2658,7 +2582,7 @@
                                                 },
                                                 "state": [
                                                     {
-                                                        "value": "docked",
+                                                        "value": "off",
                                                         "styles": {
                                                             "card": [
                                                                 {
@@ -2682,15 +2606,11 @@
                                             {
                                                 "type": "custom:button-card",
                                                 "aspect_ratio": "1/1",
-                                                "entity": "vacuum.miep",
+                                                "entity": "input_boolean.kamer_fynn",
                                                 "name": "Fynn",
                                                 "entity_picture": "/local/Pictures/clean_fynn.png",
                                                 "size": "50%",
                                                 "show_entity_picture": true,
-                                                "tap_action": {
-                                                    "action": "call-service",
-                                                    "service": "script.vacuum_fynn"
-                                                },
                                                 "styles": {
                                                     "card": [
                                                         {
@@ -2711,7 +2631,7 @@
                                                 },
                                                 "state": [
                                                     {
-                                                        "value": "docked",
+                                                        "value": "off",
                                                         "styles": {
                                                             "card": [
                                                                 {
@@ -2735,15 +2655,11 @@
                                             {
                                                 "type": "custom:button-card",
                                                 "aspect_ratio": "1/1",
-                                                "entity": "vacuum.miep",
+                                                "entity": "input_boolean.kamer_luca",
                                                 "name": "Luca",
                                                 "entity_picture": "/local/Pictures/clean_luca.png",
                                                 "size": "50%",
                                                 "show_entity_picture": true,
-                                                "tap_action": {
-                                                    "action": "call-service",
-                                                    "service": "script.vacuum_luca"
-                                                },
                                                 "styles": {
                                                     "card": [
                                                         {
@@ -2764,7 +2680,7 @@
                                                 },
                                                 "state": [
                                                     {
-                                                        "value": "docked",
+                                                        "value": "off",
                                                         "styles": {
                                                             "card": [
                                                                 {
@@ -2793,15 +2709,11 @@
                                             {
                                                 "type": "custom:button-card",
                                                 "aspect_ratio": "1/1",
-                                                "entity": "vacuum.miep",
+                                                "entity": "input_boolean.slaapkamer",
                                                 "name": "Sab en Dunc",
                                                 "entity_picture": "/local/Pictures/clean_slaap.png",
                                                 "size": "50%",
                                                 "show_entity_picture": true,
-                                                "tap_action": {
-                                                    "action": "call-service",
-                                                    "service": "script.vacuum_sleep"
-                                                },
                                                 "styles": {
                                                     "card": [
                                                         {
@@ -2822,7 +2734,7 @@
                                                 },
                                                 "state": [
                                                     {
-                                                        "value": "docked",
+                                                        "value": "off",
                                                         "styles": {
                                                             "card": [
                                                                 {
@@ -2846,15 +2758,11 @@
                                             {
                                                 "type": "custom:button-card",
                                                 "aspect_ratio": "1/1",
-                                                "entity": "vacuum.miep",
+                                                "entity": "input_boolean.badkamer",
                                                 "name": "Badkamer",
                                                 "entity_picture": "/local/Pictures/clean_bad.png",
                                                 "size": "50%",
                                                 "show_entity_picture": true,
-                                                "tap_action": {
-                                                    "action": "call-service",
-                                                    "service": "script.vacuum_bathroom"
-                                                },
                                                 "styles": {
                                                     "card": [
                                                         {
@@ -2875,7 +2783,7 @@
                                                 },
                                                 "state": [
                                                     {
-                                                        "value": "docked",
+                                                        "value": "off",
                                                         "styles": {
                                                             "card": [
                                                                 {
@@ -2897,57 +2805,7 @@
                                                 "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
                                             },
                                             {
-                                                "type": "custom:button-card",
-                                                "aspect_ratio": "1/1",
-                                                "entity": "vacuum.miep",
-                                                "name": "Hele verdieping",
-                                                "entity_picture": "/local/Pictures/clean_verdieping.png",
-                                                "size": "50%",
-                                                "show_entity_picture": true,
-                                                "tap_action": {
-                                                    "action": "call-service",
-                                                    "service": "script.vacuum_floor1"
-                                                },
-                                                "styles": {
-                                                    "card": [
-                                                        {
-                                                            "background-color": "var(--ha-card-background)"
-                                                        }
-                                                    ],
-                                                    "name": [
-                                                        {
-                                                            "justify-self": "center"
-                                                        },
-                                                        {
-                                                            "font-size": "15px"
-                                                        },
-                                                        {
-                                                            "align-items": "middle"
-                                                        }
-                                                    ]
-                                                },
-                                                "state": [
-                                                    {
-                                                        "value": "docked",
-                                                        "styles": {
-                                                            "card": [
-                                                                {
-                                                                    "filter": "opacity(50%)"
-                                                                }
-                                                            ],
-                                                            "icon": [
-                                                                {
-                                                                    "filter": "grayscale(100%)"
-                                                                }
-                                                            ]
-                                                        }
-                                                    },
-                                                    {
-                                                        "value": "on",
-                                                        "styles": null
-                                                    }
-                                                ],
-                                                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                                                "type": "custom:gap-card"
                                             }
                                         ]
                                     }

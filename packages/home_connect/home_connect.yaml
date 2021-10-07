@@ -55,4 +55,6 @@ automation:
         data:
           group: wasmachine
           icon_url: /local/Custom_Icons/wasmachine-ico.png
+          ttl: 0
+          priority: high
     id: 69f61c8b6bd1447aa49592ef3d50f831

@@ -259,11 +259,139 @@ script:
         segments: [16,18,19,20]
 
     #=====================
+    # Stofzuig Overloop en kamer Luca
+    #=====================
+  vacuum_overloop_luca:
+    alias: "Vacuum Overloop en Luca"
+    sequence:
+      service: xiaomi_miio.vacuum_clean_segment
+      target:
+        entity_id: vacuum.miep
+      data:
+        segments: [18,19]
+
+    #=====================
+    # Stofzuig Overloop en kamer Fynn
+    #=====================
+  vacuum_overloop_fynn:
+    alias: "Vacuum Overloop en Fynn"
+    sequence:
+      service: xiaomi_miio.vacuum_clean_segment
+      target:
+        entity_id: vacuum.miep
+      data:
+        segments: [18,20]
+
+    #=====================
+    # Stofzuig Overloop en Slaapkamer
+    #=====================
+  vacuum_overloop_sleep:
+    alias: "Vacuum Overloop en Slaapkamer"
+    sequence:
+      service: xiaomi_miio.vacuum_clean_segment
+      target:
+        entity_id: vacuum.miep
+      data:
+        segments: [18,16]
+
+    #=====================
+    # Stofzuig kamer Luca en Fynn
+    #=====================
+  vacuum_luca_fynn:
+    alias: "Vacuum Luca en Fynn"
+    sequence:
+      service: xiaomi_miio.vacuum_clean_segment
+      target:
+        entity_id: vacuum.miep
+      data:
+        segments: [20,19]
+
+    #=====================
+    # Stofzuig kamer Luca en Slaapkamer
+    #=====================
+  vacuum_luca_sleep:
+    alias: "Vacuum Luca en Slaapkamer"
+    sequence:
+      service: xiaomi_miio.vacuum_clean_segment
+      target:
+        entity_id: vacuum.miep
+      data:
+        segments: [16,19]
+
+    #=====================
+    # Stofzuig kamer Fynn en Slaapkamer
+    #=====================
+  vacuum_fynn_sleep:
+    alias: "Vacuum Fynn en Slaapkamer"
+    sequence:
+      service: xiaomi_miio.vacuum_clean_segment
+      target:
+        entity_id: vacuum.miep
+      data:
+        segments: [16,20]
+
+    #=====================
+    # Stofzuig Slaapkamers
+    #=====================
+  vacuum_slaapkamers:
+    alias: "Vacuum Slaapkamers"
+    sequence:
+      service: xiaomi_miio.vacuum_clean_segment
+      target:
+        entity_id: vacuum.miep
+      data:
+        segments: [16,19,20]
+
+    #=====================
+    # Stofzuig kinderkamers en overloop
+    #=====================
+  vacuum_kids_overloop:
+    alias: "Vacuum Kinderkamers en Overloop"
+    sequence:
+      service: xiaomi_miio.vacuum_clean_segment
+      target:
+        entity_id: vacuum.miep
+      data:
+        segments: [18,19,20]
+
+    #=====================
+    # Stofzuig Luca, Slaapkamer en overloop
+    #=====================
+  vacuum_luca_sleep_overloop:
+    alias: "Vacuum Luca, Slaapkamer en overloop"
+    sequence:
+      service: xiaomi_miio.vacuum_clean_segment
+      target:
+        entity_id: vacuum.miep
+      data:
+        segments: [18,19,16]
+
+    #=====================
+    # Stofzuig Fynn, Slaapkamer en overloop
+    #=====================
+  vacuum_fynn_sleep_overloop:
+    alias: "Vacuum Fynn, Slaapkamer en overloop"
+    sequence:
+      service: xiaomi_miio.vacuum_clean_segment
+      target:
+        entity_id: vacuum.miep
+      data:
+        segments: [18,20,16]
+
+    #=====================
     # Stofzuigen BG
     #=====================
   stofzuig_bg:
     alias: "Stofzuig Begane Grond"
     sequence:
+    - service: vacuum.send_command
+      target:
+        device_id: 122a8a65b1a8e6870391ff4dd677c276
+      data:
+        command: load_multi_map
+        params: 0
+    - delay:
+        seconds: 10
     - choose:
         - conditions:
             - condition: template
@@ -305,3 +433,253 @@ script:
         - service: browser_mod.toast
           data:
             message: "Wat je wil kan niet. Probeer de schoon te maken ruimtes aan te passen."
+    - service: homeassistant.turn_off
+      entity_id: group.cleaning_rooms
+
+    #=====================
+    # Stofzuigen Verdieping
+    #=====================
+  stofzuig_v1:
+    alias: "Stofzuig Verdieping"
+    sequence:
+    - service: vacuum.send_command
+      target:
+        device_id: 122a8a65b1a8e6870391ff4dd677c276
+      data:
+        command: load_multi_map
+        params: 1
+    - delay:
+        seconds: 10
+    - choose:
+        - conditions:
+            - condition: template
+              value_template: '{{states.input_boolean.overloop == on}}'
+            - condition: template
+              value_template: '{{states.input_boolean.kamer_luca == on}}'
+            - condition: template
+              value_template: '{{states.input_boolean.kamer_fynn == on}}'
+            - condition: template
+              value_template: '{{states.input_boolean.slaapkamer == on}}'
+            - condition: template
+              value_template: '{{states.input_boolean.badkamer == off}}'
+          sequence:
+            - service: script.vacuum_floor1
+        - conditions:
+            - condition: template
+              value_template: '{{states.input_boolean.overloop == on}}'
+            - condition: template
+              value_template: '{{states.input_boolean.kamer_luca == off}}'
+            - condition: template
+              value_template: '{{states.input_boolean.kamer_fynn == off}}'
+            - condition: template
+              value_template: '{{states.input_boolean.slaapkamer == off}}'
+            - condition: template
+              value_template: '{{states.input_boolean.badkamer == off}}'
+          sequence:
+            - service: script.vacuum_overloop
+        - conditions:
+            - condition: template
+              value_template: '{{states.input_boolean.overloop == off}}'
+            - condition: template
+              value_template: '{{states.input_boolean.kamer_luca == on}}'
+            - condition: template
+              value_template: '{{states.input_boolean.kamer_fynn == off}}'
+            - condition: template
+              value_template: '{{states.input_boolean.slaapkamer == off}}'
+            - condition: template
+              value_template: '{{states.input_boolean.badkamer == off}}'
+          sequence:
+            - service: script.vacuum_luca
+        - conditions:
+            - condition: template
+              value_template: '{{states.input_boolean.overloop == off}}'
+            - condition: template
+              value_template: '{{states.input_boolean.kamer_luca == off}}'
+            - condition: template
+              value_template: '{{states.input_boolean.kamer_fynn == on}}'
+            - condition: template
+              value_template: '{{states.input_boolean.slaapkamer == off}}'
+            - condition: template
+              value_template: '{{states.input_boolean.badkamer == off}}'
+          sequence:
+            - service: script.vacuum_fynn
+        - conditions:
+            - condition: template
+              value_template: '{{states.input_boolean.overloop == off}}'
+            - condition: template
+              value_template: '{{states.input_boolean.kamer_luca == off}}'
+            - condition: template
+              value_template: '{{states.input_boolean.kamer_fynn == off}}'
+            - condition: template
+              value_template: '{{states.input_boolean.slaapkamer == on}}'
+            - condition: template
+              value_template: '{{states.input_boolean.badkamer == off}}'
+          sequence:
+            - service: script.vacuum_sleep
+        - conditions:
+            - condition: template
+              value_template: '{{states.input_boolean.overloop == off}}'
+            - condition: template
+              value_template: '{{states.input_boolean.kamer_luca == off}}'
+            - condition: template
+              value_template: '{{states.input_boolean.kamer_fynn == off}}'
+            - condition: template
+              value_template: '{{states.input_boolean.slaapkamer == off}}'
+            - condition: template
+              value_template: '{{states.input_boolean.badkamer == on}}'
+          sequence:
+            - service: script.vacuum_bathroom
+        - conditions:
+            - condition: template
+              value_template: '{{states.input_boolean.overloop == on}}'
+            - condition: template
+              value_template: '{{states.input_boolean.kamer_luca == on}}'
+            - condition: template
+              value_template: '{{states.input_boolean.kamer_fynn == off}}'
+            - condition: template
+              value_template: '{{states.input_boolean.slaapkamer == off}}'
+            - condition: template
+              value_template: '{{states.input_boolean.badkamer == off}}'
+          sequence:
+            - service: script.vacuum_overloop_luca
+        - conditions:
+            - condition: template
+              value_template: '{{states.input_boolean.overloop == on}}'
+            - condition: template
+              value_template: '{{states.input_boolean.kamer_luca == off}}'
+            - condition: template
+              value_template: '{{states.input_boolean.kamer_fynn == on}}'
+            - condition: template
+              value_template: '{{states.input_boolean.slaapkamer == off}}'
+            - condition: template
+              value_template: '{{states.input_boolean.badkamer == off}}'
+          sequence:
+            - service: script.vacuum_overloop_fynn
+        - conditions:
+            - condition: template
+              value_template: '{{states.input_boolean.overloop == on}}'
+            - condition: template
+              value_template: '{{states.input_boolean.kamer_luca == off}}'
+            - condition: template
+              value_template: '{{states.input_boolean.kamer_fynn == off}}'
+            - condition: template
+              value_template: '{{states.input_boolean.slaapkamer == on}}'
+            - condition: template
+              value_template: '{{states.input_boolean.badkamer == off}}'
+          sequence:
+            - service: script.vacuum_overloop_sleep
+        - conditions:
+            - condition: template
+              value_template: '{{states.input_boolean.overloop == off}}'
+            - condition: template
+              value_template: '{{states.input_boolean.kamer_luca == on}}'
+            - condition: template
+              value_template: '{{states.input_boolean.kamer_fynn == on}}'
+            - condition: template
+              value_template: '{{states.input_boolean.slaapkamer == off}}'
+            - condition: template
+              value_template: '{{states.input_boolean.badkamer == off}}'
+          sequence:
+            - service: script.vacuum_luca_fynn
+        - conditions:
+            - condition: template
+              value_template: '{{states.input_boolean.overloop == off}}'
+            - condition: template
+              value_template: '{{states.input_boolean.kamer_luca == on}}'
+            - condition: template
+              value_template: '{{states.input_boolean.kamer_fynn == off}}'
+            - condition: template
+              value_template: '{{states.input_boolean.slaapkamer == on}}'
+            - condition: template
+              value_template: '{{states.input_boolean.badkamer == off}}'
+          sequence:
+            - service: script.vacuum_luca_sleep
+        - conditions:
+            - condition: template
+              value_template: '{{states.input_boolean.overloop == off}}'
+            - condition: template
+              value_template: '{{states.input_boolean.kamer_luca == off}}'
+            - condition: template
+              value_template: '{{states.input_boolean.kamer_fynn == on}}'
+            - condition: template
+              value_template: '{{states.input_boolean.slaapkamer == on}}'
+            - condition: template
+              value_template: '{{states.input_boolean.badkamer == off}}'
+          sequence:
+            - service: script.vacuum_fynn_sleep
+        - conditions:
+            - condition: template
+              value_template: '{{states.input_boolean.overloop == off}}'
+            - condition: template
+              value_template: '{{states.input_boolean.kamer_luca == on}}'
+            - condition: template
+              value_template: '{{states.input_boolean.kamer_fynn == on}}'
+            - condition: template
+              value_template: '{{states.input_boolean.slaapkamer == on}}'
+            - condition: template
+              value_template: '{{states.input_boolean.badkamer == off}}'
+          sequence:
+            - service: script.vacuum_slaapkamers
+        - conditions:
+            - condition: template
+              value_template: '{{states.input_boolean.overloop == on}}'
+            - condition: template
+              value_template: '{{states.input_boolean.kamer_luca == on}}'
+            - condition: template
+              value_template: '{{states.input_boolean.kamer_fynn == on}}'
+            - condition: template
+              value_template: '{{states.input_boolean.slaapkamer == off}}'
+            - condition: template
+              value_template: '{{states.input_boolean.badkamer == off}}'
+          sequence:
+            - service: script.vacuum_kids_overloop
+        - conditions:
+            - condition: template
+              value_template: '{{states.input_boolean.overloop == on}}'
+            - condition: template
+              value_template: '{{states.input_boolean.kamer_luca == on}}'
+            - condition: template
+              value_template: '{{states.input_boolean.kamer_fynn == off}}'
+            - condition: template
+              value_template: '{{states.input_boolean.slaapkamer == on}}'
+            - condition: template
+              value_template: '{{states.input_boolean.badkamer == off}}'
+          sequence:
+            - service: script.vacuum_luca_sleep_overloop
+        - conditions:
+            - condition: template
+              value_template: '{{states.input_boolean.overloop == on}}'
+            - condition: template
+              value_template: '{{states.input_boolean.kamer_luca == off}}'
+            - condition: template
+              value_template: '{{states.input_boolean.kamer_fynn == on}}'
+            - condition: template
+              value_template: '{{states.input_boolean.slaapkamer == on}}'
+            - condition: template
+              value_template: '{{states.input_boolean.badkamer == off}}'
+          sequence:
+            - service: script.vacuum_fynn_sleep_overloop
+      default:
+        - service: browser_mod.toast
+          data:
+            message: "Wat je wil kan niet. Probeer de schoon te maken ruimtes aan te passen."
+    - service: homeassistant.turn_off
+      entity_id: group.cleaning_rooms
+
+    #=====================
+    # Return to Dock
+    #=====================
+  miep_return_to_dock:
+    alias: "Miep Return to Dock"
+    sequence:
+    - service: vacuum.send_command
+      target:
+        device_id: 122a8a65b1a8e6870391ff4dd677c276
+      data:
+        command: load_multi_map
+        params: 0
+    - delay:
+        seconds: 10
+    - service: vacuum.return_to_base
+      target:
+        device_id: 122a8a65b1a8e6870391ff4dd677c276
