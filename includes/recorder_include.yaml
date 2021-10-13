@@ -56,3 +56,4 @@
         - sensor.experiabox_v10_kib_s_sent
         - sensor.wasmachine_klaar
         - input_number.nighttime
+        - sensor.total_energy_this_month
