@@ -395,38 +395,38 @@ script:
     - choose:
         - conditions:
             - condition: template
-              value_template: '{{states.input_boolean.woonkamer == on}}'
+              value_template: '{{states.input_boolean.woonkamer.state == on}}'
             - condition: template
-              value_template: '{{states.input_boolean.keuken == on}}'
+              value_template: '{{states.input_boolean.keuken.state == on}}'
             - condition: template
-              value_template: '{{states.input_boolean.hal == off}}'
+              value_template: '{{states.input_boolean.hal.state == off}}'
           sequence:
             - service: script.vacuum_kitchen_living
         - conditions:
             - condition: template
-              value_template: '{{states.input_boolean.woonkamer == on}}'
+              value_template: '{{states.input_boolean.woonkamer.state == on}}'
             - condition: template
-              value_template: '{{states.input_boolean.keuken == off}}'
+              value_template: '{{states.input_boolean.keuken.state == off}}'
             - condition: template
-              value_template: '{{states.input_boolean.hal == off}}'
+              value_template: '{{states.input_boolean.hal.state == off}}'
           sequence:
             - service: script.vacuum_living
         - conditions:
             - condition: template
-              value_template: '{{states.input_boolean.woonkamer == off}}'
+              value_template: '{{states.input_boolean.woonkamer.state == off}}'
             - condition: template
-              value_template: '{{states.input_boolean.keuken == on}}'
+              value_template: '{{states.input_boolean.keuken.state == on}}'
             - condition: template
-              value_template: '{{states.input_boolean.hal == off}}'
+              value_template: '{{states.input_boolean.hal.state == off}}'
           sequence:
             - service: script.vacuum_kitchen
         - conditions:
             - condition: template
-              value_template: '{{states.input_boolean.hal == on}}'
+              value_template: '{{states.input_boolean.hal.state == on}}'
             - condition: template
-              value_template: '{{states.input_boolean.woonkamer == off}}'
+              value_template: '{{states.input_boolean.woonkamer.state == off}}'
             - condition: template
-              value_template: '{{states.input_boolean.keuken == off}}'
+              value_template: '{{states.input_boolean.keuken.state == off}}'
           sequence: 
             - service: script.vacuum_hall
       default:
@@ -453,210 +453,210 @@ script:
     - choose:
         - conditions:
             - condition: template
-              value_template: '{{states.input_boolean.overloop == on}}'
+              value_template: '{{states.input_boolean.overloop.state == on}}'
             - condition: template
-              value_template: '{{states.input_boolean.kamer_luca == on}}'
+              value_template: '{{states.input_boolean.kamer_luca.state == on}}'
             - condition: template
-              value_template: '{{states.input_boolean.kamer_fynn == on}}'
+              value_template: '{{states.input_boolean.kamer_fynn.state == on}}'
             - condition: template
-              value_template: '{{states.input_boolean.slaapkamer == on}}'
+              value_template: '{{states.input_boolean.slaapkamer.state == on}}'
             - condition: template
-              value_template: '{{states.input_boolean.badkamer == off}}'
+              value_template: '{{states.input_boolean.badkamer.state == off}}'
           sequence:
             - service: script.vacuum_floor1
         - conditions:
             - condition: template
-              value_template: '{{states.input_boolean.overloop == on}}'
+              value_template: '{{states.input_boolean.overloop.state == on}}'
             - condition: template
-              value_template: '{{states.input_boolean.kamer_luca == off}}'
+              value_template: '{{states.input_boolean.kamer_luca.state == off}}'
             - condition: template
-              value_template: '{{states.input_boolean.kamer_fynn == off}}'
+              value_template: '{{states.input_boolean.kamer_fynn.state == off}}'
             - condition: template
-              value_template: '{{states.input_boolean.slaapkamer == off}}'
+              value_template: '{{states.input_boolean.slaapkamer.state == off}}'
             - condition: template
-              value_template: '{{states.input_boolean.badkamer == off}}'
+              value_template: '{{states.input_boolean.badkamer.state == off}}'
           sequence:
             - service: script.vacuum_overloop
         - conditions:
             - condition: template
-              value_template: '{{states.input_boolean.overloop == off}}'
+              value_template: '{{states.input_boolean.overloop.state == off}}'
             - condition: template
-              value_template: '{{states.input_boolean.kamer_luca == on}}'
+              value_template: '{{states.input_boolean.kamer_luca.state == on}}'
             - condition: template
-              value_template: '{{states.input_boolean.kamer_fynn == off}}'
+              value_template: '{{states.input_boolean.kamer_fynn.state == off}}'
             - condition: template
-              value_template: '{{states.input_boolean.slaapkamer == off}}'
+              value_template: '{{states.input_boolean.slaapkamer.state == off}}'
             - condition: template
-              value_template: '{{states.input_boolean.badkamer == off}}'
+              value_template: '{{states.input_boolean.badkamer.state == off}}'
           sequence:
             - service: script.vacuum_luca
         - conditions:
             - condition: template
-              value_template: '{{states.input_boolean.overloop == off}}'
+              value_template: '{{states.input_boolean.overloop.state == off}}'
             - condition: template
-              value_template: '{{states.input_boolean.kamer_luca == off}}'
+              value_template: '{{states.input_boolean.kamer_luca.state == off}}'
             - condition: template
-              value_template: '{{states.input_boolean.kamer_fynn == on}}'
+              value_template: '{{states.input_boolean.kamer_fynn.state == on}}'
             - condition: template
-              value_template: '{{states.input_boolean.slaapkamer == off}}'
+              value_template: '{{states.input_boolean.slaapkamer.state == off}}'
             - condition: template
-              value_template: '{{states.input_boolean.badkamer == off}}'
+              value_template: '{{states.input_boolean.badkamer.state == off}}'
           sequence:
             - service: script.vacuum_fynn
         - conditions:
             - condition: template
-              value_template: '{{states.input_boolean.overloop == off}}'
+              value_template: '{{states.input_boolean.overloop.state == off}}'
             - condition: template
-              value_template: '{{states.input_boolean.kamer_luca == off}}'
+              value_template: '{{states.input_boolean.kamer_luca.state == off}}'
             - condition: template
-              value_template: '{{states.input_boolean.kamer_fynn == off}}'
+              value_template: '{{states.input_boolean.kamer_fynn.state == off}}'
             - condition: template
-              value_template: '{{states.input_boolean.slaapkamer == on}}'
+              value_template: '{{states.input_boolean.slaapkamer.state == on}}'
             - condition: template
-              value_template: '{{states.input_boolean.badkamer == off}}'
+              value_template: '{{states.input_boolean.badkamer.state == off}}'
           sequence:
             - service: script.vacuum_sleep
         - conditions:
             - condition: template
-              value_template: '{{states.input_boolean.overloop == off}}'
+              value_template: '{{states.input_boolean.overloop.state == off}}'
             - condition: template
-              value_template: '{{states.input_boolean.kamer_luca == off}}'
+              value_template: '{{states.input_boolean.kamer_luca.state == off}}'
             - condition: template
-              value_template: '{{states.input_boolean.kamer_fynn == off}}'
+              value_template: '{{states.input_boolean.kamer_fynn.state == off}}'
             - condition: template
-              value_template: '{{states.input_boolean.slaapkamer == off}}'
+              value_template: '{{states.input_boolean.slaapkamer.state == off}}'
             - condition: template
-              value_template: '{{states.input_boolean.badkamer == on}}'
+              value_template: '{{states.input_boolean.badkamer.state == on}}'
           sequence:
             - service: script.vacuum_bathroom
         - conditions:
             - condition: template
-              value_template: '{{states.input_boolean.overloop == on}}'
+              value_template: '{{states.input_boolean.overloop.state == on}}'
             - condition: template
-              value_template: '{{states.input_boolean.kamer_luca == on}}'
+              value_template: '{{states.input_boolean.kamer_luca.state == on}}'
             - condition: template
-              value_template: '{{states.input_boolean.kamer_fynn == off}}'
+              value_template: '{{states.input_boolean.kamer_fynn.state == off}}'
             - condition: template
-              value_template: '{{states.input_boolean.slaapkamer == off}}'
+              value_template: '{{states.input_boolean.slaapkamer.state == off}}'
             - condition: template
-              value_template: '{{states.input_boolean.badkamer == off}}'
+              value_template: '{{states.input_boolean.badkamer.state == off}}'
           sequence:
             - service: script.vacuum_overloop_luca
         - conditions:
             - condition: template
-              value_template: '{{states.input_boolean.overloop == on}}'
+              value_template: '{{states.input_boolean.overloop.state == on}}'
             - condition: template
-              value_template: '{{states.input_boolean.kamer_luca == off}}'
+              value_template: '{{states.input_boolean.kamer_luca.state == off}}'
             - condition: template
-              value_template: '{{states.input_boolean.kamer_fynn == on}}'
+              value_template: '{{states.input_boolean.kamer_fynn.state == on}}'
             - condition: template
-              value_template: '{{states.input_boolean.slaapkamer == off}}'
+              value_template: '{{states.input_boolean.slaapkamer.state == off}}'
             - condition: template
-              value_template: '{{states.input_boolean.badkamer == off}}'
+              value_template: '{{states.input_boolean.badkamer.state == off}}'
           sequence:
             - service: script.vacuum_overloop_fynn
         - conditions:
             - condition: template
-              value_template: '{{states.input_boolean.overloop == on}}'
+              value_template: '{{states.input_boolean.overloop.state == on}}'
             - condition: template
-              value_template: '{{states.input_boolean.kamer_luca == off}}'
+              value_template: '{{states.input_boolean.kamer_luca.state == off}}'
             - condition: template
-              value_template: '{{states.input_boolean.kamer_fynn == off}}'
+              value_template: '{{states.input_boolean.kamer_fynn.state == off}}'
             - condition: template
-              value_template: '{{states.input_boolean.slaapkamer == on}}'
+              value_template: '{{states.input_boolean.slaapkamer.state == on}}'
             - condition: template
-              value_template: '{{states.input_boolean.badkamer == off}}'
+              value_template: '{{states.input_boolean.badkamer.state == off}}'
           sequence:
             - service: script.vacuum_overloop_sleep
         - conditions:
             - condition: template
-              value_template: '{{states.input_boolean.overloop == off}}'
+              value_template: '{{states.input_boolean.overloop.state == off}}'
             - condition: template
-              value_template: '{{states.input_boolean.kamer_luca == on}}'
+              value_template: '{{states.input_boolean.kamer_luca.state == on}}'
             - condition: template
-              value_template: '{{states.input_boolean.kamer_fynn == on}}'
+              value_template: '{{states.input_boolean.kamer_fynn.state == on}}'
             - condition: template
-              value_template: '{{states.input_boolean.slaapkamer == off}}'
+              value_template: '{{states.input_boolean.slaapkamer.state == off}}'
             - condition: template
-              value_template: '{{states.input_boolean.badkamer == off}}'
+              value_template: '{{states.input_boolean.badkamer.state == off}}'
           sequence:
             - service: script.vacuum_luca_fynn
         - conditions:
             - condition: template
-              value_template: '{{states.input_boolean.overloop == off}}'
+              value_template: '{{states.input_boolean.overloop.state == off}}'
             - condition: template
-              value_template: '{{states.input_boolean.kamer_luca == on}}'
+              value_template: '{{states.input_boolean.kamer_luca.state == on}}'
             - condition: template
-              value_template: '{{states.input_boolean.kamer_fynn == off}}'
+              value_template: '{{states.input_boolean.kamer_fynn.state == off}}'
             - condition: template
-              value_template: '{{states.input_boolean.slaapkamer == on}}'
+              value_template: '{{states.input_boolean.slaapkamer.state == on}}'
             - condition: template
-              value_template: '{{states.input_boolean.badkamer == off}}'
+              value_template: '{{states.input_boolean.badkamer.state == off}}'
           sequence:
             - service: script.vacuum_luca_sleep
         - conditions:
             - condition: template
-              value_template: '{{states.input_boolean.overloop == off}}'
+              value_template: '{{states.input_boolean.overloop.state == off}}'
             - condition: template
-              value_template: '{{states.input_boolean.kamer_luca == off}}'
+              value_template: '{{states.input_boolean.kamer_luca.state == off}}'
             - condition: template
-              value_template: '{{states.input_boolean.kamer_fynn == on}}'
+              value_template: '{{states.input_boolean.kamer_fynn.state == on}}'
             - condition: template
-              value_template: '{{states.input_boolean.slaapkamer == on}}'
+              value_template: '{{states.input_boolean.slaapkamer.state == on}}'
             - condition: template
-              value_template: '{{states.input_boolean.badkamer == off}}'
+              value_template: '{{states.input_boolean.badkamer.state == off}}'
           sequence:
             - service: script.vacuum_fynn_sleep
         - conditions:
             - condition: template
-              value_template: '{{states.input_boolean.overloop == off}}'
+              value_template: '{{states.input_boolean.overloop.state == off}}'
             - condition: template
-              value_template: '{{states.input_boolean.kamer_luca == on}}'
+              value_template: '{{states.input_boolean.kamer_luca.state == on}}'
             - condition: template
-              value_template: '{{states.input_boolean.kamer_fynn == on}}'
+              value_template: '{{states.input_boolean.kamer_fynn.state == on}}'
             - condition: template
-              value_template: '{{states.input_boolean.slaapkamer == on}}'
+              value_template: '{{states.input_boolean.slaapkamer.state == on}}'
             - condition: template
-              value_template: '{{states.input_boolean.badkamer == off}}'
+              value_template: '{{states.input_boolean.badkamer.state == off}}'
           sequence:
             - service: script.vacuum_slaapkamers
         - conditions:
             - condition: template
-              value_template: '{{states.input_boolean.overloop == on}}'
+              value_template: '{{states.input_boolean.overloop.state == on}}'
             - condition: template
-              value_template: '{{states.input_boolean.kamer_luca == on}}'
+              value_template: '{{states.input_boolean.kamer_luca.state == on}}'
             - condition: template
-              value_template: '{{states.input_boolean.kamer_fynn == on}}'
+              value_template: '{{states.input_boolean.kamer_fynn.state == on}}'
             - condition: template
-              value_template: '{{states.input_boolean.slaapkamer == off}}'
+              value_template: '{{states.input_boolean.slaapkamer.state == off}}'
             - condition: template
-              value_template: '{{states.input_boolean.badkamer == off}}'
+              value_template: '{{states.input_boolean.badkamer.state == off}}'
           sequence:
             - service: script.vacuum_kids_overloop
         - conditions:
             - condition: template
-              value_template: '{{states.input_boolean.overloop == on}}'
+              value_template: '{{states.input_boolean.overloop.state == on}}'
             - condition: template
-              value_template: '{{states.input_boolean.kamer_luca == on}}'
+              value_template: '{{states.input_boolean.kamer_luca.state == on}}'
             - condition: template
-              value_template: '{{states.input_boolean.kamer_fynn == off}}'
+              value_template: '{{states.input_boolean.kamer_fynn.state == off}}'
             - condition: template
-              value_template: '{{states.input_boolean.slaapkamer == on}}'
+              value_template: '{{states.input_boolean.slaapkamer.state == on}}'
             - condition: template
-              value_template: '{{states.input_boolean.badkamer == off}}'
+              value_template: '{{states.input_boolean.badkamer.state == off}}'
           sequence:
             - service: script.vacuum_luca_sleep_overloop
         - conditions:
             - condition: template
-              value_template: '{{states.input_boolean.overloop == on}}'
+              value_template: '{{states.input_boolean.overloop.state == on}}'
             - condition: template
-              value_template: '{{states.input_boolean.kamer_luca == off}}'
+              value_template: '{{states.input_boolean.kamer_luca.state == off}}'
             - condition: template
-              value_template: '{{states.input_boolean.kamer_fynn == on}}'
+              value_template: '{{states.input_boolean.kamer_fynn.state == on}}'
             - condition: template
-              value_template: '{{states.input_boolean.slaapkamer == on}}'
+              value_template: '{{states.input_boolean.slaapkamer.state == on}}'
             - condition: template
-              value_template: '{{states.input_boolean.badkamer == off}}'
+              value_template: '{{states.input_boolean.badkamer.state == off}}'
           sequence:
             - service: script.vacuum_fynn_sleep_overloop
       default:
