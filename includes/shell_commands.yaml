@@ -1,0 +1,5 @@
+#================================  
+# Backup to Github
+#================================
+
+github_backup: bash /config/ha_gitpush.sh

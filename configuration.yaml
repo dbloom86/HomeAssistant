@@ -58,3 +58,4 @@ light: !include includes/lights.yaml
 notify: !include includes/notify.yaml
 binary_sensor: !include  includes/binary_sensors.yaml
 input_boolean: !include  includes/input_booleans.yaml
+shell_command: !include includes/shell_commands.yaml
