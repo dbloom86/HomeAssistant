@@ -399,7 +399,7 @@ script:
             - condition: template
               value_template: '{{states.input_boolean.keuken.state == on}}'
             - condition: template
-              value_template: '{{states.input_boolean.hal.state == off}}'
+              value_template: '{{states.input_boolean.hall.state == off}}'
           sequence:
             - service: script.vacuum_kitchen_living
         - conditions:
@@ -408,7 +408,7 @@ script:
             - condition: template
               value_template: '{{states.input_boolean.keuken.state == off}}'
             - condition: template
-              value_template: '{{states.input_boolean.hal.state == off}}'
+              value_template: '{{states.input_boolean.hall.state == off}}'
           sequence:
             - service: script.vacuum_living
         - conditions:
@@ -417,12 +417,12 @@ script:
             - condition: template
               value_template: '{{states.input_boolean.keuken.state == on}}'
             - condition: template
-              value_template: '{{states.input_boolean.hal.state == off}}'
+              value_template: '{{states.input_boolean.hall.state == off}}'
           sequence:
             - service: script.vacuum_kitchen
         - conditions:
             - condition: template
-              value_template: '{{states.input_boolean.hal.state == on}}'
+              value_template: '{{states.input_boolean.hall.state == on}}'
             - condition: template
               value_template: '{{states.input_boolean.woonkamer.state == off}}'
             - condition: template
