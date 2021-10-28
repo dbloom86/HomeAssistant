@@ -394,12 +394,15 @@ script:
         seconds: 10
     - choose:
         - conditions:
-            - condition: template
-              value_template: '{{states.input_boolean.woonkamer.state == on}}'
-            - condition: template
-              value_template: '{{states.input_boolean.keuken.state == on}}'
-            - condition: template
-              value_template: '{{states.input_boolean.hall.state == off}}'
+            - condition: state
+              entity_id: input_boolean.woonkamer
+              state: "on"
+            - condition: state
+              entity_id: input_boolean.keuken
+              state: "on"
+            - condition: state
+              entity_id: input_boolean.hal
+              state: "off"
           sequence:
             - service: script.vacuum_kitchen_living
         - conditions:
