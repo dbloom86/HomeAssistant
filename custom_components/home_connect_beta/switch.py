@@ -3,9 +3,11 @@ import logging
 
 from homeconnect.api import HomeConnectError
 
-from homeassistant.components.switch import SwitchDevice
+from homeassistant.components.switch import SwitchEntity
+from homeassistant.const import CONF_DEVICE, CONF_ENTITIES
 
 from .const import (
+    ATTR_VALUE,
     BSH_ACTIVE_PROGRAM,
     BSH_OPERATION_STATE,
     BSH_POWER_ON,
@@ -25,21 +27,21 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
         entities = []
         hc_api = hass.data[DOMAIN][config_entry.entry_id]
         for device_dict in hc_api.devices:
-            entity_dicts = device_dict.get("entities", {}).get("switch", [])
+            entity_dicts = device_dict.get(CONF_ENTITIES, {}).get("switch", [])
             entity_list = [HomeConnectProgramSwitch(**d) for d in entity_dicts]
-            entity_list += [HomeConnectPowerSwitch(device_dict["device"])]
+            entity_list += [HomeConnectPowerSwitch(device_dict[CONF_DEVICE])]
             entities += entity_list
         return entities
 
     async_add_entities(await hass.async_add_executor_job(get_entities), True)
 
 
-class HomeConnectProgramSwitch(HomeConnectEntity, SwitchDevice):
+class HomeConnectProgramSwitch(HomeConnectEntity, SwitchEntity):
     """Switch class for Home Connect."""
 
     def __init__(self, device, program_name):
         """Initialize the entity."""
-        desc = " ".join(["Program", program_name.split(".")[-1]])
+        desc = " ".join(["Program", program_name])
         super().__init__(device, desc)
         self.program_name = program_name
         self._state = None
@@ -78,14 +80,14 @@ class HomeConnectProgramSwitch(HomeConnectEntity, SwitchDevice):
     async def async_update(self):
         """Update the switch's status."""
         state = self.device.appliance.status.get(BSH_ACTIVE_PROGRAM, {})
-        if state.get("value") == self.program_name:
+        if state.get(ATTR_VALUE) == self.program_name:
             self._state = True
         else:
             self._state = False
         _LOGGER.debug("Updated, new state: %s", self._state)
 
 
-class HomeConnectPowerSwitch(HomeConnectEntity, SwitchDevice):
+class HomeConnectPowerSwitch(HomeConnectEntity, SwitchEntity):
     """Power switch class for Home Connect."""
 
     def __init__(self, device):
@@ -103,7 +105,7 @@ class HomeConnectPowerSwitch(HomeConnectEntity, SwitchDevice):
         _LOGGER.debug("Tried to switch on %s", self.name)
         try:
             await self.hass.async_add_executor_job(
-                self.device.appliance.set_setting, BSH_POWER_STATE, BSH_POWER_ON,
+                self.device.appliance.set_setting, BSH_POWER_STATE, BSH_POWER_ON
             )
         except HomeConnectError as err:
             _LOGGER.error("Error while trying to turn on device: %s", err)
@@ -127,17 +129,17 @@ class HomeConnectPowerSwitch(HomeConnectEntity, SwitchDevice):
     async def async_update(self):
         """Update the switch's status."""
         if (
-            self.device.appliance.status.get(BSH_POWER_STATE, {}).get("value")
+            self.device.appliance.status.get(BSH_POWER_STATE, {}).get(ATTR_VALUE)
             == BSH_POWER_ON
         ):
             self._state = True
         elif (
-            self.device.appliance.status.get(BSH_POWER_STATE, {}).get("value")
+            self.device.appliance.status.get(BSH_POWER_STATE, {}).get(ATTR_VALUE)
             == self.device.power_off_state
         ):
             self._state = False
         elif self.device.appliance.status.get(BSH_OPERATION_STATE, {}).get(
-            "value", None
+            ATTR_VALUE, None
         ) in [
             "BSH.Common.EnumType.OperationState.Ready",
             "BSH.Common.EnumType.OperationState.DelayedStart",
@@ -149,7 +151,7 @@ class HomeConnectPowerSwitch(HomeConnectEntity, SwitchDevice):
         ]:
             self._state = True
         elif (
-            self.device.appliance.status.get(BSH_OPERATION_STATE, {}).get("value")
+            self.device.appliance.status.get(BSH_OPERATION_STATE, {}).get(ATTR_VALUE)
             == "BSH.Common.EnumType.OperationState.Inactive"
         ):
             self._state = False
