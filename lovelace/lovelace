@@ -3626,7 +3626,14 @@
                                 "image": "/local/Pictures/Robomiep-icon.jpg",
                                 "name": "Miep",
                                 "vendor": "xiaomi",
-                                "buttons": false,
+                                "buttons": {
+                                    "start": false,
+                                    "stop": false,
+                                    "locate": false,
+                                    "return": {
+                                        "service": "script.miep_return_to_dock"
+                                    }
+                                },
                                 "attributes": {
                                     "main_brush": {
                                         "label": "Borstels: "
