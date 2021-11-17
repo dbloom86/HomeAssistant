@@ -1,7 +1,7 @@
 #================================
 # Robo Miep
 #================================ 
-
+ 
   #=====================
   # Input Booleans
   #=====================
@@ -112,6 +112,45 @@ camera:
   #=====================
 
 automation:
+
+    #=====================
+    # Reset onderhoud sensors
+    #=====================
+
+  - alias: "Reset Miep Dirty Sensors"
+    trigger:
+      platform: event
+      event_type: android.notification_action_fired
+      event_data:
+        actionName: RESET_MIEP_DIRTY_SENSORS
+    action:
+    - service: vacuum.send_command
+      target:
+        entity_id: vacuum.miep
+      data:
+        command: reset_consumable
+        params: ['sensor_dirty_time']
+
+    #=====================
+    # Notification clean sensors
+    #=====================
+
+  - alias: Notification clean sensors
+    trigger:
+    - platform: state
+      entity_id: sensor.miep_sensor_dirty_left
+      to: '0'
+    action:
+      service: notify.mobile_app_telefoon_duncan
+      data:
+        title: Miep heeft onderhoud nodig
+        message: De sensoren moeten worden schoongemaakt met een droge doek.
+        data:
+          actions:
+            - action: "RESET_MIEP_DIRTY_SENSORS"
+              title: "Onderhoud klaar"
+              icon: 'mdi:check'
+    id: 455a2a32ded547c3hm03e626a5f9ae7d
 
     #=====================
     # Stofzuig Keuken En Woonkamer
