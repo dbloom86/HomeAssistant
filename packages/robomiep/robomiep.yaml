@@ -105,31 +105,15 @@ camera:
       seconds: 5
     auto_update: true
     
-
-
   #=====================
   # Automations
   #=====================
 
 automation:
 
-    #=====================
-    # Reset onderhoud sensors
-    #=====================
-
-  - alias: "Reset Miep Dirty Sensors"
-    trigger:
-      platform: event
-      event_type: android.notification_action_fired
-      event_data:
-        actionName: RESET_MIEP_DIRTY_SENSORS
-    action:
-    - service: vacuum.send_command
-      target:
-        entity_id: vacuum.miep
-      data:
-        command: reset_consumable
-        params: ['sensor_dirty_time']
+  #=====================
+  # Notifications
+  #=====================
 
     #=====================
     # Notification clean sensors
@@ -146,11 +130,182 @@ automation:
         title: Miep heeft onderhoud nodig
         message: De sensoren moeten worden schoongemaakt met een droge doek.
         data:
+          group: home_security
+          icon_url: /local/Custom_Icons/miep.png
+          ttl: 0
+          priority: high
+          sticky: true
+          tag: miep
+          persistent: true
           actions:
-            - action: "RESET_MIEP_DIRTY_SENSORS"
-              title: "Onderhoud klaar"
+            - action: RESET_MIEP_DIRTY_SENSORS
+              title: "Sensors schoongemaakt"
               icon: 'mdi:check'
     id: 455a2a32ded547c3hm03e626a5f9ae7d
+
+    #=====================
+    # Notification onderhoud zij borstel
+    #=====================
+
+  - alias: Notification onderhoud zij borstel
+    trigger:
+    - platform: state
+      entity_id: sensor.miep_side_brush_left
+      to: '0'
+    action:
+      service: notify.mobile_app_telefoon_duncan
+      data:
+        title: Miep heeft onderhoud nodig
+        message: De zij-borstel moet vervangen worden.
+        data:
+          group: vacuum
+          icon_url: /local/Custom_Icons/miep.png
+          ttl: 0
+          priority: high
+          sticky: true
+          tag: miep
+          persistent: true
+          actions:
+            - action: RESET_MIEP_SIDE_BRUSH_LEFT
+              title: "Zij-borstel vervangen"
+              icon: 'mdi:check'
+    id: 455a2a32dedhj733kn76e626a5f9ae7d
+
+    #=====================
+    # Notification onderhoud borstel
+    #=====================
+
+  - alias: Notification onderhoud borstel
+    trigger:
+    - platform: state
+      entity_id: sensor.miep_main_brush_left
+      to: '0'
+    action:
+      service: notify.mobile_app_telefoon_duncan
+      data:
+        title: Miep heeft onderhoud nodig
+        message: De borstel moet vervangen worden.
+        data:
+          group: vacuum
+          icon_url: /local/Custom_Icons/miep.png
+          ttl: 0
+          priority: high
+          sticky: true
+          tag: miep
+          persistent: true
+          actions:
+            - action: RESET_MIEP_MAIN_BRUSH_LEFT
+              title: "Borstel vervangen"
+              icon: 'mdi:check'
+    id: 455a2a32ded547c3kn76e626a5f9ae7d
+
+    #=====================
+    # Notification onderhoud filter
+    #=====================
+
+  - alias: Notification onderhoud filter
+    trigger:
+    - platform: state
+      entity_id: sensor.miep_filter_left
+      to: '0'
+    action:
+      service: notify.mobile_app_telefoon_duncan
+      data:
+        title: Miep heeft onderhoud nodig
+        message: Het filter moet vervangen worden.
+        data:
+          group: home_security
+          icon_url: /local/Custom_Icons/miep.png
+          ttl: 0
+          priority: high
+          sticky: true
+          tag: miep
+          persistent: true
+          actions:
+            - action: RESET_MIEP_FILTER_LEFT
+              title: "Filter vervangen"
+              icon: 'mdi:check'
+    id: 455a2a32ded547c3kn76e626a5f9ae7d
+
+  #=====================
+  # Reset maintenance sensors
+  #=====================
+
+    #=====================
+    # Reset onderhoud filter
+    #=====================
+
+  - alias: "Reset Miep Filter Left"
+    trigger:
+      platform: event
+      event_type: mobile_app_notification_action
+      event_data:
+        action: RESET_MIEP_FILTER_LEFT
+    action:
+    - service: vacuum.send_command
+      target:
+        entity_id: vacuum.miep
+      data:
+        command: reset_consumable
+        params: ['filter_work_time']
+
+    #=====================
+    # Reset onderhoud borstels
+    #=====================
+
+  - alias: "Reset Miep main brush Left"
+    trigger:
+      platform: event
+      event_type: mobile_app_notification_action
+      event_data:
+        action: RESET_MIEP_MAIN_BRUSH_LEFT
+    action:
+    - service: vacuum.send_command
+      target:
+        entity_id: vacuum.miep
+      data:
+        command: reset_consumable
+        params: ['main_brush_work_time']
+
+    #=====================
+    # Reset onderhoud sensors
+    #=====================
+
+  - alias: "Reset Miep Dirty Sensors"
+    trigger:
+      platform: event
+      event_type: mobile_app_notification_action
+      event_data:
+        action: RESET_MIEP_DIRTY_SENSORS
+    action:
+    - service: vacuum.send_command
+      target:
+        entity_id: vacuum.miep
+      data:
+        command: reset_consumable
+        params: ['sensor_dirty_time']
+
+    #=====================
+    # Reset onderhoud zij borstel
+    #=====================
+
+  - alias: "Reset Miep side brush Left"
+    trigger:
+      platform: event
+      event_type: mobile_app_notification_action
+      event_data:
+        action: RESET_MIEP_SIDE_BRUSH_LEFT
+    action:
+    - service: vacuum.send_command
+      target:
+        entity_id: vacuum.miep
+      data:
+        command: reset_consumable
+        params: ['side_brush_work_time']
+
+  #=====================
+  # Stofzuigen
+  #=====================
 
     #=====================
     # Stofzuig Keuken En Woonkamer

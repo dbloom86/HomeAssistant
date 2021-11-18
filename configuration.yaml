@@ -29,6 +29,8 @@ frontend:
 browser_mod:
   prefix: "browser_mod_"
 
+breaking_changes:
+
 #================================  
 # Customize UI
 #================================

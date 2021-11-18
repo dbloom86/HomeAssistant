@@ -469,7 +469,7 @@
                                                 "cards": [
                                                     {
                                                         "type": "picture",
-                                                        "image": "/local/Pictures/addons/docker-ico.png",
+                                                        "image": "/local/Pictures/addons/docker-icon.png",
                                                         "style": "ha-card {\n  width: 150px;\n  left: 10px;\n  background: none;\n  box-shadow: none;\n}\n"
                                                     }
                                                 ]
@@ -1244,8 +1244,43 @@
                                                     },
                                                     {
                                                         "type": "markdown",
-                                                        "content": "**BLOOMASSISTANT**\n**RESOURCES**\n**Uptime:** {{states('sensor.ha_uptime')}} \n**Database Size:** {{states('sensor.database_size')}} MB\n**Local Backups:** {{states('sensor.local_snapshots')}} \n**Remote Backups:** {{states('sensor.remote_snapshots')}}\n**Latest Backup:** {{states('sensor.latest_snapshot')}}",
-                                                        "style": "ha-card{\n  background: none;\n  box-shadow: none;\n}\n"
+                                                        "content": "**BLOOMASSISTANT**\n**RESOURCES**\n**Uptime:** {{states('sensor.ha_uptime')}} \n**Database Size:** {{states('sensor.database_size')}} MB\n**Local Backups:** {{states('sensor.local_snapshots')}} \n**Remote Backups:** {{states('sensor.remote_snapshots')}}\n**Latest Backup:** {{states('sensor.latest_snapshot')}}\n**Potential Breacking Changes:** {{states('sensor.potential_breaking_changes')}}",
+                                                        "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  top:-10%;\n}\n"
+                                                    },
+                                                    {
+                                                        "type": "custom:stack-in-card",
+                                                        "mode": "vertical",
+                                                        "style": "ha-card {\n  width: 87%;\n  background: none;\n  box-shadow: none;\n  top: -50%;\n  left: 3%;\n}\n",
+                                                        "cards": [
+                                                            {
+                                                                "type": "custom:fold-entity-row",
+                                                                "head": {
+                                                                    "label": "List of Breaking Changes",
+                                                                    "type": "section"
+                                                                },
+                                                                "entities": [
+                                                                    {
+                                                                        "type": "custom:list-card",
+                                                                        "entity": "sensor.potential_breaking_changes",
+                                                                        "icon": "hass:none",
+                                                                        "columns": [
+                                                                            {
+                                                                                "title": "Component",
+                                                                                "add_link": "doclink",
+                                                                                "field": "component"
+                                                                            },
+                                                                            {
+                                                                                "title": "Description",
+                                                                                "add_link": "prlink",
+                                                                                "field": "description"
+                                                                            }
+                                                                        ],
+                                                                        "style": "ha-card{\n   background: none;\n   box-shadow: none;\n }\n"
+                                                                    }
+                                                                ],
+                                                                "style": "ha-card{\n   background: none;\n   box-shadow: none;\n }\n"
+                                                            }
+                                                        ]
                                                     }
                                                 ]
                                             },
@@ -1764,17 +1799,47 @@
                                     "mode": "horizontal",
                                     "cards": [
                                         {
-                                            "type": "picture",
-                                            "image": "/local/Custom_Icons/HACS-3d-icon.png",
-                                            "style": "ha-card {\n  width: 150px;\n  left: 10px;\n  top: 10px;\n  background: none;\n  box-shadow: none;\n}\n"
+                                            "type": "custom:stack-in-card",
+                                            "mode": "horizontal",
+                                            "cards": [
+                                                {
+                                                    "type": "picture",
+                                                    "image": "/local/Custom_Icons/HACS-3d-icon.png",
+                                                    "style": "ha-card {\n  width: 150px;\n  left: 10px;\n  top: 10px;\n  background: none;\n  box-shadow: none;\n}\n"
+                                                },
+                                                {
+                                                    "type": "markdown",
+                                                    "content": "### HACS updates available: {{ states.sensor.hacs.state }} {% for repo in states.sensor.hacs.attributes.repositories %}\n**{{repo.display_name }}** {{ repo[\"installed_version\"] }} -> {{ repo[\"available_version\"] }} {% endfor %}",
+                                                    "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 12px;\n  left: -50%;\n}\n"
+                                                }
+                                            ],
+                                            "style": "ha-card {\n  border: solid 2px var(--primary-color);\n  height: 97%;\n}\n"
                                         },
                                         {
-                                            "type": "markdown",
-                                            "content": "### HACS updates available: {{ states.sensor.hacs.state }} {% for repo in states.sensor.hacs.attributes.repositories %}\n**{{repo.display_name }}** {{ repo[\"installed_version\"] }} -> {{ repo[\"available_version\"] }} {% endfor %}",
-                                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 12px;\n  left: -75%;\n}\n"
+                                            "type": "custom:stack-in-card",
+                                            "mode": "horizontal",
+                                            "cards": [
+                                                {
+                                                    "type": "picture",
+                                                    "image": "/local/Custom_Icons/github.png",
+                                                    "style": "ha-card {\n  width: 125px;\n  left: 10px;\n  top: 10px;\n  background: none;\n  box-shadow: none;\n}\n"
+                                                },
+                                                {
+                                                    "type": "entities",
+                                                    "entities": [
+                                                        {
+                                                            "entity": "sensor.github_dbloom86_homeassistant",
+                                                            "type": "custom:github-entity-row",
+                                                            "name": "homeassistant"
+                                                        }
+                                                    ],
+                                                    "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  left: -50%;\n}\n"
+                                                }
+                                            ],
+                                            "style": "ha-card {\n  border: solid 2px var(--primary-color);\n  height: 97%;\n}\n"
                                         }
                                     ],
-                                    "style": "ha-card {\n  border: solid 2px var(--primary-color);\n  height: 100%;\n}\n"
+                                    "style": "ha-card{\n  background: none;\n  box-shadow: none;\n}\n"
                                 }
                             ],
                             "layout_options": {},
@@ -3186,15 +3251,15 @@
                                             "font_size_header": 15,
                                             "height": 85,
                                             "hour24": true,
-                                            "hours_to_show": 720,
                                             "icon": "mdi:flash",
                                             "name": "Maandelijks Energie",
+                                            "hours_to_show": 720,
                                             "show": {
                                                 "graph": "bar"
                                             },
                                             "group_by": "date",
                                             "style": {
-                                                ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}     \n"
+                                                ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}  \n"
                                             },
                                             "type": "custom:mini-graph-card"
                                         },
