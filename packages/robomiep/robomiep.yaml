@@ -197,7 +197,7 @@ automation:
             - action: RESET_MIEP_MAIN_BRUSH_LEFT
               title: "Borstel vervangen"
               icon: 'mdi:check'
-    id: 455a2a32ded547c3kn76e626a5f9ae7d
+    id: 455a2ku51ed547c3kn76e626a5f9ae7d
 
     #=====================
     # Notification onderhoud filter
@@ -608,7 +608,7 @@ script:
               entity_id: input_boolean.keuken
               state: "off"
             - condition: state
-              entity_id: input_boolean.hall
+              entity_id: input_boolean.hal
               state: "off"
           sequence:
             - service: script.vacuum_living
@@ -620,19 +620,19 @@ script:
               entity_id: input_boolean.keuken
               state: "on"
             - condition: state
-              entity_id: input_boolean.hall
+              entity_id: input_boolean.hal
               state: "off"
           sequence:
             - service: script.vacuum_kitchen
         - conditions:
             - condition: state
-              entity_id: input_boolean.hall
-              state: "off"
-            - condition: state
               entity_id: input_boolean.woonkamer
               state: "off"
             - condition: state
               entity_id: input_boolean.keuken
+              state: "off"
+            - condition: state
+              entity_id: input_boolean.hal
               state: "on"
           sequence: 
             - service: script.vacuum_hall
