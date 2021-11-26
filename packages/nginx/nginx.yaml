@@ -1,0 +1,34 @@
+#================================
+# Nginx
+#================================
+
+  #===============
+  # Sensors
+  #===============
+
+sensor:
+
+    #================================  
+    # Certificates
+    #================================
+
+  - platform: template
+    sensors:
+        cert_expiry_days_bloomlannl:
+            friendly_name: Certificate Expiry bloomlan.nl
+            value_template: >-
+                {% set expiration_date = (as_timestamp(states.sensor.cert_expiry_timestamp_bloomlan_nl.state) | int) %}
+                {% set todays_date = (now().strftime("%s") | int ) %}
+                {% if todays_date > expiration_date %}
+                  {% set countdown = "Expired" %}
+                {% else %}
+                  {% set countdown = ((expiration_date - todays_date | int) / 24 / 60 / 60) | round(0) %}
+                {% endif %}
+                {{countdown}}
+            entity_picture_template: >-
+                {% if states('sensor.cert_expiry_days_bloomlannl')|float > 10 %}
+                  /local/Custom_Icons/certificate-ok-ico.png
+                {% else %}
+                  /local/Custom_Icons/certificate-nok-ico.png
+                {% endif %}
+            unit_of_measurement: 'days'

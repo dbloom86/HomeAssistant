@@ -12,9 +12,6 @@ sensor:
     # Certificates
     #================================
 
-  - platform: cert_expiry
-    host: bloom-data.synology.me    
-    
   - platform: template
     sensors:
         cert_expiry_days_bloom_data:

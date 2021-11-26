@@ -62,19 +62,19 @@ sensor:
   - platform: mqtt
     name: "Bureaulamp 1 Firmware"
     state_topic: "stat/Light_Desk_1/STATUS2"
-    value_template: "v{{value_json['StatusFWR'].Version[0:5] }}"
+    value_template: "v{{value_json['StatusFWR'].Version[0:6] }}"
     force_update: true
     
   - platform: mqtt
     name: "Bureaulamp 2 Firmware"
     state_topic: "stat/Light_Desk_2/STATUS2"
-    value_template: "v{{value_json['StatusFWR'].Version[0:5] }}"
+    value_template: "v{{value_json['StatusFWR'].Version[0:6] }}"
     force_update: true
     
   - platform: mqtt
     name: "Bureaulamp 3 Firmware"
     state_topic: "stat/Light_Desk_3/STATUS2"
-    value_template: "v{{value_json['StatusFWR'].Version[0:5] }}"
+    value_template: "v{{value_json['StatusFWR'].Version[0:6] }}"
     force_update: true    
 
   - platform: template
