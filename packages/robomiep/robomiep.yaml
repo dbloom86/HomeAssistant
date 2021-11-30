@@ -322,11 +322,15 @@ automation:
         attribute: preset_modes
         state: eco
     action:
-    - service: xiaomi_miio.vacuum_clean_segment
+    - service: vacuum.send_command
       target:
-        entity_id: vacuum.miep
+        device_id: 122a8a65b1a8e6870391ff4dd677c276
       data:
-        segments: [17,18]
+        command: load_multi_map
+        params: 0
+    - delay:
+        seconds: 10
+    - service: script.vacuum_kitchen_living
 
   #=====================
   # Scripts
