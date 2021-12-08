@@ -2422,7 +2422,7 @@
 	        if (config.type == "str")
 	            return React$2.createElement("input", { type: "text", title: config.name, value: config.value, onChange: this.update_config });
 	        if (config.type == "txt")
-	            return React$2.createElement("textarea", { title: config.name });
+	            return React$2.createElement("textarea", { title: config.name, rows: 6, value: config.value, onChange: this.update_config });
 	        if (config.type == "int")
 	            return React$2.createElement("input", { type: "number", title: config.name, value: config.value, onChange: this.update_config });
 	        return React$2.createElement("div", null, "-");
