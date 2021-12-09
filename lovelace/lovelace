@@ -1745,44 +1745,7 @@
                                                 },
                                                 "cards": [
                                                     {
-                                                        "type": "markdown",
-                                                        "content": "<center><img src=\"/local/Pictures/addons/zwave-ico.png\" width=\"52\"/> <center>Z-Wave JS</center>   <center>Installed: {{ states.sensor.z_wave_js_version.state }}</center> <center>Newest: {{ states.sensor.z_wave_js_newest_version.state }}</center>",
-                                                        "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n}\n"
-                                                    },
-                                                    {
-                                                        "color": "green",
-                                                        "decimal": "1",
-                                                        "entity": "sensor.zwavejs_update_available",
-                                                        "entity_row": true,
-                                                        "height": "12px",
-                                                        "name": "CPU Temperature",
-                                                        "positions": {
-                                                            "icon": "off",
-                                                            "indicator": "off",
-                                                            "name": "off",
-                                                            "value": "off"
-                                                        },
-                                                        "type": "custom:bar-card",
-                                                        "width": "50%",
-                                                        "min": 0,
-                                                        "max": 50,
-                                                        "tap_action": {
-                                                            "action": "navigate",
-                                                            "navigation_path": "/hassio/addon/core_zwave_js/info"
-                                                        },
-                                                        "severity": [
-                                                            {
-                                                                "color": "#ff4d4d",
-                                                                "from": 0,
-                                                                "to": 50
-                                                            },
-                                                            {
-                                                                "color": "#00e64d",
-                                                                "from": 51,
-                                                                "to": 100
-                                                            }
-                                                        ],
-                                                        "style": "ha-card {\n  top: -10px;\n  width: 60%;\n  left: 20%;\n}   \n"
+                                                        "type": "custom:gap-card"
                                                     }
                                                 ]
                                             }
