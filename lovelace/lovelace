@@ -1,5 +1,6 @@
 {
     "version": 1,
+    "minor_version": 1,
     "key": "lovelace",
     "data": {
         "config": {
@@ -1204,7 +1205,7 @@
                                                     {
                                                         "type": "picture",
                                                         "image": "/local/Custom_Icons/home-assistant-ico.png",
-                                                        "style": "ha-card {\n  width: 150px;\n  left: 10px;\n  top:40%;\n  background: none;\n  box-shadow: none;\n}\n"
+                                                        "style": "ha-card {\n  width: 150px;\n  left: 10px;\n  top:20%;\n  background: none;\n  box-shadow: none;\n}\n"
                                                     }
                                                 ]
                                             },
@@ -1219,41 +1220,6 @@
                                                         "type": "markdown",
                                                         "content": "**BLOOMASSISTANT**\n**RESOURCES**\n**Uptime:** {{states('sensor.ha_uptime')}} \n**Database Size:** {{states('sensor.database_size')}} MB\n**Local Backups:** {{states('sensor.local_snapshots')}} \n**Remote Backups:** {{states('sensor.remote_snapshots')}}\n**Latest Backup:** {{states('sensor.latest_snapshot')}}\n**Potential Breacking Changes:** {{states('sensor.potential_breaking_changes')}}",
                                                         "style": "ha-card{\n  background: none;\n  box-shadow: none;\n\n}\n"
-                                                    },
-                                                    {
-                                                        "type": "custom:stack-in-card",
-                                                        "mode": "vertical",
-                                                        "style": "ha-card {\n  width: 87%;\n  background: none;\n  box-shadow: none;\n  top: -40%;\n  left: 3%;\n}\n",
-                                                        "cards": [
-                                                            {
-                                                                "type": "custom:fold-entity-row",
-                                                                "head": {
-                                                                    "label": "List of Breaking Changes",
-                                                                    "type": "section"
-                                                                },
-                                                                "entities": [
-                                                                    {
-                                                                        "type": "custom:list-card",
-                                                                        "entity": "sensor.potential_breaking_changes",
-                                                                        "icon": "hass:none",
-                                                                        "columns": [
-                                                                            {
-                                                                                "title": "Component",
-                                                                                "add_link": "doclink",
-                                                                                "field": "component"
-                                                                            },
-                                                                            {
-                                                                                "title": "Description",
-                                                                                "add_link": "prlink",
-                                                                                "field": "description"
-                                                                            }
-                                                                        ],
-                                                                        "style": "ha-card{\n   background: none;\n   box-shadow: none;\n }\n"
-                                                                    }
-                                                                ],
-                                                                "style": "ha-card{\n   background: none;\n   box-shadow: none;\n }\n"
-                                                            }
-                                                        ]
                                                     }
                                                 ]
                                             },
