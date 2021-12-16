@@ -387,3 +387,17 @@
   action:
     - service: shell_command.github_backup
   id: f8a0c07e00a15795b78773bab12dd157
+  
+#================================  
+# Daily reboot
+#================================
+- alias: Daily Reboot
+  description: Reboot HA daily to keep it fresh
+  trigger:
+    - platform: time
+      at: "02:00:00"
+  action:
+    - service: homeassistant.restart
+  id: f8a0c07e00a24325b78773bab12dh29f
+  
+  

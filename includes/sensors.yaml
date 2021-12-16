@@ -232,18 +232,9 @@
   #================================    
   - platform: dnsip
   - platform: dnsip
-    hostname: bloomassistant.duckdns.org
+    hostname: ha.bloomlan.nl
     name: public ip
     
-  #================================
-  # CPU Temperature
-  #================================
-  - platform: command_line
-    name: CPU Temperature
-    command: "cat /sys/class/thermal/thermal_zone0/temp"
-    unit_of_measurement: "°C"
-    value_template: '{{ value | multiply(0.001) | round(1) }}'
-  
   #================================  
   # System
   #================================
@@ -256,13 +247,13 @@
         - type: processor_use
         - type: last_boot
         - type: network_in
-          arg: eth0
+          arg: enp0s3
         - type: network_out
-          arg: eth0
+          arg: enp0s3
         - type: throughput_network_in
-          arg: eth0
+          arg: enp0s3
         - type: throughput_network_out
-          arg: eth0
+          arg: enp0s3
         
   #================================  
   # Uptime
@@ -481,36 +472,6 @@
                 {% endif %}
 
     #================================
-    # DuckDNS
-    #================================
-    
-  - platform: template
-    sensors:
-        duckdns_update_available:
-            friendly_name: "DuckDNS Update Available"
-            value_template: >-
-                {% if ( states.binary_sensor.duck_dns_update_available.state == 'off' ) %}
-                    100
-                {% else %}
-                    50
-                {% endif %}
-
-    #================================
-    # Mosquitto MQTT Broker
-    #================================
-
-  - platform: template
-    sensors:
-        mosquitto_update_available:
-            friendly_name: "Mosquitto Update Available"
-            value_template: >-
-                {% if ( states.binary_sensor.mosquitto_broker_update_available.state == 'off' ) %}
-                    100
-                {% else %}
-                    50
-                {% endif %}
-
-    #================================
     # Samba Backup
     #================================
     
@@ -562,75 +523,15 @@
                 {% endif %}
 
     #================================
-    # TasmoAdmin
-    #================================
-    
-  - platform: template
-    sensors:
-        tasmoadmin_update_available:
-            friendly_name: "TasmoAdmin Update Available"
-            value_template: >-
-                {% if ( states.binary_sensor.tasmoadmin_update_available.state == 'off' ) %}
-                    100
-                {% else %}
-                    50
-                {% endif %}
-
-    #================================
     # SSH & Webterminal
     #================================
     
   - platform: template
     sensors:
-        terminal_ssh_update_available:
-            friendly_name: "Terminal SSH Update Available"
+        ssh_terminal_update_available:
+            friendly_name: "SSH Terminal Update Available"
             value_template: >-
                 {% if ( states.binary_sensor.ssh_web_terminal_update_available.state == 'off' ) %}
-                    100
-                {% else %}
-                    50
-                {% endif %}
-
-    #================================
-    # Visual Studio Code
-    #================================
-    
-  - platform: template
-    sensors:
-        visualstudiocode_update_available:
-            friendly_name: "Visual Studio Code Update Available"
-            value_template: >-
-                {% if ( states.binary_sensor.visual_studio_code_update_available.state == 'off' ) %}
-                    100
-                {% else %}
-                    50
-                {% endif %}
-
-    #================================
-    # Z-Wave JS
-    #================================
-    
-  - platform: template
-    sensors:
-        zwavejs_update_available:
-            friendly_name: "Z-Wave JS Update Available"
-            value_template: >-
-                {% if ( states.binary_sensor.z_wave_js_update_available.state == 'off' ) %}
-                    100
-                {% else %}
-                    50
-                {% endif %}
-
-    #================================
-    # Glances
-    #================================
-    
-  - platform: template
-    sensors:
-        glances_update_available:
-            friendly_name: "Glances Update Available"
-            value_template: >-
-                {% if ( states.binary_sensor.glances_update_available.state == 'off' ) %}
                     100
                 {% else %}
                     50

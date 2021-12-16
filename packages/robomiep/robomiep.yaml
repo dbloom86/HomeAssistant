@@ -248,6 +248,7 @@ automation:
       data:
         command: reset_consumable
         params: ['filter_work_time']
+    id: 455a2a32ded547hjk876e626a5f9ae7d
 
     #=====================
     # Reset onderhoud borstels
@@ -266,6 +267,7 @@ automation:
       data:
         command: reset_consumable
         params: ['main_brush_work_time']
+    id: 455a2a2h6sd547c3kn76e626a5f9ae7d
 
     #=====================
     # Reset onderhoud sensors
@@ -284,6 +286,7 @@ automation:
       data:
         command: reset_consumable
         params: ['sensor_dirty_time']
+    id: 455a2a32ded547c3k1h7k626a5f9ae7d
 
     #=====================
     # Reset onderhoud zij borstel
@@ -302,6 +305,7 @@ automation:
       data:
         command: reset_consumable
         params: ['side_brush_work_time']
+    id: 455a2a32ded547c3khnk8626a5f9ae7d
 
   #=====================
   # Stofzuigen
@@ -331,6 +335,7 @@ automation:
     - delay:
         seconds: 10
     - service: script.vacuum_kitchen_living
+    id: 455a2a32ded547c3kn76e626a5fjkngd
 
   #=====================
   # Scripts
