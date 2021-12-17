@@ -1,5 +1,6 @@
 {
     "version": 1,
+    "minor_version": 1,
     "key": "lovelace.lovelace_mobile",
     "data": {
         "config": {
@@ -549,7 +550,10 @@
                             "type": "custom:banner-card",
                             "heading": "\ud83d\udecb Woonkamer",
                             "entities": [
-                                "light.lampen_woonkamer",
+                                {
+                                    "entity": "light.lampen_woonkamer",
+                                    "name": "lampen"
+                                },
                                 {
                                     "attribute": "current_temperature",
                                     "entity": "climate.toon_thermostat",
@@ -566,6 +570,116 @@
                                 }
                             ],
                             "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        },
+                        {
+                            "type": "horizontal-stack",
+                            "cards": [
+                                {
+                                    "type": "custom:button-card",
+                                    "entity": "light.lamp_bank_hoek_level_light_color_on_off",
+                                    "aspect_ratio": "1/1",
+                                    "name": "Lamp Bank",
+                                    "entity_picture": "/local/Custom_Icons/lamp_bank.png",
+                                    "size": "50%",
+                                    "hold_action": {
+                                        "action": "more-info"
+                                    },
+                                    "show_entity_picture": true,
+                                    "styles": {
+                                        "card": [
+                                            {
+                                                "background-color": "var(--ha-card-background)"
+                                            }
+                                        ],
+                                        "grid": [
+                                            {
+                                                "grid-template-areas": "\"i i verbruik\" \"n n n\""
+                                            },
+                                            {
+                                                "grid-template-columns": "50% 25% 25%"
+                                            },
+                                            {
+                                                "grid-template-rows": "85% 15%"
+                                            }
+                                        ],
+                                        "name": [
+                                            {
+                                                "justify-self": "center"
+                                            },
+                                            {
+                                                "font-size": "15px"
+                                            },
+                                            {
+                                                "align-items": "middle"
+                                            }
+                                        ],
+                                        "img_cell": [
+                                            {
+                                                "justify-content": "start"
+                                            },
+                                            {
+                                                "align-items": "middle"
+                                            },
+                                            {
+                                                "grid-column-start": 1
+                                            },
+                                            {
+                                                "grid-column-end": 4
+                                            }
+                                        ],
+                                        "custom_fields": {
+                                            "verbruik": [
+                                                {
+                                                    "align-self": "center"
+                                                },
+                                                {
+                                                    "justify-self": "end"
+                                                },
+                                                {
+                                                    "font-size": "12px"
+                                                },
+                                                {
+                                                    "padding-right": "10px"
+                                                },
+                                                {
+                                                    "paddin-top": "50px"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "state": [
+                                        {
+                                            "value": "off",
+                                            "styles": {
+                                                "card": [
+                                                    {
+                                                        "filter": "opacity(50%)"
+                                                    }
+                                                ],
+                                                "icon": [
+                                                    {
+                                                        "filter": "grayscale(100%)"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "value": "on",
+                                            "styles": null
+                                        }
+                                    ],
+                                    "custom_fields": {
+                                        "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['light.lamp_bank_hoek_level_light_color_on_off'].state}</span></span>`\n]]]\n"
+                                    },
+                                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                                },
+                                {
+                                    "type": "custom:gap-card"
+                                },
+                                {
+                                    "type": "custom:gap-card"
+                                }
+                            ]
                         }
                     ]
                 },
@@ -958,11 +1072,10 @@
                             "cards": [
                                 {
                                     "type": "custom:button-card",
-                                    "entity": "light.lamp_hoekje",
+                                    "entity": "light.lamp_hoekje_level_on_off",
                                     "aspect_ratio": "1/1",
                                     "name": "Lamp Hoekje",
                                     "entity_picture": "/local/Custom_Icons/lamp_hoekje-ico.png",
-                                    "size": "50%",
                                     "show_entity_picture": true,
                                     "hold_action": {
                                         "action": "more-info"
@@ -1051,13 +1164,13 @@
                                         }
                                     ],
                                     "custom_fields": {
-                                        "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['light.lamp_hoekje'].state}</span></span>`\n]]]\n"
+                                        "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['light.lamp_hoekje_level_on_off'].state}</span></span>`\n]]]\n"
                                     },
                                     "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
                                 },
                                 {
                                     "type": "custom:button-card",
-                                    "entity": "sensor.schakelaar_lamp_hoekje",
+                                    "entity": "sensor.schakelaar_lamp_hoekje_power",
                                     "aspect_ratio": "1/1",
                                     "name": "Schakelaar Lamp Hoekje",
                                     "entity_picture": "/local/Custom_Icons/schakelaar_lamp_hoekje-ico.png",
@@ -1126,7 +1239,7 @@
                                         }
                                     },
                                     "custom_fields": {
-                                        "verbruik": "[[[\n  return `<span>Battery <span style=\"color: var(--text-color-sensor);\">${states['sensor.schakelaar_lamp_hoekje'].state}%</span></span>`\n]]]\n"
+                                        "verbruik": "[[[\n  return `<span>Battery <span style=\"color: var(--text-color-sensor);\">${states['sensor.schakelaar_lamp_hoekje_power'].state}%</span></span>`\n]]]\n"
                                     },
                                     "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
                                 },

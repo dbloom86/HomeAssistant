@@ -3478,7 +3478,7 @@
                                                     "entities": [
                                                         {
                                                             "decimal": "0",
-                                                            "entity": "sensor.schakelaar_lamp_hoekje",
+                                                            "entity": "sensor.schakelaar_lamp_hoekje_power",
                                                             "entity_row": true,
                                                             "height": "20px",
                                                             "max": "100",

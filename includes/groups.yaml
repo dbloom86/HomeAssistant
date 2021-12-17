@@ -57,6 +57,7 @@ Woonkamer:
     entities:
         - media_player.sonos_woonkamer
         - media_player.woonkamer_tv
+        - light.lamp_bank_hoek_level_light_color_on_off
 
 Hal:
     entities:

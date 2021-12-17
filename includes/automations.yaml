@@ -75,6 +75,96 @@
   id: 110c40fe846e4a8e8ad9e29092c7d334
 
 #================================  
+# Lampen woonkamer
+#================================
+
+- alias: Turn on Lampen Woonkamer at sunset
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: -00:30:00
+  - platform: state
+    entity_id: group.ouders
+    from: 'not_home'
+    to: 'home'
+  condition:
+  - condition: sun
+    after: sunset
+    after_offset: -00:30:00
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: person.duncan
+      state: 'home'
+    - condition: state
+      entity_id: person.sabrine
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'on'
+  action:
+    service: light.turn_on
+    entity_id: light.lampen_woonkamer
+  id: 5b9dad4d6h8g49258a3a9502cd0a116a
+
+- alias: Turn off Lampen Woonkamer
+  trigger:
+  - platform: time
+    at: '23:30:00'
+  - platform: sun
+    event: sunrise
+    offset: 00:30:00
+  condition:
+    condition: state
+    entity_id: light.lampen_woonkamer
+    state: 'on'
+  action:
+    service: light.turn_off
+    entity_id: light.lampen_woonkamer
+  id: 110c40loj06e4a8e8ad9e29092c7d334
+
+- alias: Turn on Lampen Woonkamer in the morning
+  trigger:
+  - platform: time
+    at: '07:00:00'
+  - platform: state
+    entity_id: group.ouders
+    from: 'not_home'
+    to: 'home'
+  condition:
+  - condition: sun
+    before: sunrise
+    after_offset: 00:30:00
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: person.duncan
+      state: 'home'
+    - condition: state
+      entity_id: person.sabrine
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'on'
+  action:
+    service: light.turn_on
+    entity_id: light.lampen_woonkamer
+  id: 5b9dad4d6h8g4925hgb79502cd0a116a
+
+#================================  
+# Lampen slaapkamer Fynn
+#================================
+
+- alias: Bediening lamp hoekje
+  description: 'Bediening Lamp hoekje in Slaapkamer Fynn'
+  use_blueprint:
+    path: poolcactus/zha-ikea-tradfri-on-off-switch-incl-dimmer.yaml
+    input:
+      remote: a78d09daeb056e25be5e23caf30f75c2
+      light:
+        device_id: 4fb57afb26204de0d8bce755299b4e59
+
+#================================  
 # Addons
 #================================
 
