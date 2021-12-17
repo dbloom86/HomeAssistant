@@ -21,3 +21,5 @@ shelly:
       - id: "40F520009959"
         name: Spotjes Dakkapel
         light_switch: true
+      - id: "98CDAC1F389E"
+        name: Droger

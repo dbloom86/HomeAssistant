@@ -135,6 +135,11 @@
   - condition: sun
     before: sunrise
     after_offset: 00:30:00
+  - condition: not
+    conditions:
+      - condition: sun
+        after: sunrise
+        after_offset: '00:30'
   - condition: or
     conditions:
     - condition: state
