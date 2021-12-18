@@ -219,12 +219,12 @@
                                         {
                                             "type": "picture",
                                             "image": "\\local\\Pictures\\home-assistant.png",
-                                            "style": "ha-card{\n  width: 200px;\n  background: none;\n  box-shadow: none;\n  top: 10px;\n  left: 20px;\n}\n"
+                                            "style": "ha-card{\n  width: 200px;\n  background: none;\n  box-shadow: none;\n  top: 15px;\n  left: 20px;\n}\n"
                                         },
                                         {
                                             "type": "markdown",
                                             "content": "**HOMEASSISTANT SERVER\nRESOURCES\nVM ON SYNOLOGY VMM\nPublic IP Address:** {{states.sensor.public_ip.state}}\n**Private IP Address:** {{states.sensor.local_ip.state}}\n**Hassio Cli:** {{ state_attr('sensor.version_available', 'cli') }}\n**Uptime:** {{ states('sensor.rpi_uptime')}}",
-                                            "style": "ha-card{\n  left: -80px;\n\n  background: none;\n  box-shadow: none;\n}\n"
+                                            "style": "ha-card{\n  left: -80px;\n  background: none;\n  box-shadow: none;\n}\n"
                                         },
                                         {
                                             "type": "entities",
@@ -374,7 +374,7 @@
                                                 }
                                             ],
                                             "style": {
-                                                ".": "#states > * {\n  margin: -8px 0px !important;\n}\nha-card {\n  bar-card-border-radius: 5px;\n  left: -135px;\n  width: 120%;\n  top: 10%;\n  background: none;\n  box-shadow: none;\n}\n"
+                                                ".": "#states > * {\n  margin: -8px 0px !important;\n}\nha-card {\n  bar-card-border-radius: 5px;\n  left: -110px;\n  width: 120%;\n  top: 5%;\n  background: none;\n  box-shadow: none;\n}\n"
                                             }
                                         },
                                         {
@@ -2906,9 +2906,113 @@
                             "user": "edf6650cd84b44ba853cfd5ba02fa72c"
                         }
                     ],
-                    "panel": false,
+                    "type": "custom:masonry-layout",
+                    "layout": {
+                        "max_cols": 3
+                    },
                     "badges": [],
                     "cards": [
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "type": "custom:text-divider-row",
+                                    "text": "Energie Gebruik"
+                                },
+                                {
+                                    "card_type": "energy-distribution",
+                                    "type": "custom:hui-element",
+                                    "style": "ha-card {\n  border-radius: 5px;\n  box-shadow: none;\n  background: none;\n }\n"
+                                }
+                            ],
+                            "style": {
+                                ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                            }
+                        },
+                        {
+                            "align_state": "left",
+                            "entities": [
+                                {
+                                    "entity": "sensor.power_usage"
+                                },
+                                {
+                                    "entity": "input_number.nighttime",
+                                    "color": "#046bd1",
+                                    "show_line": false,
+                                    "show_points": false,
+                                    "show_legend": false,
+                                    "y_axis": "secondary"
+                                }
+                            ],
+                            "color_thresholds": [
+                                {
+                                    "value": 0,
+                                    "color": "#00e64d"
+                                },
+                                {
+                                    "value": 1500,
+                                    "color": "#ff4d4d"
+                                }
+                            ],
+                            "color_thresholds_transition": "hard",
+                            "upper_bound_secondary": 1,
+                            "lower_bound_secondary": 0,
+                            "font_size": 80,
+                            "font_size_header": 15,
+                            "update_interval": 30,
+                            "height": 75,
+                            "hour24": true,
+                            "hours_to_show": 24,
+                            "icon": "mdi:gauge",
+                            "name": "Energie Gebruik",
+                            "points_per_hour": 6,
+                            "line_width": 2,
+                            "show": {
+                                "extrema": true,
+                                "icon": false,
+                                "labels": false,
+                                "labels_secondary": false,
+                                "name": false,
+                                "average": true,
+                                "state": true
+                            },
+                            "style": {
+                                ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}     \n"
+                            },
+                            "type": "custom:mini-graph-card"
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "type": "custom:text-divider-row",
+                                    "text": "Device per Maand"
+                                },
+                                {
+                                    "entity": "sensor.maandelijks_verbruik_boiler",
+                                    "name": "Boiler",
+                                    "icon": "mdi:chart-bar"
+                                },
+                                {
+                                    "entity": "sensor.maandelijks_verbruik_cv",
+                                    "name": "CV",
+                                    "icon": "mdi:chart-bar"
+                                },
+                                {
+                                    "entity": "sensor.maandelijks_verbruik_wasmachine",
+                                    "name": "Wasmachine",
+                                    "icon": "mdi:chart-bar"
+                                },
+                                {
+                                    "entity": "sensor.maandelijks_verbruik_droger",
+                                    "name": "Wasmachine",
+                                    "icon": "mdi:chart-bar"
+                                }
+                            ],
+                            "style": {
+                                ".": "#states > * {\n  margin: -5px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                            }
+                        },
                         {
                             "type": "entities",
                             "entities": [
@@ -3017,58 +3121,6 @@
                             "style": {
                                 ".": "#states > * {\n  margin: -5px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
                             }
-                        },
-                        {
-                            "align_state": "left",
-                            "entities": [
-                                {
-                                    "entity": "sensor.power_usage"
-                                },
-                                {
-                                    "entity": "input_number.nighttime",
-                                    "color": "#3399ff",
-                                    "show_line": false,
-                                    "show_points": false,
-                                    "show_legend": false,
-                                    "y_axis": "secondary"
-                                }
-                            ],
-                            "color_thresholds": [
-                                {
-                                    "value": 0,
-                                    "color": "#00e64d"
-                                },
-                                {
-                                    "value": 1500,
-                                    "color": "#ff4d4d"
-                                }
-                            ],
-                            "color_thresholds_transition": "hard",
-                            "upper_bound_secondary": 1,
-                            "lower_bound_secondary": 0,
-                            "font_size": 80,
-                            "font_size_header": 15,
-                            "update_interval": 30,
-                            "height": 85,
-                            "hour24": true,
-                            "hours_to_show": 24,
-                            "icon": "mdi:gauge",
-                            "name": "Energie Gebruik",
-                            "points_per_hour": 6,
-                            "line_width": 2,
-                            "show": {
-                                "extrema": true,
-                                "icon": true,
-                                "labels": false,
-                                "labels_secondary": false,
-                                "name": true,
-                                "average": true,
-                                "state": true
-                            },
-                            "style": {
-                                ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}     \n"
-                            },
-                            "type": "custom:mini-graph-card"
                         },
                         {
                             "type": "vertical-stack",
@@ -3255,33 +3307,6 @@
                             ]
                         },
                         {
-                            "type": "entities",
-                            "entities": [
-                                {
-                                    "type": "custom:text-divider-row",
-                                    "text": "Device per Maand"
-                                },
-                                {
-                                    "entity": "sensor.maandelijks_verbruik_boiler",
-                                    "name": "Boiler",
-                                    "icon": "mdi:chart-bar"
-                                },
-                                {
-                                    "entity": "sensor.maandelijks_verbruik_cv",
-                                    "name": "CV",
-                                    "icon": "mdi:chart-bar"
-                                },
-                                {
-                                    "entity": "sensor.maandelijks_verbruik_wasmachine",
-                                    "name": "Wasmachine",
-                                    "icon": "mdi:chart-bar"
-                                }
-                            ],
-                            "style": {
-                                ".": "#states > * {\n  margin: -5px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
-                            }
-                        },
-                        {
                             "type": "vertical-stack",
                             "cards": [
                                 {
@@ -3380,7 +3405,33 @@
                                             }
                                         },
                                         {
-                                            "type": "custom:gap-card"
+                                            "type": "custom:mini-graph-card",
+                                            "align_state": "left",
+                                            "entities": [
+                                                {
+                                                    "entity": "sensor.shelly_shsw_pm_98cdac1f389e_current_consumption",
+                                                    "color": "#3399ff"
+                                                }
+                                            ],
+                                            "font_size": 80,
+                                            "font_size_header": 15,
+                                            "height": 85,
+                                            "hour24": true,
+                                            "hours_to_show": 24,
+                                            "icon": "mdi:gauge",
+                                            "points_per_hour": 6,
+                                            "line_width": 4,
+                                            "show": {
+                                                "extrema": false,
+                                                "icon": true,
+                                                "labels": false,
+                                                "name": true,
+                                                "average": false,
+                                                "state": true
+                                            },
+                                            "style": {
+                                                ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                                            }
                                         }
                                     ]
                                 }
