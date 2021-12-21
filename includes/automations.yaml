@@ -107,39 +107,77 @@
     entity_id: light.lampen_woonkamer
   id: 5b9dad4d6h8g49258a3a9502cd0a116a
 
-- alias: Turn off Lampen Woonkamer
+- alias: Turn off Lampen Woonkamer savonds
   trigger:
   - platform: time
     at: '23:30:00'
-  - platform: sun
-    event: sunrise
-    offset: 00:30:00
+  - platform: state
+    entity_id: binary_sensor.telefoon_duncan_is_aan_het_opladen
+    to: 'on'
+    for:
+      minutes: 5
+  - platform: state
+    entity_id: binary_sensor.telefoon_sabrine_is_aan_het_opladen
+    to: 'on'
+    for:
+      minutes: 5
   condition:
-    condition: state
-    entity_id: light.lampen_woonkamer
-    state: 'on'
+    - condition: state
+      entity_id: light.lampen_woonkamer
+      state: 'on'
+    - condition: state 
+      entity_id: binary_sensor.telefoon_duncan_is_aan_het_opladen
+      state: 'on'
+      for:
+        minutes: 5
+    - condition: state
+      entity_id: binary_sensor.telefoon_sabrine_is_aan_het_opladen
+      state: 'on'
+      for:
+        minutes: 5
+    - condition: time
+      after: '23:00:00'
   action:
     service: light.turn_off
     entity_id: light.lampen_woonkamer
   id: 110c40loj06e4a8e8ad9e29092c7d334
 
+- alias: Turn off Lampen Woonkamer sochtends
+  trigger:
+  - platform: sun
+    event: sunrise
+    offset: 00:15:00
+  condition:
+    - condition: state
+      entity_id: light.lampen_woonkamer
+      state: 'on'
+  action:
+    service: light.turn_off
+    entity_id: light.lampen_woonkamer
+  id: 110c40loj06e4a8u8t59e29092c7d334
+
 - alias: Turn on Lampen Woonkamer in the morning
   trigger:
-  - platform: time
-    at: '07:00:00'
+  - platform: state
+    entity_id: binary_sensor.telefoon_duncan_is_aan_het_opladen
+    to: 'off'
+    for:
+      minutes: 5
+  - platform: state
+    entity_id: binary_sensor.telefoon_sabrine_is_aan_het_opladen
+    to: 'off'
+    for:
+      minutes: 5
   - platform: state
     entity_id: group.ouders
     from: 'not_home'
     to: 'home'
   condition:
+  - condition: time
+    after: '07:00:00'
   - condition: sun
     before: sunrise
-    after_offset: 00:30:00
-  - condition: not
-    conditions:
-      - condition: sun
-        after: sunrise
-        after_offset: '00:30'
+    after_offset: 00:15:00
   - condition: or
     conditions:
     - condition: state

@@ -3005,7 +3005,7 @@
                                 },
                                 {
                                     "entity": "sensor.maandelijks_verbruik_droger",
-                                    "name": "Wasmachine",
+                                    "name": "Droger",
                                     "icon": "mdi:chart-bar"
                                 }
                             ],

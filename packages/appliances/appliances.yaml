@@ -1,0 +1,115 @@
+  #===============
+  # Sensors
+  #===============
+
+sensor:
+
+    #================================
+    # Wasmachine
+    #================================
+
+  - platform: template
+    sensors:
+        wasmachine_status:
+          friendly_name: Wasmachine Status
+          value_template: >-
+            {% if states('sensor.shelly_shplg_s_9d9823_current_consumption')|float > 7 %}
+                Washing
+            {% elif states('sensor.shelly_shplg_s_9d9823_current_consumption')|float > 0 %}
+                Idle
+            {% else %}
+                Off
+            {%- endif %}
+
+    #================================
+    # Droger
+    #================================
+
+  - platform: template
+    sensors:
+        droger_status:
+          friendly_name: Droger Status
+          value_template: >-
+            {% if states('sensor.shelly_shsw_pm_98cdac1f389e_current_consumption')|float > 7 %}
+                Drying
+            {% elif states('sensor.shelly_shsw_pm_98cdac1f389e_current_consumption')|float > 0 %}
+                Idle
+            {% else %}
+                Off
+            {%- endif %}
+
+  #===============
+  # Automations
+  #===============
+
+automation:
+
+    #================================  
+    # Wasmachine
+    #================================
+
+  - alias: Notification Wasmachine Klaar
+    trigger:
+    - platform: state
+      entity_id: sensor.wasmachine_status
+      from: Washing
+      to: Idle
+      for:
+        minutes: 2
+    condition:
+    - condition: state
+      entity_id: group.ouders
+      state: 'home'
+    action:
+      service: >
+        {% if (is_state('device_tracker.telefoon_duncan', 'home')) and (is_state('device_tracker.telefoon_sabrine', 'home'))  %}
+          notify.all_mobile
+        {% elif is_state('device_tracker.telefoon_duncan', 'home') %}
+          notify.mobile_app_telefoon_duncan
+        {% elif is_state('device_tracker.telefoon_sabrine', 'home') %}
+          notify.mobile_app_telefoon_sabrine
+        {% endif %}
+      data:
+        title: De wasmachine is klaar
+        message: Wil je de wasmachine uitzetten?
+        data:
+          group: wasmachine
+          icon_url: /local/Custom_Icons/wasmachine-ico.png
+          ttl: 0
+          priority: high
+    id: 69f61c8b6bd1447aa49592ef3d50f831
+
+    #================================  
+    # Droger
+    #================================
+
+  - alias: Notification Droger Klaar
+    trigger:
+    - platform: state
+      entity_id: sensor.droger_status
+      from: Drying
+      to: Idle
+      for:
+        minutes: 2
+    condition:
+    - condition: state
+      entity_id: group.ouders
+      state: 'home'
+    action:
+      service: >
+        {% if (is_state('device_tracker.telefoon_duncan', 'home')) and (is_state('device_tracker.telefoon_sabrine', 'home'))  %}
+          notify.all_mobile
+        {% elif is_state('device_tracker.telefoon_duncan', 'home') %}
+          notify.mobile_app_telefoon_duncan
+        {% elif is_state('device_tracker.telefoon_sabrine', 'home') %}
+          notify.mobile_app_telefoon_sabrine
+        {% endif %}
+      data:
+        title: De droger is klaar
+        message: Wil je de droger uitzetten?
+        data:
+          group: droger
+          icon_url: /local/Custom_Icons/droger-ico.png
+          ttl: 0
+          priority: high
+    id: 69f61c8b6k86g47aa49592ef3d50f831
