@@ -1,0 +1,61 @@
+#================================
+# Sonos
+#================================
+
+  #============
+  # Automations
+  #============
+
+automation:
+
+  - alias: Radio aan sochtends
+    description: ''
+    mode: single
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.telefoon_duncan_is_aan_het_opladen
+        to: 'off'
+        for:
+          minutes: 5
+      - platform: state
+        entity_id: binary_sensor.telefoon_sabrine_is_aan_het_opladen
+        to: 'off'
+        for:
+          minutes: 5
+      - platform: state
+        entity_id: group.ouders
+        from: not_home
+        to: home
+    condition:
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: person.duncan
+            state: home
+          - condition: state
+            entity_id: person.sabrine
+            state: home
+          - condition: state
+            entity_id: input_boolean.guest_mode
+            state: 'on'
+      - condition: time
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+        after: '06:00'
+        before: '08:30'
+    action:
+      - service: media_player.select_source
+        target:
+          device_id: 3J4u4wbwseKXExKC8EdvABkLwXn1gmFdfs
+        data:
+          source: Qmusic
+      - service: media_player.volume_set
+        target:
+          device_id: 3J4u4wbwseKXExKC8EdvABkLwXn1gmFdfs
+        data:
+          volume_level: 0.05
+    id: 5795jk84a9c449258a3a9502cd0a116a
