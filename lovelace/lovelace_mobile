@@ -576,7 +576,7 @@
                             "cards": [
                                 {
                                     "type": "custom:button-card",
-                                    "entity": "light.lamp_bank_hoek_level_light_color_on_off",
+                                    "entity": "light.lamp_bank_hoek_e87835fe_level_light_color_on_off",
                                     "aspect_ratio": "1/1",
                                     "name": "Lamp Bank",
                                     "entity_picture": "/local/Custom_Icons/lamp_bank.png",
@@ -669,7 +669,7 @@
                                         }
                                     ],
                                     "custom_fields": {
-                                        "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['light.lamp_bank_hoek_level_light_color_on_off'].state}</span></span>`\n]]]\n"
+                                        "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['light.lamp_bank_hoek_e87835fe_level_light_color_on_off'].state}</span></span>`\n]]]\n"
                                     },
                                     "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
                                 },
@@ -1072,7 +1072,7 @@
                             "cards": [
                                 {
                                     "type": "custom:button-card",
-                                    "entity": "light.lamp_hoekje_level_on_off",
+                                    "entity": "light.lamp_hoekje_0363d4fe_level_on_off",
                                     "aspect_ratio": "1/1",
                                     "name": "Lamp Hoekje",
                                     "entity_picture": "/local/Custom_Icons/lamp_hoekje-ico.png",
@@ -1164,13 +1164,13 @@
                                         }
                                     ],
                                     "custom_fields": {
-                                        "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['light.lamp_hoekje_level_on_off'].state}</span></span>`\n]]]\n"
+                                        "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['light.lamp_hoekje_0363d4fe_level_on_off'].state}</span></span>`\n]]]\n"
                                     },
                                     "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
                                 },
                                 {
                                     "type": "custom:button-card",
-                                    "entity": "sensor.schakelaar_lamp_hoekje_power",
+                                    "entity": "sensor.switch_lamp_hoekje_e353d5fe_power",
                                     "aspect_ratio": "1/1",
                                     "name": "Schakelaar Lamp Hoekje",
                                     "entity_picture": "/local/Custom_Icons/schakelaar_lamp_hoekje-ico.png",
@@ -1239,7 +1239,7 @@
                                         }
                                     },
                                     "custom_fields": {
-                                        "verbruik": "[[[\n  return `<span>Battery <span style=\"color: var(--text-color-sensor);\">${states['sensor.schakelaar_lamp_hoekje_power'].state}%</span></span>`\n]]]\n"
+                                        "verbruik": "[[[\n  return `<span>Battery <span style=\"color: var(--text-color-sensor);\">${states['sensor.switch_lamp_hoekje_e353d5fe_power'].state}%</span></span>`\n]]]\n"
                                     },
                                     "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
                                 },
