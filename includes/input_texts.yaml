@@ -1,0 +1,8 @@
+#================================
+# Bediening Lamp Hoekje
+#================================ 
+
+lamp_hoekje_helper:
+  name: Lamp Hoekje Helper
+  initial: helper_last_controller_event
+  max: 255

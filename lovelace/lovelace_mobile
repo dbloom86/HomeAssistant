@@ -1072,7 +1072,7 @@
                             "cards": [
                                 {
                                     "type": "custom:button-card",
-                                    "entity": "light.lamp_hoekje_0363d4fe_level_on_off",
+                                    "entity": "light.lamp_hoekje",
                                     "aspect_ratio": "1/1",
                                     "name": "Lamp Hoekje",
                                     "entity_picture": "/local/Custom_Icons/lamp_hoekje-ico.png",
@@ -1164,13 +1164,13 @@
                                         }
                                     ],
                                     "custom_fields": {
-                                        "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['light.lamp_hoekje_0363d4fe_level_on_off'].state}</span></span>`\n]]]\n"
+                                        "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['light.lamp_hoekje'].state}</span></span>`\n]]]\n"
                                     },
                                     "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
                                 },
                                 {
                                     "type": "custom:button-card",
-                                    "entity": "sensor.switch_lamp_hoekje_e353d5fe_power",
+                                    "entity": "sensor.switch_lamp_hoekje_battery",
                                     "aspect_ratio": "1/1",
                                     "name": "Schakelaar Lamp Hoekje",
                                     "entity_picture": "/local/Custom_Icons/schakelaar_lamp_hoekje-ico.png",
@@ -1239,7 +1239,7 @@
                                         }
                                     },
                                     "custom_fields": {
-                                        "verbruik": "[[[\n  return `<span>Battery <span style=\"color: var(--text-color-sensor);\">${states['sensor.switch_lamp_hoekje_e353d5fe_power'].state}%</span></span>`\n]]]\n"
+                                        "verbruik": "[[[\n  return `<span>Battery <span style=\"color: var(--text-color-sensor);\">${states['sensor.switch_lamp_hoekje_battery'].state}%</span></span>`\n]]]\n"
                                     },
                                     "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
                                 },

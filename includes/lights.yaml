@@ -35,4 +35,4 @@
   - platform: group
     name: Lampen Kamer Fynn
     entities:
-      - light.lamp_hoekje_0363d4fe_level_on_off
+      - light.lamp_hoekje

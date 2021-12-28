@@ -3529,7 +3529,7 @@
                                                     "entities": [
                                                         {
                                                             "decimal": "0",
-                                                            "entity": "sensor.schakelaar_lamp_hoekje_power",
+                                                            "entity": "sensor.switch_lamp_hoekje_battery",
                                                             "entity_row": true,
                                                             "height": "20px",
                                                             "max": "100",
@@ -3544,13 +3544,13 @@
                                                             "severity": [
                                                                 {
                                                                     "color": "#00e64d",
-                                                                    "from": 75,
+                                                                    "from": 25,
                                                                     "to": 100
                                                                 },
                                                                 {
                                                                     "color": "#ff944d",
                                                                     "from": 5,
-                                                                    "to": 75
+                                                                    "to": 25
                                                                 },
                                                                 {
                                                                     "color": "#ff4d4d",

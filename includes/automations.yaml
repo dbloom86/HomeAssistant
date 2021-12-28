@@ -196,14 +196,50 @@
 # Lampen slaapkamer Fynn
 #================================
 
-- alias: Bediening lamp hoekje
+- alias: Bediening lamp hoekje - Switch
   description: 'Bediening Lamp hoekje in Slaapkamer Fynn'
   use_blueprint:
-    path: poolcactus/zha-ikea-tradfri-on-off-switch-incl-dimmer.yaml
+    path: EPMatt/ikea_e1743.yaml
     input:
-      remote: a78d09daeb056e25be5e23caf30f75c2
-      light:
-        device_id: 4fb57afb26204de0d8bce755299b4e59
+      integration: Zigbee2MQTT
+      controller_entity: sensor.switch_lamp_hoekje_action
+      helper_last_controller_event: input_text.lamp_hoekje_helper
+      button_up_long_loop: true
+      button_down_long_loop: true
+      action_button_up_short:
+        - device_id: 558b0935bd70be482881308623a794c2
+          domain: select
+          entity_id: select.lamp_hoekje_power_on_behavior
+          type: select_option
+          option: 'on'
+      action_button_up_long:
+        - device_id: 558b0935bd70be482881308623a794c2
+          domain: light
+          entity_id: light.lamp_hoekje
+          type: brightness_increase
+      action_button_down_short:
+        - device_id: 558b0935bd70be482881308623a794c2
+          domain: select
+          entity_id: select.lamp_hoekje_power_on_behavior
+          type: select_option
+          option: 'off'
+      action_button_down_long:
+        - device_id: 558b0935bd70be482881308623a794c2
+          domain: light
+          entity_id: light.lamp_hoekje
+          type: brightness_decrease
+  id: 5jk87d4d6h8g4925hgb79502cd0a116a
+
+- alias: Bediening lamp hoekje - Light
+  description: 'Bediening Lamp hoekje in Slaapkamer Fynn'
+  use_blueprint:
+    path: EPMatt/light.yaml
+    input:
+      light_color_mode: Auto
+      controller_device: a26d39aa1232a5d8c04e912686456714
+      controller_entity: sensor.switch_lamp_hoekje_action
+      controller_model: IKEA E1743 TRÅDFRI On/Off Switch & Dimmer
+      light: light.lamp_hoekje
 
 #================================  
 # Addons
