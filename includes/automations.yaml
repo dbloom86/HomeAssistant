@@ -82,7 +82,7 @@
   trigger:
   - platform: sun
     event: sunset
-    offset: -00:30:00
+    offset: -00:15:00
   - platform: state
     entity_id: group.ouders
     from: 'not_home'
@@ -90,7 +90,7 @@
   condition:
   - condition: sun
     after: sunset
-    after_offset: -00:30:00
+    after_offset: -00:15:00
   - condition: or
     conditions:
     - condition: state
@@ -156,7 +156,7 @@
     entity_id: light.lampen_woonkamer
   id: 110c40loj06e4a8u8t59e29092c7d334
 
-- alias: Turn on Lampen Woonkamer in the morning
+- alias: Turn on Lamp Bank Hoek in the morning
   trigger:
   - platform: state
     entity_id: binary_sensor.telefoon_duncan_is_aan_het_opladen
@@ -189,7 +189,7 @@
       state: 'on'
   action:
     service: light.turn_on
-    entity_id: light.lampen_woonkamer
+    entity_id: light.lamp_bank_hoek
   id: 5b9dad4d6h8g4925hgb79502cd0a116a
 
 #================================  

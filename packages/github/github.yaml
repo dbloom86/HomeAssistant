@@ -12,3 +12,5 @@ sensor:
     repositories:
       - path: 'dbloom86/HomeAssistant'
         name: Home Assistant
+      - path: 'dbloom86/zigbee2mqtt.io'
+        name: Zigbee2MQTT

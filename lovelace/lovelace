@@ -2545,12 +2545,11 @@
                             "user": "edf6650cd84b44ba853cfd5ba02fa72c"
                         }
                     ],
-                    "panel": false,
                     "type": "custom:grid-layout",
                     "layout": {
                         "grid-template-columns": "33% 33% 33%",
                         "grid-template-rows": "auto",
-                        "grid-template-areas": "\"header header header\"\n\"main1 main2 main3\"\n\"footer footer footer\"\n"
+                        "grid-template-areas": "\"header header header\"\n\"main1 main2 main3\"\n\"footer1 footer2 footer3\"\n"
                     },
                     "badges": [],
                     "cards": [

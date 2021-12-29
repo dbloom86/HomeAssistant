@@ -17,7 +17,11 @@
 
   - platform: group
     name: Lampen Woonkamer
-    entities: light.lamp_bank_hoek_e87835fe_level_light_color_on_off
+    entities:
+      - light.lamp_bank_hoek
+      - light.lamp_trap
+      - light.lamp_achterdeur
+      - light.lamp_haard
 
 #=====================
 # Achtertuin
