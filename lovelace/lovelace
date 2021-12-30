@@ -846,8 +846,8 @@
                                             {
                                                 "type": "vertical-stack",
                                                 "view_layout": {
-                                                    "grid-column": "2/2",
-                                                    "grid-row": "2/2"
+                                                    "grid-column": "10/10",
+                                                    "grid-row": "1/1"
                                                 },
                                                 "cards": [
                                                     {
@@ -894,7 +894,7 @@
                                             {
                                                 "type": "vertical-stack",
                                                 "view_layout": {
-                                                    "grid-column": "3/3",
+                                                    "grid-column": "2/2",
                                                     "grid-row": "2/2"
                                                 },
                                                 "cards": [
@@ -942,7 +942,7 @@
                                             {
                                                 "type": "vertical-stack",
                                                 "view_layout": {
-                                                    "grid-column": "4/4",
+                                                    "grid-column": "3/3",
                                                     "grid-row": "2/2"
                                                 },
                                                 "cards": [
@@ -990,7 +990,7 @@
                                             {
                                                 "type": "vertical-stack",
                                                 "view_layout": {
-                                                    "grid-column": "5/5",
+                                                    "grid-column": "4/4",
                                                     "grid-row": "2/2"
                                                 },
                                                 "cards": [
@@ -1038,7 +1038,7 @@
                                             {
                                                 "type": "vertical-stack",
                                                 "view_layout": {
-                                                    "grid-column": "6/6",
+                                                    "grid-column": "5/5",
                                                     "grid-row": "2/2"
                                                 },
                                                 "cards": [
@@ -1086,7 +1086,7 @@
                                             {
                                                 "type": "vertical-stack",
                                                 "view_layout": {
-                                                    "grid-column": "7/7",
+                                                    "grid-column": "6/6",
                                                     "grid-row": "2/2"
                                                 },
                                                 "cards": [
@@ -1134,7 +1134,7 @@
                                             {
                                                 "type": "vertical-stack",
                                                 "view_layout": {
-                                                    "grid-column": "8/8",
+                                                    "grid-column": "7/7",
                                                     "grid-row": "2/2"
                                                 },
                                                 "cards": [
@@ -1162,6 +1162,54 @@
                                                         "tap_action": {
                                                             "action": "url",
                                                             "url_path": "https://blog.bloomlan.nl/"
+                                                        },
+                                                        "severity": [
+                                                            {
+                                                                "color": "#ff4d4d",
+                                                                "from": 0,
+                                                                "to": 50
+                                                            },
+                                                            {
+                                                                "color": "#00e64d",
+                                                                "from": 51,
+                                                                "to": 100
+                                                            }
+                                                        ],
+                                                        "style": "ha-card {\n  top: -10px;\n  width: 70%;\n  left: 15%;\n} \n"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "vertical-stack",
+                                                "view_layout": {
+                                                    "grid-column": "8/8",
+                                                    "grid-row": "2/2"
+                                                },
+                                                "cards": [
+                                                    {
+                                                        "type": "markdown",
+                                                        "content": "<center><img src=\"/local/Pictures/addons/zigbee-ico.png\" width=\"70\"/> <center>Zigbee2MQTT</center>",
+                                                        "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n}\n"
+                                                    },
+                                                    {
+                                                        "color": "green",
+                                                        "decimal": "1",
+                                                        "entity": "sensor.zigbee2mqtt_status",
+                                                        "entity_row": true,
+                                                        "height": "12px",
+                                                        "positions": {
+                                                            "icon": "off",
+                                                            "indicator": "off",
+                                                            "name": "off",
+                                                            "value": "off"
+                                                        },
+                                                        "type": "custom:bar-card",
+                                                        "width": "50%",
+                                                        "min": 0,
+                                                        "max": 50,
+                                                        "tap_action": {
+                                                            "action": "url",
+                                                            "url_path": "https://zigbee2mqtt.bloomlan.nl/"
                                                         },
                                                         "severity": [
                                                             {

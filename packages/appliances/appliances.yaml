@@ -30,7 +30,7 @@ sensor:
         droger_status:
           friendly_name: Droger Status
           value_template: >-
-            {% if states('sensor.shelly_shsw_pm_98cdac1f389e_current_consumption')|float > 200 %}
+            {% if states('sensor.shelly_shsw_pm_98cdac1f389e_current_consumption')|float > 7 %}
                 Drying
             {% elif states('sensor.shelly_shsw_pm_98cdac1f389e_current_consumption')|float > 0 %}
                 Idle
@@ -95,6 +95,15 @@ automation:
     - condition: state
       entity_id: group.ouders
       state: 'home'
+      # Don't send this alert if it was last triggered less than 30 minutes ago (1,800 seconds)
+    - condition: template
+      value_template: >
+          {% if states.automation.notification_droger_klaar.last_triggered is not none %}
+            {% if as_timestamp(now()) | int   -  as_timestamp(states.automation.notification_droger_klaar.attributes.last_triggered) | int > 3600 %} true {% else %} false
+            {% endif %}
+          {% else %}
+          false
+          {% endif %}
     action:
       service: >
         {% if (is_state('device_tracker.telefoon_duncan', 'home')) and (is_state('device_tracker.telefoon_sabrine', 'home'))  %}
