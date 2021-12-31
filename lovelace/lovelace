@@ -1452,7 +1452,7 @@
                                                         "width": "50%",
                                                         "tap_action": {
                                                             "action": "navigate",
-                                                            "navigation_path": "/hassio/system"
+                                                            "navigation_path": "/config/dashboard"
                                                         },
                                                         "severity": [
                                                             {

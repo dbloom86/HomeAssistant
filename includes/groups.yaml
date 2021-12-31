@@ -57,7 +57,11 @@ Woonkamer:
     entities:
         - media_player.sonos_woonkamer
         - media_player.woonkamer_tv
-        - light.lamp_bank_hoek_level_light_color_on_off
+        - light.woonkamer_lampen
+        - light.lamp_bank_hoek
+        - light.lamp_haard
+        - light.lamp_trap
+        - light.lamp_achterdeur
 
 Hal:
     entities:
@@ -95,6 +99,7 @@ Studeerkamer:
         - switch.shelly_shplg_s_9a5381
         - switch.shelly_shplg_s_9d9823
         - light.shelly_shsw_1_40f520009959
+        - switch.shelly_shsw_pm_98cdac1f389e
 
 Schuur:
     entities:

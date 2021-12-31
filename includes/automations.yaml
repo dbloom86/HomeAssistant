@@ -1,8 +1,45 @@
 #================================  
-# Switch Boiler on Holiday
+# Hele huis
 #================================
 
-- alias: Turn off Boiler when Holiday
+- alias: Turn off alle Lampen savonds
+  trigger:
+  - platform: time
+    at: '23:30:00'
+  - platform: state
+    entity_id: binary_sensor.telefoon_duncan_is_aan_het_opladen
+    to: 'on'
+    for:
+      minutes: 5
+  - platform: state
+    entity_id: binary_sensor.telefoon_sabrine_is_aan_het_opladen
+    to: 'on'
+    for:
+      minutes: 5
+  condition:
+    - condition: state
+      entity_id: light.lampen_woonkamer
+      state: 'on'
+    - condition: state 
+      entity_id: binary_sensor.telefoon_duncan_is_aan_het_opladen
+      state: 'on'
+      for:
+        minutes: 5
+    - condition: state
+      entity_id: binary_sensor.telefoon_sabrine_is_aan_het_opladen
+      state: 'on'
+      for:
+        minutes: 5
+    - condition: time
+      after: '22:30:00'
+  action:
+  - service: light.turn_off
+    entity_id: light.lampen_woonkamer
+  - service: light.turn_off
+    entity_id: light.shelly_shsw_1_40f52000c449
+  id: 110c40loj06e4a8e8ad9e29092c7d334
+
+- alias: Vakantiemode aan
   trigger:
   - platform: state
     entity_id: climate.toon_thermostat
@@ -10,11 +47,19 @@
     to: eco
     from: comfort
   action:
-    service: switch.turn_off
+  - service: switch.turn_off
     entity_id: switch.shelly_shplg_s_9a53ab
+  - service: automation.turn_off
+    target:
+        entity_id:
+          - automation.turn_off_lampen_woonkamer_at_23_30
+          - automation.turn_off_lampen_woonkamer_sochtends
+          - automation.turn_on_lampen_woonkamer_at_sunset
+          - automation.turn_on_lampen_woonkamer_in_the_morning
+          - automation.turn_on_lampjes_overkapping_at_sunset
   id: f8a0c07e00a24377b78773bab12dd157
 
-- alias: Turn on Boiler when home
+- alias: Vakantiemode uit
   trigger:
   - platform: state
     entity_id: climate.toon_thermostat
@@ -22,8 +67,16 @@
     from: eco
     to: comfort
   action:
-    service: switch.turn_on
+  - service: switch.turn_on
     entity_id: switch.shelly_shplg_s_9a53ab
+  - service: automation.turn_on
+    target:
+      entity_id:
+          - automation.turn_off_lampen_woonkamer_at_23_30
+          - automation.turn_off_lampen_woonkamer_sochtends
+          - automation.turn_on_lampen_woonkamer_at_sunset
+          - automation.turn_on_lampen_woonkamer_in_the_morning
+          - automation.turn_on_lampjes_overkapping_at_sunset
   id: 5f450d9467d244c597dd1645f33f358c
 
 #================================  
@@ -34,7 +87,7 @@
   trigger:
   - platform: sun
     event: sunset
-    offset: -00:30:00
+    offset: -00:15:00
   - platform: state
     entity_id: group.ouders
     from: 'not_home'
@@ -44,7 +97,7 @@
     value_template: '{{ now().month >= 4 and now().month <= 10 }}'
   - condition: sun
     after: sunset
-    after_offset: -00:30:00
+    after_offset: -00:15:00
   - condition: or
     conditions:
     - condition: state
@@ -60,19 +113,6 @@
     service: light.turn_on
     entity_id: light.shelly_shsw_1_40f52000c449
   id: 5b9dad4da9c449258a3a9502cd0a116a
-
-- alias: Turn off Lampjes Overkapping at 23:30
-  trigger:
-  - platform: time
-    at: '23:30:00'
-  condition:
-    condition: state
-    entity_id: light.shelly_shsw_1_40f52000c449
-    state: 'on'
-  action:
-    service: light.turn_off
-    entity_id: light.shelly_shsw_1_40f52000c449
-  id: 110c40fe846e4a8e8ad9e29092c7d334
 
 #================================  
 # Lampen woonkamer
@@ -104,43 +144,8 @@
       state: 'on'
   action:
     service: light.turn_on
-    entity_id: light.lampen_woonkamer
+    entity_id: light.woonkamer_lampen
   id: 5b9dad4d6h8g49258a3a9502cd0a116a
-
-- alias: Turn off Lampen Woonkamer savonds
-  trigger:
-  - platform: time
-    at: '23:30:00'
-  - platform: state
-    entity_id: binary_sensor.telefoon_duncan_is_aan_het_opladen
-    to: 'on'
-    for:
-      minutes: 5
-  - platform: state
-    entity_id: binary_sensor.telefoon_sabrine_is_aan_het_opladen
-    to: 'on'
-    for:
-      minutes: 5
-  condition:
-    - condition: state
-      entity_id: light.lampen_woonkamer
-      state: 'on'
-    - condition: state 
-      entity_id: binary_sensor.telefoon_duncan_is_aan_het_opladen
-      state: 'on'
-      for:
-        minutes: 5
-    - condition: state
-      entity_id: binary_sensor.telefoon_sabrine_is_aan_het_opladen
-      state: 'on'
-      for:
-        minutes: 5
-    - condition: time
-      after: '22:30:00'
-  action:
-    service: light.turn_off
-    entity_id: light.lampen_woonkamer
-  id: 110c40loj06e4a8e8ad9e29092c7d334
 
 - alias: Turn off Lampen Woonkamer sochtends
   trigger:
@@ -149,11 +154,11 @@
     offset: 00:15:00
   condition:
     - condition: state
-      entity_id: light.lampen_woonkamer
+      entity_id: light.woonkamer_lampen
       state: 'on'
   action:
     service: light.turn_off
-    entity_id: light.lampen_woonkamer
+    entity_id: light.woonkamer_lampen
   id: 110c40loj06e4a8u8t59e29092c7d334
 
 - alias: Turn on Lamp Bank Hoek in the morning

@@ -551,7 +551,7 @@
                             "heading": "\ud83d\udecb Woonkamer",
                             "entities": [
                                 {
-                                    "entity": "light.lampen_woonkamer",
+                                    "entity": "light.woonkamer_lampen",
                                     "name": "lampen"
                                 },
                                 {
@@ -1363,7 +1363,7 @@
                             "heading": "\ud83d\udecc Kamer Fynn",
                             "entities": [
                                 {
-                                    "entity": "light.lampen_kamer_fynn",
+                                    "entity": "light.slaapkamer_fynn",
                                     "name": "Lampen"
                                 }
                             ],
