@@ -32,6 +32,7 @@
         minutes: 5
     - condition: time
       after: '22:30:00'
+      before: '05:00:00'
   action:
   - service: light.turn_off
     entity_id: light.lampen_woonkamer
@@ -146,6 +147,33 @@
     service: light.turn_on
     entity_id: light.woonkamer_lampen
   id: 5b9dad4d6h8g49258a3a9502cd0a116a
+
+- alias: Turn on Lamp Bank at sunset when not home
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: -00:15:00
+  - platform: state
+    entity_id: group.ouders
+    from: 'home'
+    to: 'not_home'
+  condition:
+  - condition: sun
+    after: sunset
+    after_offset: -00:15:00
+  - condition: state
+    entity_id: person.duncan
+    state: 'not_home'
+  - condition: state
+    entity_id: person.sabrine
+    state: 'not_home'
+  - condition: state
+    entity_id: input_boolean.guest_mode
+    state: 'off'
+  action:
+    service: light.turn_on
+    entity_id: light.lamp_bank_hoek
+  id: 5b9dad4d6hjk95258a3a9502cd0a116a
 
 - alias: Turn off Lampen Woonkamer sochtends
   trigger:
