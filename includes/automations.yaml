@@ -318,6 +318,22 @@
 #================================
 
   #================================  
+  # Auto Purge DB
+  #================================
+
+- alias: Purge Database
+  initial_state: True
+  trigger:
+    platform: time
+    at: '04:12:00'
+  action:
+    service: recorder.purge
+    data:
+      keep_days: 30
+      repack: true
+  id: 32d6b6ff7ffd42hya4d3374d8bddef70
+
+  #================================  
   # Theme Switcher
   #================================
 

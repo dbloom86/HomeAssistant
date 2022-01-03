@@ -49,13 +49,17 @@ automation:
         before: '08:30'
     action:
       - service: media_player.select_source
-        target:
-          device_id: 3J4u4wbwseKXExKC8EdvABkLwXn1gmFdfs
         data:
           source: Qmusic
+        target:
+          device_id: 3cfc8e892445437eb9649e411d74542a
+
       - service: media_player.volume_set
         target:
-          device_id: 3J4u4wbwseKXExKC8EdvABkLwXn1gmFdfs
+          device_id: 3cfc8e892445437eb9649e411d74542a
         data:
-          volume_level: 0.05
+          volume_level: 0.02
+      - service: media_player.media_play
+        target:
+          device_id: 3cfc8e892445437eb9649e411d74542a
     id: 5795jk84a9c449258a3a9502cd0a116a
