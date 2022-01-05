@@ -1403,7 +1403,7 @@
                                                         "max": 50,
                                                         "tap_action": {
                                                             "action": "navigate",
-                                                            "navigation_path": "/hassio/dashboard"
+                                                            "navigation_path": "/config/dashboard"
                                                         },
                                                         "severity": [
                                                             {
@@ -3036,29 +3036,165 @@
                                     "text": "Device per Maand"
                                 },
                                 {
-                                    "entity": "sensor.maandelijks_verbruik_boiler",
-                                    "name": "Boiler",
-                                    "icon": "mdi:chart-bar"
-                                },
-                                {
-                                    "entity": "sensor.maandelijks_verbruik_cv",
-                                    "name": "CV",
-                                    "icon": "mdi:chart-bar"
-                                },
-                                {
-                                    "entity": "sensor.maandelijks_verbruik_wasmachine",
-                                    "name": "Wasmachine",
-                                    "icon": "mdi:chart-bar"
-                                },
-                                {
-                                    "entity": "sensor.maandelijks_verbruik_droger",
-                                    "name": "Droger",
-                                    "icon": "mdi:chart-bar"
+                                    "type": "custom:auto-entities",
+                                    "card": {
+                                        "type": "entities",
+                                        "show_header_toggle": false,
+                                        "style": {
+                                            ".": "#states > * {\n  margin: -1px -15px !important;\n}\nha-card {\n  height: 100%;\n  box-shadow: none;\n  background-color: rgba(255, 255, 255, 0);\n  background: none;\n}\n"
+                                        }
+                                    },
+                                    "filter": {
+                                        "include": [
+                                            {
+                                                "entity_id": "sensor.maandelijks_verbruik_*",
+                                                "options": {
+                                                    "icon": "mdi:chart-bar"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    "sort": {
+                                        "method": "state",
+                                        "numeric": true,
+                                        "reverse": true
+                                    }
                                 }
                             ],
                             "style": {
                                 ".": "#states > * {\n  margin: -5px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
                             }
+                        },
+                        {
+                            "type": "vertical-stack",
+                            "cards": [
+                                {
+                                    "type": "horizontal-stack",
+                                    "cards": [
+                                        {
+                                            "type": "custom:mini-graph-card",
+                                            "align_state": "left",
+                                            "entities": [
+                                                {
+                                                    "entity": "sensor.shelly_shplg_s_9a53ab_current_consumption",
+                                                    "color": "#3399ff"
+                                                }
+                                            ],
+                                            "font_size": 80,
+                                            "font_size_header": 15,
+                                            "height": 85,
+                                            "hour24": true,
+                                            "hours_to_show": 24,
+                                            "icon": "mdi:gauge",
+                                            "points_per_hour": 6,
+                                            "line_width": 4,
+                                            "show": {
+                                                "extrema": false,
+                                                "icon": true,
+                                                "labels": false,
+                                                "name": true,
+                                                "average": false,
+                                                "state": true
+                                            },
+                                            "style": {
+                                                ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                                            }
+                                        },
+                                        {
+                                            "type": "custom:mini-graph-card",
+                                            "align_state": "left",
+                                            "entities": [
+                                                {
+                                                    "entity": "sensor.shelly_shplg_s_9a5381_current_consumption",
+                                                    "color": "#3399ff"
+                                                }
+                                            ],
+                                            "font_size": 80,
+                                            "font_size_header": 15,
+                                            "height": 85,
+                                            "hour24": true,
+                                            "hours_to_show": 24,
+                                            "icon": "mdi:gauge",
+                                            "points_per_hour": 6,
+                                            "line_width": 4,
+                                            "show": {
+                                                "extrema": false,
+                                                "icon": true,
+                                                "labels": false,
+                                                "name": true,
+                                                "average": false,
+                                                "state": true
+                                            },
+                                            "style": {
+                                                ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "horizontal-stack",
+                                    "cards": [
+                                        {
+                                            "type": "custom:mini-graph-card",
+                                            "align_state": "left",
+                                            "entities": [
+                                                {
+                                                    "entity": "sensor.shelly_shplg_s_9d9823_current_consumption",
+                                                    "color": "#3399ff"
+                                                }
+                                            ],
+                                            "font_size": 80,
+                                            "font_size_header": 15,
+                                            "height": 85,
+                                            "hour24": true,
+                                            "hours_to_show": 24,
+                                            "icon": "mdi:gauge",
+                                            "points_per_hour": 6,
+                                            "line_width": 4,
+                                            "show": {
+                                                "extrema": false,
+                                                "icon": true,
+                                                "labels": false,
+                                                "name": true,
+                                                "average": false,
+                                                "state": true
+                                            },
+                                            "style": {
+                                                ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                                            }
+                                        },
+                                        {
+                                            "type": "custom:mini-graph-card",
+                                            "align_state": "left",
+                                            "entities": [
+                                                {
+                                                    "entity": "sensor.shelly_shsw_pm_98cdac1f389e_current_consumption",
+                                                    "color": "#3399ff"
+                                                }
+                                            ],
+                                            "font_size": 80,
+                                            "font_size_header": 15,
+                                            "height": 85,
+                                            "hour24": true,
+                                            "hours_to_show": 24,
+                                            "icon": "mdi:gauge",
+                                            "points_per_hour": 6,
+                                            "line_width": 4,
+                                            "show": {
+                                                "extrema": false,
+                                                "icon": true,
+                                                "labels": false,
+                                                "name": true,
+                                                "average": false,
+                                                "state": true
+                                            },
+                                            "style": {
+                                                ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
                         },
                         {
                             "type": "entities",
@@ -3348,137 +3484,6 @@
                                                 ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}     \n"
                                             },
                                             "type": "custom:mini-graph-card"
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "type": "vertical-stack",
-                            "cards": [
-                                {
-                                    "type": "horizontal-stack",
-                                    "cards": [
-                                        {
-                                            "type": "custom:mini-graph-card",
-                                            "align_state": "left",
-                                            "entities": [
-                                                {
-                                                    "entity": "sensor.shelly_shplg_s_9a53ab_current_consumption",
-                                                    "color": "#3399ff"
-                                                }
-                                            ],
-                                            "font_size": 80,
-                                            "font_size_header": 15,
-                                            "height": 85,
-                                            "hour24": true,
-                                            "hours_to_show": 24,
-                                            "icon": "mdi:gauge",
-                                            "points_per_hour": 6,
-                                            "line_width": 4,
-                                            "show": {
-                                                "extrema": false,
-                                                "icon": true,
-                                                "labels": false,
-                                                "name": true,
-                                                "average": false,
-                                                "state": true
-                                            },
-                                            "style": {
-                                                ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
-                                            }
-                                        },
-                                        {
-                                            "type": "custom:mini-graph-card",
-                                            "align_state": "left",
-                                            "entities": [
-                                                {
-                                                    "entity": "sensor.shelly_shplg_s_9a5381_current_consumption",
-                                                    "color": "#3399ff"
-                                                }
-                                            ],
-                                            "font_size": 80,
-                                            "font_size_header": 15,
-                                            "height": 85,
-                                            "hour24": true,
-                                            "hours_to_show": 24,
-                                            "icon": "mdi:gauge",
-                                            "points_per_hour": 6,
-                                            "line_width": 4,
-                                            "show": {
-                                                "extrema": false,
-                                                "icon": true,
-                                                "labels": false,
-                                                "name": true,
-                                                "average": false,
-                                                "state": true
-                                            },
-                                            "style": {
-                                                ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
-                                            }
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "horizontal-stack",
-                                    "cards": [
-                                        {
-                                            "type": "custom:mini-graph-card",
-                                            "align_state": "left",
-                                            "entities": [
-                                                {
-                                                    "entity": "sensor.shelly_shplg_s_9d9823_current_consumption",
-                                                    "color": "#3399ff"
-                                                }
-                                            ],
-                                            "font_size": 80,
-                                            "font_size_header": 15,
-                                            "height": 85,
-                                            "hour24": true,
-                                            "hours_to_show": 24,
-                                            "icon": "mdi:gauge",
-                                            "points_per_hour": 6,
-                                            "line_width": 4,
-                                            "show": {
-                                                "extrema": false,
-                                                "icon": true,
-                                                "labels": false,
-                                                "name": true,
-                                                "average": false,
-                                                "state": true
-                                            },
-                                            "style": {
-                                                ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
-                                            }
-                                        },
-                                        {
-                                            "type": "custom:mini-graph-card",
-                                            "align_state": "left",
-                                            "entities": [
-                                                {
-                                                    "entity": "sensor.shelly_shsw_pm_98cdac1f389e_current_consumption",
-                                                    "color": "#3399ff"
-                                                }
-                                            ],
-                                            "font_size": 80,
-                                            "font_size_header": 15,
-                                            "height": 85,
-                                            "hour24": true,
-                                            "hours_to_show": 24,
-                                            "icon": "mdi:gauge",
-                                            "points_per_hour": 6,
-                                            "line_width": 4,
-                                            "show": {
-                                                "extrema": false,
-                                                "icon": true,
-                                                "labels": false,
-                                                "name": true,
-                                                "average": false,
-                                                "state": true
-                                            },
-                                            "style": {
-                                                ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
-                                            }
                                         }
                                     ]
                                 }
