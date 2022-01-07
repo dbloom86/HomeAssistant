@@ -13,7 +13,7 @@ sensor:
     #================================      
 
   - platform: afvalbeheer
-    wastecollector: Circulus-Berkel
+    wastecollector: Circulus
     resources:
       - gft
       - papier
@@ -34,11 +34,11 @@ sensor:
       trash_color:
         friendly_name: afvalkleur
         value_template: >-
-            {% if (states.sensor.circulus_berkel_afval_vandaag == "gft") %}
+            {% if (states.sensor.circulus_afval_vandaag == "gft") %}
                 green
-            {% elif (states.sensor.circulus_berkel_afval_vandaag == "papier") %}
+            {% elif (states.sensor.circulus_afval_vandaag == "papier") %}
                 blue
-            {% elif (states.sensor.circulus_berkel_afval_vandaag == "pmd") %}
+            {% elif (states.sensor.circulus_afval_vandaag == "pmd") %}
                 orange
             {% else %}
                 grey
@@ -49,11 +49,11 @@ sensor:
       trash_color_tomorrow:
         friendly_name: afvalkleur
         value_template: >-
-            {% if (states.sensor.circulus_berkel_afval_morgen == "gft") %}
+            {% if (states.sensor.circulus_afval_morgen == "gft") %}
                 green
-            {% elif (states.sensor.circulus_berkel_afval_morgen == "papier") %}
+            {% elif (states.sensor.circulus_afval_morgen == "papier") %}
                 blue
-            {% elif (states.sensor.circulus_berkel_afval_morgen == "pmd") %}
+            {% elif (states.sensor.circulus_afval_morgen == "pmd") %}
                 orange
             {% else %}
                 grey
@@ -75,7 +75,7 @@ automation:
       at: '19:00:00'
     condition:
     - condition: state
-      entity_id: sensor.circulus_berkel_afval_morgen
+      entity_id: sensor.circulus_afval_morgen
       state: pmd
     action:
       service: notify.mobile_app_telefoon_duncan
@@ -96,7 +96,7 @@ automation:
       at: '19:00:00'
     condition:
     - condition: state
-      entity_id: sensor.circulus_berkel_afval_morgen
+      entity_id: sensor.circulus_afval_morgen
       state: gft
     action:
       service: notify.mobile_app_telefoon_duncan
@@ -117,7 +117,7 @@ automation:
       at: '19:00:00'
     condition:
     - condition: state
-      entity_id: sensor.circulus_berkel_afval_morgen
+      entity_id: sensor.circulus_afval_morgen
       state: papier
     action:
       service: notify.mobile_app_telefoon_duncan
@@ -140,13 +140,13 @@ automation:
       condition: or
       conditions:
       - condition: state
-        entity_id: sensor.circulus_berkel_afval_vandaag
+        entity_id: sensor.circulus_afval_vandaag
         state: pmd
       - condition: state
-        entity_id: sensor.circulus_berkel_afval_vandaag
+        entity_id: sensor.circulus_afval_vandaag
         state: gft
       - condition: state
-        entity_id: sensor.circulus_berkel_afval_vandaag
+        entity_id: sensor.circulus_afval_vandaag
         state: papier
     action:
       service: notify.mobile_app_telefoon_duncan
