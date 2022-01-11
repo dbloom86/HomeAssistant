@@ -159,10 +159,6 @@
   - platform: sun
     event: sunset
     offset: -00:15:00
-  - platform: state
-    entity_id: group.ouders
-    from: 'home'
-    to: 'not_home'
   condition:
   - condition: sun
     after: sunset
@@ -180,6 +176,39 @@
     service: light.turn_on
     entity_id: light.lamp_bank_hoek
   id: 5b9dad4d6hjk95258a3a9502cd0a116a
+
+- alias: Turn off lights after sunset when leaving home
+  trigger:
+  - platform: state
+    entity_id: group.ouders
+    from: 'home'
+    to: 'not_home'
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+  condition:
+  - condition: sun
+    after: sunset
+    after_offset: -00:15:00
+  - condition: state
+    entity_id: person.duncan
+    state: 'not_home'
+  - condition: state
+    entity_id: person.sabrine
+    state: 'not_home'
+  - condition: state
+    entity_id: input_boolean.guest_mode
+    state: 'off'
+  action:
+    service: light.turn_off
+    target:
+      entity_id:
+        - light.lamp_achterdeur
+        - light.lamp_haard
+        - light.lamp_trap
+  id: 5b9dad4d6hjk95258h679502cd0a116a
+
 
 - alias: Turn off Lampen Woonkamer sochtends
   trigger:
