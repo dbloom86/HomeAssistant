@@ -12,6 +12,8 @@ Ouders:
     entities:
         - person.duncan
         - person.sabrine
+        - device_tracker.telefoon_duncan
+        - device_tracker.telefoon_sabrine
 
 Kids:
     entities:

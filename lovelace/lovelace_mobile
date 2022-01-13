@@ -776,7 +776,7 @@
                                     "type": "custom:button-card",
                                     "entity": "light.lamp_achterdeur",
                                     "aspect_ratio": "1/1",
-                                    "name": "Lamp Trap",
+                                    "name": "Lamp Achterdeur",
                                     "entity_picture": "/local/Custom_Icons/lamp_achterdeur.png",
                                     "size": "50%",
                                     "hold_action": {
