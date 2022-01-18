@@ -4,8 +4,6 @@
 
 - alias: Turn off alle Lampen savonds
   trigger:
-  - platform: time
-    at: '23:30:00'
   - platform: state
     entity_id: binary_sensor.telefoon_duncan_is_aan_het_opladen
     to: 'on'
