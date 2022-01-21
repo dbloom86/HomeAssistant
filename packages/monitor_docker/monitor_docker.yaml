@@ -1,0 +1,282 @@
+#================================
+# Monitor Docker
+#================================ 
+
+monitor_docker:
+  - name: Docker
+    url: tcp://192.168.2.208:2375
+    containers:
+      - Bazarr
+      - Jackett
+      - MariaDB
+      - Mosquitto
+      - NodeRed
+      - phpMyAdmin
+      - Plex
+      - Radarr
+      - TasmoAdmin
+      - Torrents
+      - Ubuntu
+      - Unifi_Controller
+      - Watchtower
+      - Wordpress
+      - Zigbee2MQTT
+      - zwavejs2mqtt
+      - DockerProxy
+    rename:
+      Torrents: Deluge
+      Unifi_Controller: Unifi Controller
+      zwavejs2mqtt: ZwaveJS2MQTT
+      DockerProxy: Docker Proxy
+    monitored_conditions:
+      - version
+      - containers_running
+      - containers_total
+      - state
+      - status
+      - containers_memory_percentage
+      - containers_1cpu_percentage
+
+  #================================
+  # Sensors
+  #================================
+
+sensor:
+
+    #================================
+    # MariaDB
+    #================================
+  - platform: template
+    sensors:
+        mariadb_bar:
+            friendly_name: "MariaDB Bar"
+            value_template: >-
+                {% if ( states.sensor.docker_mariadb_state.state == 'running' ) %}
+                    100
+                {% else %}
+                    50
+                {% endif %}
+
+    #================================
+    # Node-RED
+    #================================
+  - platform: template
+    sensors:
+        nodered_bar:
+            friendly_name: "Node-RED Bar"
+            value_template: >-
+                {% if ( states.sensor.docker_nodered_state.state == 'running' ) %}
+                    100
+                {% else %}
+                    50
+                {% endif %}
+
+    #================================
+    # phpMyAdmin
+    #================================
+  - platform: template
+    sensors:
+        phpmyadmin_bar:
+            friendly_name: "phpMyAdmin Bar"
+            value_template: >-
+                {% if ( states.sensor.docker_phpmyadmin_state.state == 'running' ) %}
+                    100
+                {% else %}
+                    50
+                {% endif %}
+
+    #================================
+    # Deluge
+    #================================
+  - platform: template
+    sensors:
+        deluge_bar:
+            friendly_name: "Deluge BAR"
+            value_template: >-
+                {% if ( states.sensor.docker_torrents_state.state == 'running' ) %}
+                    100
+                {% else %}
+                    50
+                {% endif %}
+
+    #================================
+    # Unifi
+    #================================
+  - platform: template
+    sensors:
+        unifi_controller_bar:
+            friendly_name: "Unifi Controller Bar"
+            value_template: >-
+                {% if ( states.sensor.docker_unifi_controller_state.state == 'running' ) %}
+                    100
+                {% else %}
+                    50
+                {% endif %}
+
+    #================================
+    # Watchtower
+    #================================
+  - platform: template
+    sensors:
+        watchtower_bar:
+            friendly_name: "Watchtower Bar"
+            value_template: >-
+                {% if ( states.sensor.docker_watchtower_state.state == 'running' ) %}
+                    100
+                {% else %}
+                    50
+                {% endif %}
+
+    #================================
+    # Mosquitto Broker
+    #================================
+  - platform: template
+    sensors:
+        mosquitto_bar:
+            friendly_name: "Mosquitto Bar"
+            value_template: >-
+                {% if ( states.sensor.docker_mosquitto_state.state == 'running' ) %}
+                    100
+                {% else %}
+                    50
+                {% endif %}
+
+    #================================
+    # TasmoAdmin
+    #================================
+  - platform: template
+    sensors:
+        tasmoadmin_bar:
+            friendly_name: "TasmoAdmin Bar"
+            value_template: >-
+                {% if ( states.sensor.docker_tasmoadmin_state.state == 'running' ) %}
+                    100
+                {% else %}
+                    50
+                {% endif %}
+
+    #================================
+    # Radarr
+    #================================
+  - platform: template
+    sensors:
+        radarr_bar:
+            friendly_name: "Radarr Bar"
+            value_template: >-
+                {% if ( states.sensor.docker_radarr_state.state == 'running' ) %}
+                    100
+                {% else %}
+                    50
+                {% endif %}
+
+    #================================
+    # Jackett
+    #================================
+  - platform: template
+    sensors:
+        jackett_bar:
+            friendly_name: "Jackett Bar"
+            value_template: >-
+                {% if ( states.sensor.docker_jackett_state.state == 'running' ) %}
+                    100
+                {% else %}
+                    50
+                {% endif %}
+
+    #================================
+    # Bazarr
+    #================================
+  - platform: template
+    sensors:
+        bazarr_bar:
+            friendly_name: "Bazarr Bar"
+            value_template: >-
+                {% if ( states.sensor.docker_bazarr_state.state == 'running' ) %}
+                    100
+                {% else %}
+                    50
+                {% endif %}
+
+    #================================
+    # Ubuntu
+    #================================
+  - platform: template
+    sensors:
+        ubuntu_bar:
+            friendly_name: "Ubuntu Bar"
+            value_template: >-
+                {% if ( states.sensor.docker_ubuntu_state.state == 'running' ) %}
+                    100
+                {% else %}
+                    50
+                {% endif %}
+
+    #================================
+    # Plex
+    #================================
+  - platform: template
+    sensors:
+        plex_bar:
+            friendly_name: "Plex Bar"
+            value_template: >-
+                {% if ( states.sensor.docker_plex_state.state == 'running' ) %}
+                    100
+                {% else %}
+                    50
+                {% endif %}
+
+    #================================
+    # Wordpress
+    #================================
+  - platform: template
+    sensors:
+        wordpress_bar:
+            friendly_name: "Wordpress Bar"
+            value_template: >-
+                {% if ( states.sensor.docker_wordpress_state.state == 'running' ) %}
+                    100
+                {% else %}
+                    50
+                {% endif %}
+
+    #================================
+    # ZWaveJS2MQTT
+    #================================
+  - platform: template
+    sensors:
+        zwavejs2mqtt_bar:
+            friendly_name: "ZWaveJS2MQTT Bar"
+            value_template: >-
+                {% if ( states.sensor.docker_zwavejs2mqtt_state.state == 'running' ) %}
+                    100
+                {% else %}
+                    50
+                {% endif %}
+
+    #================================
+    # Zigbee2MQTT
+    #================================
+  - platform: template
+    sensors:
+        zigbee2mqtt_bar:
+            friendly_name: "Zigbee2MQTT Bar"
+            value_template: >-
+                {% if ( states.sensor.docker_zigbee2mqtt_state.state == 'running' ) %}
+                    100
+                {% else %}
+                    50
+                {% endif %}
+
+    #================================
+    # Docker Proxy
+    #================================
+  - platform: template
+    sensors:
+        dockerproxy_bar:
+            friendly_name: "Docker Proxy Bar"
+            value_template: >-
+                {% if ( states.sensor.docker_dockerproxy_state.state == 'running' ) %}
+                    100
+                {% else %}
+                    50
+                {% endif %}

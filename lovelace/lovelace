@@ -429,13 +429,27 @@
                                                 "type": "vertical-stack",
                                                 "view_layout": {
                                                     "grid-column": "1/1",
-                                                    "grid-row": "1/2"
+                                                    "grid-row": "1/1"
                                                 },
                                                 "cards": [
                                                     {
                                                         "type": "picture",
                                                         "image": "/local/Pictures/addons/docker-icon.png",
-                                                        "style": "ha-card {\n  width: 150px;\n  left: 10px;\n  top: 50%;\n  background: none;\n  box-shadow: none;\n}\n"
+                                                        "style": "ha-card {\n  width: 160px;\n  top: 20%;\n  left: 10px;\n  background: none;\n  box-shadow: none;\n}\n"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "vertical-stack",
+                                                "view_layout": {
+                                                    "grid-column": "1/1",
+                                                    "grid-row": "2/2"
+                                                },
+                                                "cards": [
+                                                    {
+                                                        "type": "markdown",
+                                                        "content": "**Docker Version:** {{states.sensor.docker_version.state}}\n**Running Containers:** {{states.sensor.docker_containers_running.state}}\n**Total Containers:** {{ states.sensor.docker_containers_total.state }}\n**CPU Usage:** {{ states('sensor.docker_1cpu')}}%\n**RAM Usage:** {{ states.sensor.docker_memory_percent.state }}%",
+                                                        "style": "ha-card{\n  top: 10%;\n  left: 5%;\n  background: none;\n  box-shadow: none;\n}\n"
                                                     }
                                                 ]
                                             },
@@ -448,7 +462,7 @@
                                                 "cards": [
                                                     {
                                                         "type": "markdown",
-                                                        "content": "<center><img src=\"/local/Pictures/addons/bazarr-ico.png\" width=\"70\"/> <center>Bazarr</center>",
+                                                        "content": "<center><img src=\"/local/Pictures/addons/bazarr-ico.png\" width=\"70\"/> <center>Bazarr</center> <center>{{ states.sensor.docker_bazarr_status.state }}</center>",
                                                         "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n}\n"
                                                     },
                                                     {
@@ -485,7 +499,7 @@
                                                         "style": "ha-card {\n  top: -10px;\n  width: 70%;\n  left: 15%;\n}\n",
                                                         "entities": [
                                                             {
-                                                                "entity": "sensor.bazarr_status"
+                                                                "entity": "sensor.bazarr_bar"
                                                             }
                                                         ]
                                                     }
@@ -500,7 +514,7 @@
                                                 "cards": [
                                                     {
                                                         "type": "markdown",
-                                                        "content": "<center><img src=\"/local/Pictures/addons/deluge-ico.png\" width=\"70\"/> <center>Deluge</center>",
+                                                        "content": "<center><img src=\"/local/Pictures/addons/deluge-ico.png\" width=\"70\"/> <center>Deluge</center> <center>{{ states.sensor.docker_torrents_status.state }}</center>",
                                                         "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n}\n"
                                                     },
                                                     {
@@ -537,7 +551,7 @@
                                                         "style": "ha-card {\n  top: -10px;\n  width: 70%;\n  left: 15%;\n}\n",
                                                         "entities": [
                                                             {
-                                                                "entity": "sensor.deluge_status"
+                                                                "entity": "sensor.deluge_bar"
                                                             }
                                                         ]
                                                     }
@@ -552,7 +566,7 @@
                                                 "cards": [
                                                     {
                                                         "type": "markdown",
-                                                        "content": "<center><img src=\"/local/Pictures/addons/ha_dockermon-ico.png\" width=\"70\"/> <center>HA-Dockermon</center>",
+                                                        "content": "<center><img src=\"/local/Pictures/addons/ha_dockermon-ico.png\" width=\"70\"/> <center>Docker Proxy</center><center>{{ states.sensor.docker_dockerproxy_status.state }}</center>",
                                                         "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n}\n"
                                                     },
                                                     {
@@ -589,7 +603,7 @@
                                                         "style": "ha-card {\n  top: -10px;\n  width: 70%;\n  left: 15%;            \n}\n",
                                                         "entities": [
                                                             {
-                                                                "entity": "sensor.ha_dockermon_status"
+                                                                "entity": "sensor.dockerproxy_bar"
                                                             }
                                                         ]
                                                     }
@@ -604,7 +618,7 @@
                                                 "cards": [
                                                     {
                                                         "type": "markdown",
-                                                        "content": "<center><img src=\"/local/Pictures/addons/jackett-ico.png\" width=\"70\"/> <center>Jackett</center>",
+                                                        "content": "<center><img src=\"/local/Pictures/addons/jackett-ico.png\" width=\"70\"/> <center>Jackett</center> <center>{{ states.sensor.docker_jackett_status.state }}</center>",
                                                         "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n}\n"
                                                     },
                                                     {
@@ -641,7 +655,7 @@
                                                         "style": "ha-card {\n  top: -10px;\n  width: 70%;\n  left: 15%;            \n}\n",
                                                         "entities": [
                                                             {
-                                                                "entity": "sensor.jackett_status"
+                                                                "entity": "sensor.jackett_bar"
                                                             }
                                                         ]
                                                     }
@@ -656,7 +670,7 @@
                                                 "cards": [
                                                     {
                                                         "type": "markdown",
-                                                        "content": "<center><img src=\"/local/Pictures/addons/mariadb-ico.png\" width=\"73\"/> <center>MariaDB</center>",
+                                                        "content": "<center><img src=\"/local/Pictures/addons/mariadb-ico.png\" width=\"73\"/> <center>MariaDB</center> <center>{{ states.sensor.docker_mariadb_status.state }}</center>",
                                                         "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n}\n"
                                                     },
                                                     {
@@ -693,7 +707,7 @@
                                                         "style": "ha-card {\n  top: -10px;\n  width: 70%;\n  left: 15%;            \n}\n",
                                                         "entities": [
                                                             {
-                                                                "entity": "sensor.mariadb_status"
+                                                                "entity": "sensor.mariadb_bar"
                                                             }
                                                         ]
                                                     }
@@ -708,13 +722,13 @@
                                                 "cards": [
                                                     {
                                                         "type": "markdown",
-                                                        "content": "<center><img src=\"/local/Pictures/addons/mosquitto_broker-ico.png\" width=\"73\"/> <center>Mosquitto</center>",
+                                                        "content": "<center><img src=\"/local/Pictures/addons/mosquitto_broker-ico.png\" width=\"73\"/> <center>Mosquitto</center> <center>{{ states.sensor.docker_mosquitto_status.state }}</center>",
                                                         "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n}\n"
                                                     },
                                                     {
                                                         "color": "green",
                                                         "decimal": "1",
-                                                        "entity": "sensor.mosquitto_status",
+                                                        "entity": "sensor.mosquitto_bar",
                                                         "entity_row": true,
                                                         "height": "12px",
                                                         "positions": {
@@ -756,13 +770,13 @@
                                                 "cards": [
                                                     {
                                                         "type": "markdown",
-                                                        "content": "<center><img src=\"/local/Pictures/addons/nodered-ico.png\" width=\"73\"/> <center>Node-RED</center>",
+                                                        "content": "<center><img src=\"/local/Pictures/addons/nodered-ico.png\" width=\"73\"/> <center>Node-RED</center> <center>{{ states.sensor.docker_nodered_status.state }}</center>",
                                                         "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n}\n"
                                                     },
                                                     {
                                                         "color": "green",
                                                         "decimal": "1",
-                                                        "entity": "sensor.nodered_status",
+                                                        "entity": "sensor.nodered_bar",
                                                         "entity_row": true,
                                                         "height": "12px",
                                                         "positions": {
@@ -804,13 +818,13 @@
                                                 "cards": [
                                                     {
                                                         "type": "markdown",
-                                                        "content": "<center><img src=\"/local/Pictures/addons/phpmyadmin-ico.png\" width=\"73\"/> <center>phpMyAdmin</center>",
+                                                        "content": "<center><img src=\"/local/Pictures/addons/phpmyadmin-ico.png\" width=\"73\"/> <center>phpMyAdmin</center> <center>{{ states.sensor.docker_phpmyadmin_status.state }}</center>",
                                                         "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n}\n"
                                                     },
                                                     {
                                                         "color": "green",
                                                         "decimal": "1",
-                                                        "entity": "sensor.phpmyadmin_status",
+                                                        "entity": "sensor.phpmyadmin_bar",
                                                         "entity_row": true,
                                                         "height": "12px",
                                                         "min": 0,
@@ -852,13 +866,13 @@
                                                 "cards": [
                                                     {
                                                         "type": "markdown",
-                                                        "content": "<center><img src=\"/local/Pictures/addons/plex-ico.png\" width=\"73\"/> <center>Plex</center>",
+                                                        "content": "<center><img src=\"/local/Pictures/addons/plex-ico.png\" width=\"73\"/> <center>Plex</center> <center>{{ states.sensor.docker_plex_status.state }}</center>",
                                                         "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n}\n"
                                                     },
                                                     {
                                                         "color": "green",
                                                         "decimal": "1",
-                                                        "entity": "sensor.plex_status",
+                                                        "entity": "sensor.plex_bar",
                                                         "entity_row": true,
                                                         "height": "12px",
                                                         "min": 0,
@@ -900,13 +914,13 @@
                                                 "cards": [
                                                     {
                                                         "type": "markdown",
-                                                        "content": "<center><img src=\"/local/Pictures/addons/radarr-ico.png\" width=\"70\"/> <center>Radarr</center>",
+                                                        "content": "<center><img src=\"/local/Pictures/addons/radarr-ico.png\" width=\"70\"/> <center>Radarr</center> <center>{{ states.sensor.docker_radarr_status.state }}</center>",
                                                         "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n}\n"
                                                     },
                                                     {
                                                         "color": "green",
                                                         "decimal": "1",
-                                                        "entity": "sensor.radarr_status",
+                                                        "entity": "sensor.radarr_bar",
                                                         "entity_row": true,
                                                         "height": "12px",
                                                         "min": 0,
@@ -948,13 +962,13 @@
                                                 "cards": [
                                                     {
                                                         "type": "markdown",
-                                                        "content": "<center><img src=\"/local/Pictures/addons/tasmo_admin-ico.png\" width=\"73\"/> <center>Tasmo Admin</center>",
+                                                        "content": "<center><img src=\"/local/Pictures/addons/tasmo_admin-ico.png\" width=\"73\"/> <center>Tasmo Admin</center> <center>{{ states.sensor.docker_tasmoadmin_status.state }}</center>",
                                                         "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n}\n"
                                                     },
                                                     {
                                                         "color": "green",
                                                         "decimal": "1",
-                                                        "entity": "sensor.tasmoadmin_status",
+                                                        "entity": "sensor.tasmoadmin_bar",
                                                         "entity_row": true,
                                                         "height": "12px",
                                                         "positions": {
@@ -996,13 +1010,13 @@
                                                 "cards": [
                                                     {
                                                         "type": "markdown",
-                                                        "content": "<center><img src=\"/local/Pictures/addons/ubuntu-ico.png\" width=\"70\"/> <center>Ubuntu</center>",
+                                                        "content": "<center><img src=\"/local/Pictures/addons/ubuntu-ico.png\" width=\"70\"/> <center>Ubuntu</center> <center>{{ states.sensor.docker_ubuntu_status.state }}</center>",
                                                         "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n}\n"
                                                     },
                                                     {
                                                         "color": "green",
                                                         "decimal": "1",
-                                                        "entity": "sensor.ubuntu_status",
+                                                        "entity": "sensor.ubuntu_bar",
                                                         "entity_row": true,
                                                         "height": "12px",
                                                         "positions": {
@@ -1044,13 +1058,13 @@
                                                 "cards": [
                                                     {
                                                         "type": "markdown",
-                                                        "content": "<center><img src=\"/local/Pictures/addons/unifi-ico.png\" width=\"70\"/> <center>Unifi Controller</center>",
+                                                        "content": "<center><img src=\"/local/Pictures/addons/unifi-ico.png\" width=\"70\"/> <center>Unifi Controller</center> <center>{{ states.sensor.docker_unifi_controller_status.state }}</center>",
                                                         "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n}\n"
                                                     },
                                                     {
                                                         "color": "green",
                                                         "decimal": "1",
-                                                        "entity": "sensor.unifi_controller_status",
+                                                        "entity": "sensor.unifi_controller_bar",
                                                         "entity_row": true,
                                                         "height": "12px",
                                                         "positions": {
@@ -1092,13 +1106,13 @@
                                                 "cards": [
                                                     {
                                                         "type": "markdown",
-                                                        "content": "<center><img src=\"/local/Pictures/addons/watchtower-ico.png\" width=\"70\"/> <center>Watchtower</center>",
+                                                        "content": "<center><img src=\"/local/Pictures/addons/watchtower-ico.png\" width=\"70\"/> <center>Watchtower</center> <center>{{ states.sensor.docker_watchtower_status.state }}</center>",
                                                         "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n}\n"
                                                     },
                                                     {
                                                         "color": "green",
                                                         "decimal": "1",
-                                                        "entity": "sensor.watchtower_status",
+                                                        "entity": "sensor.watchtower_bar",
                                                         "entity_row": true,
                                                         "height": "12px",
                                                         "positions": {
@@ -1140,13 +1154,13 @@
                                                 "cards": [
                                                     {
                                                         "type": "markdown",
-                                                        "content": "<center><img src=\"/local/Pictures/addons/wordpress-ico.png\" width=\"70\"/> <center>Wordpress</center>",
+                                                        "content": "<center><img src=\"/local/Pictures/addons/wordpress-ico.png\" width=\"70\"/> <center>Wordpress</center> <center>{{ states.sensor.docker_wordpress_status.state }}</center>",
                                                         "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n}\n"
                                                     },
                                                     {
                                                         "color": "green",
                                                         "decimal": "1",
-                                                        "entity": "sensor.wordpress_status",
+                                                        "entity": "sensor.wordpress_bar",
                                                         "entity_row": true,
                                                         "height": "12px",
                                                         "positions": {
@@ -1188,13 +1202,13 @@
                                                 "cards": [
                                                     {
                                                         "type": "markdown",
-                                                        "content": "<center><img src=\"/local/Pictures/addons/zigbee-ico.png\" width=\"70\"/> <center>Zigbee2MQTT</center>",
+                                                        "content": "<center><img src=\"/local/Pictures/addons/zigbee-ico.png\" width=\"70\"/> <center>Zigbee2MQTT</center> <center>{{ states.sensor.docker_zigbee2mqtt_status.state }}</center>",
                                                         "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n}\n"
                                                     },
                                                     {
                                                         "color": "green",
                                                         "decimal": "1",
-                                                        "entity": "sensor.zigbee2mqtt_status",
+                                                        "entity": "sensor.zigbee2mqtt_bar",
                                                         "entity_row": true,
                                                         "height": "12px",
                                                         "positions": {
@@ -1236,13 +1250,13 @@
                                                 "cards": [
                                                     {
                                                         "type": "markdown",
-                                                        "content": "<center><img src=\"/local/Pictures/addons/zwave-ico.png\" width=\"70\"/> <center>ZWaveJS2MQTT</center>",
+                                                        "content": "<center><img src=\"/local/Pictures/addons/zwave-ico.png\" width=\"70\"/> <center>ZWaveJS2MQTT</center> <center>{{ states.sensor.docker_zwavejs2mqtt_status.state }}</center>",
                                                         "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n}\n"
                                                     },
                                                     {
                                                         "color": "green",
                                                         "decimal": "1",
-                                                        "entity": "sensor.zwavejs2mqtt_status",
+                                                        "entity": "sensor.zwavejs2mqtt_bar",
                                                         "entity_row": true,
                                                         "height": "12px",
                                                         "positions": {
