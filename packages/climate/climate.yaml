@@ -79,6 +79,10 @@ sensor:
       - elecusagecntlow
       - elecusageflowhigh
       - elecusagecnthigh
+      - elecprodflowlow
+      - elecprodcntlow
+      - elecprodflowhigh
+      - elecprodcnthigh
       - elecsolar
       - elecsolarcnt
       - heat
