@@ -306,6 +306,19 @@
                                     "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
                                 }
                             ]
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "card_type": "energy-distribution",
+                                    "type": "custom:hui-element",
+                                    "style": "ha-card {\n  border-radius: 5px;\n  box-shadow: none;\n  background: none;\n }\n"
+                                }
+                            ],
+                            "style": {
+                                ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                            }
                         }
                     ]
                 },
