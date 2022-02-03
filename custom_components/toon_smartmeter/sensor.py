@@ -69,7 +69,7 @@ SENSOR_TYPES: Final[tuple[SensorEntityDescription, ...]] = (
         icon="mdi:gas-cylinder",
         device_class=DEVICE_CLASS_GAS,
         native_unit_of_measurement=VOLUME_CUBIC_METERS,
-        state_class=STATE_CLASS_TOTAL_INCREASING,
+        state_class=STATE_CLASS_MEASUREMENT,
     ),
     SensorEntityDescription(
         key="gasusedcnt",
@@ -498,7 +498,11 @@ class ToonSmartMeterSensor(SensorEntity):
 
             """zon op toon"""
         elif self._type == "elecsolar":
-            if "dev_3.export" in energy:
+            if "dev_4.export" in energy:
+                self._state = self._validateOutput(
+                    energy["dev_4.export"]["CurrentElectricityFlow"]
+                )
+            elif "dev_3.export" in energy:
                 self._state = self._validateOutput(
                     energy["dev_3.export"]["CurrentElectricityFlow"]
                 )
@@ -517,7 +521,11 @@ class ToonSmartMeterSensor(SensorEntity):
 
             """zon op toon teller"""
         elif self._type == "elecsolarcnt":
-            if "dev_3.export" in energy:
+            if "dev_4.export" in energy:
+                self._state = self._validateOutput(
+                    float(energy["dev_4.export"]["CurrentElectricityQuantity"]) / 1000
+                )
+            elif "dev_3.export" in energy:
                 self._state = self._validateOutput(
                     float(energy["dev_3.export"]["CurrentElectricityQuantity"]) / 1000
                 )
