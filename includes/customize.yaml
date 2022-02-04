@@ -156,3 +156,22 @@ zone.home:
 
 input_select.pihole_time:
   entity_picture: /local/Custom_Icons/pihole-ico.png
+
+#================================  
+# Github
+#================================
+
+sensor.dbloom86_homeassistant_forks:
+  unit_of_measurement: ""
+
+sensor.dbloom86_homeassistant_issues:
+  unit_of_measurement: ""
+
+sensor.dbloom86_homeassistant_pull_requests:
+  unit_of_measurement: ""
+
+sensor.dbloom86_homeassistant_stars:
+  unit_of_measurement: ""
+
+sensor.dbloom86_homeassistant_watchers:
+  unit_of_measurement: ""
