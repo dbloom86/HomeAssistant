@@ -3041,7 +3041,7 @@
                 },
                 {
                     "icon": "mdi:power-plug",
-                    "path": "Power Usage",
+                    "path": "Power_Usage",
                     "title": "",
                     "visible": [
                         {
