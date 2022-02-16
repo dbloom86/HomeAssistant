@@ -149,7 +149,7 @@
       state: 'on'
   action:
     service: light.turn_on
-    entity_id: light.woonkamer_lampen
+    entity_id: light.lampen_woonkamer
   id: 5b9dad4d6h8g49258a3a9502cd0a116a
 
 - alias: Turn on Lamp Bank at sunset when not home
@@ -215,7 +215,7 @@
     offset: 00:15:00
   condition:
     - condition: state
-      entity_id: light.woonkamer_lampen
+      entity_id: light.lampen_woonkamer
       state: 'on'
   action:
     service: light.turn_off

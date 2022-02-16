@@ -109,13 +109,25 @@
                                 },
                                 {
                                     "type": "custom:button-card",
-                                    "name": "Home Security",
+                                    "name": "Security",
                                     "icon": "mdi:security",
                                     "aspect_ratio": "1/1",
                                     "show_label": true,
                                     "tap_action": {
                                         "action": "navigate",
                                         "navigation_path": "/lovelace-mobile/home-security"
+                                    },
+                                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                                },
+                                {
+                                    "type": "custom:button-card",
+                                    "name": "Energie",
+                                    "icon": "mdi:lightning-bolt",
+                                    "aspect_ratio": "1/1",
+                                    "show_label": true,
+                                    "tap_action": {
+                                        "action": "navigate",
+                                        "navigation_path": "/lovelace-mobile/energy-mobile"
                                     },
                                     "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
                                 }
@@ -306,19 +318,6 @@
                                     "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
                                 }
                             ]
-                        },
-                        {
-                            "type": "entities",
-                            "entities": [
-                                {
-                                    "card_type": "energy-distribution",
-                                    "type": "custom:hui-element",
-                                    "style": "ha-card {\n  border-radius: 5px;\n  box-shadow: none;\n  background: none;\n }\n"
-                                }
-                            ],
-                            "style": {
-                                ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
-                            }
                         }
                     ]
                 },
@@ -3332,6 +3331,232 @@
                                     }
                                 ]
                             }
+                        }
+                    ]
+                },
+                {
+                    "title": "Energy-Mobile",
+                    "path": "energy-mobile",
+                    "icon": "mdi:lightning-bolt",
+                    "visible": [
+                        {
+                            "user": "edf6650cd84b44ba853cfd5ba02fa72c"
+                        },
+                        {
+                            "user": "914ff3c93def4ff6a59b7eb6296ef2d3"
+                        },
+                        {
+                            "user": "13dccb69229d47919faec8fa377f33c9"
+                        }
+                    ],
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "custom:button-card",
+                            "color_type": "label-card",
+                            "color": "var(--ha-card-background)",
+                            "name": "Home",
+                            "tap_action": {
+                                "action": "navigate",
+                                "navigation_path": "/lovelace-mobile/mobile"
+                            },
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "card_type": "energy-distribution",
+                                    "type": "custom:hui-element",
+                                    "style": "ha-card {\n  border-radius: 5px;\n  box-shadow: none;\n  background: none;\n }\n"
+                                }
+                            ],
+                            "style": {
+                                ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                            }
+                        },
+                        {
+                            "align_state": "left",
+                            "entities": [
+                                {
+                                    "entity": "sensor.power_usage"
+                                },
+                                {
+                                    "entity": "input_number.nighttime",
+                                    "color": "#046bd1",
+                                    "show_line": false,
+                                    "show_points": false,
+                                    "show_legend": false,
+                                    "y_axis": "secondary"
+                                }
+                            ],
+                            "color_thresholds": [
+                                {
+                                    "value": 0,
+                                    "color": "#00e64d"
+                                },
+                                {
+                                    "value": 1500,
+                                    "color": "#ff4d4d"
+                                }
+                            ],
+                            "color_thresholds_transition": "hard",
+                            "upper_bound_secondary": 1,
+                            "lower_bound_secondary": 0,
+                            "font_size": 80,
+                            "font_size_header": 15,
+                            "update_interval": 30,
+                            "height": 75,
+                            "hour24": true,
+                            "hours_to_show": 24,
+                            "icon": "mdi:gauge",
+                            "name": "Energie Gebruik",
+                            "points_per_hour": 6,
+                            "line_width": 2,
+                            "show": {
+                                "extrema": true,
+                                "icon": false,
+                                "labels": false,
+                                "labels_secondary": false,
+                                "name": false,
+                                "average": true,
+                                "state": true
+                            },
+                            "style": {
+                                ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}     \n"
+                            },
+                            "type": "custom:mini-graph-card"
+                        },
+                        {
+                            "type": "vertical-stack",
+                            "cards": [
+                                {
+                                    "type": "horizontal-stack",
+                                    "cards": [
+                                        {
+                                            "type": "custom:mini-graph-card",
+                                            "align_state": "left",
+                                            "entities": [
+                                                {
+                                                    "entity": "sensor.shelly_shplg_s_9a53ab_current_consumption",
+                                                    "color": "#3399ff"
+                                                }
+                                            ],
+                                            "font_size": 80,
+                                            "font_size_header": 15,
+                                            "height": 85,
+                                            "hour24": true,
+                                            "hours_to_show": 24,
+                                            "icon": "mdi:gauge",
+                                            "points_per_hour": 6,
+                                            "line_width": 4,
+                                            "show": {
+                                                "extrema": false,
+                                                "icon": true,
+                                                "labels": false,
+                                                "name": true,
+                                                "average": false,
+                                                "state": true
+                                            },
+                                            "style": {
+                                                ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                                            }
+                                        },
+                                        {
+                                            "type": "custom:mini-graph-card",
+                                            "align_state": "left",
+                                            "entities": [
+                                                {
+                                                    "entity": "sensor.shelly_shplg_s_9a5381_current_consumption",
+                                                    "color": "#3399ff"
+                                                }
+                                            ],
+                                            "font_size": 80,
+                                            "font_size_header": 15,
+                                            "height": 85,
+                                            "hour24": true,
+                                            "hours_to_show": 24,
+                                            "icon": "mdi:gauge",
+                                            "points_per_hour": 6,
+                                            "line_width": 4,
+                                            "show": {
+                                                "extrema": false,
+                                                "icon": true,
+                                                "labels": false,
+                                                "name": true,
+                                                "average": false,
+                                                "state": true
+                                            },
+                                            "style": {
+                                                ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "horizontal-stack",
+                                    "cards": [
+                                        {
+                                            "type": "custom:mini-graph-card",
+                                            "align_state": "left",
+                                            "entities": [
+                                                {
+                                                    "entity": "sensor.shelly_shplg_s_9d9823_current_consumption",
+                                                    "color": "#3399ff"
+                                                }
+                                            ],
+                                            "font_size": 80,
+                                            "font_size_header": 15,
+                                            "height": 85,
+                                            "hour24": true,
+                                            "hours_to_show": 24,
+                                            "icon": "mdi:gauge",
+                                            "points_per_hour": 6,
+                                            "line_width": 4,
+                                            "show": {
+                                                "extrema": false,
+                                                "icon": true,
+                                                "labels": false,
+                                                "name": true,
+                                                "average": false,
+                                                "state": true
+                                            },
+                                            "style": {
+                                                ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                                            }
+                                        },
+                                        {
+                                            "type": "custom:mini-graph-card",
+                                            "align_state": "left",
+                                            "entities": [
+                                                {
+                                                    "entity": "sensor.shelly_shsw_pm_98cdac1f389e_current_consumption",
+                                                    "color": "#3399ff"
+                                                }
+                                            ],
+                                            "font_size": 80,
+                                            "font_size_header": 15,
+                                            "height": 85,
+                                            "hour24": true,
+                                            "hours_to_show": 24,
+                                            "icon": "mdi:gauge",
+                                            "points_per_hour": 6,
+                                            "line_width": 4,
+                                            "show": {
+                                                "extrema": false,
+                                                "icon": true,
+                                                "labels": false,
+                                                "name": true,
+                                                "average": false,
+                                                "state": true
+                                            },
+                                            "style": {
+                                                ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
                         }
                     ]
                 }
