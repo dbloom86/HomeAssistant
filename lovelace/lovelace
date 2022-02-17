@@ -1722,93 +1722,17 @@
                                                     "type": "entities",
                                                     "entities": [
                                                         {
-                                                            "entity": "sensor.dbloom86_homeassistant_stars",
-                                                            "type": "custom:multiple-entity-row",
-                                                            "name": "dbloom86/homeassistant",
-                                                            "state_color": true,
+                                                            "type": "custom:github-entity-row",
+                                                            "repo": "dbloom86/homeassistant",
+                                                            "name": "Home Assistant Config",
                                                             "style": {
                                                                 "hui-generic-entity-row": {
                                                                     "$": "state-badge {\n  display: none !important;\n}\n"
                                                                 }
-                                                            },
-                                                            "entities": [
-                                                                {
-                                                                    "entity": "sensor.dbloom86_homeassistant_issues",
-                                                                    "icon": "mdi:alert-circle-outline",
-                                                                    "name": false,
-                                                                    "styles": {
-                                                                        "width": "10px",
-                                                                        "--paper-item-icon-color": "#0066cc"
-                                                                    }
-                                                                },
-                                                                {
-                                                                    "entity": "sensor.dbloom86_homeassistant_issues",
-                                                                    "name": false,
-                                                                    "styles": {
-                                                                        "width": "10px"
-                                                                    }
-                                                                },
-                                                                {
-                                                                    "entity": "sensor.dbloom86_homeassistant_forks",
-                                                                    "icon": "mdi:source-branch",
-                                                                    "name": false,
-                                                                    "styles": {
-                                                                        "width": "10px",
-                                                                        "--paper-item-icon-color": "#0066cc"
-                                                                    }
-                                                                },
-                                                                {
-                                                                    "entity": "sensor.dbloom86_homeassistant_forks",
-                                                                    "name": false,
-                                                                    "styles": {
-                                                                        "width": "10px"
-                                                                    }
-                                                                },
-                                                                {
-                                                                    "entity": "sensor.dbloom86_homeassistant_pull_requests",
-                                                                    "icon": "mdi:source-pull",
-                                                                    "name": false,
-                                                                    "styles": {
-                                                                        "width": "10px",
-                                                                        "--paper-item-icon-color": "#0066cc"
-                                                                    }
-                                                                },
-                                                                {
-                                                                    "entity": "sensor.dbloom86_homeassistant_pull_requests",
-                                                                    "name": false,
-                                                                    "styles": {
-                                                                        "width": "10px"
-                                                                    }
-                                                                },
-                                                                {
-                                                                    "entity": "sensor.dbloom86_homeassistant_watchers",
-                                                                    "icon": "mdi:incognito-circle",
-                                                                    "name": false,
-                                                                    "styles": {
-                                                                        "width": "10px",
-                                                                        "--paper-item-icon-color": "#0066cc"
-                                                                    }
-                                                                },
-                                                                {
-                                                                    "entity": "sensor.dbloom86_homeassistant_watchers",
-                                                                    "name": false,
-                                                                    "styles": {
-                                                                        "width": "10px"
-                                                                    }
-                                                                },
-                                                                {
-                                                                    "entity": "sensor.dbloom86_homeassistant_stars",
-                                                                    "icon": "mdi:star",
-                                                                    "name": false,
-                                                                    "styles": {
-                                                                        "width": "10px",
-                                                                        "--paper-item-icon-color": "#0066cc"
-                                                                    }
-                                                                }
-                                                            ]
+                                                            }
                                                         }
                                                     ],
-                                                    "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  width: 155%;\n  left: -60%;\n}\n"
+                                                    "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  width: 150%;\n  left: -55%;\n}\n"
                                                 }
                                             ],
                                             "style": "ha-card {\n  border: solid 2px var(--primary-color);\n  height: 97%;\n}\n"
@@ -3785,6 +3709,86 @@
                                     "action": "none"
                                 }
                             }
+                        }
+                    ]
+                },
+                {
+                    "title": "plex-films",
+                    "path": "plex-films",
+                    "icon": "mdi:plex",
+                    "type": "panel",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "custom:plex-meets-homeassistant",
+                            "protocol": "https",
+                            "sort": "titleSort:asc",
+                            "displayType": "",
+                            "playTrailer": true,
+                            "showExtras": true,
+                            "showSearch": true,
+                            "ip": "plex.bloomlan.nl",
+                            "token": "fpyoeZynbVMjsPxs4Mo9",
+                            "port": "",
+                            "libraryName": "Films",
+                            "entity": [
+                                "cast | media_player.woonkamer_tv"
+                            ],
+                            "maxCount": "",
+                            "maxRows": "",
+                            "useHorizontalScroll": "No",
+                            "useShuffle": "No",
+                            "displayTitleMain": "Yes",
+                            "displaySubtitleMain": "Yes",
+                            "minWidth": "",
+                            "minEpisodeWidth": "",
+                            "minExpandedWidth": "",
+                            "fontSize1": "",
+                            "fontSize2": "",
+                            "fontSize3": "",
+                            "fontSize4": "",
+                            "minExpandedHeight": "",
+                            "title": ""
+                        }
+                    ]
+                },
+                {
+                    "title": "plex-series",
+                    "path": "plex-series",
+                    "icon": "mdi:plex",
+                    "type": "panel",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "custom:plex-meets-homeassistant",
+                            "protocol": "https",
+                            "sort": "",
+                            "displayType": "",
+                            "playTrailer": true,
+                            "showExtras": true,
+                            "showSearch": true,
+                            "ip": "plex.bloomlan.nl",
+                            "token": "fpyoeZynbVMjsPxs4Mo9",
+                            "port": "",
+                            "libraryName": "TV Series",
+                            "entity": [
+                                "cast | media_player.woonkamer_tv"
+                            ],
+                            "maxCount": "",
+                            "maxRows": "",
+                            "useHorizontalScroll": "No",
+                            "useShuffle": "No",
+                            "displayTitleMain": "Yes",
+                            "displaySubtitleMain": "Yes",
+                            "minWidth": "",
+                            "minEpisodeWidth": "",
+                            "minExpandedWidth": "",
+                            "fontSize1": "",
+                            "fontSize2": "",
+                            "fontSize3": "",
+                            "fontSize4": "",
+                            "minExpandedHeight": "",
+                            "title": ""
                         }
                     ]
                 }

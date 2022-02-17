@@ -588,6 +588,59 @@
                             "cards": [
                                 {
                                     "type": "custom:button-card",
+                                    "name": "Films",
+                                    "icon": "mdi:movie-open",
+                                    "aspect_ratio": "1/1",
+                                    "show_label": true,
+                                    "tap_action": {
+                                        "action": "navigate",
+                                        "navigation_path": "/lovelace-mobile/films"
+                                    },
+                                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                                },
+                                {
+                                    "type": "custom:button-card",
+                                    "name": "Series",
+                                    "icon": "mdi:television-classic",
+                                    "aspect_ratio": "1/1",
+                                    "show_label": true,
+                                    "tap_action": {
+                                        "action": "navigate",
+                                        "navigation_path": "/lovelace-mobile/series"
+                                    },
+                                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                                },
+                                {
+                                    "type": "custom:button-card",
+                                    "name": "Kids Films",
+                                    "icon": "mdi:movie-open-outline",
+                                    "aspect_ratio": "1/1",
+                                    "show_label": true,
+                                    "tap_action": {
+                                        "action": "navigate",
+                                        "navigation_path": "/lovelace-mobile/kids-films"
+                                    },
+                                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                                },
+                                {
+                                    "type": "custom:button-card",
+                                    "name": "Kids Series",
+                                    "icon": "mdi:television",
+                                    "aspect_ratio": "1/1",
+                                    "show_label": true,
+                                    "tap_action": {
+                                        "action": "navigate",
+                                        "navigation_path": "/lovelace-mobile/kids-series"
+                                    },
+                                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "horizontal-stack",
+                            "cards": [
+                                {
+                                    "type": "custom:button-card",
                                     "entity": "light.lamp_bank_hoek",
                                     "aspect_ratio": "1/1",
                                     "name": "Lamp Bank",
@@ -3557,6 +3610,162 @@
                                     ]
                                 }
                             ]
+                        }
+                    ]
+                },
+                {
+                    "title": "Films",
+                    "path": "films",
+                    "icon": "mdi:movie-open",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "custom:plex-meets-homeassistant",
+                            "protocol": "https",
+                            "sort": "titleSort:asc",
+                            "displayType": "",
+                            "playTrailer": true,
+                            "showExtras": true,
+                            "showSearch": true,
+                            "ip": "plex.bloomlan.nl",
+                            "token": "fpyoeZynbVMjsPxs4Mo9",
+                            "port": "",
+                            "libraryName": "Films",
+                            "entity": [
+                                "cast | media_player.woonkamer_tv"
+                            ],
+                            "maxCount": "",
+                            "maxRows": "",
+                            "useHorizontalScroll": "No",
+                            "useShuffle": "No",
+                            "displayTitleMain": "Yes",
+                            "displaySubtitleMain": "Yes",
+                            "minWidth": "",
+                            "minEpisodeWidth": "",
+                            "minExpandedWidth": "",
+                            "fontSize1": "",
+                            "fontSize2": "",
+                            "fontSize3": "",
+                            "fontSize4": "",
+                            "minExpandedHeight": "",
+                            "title": ""
+                        }
+                    ]
+                },
+                {
+                    "title": "series",
+                    "path": "series",
+                    "icon": "mdi:television-classic",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "custom:plex-meets-homeassistant",
+                            "protocol": "https",
+                            "sort": "titleSort:asc",
+                            "displayType": "",
+                            "playTrailer": true,
+                            "showExtras": true,
+                            "showSearch": true,
+                            "ip": "plex.bloomlan.nl",
+                            "token": "fpyoeZynbVMjsPxs4Mo9",
+                            "port": "",
+                            "libraryName": "TV Series",
+                            "entity": [
+                                "cast | media_player.woonkamer_tv"
+                            ],
+                            "maxCount": "",
+                            "maxRows": "",
+                            "useHorizontalScroll": "No",
+                            "useShuffle": "No",
+                            "displayTitleMain": "Yes",
+                            "displaySubtitleMain": "Yes",
+                            "minWidth": "",
+                            "minEpisodeWidth": "",
+                            "minExpandedWidth": "",
+                            "fontSize1": "",
+                            "fontSize2": "",
+                            "fontSize3": "",
+                            "fontSize4": "",
+                            "minExpandedHeight": "",
+                            "title": ""
+                        }
+                    ]
+                },
+                {
+                    "title": "kids-films",
+                    "path": "kids-films",
+                    "icon": "mdi:movie-open-outline",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "custom:plex-meets-homeassistant",
+                            "protocol": "https",
+                            "sort": "titleSort:asc",
+                            "displayType": "",
+                            "playTrailer": true,
+                            "showExtras": true,
+                            "showSearch": true,
+                            "ip": "plex.bloomlan.nl",
+                            "token": "fpyoeZynbVMjsPxs4Mo9",
+                            "port": "",
+                            "libraryName": "Kids Films",
+                            "entity": [
+                                "cast | media_player.woonkamer_tv"
+                            ],
+                            "maxCount": "",
+                            "maxRows": "",
+                            "useHorizontalScroll": "No",
+                            "useShuffle": "No",
+                            "displayTitleMain": "Yes",
+                            "displaySubtitleMain": "Yes",
+                            "minWidth": "",
+                            "minEpisodeWidth": "",
+                            "minExpandedWidth": "",
+                            "fontSize1": "",
+                            "fontSize2": "",
+                            "fontSize3": "",
+                            "fontSize4": "",
+                            "minExpandedHeight": "",
+                            "title": ""
+                        }
+                    ]
+                },
+                {
+                    "title": "kids-series",
+                    "path": "kids-series",
+                    "icon": "mdi:television",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "custom:plex-meets-homeassistant",
+                            "protocol": "https",
+                            "sort": "titleSort:asc",
+                            "displayType": "",
+                            "playTrailer": true,
+                            "showExtras": true,
+                            "showSearch": true,
+                            "ip": "plex.bloomlan.nl",
+                            "token": "fpyoeZynbVMjsPxs4Mo9",
+                            "port": "",
+                            "libraryName": "Kids Series",
+                            "entity": [
+                                "cast | media_player.woonkamer_tv"
+                            ],
+                            "maxCount": "",
+                            "maxRows": "",
+                            "useHorizontalScroll": "No",
+                            "useShuffle": "No",
+                            "displayTitleMain": "Yes",
+                            "displaySubtitleMain": "Yes",
+                            "minWidth": "",
+                            "minEpisodeWidth": "",
+                            "minExpandedWidth": "",
+                            "fontSize1": "",
+                            "fontSize2": "",
+                            "fontSize3": "",
+                            "fontSize4": "",
+                            "minExpandedHeight": "",
+                            "title": ""
                         }
                     ]
                 }
