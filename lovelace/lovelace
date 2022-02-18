@@ -2519,7 +2519,7 @@
                                         "cards": [
                                             {
                                                 "type": "picture",
-                                                "image": "/local/Pictures/Network/nmap-logo.png",
+                                                "image": "/local/Pictures/Network/unifi-ico.png",
                                                 "style": "ha-card {\n  width: 150px;\n  left: 20%;\n  top: 35%;\n  background: none;\n  box-shadow: none;\n}\n"
                                             },
                                             {

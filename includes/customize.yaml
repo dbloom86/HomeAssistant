@@ -179,3 +179,34 @@ sensor.dbloom86_homeassistant_stars:
 
 sensor.dbloom86_homeassistant_watchers:
   unit_of_measurement: ""
+
+#================================  
+# Network
+#================================
+
+device_tracker.ap_zolder:
+  entity_picture: /local/Custom_Icons/unifi-ap-ico.png
+
+device_tracker.shellyplug_s_9d9823:
+  entity_picture: /local/Custom_Icons/wasmachine-ico.png
+
+device_tracker.shelly1_40f520009959:
+  entity_picture: /local/Custom_Icons/spotjes-dakkapel-ico.png
+  
+device_tracker.unifi_ac_5f_ea_51_73_89_default:
+  entity_picture: /local/Custom_Icons/oneplus_nord-ico.png
+
+device_tracker.shelly1pm_98cdac1f389e:
+  entity_picture: /local/Custom_Icons/droger-ico.png
+
+device_tracker.shellyplug_s_9a5381:
+  entity_picture: /local/Custom_Icons/remeha_avanta-ico.png
+
+device_tracker.light_desk_1_5756:
+  entity_picture: /local/Custom_Icons/bureaulamp-ico.png
+
+device_tracker.light_desk_2_0481:
+  entity_picture: /local/Custom_Icons/bureaulamp-ico.png
+
+device_tracker.light_desk_3_1159:
+  entity_picture: /local/Custom_Icons/bureaulamp-ico.png
