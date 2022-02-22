@@ -210,3 +210,12 @@ device_tracker.light_desk_2_0481:
 
 device_tracker.light_desk_3_1159:
   entity_picture: /local/Custom_Icons/bureaulamp-ico.png
+
+device_tracker.ual6:
+  entity_picture: /local/Custom_Icons/unifi-ap-ico.png
+
+device_tracker.ap_woonkamer:
+  entity_picture: /local/Custom_Icons/unifi-ap-ico.png
+
+device_tracker.rockrobo:
+  entity_picture: /local/Custom_Icons/miep.png
