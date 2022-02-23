@@ -219,3 +219,30 @@ device_tracker.ap_woonkamer:
 
 device_tracker.rockrobo:
   entity_picture: /local/Custom_Icons/miep.png
+
+device_tracker.a51_van_sabrine:
+  entity_picture: /local/Custom_Icons/telefoon_sabrine-ico.png
+
+device_tracker.shellyplug_s_9a53ab:
+  entity_picture: /local/Custom_Icons/boiler-ico.png
+
+device_tracker.chromecast:
+  entity_picture: /local/Custom_Icons/chromecast-ico.png
+
+device_tracker.google_nest_mini:
+  entity_picture: /local/Custom_Icons/nest-mini-ico.png
+
+device_tracker.unifi_40_f5_20_00_c4_49_default:
+  entity_picture: /local/Custom_Icons/lampjes_overkapping-ico.png
+
+device_tracker.unifi_dc_68_eb_08_aa_af_default:
+  entity_picture: /local/Custom_Icons/nintendo_switch-ico.png
+
+device_tracker.siemens_wm14t6h6nl_68a40e33a45a:
+  entity_picture: /local/Custom_Icons/wasmachine-ico.png
+
+device_tracker.surface_duncan:
+  entity_picture: /local/Custom_Icons/surface-laptop-ico.png
+
+device_tracker.unifi_dc_ef_ca_a9_60_5f_default:
+  entity_picture: /local/Custom_Icons/toon-ico.png
