@@ -1,7 +1,7 @@
 "use strict";
 
 // VERSION info
-var VERSION = "0.6.1";
+var VERSION = "0.7.1";
 
 // typical [[1,2,3], [6,7,8]] to [[1, 6], [2, 7], [3, 8]] converter
 var transpose = m => m[0].map((x, i) => m.map(x => x[i]));
@@ -191,7 +191,7 @@ class DataRow {
             // THIS WILL BE BREAKING OLD STUFF, INTRODUCE DEPRECATION WARNINGS!!!!!
             if ("data" in col) {
                 for (let tok of col.data.split(","))
-                    col_getter.push(["auto", tok]);
+                    col_getter.push(["auto", tok.trim()]);
 
             // OLD data source selection: CALL DEPRECATION WARNING HERE!!!
             // start with console.log(), continue with console.warn(), console.error()
@@ -223,7 +223,8 @@ class DataRow {
 
                 // newest stuff, automatically dispatch to correct data source
                 if (col_type == "auto") {
-                    if (col_key == "name") {
+                    if (col_key === "name") {
+                        // "smart" name determination
                         if ("friendly_name" in this.entity.attributes)
                             raw_content.push(this.entity.attributes.friendly_name);
                         else if ("name" in this.entity)
@@ -232,18 +233,38 @@ class DataRow {
                             raw_content.push(this.entity.attributes.name);
                         else
                             raw_content.push(this.entity.entity_id);
-                    } else if (col_key == "object_id") {
+                    } else if (col_key === "object_id") {
+                        // return Object ID ('entity_id' after 1st dot)
                         raw_content.push(this.entity.entity_id.split(".").slice(1).join("."));
+                    } else if (col_key === "_state" && "state" in this.entity.attributes) {
+                        // '_state' denotes 'attributes.state'
+                        raw_content.push(this.entity.attributes.state);
+                    } else if (col_key === "icon") {
+                        // 'icon' will show the entity's default icon
+                        let _icon = this.entity.attributes.icon;
+                        raw_content.push(`<ha-icon id="icon" icon="${_icon}"></ha-icon>`);
                     } else if (col_key in this.entity) {
+                        // easy direct member of entity
                         raw_content.push(this.entity[col_key]);
+                    } else if (col_key in this.entity.attributes) {
+                        // finally fall back to '.attributes' member
+                        raw_content.push(this.entity.attributes[col_key]);
                     } else {
-                        raw_content.push(((col_key in this.entity.attributes) ?
-                            this.entity.attributes[col_key] : null));
+                        // no matching data found, complain:
+                        //raw_content.push("[[ no match ]]");
+                        raw_content.push(null);
                     }
+
+                    // @todo: not really nice to clean `raw_content` up here, why
+                    //        putting garbage in it in the 1st place? Need to check
+                    //        if this is ever executed, since the data-collection
+                    //        improvements...
+                    /*raw_content = raw_content.filter(
+                        (item) => item !== undefined && item.slice(0, 9) !== 'undefined'
+                    );*/
 
                     // technically all of the above might be handled as list
                     this.has_multiple = Array.isArray(raw_content.slice(-1)[0]);
-
 
                 ////////// ALL OF THE FOLLOWING TO BE REMOVED ONCE DEPRECATION IS REALIZED....
                 //
@@ -278,8 +299,10 @@ class DataRow {
                 //
                 ////////// ... REMOVAL UNTIL THIS POINT HERE (DUE TO DEPRECATION)
 
-                } else
+                } else {
                     console.error(`no selector found for col: ${col.name} - skipping...`);
+                    //raw_content.push("[failed selecting data]");
+                }
             }
             /* finally concat all raw_contents together using 'col.multi_delimiter' */
             let delim = (col.multi_delimiter) ? col.multi_delimiter : " ";
@@ -399,7 +422,7 @@ class FlexTableCard extends HTMLElement {
         // CSS styles as assoc-data to allow seperate updates by key, i.e., css-selector
         var css_styles = {
             "table":                    "width: 100%; padding: 16px; ",
-            "thead th":                 "text-align: left; height: 1em;",
+            "thead th":                 "height: 1em;",
             "tr td":                    "padding-left: 0.5em; padding-right: 0.5em; ",
             "th":                       "padding-left: 0.5em; padding-right: 0.5em; ",
             "tr td.left":               "text-align: left; ",
