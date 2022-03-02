@@ -228,12 +228,12 @@
     entity_id: binary_sensor.telefoon_duncan_is_aan_het_opladen
     to: 'off'
     for:
-      minutes: 5
+      minutes: 10
   - platform: state
     entity_id: binary_sensor.telefoon_sabrine_is_aan_het_opladen
     to: 'off'
     for:
-      minutes: 5
+      minutes: 10
   - platform: state
     entity_id: group.ouders
     from: 'not_home'
