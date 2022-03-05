@@ -109,6 +109,7 @@ bloom-theme-dark:
   lumo-body-text-color: var(--primary-text-color)  # see https://github.com/basnijholt/lovelace-ios-dark-mode-theme/issues/42
   app-header-background-color: rgba(155, 155, 155, 0.8)
   markdown-code-background-color: "#464646"
+  input-fill-color: rgba(0, 0, 0, 0)
   # Custom
   bar-card-border-radius: 3px
   mcg-title-letter-spacing: .0em
