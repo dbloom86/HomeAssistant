@@ -112,7 +112,8 @@ sensor.sonoff_newest_version:
   entity_picture: /local/Custom_Icons/Tasmota-3d-icon.png
   
 switch.upgrade_tasmota_firmware:
-  entity_picture: /local/Custom_Icons/upgrade-ico.png  
+  entity_picture: /local/Custom_Icons/upgrade-ico.png
+  assumed_state: false
   
 sensor.bureaulamp_1_firmware:
   entity_picture: /local/Custom_Icons/bureaulamp-ico.png  

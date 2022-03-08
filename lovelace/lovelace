@@ -2837,15 +2837,15 @@
                                     "text": "Firmware"
                                 },
                                 {
+                                    "entity": "sensor.sonoff_newest_version",
+                                    "name": "Sonoff / Tasmota latest version"
+                                },
+                                {
                                     "entity": "sensor.tasmota_devices_needing_upgrade",
                                     "name": "Tasmota Devices Needing Upgrade"
                                 },
                                 {
                                     "entity": "switch.upgrade_tasmota_firmware"
-                                },
-                                {
-                                    "entity": "sensor.sonoff_newest_version",
-                                    "name": "Sonoff / Tasmota latest version"
                                 },
                                 {
                                     "entity": "sensor.outdated_shelly_devices",

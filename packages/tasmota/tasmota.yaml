@@ -9,13 +9,12 @@
 switch:
 
   - platform: mqtt
-    state_topic: "stat/tasmotas/upgrade"
+    state_topic: "state/tasmotas/upgrade"
     command_topic: "cmnd/tasmotas/upgrade"
-    availability:
-      - topic: "stat/tasmotas/upgrade"
     payload_on: "1"
     payload_off: "0"
     name: Upgrade Tasmota Firmware
+    optimistic: true
 
   #============
   # Scripts
@@ -30,6 +29,7 @@ script:
           data:
             topic: "cmnd/tasmotas/status"
             payload: "2"
+            retain: true
 
   #============
   # Automations
