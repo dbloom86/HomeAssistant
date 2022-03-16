@@ -247,3 +247,6 @@ device_tracker.surface_duncan:
 
 device_tracker.unifi_dc_ef_ca_a9_60_5f_default:
   entity_picture: /local/Custom_Icons/toon-ico.png
+
+device_tracker.wii:
+  entity_picture: /local/Custom_Icons/wii-ico.png
