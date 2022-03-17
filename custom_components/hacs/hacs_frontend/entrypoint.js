@@ -1,9 +1,9 @@
 
 try {
-  new Function("import('/hacsfiles/frontend/main-def8a0ab.js')")();
+  new Function("import('/hacsfiles/frontend/main-25487c89.js')")();
 } catch (err) {
   var el = document.createElement('script');
-  el.src = '/hacsfiles/frontend/main-def8a0ab.js';
+  el.src = '/hacsfiles/frontend/main-25487c89.js';
   el.type = 'module';
   document.body.appendChild(el);
 }

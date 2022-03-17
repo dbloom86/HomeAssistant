@@ -66,6 +66,8 @@ class HACSSensor(SensorEntity):
     @callback
     def _update(self) -> None:
         """Update the sensor."""
+        if self.hacs.status.background_task:
+            return
 
         repositories = [
             repository
@@ -88,5 +90,5 @@ class HACSSensor(SensorEntity):
     async def async_added_to_hass(self) -> None:
         """Register for status events."""
         self.async_on_remove(
-            self.hass.bus.async_listen("hacs/repository", self._update_and_write_state)
+            self.hass.bus.async_listen("hacs/status", self._update_and_write_state)
         )
