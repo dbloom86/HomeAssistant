@@ -2890,6 +2890,65 @@
                             "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
                         },
                         {
+                            "type": "custom:button-card",
+                            "aspect_ratio": "6/1",
+                            "entity": "automation.vacuum_kitchen_and_living",
+                            "name": "Automatisch Stofzuigen",
+                            "entity_picture": "/local/Custom_Icons/miep.png",
+                            "size": "20%",
+                            "layout": "icon_name_state",
+                            "show_state": true,
+                            "show_entity_picture": true,
+                            "styles": {
+                                "card": [
+                                    {
+                                        "background-color": "var(--ha-card-background)"
+                                    }
+                                ],
+                                "name": [
+                                    {
+                                        "justify-self": "start"
+                                    },
+                                    {
+                                        "font-size": "15px"
+                                    },
+                                    {
+                                        "align-items": "middle"
+                                    },
+                                    {
+                                        "margin-left": "-15%"
+                                    }
+                                ],
+                                "entity_picture": [
+                                    {
+                                        "margin-left": "-20%"
+                                    }
+                                ]
+                            },
+                            "state": [
+                                {
+                                    "value": "off",
+                                    "styles": {
+                                        "card": [
+                                            {
+                                                "filter": "opacity(50%)"
+                                            }
+                                        ],
+                                        "icon": [
+                                            {
+                                                "filter": "grayscale(100%)"
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "value": "on",
+                                    "styles": null
+                                }
+                            ],
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        },
+                        {
                             "type": "custom:mod-card",
                             "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n",
                             "card": {
