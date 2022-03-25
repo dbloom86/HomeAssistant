@@ -58,7 +58,7 @@ automation:
         target:
           device_id: 3cfc8e892445437eb9649e411d74542a
         data:
-          volume_level: 0.02
+          volume_level: 0.03
       - service: media_player.media_play
         target:
           device_id: 3cfc8e892445437eb9649e411d74542a
