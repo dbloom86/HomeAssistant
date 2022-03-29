@@ -6,7 +6,7 @@ from datetime import timedelta
 from homeassistant.core import HomeAssistant
 
 from ..base import HacsBase
-from ..enums import HacsDisabledReason, HacsStage
+from ..enums import HacsDisabledReason
 from .base import HacsTask
 
 
@@ -19,18 +19,14 @@ class Task(HacsTask):
     """ "Hacs task base."""
 
     _can_run_disabled = True
-    schedule = timedelta(hours=1)
+    schedule = timedelta(minutes=5)
 
     async def async_execute(self) -> None:
         """Execute the task."""
-        if not self.hacs.stage == HacsStage.RUNNING:
-            self.task_logger(self.hacs.log.debug, "HACS is not running")
-            return
         if (
             not self.hacs.system.disabled
             or self.hacs.system.disabled_reason != HacsDisabledReason.RATE_LIMIT
         ):
-            self.task_logger(self.hacs.log.debug, "HACS is not ratelimited")
             return
 
         self.task_logger(self.hacs.log.debug, "Checking if ratelimit has lifted")
