@@ -14,7 +14,7 @@ monitor_docker:
       - phpMyAdmin
       - Plex
       - Radarr
-      - TasmoAdmin
+      - Tasmoadmin
       - Torrents
       - Ubuntu
       - Unifi_Controller
