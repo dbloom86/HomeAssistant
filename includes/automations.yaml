@@ -462,7 +462,7 @@
       data:
         group: updates
         icon_url: /local/Pictures/addons/ha-logo.png
-        clickAction: /hassio/dashboard
+        clickAction: /hassio/config/dashboard
   id: fb2e6e01da51489faa8bee310353b4f0
 
 - alias: HassOS has an update
@@ -479,7 +479,7 @@
       data:
         group: updates
         icon_url: /local/Pictures/addons/ha-logo.png
-        clickAction: /hassio/dashboard
+        clickAction: /hassio/config/dashboard
   id: c54768ea8c124070bb24724250943d38
 
 - alias: Supervisor has an update
@@ -496,7 +496,7 @@
       data:
         group: updates
         icon_url: /local/Pictures/addons/ha-logo.png
-        clickAction: /hassio/dashboard
+        clickAction: /hassio/config/dashboard
   id: df11340c84784621a4e90ad21399a25e
 
 - alias: Audio has an update
@@ -513,7 +513,7 @@
       data:
         group: updates
         icon_url: /local/Custom_Icons/audio-ico.png
-        clickAction: /hassio/dashboard
+        clickAction: /hassio/config/dashboard
   id: b33a2c9993834587a8390adb6d75c09e
 
 - alias: DNS has an update
@@ -530,7 +530,7 @@
       data:
         group: updates
         icon_url: /local/Custom_Icons/dns-ico.png
-        clickAction: /hassio/dashboard
+        clickAction: /hassio/config/dashboard
   id: 06cb6eea2b9e433b845b38f2ba18fea4
 
 - alias: CLI has an update
@@ -547,7 +547,7 @@
       data:
         group: updates
         icon_url: /local/Custom_Icons/cli-ico.png
-        clickAction: /hassio/dashboard
+        clickAction: /hassio/config/dashboard
   id: fc668c66c20f4784a731d29e52bf668d
 
 - alias: Multicast has an update
@@ -564,7 +564,7 @@
       data:
         group: updates
         icon_url: /local/Custom_Icons/multicast-ico.png
-        clickAction: /hassio/dashboard
+        clickAction: /hassio/config/dashboard
   id: b6f34148791b48c5895239e107e54ba9
 
 - alias: Observer has an update
@@ -581,7 +581,7 @@
       data:
         group: updates
         icon_url: /local/Custom_Icons/observer-ico.png
-        clickAction: /hassio/dashboard
+        clickAction: /hassio/config/dashboard
   id: 039cbb4281124426b682aa5283b6e3b6
 
 - alias: HACS has updates
