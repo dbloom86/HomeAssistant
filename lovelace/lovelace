@@ -122,7 +122,8 @@
                                     "entities": [
                                         {
                                             "type": "custom:text-divider-row",
-                                            "text": "Afvalwijzer"
+                                            "text": "Afvalwijzer",
+                                            "style": "h2:before, h2:after {\n  position: absolute;\n  top: 51%;\n  overflow: hidden;\n  width: 50%;\n  height: var(--line-size);\n  content: '\\a0';\n  background-color: var(--divider-color);\n}\n\nh2:before {\n  margin-left: -50%;\n  text-align: right;\n}\nh2.text-divider {\n  border-bottom: none;\n}\n\nh2.text-divider span {\n  background: none;\n}\n"
                                         },
                                         {
                                             "card_type": "markdown",
@@ -167,7 +168,8 @@
                                     "entities": [
                                         {
                                             "type": "custom:text-divider-row",
-                                            "text": "Crypto"
+                                            "text": "Crypto",
+                                            "style": "h2:before, h2:after {\n  position: absolute;\n  top: 51%;\n  overflow: hidden;\n  width: 50%;\n  height: var(--line-size);\n  content: '\\a0';\n  background-color: var(--divider-color);\n}\n\nh2:before {\n  margin-left: -50%;\n  text-align: right;\n}\nh2.text-divider {\n  border-bottom: none;\n}\n\nh2.text-divider span {\n  background: none;\n}\n"
                                         },
                                         {
                                             "card_type": "markdown",
@@ -2628,7 +2630,8 @@
                             "entities": [
                                 {
                                     "type": "custom:text-divider-row",
-                                    "text": "Component Count"
+                                    "text": "Component Count",
+                                    "style": "h2:before, h2:after {\n  position: absolute;\n  top: 51%;\n  overflow: hidden;\n  width: 50%;\n  height: var(--line-size);\n  content: '\\a0';\n  background-color: var(--divider-color);\n}\n\nh2:before {\n  margin-left: -50%;\n  text-align: right;\n}\nh2.text-divider {\n  border-bottom: none;\n}\n\nh2.text-divider span {\n  background: none;\n}\n"
                                 },
                                 {
                                     "entities": [
@@ -2834,7 +2837,8 @@
                             "entities": [
                                 {
                                     "type": "custom:text-divider-row",
-                                    "text": "Firmware"
+                                    "text": "Firmware",
+                                    "style": "h2:before, h2:after {\n  position: absolute;\n  top: 51%;\n  overflow: hidden;\n  width: 50%;\n  height: var(--line-size);\n  content: '\\a0';\n  background-color: var(--divider-color);\n}\n\nh2:before {\n  margin-left: -50%;\n  text-align: right;\n}\nh2.text-divider {\n  border-bottom: none;\n}\n\nh2.text-divider span {\n  background: none;\n}\n"
                                 },
                                 {
                                     "entity": "sensor.sonoff_newest_version",
@@ -2882,7 +2886,8 @@
                             "entities": [
                                 {
                                     "type": "custom:text-divider-row",
-                                    "text": "Printserver"
+                                    "text": "Printserver",
+                                    "style": "h2:before, h2:after {\n  position: absolute;\n  top: 51%;\n  overflow: hidden;\n  width: 50%;\n  height: var(--line-size);\n  content: '\\a0';\n  background-color: var(--divider-color);\n}\n\nh2:before {\n  margin-left: -50%;\n  text-align: right;\n}\nh2.text-divider {\n  border-bottom: none;\n}\n\nh2.text-divider span {\n  background: none;\n}\n"
                                 },
                                 {
                                     "card_style": "glance",
@@ -2946,7 +2951,8 @@
                             "entities": [
                                 {
                                     "type": "custom:text-divider-row",
-                                    "text": "Certificates"
+                                    "text": "Certificates",
+                                    "style": "h2:before, h2:after {\n  position: absolute;\n  top: 51%;\n  overflow: hidden;\n  width: 50%;\n  height: var(--line-size);\n  content: '\\a0';\n  background-color: var(--divider-color);\n}\n\nh2:before {\n  margin-left: -50%;\n  text-align: right;\n}\nh2.text-divider {\n  border-bottom: none;\n}\n\nh2.text-divider span {\n  background: none;\n}\n"
                                 },
                                 {
                                     "entity": "sensor.cert_expiry_days_bloomlannl",
@@ -2983,7 +2989,8 @@
                             "entities": [
                                 {
                                     "type": "custom:text-divider-row",
-                                    "text": "Energie Gebruik"
+                                    "text": "Energie Gebruik",
+                                    "style": "h2:before, h2:after {\n  position: absolute;\n  top: 51%;\n  overflow: hidden;\n  width: 50%;\n  height: var(--line-size);\n  content: '\\a0';\n  background-color: var(--divider-color);\n}\n\nh2:before {\n  margin-left: -50%;\n  text-align: right;\n}\nh2.text-divider {\n  border-bottom: none;\n}\n\nh2.text-divider span {\n  background: none;\n}\n"
                                 },
                                 {
                                     "card_type": "energy-distribution",
@@ -3052,7 +3059,8 @@
                             "entities": [
                                 {
                                     "type": "custom:text-divider-row",
-                                    "text": "Device per Maand"
+                                    "text": "Device per Maand",
+                                    "style": "h2:before, h2:after {\n  position: absolute;\n  top: 51%;\n  overflow: hidden;\n  width: 50%;\n  height: var(--line-size);\n  content: '\\a0';\n  background-color: var(--divider-color);\n}\n\nh2:before {\n  margin-left: -50%;\n  text-align: right;\n}\nh2.text-divider {\n  border-bottom: none;\n}\n\nh2.text-divider span {\n  background: none;\n}\n"
                                 },
                                 {
                                     "type": "custom:auto-entities",
@@ -3220,7 +3228,8 @@
                             "entities": [
                                 {
                                     "type": "custom:text-divider-row",
-                                    "text": "Energie Verbruik"
+                                    "text": "Energie Verbruik",
+                                    "style": "h2:before, h2:after {\n  position: absolute;\n  top: 51%;\n  overflow: hidden;\n  width: 50%;\n  height: var(--line-size);\n  content: '\\a0';\n  background-color: var(--divider-color);\n}\n\nh2:before {\n  margin-left: -50%;\n  text-align: right;\n}\nh2.text-divider {\n  border-bottom: none;\n}\n\nh2.text-divider span {\n  background: none;\n}\n"
                                 },
                                 {
                                     "entity": "sensor.kosten"
