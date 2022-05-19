@@ -225,7 +225,7 @@
                                         },
                                         {
                                             "type": "markdown",
-                                            "content": "**HOMEASSISTANT SERVER\nRESOURCES\nVM ON SYNOLOGY VMM\nPublic IP Address:** {{states.sensor.public_ip.state}}\n**Private IP Address:** {{states.sensor.local_ip.state}}\n**Hassio Cli:** {{ state_attr('sensor.version_available', 'cli') }}\n**Uptime:** {{ states('sensor.rpi_uptime')}}",
+                                            "content": "**HOMEASSISTANT SERVER\nRESOURCES\nVM ON SYNOLOGY VMM\nPublic IP Address:** {{states.sensor.ha_bloomlan_nl.state}}\n**Private IP Address:** {{states.sensor.local_ip.state}}\n**CPU Speed:** {{ states('sensor.cpu_speed')}}Ghz\n**Uptime:** {{ states('sensor.rpi_uptime')}}",
                                             "style": "ha-card{\n  left: -80px;\n  background: none;\n  box-shadow: none;\n}\n"
                                         },
                                         {
@@ -1777,7 +1777,7 @@
                                         },
                                         {
                                             "type": "markdown",
-                                            "content": "**EXPERIABOX V10**\n**Model:** ZTE H369A\n**Private IP:** {{ state_attr('device_tracker.experiabox_tracker', 'ip') }}\n**Public IP:** {{ states('sensor.myip') }}\n**Firmware:** V1.01.00T03.8V4",
+                                            "content": "**EXPERIABOX V10**\n**Model:** ZTE H369A\n**Private IP:** {{ state_attr('device_tracker.experiabox_tracker', 'ip') }}\n**Public IP:** {{ states('sensor.experiabox_v10_external_ip') }}\n**Firmware:** V1.01.00T03.8V4",
                                             "style": "ha-card{\n  left: -120px;\n  top: 15%;\n  background: none;\n  box-shadow: none;\n}\n"
                                         },
                                         {

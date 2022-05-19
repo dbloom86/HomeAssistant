@@ -227,14 +227,6 @@
   - platform: command_line
     command: "ip route get 1 | awk '{print $NF;exit}'"
     
-  #================================
-  # External IP
-  #================================    
-  - platform: dnsip
-  - platform: dnsip
-    hostname: ha.bloomlan.nl
-    name: public ip
-    
   #================================  
   # System
   #================================

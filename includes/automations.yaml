@@ -35,7 +35,7 @@
   - service: light.turn_off
     entity_id: light.lampen_woonkamer
   - service: light.turn_off
-    entity_id: light.shelly_shsw_1_40f52000c449
+    entity_id: light.lampjes_veranda
   id: 110c40loj06e4a8e8ad9e29092c7d334
 
 - alias: Vakantiemode aan
@@ -55,7 +55,7 @@
           - automation.turn_off_lampen_woonkamer_sochtends
           - automation.turn_on_lampen_woonkamer_at_sunset
           - automation.turn_on_lampen_woonkamer_in_the_morning
-          - automation.turn_on_lampjes_overkapping_at_sunset
+          - automation.turn_on_lampjes_veranda_at_sunset
   - service: switch.turn_on
     target:
       entity_id: switch.presence_simulation
@@ -78,17 +78,17 @@
           - automation.turn_off_lampen_woonkamer_sochtends
           - automation.turn_on_lampen_woonkamer_at_sunset
           - automation.turn_on_lampen_woonkamer_in_the_morning
-          - automation.turn_on_lampjes_overkapping_at_sunset
+          - automation.turn_on_lampjes_veranda_at_sunset
   - service: switch.turn_off
     target:
       entity_id: switch.presence_simulation
   id: 5f450d9467d244c597dd1645f33f358c
 
 #================================  
-# Lampjes Overkapping
+# Lampjes Veranda
 #================================
 
-- alias: Turn on Lampjes Overkapping at sunset
+- alias: Turn on Lampjes Veranda at sunset
   trigger:
   - platform: sun
     event: sunset
@@ -116,7 +116,7 @@
       state: 'on'
   action:
     service: light.turn_on
-    entity_id: light.shelly_shsw_1_40f52000c449
+    entity_id: light.lampjes_veranda
   id: 5b9dad4da9c449258a3a9502cd0a116a
 
 #================================  
