@@ -1330,7 +1330,7 @@
                                                 "cards": [
                                                     {
                                                         "type": "markdown",
-                                                        "content": "**BLOOMASSISTANT**\n**RESOURCES**\n**Uptime:** {{states('sensor.ha_uptime')}} \n**Database Size:** {{states('sensor.database_size')}} MB\n**Local Backups:** {{states('sensor.local_snapshots')}} \n**Remote Backups:** {{states('sensor.remote_snapshots')}}\n**Latest Backup:** {{states('sensor.latest_snapshot')}}\n**Potential Breacking Changes:** {{states('sensor.potential_breaking_changes')}}",
+                                                        "content": "**BLOOMASSISTANT**\n**RESOURCES**\n**Uptime:** {{states('sensor.ha_uptime')}} \n**Database Size:** {{states('sensor.database_size')}} MB\n**Local Backups:** {{states('sensor.local_snapshots')}} \n**Remote Backups:** {{states('sensor.remote_snapshots')}}\n**Latest Backup:** {{states('sensor.latest_snapshot')}}",
                                                         "style": "ha-card{\n  background: none;\n  box-shadow: none;\n\n}\n"
                                                     }
                                                 ]
