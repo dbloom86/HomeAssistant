@@ -56,6 +56,7 @@
           - automation.turn_on_lampen_woonkamer_at_sunset
           - automation.turn_on_lampen_woonkamer_in_the_morning
           - automation.turn_on_lampjes_veranda_at_sunset
+          - automation.vacuum_kitchen_and_living
   - service: switch.turn_on
     target:
       entity_id: switch.presence_simulation
@@ -79,6 +80,7 @@
           - automation.turn_on_lampen_woonkamer_at_sunset
           - automation.turn_on_lampen_woonkamer_in_the_morning
           - automation.turn_on_lampjes_veranda_at_sunset
+          - automation.vacuum_kitchen_and_living
   - service: switch.turn_off
     target:
       entity_id: switch.presence_simulation

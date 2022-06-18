@@ -138,7 +138,8 @@
                             "entities": [
                                 {
                                     "type": "custom:text-divider-row",
-                                    "text": "Ruimtes"
+                                    "text": "Ruimtes",
+                                    "style": "h2:before, h2:after {\n  position: absolute;\n  top: 51%;\n  overflow: hidden;\n  width: 50%;\n  height: var(--line-size);\n  content: '\\a0';\n  background-color: var(--divider-color);\n}\n\nh2:before {\n  margin-left: -50%;\n  text-align: right;\n}\nh2.text-divider {\n  border-bottom: none;\n}\n\nh2.text-divider span {\n  background: none;\n}\n"
                                 }
                             ],
                             "style": "ha-card {\n  background: none;\n  box-shadow: none;\n}\n"
