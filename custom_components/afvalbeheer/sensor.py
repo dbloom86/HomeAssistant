@@ -1,7 +1,7 @@
 """
 Sensor component for waste pickup dates from dutch and belgium waste collectors
 Original Author: Pippijn Stortelder
-Current Version: 4.9.2 20220118 - Pippijn Stortelder
+Current Version: 4.9.4 20220621 - Pippijn Stortelder
 20210112 - Updated date format for RD4
 20210114 - Fix error made in commit 9d720ec
 20210120 - Enabled textile for RecycleApp
@@ -39,6 +39,8 @@ Current Version: 4.9.2 20220118 - Pippijn Stortelder
 20220106 - Added support for Ximmio commercial address (option added customerid)
 20220113 - Added support for wastcollector Lingewaard
 20220118 - Fix Cranendonck mapping
+20220620 - Fix Spaarnelanden mapping
+20220621 - Changed RD4 to new API
 
 Example config:
 Configuration.yaml:
@@ -960,6 +962,7 @@ class OmrinCollector(WasteCollector):
 
 class OpzetCollector(WasteCollector):
     WASTE_TYPE_MAPPING = {
+        'pbd/papier': WASTE_TYPE_PAPER_PMD,
         'snoeiafval': WASTE_TYPE_BRANCHES,
         'sloop': WASTE_TYPE_BULKLITTER,
         'glas': WASTE_TYPE_GLASS,
@@ -976,6 +979,7 @@ class OpzetCollector(WasteCollector):
         'textiel': WASTE_TYPE_TEXTILE,
         'kerstb': WASTE_TYPE_TREE,
         'pmd': WASTE_TYPE_PACKAGES,
+        'pbd': WASTE_TYPE_PACKAGES,
     }
 
     def __init__(self, hass, waste_collector, postcode, street_number, suffix):
@@ -1047,7 +1051,7 @@ class OpzetCollector(WasteCollector):
 
 class RD4Collector(WasteCollector):
     WASTE_TYPE_MAPPING = {
-        # 'snoeiafval': WASTE_TYPE_BRANCHES,
+        'pruning': WASTE_TYPE_BRANCHES,
         # 'sloop': WASTE_TYPE_BULKLITTER,
         # 'glas': WASTE_TYPE_GLASS,
         # 'duobak': WASTE_TYPE_GREENGREY,
@@ -1055,21 +1059,25 @@ class RD4Collector(WasteCollector):
         'gft': WASTE_TYPE_GREEN,
         # 'chemisch': WASTE_TYPE_KCA,
         # 'kca': WASTE_TYPE_KCA,
-        'rest': WASTE_TYPE_GREY,
+        'residual': WASTE_TYPE_GREY,
         # 'plastic': WASTE_TYPE_PACKAGES,
-        'papier': WASTE_TYPE_PAPER,
-        # 'textiel': WASTE_TYPE_TEXTILE,
-        # 'kerstb': WASTE_TYPE_TREE,
+        'paper': WASTE_TYPE_PAPER,
+        'best_bag': "best-tas",
+        'christmas_trees': WASTE_TYPE_TREE,
         'pmd': WASTE_TYPE_PACKAGES,
     }
 
     def __init__(self, hass, waste_collector, postcode, street_number, suffix):
         super(RD4Collector, self).__init__(hass, waste_collector, postcode, street_number, suffix)
-        self.main_url = 'https://rd4.syzygy.eu'
+        self.main_url = 'https://data.rd4.nl/api/v1/waste-calendar'
+        self.postcode_split = re.search(r"(\d\d\d\d) ?([A-z][A-z])", self.postcode)
+        self.postcode = self.postcode_split.group(1) + '+' + self.postcode_split.group(2).upper()
 
     def __get_data(self):
+        self.today = datetime.today()
+        self.year = self.today.year
         response = requests.get(
-            '{}/{}/{}{}'.format(self.main_url, self.postcode, self.street_number, self.suffix)
+            '{}?postal_code={}&house_number={}&house_number_extension={}&year={}'.format(self.main_url, self.postcode, self.street_number, self.suffix, self.year)
         )
         return response
 
@@ -1086,20 +1094,23 @@ class RD4Collector(WasteCollector):
                 _LOGGER.error('No Waste data found!')
                 return
 
-            for item in response:
-                if not response[item]:
+            if not response["success"]:
+                _LOGGER.error('Address not found!')
+                return
+
+            for item in response["data"]["items"][0]:
+
+                waste_type = self.map_waste_type(item["type"])
+                date = item["date"]
+                
+                if not waste_type or not date:
                     continue
 
-                waste_type = self.map_waste_type(item)
-                if not waste_type:
-                    continue
-
-                for item_date in response[item]:
-                    collection = WasteCollection.create(
-                        date=datetime.strptime(item_date, "%Y-%m-%d"),
-                        waste_type=waste_type
-                    )
-                    self.collections.add(collection)
+                collection = WasteCollection.create(
+                    date=datetime.strptime(date, "%Y-%m-%d"),
+                    waste_type=waste_type
+                )
+                self.collections.add(collection)
 
         except requests.exceptions.RequestException as exc:
             _LOGGER.error('Error occurred while fetching data: %r', exc)
