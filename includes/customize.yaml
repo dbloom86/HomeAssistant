@@ -225,7 +225,7 @@ device_tracker.a51_van_sabrine:
   entity_picture: /local/Custom_Icons/telefoon_sabrine-ico.png
 
 device_tracker.shellyplug_s_9a53ab:
-  entity_picture: /local/Custom_Icons/boiler-ico.png
+  entity_picture: /local/Custom_Icons/quooker-ico.png
 
 device_tracker.chromecast:
   entity_picture: /local/Custom_Icons/chromecast-ico.png

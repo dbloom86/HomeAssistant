@@ -23,6 +23,7 @@ monitor_docker:
       - Zigbee2MQTT
       - zwavejs2mqtt
       - DockerProxy
+      - ESPHome
     rename:
       Torrents: Deluge
       Unifi_Controller: Unifi Controller
