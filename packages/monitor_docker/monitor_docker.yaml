@@ -18,7 +18,7 @@ monitor_docker:
       - Torrents
       - Ubuntu
       - Unifi_Controller
-      - Watchtower
+      - watchtower
       - Wordpress
       - Zigbee2MQTT
       - zwavejs2mqtt

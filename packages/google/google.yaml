@@ -2,6 +2,6 @@
 # Google Calendar
 #=====================
 
-google:
-  client_id: !secret google_client_id_calendar
-  client_secret: !secret google_client_secret_calendar
+#google:
+#  client_id: !secret google_client_id_calendar
+#  client_secret: !secret google_client_secret_calendar
