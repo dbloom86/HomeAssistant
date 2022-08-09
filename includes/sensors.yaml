@@ -497,7 +497,7 @@
       latest_snapshot:
         friendly_name: "Latest Backups"
         unit_of_measurement: ' '
-        value_template: "{{ as_timestamp(strptime(state_attr('sensor.samba_backup', 'last_backup'), '%Y-%m-%d %H:%M:%S')) | timestamp_custom('%d-%m-%Y') }}" 
+        value_template: "{{ as_timestamp(state_attr('sensor.samba_backup', 'last_backup')) | timestamp_custom('%d-%m-%Y') }}" 
 
     #================================
     # Samba Share
