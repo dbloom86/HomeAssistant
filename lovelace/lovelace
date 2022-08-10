@@ -672,7 +672,7 @@
                         "cards": [
                           {
                             "type": "markdown",
-                            "content": "<center><img src=\"/local/Pictures/addons/mariadb-ico.png\" width=\"73\"/> <center>MariaDB</center> <center>{{ states.sensor.docker_mariadb_status.state }}</center>",
+                            "content": "<center><img src=\"/local/Pictures/addons/mariadb-ico.png\" width=\"73\"/> <center>HARepository</center> <center>{{ states.sensor.docker_harepository_status.state }}</center>",
                             "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n}\n"
                           },
                           {

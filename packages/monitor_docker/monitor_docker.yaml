@@ -8,7 +8,7 @@ monitor_docker:
     containers:
       - Bazarr
       - Jackett
-      - MariaDB
+      - HARepository
       - Mosquitto
       - NodeRed
       - phpMyAdmin
@@ -50,9 +50,9 @@ sensor:
   - platform: template
     sensors:
         mariadb_bar:
-            friendly_name: "MariaDB Bar"
+            friendly_name: "HARepository Bar"
             value_template: >-
-                {% if ( states.sensor.docker_mariadb_state.state == 'running' ) %}
+                {% if ( states.sensor.docker_harepository_state.state == 'running' ) %}
                     100
                 {% else %}
                     50
