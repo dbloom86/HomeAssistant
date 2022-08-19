@@ -21,7 +21,7 @@ monitor_docker:
       - watchtower
       - Wordpress
       - Zigbee2MQTT
-      - zwavejs2mqtt
+      - ZwaveJS2MQTT
       - DockerProxy
       - ESPHome
     rename:
