@@ -13,10 +13,10 @@ monitor_docker:
       - NodeRed
       - phpMyAdmin
       - Plex
+      - Portainer
       - Radarr
       - Tasmoadmin
-      - Torrents
-      - Ubuntu
+      - Deluge
       - Unifi_Controller
       - watchtower
       - Wordpress
@@ -24,6 +24,7 @@ monitor_docker:
       - ZwaveJS2MQTT
       - DockerProxy
       - ESPHome
+      - WordpressDB
     rename:
       Torrents: Deluge
       Unifi_Controller: Unifi Controller
