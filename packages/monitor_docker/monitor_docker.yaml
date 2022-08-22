@@ -15,7 +15,7 @@ monitor_docker:
       - Plex
       - Portainer
       - Radarr
-      - Tasmoadmin
+      - TasmoAdmin
       - Deluge
       - Unifi_Controller
       - watchtower
@@ -46,11 +46,11 @@ monitor_docker:
 sensor:
 
     #================================
-    # MariaDB
+    # HA Repository
     #================================
   - platform: template
     sensors:
-        mariadb_bar:
+        harepository_bar:
             friendly_name: "HARepository Bar"
             value_template: >-
                 {% if ( states.sensor.docker_harepository_state.state == 'running' ) %}
@@ -95,7 +95,7 @@ sensor:
         deluge_bar:
             friendly_name: "Deluge BAR"
             value_template: >-
-                {% if ( states.sensor.docker_torrents_state.state == 'running' ) %}
+                {% if ( states.sensor.docker_deluge_state.state == 'running' ) %}
                     100
                 {% else %}
                     50
@@ -200,14 +200,14 @@ sensor:
                 {% endif %}
 
     #================================
-    # Ubuntu
+    # ESP Home
     #================================
   - platform: template
     sensors:
-        ubuntu_bar:
-            friendly_name: "Ubuntu Bar"
+        esphome_bar:
+            friendly_name: "ESP Home Bar"
             value_template: >-
-                {% if ( states.sensor.docker_ubuntu_state.state == 'running' ) %}
+                {% if ( states.sensor.docker_esphome_state.state == 'running' ) %}
                     100
                 {% else %}
                     50
@@ -236,6 +236,20 @@ sensor:
             friendly_name: "Wordpress Bar"
             value_template: >-
                 {% if ( states.sensor.docker_wordpress_state.state == 'running' ) %}
+                    100
+                {% else %}
+                    50
+                {% endif %}
+
+    #================================
+    # Wordpress DB
+    #================================
+  - platform: template
+    sensors:
+        wordpressdb_bar:
+            friendly_name: "Wordpress DB Bar"
+            value_template: >-
+                {% if ( states.sensor.docker_wordpressdb_state.state == 'running' ) %}
                     100
                 {% else %}
                     50
@@ -278,6 +292,20 @@ sensor:
             friendly_name: "Docker Proxy Bar"
             value_template: >-
                 {% if ( states.sensor.docker_dockerproxy_state.state == 'running' ) %}
+                    100
+                {% else %}
+                    50
+                {% endif %}
+
+    #================================
+    # Portainer
+    #================================
+  - platform: template
+    sensors:
+        portainer_bar:
+            friendly_name: "Portainer Bar"
+            value_template: >-
+                {% if ( states.sensor.docker_portainer_state.state == 'running' ) %}
                     100
                 {% else %}
                     50
