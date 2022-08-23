@@ -121,9 +121,9 @@ automation:
 
   - alias: Notification clean sensors
     trigger:
-    - platform: state
+    - platform: numeric_state
       entity_id: sensor.miep_sensor_dirty_left
-      to: '0'
+      below: '0'
     action:
       service: notify.mobile_app_telefoon_duncan
       data:
@@ -148,9 +148,9 @@ automation:
 
   - alias: Notification onderhoud zij borstel
     trigger:
-    - platform: state
+    - platform: numeric_state
       entity_id: sensor.miep_side_brush_left
-      to: '0'
+      below: '0'
     action:
       service: notify.mobile_app_telefoon_duncan
       data:
@@ -175,9 +175,9 @@ automation:
 
   - alias: Notification onderhoud borstel
     trigger:
-    - platform: state
+    - platform: numeric_state
       entity_id: sensor.miep_main_brush_left
-      to: '0'
+      below: '0'
     action:
       service: notify.mobile_app_telefoon_duncan
       data:
@@ -202,9 +202,9 @@ automation:
 
   - alias: Notification onderhoud filter
     trigger:
-    - platform: state
+    - platform: numeric_state
       entity_id: sensor.miep_filter_left
-      to: '0'
+      below: '0'
     action:
       service: notify.mobile_app_telefoon_duncan
       data:
@@ -244,6 +244,11 @@ automation:
       data:
         command: reset_consumable
         params: ['filter_work_time']
+    - service: notify.mobile_app_telefoon_duncan
+      data:
+        message: clear_notification
+        data:
+          tag: miep
     id: 455a2a32ded547hjk876e626a5f9ae7d
 
     #=====================
@@ -263,6 +268,11 @@ automation:
       data:
         command: reset_consumable
         params: ['main_brush_work_time']
+    - service: notify.mobile_app_telefoon_duncan
+      data:
+        message: clear_notification
+        data:
+          tag: miep
     id: 455a2a2h6sd547c3kn76e626a5f9ae7d
 
     #=====================
@@ -282,6 +292,11 @@ automation:
       data:
         command: reset_consumable
         params: ['sensor_dirty_time']
+    - service: notify.mobile_app_telefoon_duncan
+      data:
+        message: clear_notification
+        data:
+          tag: miep
     id: 455a2a32ded547c3k1h7k626a5f9ae7d
 
     #=====================
@@ -301,6 +316,11 @@ automation:
       data:
         command: reset_consumable
         params: ['side_brush_work_time']
+    - service: notify.mobile_app_telefoon_duncan
+      data:
+        message: clear_notification
+        data:
+          tag: miep
     id: 455a2a32ded547c3khnk8626a5f9ae7d
 
   #=====================

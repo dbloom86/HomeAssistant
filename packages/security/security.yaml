@@ -70,6 +70,7 @@ automation:
           icon_url: /local/Custom_Icons/co-alarm-ico.png
           ttl: 0
           priority: high
+          channel: alarm_stream
     id: 2d0712c99bfe4c08b1bb407e0bbf7946
 
   - alias: Turn off CV when CO detected
@@ -120,6 +121,7 @@ automation:
           icon_url: /local/Custom_Icons/co-sensor-overheated-ico.png
           ttl: 0
           priority: high
+          channel: alarm_stream
     id: d0a456044c9042fab421c8e715f7b6be
 
     #================================  

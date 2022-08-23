@@ -1873,7 +1873,7 @@
                     },
                     {
                       "type": "markdown",
-                      "content": "**EXPERIABOX V10**\n**Model:** ZTE H369A\n**Private IP:** {{ state_attr('device_tracker.experiabox_tracker', 'ip') }}\n**Public IP:** {{ states('sensor.experiabox_v10_external_ip') }}\n**Firmware:** V1.01.00T03.8V4",
+                      "content": "**EXPERIABOX V10**\n**Model:** ZTE H369A\n**Private IP:** 192.168.2.254 }}\n**Public IP:** {{ states('sensor.experiabox_v10_external_ip') }}\n**Firmware:** V1.01.00T03.8V4",
                       "style": "ha-card{\n  left: -120px;\n  top: 15%;\n  background: none;\n  box-shadow: none;\n}\n"
                     },
                     {
@@ -1956,7 +1956,7 @@
                         },
                         {
                           "type": "markdown",
-                          "content": "**BLOOMHOLE**\n**Model:** {{ state_attr('sensor.rpi_monitor_bloomhole', 'rpi_model') }}\n**IP:** {{ state_attr('device_tracker.bloomhole', 'ip') }}\n**OS:** {{ state_attr('sensor.rpi_monitor_bloomhole', 'ux_release') }} {{ state_attr('sensor.rpi_monitor_bloomhole', 'ux_version') }}\n**Uptime:** {{ state_attr('sensor.rpi_monitor_bloomhole', 'up_time') }}h",
+                          "content": "**BLOOMHOLE**\n**Model:** {{ state_attr('sensor.rpi_monitor_bloomhole', 'rpi_model') }}\n**IP:** {{states.sensor.rpi_monitor_bloomhole.attributes.networking.eth0.IP}}\n**OS:** {{ state_attr('sensor.rpi_monitor_bloomhole', 'ux_version') }}\n**Uptime:** {{ state_attr('sensor.rpi_monitor_bloomhole', 'up_time') }}h",
                           "style": "ha-card{\n  left: -120px;\n\n  background: none;\n  box-shadow: none;\n}\n"
                         },
                         {
@@ -2184,7 +2184,7 @@
                         },
                         {
                           "type": "markdown",
-                          "content": "**BLOOM-DATA**\n**Model:** Synology DS920+\n**Security:** {{ states('sensor.bloom_data_security') }}\n**IP:** {{ state_attr('device_tracker.bloom_data', 'ip') }}\n**Updates:** {{ states('sensor.bloom_data_update') }}\n**Uptime:** {{ states('sensor.bloom_data_uptime') }}",
+                          "content": "**BLOOM-DATA**\n**Model:** Synology DS920+\n**Security:** {{ states('sensor.bloom_data_security') }}\n**IP:** 192.168.2.208\n**Updates:** {{ states('sensor.bloom_data_update') }}\n**Uptime:** {{ states('sensor.bloomdata_uptime') }}",
                           "style": "ha-card{\n  left: -120px;\n  top: 5%;\n  background: none;\n  box-shadow: none;\n}\n"
                         },
                         {

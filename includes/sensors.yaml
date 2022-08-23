@@ -252,12 +252,11 @@
   #================================    
   - platform: uptime
     
-  - platform: template
-    sensors:
-    
       #================================
       # Raspberry Pi Uptime
-      #================================          
+      #================================   
+  - platform: template
+    sensors:
       rpi_uptime:
         friendly_name: RPi Uptime
         value_template: >
