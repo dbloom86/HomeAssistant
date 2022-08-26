@@ -25,11 +25,13 @@ monitor_docker:
       - DockerProxy
       - ESPHome
       - WordpressDB
+      - Nginx-Proxy-Manager
     rename:
       Torrents: Deluge
       Unifi_Controller: Unifi Controller
       zwavejs2mqtt: ZwaveJS2MQTT
       DockerProxy: Docker Proxy
+      Nginx-Proxy-Manager: Nginx Proxy Manager
     monitored_conditions:
       - version
       - containers_running
