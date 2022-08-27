@@ -3818,10 +3818,16 @@
           ]
         },
         {
+          "theme": "Backend-selected",
           "title": "plex-films",
           "path": "plex-films",
           "icon": "mdi:plex",
           "type": "panel",
+          "visible": [
+            {
+              "user": "edf6650cd84b44ba853cfd5ba02fa72c"
+            }
+          ],
           "badges": [],
           "cards": [
             {
@@ -3833,7 +3839,7 @@
               "showExtras": true,
               "showSearch": true,
               "ip": "plex.bloomlan.nl",
-              "token": "fpyoeZynbVMjsPxs4Mo9",
+              "token": "52sKXbSABXQg1ksV3nsA",
               "port": "",
               "libraryName": "Films",
               "entity": [
@@ -3858,22 +3864,28 @@
           ]
         },
         {
+          "theme": "Backend-selected",
           "title": "plex-series",
           "path": "plex-series",
           "icon": "mdi:plex",
           "type": "panel",
+          "visible": [
+            {
+              "user": "edf6650cd84b44ba853cfd5ba02fa72c"
+            }
+          ],
           "badges": [],
           "cards": [
             {
               "type": "custom:plex-meets-homeassistant",
               "protocol": "https",
-              "sort": "",
+              "sort": "titleSort:asc",
               "displayType": "",
               "playTrailer": true,
               "showExtras": true,
               "showSearch": true,
               "ip": "plex.bloomlan.nl",
-              "token": "fpyoeZynbVMjsPxs4Mo9",
+              "token": "52sKXbSABXQg1ksV3nsA",
               "port": "",
               "libraryName": "TV Series",
               "entity": [
