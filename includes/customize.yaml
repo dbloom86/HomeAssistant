@@ -97,6 +97,12 @@ sensor.outdated_shelly_devices:
 sensor.tasmota_devices_needing_upgrade:
   entity_picture: /local/Custom_Icons/Tasmota-3d-icon.png
 
+sensor.total_zigbee_devices:  
+  entity_picture: /local/Pictures/addons/zigbee-ico.png
+
+sensor.total_zwave_devices:  
+  entity_picture: /local/Pictures/addons/zwave-ico.png
+
 #================================  
 # PrintServer
 #================================
@@ -206,12 +212,6 @@ device_tracker.shellyplug_s_9a5381:
 device_tracker.light_desk_1_5756:
   entity_picture: /local/Custom_Icons/bureaulamp-ico.png
 
-device_tracker.light_desk_2_0481:
-  entity_picture: /local/Custom_Icons/bureaulamp-ico.png
-
-device_tracker.light_desk_3_1159:
-  entity_picture: /local/Custom_Icons/bureaulamp-ico.png
-
 device_tracker.ual6:
   entity_picture: /local/Custom_Icons/unifi-ap-ico.png
 
@@ -234,7 +234,7 @@ device_tracker.google_nest_mini:
   entity_picture: /local/Custom_Icons/nest-mini-ico.png
 
 device_tracker.unifi_40_f5_20_00_c4_49_default:
-  entity_picture: /local/Custom_Icons/lampjes_overkapping-ico.png
+  entity_picture: /local/Custom_Icons/tuinkast-lamp-ico.png
 
 device_tracker.unifi_dc_68_eb_08_aa_af_default:
   entity_picture: /local/Custom_Icons/nintendo_switch-ico.png

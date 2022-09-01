@@ -10,7 +10,7 @@ shelly:
       - all #show all sensors
   devices:
       - id: "40F52000C449"
-        name: Lampjes Overkapping
+        name: Lamp Tuinkast
         light_switch: true
       - id: "9a5381"
         name: CV

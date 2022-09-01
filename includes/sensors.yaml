@@ -220,7 +220,19 @@
             {% endif %}
             {% endfor %}
             {{ ns.count }}
-    
+
+      #----- Count Zigbee Devices
+      total_zigbee_devices:
+        friendly_name: 'Zigbee'
+        icon_template: mdi:flash
+        value_template: "{{states |selectattr('entity_id','in',state_attr('group.zigbee','entity_id'))| map(attribute='name') | list|count }}"  
+
+      #----- Count Zwave Devices
+      total_zwave_devices:
+        friendly_name: 'Zwave'
+        icon_template: mdi:flash
+        value_template: "{{states |selectattr('entity_id','in',state_attr('group.zwave','entity_id'))| map(attribute='name') | list|count }}"
+
   #================================
   # Internal IP
   #================================

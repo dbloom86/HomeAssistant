@@ -43,6 +43,21 @@ Shelly:
         - light.shelly_shsw_1_40f520009959
         - switch.shelly_shsw_pm_98cdac1f389e
 
+Zigbee:
+    entities:
+        - light.lamp_hoekje
+        - sensor.switch_lamp_hoekje_click
+        - light.lamp_achterdeur
+        - light.lamp_bank_hoek
+        - light.lamp_haard
+        - light.lamp_trap
+
+Zwave:
+    entities:
+        - light.lampjes_veranda
+        - sensor.z_stick_gen5_usb_controller_node_status
+        - button.co_melder_zolder_ping
+
 cleaning_rooms:
     entities:
         - input_boolean.woonkamer
@@ -98,9 +113,6 @@ Badkamer:
 Studeerkamer:
     entities:
         - light.bureaulamp
-        - light.tasmota_bureaulamp1
-        - light.tasmota_bureaulamp2
-        - light.tasmota_bureaulamp3
         - switch.shelly_shplg_s_9a5381
         - switch.shelly_shplg_s_9d9823
         - light.shelly_shsw_1_40f520009959
@@ -115,6 +127,7 @@ Voortuin:
 Achtertuin:
     entities:
         - light.shelly_shsw_1_40f52000c449
+        - light.lampjes_veranda
 
 #########
 # AREAS #

@@ -9,13 +9,6 @@
       - light.shelly_shsw_1_40f520009959
 
   - platform: group
-    name: Bureaulamp
-    entities:
-      - light.bureaulamp1
-      - light.bureaulamp2
-      - light.bureaulamp3
-
-  - platform: group
     name: Lampen Woonkamer
     entities:
       - light.lamp_bank_hoek

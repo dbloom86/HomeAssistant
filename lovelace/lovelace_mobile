@@ -2237,7 +2237,7 @@
                   "entity": "light.shelly_shsw_1_40f52000c449",
                   "aspect_ratio": "1/1",
                   "name": "Lampjes Overkapping",
-                  "entity_picture": "/local/Custom_Icons/lampjes_overkapping-ico.png",
+                  "entity_picture": "/local/Custom_Icons/tuinkast-lamp-ico.png",
                   "size": "50%",
                   "show_entity_picture": true,
                   "styles": {

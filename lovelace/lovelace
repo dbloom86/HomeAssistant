@@ -2702,6 +2702,7 @@
           ]
         },
         {
+          "theme": "Backend-selected",
           "path": "Devices",
           "title": "Devices",
           "icon": "mdi:devices",
@@ -2904,6 +2905,10 @@
                       }
                     },
                     {
+                      "entity": "sensor.total_zigbee_devices",
+                      "name": "Zigbee"
+                    },
+                    {
                       "entity": "sensor.total_zones",
                       "name": "Zones",
                       "tap_action": {
@@ -2914,9 +2919,13 @@
                         "action": "call-service",
                         "service": "zone.reload"
                       }
+                    },
+                    {
+                      "entity": "sensor.total_zwave_devices",
+                      "name": "Zwave"
                     }
                   ],
-                  "columns": 13,
+                  "columns": 14,
                   "type": "custom:hui-glance-card",
                   "style": "ha-card {\n  height: 100%;\n  border-radius: 5px;\n  background-image: none;\n  box-shadow: none;\n  background-color: rgba(255, 255, 255, 0);\n}\n"
                 }
@@ -2977,7 +2986,120 @@
             {
               "type": "entities",
               "view_layout": {
+                "grid-area": "footer1"
+              },
+              "entities": [
+                {
+                  "type": "custom:text-divider-row",
+                  "text": "Nginx",
+                  "style": "h2:before, h2:after {\n  position: absolute;\n  top: 51%;\n  overflow: hidden;\n  width: 50%;\n  height: var(--line-size);\n  content: '\\a0';\n  background-color: var(--divider-color);\n}\n\nh2:before {\n  margin-left: -50%;\n  text-align: right;\n}\nh2.text-divider {\n  border-bottom: none;\n}\n\nh2.text-divider span {\n  background: none;\n}\n"
+                },
+                {
+                  "card_style": "full",
+                  "show_title": false,
+                  "entity": "sensor.rpi_monitor_zig_pi",
+                  "fs_severity": [
+                    {
+                      "color": "#00e64d",
+                      "from": 0,
+                      "to": 60
+                    },
+                    {
+                      "color": "#ff944d",
+                      "from": 60,
+                      "to": 85
+                    },
+                    {
+                      "color": "#ff4d4d",
+                      "from": 85,
+                      "to": 100
+                    }
+                  ],
+                  "style": {
+                    ".": "#states > * {\n    margin: -1px -15px !important;\n  }\nha-card {\n  border-radius: 5px;\n  background-image: none;\n  box-shadow: none;\n  background-color: rgba(114, 123, 140, 0);\n }\n"
+                  },
+                  "temp_scale": "C",
+                  "temp_severity": [
+                    {
+                      "color": "#00e64d",
+                      "from": 0,
+                      "to": 60
+                    },
+                    {
+                      "color": "#ff944d",
+                      "from": 60,
+                      "to": 80
+                    },
+                    {
+                      "color": "#ff4d4d",
+                      "from": 80,
+                      "to": 100
+                    }
+                  ],
+                  "type": "custom:rpi-monitor-card"
+                }
+              ],
+              "style": {
+                ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  height: 100%;\n}            \n"
+              }
+            },
+            {
+              "type": "entities",
+              "view_layout": {
+                "grid-area": "main3"
+              },
+              "entities": [
+                {
+                  "type": "custom:text-divider-row",
+                  "text": "Certificates",
+                  "style": "h2:before, h2:after {\n  position: absolute;\n  top: 51%;\n  overflow: hidden;\n  width: 50%;\n  height: var(--line-size);\n  content: '\\a0';\n  background-color: var(--divider-color);\n}\n\nh2:before {\n  margin-left: -50%;\n  text-align: right;\n}\nh2.text-divider {\n  border-bottom: none;\n}\n\nh2.text-divider span {\n  background: none;\n}\n"
+                },
+                {
+                  "entity": "sensor.cert_expiry_days_bloomlannl",
+                  "name": "*.bloomlan.nl"
+                },
+                {
+                  "entity": "sensor.cert_expiry_days_bloom_data",
+                  "name": "bloom-data.synology.me"
+                }
+              ],
+              "style": {
+                ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n}            \n"
+              }
+            },
+            {
+              "type": "entities",
+              "view_layout": {
                 "grid-area": "main2"
+              },
+              "entities": [
+                {
+                  "type": "custom:text-divider-row",
+                  "text": "Zigbee Network Map",
+                  "style": "h2:before, h2:after {\n  position: absolute;\n  top: 51%;\n  overflow: hidden;\n  width: 50%;\n  height: var(--line-size);\n  content: '\\a0';\n  background-color: var(--divider-color);\n}\n\nh2:before {\n  margin-left: -50%;\n  text-align: right;\n}\nh2.text-divider {\n  border-bottom: none;\n}\n\nh2.text-divider span {\n  background: none;\n}\n"
+                },
+                {
+                  "card_type": "custom:zigbee2mqtt-networkmap",
+                  "type": "custom:hui-element",
+                  "entity": "sensor.zigbee2mqtt_networkmap",
+                  "mqtt_base_topic": "zigbee2mqtt",
+                  "force": 3000,
+                  "node_size": 16,
+                  "font_size": 12,
+                  "link_width": 2,
+                  "height": 275,
+                  "style": "ha-card {\n  border-radius: 5px;\n  box-shadow: none;\n  background: none;\n }\n",
+                  "css": ":host {\n  --zigbee2mqtt-networkmap-node-color: rgba(18, 120, 98, .7);\n  --zigbee2mqtt-networkmap-node-fill-color: #dcfaf3;\n  --zigbee2mqtt-networkmap-node-pinned-color: rgba(190, 56, 93, .6);\n  --zigbee2mqtt-networkmap-link-color: rgba(18, 120, 98, .5);\n  --zigbee2mqtt-networkmap-hover-color: #be385d;\n  --zigbee2mqtt-networkmap-link-selected-color: rgba(202, 164, 85, .6);\n  --zigbee2mqtt-networkmap-label-color: #127862;\n  --zigbee2mqtt-networkmap-arrow-color: rgba(18, 120, 98, 0.7);\n  --zigbee2mqtt-networkmap-node-coordinator-color: rgba(224, 78, 93, .7);\n  --zigbee2mqtt-networkmap-node-router-color: rgba(0, 165, 255, .7);\n}\n"
+                }
+              ],
+              "style": {
+                ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+              }
+            },
+            {
+              "type": "entities",
+              "view_layout": {
+                "grid-area": "footer2"
               },
               "entities": [
                 {
@@ -2986,7 +3108,7 @@
                   "style": "h2:before, h2:after {\n  position: absolute;\n  top: 51%;\n  overflow: hidden;\n  width: 50%;\n  height: var(--line-size);\n  content: '\\a0';\n  background-color: var(--divider-color);\n}\n\nh2:before {\n  margin-left: -50%;\n  text-align: right;\n}\nh2.text-divider {\n  border-bottom: none;\n}\n\nh2.text-divider span {\n  background: none;\n}\n"
                 },
                 {
-                  "card_style": "glance",
+                  "card_style": "full",
                   "show_title": false,
                   "entity": "sensor.rpi_monitor_printserver",
                   "fs_severity": [
@@ -3006,7 +3128,9 @@
                       "to": 100
                     }
                   ],
-                  "style": "ha-card {\n  border-radius: 5px;\n  background-image: none;\n  box-shadow: none;\n  background-color: rgba(114, 123, 140, 0);\n }\n",
+                  "style": {
+                    ".": "#states > * {\n    margin: -1px -15px !important;\n  }\nha-card {\n  border-radius: 5px;\n  background-image: none;\n  box-shadow: none;\n  background-color: rgba(114, 123, 140, 0);\n }\n"
+                  },
                   "temp_scale": "C",
                   "temp_severity": [
                     {
@@ -3037,30 +3161,6 @@
               ],
               "style": {
                 ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  height: 100%;\n}            \n"
-              }
-            },
-            {
-              "type": "entities",
-              "view_layout": {
-                "grid-area": "main3"
-              },
-              "entities": [
-                {
-                  "type": "custom:text-divider-row",
-                  "text": "Certificates",
-                  "style": "h2:before, h2:after {\n  position: absolute;\n  top: 51%;\n  overflow: hidden;\n  width: 50%;\n  height: var(--line-size);\n  content: '\\a0';\n  background-color: var(--divider-color);\n}\n\nh2:before {\n  margin-left: -50%;\n  text-align: right;\n}\nh2.text-divider {\n  border-bottom: none;\n}\n\nh2.text-divider span {\n  background: none;\n}\n"
-                },
-                {
-                  "entity": "sensor.cert_expiry_days_bloomlannl",
-                  "name": "*.bloomlan.nl"
-                },
-                {
-                  "entity": "sensor.cert_expiry_days_bloom_data",
-                  "name": "bloom-data.synology.me"
-                }
-              ],
-              "style": {
-                ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n}            \n"
               }
             }
           ]
