@@ -8,14 +8,6 @@
       - light.bureaulamp
       - light.shelly_shsw_1_40f520009959
 
-  - platform: group
-    name: Lampen Woonkamer
-    entities:
-      - light.lamp_bank_hoek
-      - light.lamp_trap
-      - light.lamp_achterdeur
-      - light.lamp_haard
-
 #=====================
 # Achtertuin
 #=====================
@@ -33,3 +25,15 @@
     name: Lampen Kamer Fynn
     entities:
       - light.lamp_hoekje
+
+#=====================
+# Woonkamer
+#=====================
+
+  - platform: group
+    name: Lampen Woonkamer
+    entities:
+      - light.lamp_bank_hoek
+      - light.lamp_trap
+      - light.lamp_achterdeur
+      - light.lamp_haard

@@ -842,7 +842,7 @@
                   "type": "custom:button-card",
                   "entity": "light.lamp_achterdeur",
                   "aspect_ratio": "1/1",
-                  "name": "Lamp Achterdeur",
+                  "name": "Lamp Haard",
                   "entity_picture": "/local/Custom_Icons/lamp_achterdeur.png",
                   "size": "50%",
                   "hold_action": {
@@ -946,7 +946,7 @@
                   "type": "custom:button-card",
                   "entity": "light.lamp_haard",
                   "aspect_ratio": "1/1",
-                  "name": "Lamp Haard",
+                  "name": "Lamp Achterdeur",
                   "entity_picture": "/local/Custom_Icons/lamp_haard.png",
                   "size": "50%",
                   "hold_action": {
