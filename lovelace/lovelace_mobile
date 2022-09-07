@@ -380,7 +380,7 @@
                         "left": "88%"
                       },
                       "type": "state-label",
-                      "entity": "sensor.telefoon_duncan_batterijniveau"
+                      "entity": "sensor.telefoon_duncan_battery_level"
                     },
                     {
                       "style": {
