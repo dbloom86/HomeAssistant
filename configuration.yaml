@@ -32,9 +32,6 @@ frontend:
   extra_module_url:
     - /hacsfiles/hass-bha-icons/hass-bha-icons.js
 
-browser_mod:
-  prefix: "browser_mod_"
-
 #================================  
 # Customize UI
 #================================
