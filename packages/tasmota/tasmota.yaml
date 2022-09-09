@@ -1,20 +1,46 @@
 #================================
 # Tasmota
 #================================
-
+  
   #============
-  # Switches
+  # MQTT
   #============
 
-switch:
+mqtt:
 
-  - platform: mqtt
-    state_topic: "state/tasmotas/upgrade"
-    command_topic: "cmnd/tasmotas/upgrade"
-    payload_on: "1"
-    payload_off: "0"
-    name: Upgrade Tasmota Firmware
-    optimistic: true
+    #============
+    # Switches
+    #============
+
+  switch:
+
+    - state_topic: "state/tasmotas/upgrade"
+      command_topic: "cmnd/tasmotas/upgrade"
+      payload_on: "1"
+      payload_off: "0"
+      name: Upgrade Tasmota Firmware
+      optimistic: true
+
+    #============
+    # Sensors
+    #============
+
+  sensor:
+
+    - name: "Bureaulamp 1 Firmware"
+      state_topic: "stat/Light_Desk_1/STATUS2"
+      value_template: "v{{value_json['StatusFWR'].Version[0:6] }}"
+      force_update: true
+      
+    - name: "Bureaulamp 2 Firmware"
+      state_topic: "stat/Light_Desk_2/STATUS2"
+      value_template: "v{{value_json['StatusFWR'].Version[0:6] }}"
+      force_update: true
+      
+    - name: "Bureaulamp 3 Firmware"
+      state_topic: "stat/Light_Desk_3/STATUS2"
+      value_template: "v{{value_json['StatusFWR'].Version[0:6] }}"
+      force_update: true    
 
   #============
   # Scripts
@@ -59,28 +85,11 @@ sensor:
     headers:
       Accept: application/vnd.github.v3+json
       Content-Type: application/json
-      User-Agent: Home Assistant REST sensor 
+      User-Agent: Home Assistant REST sensor     
 
-  - platform: mqtt
-    name: "Bureaulamp 1 Firmware"
-    state_topic: "stat/Light_Desk_1/STATUS2"
-    value_template: "v{{value_json['StatusFWR'].Version[0:6] }}"
-    force_update: true
-    
-  - platform: mqtt
-    name: "Bureaulamp 2 Firmware"
-    state_topic: "stat/Light_Desk_2/STATUS2"
-    value_template: "v{{value_json['StatusFWR'].Version[0:6] }}"
-    force_update: true
-    
-  - platform: mqtt
-    name: "Bureaulamp 3 Firmware"
-    state_topic: "stat/Light_Desk_3/STATUS2"
-    value_template: "v{{value_json['StatusFWR'].Version[0:6] }}"
-    force_update: true    
 
   - platform: template
     sensors:
-        tasmota_devices_needing_upgrade:
-            friendly_name: Tasmota Devices Needing Upgrade
-            value_template: "{{ states|selectattr('entity_id','in',state_attr('group.tasmota_firmware','entity_id'))|rejectattr('state','eq',states.sensor.sonoff_newest_version.state)|list|count}}"
+      tasmota_devices_needing_upgrade:
+        friendly_name: Tasmota Devices Needing Upgrade
+        value_template: "{{ states|selectattr('entity_id','in',state_attr('group.tasmota_firmware','entity_id'))|rejectattr('state','eq',states.sensor.sonoff_newest_version.state)|list|count}}"
