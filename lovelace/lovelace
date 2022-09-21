@@ -2937,7 +2937,7 @@
             {
               "type": "entities",
               "view_layout": {
-                "grid-area": "main1"
+                "grid-area": "footer1"
               },
               "entities": [
                 {
@@ -2986,7 +2986,7 @@
             {
               "type": "entities",
               "view_layout": {
-                "grid-area": "footer1"
+                "grid-area": "main1"
               },
               "entities": [
                 {
@@ -3046,7 +3046,7 @@
             {
               "type": "entities",
               "view_layout": {
-                "grid-area": "main3"
+                "grid-area": "footer2"
               },
               "entities": [
                 {
@@ -3070,7 +3070,7 @@
             {
               "type": "entities",
               "view_layout": {
-                "grid-area": "main2"
+                "grid-area": "main3"
               },
               "entities": [
                 {
@@ -3099,7 +3099,7 @@
             {
               "type": "entities",
               "view_layout": {
-                "grid-area": "footer2"
+                "grid-area": "main2"
               },
               "entities": [
                 {
