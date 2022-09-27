@@ -840,7 +840,7 @@
                 },
                 {
                   "type": "custom:button-card",
-                  "entity": "light.lamp_achterdeur",
+                  "entity": "light.lamp_haard",
                   "aspect_ratio": "1/1",
                   "name": "Lamp Haard",
                   "entity_picture": "/local/Custom_Icons/lamp_achterdeur.png",
@@ -933,7 +933,7 @@
                     }
                   ],
                   "custom_fields": {
-                    "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['light.lamp_achterdeur'].state}</span></span>`\n]]]\n"
+                    "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['light.lamp_haard'].state}</span></span>`\n]]]\n"
                   },
                   "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
                 }
@@ -944,7 +944,7 @@
               "cards": [
                 {
                   "type": "custom:button-card",
-                  "entity": "light.lamp_haard",
+                  "entity": "light.lamp_achterdeur",
                   "aspect_ratio": "1/1",
                   "name": "Lamp Achterdeur",
                   "entity_picture": "/local/Custom_Icons/lamp_haard.png",
@@ -1037,7 +1037,7 @@
                     }
                   ],
                   "custom_fields": {
-                    "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['light.lamp_haard'].state}</span></span>`\n]]]\n"
+                    "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['light.lamp_achterdeur'].state}</span></span>`\n]]]\n"
                   },
                   "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
                 },
