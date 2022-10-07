@@ -262,7 +262,6 @@
   #================================  
   # Uptime
   #================================    
-  - platform: uptime
     
       #================================
       # Raspberry Pi Uptime
@@ -350,7 +349,7 @@
       hassos_update_available:
         friendly_name: "HassOS Update Available"
         value_template: >-
-            {% if (states.binary_sensor.home_assistant_operating_system_update_available.state == "off") %}
+            {% if (states.update.home_assistant_operating_system_update.state == "off") %}
                 100
             {% else %}
                 50
@@ -468,7 +467,7 @@
         check_config_update_available:
             friendly_name: "Check Config Update Available"
             value_template: >-
-                {% if ( states.binary_sensor.check_home_assistant_configuration_update_available.state == 'off' ) %}
+                {% if ( states.update.check_home_assistant_configuration_update.state == 'off' ) %}
                     100
                 {% else %}
                     50
@@ -483,7 +482,7 @@
         samba_backup_update_available:
             friendly_name: "Samba Backup Update Available"
             value_template: >-
-                {% if ( states.binary_sensor.samba_backup_update_available.state == 'off' ) %}
+                {% if ( states.update.samba_backup_update.state == 'off' ) %}
                     100
                 {% else %}
                     50
@@ -519,7 +518,7 @@
         samba_share_update_available:
             friendly_name: "Samba Share Update Available"
             value_template: >-
-                {% if ( states.binary_sensor.samba_share_update_available.state == 'off' ) %}
+                {% if ( states.update.samba_share_update.state == 'off' ) %}
                     100
                 {% else %}
                     50
@@ -534,7 +533,7 @@
         ssh_terminal_update_available:
             friendly_name: "SSH Terminal Update Available"
             value_template: >-
-                {% if ( states.binary_sensor.ssh_web_terminal_update_available.state == 'off' ) %}
+                {% if ( states.update.ssh_web_terminal_update.state == 'off' ) %}
                     100
                 {% else %}
                     50
