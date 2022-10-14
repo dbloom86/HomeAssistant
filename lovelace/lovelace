@@ -1873,7 +1873,7 @@
                     },
                     {
                       "type": "markdown",
-                      "content": "**EXPERIABOX V10**\n**Model:** ZTE H369A\n**Private IP:** 192.168.2.254 }}\n**Public IP:** {{ states('sensor.experiabox_v10_external_ip') }}\n**Firmware:** V1.01.00T03.8V4",
+                      "content": "**EXPERIABOX V10**\n**Model:** ZTE H369A\n**Private IP:** 192.168.2.254\n**Public IP:** {{ states('sensor.experiabox_v10_external_ip') }}\n**Firmware:** V1.01.00T03.8V4",
                       "style": "ha-card{\n  left: -120px;\n  top: 15%;\n  background: none;\n  box-shadow: none;\n}\n"
                     },
                     {
