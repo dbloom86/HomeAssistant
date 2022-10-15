@@ -3,7 +3,8 @@ from datetime import datetime
 from datetime import timedelta
 
 from homeassistant.const import CONF_RESOURCES, DEVICE_CLASS_TIMESTAMP
-from homeassistant.helpers.entity import Entity
+from homeassistant.components.sensor import SensorEntity
+from homeassistant.helpers.restore_state import RestoreEntity
 
 from .const import *
 from .API import Get_WasteData_From_Config
@@ -13,15 +14,6 @@ _LOGGER = logging.getLogger(__name__)
 
 
 async def async_setup_platform(hass, config, async_add_entities, discovery_info=None):
-    # Without breaking existing config to load using sensor as component you get a direct call with the config to here.
-    # sensor:
-    #   platform: afvalbeheer
-    #   ....
-    # This function could be simplified and non async function when depricating this way of accessing.
-    # New way of the config should be:
-    # Afvalbeheer:
-    #   ....
-
     _LOGGER.debug("Setup of sensor platform Afvalbeheer")
 
     schedule_update = False
@@ -104,7 +96,7 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
         await data.schedule_update(timedelta())
 
 
-class WasteTypeSensor(Entity):
+class WasteTypeSensor(RestoreEntity, SensorEntity):
 
     def __init__(self, data, waste_type, waste_collector, date_format, date_only, date_object,
                 name, name_prefix, built_in_icons, disable_icons, dutch_days, day_of_week,
@@ -135,6 +127,7 @@ class WasteTypeSensor(Entity):
         self._hidden = False
         self._entity_picture = None
         self._state = None
+        self._attrs = {}
 
     @property
     def name(self):
@@ -150,12 +143,13 @@ class WasteTypeSensor(Entity):
 
     @property
     def extra_state_attributes(self):
-        return {
+        self._attrs = {
             ATTR_WASTE_COLLECTOR: self.waste_collector,
             ATTR_HIDDEN: self._hidden,
             ATTR_SORT_DATE: self._sort_date,
             ATTR_DAYS_UNTIL: self._days_until
         }
+        return self._attrs
 
     @property
     def device_class(self):
@@ -165,6 +159,22 @@ class WasteTypeSensor(Entity):
     @property
     def unit_of_measurement(self):
         return self._unit
+
+    async def async_added_to_hass(self):
+        """Call when entity is about to be added to Home Assistant."""
+        if (state := await self.async_get_last_state()) is None:
+            self._state = None
+            return
+
+        self._state = state.state
+
+        if ATTR_WASTE_COLLECTOR in state.attributes:
+            self._attrs = {
+            ATTR_WASTE_COLLECTOR: state.attributes[ATTR_WASTE_COLLECTOR],
+            ATTR_HIDDEN: state.attributes[ATTR_HIDDEN],
+            ATTR_SORT_DATE: state.attributes[ATTR_SORT_DATE],
+            ATTR_DAYS_UNTIL: state.attributes[ATTR_DAYS_UNTIL]
+        }
 
     def update(self):
         collection = self.data.collections.get_first_upcoming_by_type(self.waste_type)
@@ -236,7 +246,7 @@ class WasteTypeSensor(Entity):
             self._entity_picture = collection.icon_data
 
 
-class WasteDateSensor(Entity):
+class WasteDateSensor(RestoreEntity, SensorEntity):
 
     def __init__(self, data, waste_types, waste_collector, date_delta, dutch_days, name, name_prefix):
         self.data = data
@@ -255,6 +265,7 @@ class WasteDateSensor(Entity):
         self._unit = ''
         self._hidden = False
         self._state = None
+        self._attrs = {}
 
     @property
     def name(self):
@@ -266,13 +277,27 @@ class WasteDateSensor(Entity):
 
     @property
     def extra_state_attributes(self):
-        return {
+        self._attrs = {
             ATTR_HIDDEN: self._hidden
         }
+        return self._attrs
 
     @property
     def unit_of_measurement(self):
         return self._unit
+
+    async def async_added_to_hass(self):
+        """Call when entity is about to be added to Home Assistant."""
+        if (state := await self.async_get_last_state()) is None:
+            self._state = None
+            return
+
+        self._state = state.state
+
+        if ATTR_HIDDEN in state.attributes:
+            self._attrs = {
+            ATTR_HIDDEN: state.attributes[ATTR_HIDDEN]
+        }
 
     def update(self):
         date = datetime.now() + self.date_delta
