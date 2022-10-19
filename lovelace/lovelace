@@ -2076,9 +2076,186 @@
                           }
                         },
                         {
-                          "type": "custom:gap-card",
-                          "height": 10,
-                          "size": 10
+                          "type": "horizontal-stack",
+                          "cards": [
+                            {
+                              "type": "custom:button-card",
+                              "entity": "update.bloomhole_core_update_available",
+                              "aspect_ratio": "1/1",
+                              "name": "Pi-hole Core",
+                              "size": "40%",
+                              "show_entity_picture": true,
+                              "entity_picture": "/local/Custom_Icons/core-ico.png",
+                              "styles": {
+                                "card": [
+                                  {
+                                    "background-color": "var(--ha-card-background)"
+                                  },
+                                  {
+                                    "left": "-35%"
+                                  }
+                                ],
+                                "grid": [
+                                  {
+                                    "grid-template-areas": "\"i i i\" \"n n n\" \"version version version\""
+                                  }
+                                ],
+                                "name": [
+                                  {
+                                    "justify-self": "center"
+                                  },
+                                  {
+                                    "font-size": "12px"
+                                  },
+                                  {
+                                    "align-items": "middle"
+                                  }
+                                ],
+                                "img_cell": [
+                                  {
+                                    "justify-content": "center"
+                                  },
+                                  {
+                                    "align-items": "middle"
+                                  }
+                                ],
+                                "custom_fields": {
+                                  "version": [
+                                    {
+                                      "align-self": "center"
+                                    },
+                                    {
+                                      "justify-self": "middle"
+                                    },
+                                    {
+                                      "font-size": "12px"
+                                    }
+                                  ]
+                                }
+                              },
+                              "custom_fields": {
+                                "version": "[[[\n  return `Version: <span><span style=\"color: var(--text-color-sensor);\">${states['update.bloomhole_core_update_available'].attributes.installed_version}</span></span>`\n]]]\n"
+                              }
+                            },
+                            {
+                              "type": "custom:button-card",
+                              "entity": "update.bloomhole_ftl_update_available",
+                              "aspect_ratio": "1/1",
+                              "name": "Pi-hole FTL DNS",
+                              "size": "40%",
+                              "show_entity_picture": true,
+                              "entity_picture": "/local/Custom_Icons/DNS-FTL-ico.png",
+                              "styles": {
+                                "card": [
+                                  {
+                                    "background-color": "var(--ha-card-background)"
+                                  },
+                                  {
+                                    "left": "-35%"
+                                  }
+                                ],
+                                "grid": [
+                                  {
+                                    "grid-template-areas": "\"i i i\" \"n n n\" \"version version version\""
+                                  }
+                                ],
+                                "name": [
+                                  {
+                                    "justify-self": "center"
+                                  },
+                                  {
+                                    "font-size": "12px"
+                                  },
+                                  {
+                                    "align-items": "middle"
+                                  }
+                                ],
+                                "img_cell": [
+                                  {
+                                    "justify-content": "center"
+                                  },
+                                  {
+                                    "align-items": "middle"
+                                  }
+                                ],
+                                "custom_fields": {
+                                  "version": [
+                                    {
+                                      "align-self": "center"
+                                    },
+                                    {
+                                      "justify-self": "middle"
+                                    },
+                                    {
+                                      "font-size": "12px"
+                                    }
+                                  ]
+                                }
+                              },
+                              "custom_fields": {
+                                "version": "[[[\n  return `Version: <span><span style=\"color: var(--text-color-sensor);\">${states['update.bloomhole_ftl_update_available'].attributes.installed_version}</span></span>`\n]]]\n"
+                              }
+                            },
+                            {
+                              "type": "custom:button-card",
+                              "entity": "update.bloomhole_web_update_available",
+                              "aspect_ratio": "1/1",
+                              "name": "Pi-hole Web interface",
+                              "size": "40%",
+                              "show_entity_picture": true,
+                              "entity_picture": "/local/Custom_Icons/web-interface-ico.png",
+                              "styles": {
+                                "card": [
+                                  {
+                                    "background-color": "var(--ha-card-background)"
+                                  },
+                                  {
+                                    "left": "-35%"
+                                  }
+                                ],
+                                "grid": [
+                                  {
+                                    "grid-template-areas": "\"i i i\" \"n n n\" \"version version version\""
+                                  }
+                                ],
+                                "name": [
+                                  {
+                                    "justify-self": "center"
+                                  },
+                                  {
+                                    "font-size": "12px"
+                                  },
+                                  {
+                                    "align-items": "middle"
+                                  }
+                                ],
+                                "img_cell": [
+                                  {
+                                    "justify-content": "center"
+                                  },
+                                  {
+                                    "align-items": "middle"
+                                  }
+                                ],
+                                "custom_fields": {
+                                  "version": [
+                                    {
+                                      "align-self": "center"
+                                    },
+                                    {
+                                      "justify-self": "middle"
+                                    },
+                                    {
+                                      "font-size": "12px"
+                                    }
+                                  ]
+                                }
+                              },
+                              "custom_fields": {
+                                "version": "[[[\n  return `Version: <span><span style=\"color: var(--text-color-sensor);\">${states['update.bloomhole_web_update_available'].attributes.installed_version}</span></span>`\n]]]\n"
+                              }
+                            }
+                          ]
                         }
                       ]
                     },
@@ -2184,7 +2361,7 @@
                         },
                         {
                           "type": "markdown",
-                          "content": "**BLOOM-DATA**\n**Model:** Synology DS920+\n**Security:** {{ states('sensor.bloom_data_security') }}\n**IP:** 192.168.2.208\n**Updates:** {{ states('sensor.bloom_data_update') }}\n**Uptime:** {{ states('sensor.bloomdata_uptime') }}",
+                          "content": "**BLOOM-DATA**\n**Model:** Synology DS920+\n**Security:** {{ states('sensor.bloom_data_security') }}\n**IP:** 192.168.2.208\n**Updates:** {{ states('sensor.bloom_data_update') }}\n**DSM Version:** {{ state_attr('update.bloom_data_dsm_update', 'installed_version') }}  \n**Uptime:** {{ states('sensor.bloomdata_uptime') }}",
                           "style": "ha-card{\n  left: -120px;\n  top: 5%;\n  background: none;\n  box-shadow: none;\n}\n"
                         },
                         {

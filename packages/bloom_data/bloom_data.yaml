@@ -51,17 +51,11 @@ sensor:
     sensors:
         bloom_data_update:
             value_template: >-
-                {% if is_state('binary_sensor.bloom_data_update_available', 'off') %}
+                {% if is_state('update.bloom_data_dsm_update', 'off') %}
                     Up-To-Date
                 {% else %}
                     Needs Update
                 {% endif %}
-
-  - platform: template
-    sensors:
-        bloom_data_uptime:
-            friendly_name: Bloom-Data Uptime
-            value_template: "{{ as_timestamp(strptime(states('sensor.bloom_data_last_boot') , '%Y-%m-%dT%H:%M:%S')) | timestamp_custom('%d days, %-H hrs and %-M mins') }}"
 
   - platform: template
     sensors:
