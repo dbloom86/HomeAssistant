@@ -36,6 +36,8 @@ from homeassistant.helpers.entity import Entity
 from homeassistant.util import Throttle, dt
 
 BASE_URL = "http://{0}:{1}/hdrv_zwave?action=getDevices.json"
+
+
 _LOGGER = logging.getLogger(__name__)
 
 MIN_TIME_BETWEEN_UPDATES = timedelta(seconds=10)
@@ -60,6 +62,8 @@ SENSOR_LIST = {
     "elecsolar",
     "elecsolarcnt",
     "heat",
+    "waterflow",
+    "waterquantity",
 }
 
 SENSOR_TYPES: Final[tuple[SensorEntityDescription, ...]] = (
@@ -178,6 +182,21 @@ SENSOR_TYPES: Final[tuple[SensorEntityDescription, ...]] = (
         key="heat",
         name="P1 Heat",
         icon="mdi:fire",
+    ),
+    SensorEntityDescription(
+        key="waterquantity",
+        name="P1 waterquantity",
+        native_unit_of_measurement=VOLUME_CUBIC_METERS,
+        icon="mdi:water",
+        state_class=STATE_CLASS_MEASUREMENT,
+    ),
+    SensorEntityDescription(
+        key="waterflow",
+        name="P1 waterflow",
+        device_class="pressure",
+        unit_of_measurement = "l/m",
+        icon="mdi:water-pump",
+        state_class=STATE_CLASS_MEASUREMENT,
     ),
 )
 
@@ -415,6 +434,21 @@ class ToonSmartMeterSensor(SensorEntity):
                 ):
                     self._dev_id["heat"] = key
 
+                """water"""
+                if (
+                    dev["type"]
+                    in [
+                        "HAE_METER_v4_9",
+                    ]
+                    and safe_get(
+                        energy, [key, "CurrentWaterQuantity"], default="NaN"
+                    )
+                    != "NaN"
+                ):
+                    self._dev_id["waterquantity"] = key
+                    self._dev_id["waterflow"] = key
+
+
             self._discovery = True
             _LOGGER.debug("Discovered: '%s'", self._dev_id)
 
@@ -578,6 +612,19 @@ class ToonSmartMeterSensor(SensorEntity):
                     )
                     / 1000
                 )
+
+        elif self._type == "waterquantity":
+            if self._type in self._dev_id:
+                self._state = (
+                    float(energy[self._dev_id[self._type]]["CurrentWaterQuantity"])
+                )
+
+        elif self._type == "waterflow":
+            if self._type in self._dev_id:
+                self._state = (
+                    float(energy[self._dev_id[self._type]]["CurrentWaterFlow"])
+                )
+
 
         _LOGGER.debug("Device: {} State: {}".format(self._type, self._state))
 
