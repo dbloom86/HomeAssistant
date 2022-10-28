@@ -34,9 +34,9 @@ automation:
 
   - alias: CO sensor replace battery
     trigger:
-    - platform: state
-      entity_id: binary_sensor.carbon_monoxide_sensor_power_management_replace_battery_soon
-      to: 'on'
+    - platform: numeric_state
+      entity_id: sensor.carbon_monoxide_sensor_battery_level
+      below: 10
     action:
       service: notify.mobile_app_telefoon_duncan
       data:
