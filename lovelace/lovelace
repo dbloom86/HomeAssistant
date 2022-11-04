@@ -128,7 +128,7 @@
                     {
                       "card_type": "markdown",
                       "content": "<ha-icon icon= {{'mdi:delete-alert' if states('sensor.circulus_afval_vandaag') != 'Geen' else 'mdi:delete-outline'}}> </ha-icon> Vandaag, {{states('sensor.simple_date')}}: <font color = {% if states('sensor.circulus_afval_vandaag') == 'pmd' %}'#ff944d'\n            {% elif states('sensor.circulus_afval_vandaag') == 'gft' %}'#00e64d'\n            {% elif states('sensor.circulus_afval_vandaag') == 'papier' %}'#3399ff'\n            {% else %}'grey'\n            {% endif %}> **{{states('sensor.circulus_afval_vandaag')}}</font>**      \n      \n            \n<ha-icon icon= {{'mdi:delete-alert' if states('sensor.circulus_afval_morgen') != 'Geen' else 'mdi:delete-outline'}}> </ha-icon>  Morgen, {{states('sensor.simple_tomorrow')}}:  <font color = {% if states('sensor.circulus_afval_morgen') == 'pmd' %}'#ff944d'\n            {% elif states('sensor.circulus_afval_morgen') == 'gft' %}'#00e64d'\n            {% elif states('sensor.circulus_afval_morgen') == 'papier' %}'#3399ff'\n            {% else %}'grey'\n            {% endif %}> **{{states('sensor.circulus_afval_morgen')}}</font>**  \n",
-                      "style": "ha-card {\n  box-shadow: none;\n  border-radius: 10px;\n  background: none;\n}\n",
+                      "style": "ha-card {\n  box-shadow: none;\n  border-radius: 10px;\n  border: none;\n  background: none;\n}\n",
                       "type": "custom:hui-element"
                     },
                     {
@@ -151,7 +151,7 @@
                           "name": "PMD"
                         }
                       ],
-                      "style": "ha-card {\n  box-shadow: none;\n  border-radius: 10px;\n  background: none;\n  }\n",
+                      "style": "ha-card {\n  box-shadow: none;\n  border-radius: 10px;\n  border: none;\n  background: none;\n  }\n",
                       "type": "custom:hui-element"
                     }
                   ],
@@ -175,7 +175,7 @@
                       "card_type": "markdown",
                       "type": "custom:hui-element",
                       "content": "|         |            | Hoeveelheid  | Koers  | Waarde  |\n| ------------- |-------------|-----:|---------:|-----------:|\n| <img src=\"/local/Custom_Icons/ankr-ico.png\" width=\"40\"/>  | Anker      | {{ states('sensor.coinbase_ankr_portemonnee') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.ankr_koers') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.value_ankr') }} |\n| <img src=\"/local/Custom_Icons/bsv-ico.png\" width=\"40\"/>  | Bitcoin SV      | {{ states('sensor.coinbase_bsv_wallet') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.bsv_koers') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.value_bsv') }} |\n| <img src=\"/local/Custom_Icons/bnb-ico.png\" width=\"40\"/>      | BNB | {{ states('sensor.bnb') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.bnb_koers') }}  | &nbsp;&nbsp;€&nbsp;{{ states('sensor.value_bnb') }}  |\n| <img src=\"/local/Custom_Icons/btc-ico.png\" width=\"40\"/>      | BTC | {{ states('sensor.coinbase_btc_wallet') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.btc_koers') }}  | &nbsp;&nbsp;€&nbsp;{{ states('sensor.value_btc') }}  |\n| <img src=\"/local/Custom_Icons/eth-ico.png\" width=\"40\"/>  | Ethereum      | {{ states('sensor.eth') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.eth_koers') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.value_eth') }} |\n| <img src=\"/local/Custom_Icons/stmx-ico.png\" width=\"40\"/>      |  StormX      | {{ states('sensor.stormx') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.stmx_koers') }}  |&nbsp;&nbsp;€&nbsp;{{ states('sensor.value_stmx') }}  |\n| <img src=\"/local/Custom_Icons/vtho-ico.png\" width=\"40\"/>  | VeThor Token      | {{ states('sensor.vethor_token') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.vtho_koers') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.value_vtho') }} |",
-                      "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 13px;\n\n}\n"
+                      "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  border: none;\n  font-size: 13px;\n\n}\n"
                     },
                     {
                       "type": "divider"
@@ -184,7 +184,7 @@
                       "card_type": "markdown",
                       "type": "custom:hui-element",
                       "content": "|         |            |   |   |   |\n| ------------- |-------------|-----:|---------:|-----------:|\n| <img src=\"/local/Custom_Icons/crypto-ico.png\" width=\"40\"/>  | Totaal Crypto      |  |               | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;€&nbsp;{{ states('sensor.total_value_crypto') }}  |",
-                      "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 13px;\n}\n"
+                      "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  border: none;\n  font-size: 13px;\n}\n"
                     }
                   ],
                   "style": "ha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
@@ -221,12 +221,12 @@
                     {
                       "type": "picture",
                       "image": "\\local\\Pictures\\home-assistant.png",
-                      "style": "ha-card{\n  width: 200px;\n  background: none;\n  box-shadow: none;\n  top: 15px;\n  left: 20px;\n}\n"
+                      "style": "ha-card{\n  width: 200px;\n  background: none;\n  box-shadow: none;\n  border: none;\n  top: 15px;\n  left: 20px;\n}\n"
                     },
                     {
                       "type": "markdown",
                       "content": "**HOMEASSISTANT SERVER\nRESOURCES\nVM ON SYNOLOGY VMM\nPublic IP Address:** {{states.sensor.ha_bloomlan_nl.state}}\n**Private IP Address:** {{states.sensor.local_ip.state}}\n**CPU Speed:** {{ states('sensor.cpu_speed')}}Ghz\n**Uptime:** {{ states('sensor.rpi_uptime')}}",
-                      "style": "ha-card{\n  left: -80px;\n  background: none;\n  box-shadow: none;\n}\n"
+                      "style": "ha-card{\n  left: -80px;\n  background: none;\n  border: none;\n  box-shadow: none;\n}\n"
                     },
                     {
                       "type": "entities",
@@ -264,7 +264,8 @@
                             }
                           ],
                           "type": "custom:bar-card",
-                          "width": "70%"
+                          "width": "70%",
+                          "style": "ha-card {\n  border: none;\n}\n"
                         },
                         {
                           "color": "green",
@@ -300,7 +301,8 @@
                             }
                           ],
                           "type": "custom:bar-card",
-                          "width": "70%"
+                          "width": "70%",
+                          "style": "ha-card {\n  border: none;\n}\n"
                         },
                         {
                           "color": "green",
@@ -336,7 +338,8 @@
                             }
                           ],
                           "type": "custom:bar-card",
-                          "width": "70%"
+                          "width": "70%",
+                          "style": "ha-card {\n  border: none;\n}\n"
                         },
                         {
                           "color": "green",
@@ -372,11 +375,12 @@
                             }
                           ],
                           "type": "custom:bar-card",
-                          "width": "70%"
+                          "width": "70%",
+                          "style": "ha-card {\n  border: none;\n}\n"
                         }
                       ],
                       "style": {
-                        ".": "#states > * {\n  margin: -8px 0px !important;\n}\nha-card {\n  bar-card-border-radius: 5px;\n  left: -110px;\n  width: 120%;\n  top: 5%;\n  background: none;\n  box-shadow: none;\n}\n"
+                        ".": "#states > * {\n  margin: -8px 0px !important;\n}\nha-card {\n  bar-card-border-radius: 5px;\n  border: none;\n  left: -110px;\n  width: 120%;\n  top: 5%;\n  background: none;\n  box-shadow: none;\n}\n"
                       }
                     },
                     {
@@ -413,7 +417,7 @@
                         "average": false,
                         "state": false
                       },
-                      "style": "ha-card {\n  border-radius: 5px;\n  box-shadow: none;\n  background: none;\n  left: -30px;\n  height: 90%;\n }\n",
+                      "style": "ha-card {\n  border-radius: 5px;\n  border: none;\n  box-shadow: none;\n  background: none;\n  left: -30px;\n  height: 90%;\n }\n",
                       "type": "custom:mini-graph-card"
                     }
                   ],
@@ -437,7 +441,7 @@
                           {
                             "type": "picture",
                             "image": "/local/Pictures/addons/docker-icon.png",
-                            "style": "ha-card {\n  width: 160px;\n  top: 20%;\n  left: 10px;\n  background: none;\n  box-shadow: none;\n}\n"
+                            "style": "ha-card {\n  width: 160px;\n  top: 20%;\n  left: 10px;\n  background: none;\n  box-shadow: none;\n  border: none;\n}\n"
                           }
                         ]
                       },
@@ -451,7 +455,7 @@
                           {
                             "type": "markdown",
                             "content": "**Docker Version:** {{states.sensor.docker_version.state}}\n**Running Containers:** {{states.sensor.docker_containers_running.state}}\n**Total Containers:** {{ states.sensor.docker_containers_total.state }}\n**CPU Usage:** {{ states('sensor.docker_1cpu')}}%\n**RAM Usage:** {{ states.sensor.docker_memory_percent.state }}%",
-                            "style": "ha-card{\n  top: 10%;\n  left: 5%;\n  background: none;\n  box-shadow: none;\n}\n"
+                            "style": "ha-card{\n  top: 10%;\n  left: 5%;\n  background: none;\n  box-shadow: none;\n  border: none;\n}\n"
                           }
                         ]
                       },
@@ -465,7 +469,7 @@
                           {
                             "type": "markdown",
                             "content": "<center><img src=\"/local/Pictures/addons/bazarr-ico.png\" width=\"70\"/> <center>Bazarr</center> <center>{{ states.sensor.docker_bazarr_status.state }}</center>",
-                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n}\n"
+                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n  border: none;\n}\n"
                           },
                           {
                             "color": "green",
@@ -498,7 +502,7 @@
                                 "to": 100
                               }
                             ],
-                            "style": "ha-card {\n  top: -10px;\n  width: 70%;\n  left: 15%;\n}\n",
+                            "style": "ha-card {\n  top: -10px;\n  width: 70%;\n  left: 15%;\n  border: none;\n}\n",
                             "entities": [
                               {
                                 "entity": "sensor.bazarr_bar"
@@ -517,7 +521,7 @@
                           {
                             "type": "markdown",
                             "content": "<center><img src=\"/local/Pictures/addons/deluge-ico.png\" width=\"70\"/> <center>Deluge</center> <center>{{ states.sensor.docker_deluge_status.state }}</center>",
-                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n}\n"
+                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n  border: none;\n}\n"
                           },
                           {
                             "color": "green",
@@ -550,7 +554,7 @@
                                 "to": 100
                               }
                             ],
-                            "style": "ha-card {\n  top: -10px;\n  width: 70%;\n  left: 15%;\n}\n",
+                            "style": "ha-card {\n  top: -10px;\n  width: 70%;\n  left: 15%;\n  border: none;\n}\n",
                             "entities": [
                               {
                                 "entity": "sensor.deluge_bar"
@@ -569,7 +573,7 @@
                           {
                             "type": "markdown",
                             "content": "<center><img src=\"/local/Pictures/addons/ha_dockermon-ico.png\" width=\"70\"/> <center>Docker Proxy</center><center>{{ states.sensor.docker_dockerproxy_status.state }}</center>",
-                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n}\n"
+                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n  border: none;\n}\n"
                           },
                           {
                             "color": "green",
@@ -602,7 +606,7 @@
                                 "to": 100
                               }
                             ],
-                            "style": "ha-card {\n  top: -10px;\n  width: 70%;\n  left: 15%;            \n}\n",
+                            "style": "ha-card {\n  top: -10px;\n  width: 70%;\n  left: 15%;\n  border: none;\n}\n",
                             "entities": [
                               {
                                 "entity": "sensor.dockerproxy_bar"
@@ -621,7 +625,7 @@
                           {
                             "type": "markdown",
                             "content": "<center><img src=\"/local/Pictures/addons/esphome-ico.png\" width=\"70\"/> <center>ESP Home</center> <center>{{ states.sensor.docker_esphome_status.state }}</center>",
-                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n}\n"
+                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n  border: none;\n}\n"
                           },
                           {
                             "color": "green",
@@ -655,7 +659,7 @@
                                 "to": 100
                               }
                             ],
-                            "style": "ha-card {\n  top: -10px;\n  width: 70%;\n  left: 15%;\n}\n"
+                            "style": "ha-card {\n  top: -10px;\n  width: 70%;\n  left: 15%;\n  border: none;\n}\n"
                           }
                         ]
                       },
@@ -669,7 +673,7 @@
                           {
                             "type": "markdown",
                             "content": "<center><img src=\"/local/Pictures/addons/mariadb-ico.png\" width=\"73\"/> <center>HARepository</center> <center>{{ states.sensor.docker_harepository_status.state }}</center>",
-                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n}\n"
+                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n  border: none;\n}\n"
                           },
                           {
                             "color": "green",
@@ -702,7 +706,7 @@
                                 "to": 100
                               }
                             ],
-                            "style": "ha-card {\n  top: -10px;\n  width: 70%;\n  left: 15%;            \n}\n",
+                            "style": "ha-card {\n  top: -10px;\n  width: 70%;\n  left: 15%;    \n  border: none;\n}\n",
                             "entities": [
                               {
                                 "entity": "sensor.harepository_bar"
@@ -721,7 +725,7 @@
                           {
                             "type": "markdown",
                             "content": "<center><img src=\"/local/Pictures/addons/jackett-ico.png\" width=\"70\"/> <center>Jackett</center> <center>{{ states.sensor.docker_jackett_status.state }}</center>",
-                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n}\n"
+                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n  border: none;\n}\n"
                           },
                           {
                             "color": "green",
@@ -754,7 +758,7 @@
                                 "to": 100
                               }
                             ],
-                            "style": "ha-card {\n  top: -10px;\n  width: 70%;\n  left: 15%;            \n}\n",
+                            "style": "ha-card {\n  top: -10px;\n  width: 70%;\n  left: 15%;\n  border: none;\n}\n",
                             "entities": [
                               {
                                 "entity": "sensor.jackett_bar"
@@ -773,7 +777,7 @@
                           {
                             "type": "markdown",
                             "content": "<center><img src=\"/local/Pictures/addons/mosquitto_broker-ico.png\" width=\"73\"/> <center>Mosquitto</center> <center>{{ states.sensor.docker_mosquitto_status.state }}</center>",
-                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n}\n"
+                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n  border: none;\n}\n"
                           },
                           {
                             "color": "green",
@@ -807,7 +811,7 @@
                                 "to": 100
                               }
                             ],
-                            "style": "ha-card {\n  top: -10px;\n  width: 70%;\n  left: 15%;\n} \n"
+                            "style": "ha-card {\n  top: -10px;\n  width: 70%;\n  left: 15%;\n  border: none;\n} \n"
                           }
                         ]
                       },
@@ -821,7 +825,7 @@
                           {
                             "type": "markdown",
                             "content": "<center><img src=\"/local/Pictures/addons/nodered-ico.png\" width=\"73\"/> <center>Node-RED</center> <center>{{ states.sensor.docker_nodered_status.state }}</center>",
-                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n}\n"
+                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n  border: none;\n}\n"
                           },
                           {
                             "color": "green",
@@ -855,7 +859,7 @@
                                 "to": 100
                               }
                             ],
-                            "style": "ha-card {\n  top: -10px;\n  width: 70%;\n  left: 15%;            \n}\n"
+                            "style": "ha-card {\n  top: -10px;\n  width: 70%;\n  left: 15%;\n  border: none;\n}\n"
                           }
                         ]
                       },
@@ -869,7 +873,7 @@
                           {
                             "type": "markdown",
                             "content": "<center><img src=\"/local/Pictures/addons/phpmyadmin-ico.png\" width=\"73\"/> <center>phpMyAdmin</center> <center>{{ states.sensor.docker_phpmyadmin_status.state }}</center>",
-                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n}\n"
+                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n  border: none;\n}\n"
                           },
                           {
                             "color": "green",
@@ -903,7 +907,7 @@
                                 "to": 100
                               }
                             ],
-                            "style": "ha-card {\n  top: -10px;\n  width: 70%;\n  left: 15%;            \n}\n"
+                            "style": "ha-card {\n  top: -10px;\n  width: 70%;\n  left: 15%;\n  border: none;\n}\n"
                           }
                         ]
                       },
@@ -917,7 +921,7 @@
                           {
                             "type": "markdown",
                             "content": "<center><img src=\"/local/Pictures/addons/plex-ico.png\" width=\"73\"/> <center>Plex</center> <center>{{ states.sensor.docker_plex_status.state }}</center>",
-                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n}\n"
+                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n  border: none;\n}\n"
                           },
                           {
                             "color": "green",
@@ -951,7 +955,7 @@
                                 "to": 100
                               }
                             ],
-                            "style": "ha-card {\n  top: -10px;\n  width: 70%;\n  left: 15%;            \n}\n"
+                            "style": "ha-card {\n  top: -10px;\n  width: 70%;\n  left: 15%;\n  border: none;\n}\n"
                           }
                         ]
                       },
@@ -965,7 +969,7 @@
                           {
                             "type": "markdown",
                             "content": "<center><img src=\"/local/Pictures/addons/portainer-ico.png\" width=\"70\"/> <center>Portainer</center> <center>{{ states.sensor.docker_radarr_status.state }}</center>",
-                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n}\n"
+                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n  border: none;\n}\n"
                           },
                           {
                             "color": "green",
@@ -999,7 +1003,7 @@
                                 "to": 100
                               }
                             ],
-                            "style": "ha-card {\n  top: -10px;\n  width: 70%;\n  left: 15%;            \n}\n"
+                            "style": "ha-card {\n  top: -10px;\n  width: 70%;\n  left: 15%;\n  border: none;\n}\n"
                           }
                         ]
                       },
@@ -1013,7 +1017,7 @@
                           {
                             "type": "markdown",
                             "content": "<center><img src=\"/local/Pictures/addons/radarr-ico.png\" width=\"70\"/> <center>Radarr</center> <center>{{ states.sensor.docker_radarr_status.state }}</center>",
-                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n}\n"
+                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n  border: none;\n}\n"
                           },
                           {
                             "color": "green",
@@ -1047,7 +1051,7 @@
                                 "to": 100
                               }
                             ],
-                            "style": "ha-card {\n  top: -10px;\n  width: 70%;\n  left: 15%;            \n}\n"
+                            "style": "ha-card {\n  top: -10px;\n  width: 70%;\n  left: 15%;\n  border: none;\n}\n"
                           }
                         ]
                       },
@@ -1061,7 +1065,7 @@
                           {
                             "type": "markdown",
                             "content": "<center><img src=\"/local/Pictures/addons/tasmo_admin-ico.png\" width=\"73\"/> <center>Tasmo Admin</center> <center>{{ states.sensor.docker_tasmoadmin_status.state }}</center>",
-                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n}\n"
+                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n  border: none;\n}\n"
                           },
                           {
                             "color": "green",
@@ -1095,7 +1099,7 @@
                                 "to": 100
                               }
                             ],
-                            "style": "ha-card {\n  top: -10px;\n  width: 70%;\n  left: 15%;\n} \n     \n"
+                            "style": "ha-card {\n  top: -10px;\n  width: 70%;\n  left: 15%;\n  border: none;\n} \n     \n"
                           }
                         ]
                       },
@@ -1109,7 +1113,7 @@
                           {
                             "type": "markdown",
                             "content": "<center><img src=\"/local/Pictures/addons/unifi-ico.png\" width=\"70\"/> <center>Unifi Controller</center> <center>{{ states.sensor.docker_unifi_controller_status.state }}</center>",
-                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n}\n"
+                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n  border: none;\n}\n"
                           },
                           {
                             "color": "green",
@@ -1143,7 +1147,7 @@
                                 "to": 100
                               }
                             ],
-                            "style": "ha-card {\n  top: -10px;\n  width: 70%;\n  left: 15%;\n}                     \n"
+                            "style": "ha-card {\n  top: -10px;\n  width: 70%;\n  left: 15%;\n  border: none;\n}                     \n"
                           }
                         ]
                       },
@@ -1157,7 +1161,7 @@
                           {
                             "type": "markdown",
                             "content": "<center><img src=\"/local/Pictures/addons/watchtower-ico.png\" width=\"70\"/> <center>Watchtower</center> <center>{{ states.sensor.docker_watchtower_status.state }}</center>",
-                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n}\n"
+                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n  border: none;\n}\n"
                           },
                           {
                             "color": "green",
@@ -1191,7 +1195,7 @@
                                 "to": 100
                               }
                             ],
-                            "style": "ha-card {\n  top: -10px;\n  width: 70%;\n  left: 15%;\n} \n"
+                            "style": "ha-card {\n  top: -10px;\n  width: 70%;\n  left: 15%;\n  border: none;\n} \n"
                           }
                         ]
                       },
@@ -1205,7 +1209,7 @@
                           {
                             "type": "markdown",
                             "content": "<center><img src=\"/local/Pictures/addons/wordpress-ico.png\" width=\"70\"/> <center>Wordpress</center> <center>{{ states.sensor.docker_wordpress_status.state }}</center>",
-                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n}\n"
+                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n  border: none;\n}\n"
                           },
                           {
                             "color": "green",
@@ -1239,7 +1243,7 @@
                                 "to": 100
                               }
                             ],
-                            "style": "ha-card {\n  top: -10px;\n  width: 70%;\n  left: 15%;\n} \n"
+                            "style": "ha-card {\n  top: -10px;\n  width: 70%;\n  left: 15%;\n  border: none;\n} \n"
                           }
                         ]
                       },
@@ -1253,7 +1257,7 @@
                           {
                             "type": "markdown",
                             "content": "<center><img src=\"/local/Pictures/addons/mariadb-ico.png\" width=\"70\"/> <center>Wordpress DB</center> <center>{{ states.sensor.docker_wordpressdb_status.state }}</center>",
-                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n}\n"
+                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n  border: none;\n}\n"
                           },
                           {
                             "color": "green",
@@ -1287,7 +1291,7 @@
                                 "to": 100
                               }
                             ],
-                            "style": "ha-card {\n  top: -10px;\n  width: 70%;\n  left: 15%;\n} \n"
+                            "style": "ha-card {\n  top: -10px;\n  width: 70%;\n  left: 15%;\n  border: none;\n} \n"
                           }
                         ]
                       },
@@ -1301,7 +1305,7 @@
                           {
                             "type": "markdown",
                             "content": "<center><img src=\"/local/Pictures/addons/zigbee-ico.png\" width=\"70\"/> <center>Zigbee2MQTT</center> <center>{{ states.sensor.docker_zigbee2mqtt_status.state }}</center>",
-                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n}\n"
+                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n  border: none;\n}\n"
                           },
                           {
                             "color": "green",
@@ -1335,7 +1339,7 @@
                                 "to": 100
                               }
                             ],
-                            "style": "ha-card {\n  top: -10px;\n  width: 70%;\n  left: 15%;\n} \n"
+                            "style": "ha-card {\n  top: -10px;\n  width: 70%;\n  left: 15%;\n  border: none;\n} \n"
                           }
                         ]
                       },
@@ -1349,7 +1353,7 @@
                           {
                             "type": "markdown",
                             "content": "<center><img src=\"/local/Pictures/addons/zwave-ico.png\" width=\"70\"/> <center>ZWaveJS2MQTT</center> <center>{{ states.sensor.docker_zwavejs2mqtt_status.state }}</center>",
-                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n}\n"
+                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n  border: none;\n}\n"
                           },
                           {
                             "color": "green",
@@ -1383,7 +1387,7 @@
                                 "to": 100
                               }
                             ],
-                            "style": "ha-card {\n  top: -10px;\n  width: 70%;\n  left: 15%;\n} \n"
+                            "style": "ha-card {\n  top: -10px;\n  width: 70%;\n  left: 15%;\n  border: none;\n} \n"
                           }
                         ]
                       }
@@ -1413,7 +1417,7 @@
                           {
                             "type": "picture",
                             "image": "/local/Custom_Icons/home-assistant-ico.png",
-                            "style": "ha-card {\n  width: 150px;\n  left: 10px;\n  top:20%;\n  background: none;\n  box-shadow: none;\n}\n"
+                            "style": "ha-card {\n  width: 150px;\n  left: 10px;\n  top:20%;\n  background: none;\n  box-shadow: none;\n  border: none;\n}\n"
                           }
                         ]
                       },
@@ -1427,7 +1431,7 @@
                           {
                             "type": "markdown",
                             "content": "**BLOOMASSISTANT**\n**RESOURCES**\n**Uptime:** {{states('sensor.ha_uptime')}} \n**Database Size:** {{states('sensor.database_size')}} MB\n**Local Backups:** {{states('sensor.local_snapshots')}} \n**Remote Backups:** {{states('sensor.remote_snapshots')}}\n**Latest Backup:** {{states('sensor.latest_snapshot')}}",
-                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n\n}\n"
+                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  border: none;\n}\n"
                           }
                         ]
                       },
@@ -1441,7 +1445,7 @@
                           {
                             "type": "markdown",
                             "content": "<center><img src=\"/local/Pictures/addons/core_check_config-ico.png\" width=\"52\"/> <center>Check HA Config</center>   <center>Installed: {{ states.sensor.check_home_assistant_configuration_version.state }}</center> <center>Newest: {{ states.sensor.check_home_assistant_configuration_newest_version.state }}</center>",
-                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n}\n"
+                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n  border: none;\n}\n"
                           },
                           {
                             "color": "green",
@@ -1475,7 +1479,7 @@
                                 "to": 100
                               }
                             ],
-                            "style": "ha-card {\n  top: -10%;\n  width: 70%;\n  left: 15%;\n}\n",
+                            "style": "ha-card {\n  top: -10%;\n  width: 70%;\n  left: 15%;\n  border: none;\n}\n",
                             "entities": [
                               {
                                 "entity": "sensor.check_config_update_available"
@@ -1494,7 +1498,7 @@
                           {
                             "type": "markdown",
                             "content": "<center><img src=\"/local/Pictures/addons/ha-logo.png\" width=\"50\"/> <center>HassOS</center>   <center>Installed: {{ states.sensor.home_assistant_operating_system_version.state }}</center> <center>Newest: {{ states.sensor.home_assistant_operating_system_newest_version.state }}</center>",
-                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n}\n"
+                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n  border: none;\n}\n"
                           },
                           {
                             "color": "green",
@@ -1529,7 +1533,7 @@
                                 "to": 100
                               }
                             ],
-                            "style": "ha-card {\n\n  width: 70%;\n  left: 15%;            \n}\n"
+                            "style": "ha-card {\n  border: none;\n  width: 70%;\n  left: 15%;            \n}\n"
                           }
                         ]
                       },
@@ -1543,7 +1547,7 @@
                           {
                             "type": "markdown",
                             "content": "<center><img src=\"/local/Pictures/addons/ha-logo.png\" width=\"50\"/> <center>Home Assistant</center>   <center>Installed: {{ state_attr('sensor.updater_core', 'current_version') }}</center> <center>Newest: {{ state_attr('sensor.updater_core', 'newest_version') }}</center>",
-                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n}\n"
+                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n  border: none;\n}\n"
                           },
                           {
                             "color": "green",
@@ -1578,7 +1582,7 @@
                                 "to": 100
                               }
                             ],
-                            "style": "ha-card {\n\n  width: 70%;\n  left: 15%;            \n}\n"
+                            "style": "ha-card {\n  border: none;\n  width: 70%;\n  left: 15%;            \n}\n"
                           }
                         ]
                       },
@@ -1592,7 +1596,7 @@
                           {
                             "type": "markdown",
                             "content": "<center><img src=\"/local/Pictures/addons/samba_backup-ico.png\" width=\"52\"/> <center>Samba Backup</center>   <center>Installed: {{ states.sensor.samba_backup_version.state }}</center> <center>Newest: {{ states.sensor.samba_backup_newest_version.state }}</center>",
-                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n}\n"
+                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n  border: none;\n}\n"
                           },
                           {
                             "color": "green",
@@ -1627,7 +1631,7 @@
                                 "to": 100
                               }
                             ],
-                            "style": "ha-card {\n\n  width: 70%;\n  left: 15%;\n}\n"
+                            "style": "ha-card {\n  border: none;\n  width: 70%;\n  left: 15%;\n}\n"
                           }
                         ]
                       },
@@ -1641,7 +1645,7 @@
                           {
                             "type": "markdown",
                             "content": "<center><img src=\"/local/Pictures/addons/samba_share-ico.png\" width=\"52\"/> <center>Samba Share</center>   <center>Installed: {{ states.sensor.samba_share_version.state }}</center> <center>Newest: {{ states.sensor.samba_share_version.state }}</center>",
-                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n}\n"
+                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n  border: none;\n}\n"
                           },
                           {
                             "color": "green",
@@ -1676,7 +1680,7 @@
                                 "to": 100
                               }
                             ],
-                            "style": "ha-card {\n\n  width: 70%;\n  left: 15%;            \n}\n"
+                            "style": "ha-card {\n  border: none;\n  width: 70%;\n  left: 15%;            \n}\n"
                           }
                         ]
                       },
@@ -1690,7 +1694,7 @@
                           {
                             "type": "markdown",
                             "content": "<center><img src=\"/local/Pictures/addons/terminal_ssh-ico.png\" width=\"52\"/> <center>SSH & Webterminal</center>   <center>Installed: {{ states.sensor.ssh_web_terminal_version.state }}</center> <center>Newest: {{ states.sensor.ssh_web_terminal_newest_version.state }}</center>",
-                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n}\n"
+                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n  border: none;\n}\n"
                           },
                           {
                             "color": "green",
@@ -1725,7 +1729,7 @@
                                 "to": 100
                               }
                             ],
-                            "style": "ha-card {\n\n  width: 70%;\n  left: 15%;            \n}\n"
+                            "style": "ha-card {\n  border: none;\n  width: 70%;\n  left: 15%;            \n}\n"
                           }
                         ]
                       },
@@ -1739,7 +1743,7 @@
                           {
                             "type": "markdown",
                             "content": "<center><img src=\"/local/Pictures/addons/ha-logo.png\" width=\"50\"/> <center>Supervisor</center>   <center>Installed: {{ state_attr('sensor.supervisor_updates', 'current_version') }}</center> <center>Newest: {{ state_attr('sensor.supervisor_updates', 'newest_version') }}</center>",
-                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n}\n"
+                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n  border: none;\n}\n"
                           },
                           {
                             "color": "green",
@@ -1774,7 +1778,7 @@
                                 "to": 100
                               }
                             ],
-                            "style": "ha-card {\n\n  width: 70%;\n  left: 15%;            \n}   \n"
+                            "style": "ha-card {\n  border: none;\n  width: 70%;\n  left: 15%;            \n}   \n"
                           }
                         ]
                       }
@@ -1797,12 +1801,12 @@
                         {
                           "type": "picture",
                           "image": "/local/Custom_Icons/HACS-3d-icon.png",
-                          "style": "ha-card {\n  width: 140px;\n  left: 10px;\n  top: 5px;\n  background: none;\n  box-shadow: none;\n}\n"
+                          "style": "ha-card {\n  width: 140px;\n  left: 10px;\n  top: 5px;\n  background: none;\n  box-shadow: none;\n  border: none;\n}\n"
                         },
                         {
                           "type": "markdown",
                           "content": "### HACS updates available: {{ states.sensor.hacs.state }} {% for repo in states.sensor.hacs.attributes.repositories %}\n**{{repo.display_name }}** {{ repo[\"installed_version\"] }} -> {{ repo[\"available_version\"] }} {% endfor %}",
-                          "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 12px;\n  left: -50%;\n}\n"
+                          "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 12px;\n  left: -50%;\n  border: none;\n}\n"
                         }
                       ],
                       "style": "ha-card {\n  border: solid 2px var(--primary-color);\n  height: 97%;\n}\n"
@@ -1814,7 +1818,7 @@
                         {
                           "type": "picture",
                           "image": "/local/Custom_Icons/github.png",
-                          "style": "ha-card {\n  width: 125px;\n  left: 10px;\n  top: 10px;\n  background: none;\n  box-shadow: none;\n}\n"
+                          "style": "ha-card {\n  width: 125px;\n  left: 10px;\n  top: 10px;\n  background: none;\n  box-shadow: none;\n  border: none;\n}\n"
                         },
                         {
                           "type": "entities",
@@ -1830,13 +1834,13 @@
                               }
                             }
                           ],
-                          "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  width: 150%;\n  left: -55%;\n}\n"
+                          "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  width: 150%;\n  left: -55%;\n  border: none;\n}\n"
                         }
                       ],
                       "style": "ha-card {\n  border: solid 2px var(--primary-color);\n  height: 97%;\n}\n"
                     }
                   ],
-                  "style": "ha-card{\n  background: none;\n  box-shadow: none;\n}\n"
+                  "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  border: none;\n}\n"
                 }
               ],
               "layout_options": {},
@@ -1869,12 +1873,12 @@
                     {
                       "type": "picture",
                       "image": "\\local\\Pictures\\experiabox.png",
-                      "style": "ha-card{\n  width: 100px;\n  background: none;\n  box-shadow: none;\n  top: 20%;\n  left: 15%;\n}\n"
+                      "style": "ha-card{\n  width: 100px;\n  background: none;\n  box-shadow: none;\n  top: 20%;\n  left: 15%;\n  border: none;\n}\n"
                     },
                     {
                       "type": "markdown",
                       "content": "**EXPERIABOX V10**\n**Model:** ZTE H369A\n**Private IP:** 192.168.2.254\n**Public IP:** {{ states('sensor.experiabox_v10_external_ip') }}\n**Firmware:** V1.01.00T03.8V4",
-                      "style": "ha-card{\n  left: -120px;\n  top: 15%;\n  background: none;\n  box-shadow: none;\n}\n"
+                      "style": "ha-card{\n  left: -120px;\n  top: 15%;\n  background: none;\n  box-shadow: none;\n  border: none;\n}\n"
                     },
                     {
                       "align_icon": "right",
@@ -1905,7 +1909,7 @@
                         "average": false,
                         "state": false
                       },
-                      "style": "ha-card {\n  border-radius: 5px;\n  box-shadow: none;\n  background: none;\n  left: -30%;\n  top: -5%;\n }\n",
+                      "style": "ha-card {\n  border-radius: 5px;\n  box-shadow: none;\n  background: none;\n  left: -30%;\n  top: -5%;\n  border: none;\n }\n",
                       "type": "custom:mini-graph-card"
                     },
                     {
@@ -1936,7 +1940,7 @@
                         "average": false,
                         "state": false
                       },
-                      "style": "ha-card {\n  border-radius: 5px;\n  box-shadow: none;\n  background: none;\n  left: -10%;\n  top: -5%;\n }\n",
+                      "style": "ha-card {\n  border-radius: 5px;\n  box-shadow: none;\n  background: none;\n  left: -10%;\n  top: -5%;\n  border: none;\n }\n",
                       "type": "custom:mini-graph-card"
                     }
                   ],
@@ -1952,12 +1956,12 @@
                         {
                           "type": "picture",
                           "image": "\\local\\Custom_Icons\\raspberry-ico.png",
-                          "style": "ha-card{\n  width: 150px;\n  background: none;\n  box-shadow: none;\n  top: -5%;\n  left: 5%;\n}\n"
+                          "style": "ha-card{\n  width: 150px;\n  background: none;\n  box-shadow: none;\n  top: -5%;\n  left: 5%;\n  border: none;\n}\n"
                         },
                         {
                           "type": "markdown",
                           "content": "**BLOOMHOLE**\n**Model:** {{ state_attr('sensor.rpi_monitor_bloomhole', 'rpi_model') }}\n**IP:** {{states.sensor.rpi_monitor_bloomhole.attributes.networking.eth0.IP}}\n**OS:** {{ state_attr('sensor.rpi_monitor_bloomhole', 'ux_version') }}\n**Uptime:** {{ state_attr('sensor.rpi_monitor_bloomhole', 'up_time') }}h",
-                          "style": "ha-card{\n  left: -120px;\n\n  background: none;\n  box-shadow: none;\n}\n"
+                          "style": "ha-card{\n  left: -120px;\n  border: none;\n  background: none;\n  box-shadow: none;\n}\n"
                         },
                         {
                           "type": "entities",
@@ -1996,7 +2000,8 @@
                                 }
                               ],
                               "type": "custom:bar-card",
-                              "width": "70%"
+                              "width": "70%",
+                              "style": "ha-card {\n  border: none;\n}\n"
                             },
                             {
                               "color": "green",
@@ -2032,7 +2037,8 @@
                                 }
                               ],
                               "type": "custom:bar-card",
-                              "width": "70%"
+                              "width": "70%",
+                              "style": "ha-card {\n  border: none;\n}\n"
                             },
                             {
                               "color": "green",
@@ -2068,11 +2074,12 @@
                                 }
                               ],
                               "type": "custom:bar-card",
-                              "width": "70%"
+                              "width": "70%",
+                              "style": "ha-card {\n  border: none;\n}\n"
                             }
                           ],
                           "style": {
-                            ".": "#states > * {\n  margin: -8px 0px !important;\n}\nha-card {\n  bar-card-border-radius: 5px;\n  left: -35%;\n  width: 110%;\n\n  background: none;\n  box-shadow: none;\n}\n"
+                            ".": "#states > * {\n  margin: -8px 0px !important;\n}\nha-card {\n  bar-card-border-radius: 5px;\n  left: -35%;\n  width: 110%;\n  border: none;\n  background: none;\n  box-shadow: none;\n}\n"
                           }
                         },
                         {
@@ -2093,6 +2100,9 @@
                                   },
                                   {
                                     "left": "-35%"
+                                  },
+                                  {
+                                    "border": "none"
                                   }
                                 ],
                                 "grid": [
@@ -2152,6 +2162,9 @@
                                   },
                                   {
                                     "left": "-35%"
+                                  },
+                                  {
+                                    "border": "none"
                                   }
                                 ],
                                 "grid": [
@@ -2211,6 +2224,9 @@
                                   },
                                   {
                                     "left": "-35%"
+                                  },
+                                  {
+                                    "border": "none"
                                   }
                                 ],
                                 "grid": [
@@ -2266,7 +2282,7 @@
                         {
                           "type": "picture",
                           "image": "/local/Custom_Icons/pihole-ico.png",
-                          "style": "ha-card{\n  width: 150px;\n  background: none;\n  box-shadow: none;\n  top: -15%;\n  left: 5%;\n}\n"
+                          "style": "ha-card{\n  width: 150px;\n  background: none;\n  box-shadow: none;\n  top: -15%;\n  left: 5%;\n  border: none;\n}\n"
                         },
                         {
                           "type": "entities",
@@ -2288,7 +2304,7 @@
                             }
                           ],
                           "style": {
-                            ".": "#states > * {\n  margin: -8px 0px !important;\n}\nha-card {\n  bar-card-border-radius: 5px;\n  left: -130px;\n  top: -10%;\n\n  background: none;\n  box-shadow: none;\n}\n"
+                            ".": "#states > * {\n  margin: -8px 0px !important;\n}\nha-card {\n  bar-card-border-radius: 5px;\n  left: -130px;\n  top: -10%;\n  border: none;\n  background: none;\n  box-shadow: none;\n}\n"
                           }
                         },
                         {
@@ -2314,7 +2330,7 @@
                             "labels": false,
                             "name": true
                           },
-                          "style": "ha-card {\n  border-radius: 5px;\n  box-shadow: none;\n  background: none;\n  top: -20%;\n  left: -30%;\n }       \n",
+                          "style": "ha-card {\n  border-radius: 5px;\n  box-shadow: none;\n  background: none;\n  top: -20%;\n  left: -30%;\n  border: none;\n }       \n",
                           "type": "custom:mini-graph-card"
                         },
                         {
@@ -2339,7 +2355,7 @@
                             "labels": false,
                             "name": true
                           },
-                          "style": "ha-card {\n  border-radius: 5px;\n  box-shadow: none;\n  background: none;\n  top: -20%;\n  left: -10%;\n }\n",
+                          "style": "ha-card {\n  border-radius: 5px;\n  box-shadow: none;\n  background: none;\n  top: -20%;\n  left: -10%;\n  border: none;\n }\n",
                           "type": "custom:mini-graph-card"
                         }
                       ]
@@ -2357,12 +2373,12 @@
                         {
                           "type": "picture",
                           "image": "/local/Custom_Icons/ds920-ico.png",
-                          "style": "ha-card{\n  width: 150px;\n  background: none;\n  box-shadow: none;\n  top: 60%;\n  left: 5%;\n}\n"
+                          "style": "ha-card{\n  width: 150px;\n  background: none;\n  box-shadow: none;\n  top: 60%;\n  left: 5%;\n  border: none;\n}\n"
                         },
                         {
                           "type": "markdown",
                           "content": "**BLOOM-DATA**\n**Model:** Synology DS920+\n**Security:** {{ states('sensor.bloom_data_security') }}\n**IP:** 192.168.2.208\n**Updates:** {{ states('sensor.bloom_data_update') }}\n**DSM Version:** {{ state_attr('update.bloom_data_dsm_update', 'installed_version') }}  \n**Uptime:** {{ states('sensor.bloomdata_uptime') }}",
-                          "style": "ha-card{\n  left: -120px;\n  top: 5%;\n  background: none;\n  box-shadow: none;\n}\n"
+                          "style": "ha-card{\n  left: -120px;\n  top: 5%;\n  background: none;\n  box-shadow: none;\n  border: none;\n}\n"
                         },
                         {
                           "type": "entities",
@@ -2401,7 +2417,8 @@
                                 }
                               ],
                               "type": "custom:bar-card",
-                              "width": "70%"
+                              "width": "70%",
+                              "style": "ha-card {\n  border: none;\n}\n"
                             },
                             {
                               "color": "green",
@@ -2437,7 +2454,8 @@
                                 }
                               ],
                               "type": "custom:bar-card",
-                              "width": "70%"
+                              "width": "70%",
+                              "style": "ha-card {\n  border: none;\n}\n"
                             },
                             {
                               "color": "green",
@@ -2472,7 +2490,8 @@
                                 }
                               ],
                               "type": "custom:bar-card",
-                              "width": "70%"
+                              "width": "70%",
+                              "style": "ha-card {\n  border: none;\n}\n"
                             },
                             {
                               "color": "green",
@@ -2508,11 +2527,12 @@
                                 }
                               ],
                               "type": "custom:bar-card",
-                              "width": "70%"
+                              "width": "70%",
+                              "style": "ha-card {\n  border: none;\n}\n"
                             }
                           ],
                           "style": {
-                            ".": "#states > * {\n  margin: -8px 0px !important;\n}\nha-card {\n  bar-card-border-radius: 5px;\n  left: -35%;\n  top: 5%;\n  width: 110%;\n\n  background: none;\n  box-shadow: none;\n}\n"
+                            ".": "#states > * {\n  margin: -8px 0px !important;\n}\nha-card {\n  bar-card-border-radius: 5px;\n  left: -35%;\n  top: 5%;\n  width: 110%;\n  border: none;\n  background: none;\n  box-shadow: none;\n}\n"
                           }
                         },
                         {
@@ -2547,7 +2567,7 @@
                             "average": false,
                             "state": false
                           },
-                          "style": "ha-card {\n  border-radius: 5px;\n  box-shadow: none;\n  background: none;\n  left: -5%;\n  top: -5%;\n }\n",
+                          "style": "ha-card {\n  border-radius: 5px;\n  box-shadow: none;\n  background: none;\n  left: -5%;\n  top: -5%;\n  border: none;\n }\n",
                           "type": "custom:mini-graph-card"
                         }
                       ]
@@ -2561,12 +2581,12 @@
                         {
                           "type": "custom:stack-in-card",
                           "mode": "vertical",
-                          "style": "ha-card {\n  width: 87%;\n  background: none;\n  box-shadow: none;\n  top: -5%;\n  left: -10%;\n}\n",
+                          "style": "ha-card {\n  width: 87%;\n  background: none;\n  box-shadow: none;\n  top: -5%;\n  left: -10%;\n  border: none;\n}\n",
                           "cards": [
                             {
                               "type": "markdown",
                               "content": "<center><b>Drive 1</b></center>\n<center><img src=\"/local/Custom_Icons/wd-red-ico.png\" width=\"75\"/>",
-                              "style": "ha-card {\n  background: none;\n  box-shadow: none;\n}\n"
+                              "style": "ha-card {\n  background: none;\n  box-shadow: none;\n  border: none;\n}\n"
                             },
                             {
                               "type": "custom:fold-entity-row",
@@ -2597,12 +2617,12 @@
                         {
                           "type": "custom:stack-in-card",
                           "mode": "vertical",
-                          "style": "ha-card {\n  width: 87%;\n  background: none;\n  box-shadow: none;\n  top: -5%;\n  left: -25%;\n}\n",
+                          "style": "ha-card {\n  width: 87%;\n  background: none;\n  box-shadow: none;\n  top: -5%;\n  left: -25%;\n  border: none;\n}\n",
                           "cards": [
                             {
                               "type": "markdown",
                               "content": "<center><b>Drive 2</b></center>\n<center><img src=\"/local/Custom_Icons/wd-red-ico.png\" width=\"75\"/>",
-                              "style": "ha-card {\n  background: none;\n  box-shadow: none;\n}\n"
+                              "style": "ha-card {\n  background: none;\n  box-shadow: none;\n  border: none;\n}\n"
                             },
                             {
                               "type": "custom:fold-entity-row",
@@ -2633,12 +2653,12 @@
                         {
                           "type": "custom:stack-in-card",
                           "mode": "vertical",
-                          "style": "ha-card {\n  width: 87%;\n  background: none;\n  box-shadow: none;\n  left: -40%;\n  top: -5%;\n}\n",
+                          "style": "ha-card {\n  width: 87%;\n  background: none;\n  box-shadow: none;\n  left: -40%;\n  top: -5%;\n  border: none;\n}\n",
                           "cards": [
                             {
                               "type": "markdown",
                               "content": "<center><b>Drive 3</b></center>\n<center><img src=\"/local/Custom_Icons/wd-red-ico.png\" width=\"75\"/>",
-                              "style": "ha-card {\n  background: none;\n  box-shadow: none;\n}\n"
+                              "style": "ha-card {\n  background: none;\n  box-shadow: none;\n  border: none;\n}\n"
                             },
                             {
                               "type": "custom:fold-entity-row",
@@ -2669,12 +2689,12 @@
                         {
                           "type": "custom:stack-in-card",
                           "mode": "vertical",
-                          "style": "ha-card {\n  width: 87%;\n  background: none;\n  box-shadow: none;\n  top: -5%;\n  left: -55%;\n}\n",
+                          "style": "ha-card {\n  width: 87%;\n  background: none;\n  box-shadow: none;\n  top: -5%;\n  left: -55%;\n  border: none;\n}\n",
                           "cards": [
                             {
                               "type": "markdown",
                               "content": "<center><b>Drive 4</b></center>\n<center><img src=\"/local/Custom_Icons/wd-red-ico.png\" width=\"75\"/>",
-                              "style": "ha-card {\n  background: none;\n  box-shadow: none;\n}\n"
+                              "style": "ha-card {\n  background: none;\n  box-shadow: none;\n  border: none;\n}\n"
                             },
                             {
                               "type": "custom:fold-entity-row",
@@ -2705,7 +2725,7 @@
                         {
                           "type": "custom:stack-in-card",
                           "mode": "vertical",
-                          "style": "ha-card {\n  width: 155%;\n  background: none;\n  box-shadow: none;\n  top: -5%;\n  left: -62%;\n  border-radius: 0px;\n}\n",
+                          "style": "ha-card {\n  width: 155%;\n  background: none;\n  box-shadow: none;\n  top: -5%;\n  left: -62%;\n  border-radius: 0px;\n  border: none;\n}\n",
                           "cards": [
                             {
                               "align_icon": "right",
@@ -2747,7 +2767,7 @@
                                 "average": false,
                                 "state": false
                               },
-                              "style": "ha-card {\n  box-shadow: none;\n  background: none;\n  border-radius: 5px;\n }\n",
+                              "style": "ha-card {\n  box-shadow: none;\n  background: none;\n  border-radius: 5px;\n  border: none;\n }\n",
                               "type": "custom:mini-graph-card"
                             }
                           ]
@@ -2795,7 +2815,7 @@
                       {
                         "type": "picture",
                         "image": "/local/Pictures/Network/unifi-ico.png",
-                        "style": "ha-card {\n  width: 150px;\n  left: 20%;\n  top: 35%;\n  background: none;\n  box-shadow: none;\n}\n"
+                        "style": "ha-card {\n  width: 150px;\n  left: 20%;\n  top: 35%;\n  background: none;\n  box-shadow: none;\n  border: none;\n}\n"
                       },
                       {
                         "type": "custom:auto-entities",
@@ -2811,7 +2831,7 @@
                                 "type": "custom:button-card",
                                 "size": "65%",
                                 "show_entity_picture": true,
-                                "style": "ha-card {\n  background: none;\n  box-shadow: none;\n}\n",
+                                "style": "ha-card {\n  background: none;\n  box-shadow: none;\n  border: none;\n}\n",
                                 "styles": {
                                   "grid": [
                                     {
@@ -3104,7 +3124,7 @@
                   ],
                   "columns": 14,
                   "type": "custom:hui-glance-card",
-                  "style": "ha-card {\n  height: 100%;\n  border-radius: 5px;\n  background-image: none;\n  box-shadow: none;\n  background-color: rgba(255, 255, 255, 0);\n}\n"
+                  "style": "ha-card {\n  height: 100%;\n  border-radius: 5px;\n  background-image: none;\n  box-shadow: none;\n  border: none;\n  background-color: rgba(255, 255, 255, 0);\n}\n"
                 }
               ],
               "style": {
@@ -3143,7 +3163,7 @@
                     "type": "entities",
                     "show_header_toggle": false,
                     "style": {
-                      ".": "#states > * {\n  margin: -1px -15px !important;\n}\nha-card {\n  height: 100%;\n  box-shadow: none;\n  background-color: rgba(255, 255, 255, 0);\n  background: none;\n}\n"
+                      ".": "#states > * {\n  margin: -1px -15px !important;\n}\nha-card {\n  height: 100%;\n  box-shadow: none;\n  background-color: rgba(255, 255, 255, 0);\n  background: none;\n  border: none;\n}\n"
                     }
                   },
                   "filter": {
@@ -3193,7 +3213,7 @@
                     }
                   ],
                   "style": {
-                    ".": "#states > * {\n    margin: -1px -15px !important;\n  }\nha-card {\n  border-radius: 5px;\n  background-image: none;\n  box-shadow: none;\n  background-color: rgba(114, 123, 140, 0);\n }\n"
+                    ".": "#states > * {\n    margin: -1px -15px !important;\n  }\nha-card {\n  border-radius: 5px;\n  background-image: none;\n  box-shadow: none;\n  border: none;\n  background-color: rgba(114, 123, 140, 0);\n }\n"
                   },
                   "temp_scale": "C",
                   "temp_severity": [
@@ -3265,7 +3285,7 @@
                   "font_size": 12,
                   "link_width": 2,
                   "height": 275,
-                  "style": "ha-card {\n  border-radius: 5px;\n  box-shadow: none;\n  background: none;\n }\n",
+                  "style": "ha-card {\n  border-radius: 5px;\n  box-shadow: none;\n  background: none;\n  border: none;\n }\n",
                   "css": ":host {\n  --zigbee2mqtt-networkmap-node-color: rgba(18, 120, 98, .7);\n  --zigbee2mqtt-networkmap-node-fill-color: #dcfaf3;\n  --zigbee2mqtt-networkmap-node-pinned-color: rgba(190, 56, 93, .6);\n  --zigbee2mqtt-networkmap-link-color: rgba(18, 120, 98, .5);\n  --zigbee2mqtt-networkmap-hover-color: #be385d;\n  --zigbee2mqtt-networkmap-link-selected-color: rgba(202, 164, 85, .6);\n  --zigbee2mqtt-networkmap-label-color: #127862;\n  --zigbee2mqtt-networkmap-arrow-color: rgba(18, 120, 98, 0.7);\n  --zigbee2mqtt-networkmap-node-coordinator-color: rgba(224, 78, 93, .7);\n  --zigbee2mqtt-networkmap-node-router-color: rgba(0, 165, 255, .7);\n}\n"
                 }
               ],
@@ -3306,7 +3326,7 @@
                     }
                   ],
                   "style": {
-                    ".": "#states > * {\n    margin: -1px -15px !important;\n  }\nha-card {\n  border-radius: 5px;\n  background-image: none;\n  box-shadow: none;\n  background-color: rgba(114, 123, 140, 0);\n }\n"
+                    ".": "#states > * {\n    margin: -1px -15px !important;\n  }\nha-card {\n  border-radius: 5px;\n  background-image: none;\n  box-shadow: none;\n  border: none;\n  background-color: rgba(114, 123, 140, 0);\n }\n"
                   },
                   "temp_scale": "C",
                   "temp_severity": [
@@ -3368,7 +3388,7 @@
                 {
                   "card_type": "energy-distribution",
                   "type": "custom:hui-element",
-                  "style": "ha-card {\n  border-radius: 5px;\n  box-shadow: none;\n  background: none;\n }\n"
+                  "style": "ha-card {\n  border-radius: 5px;\n  box-shadow: none;\n  background: none;\n  border: none;\n }\n"
                 }
               ],
               "style": {
@@ -3441,7 +3461,7 @@
                     "type": "entities",
                     "show_header_toggle": false,
                     "style": {
-                      ".": "#states > * {\n  margin: -1px -15px !important;\n}\nha-card {\n  height: 100%;\n  box-shadow: none;\n  background-color: rgba(255, 255, 255, 0);\n  background: none;\n}\n"
+                      ".": "#states > * {\n  margin: -1px -15px !important;\n}\nha-card {\n  height: 100%;\n  box-shadow: none;\n  background-color: rgba(255, 255, 255, 0);\n  background: none;\n  border: none;\n}\n"
                     }
                   },
                   "filter": {
@@ -3923,12 +3943,12 @@
                         {
                           "type": "picture",
                           "image": "\\local\\Pictures\\battery-icon.png",
-                          "style": "ha-card{\n  width: 250px;\n  background: none;\n  box-shadow: none;\n  left: -20%;\n}\n"
+                          "style": "ha-card{\n  width: 250px;\n  background: none;\n  box-shadow: none;\n  left: -20%;\n  border: none;\n}\n"
                         },
                         {
                           "type": "markdown",
                           "content": "## <center>Fibaro CO Sensor</center> ##\n<center><img\nsrc=\"/local/Custom_Icons/co-sensor-ico.png\"\nwidth=\"100\"/> <center>Battery type: CR123A</center> \n",
-                          "style": "ha-card{\n  left: -10%;\n  top: 20px;\n  font-size: 11px;\n  width: 75%;\n  background: none;\n  box-shadow: none;\n}\n"
+                          "style": "ha-card{\n  left: -10%;\n  top: 20px;\n  font-size: 11px;\n  width: 75%;\n  background: none;\n  box-shadow: none;\n  border: none;\n}\n"
                         },
                         {
                           "type": "entities",
@@ -3965,17 +3985,18 @@
                                 }
                               ],
                               "type": "custom:bar-card",
-                              "width": "100%"
+                              "width": "100%",
+                              "style": "ha-card {\n  border: none;\n}\n"
                             }
                           ],
                           "style": {
-                            ".": "#states > * {\n  margin: -8px 0px !important;\n}\nha-card {\n  bar-card-border-radius: 5px;\n  left: -35%;\n  top: 45%;\n  width: 100%;\n  background: none;\n  box-shadow: none;\n}\n"
+                            ".": "#states > * {\n  margin: -8px 0px !important;\n}\nha-card {\n  bar-card-border-radius: 5px;\n  left: -35%;\n  top: 45%;\n  width: 100%;\n  background: none;\n  box-shadow: none;\n  border: none;\n}\n"
                           }
                         },
                         {
                           "type": "markdown",
                           "content": "## <center>IKEA Tradfri Dimmer</center> ##\n<center><img\nsrc=\"/local/Custom_Icons/schakelaar_lamp_hoekje-ico.png\"\nwidth=\"100\"/> <center>Battery type: CR2032</center> \n",
-                          "style": "ha-card{\n  left: -10%;\n  top: 20px;\n  font-size: 11px;\n  width: 75%;\n  background: none;\n  box-shadow: none;\n}\n"
+                          "style": "ha-card{\n  left: -10%;\n  top: 20px;\n  font-size: 11px;\n  width: 75%;\n  background: none;\n  box-shadow: none;\n  border: none;\n}\n"
                         },
                         {
                           "type": "entities",
@@ -4012,11 +4033,12 @@
                                 }
                               ],
                               "type": "custom:bar-card",
-                              "width": "100%"
+                              "width": "100%",
+                              "style": "ha-card {\n  border:none;\n}\n"
                             }
                           ],
                           "style": {
-                            ".": "#states > * {\n  margin: -8px 0px !important;\n}\nha-card {\n  bar-card-border-radius: 5px;\n  left: -35%;\n  top: 45%;\n  width: 100%;\n  background: none;\n  box-shadow: none;\n}\n"
+                            ".": "#states > * {\n  margin: -8px 0px !important;\n}\nha-card {\n  bar-card-border-radius: 5px;\n  left: -35%;\n  top: 45%;\n  width: 100%;\n  background: none;\n  box-shadow: none;\n  border: none;\n}\n"
                           }
                         },
                         {
