@@ -36,7 +36,7 @@ from homeassistant.helpers.entity import Entity
 from homeassistant.util import Throttle, dt
 
 BASE_URL = "http://{0}:{1}/hdrv_zwave?action=getDevices.json"
-
+DEVICE_CLASS_WATER = "water"
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -182,13 +182,15 @@ SENSOR_TYPES: Final[tuple[SensorEntityDescription, ...]] = (
         key="heat",
         name="P1 Heat",
         icon="mdi:fire",
+        unit_of_measurement="Gj",
     ),
     SensorEntityDescription(
         key="waterquantity",
         name="P1 waterquantity",
         native_unit_of_measurement=VOLUME_CUBIC_METERS,
         icon="mdi:water",
-        state_class=STATE_CLASS_MEASUREMENT,
+        device_class=DEVICE_CLASS_WATER,
+        state_class=STATE_CLASS_TOTAL_INCREASING,
     ),
     SensorEntityDescription(
         key="waterflow",
@@ -344,6 +346,7 @@ class ToonSmartMeterSensor(SensorEntity):
                         "HAE_METER_v3_6",
                         "HAE_METER_v3_5",
                         "HAE_METER_v4_6",
+                        "HAE_METER_HEAT_5",
                     ]
                     and safe_get(
                         energy, [key, "CurrentElectricityQuantity"], default="NaN"
@@ -362,6 +365,7 @@ class ToonSmartMeterSensor(SensorEntity):
                         "HAE_METER_v3_3",
                         "HAE_METER_v3_4",
                         "HAE_METER_v4_4",
+                        "HAE_METER_HEAT_3",
                     ]
                     and safe_get(
                         energy, [key, "CurrentElectricityQuantity"], default="NaN"
@@ -426,9 +430,10 @@ class ToonSmartMeterSensor(SensorEntity):
                     in [
                         "HAE_METER_v3_8",
                         "HAE_METER_v4_8",
+                        "HAE_METER_HEAT_1",
                     ]
                     and safe_get(
-                        energy, [key, "CurrentElectricityQuantity"], default="NaN"
+                        energy, [key, "CurrentHeatQuantity"], default="NaN"
                     )
                     != "NaN"
                 ):
@@ -644,3 +649,4 @@ def safe_get(_dict, keys, default=None):
         return default
 
     return reduce(_reducer, keys, _dict)
+
