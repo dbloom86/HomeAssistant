@@ -573,7 +573,7 @@
                   "name": "Temperatuur"
                 },
                 {
-                  "entity": "media_player.woonkamer_tv",
+                  "entity": "media_player.sony_bravia_tv",
                   "size": 2,
                   "name": "TV"
                 },
@@ -643,6 +643,14 @@
                 {
                   "type": "custom:button-card",
                   "entity": "light.lamp_bank_hoek",
+                  "tap_action": {
+                    "action": "call-service",
+                    "service": "light.toggle",
+                    "service_data": {
+                      "entity_id": "entity",
+                      "brightness": 28
+                    }
+                  },
                   "aspect_ratio": "1/1",
                   "name": "Lamp Bank",
                   "entity_picture": "/local/Custom_Icons/lamp_bank.png",
@@ -742,6 +750,14 @@
                 {
                   "type": "custom:button-card",
                   "entity": "light.lamp_trap",
+                  "tap_action": {
+                    "action": "call-service",
+                    "service": "light.toggle",
+                    "service_data": {
+                      "entity_id": "entity",
+                      "brightness": 28
+                    }
+                  },
                   "aspect_ratio": "1/1",
                   "name": "Lamp Trap",
                   "entity_picture": "/local/Custom_Icons/lamp_trap.png",
@@ -841,6 +857,14 @@
                 {
                   "type": "custom:button-card",
                   "entity": "light.lamp_haard",
+                  "tap_action": {
+                    "action": "call-service",
+                    "service": "light.toggle",
+                    "service_data": {
+                      "entity_id": "entity",
+                      "brightness": 28
+                    }
+                  },
                   "aspect_ratio": "1/1",
                   "name": "Lamp Haard",
                   "entity_picture": "/local/Custom_Icons/lamp_achterdeur.png",
@@ -945,6 +969,14 @@
                 {
                   "type": "custom:button-card",
                   "entity": "light.lamp_achterdeur",
+                  "tap_action": {
+                    "action": "call-service",
+                    "service": "light.toggle",
+                    "service_data": {
+                      "entity_id": "entity",
+                      "brightness": 28
+                    }
+                  },
                   "aspect_ratio": "1/1",
                   "name": "Lamp Achterdeur",
                   "entity_picture": "/local/Custom_Icons/lamp_haard.png",

@@ -154,6 +154,8 @@
   action:
     service: light.turn_on
     entity_id: light.lampen_woonkamer
+    data:
+      brightness: 28
   id: 5b9dad4d6h8g49258a3a9502cd0a116a
 
 - alias: Turn on Lamp Bank at sunset when not home
@@ -177,6 +179,8 @@
   action:
     service: light.turn_on
     entity_id: light.lamp_bank_hoek
+    data:
+      brightness: 28
   id: 5b9dad4d6hjk95258a3a9502cd0a116a
 
 - alias: Turn off lights after sunset when leaving home
@@ -260,7 +264,19 @@
   action:
     service: light.turn_on
     entity_id: light.lamp_bank_hoek
+    data:
+      brightness: 28
   id: 5b9dad4d6h8g4925hgb79502cd0a116a
+
+- alias: Turn on Lampen Woonkamer for Romance
+  trigger:
+  - platform: state
+    entity_id: input_boolean.romantic_scene
+    to: 'on'
+  action:
+    service: scene.turn_on
+    entity_id: scene.romantic
+  id: 5b9dad4d6h8g49258a3a9502cdhnv58k
 
 #================================  
 # Lampen slaapkamer Fynn
