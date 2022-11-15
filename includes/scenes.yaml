@@ -19,8 +19,31 @@
         state: "playing"
         media_content_type: music
         media_content_id: x-sonos-spotify:spotify%3atrack%3a7fBv7CLKzipRk6EC6TWHOB?sid=9&flags=8232&sn=1
-#        media_playlist: Sexy Time 2022 (Slow Bass RnB)
         shuffle: true
         volume_level: 0.03
       input_boolean.romantic_scene:
+        state: "off"
+
+#================================  
+# Terug zetten settings
+#================================
+
+  - name: Standaard
+    icon: "mdi:flower-tulip"
+    entities:
+      media_player.sony_bravia_tv:
+        state: "playing"
+      light.lamp_achterdeur:
+        state: "on"
+        brightness: 28
+      light.lamp_haard:
+        state: "on"
+        brightness: 28
+      light.lamp_bank_hoek: 
+        state: "on"
+        brightness: 28
+      light.lamp_trap: 
+        state: "on"
+        brightness: 28
+      input_boolean.standaard_scene:
         state: "off"

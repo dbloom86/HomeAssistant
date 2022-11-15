@@ -13,3 +13,11 @@ guest_mode:
 romantic_scene:
   name: Romantische sfeer
   initial: off
+
+#================================
+# Standaard Scene
+#================================
+
+standaard_scene:
+  name: Standaard sfeer
+  initial: off

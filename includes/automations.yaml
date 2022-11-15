@@ -278,6 +278,17 @@
     entity_id: scene.romantic
   id: 5b9dad4d6h8g49258a3a9502cdhnv58k
 
+- alias: Revert to basis scene
+  trigger:
+  - platform: state
+    entity_id: input_boolean.standaard_scene
+    to: 'on'
+  action:
+    service: scene.turn_on
+    entity_id: scene.standaard
+  id: 5b9dad4d6h8g49258a3a9502cdibna75
+
+
 #================================  
 # Lampen slaapkamer Fynn
 #================================
