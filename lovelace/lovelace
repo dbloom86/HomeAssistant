@@ -417,7 +417,7 @@
                         "average": false,
                         "state": false
                       },
-                      "style": "ha-card {\n  border-radius: 5px;\n  border: none;\n  box-shadow: none;\n  background: none;\n  left: -30px;\n  height: 90%;\n }\n",
+                      "style": "ha-card {\n  border-radius: 5px;\n  border: none;\n  box-shadow: none;\n  background: none;\n  left: -30px;\n  height: 80%;\n }\n",
                       "type": "custom:mini-graph-card"
                     }
                   ],
