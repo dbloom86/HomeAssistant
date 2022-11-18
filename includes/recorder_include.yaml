@@ -57,3 +57,5 @@
         - sensor.wasmachine_klaar
         - input_number.nighttime
         - sensor.total_energy_this_month
+        - sensor.processor_use
+	    - sensor.memory_use_percent
