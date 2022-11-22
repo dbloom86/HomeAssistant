@@ -4,12 +4,9 @@
 
     domains:
         - light
-        - media_player
-        - switch
 
     entity_globs:
         - sensor.bloomhole_*
-        - sensor.consumption_*
         - sensor.shelly_*
         - sensor.speedtest_*
         - sensor.total_*
@@ -58,4 +55,4 @@
         - input_number.nighttime
         - sensor.total_energy_this_month
         - sensor.processor_use
-	    - sensor.memory_use_percent
+        - sensor.memory_use_percent
