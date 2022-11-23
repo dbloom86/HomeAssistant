@@ -12,6 +12,7 @@ recorder:
     commit_interval: 30
     auto_purge: false
     include: !include includes/recorder_include.yaml
+    exclude: !include includes/recorder_exclude.yaml
 
 logger:
   default: warn

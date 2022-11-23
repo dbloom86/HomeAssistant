@@ -1,0 +1,29 @@
+#=====================
+# Recorder excludes
+#=====================
+
+    domains:
+
+    entity_globs:
+
+    entities:
+      - sensor.jaarlijks_energie_verbruik_hoog
+      - sensor.jaarlijks_energie_verbruik_laag
+      - sensor.jaarlijks_gas_verbruik
+      - sensor.energy_cost_this_year
+      - sensor.database_size
+      - sensor.database_size_2
+      - binary_sensor.carbon_monoxide_sensor_low_battery_level
+      - binary_sensor.carbon_monoxide_sensor_power_management_replace_battery_soon
+      - sensor.solaredge_energy_this_year
+      - sensor.solaredge_exported_energy
+      - sensor.solaredge_imported_energy
+      - sensor.solaredge_lifetime_energy
+      - sensor.solaredge_meters
+      - sensor.solaredge_power_consumption
+      - sensor.solaredge_production_energy
+      - sensor.solaredge_selfconsumption_energy
+      - sensor.solaredge_sensors
+      - sensor.solaredge_solar_power
+      - sensor.toon_gas_used_cnt
+      - sensor.total_energy_this_year

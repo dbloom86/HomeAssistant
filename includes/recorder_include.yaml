@@ -3,56 +3,70 @@
 #=====================
 
     domains:
+        - automation
         - light
+        - switch
 
     entity_globs:
-        - sensor.bloomhole_*
-        - sensor.shelly_*
-        - sensor.speedtest_*
-        - sensor.total_*
-        - sensor.network_*
-        - sensor.*power*
-        - sensor.*energy*
-        - sensor.*gas*
+        - binary_sensor.bloom_data*
+        - sensor.bloom_data*
+        - sensor.bloomhole*
+        - sensor.cert_expiry*
+        - sensor.coinbase*
+        - sensor.*koers*
         - sensor.*energie*
-        - sensor.dagelijks*
-        - sensor.maandelijks*
-        - sensor.daily*
-        - sensor.monthly*
-        - sensor.yearly*
-        - sensor.jaarlijks*
+        - sensor.*gas*
+        - sensor.dbloom86*
+        - sensor.*energy*
+        - sensor.experiabox*
+        - sensor.*verbruik*
+        - sensor.network*
+        - sensor.rpi*
+        - sensor.shelly*consumption*
+        - sensor.shelly*temp*
+        - sensor.speedtest*
+        - sensor.value*
+
 
     entities:
-        - sensor.auto_backup
-        - sensor.bloom_data_cpu_load_total
-        - sensor.bloom_data_drive1_status
-        - sensor.bloom_data_drive2_status
-        - sensor.bloom_data_drive3_status
-        - sensor.bloom_data_drive4_status
-        - sensor.bloom_data_drive_1_temperature
-        - sensor.bloom_data_drive_2_temperature
-        - sensor.bloom_data_drive_3_temperature
-        - sensor.bloom_data_drive_4_temperature
-        - sensor.bloom_data_security
-        - sensor.bloom_data_temperature
-        - sensor.bloom_data_volume_1_status
-        - sensor.bloom_data_volume_1_used_space
-        - sensor.bloom_data_volume_1_volume_used
-        - sensor.bloom_data_network_down
-        - sensor.bloom_data_network_up
-        - sensor.database_size
-        - sensor.disk_use_percent
-        - sensor.lamp_hoekje_consumption_last_month
-        - sensor.monitored_snapshots
-        - sensor.schakelaar_lamp_hoekje
-        - sensor.toon_gas_used_cnt
-        - sensor.toon_gas_used_last_hour
-        - sensor.toon_p1_power_use_cnt_low
-        - sensor.toon_p1_power_use_high
-        - sensor.experiabox_v10_kib_s_received
-        - sensor.experiabox_v10_kib_s_sent
-        - sensor.wasmachine_klaar
-        - input_number.nighttime
-        - sensor.total_energy_this_month
-        - sensor.processor_use
+        - button.bloom_data_reboot
+        - button.bloom_data_shutdown
+        - sensor.bazarr_bar
+        - sensor.bnb
+        - sensor.carbon_monoxide_sensor_battery_level
+        - sensor.carbon_monoxide_sensor_carbon_monoxide_co_level
+        - sensor.cpu_speed
+        - sensor.daily_usage
+        - sensor.docker_1cpu
+        - sensor.docker_containers_running
+        - sensor.docker_containers_total
+        - sensor.docker_memory_percent
+        - sensor.eth
+        - sensor.eur_exchange_rate
+        - sensor.github_dbloom86_homeassistant
+        - sensor.grid_fossil_fuel_percentage
+        - sensor.ha_uptime
+        - sensor.lampjes_veranda_electric_consumption_kwh
+        - sensor.lampjes_veranda_electric_consumption_w
+        - sensor.lampjes_veranda_power
         - sensor.memory_use_percent
+        - sensor.monthly_usage
+        - sensor.power_usage
+        - sensor.processor_use
+        - sensor.shelly_shsw_pm_98cdac1f389e_current
+        - sensor.shelly_shsw_pm_98cdac1f389e_power_factor
+        - sensor.solaredge_current_power
+        - sensor.stormx
+        - sensor.swap_use_percent
+        - sensor.switch_lamp_hoekje_battery
+        - sensor.total_cost_this_month
+        - sensor.total_cost_today
+        - sensor.total_value_crypto
+        - sensor.vethor_token
+        - update.bloom_data_dsm_update
+        - sensor.disk_use_percent
+        - input_number.energy_cost
+        - input_number.energy_cost_daily
+        - input_number.gas_cost
+        - input_number.gas_cost_daily
+        - input_number.nighttime
