@@ -1,0 +1,13 @@
+#=====================
+# Logbook inlcudes
+#=====================
+
+    domains:
+        - automation
+        - light
+
+    entity_globs:
+        - switch.shelly*
+
+    entities:
+

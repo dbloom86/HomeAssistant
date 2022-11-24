@@ -1,10 +1,10 @@
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
 logbook:
-    include: !include includes/recorder_include.yaml
+    include: !include includes/logbook_include.yaml
 
 history:
-    include: !include includes/recorder_include.yaml
+    include: !include includes/history_include.yaml
 
 recorder:
     db_url: !secret maria_db_url

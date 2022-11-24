@@ -31,7 +31,6 @@
     entities:
         - button.bloom_data_reboot
         - button.bloom_data_shutdown
-        - sensor.bazarr_bar
         - sensor.bnb
         - sensor.carbon_monoxide_sensor_battery_level
         - sensor.carbon_monoxide_sensor_carbon_monoxide_co_level
