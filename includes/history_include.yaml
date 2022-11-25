@@ -1,10 +1,5 @@
 #=====================
-# Logbook inlcudes
+# History inlcudes
 #=====================
-
-    domains:
-
-    entity_globs:
-
     entities:
       - automation.backup_to_github

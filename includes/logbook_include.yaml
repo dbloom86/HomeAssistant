@@ -9,5 +9,3 @@
     entity_globs:
         - switch.shelly*
 
-    entities:
-

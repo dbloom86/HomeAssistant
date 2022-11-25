@@ -1,0 +1,18 @@
+#=====================
+# InfluxDB inlcudes
+#=====================
+
+    domains:
+
+    entity_globs:
+      - sensor.solaredge*
+
+    entities:
+      - sensor.database_size
+      - sensor.database_size_2
+      - sensor.energy_cost_this_year
+      - sensor.jaarlijks_energie_verbruik_hoog
+      - sensor.jaarlijks_energie_verbruik_laag
+      - sensor.jaarlijks_gas_verbruik
+      - sensor.kosten
+

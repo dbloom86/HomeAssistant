@@ -1,11 +1,6 @@
 #=====================
 # Recorder excludes
 #=====================
-
-    domains:
-
-    entity_globs:
-
     entities:
       - sensor.jaarlijks_energie_verbruik_hoog
       - sensor.jaarlijks_energie_verbruik_laag
