@@ -19,6 +19,18 @@ logger:
   logs:
     homeassistant.components.recorder: debug
 
+# InfluxDB for long term stats
+influxdb:
+  api_version: 2
+  ssl: false
+  host: 192.168.2.208
+  port: 8086
+  token: !secret influxdb_token
+  organization: Home
+  bucket: HomeAssistant
+  include: !include includes/influxdb_include.yaml
+  exclude: !include includes/influxdb_exclude.yaml
+
 # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
 http:
     ssl_certificate: /ssl/fullchain.pem
