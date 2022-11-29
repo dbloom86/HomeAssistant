@@ -4,7 +4,7 @@
 
 monitor_docker:
   - name: Docker
-    url: tcp://192.168.2.208:2375
+    url: !secret monitor_docker_url
     containers:
       - Bazarr
       - Jackett

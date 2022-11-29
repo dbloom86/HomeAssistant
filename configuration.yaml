@@ -23,11 +23,15 @@ logger:
 influxdb:
   api_version: 2
   ssl: false
-  host: 192.168.2.208
-  port: 8086
+  host: !secret influxdb_host
+  port: !secret influxdb_port
   token: !secret influxdb_token
   organization: Home
   bucket: HomeAssistant
+  tags:
+    source: HA
+  tags_attributes:
+    - friendly_name
   include: !include includes/influxdb_include.yaml
   exclude: !include includes/influxdb_exclude.yaml
 

@@ -1430,7 +1430,7 @@
                         "cards": [
                           {
                             "type": "markdown",
-                            "content": "**BLOOMASSISTANT**\n**RESOURCES**\n**Uptime:** {{states('sensor.ha_uptime')}} \n**Database Size:** {{states('sensor.database_size')}} MB\n**Local Backups:** {{states('sensor.local_snapshots')}} \n**Remote Backups:** {{states('sensor.remote_snapshots')}}\n**Latest Backup:** {{states('sensor.latest_snapshot')}}",
+                            "content": "**BLOOMASSISTANT**\n**RESOURCES**\n**Uptime:** {{states('sensor.ha_uptime')}} \n**MariaDB Size:** {{states('sensor.mariadb_database_size')}} MB\n**InfluxDB Size:** {{states('sensor.influxdb_database_size')}} MB\n**Local Backups:** {{states('sensor.local_snapshots')}} \n**Remote Backups:** {{states('sensor.remote_snapshots')}}\n**Latest Backup:** {{states('sensor.latest_snapshot')}}",
                             "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  border: none;\n}\n"
                           }
                         ]
