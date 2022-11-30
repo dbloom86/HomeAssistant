@@ -8,6 +8,7 @@
       - sensor.solaredge*
 
     entities:
+      - sensor.mariadb_database_size
       - sensor.energy_cost_this_year
       - sensor.jaarlijks_energie_verbruik_hoog
       - sensor.jaarlijks_energie_verbruik_laag

@@ -597,14 +597,6 @@
   # Database Sizes
   #================================
 
-#  - platform: sql
-#    db_url: !secret maria_db_url
-#    queries:
-#      - name: MariaDB Database size
-#        query: 'SELECT table_schema "database", Round(Sum(data_length + index_length) / 1024 / 1024, 1) "value" FROM information_schema.tables WHERE table_schema="harepository" GROUP BY table_schema;'
-#        column: "value"
-#        unit_of_measurement: MB
-
   - platform: influxdb
     api_version: 2
     ssl: false
@@ -617,7 +609,7 @@
       - name: "InfluxDB Database Size"
         bucket: HomeAssistant
         unit_of_measurement: MB
-        value_template: "{{ (value | float(0) / 1024 /1024) | round(1) }}"
+        value_template: "{{ (value | float(0) /1024 /1024) | round(1) }}"
         query: >
           from(bucket: "HomeAssistant")
             |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
