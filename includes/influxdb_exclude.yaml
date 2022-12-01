@@ -2,13 +2,8 @@
 # InfluxDB excludes
 #=====================
 
-    domains:
-
-    entity_globs:
-
     entities:
       - sensor.solaredge_current_power
-      - sensor.solaredge_energy_this_month
       - sensor.solaredge_energy_today
       - sensor.solaredge_gateways
       - sensor.solaredge_inverters

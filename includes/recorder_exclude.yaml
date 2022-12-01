@@ -22,3 +22,6 @@
       - sensor.solaredge_solar_power
       - sensor.toon_gas_used_cnt
       - sensor.total_energy_this_year
+      - sensor.maandelijks_energie_verbruik_hoog
+      - sensor.maandelijks_energie_verbruik_laag
+      - sensor.maandelijks_gas_verbruik
