@@ -3909,6 +3909,16 @@
                   ]
                 }
               ]
+            },
+            {
+              "show_state": true,
+              "show_name": true,
+              "camera_view": "auto",
+              "type": "picture-entity",
+              "entity": "camera.jaarlijks_energie_verbruik",
+              "name": "Jaarlijks Energie Verbruik",
+              "aspect_ratio": "50%",
+              "image": "https://grafana.bloomlan.nl/d-solo/PbO_uVKVk/home-assistant?orgId=1&panelId=6&kiosk"
             }
           ]
         },
