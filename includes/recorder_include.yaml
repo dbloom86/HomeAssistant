@@ -69,3 +69,8 @@
         - input_number.gas_cost
         - input_number.gas_cost_daily
         - input_number.nighttime
+        - sensor.influxdb_size
+        - sensor.toon_p1_power_use_cnt_high
+        - sensor.toon_p1_power_use_cnt_low
+        - sensor.toon_p1_power_prod_cnt_high
+        - sensor.toon_p1_power_prod_cnt_low

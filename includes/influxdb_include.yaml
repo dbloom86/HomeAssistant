@@ -17,3 +17,4 @@
       - sensor.maandelijks_energie_verbruik_hoog
       - sensor.maandelijks_energie_verbruik_laag
       - sensor.maandelijks_gas_verbruik
+      - sensor.total_energy_this_month

@@ -1430,7 +1430,7 @@
                         "cards": [
                           {
                             "type": "markdown",
-                            "content": "**BLOOMASSISTANT**\n**RESOURCES**\n**Uptime:** {{states('sensor.ha_uptime')}} \n**MariaDB Size:** {{states('sensor.mariadb_database_size')}} MB\n**InfluxDB Size:** {{states('sensor.influxdb_database_size')}} MB\n**Local Backups:** {{states('sensor.local_snapshots')}} \n**Remote Backups:** {{states('sensor.remote_snapshots')}}\n**Latest Backup:** {{states('sensor.latest_snapshot')}}",
+                            "content": "**BLOOMASSISTANT**\n**RESOURCES**\n**Uptime:** {{states('sensor.ha_uptime')}} \n**MariaDB Size:** {{states('sensor.mariadb_database_size')}} MB\n**InfluxDB Size:** {{states('sensor.influxdb_size')}} MB\n**Local Backups:** {{states('sensor.local_snapshots')}} \n**Remote Backups:** {{states('sensor.remote_snapshots')}}\n**Latest Backup:** {{states('sensor.latest_snapshot')}}",
                             "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  border: none;\n}\n"
                           }
                         ]
@@ -3911,14 +3911,14 @@
               ]
             },
             {
-              "show_state": true,
-              "show_name": true,
-              "camera_view": "auto",
-              "type": "picture-entity",
-              "entity": "camera.jaarlijks_energie_verbruik",
-              "name": "Jaarlijks Energie Verbruik",
-              "aspect_ratio": "50%",
-              "image": "https://grafana.bloomlan.nl/d-solo/PbO_uVKVk/home-assistant?orgId=1&panelId=6&kiosk"
+              "type": "iframe",
+              "url": "https://grafana.bloomlan.nl/d/PbO_uVKVk/home-assistant?orgId=1&viewPanel=6&kiosk",
+              "aspect_ratio": "75%"
+            },
+            {
+              "type": "iframe",
+              "url": "https://grafana.bloomlan.nl/d/PbO_uVKVk/home-assistant?orgId=1&viewPanel=5&kiosk",
+              "aspect_ratio": "75%"
             }
           ]
         },

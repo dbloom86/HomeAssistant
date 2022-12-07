@@ -3736,6 +3736,16 @@
                   ]
                 }
               ]
+            },
+            {
+              "type": "iframe",
+              "url": "https://grafana.bloomlan.nl/d/PbO_uVKVk/home-assistant?orgId=1&viewPanel=6&kiosk",
+              "aspect_ratio": "75%"
+            },
+            {
+              "type": "iframe",
+              "url": "https://grafana.bloomlan.nl/d/PbO_uVKVk/home-assistant?orgId=1&viewPanel=5&kiosk",
+              "aspect_ratio": "75%"
             }
           ]
         },

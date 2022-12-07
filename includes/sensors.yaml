@@ -598,23 +598,8 @@
   # Database Sizes
   #================================
 
-  - platform: influxdb
-    api_version: 2
-    ssl: false
-    host: !secret influxdb_host
-    port: !secret influxdb_port
-    token: !secret influxdb_token
-    organization: !secret influxdb_organization_id
-    bucket: HomeAssistant
-    queries_flux:
-      - name: "InfluxDB Database Size"
-        bucket: HomeAssistant
-        unit_of_measurement: MB
-        value_template: "{{ (value | float(0) /1024 /1024) | round(1) }}"
-        query: >
-          from(bucket: "HomeAssistant")
-            |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
-            |> filter(fn: (r) => r["_measurement"] == "storage_shard_disk_size")
-            |> filter(fn: (r) => r["_field"] == "gauge")
-            |> group()
-            |> sum()
+  - platform: command_line
+    name: 'InfluxDB Size'
+    command: cat /config/packages/database_files/influxdb2size
+    value_template: "{{ (value.split('\t')[0]|int/1024)|round(1) }}"
+    unit_of_measurement: 'MB'

@@ -13,15 +13,14 @@
       - sensor.solaredge_energy_this_year
       - sensor.solaredge_exported_energy
       - sensor.solaredge_imported_energy
-      - sensor.solaredge_lifetime_energy
       - sensor.solaredge_meters
       - sensor.solaredge_power_consumption
       - sensor.solaredge_production_energy
       - sensor.solaredge_selfconsumption_energy
       - sensor.solaredge_sensors
       - sensor.solaredge_solar_power
-      - sensor.toon_gas_used_cnt
       - sensor.total_energy_this_year
+      - sensor.total_energy_this_month
       - sensor.maandelijks_energie_verbruik_hoog
       - sensor.maandelijks_energie_verbruik_laag
       - sensor.maandelijks_gas_verbruik
