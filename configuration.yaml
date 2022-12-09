@@ -53,6 +53,7 @@ frontend:
 # Customize UI
 #================================
 homeassistant:
+  country: NL
   external_url: https://ha.bloomlan.nl
   packages: !include_dir_named packages
   customize: !include includes/customize.yaml
