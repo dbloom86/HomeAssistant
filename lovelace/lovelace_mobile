@@ -1381,6 +1381,21 @@
                 }
               ],
               "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+            },
+            {
+              "type": "custom:simple-thermostat",
+              "entity": "climate.verwarming_slaapkamer",
+              "header": false,
+              "step_size": "1",
+              "layout": {
+                "step": "column"
+              },
+              "control": false,
+              "label": {
+                "temperature": "Temperatuur",
+                "state": "Mode"
+              },
+              "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
             }
           ]
         },
