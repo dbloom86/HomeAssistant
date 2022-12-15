@@ -6,6 +6,7 @@
         - automation
         - light
         - switch
+        - climate
 
     entity_globs:
         - binary_sensor.bloom_data*

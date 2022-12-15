@@ -57,6 +57,57 @@ automation:
         entity_id: climate.toon_thermostat
     id: 5b9d4568a9c449258a3a9502cd0a116a
 
+
+    #================================
+    # Radiatoren
+    #================================
+
+  - alias: Set Radiators Slaapkamers aan
+    trigger:
+    - platform: time
+      at: '06:00'
+    - platform: time
+      at: '22:00'
+    condition: or
+    - conditions:
+      - condition: state
+        entity_id: climate.toon_thermostat
+        attribute: preset_mode
+        state: comfort
+      - condition: state
+        entity_id: climate.toon_thermostat
+        attribute: preset_mode
+        state: sleep
+    action:
+    - service: climate.set_temperature
+      data:
+        hvac_mode: heat
+        temperature: 14
+      target:
+        device_id: e42629fa9b96f7cde4df1555664810b8
+    - service: climate.turn_on
+      target:
+        device_id: e42629fa9b96f7cde4df1555664810b8
+    id: 5b9d4568a9c449258a3a9502cd07h5f1
+
+
+  - alias: Set Radiators Slaapkamers uit
+    trigger:
+    - platform: time
+      at: '08:00'
+    - platform: time
+      at: '23:30'
+    condition:
+    - condition: state
+      entity_id: climate.toon_thermostat
+      attribute: preset_mode
+      state: comfort
+    action:
+    - service: climate.turn_off
+      target:
+        device_id: e42629fa9b96f7cde4df1555664810b8
+    id: 5b9d4568akn6tf258a3a9502cd0a116a
+
   #===============
   # Sensors
   #===============

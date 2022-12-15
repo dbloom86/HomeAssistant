@@ -4102,8 +4102,7 @@
                   "side_brush": {
                     "label": "Zij borstels: "
                   }
-                },
-                "style": "ha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                }
               }
             },
             {
