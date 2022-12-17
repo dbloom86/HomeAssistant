@@ -1798,9 +1798,178 @@
               "type": "custom:banner-card",
               "heading": "🚪 Hal",
               "entities": [
-                "light.lampen_hal"
+                {
+                  "entity": "light.lampen_hal"
+                },
+                {
+                  "entity": "climate.verwarming_hal",
+                  "attribute": "current_temperature",
+                  "name": "Temperatuur"
+                }
               ],
               "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+            },
+            {
+              "type": "custom:mod-card",
+              "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n",
+              "card": {
+                "type": "vertical-stack",
+                "cards": [
+                  {
+                    "type": "custom:simple-thermostat",
+                    "entity": "climate.verwarming_hal",
+                    "header": {
+                      "name": "Verwarming",
+                      "icon": false
+                    },
+                    "step_size": "1",
+                    "layout": {
+                      "step": "column"
+                    },
+                    "sensors": [
+                      {
+                        "entity": "climate.verwarming_hal",
+                        "attribute": "system_mode",
+                        "name": "Mode",
+                        "icon": "mdi:radiator"
+                      }
+                    ],
+                    "hide": {
+                      "temperature": true,
+                      "state": true
+                    },
+                    "label": {
+                      "temperature": "Temperatuur",
+                      "state": "Mode"
+                    },
+                    "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
+                  },
+                  {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "custom:button-card",
+                        "entity": "lock.verwarming_hal_child_lock",
+                        "name": "Kinderslot",
+                        "aspect_ratio": "2/1",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "styles": {
+                          "card": [
+                            {
+                              "font-size": "11px"
+                            }
+                          ]
+                        },
+                        "state": [
+                          {
+                            "value": "unlocked",
+                            "icon": "mdi:lock-open",
+                            "color": "#ff4d4d"
+                          },
+                          {
+                            "value": "locked",
+                            "icon": "mdi:lock",
+                            "color": "#00e64d"
+                          }
+                        ],
+                        "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                      },
+                      {
+                        "type": "custom:button-card",
+                        "entity": "switch.verwarming_hal_window_detection",
+                        "name": "Open Raam Detectie",
+                        "aspect_ratio": "2/1",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "styles": {
+                          "card": [
+                            {
+                              "font-size": "11px"
+                            }
+                          ]
+                        },
+                        "state": [
+                          {
+                            "value": "off",
+                            "icon": "mdi:window-closed-variant",
+                            "color": "#ff4d4d"
+                          },
+                          {
+                            "value": "on",
+                            "icon": "mdi:window-open-variant",
+                            "color": "#00e64d"
+                          }
+                        ],
+                        "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                      },
+                      {
+                        "type": "custom:button-card",
+                        "entity": "switch.verwarming_hal_away_mode",
+                        "name": "Afwezigheidsdetectie",
+                        "aspect_ratio": "2/1",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "styles": {
+                          "card": [
+                            {
+                              "font-size": "11px"
+                            }
+                          ]
+                        },
+                        "state": [
+                          {
+                            "value": "off",
+                            "icon": "mdi:home",
+                            "color": "#00e64d"
+                          },
+                          {
+                            "value": "on",
+                            "icon": "mdi:home-off",
+                            "color": "#ff4d4d"
+                          }
+                        ],
+                        "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "custom:mini-graph-card",
+                    "entities": [
+                      {
+                        "entity": "climate.verwarming_hal",
+                        "attribute": "current_temperature",
+                        "name": "Temperatuur",
+                        "smoothing": true,
+                        "show_fill": true
+                      },
+                      {
+                        "entity": "climate.verwarming_hal",
+                        "attribute": "current_heating_setpoint",
+                        "name": "Ingesteld",
+                        "smoothing": false,
+                        "show_fill": false
+                      }
+                    ],
+                    "hours_to_show": 24,
+                    "points_per_hour": 4,
+                    "line_width": 2,
+                    "font_size": 90,
+                    "animate": true,
+                    "show": {
+                      "name": false,
+                      "icon": false,
+                      "state": false
+                    },
+                    "icon": "mdi:fire",
+                    "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
+                  }
+                ],
+                "style": "ha-card {\n          box-shadow: none;\n          border: solid 1px var(--primary-color);\n          background-color: var(--ha-card-background);\n        \n}\n"
+              }
             }
           ]
         },
@@ -2088,9 +2257,178 @@
               "type": "custom:banner-card",
               "heading": "🛌 Kamer Luca",
               "entities": [
-                "light.lampen_kamer_luca"
+                {
+                  "entity": "light.lampen_kamer_luca"
+                },
+                {
+                  "entity": "climate.verwarming_luca",
+                  "attribute": "current_temperature",
+                  "name": "Temperatuur"
+                }
               ],
               "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+            },
+            {
+              "type": "custom:mod-card",
+              "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n",
+              "card": {
+                "type": "vertical-stack",
+                "cards": [
+                  {
+                    "type": "custom:simple-thermostat",
+                    "entity": "climate.verwarming_luca",
+                    "header": {
+                      "name": "Verwarming",
+                      "icon": false
+                    },
+                    "step_size": "1",
+                    "layout": {
+                      "step": "column"
+                    },
+                    "sensors": [
+                      {
+                        "entity": "climate.verwarming_luca",
+                        "attribute": "system_mode",
+                        "name": "Mode",
+                        "icon": "mdi:radiator"
+                      }
+                    ],
+                    "hide": {
+                      "temperature": true,
+                      "state": true
+                    },
+                    "label": {
+                      "temperature": "Temperatuur",
+                      "state": "Mode"
+                    },
+                    "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
+                  },
+                  {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "custom:button-card",
+                        "entity": "lock.verwarming_luca_child_lock",
+                        "name": "Kinderslot",
+                        "aspect_ratio": "2/1",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "styles": {
+                          "card": [
+                            {
+                              "font-size": "11px"
+                            }
+                          ]
+                        },
+                        "state": [
+                          {
+                            "value": "unlocked",
+                            "icon": "mdi:lock-open",
+                            "color": "#ff4d4d"
+                          },
+                          {
+                            "value": "locked",
+                            "icon": "mdi:lock",
+                            "color": "#00e64d"
+                          }
+                        ],
+                        "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                      },
+                      {
+                        "type": "custom:button-card",
+                        "entity": "switch.verwarming_luca_window_detection",
+                        "name": "Open Raam Detectie",
+                        "aspect_ratio": "2/1",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "styles": {
+                          "card": [
+                            {
+                              "font-size": "11px"
+                            }
+                          ]
+                        },
+                        "state": [
+                          {
+                            "value": "off",
+                            "icon": "mdi:window-closed-variant",
+                            "color": "#ff4d4d"
+                          },
+                          {
+                            "value": "on",
+                            "icon": "mdi:window-open-variant",
+                            "color": "#00e64d"
+                          }
+                        ],
+                        "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                      },
+                      {
+                        "type": "custom:button-card",
+                        "entity": "switch.verwarming_luca_away_mode",
+                        "name": "Afwezigheidsdetectie",
+                        "aspect_ratio": "2/1",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "styles": {
+                          "card": [
+                            {
+                              "font-size": "11px"
+                            }
+                          ]
+                        },
+                        "state": [
+                          {
+                            "value": "off",
+                            "icon": "mdi:home",
+                            "color": "#00e64d"
+                          },
+                          {
+                            "value": "on",
+                            "icon": "mdi:home-off",
+                            "color": "#ff4d4d"
+                          }
+                        ],
+                        "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "custom:mini-graph-card",
+                    "entities": [
+                      {
+                        "entity": "climate.verwarming_luca",
+                        "attribute": "current_temperature",
+                        "name": "Temperatuur",
+                        "smoothing": true,
+                        "show_fill": true
+                      },
+                      {
+                        "entity": "climate.verwarming_luca",
+                        "attribute": "current_heating_setpoint",
+                        "name": "Ingesteld",
+                        "smoothing": false,
+                        "show_fill": false
+                      }
+                    ],
+                    "hours_to_show": 24,
+                    "points_per_hour": 4,
+                    "line_width": 2,
+                    "font_size": 90,
+                    "animate": true,
+                    "show": {
+                      "name": false,
+                      "icon": false,
+                      "state": false
+                    },
+                    "icon": "mdi:fire",
+                    "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
+                  }
+                ],
+                "style": "ha-card {\n          box-shadow: none;\n          border: solid 1px var(--primary-color);\n          background-color: var(--ha-card-background);\n        \n}\n"
+              }
             }
           ]
         },
@@ -2132,6 +2470,11 @@
                 {
                   "entity": "light.slaapkamer_fynn",
                   "name": "Lampen"
+                },
+                {
+                  "entity": "climate.verwarming_fynn",
+                  "attribute": "current_temperature",
+                  "name": "Temperatuur"
                 }
               ],
               "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
@@ -2316,6 +2659,168 @@
                   "type": "custom:gap-card"
                 }
               ]
+            },
+            {
+              "type": "custom:mod-card",
+              "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n",
+              "card": {
+                "type": "vertical-stack",
+                "cards": [
+                  {
+                    "type": "custom:simple-thermostat",
+                    "entity": "climate.verwarming_fynn",
+                    "header": {
+                      "name": "Verwarming",
+                      "icon": false
+                    },
+                    "step_size": "1",
+                    "layout": {
+                      "step": "column"
+                    },
+                    "sensors": [
+                      {
+                        "entity": "climate.verwarming_fynn",
+                        "attribute": "system_mode",
+                        "name": "Mode",
+                        "icon": "mdi:radiator"
+                      }
+                    ],
+                    "hide": {
+                      "temperature": true,
+                      "state": true
+                    },
+                    "label": {
+                      "temperature": "Temperatuur",
+                      "state": "Mode"
+                    },
+                    "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
+                  },
+                  {
+                    "type": "horizontal-stack",
+                    "cards": [
+                      {
+                        "type": "custom:button-card",
+                        "entity": "lock.verwarming_fynn_child_lock",
+                        "name": "Kinderslot",
+                        "aspect_ratio": "2/1",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "styles": {
+                          "card": [
+                            {
+                              "font-size": "11px"
+                            }
+                          ]
+                        },
+                        "state": [
+                          {
+                            "value": "unlocked",
+                            "icon": "mdi:lock-open",
+                            "color": "#ff4d4d"
+                          },
+                          {
+                            "value": "locked",
+                            "icon": "mdi:lock",
+                            "color": "#00e64d"
+                          }
+                        ],
+                        "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                      },
+                      {
+                        "type": "custom:button-card",
+                        "entity": "switch.verwarming_fynn_window_detection",
+                        "name": "Open Raam Detectie",
+                        "aspect_ratio": "2/1",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "styles": {
+                          "card": [
+                            {
+                              "font-size": "11px"
+                            }
+                          ]
+                        },
+                        "state": [
+                          {
+                            "value": "off",
+                            "icon": "mdi:window-closed-variant",
+                            "color": "#ff4d4d"
+                          },
+                          {
+                            "value": "on",
+                            "icon": "mdi:window-open-variant",
+                            "color": "#00e64d"
+                          }
+                        ],
+                        "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                      },
+                      {
+                        "type": "custom:button-card",
+                        "entity": "switch.verwarming_fynn_away_mode",
+                        "name": "Afwezigheidsdetectie",
+                        "aspect_ratio": "2/1",
+                        "tap_action": {
+                          "action": "toggle"
+                        },
+                        "styles": {
+                          "card": [
+                            {
+                              "font-size": "11px"
+                            }
+                          ]
+                        },
+                        "state": [
+                          {
+                            "value": "off",
+                            "icon": "mdi:home",
+                            "color": "#00e64d"
+                          },
+                          {
+                            "value": "on",
+                            "icon": "mdi:home-off",
+                            "color": "#ff4d4d"
+                          }
+                        ],
+                        "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "custom:mini-graph-card",
+                    "entities": [
+                      {
+                        "entity": "climate.verwarming_fynn",
+                        "attribute": "current_temperature",
+                        "name": "Temperatuur",
+                        "smoothing": true,
+                        "show_fill": true
+                      },
+                      {
+                        "entity": "climate.verwarming_fynn",
+                        "attribute": "current_heating_setpoint",
+                        "name": "Ingesteld",
+                        "smoothing": false,
+                        "show_fill": false
+                      }
+                    ],
+                    "hours_to_show": 24,
+                    "points_per_hour": 4,
+                    "line_width": 2,
+                    "font_size": 90,
+                    "animate": true,
+                    "show": {
+                      "name": false,
+                      "icon": false,
+                      "state": false
+                    },
+                    "icon": "mdi:fire",
+                    "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
+                  }
+                ],
+                "style": "ha-card {\n          box-shadow: none;\n          border: solid 1px var(--primary-color);\n          background-color: var(--ha-card-background);\n        \n}\n"
+              }
             }
           ]
         },

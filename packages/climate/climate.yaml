@@ -79,6 +79,10 @@ automation:
             entity_id: climate.toon_thermostat
             attribute: preset_mode
             state: sleep
+          - condition: state
+            entity_id: climate.toon_thermostat
+            attribute: preset_mode
+            state: home
     action:
       - service: climate.set_temperature
         data:
@@ -86,11 +90,7 @@ automation:
           temperature: 14
         target:
           device_id: e42629fa9b96f7cde4df1555664810b8
-      - service: climate.turn_on
-        target:
-          device_id: e42629fa9b96f7cde4df1555664810b8
     id: 5b9d4568a9c449258a3a95hj81fh5f1
-
 
   - alias: Set Radiator Slaapkamer uit
     trigger:
@@ -109,6 +109,10 @@ automation:
             entity_id: climate.toon_thermostat
             attribute: preset_mode
             state: sleep
+          - condition: state
+            entity_id: climate.toon_thermostat
+            attribute: preset_mode
+            state: home
     action:
       - service: climate.set_temperature
         data:
@@ -119,6 +123,74 @@ automation:
         target:
           device_id: e42629fa9b96f7cde4df1555664810b8
     id: 5b9d4568akn6tf258a3a9502cd0a116a
+
+  - alias: Set Radiator Luca en Fynn aan
+    trigger:
+    - platform: time
+      at: '06:00'
+    - platform: time
+      at: '18:30'
+    condition:
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: climate.toon_thermostat
+            attribute: preset_mode
+            state: comfort
+          - condition: state
+            entity_id: climate.toon_thermostat
+            attribute: preset_mode
+            state: sleep
+          - condition: state
+            entity_id: climate.toon_thermostat
+            attribute: preset_mode
+            state: home
+    action:
+      - service: climate.set_temperature
+        data:
+          hvac_mode: heat
+          temperature: 14
+        target:
+          device_id:
+            - 59dc73e6760d124ca96a4101045b4bcd
+            - d34ef0ce55dbd76e688cea09e359cca8
+    id: 5b9d4568a9c449jks5gv95hj81fh5f1
+
+  - alias: Set Radiator Luca en Fynn uit
+    trigger:
+    - platform: time
+      at: '08:00'
+    - platform: time
+      at: '20:30'
+    condition:
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: climate.toon_thermostat
+            attribute: preset_mode
+            state: comfort
+          - condition: state
+            entity_id: climate.toon_thermostat
+            attribute: preset_mode
+            state: sleep
+          - condition: state
+            entity_id: climate.toon_thermostat
+            attribute: preset_mode
+            state: home
+    action:
+      - service: climate.set_temperature
+        data:
+          temperature: 5
+        target:
+          device_id:
+            - 59dc73e6760d124ca96a4101045b4bcd
+            - d34ef0ce55dbd76e688cea09e359cca8
+      - service: climate.turn_off
+        target:
+          device_id:
+            - 59dc73e6760d124ca96a4101045b4bcd
+            - d34ef0ce55dbd76e688cea09e359cca8
+    id: 5b9ja5dfv6n6tf258a3ahg56200a116a
 
   - alias: Set Radiator Zolder aan
     trigger:
@@ -135,6 +207,10 @@ automation:
             entity_id: climate.toon_thermostat
             attribute: preset_mode
             state: sleep
+          - condition: state
+            entity_id: climate.toon_thermostat
+            attribute: preset_mode
+            state: home
       - condition: time
         weekday:
           - mon
@@ -147,9 +223,6 @@ automation:
         data:
           hvac_mode: heat
           temperature: 16
-        target:
-          device_id: 309265144a15110bc63467a83a8759a3
-      - service: climate.turn_on
         target:
           device_id: 309265144a15110bc63467a83a8759a3
     id: 5b9d45hjna5249258a3a95hj81fh5f1
@@ -169,6 +242,10 @@ automation:
             entity_id: climate.toon_thermostat
             attribute: preset_mode
             state: sleep
+          - condition: state
+            entity_id: climate.toon_thermostat
+            attribute: preset_mode
+            state: home
       - condition: time
         weekday:
           - mon
@@ -187,10 +264,10 @@ automation:
           device_id: 309265144a15110bc63467a83a8759a3
     id: 5b9d4568akn8kh5dsa3a9502cd0a116a
 
-  - alias: Set Radiator Toilet aan
+  - alias: Set Radiator Toilet en Gang aan
     trigger:
     - platform: time
-      at: '07:00'
+      at: '06:30'
     condition:
       - condition: or
         conditions:
@@ -202,19 +279,22 @@ automation:
             entity_id: climate.toon_thermostat
             attribute: preset_mode
             state: sleep
+          - condition: state
+            entity_id: climate.toon_thermostat
+            attribute: preset_mode
+            state: home
     action:
       - service: climate.set_temperature
         data:
           hvac_mode: heat
           temperature: 18
         target:
-          device_id: 60227a650a897b7ed18df83d4d826556
-      - service: climate.turn_on
-        target:
-          device_id: 60227a650a897b7ed18df83d4d826556
+          device_id:
+            - 60227a650a897b7ed18df83d4d826556
+            - 34b54cb00cac76b8e158c5e71abbd5fb
     id: 5b9d45hjna5249258a3a95jm75gh5f1
 
-  - alias: Set Radiator Toilet uit
+  - alias: Set Radiator Toilet en Gang uit
     trigger:
     - platform: time
       at: '23:00'
@@ -229,15 +309,23 @@ automation:
             entity_id: climate.toon_thermostat
             attribute: preset_mode
             state: sleep
+          - condition: state
+            entity_id: climate.toon_thermostat
+            attribute: preset_mode
+            state: home
     action:
       - service: climate.set_temperature
         data:
           temperature: 5
         target:
-          device_id: 60227a650a897b7ed18df83d4d826556
+          device_id:
+            - 60227a650a897b7ed18df83d4d826556
+            - 34b54cb00cac76b8e158c5e71abbd5fb
       - service: climate.turn_off
         target:
-          device_id: 60227a650a897b7ed18df83d4d826556
+          device_id: 
+            - 60227a650a897b7ed18df83d4d826556
+            - 34b54cb00cac76b8e158c5e71abbd5fb
     id: 5b9d4568ah7d3m5dsa3a9502cd0a116a
 
   #===============
