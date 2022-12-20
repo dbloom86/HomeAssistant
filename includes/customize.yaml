@@ -207,7 +207,7 @@ device_tracker.shelly1pm_98cdac1f389e:
   entity_picture: /local/Custom_Icons/droger-ico.png
 
 device_tracker.shellyplug_s_9a5381:
-  entity_picture: /local/Custom_Icons/remeha_avanta-ico.png
+  entity_picture: /local/Custom_Icons/remeha_tzerra-ico.png
 
 device_tracker.light_desk_1_5756:
   entity_picture: /local/Custom_Icons/bureaulamp-ico.png

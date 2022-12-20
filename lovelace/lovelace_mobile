@@ -3210,7 +3210,7 @@
                   "entity": "switch.shelly_shplg_s_9a5381",
                   "aspect_ratio": "1/1",
                   "name": "CV",
-                  "entity_picture": "/local/Custom_Icons/remeha_avanta-ico.png",
+                  "entity_picture": "/local/Custom_Icons/remeha_tzerra-ico.png",
                   "size": "50%",
                   "show_entity_picture": true,
                   "styles": {

@@ -31,11 +31,35 @@ automation:
         attribute: preset_modes
         state: eco
     action:
-    - service: climate.set_preset_mode
-      data:
-        preset_mode: eco
-      target:
-        entity_id: climate.toon_thermostat
+      - service: climate.set_preset_mode
+        data:
+          preset_mode: eco
+        target:
+          entity_id: climate.toon_thermostat
+      - service: climate.set_temperature
+        data:
+          temperature: 5
+        target:
+          device_id:
+            - 59dc73e6760d124ca96a4101045b4bcd
+            - d34ef0ce55dbd76e688cea09e359cca8
+            - e42629fa9b96f7cde4df1555664810b8
+            - 309265144a15110bc63467a83a8759a3
+            - 34b54cb00cac76b8e158c5e71abbd5fb
+            - 60227a650a897b7ed18df83d4d826556
+            - 094695d29b5553dbbbdd9c93ed2059c7
+            - f2ecf356f26a33fbecafab2ae1ebecd3
+      - service: climate.turn_off
+        target:
+          device_id:
+            - 59dc73e6760d124ca96a4101045b4bcd
+            - d34ef0ce55dbd76e688cea09e359cca8
+            - e42629fa9b96f7cde4df1555664810b8
+            - 309265144a15110bc63467a83a8759a3
+            - 34b54cb00cac76b8e158c5e71abbd5fb
+            - 60227a650a897b7ed18df83d4d826556
+            - 094695d29b5553dbbbdd9c93ed2059c7
+            - f2ecf356f26a33fbecafab2ae1ebecd3
     id: 5b9d4568a9c449258a135702cd0a116a
 
   - alias: Set Climate to Comfort when back from vacation
@@ -50,11 +74,19 @@ automation:
       for: 
         hours: 24
     action:
-    - service: climate.set_preset_mode
-      data:
-        preset_mode: comfort
-      target:
-        entity_id: climate.toon_thermostat
+      - service: climate.set_preset_mode
+        data:
+          preset_mode: comfort
+        target:
+          entity_id: climate.toon_thermostat
+      - service: climate.set_temperature
+        data:
+          hvac_mode: heat
+          temperature: 30
+        target:
+          device_id:
+            - 094695d29b5553dbbbdd9c93ed2059c7
+            - f2ecf356f26a33fbecafab2ae1ebecd3
     id: 5b9d4568a9c449258a3a9502cd0a116a
 
 
@@ -87,7 +119,7 @@ automation:
       - service: climate.set_temperature
         data:
           hvac_mode: heat
-          temperature: 14
+          temperature: 15
         target:
           device_id: e42629fa9b96f7cde4df1555664810b8
     id: 5b9d4568a9c449258a3a95hj81fh5f1
@@ -149,7 +181,7 @@ automation:
       - service: climate.set_temperature
         data:
           hvac_mode: heat
-          temperature: 14
+          temperature: 15
         target:
           device_id:
             - 59dc73e6760d124ca96a4101045b4bcd
@@ -287,11 +319,17 @@ automation:
       - service: climate.set_temperature
         data:
           hvac_mode: heat
-          temperature: 18
+          temperature: 20
+        target:
+          device_id:
+            - 34b54cb00cac76b8e158c5e71abbd5fb
+      - service: climate.set_temperature
+        data:
+          hvac_mode: heat
+          temperature: 19
         target:
           device_id:
             - 60227a650a897b7ed18df83d4d826556
-            - 34b54cb00cac76b8e158c5e71abbd5fb
     id: 5b9d45hjna5249258a3a95jm75gh5f1
 
   - alias: Set Radiator Toilet en Gang uit
