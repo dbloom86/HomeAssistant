@@ -19,7 +19,7 @@ automation:
   - alias: Set Climate to Vacation when away for more than a day
     trigger:
     - platform: state
-      entity_id: group.people
+      entity_id: group.ouders
       to: not_home
       for: 
         hours: 24
@@ -69,7 +69,7 @@ automation:
       below: 20
     condition:
     - condition: state
-      entity_id: group.people
+      entity_id: group.ouders
       state: not_home
       for: 
         hours: 24
