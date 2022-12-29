@@ -87,6 +87,20 @@ automation:
           device_id:
             - 094695d29b5553dbbbdd9c93ed2059c7
             - f2ecf356f26a33fbecafab2ae1ebecd3
+      - service: climate.set_temperature
+        data:
+          hvac_mode: heat
+          temperature: 20
+        target:
+          device_id:
+            - 34b54cb00cac76b8e158c5e71abbd5fb
+      - service: climate.set_temperature
+        data:
+          hvac_mode: heat
+          temperature: 19
+        target:
+          device_id:
+            - 60227a650a897b7ed18df83d4d826556
     id: 5b9d4568a9c449258a3a9502cd0a116a
 
 
@@ -101,20 +115,10 @@ automation:
     - platform: time
       at: '22:00'
     condition:
-      - condition: or
-        conditions:
-          - condition: state
-            entity_id: climate.toon_thermostat
-            attribute: preset_mode
-            state: comfort
-          - condition: state
-            entity_id: climate.toon_thermostat
-            attribute: preset_mode
-            state: sleep
-          - condition: state
-            entity_id: climate.toon_thermostat
-            attribute: preset_mode
-            state: home
+      - condition: numeric_state
+        entity_id: climate.toon_thermostat
+        attribute: temperature
+        above: 17
     action:
       - service: climate.set_temperature
         data:
@@ -163,20 +167,10 @@ automation:
     - platform: time
       at: '18:30'
     condition:
-      - condition: or
-        conditions:
-          - condition: state
-            entity_id: climate.toon_thermostat
-            attribute: preset_mode
-            state: comfort
-          - condition: state
-            entity_id: climate.toon_thermostat
-            attribute: preset_mode
-            state: sleep
-          - condition: state
-            entity_id: climate.toon_thermostat
-            attribute: preset_mode
-            state: home
+      - condition: numeric_state
+        entity_id: climate.toon_thermostat
+        attribute: temperature
+        above: 17
     action:
       - service: climate.set_temperature
         data:
@@ -229,20 +223,10 @@ automation:
     - platform: time
       at: '07:00'
     condition:
-      - condition: or
-        conditions:
-          - condition: state
-            entity_id: climate.toon_thermostat
-            attribute: preset_mode
-            state: comfort
-          - condition: state
-            entity_id: climate.toon_thermostat
-            attribute: preset_mode
-            state: sleep
-          - condition: state
-            entity_id: climate.toon_thermostat
-            attribute: preset_mode
-            state: home
+      - condition: numeric_state
+        entity_id: climate.toon_thermostat
+        attribute: temperature
+        above: 17
       - condition: time
         weekday:
           - mon
@@ -301,20 +285,10 @@ automation:
     - platform: time
       at: '06:30'
     condition:
-      - condition: or
-        conditions:
-          - condition: state
-            entity_id: climate.toon_thermostat
-            attribute: preset_mode
-            state: comfort
-          - condition: state
-            entity_id: climate.toon_thermostat
-            attribute: preset_mode
-            state: sleep
-          - condition: state
-            entity_id: climate.toon_thermostat
-            attribute: preset_mode
-            state: home
+      - condition: numeric_state
+        entity_id: climate.toon_thermostat
+        attribute: temperature
+        above: 17
     action:
       - service: climate.set_temperature
         data:
