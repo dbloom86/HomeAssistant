@@ -1058,54 +1058,6 @@
                       {
                         "type": "vertical-stack",
                         "view_layout": {
-                          "grid-column": "4/4",
-                          "grid-row": "2/2"
-                        },
-                        "cards": [
-                          {
-                            "type": "markdown",
-                            "content": "<center><img src=\"/local/Pictures/addons/tasmo_admin-ico.png\" width=\"73\"/> <center>Tasmo Admin</center> <center>{{ states.sensor.docker_tasmoadmin_status.state }}</center>",
-                            "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  font-size: 11px;\n  border: none;\n}\n"
-                          },
-                          {
-                            "color": "green",
-                            "decimal": "1",
-                            "entity": "sensor.tasmoadmin_bar",
-                            "entity_row": true,
-                            "height": "12px",
-                            "positions": {
-                              "icon": "off",
-                              "indicator": "off",
-                              "name": "off",
-                              "value": "off"
-                            },
-                            "type": "custom:bar-card",
-                            "width": "50%",
-                            "min": 0,
-                            "max": 50,
-                            "tap_action": {
-                              "action": "url",
-                              "url_path": "https://tasmoadmin.bloomlan.nl/"
-                            },
-                            "severity": [
-                              {
-                                "color": "#ff4d4d",
-                                "from": 0,
-                                "to": 50
-                              },
-                              {
-                                "color": "#00e64d",
-                                "from": 51,
-                                "to": 100
-                              }
-                            ],
-                            "style": "ha-card {\n  top: -10px;\n  width: 70%;\n  left: 15%;\n  border: none;\n} \n     \n"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "vertical-stack",
-                        "view_layout": {
                           "grid-column": "5/5",
                           "grid-row": "2/2"
                         },
@@ -3078,14 +3030,6 @@
                       "name": "Switches"
                     },
                     {
-                      "entity": "sensor.total_tasmota_devices",
-                      "name": "Tasmota",
-                      "tap_action": {
-                        "action": "navigate",
-                        "navigation_path": "/tasmoadmin"
-                      }
-                    },
-                    {
                       "entity": "sensor.total_input_texts",
                       "name": "Texts",
                       "hold_action": {
@@ -3122,7 +3066,7 @@
                       "name": "Zwave"
                     }
                   ],
-                  "columns": 14,
+                  "columns": 13,
                   "type": "custom:hui-glance-card",
                   "style": "ha-card {\n  height: 100%;\n  border-radius: 5px;\n  background-image: none;\n  box-shadow: none;\n  border: none;\n  background-color: rgba(255, 255, 255, 0);\n}\n"
                 }
@@ -3141,17 +3085,6 @@
                   "type": "custom:text-divider-row",
                   "text": "Firmware",
                   "style": "h2:before, h2:after {\n  position: absolute;\n  top: 51%;\n  overflow: hidden;\n  width: 50%;\n  height: var(--line-size);\n  content: '\\a0';\n  background-color: var(--divider-color);\n}\n\nh2:before {\n  margin-left: -50%;\n  text-align: right;\n}\nh2.text-divider {\n  border-bottom: none;\n}\n\nh2.text-divider span {\n  background: none;\n}\n"
-                },
-                {
-                  "entity": "sensor.sonoff_newest_version",
-                  "name": "Sonoff / Tasmota latest version"
-                },
-                {
-                  "entity": "sensor.tasmota_devices_needing_upgrade",
-                  "name": "Tasmota Devices Needing Upgrade"
-                },
-                {
-                  "entity": "switch.upgrade_tasmota_firmware"
                 },
                 {
                   "entity": "sensor.outdated_shelly_devices",
@@ -3280,10 +3213,10 @@
                   "type": "custom:hui-element",
                   "entity": "sensor.zigbee2mqtt_networkmap",
                   "mqtt_base_topic": "zigbee2mqtt",
-                  "force": 3000,
-                  "node_size": 16,
-                  "font_size": 12,
-                  "link_width": 2,
+                  "force": 1000,
+                  "node_size": 13,
+                  "font_size": 10,
+                  "link_width": 1,
                   "height": 275,
                   "style": "ha-card {\n  border-radius: 5px;\n  box-shadow: none;\n  background: none;\n  border: none;\n }\n",
                   "css": ":host {\n  --zigbee2mqtt-networkmap-node-color: rgba(18, 120, 98, .7);\n  --zigbee2mqtt-networkmap-node-fill-color: #dcfaf3;\n  --zigbee2mqtt-networkmap-node-pinned-color: rgba(190, 56, 93, .6);\n  --zigbee2mqtt-networkmap-link-color: rgba(18, 120, 98, .5);\n  --zigbee2mqtt-networkmap-hover-color: #be385d;\n  --zigbee2mqtt-networkmap-link-selected-color: rgba(202, 164, 85, .6);\n  --zigbee2mqtt-networkmap-label-color: #127862;\n  --zigbee2mqtt-networkmap-arrow-color: rgba(18, 120, 98, 0.7);\n  --zigbee2mqtt-networkmap-node-coordinator-color: rgba(224, 78, 93, .7);\n  --zigbee2mqtt-networkmap-node-router-color: rgba(0, 165, 255, .7);\n}\n"

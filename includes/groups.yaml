@@ -22,18 +22,6 @@ Kids:
         - person.luca
         - person.fynn
 
-Tasmota:
-    entities:
-        - light.bureaulamp1
-        - light.bureaulamp2
-        - light.bureaulamp3
-
-tasmota_firmware:
-    entities:
-        - sensor.bureaulamp_1_firmware
-        - sensor.bureaulamp_2_firmware
-        - sensor.bureaulamp_3_firmware
-
 Shelly:
     entities:
         - light.shelly_shsw_1_40f52000c449
@@ -51,6 +39,15 @@ Zigbee:
         - light.lamp_bank_hoek
         - light.lamp_haard
         - light.lamp_trap
+        - climate.verwarming_woonkamer
+        - climate.verwarming_hal
+        - climate.verwarming_toilet
+        - climate.verwarming_keuken
+        - climate.verwarming_slaapkamer
+        - climate.verwarming_luca
+        - climate.verwarming_fynn
+        - climate.verwarming_badkamer
+        - climate.verwarming_zolder
 
 Zwave:
     entities:
@@ -82,16 +79,20 @@ Woonkamer:
         - light.lamp_haard
         - light.lamp_trap
         - light.lamp_achterdeur
+        - climate.verwarming_woonkamer
 
 Hal:
     entities:
+        - climate.verwarming_hal
 
 Toilet:
     entities:
+        - climate.verwarming_toilet
 
 Keuken:
     entities:
         - switch.shelly_shplg_s_9a53ab
+        - climate.verwarming_keuken
     
 Overloop:
     entities:
@@ -99,16 +100,20 @@ Overloop:
 Slaapkamer:
     entities:
         - media_player.bloomtv
+        - climate.verwarming_slaapkamer
     
 Slaapkamer_Luca:
     entities:
+        - climate.verwarming_luca
     
 Slaapkamer_Fynn:
     entities:
         - light.lamp_hoekje
+        - climate.verwarming_fynn
         
 Badkamer:
     entities:
+        - climate.verwarming_badkamer
     
 Studeerkamer:
     entities:
@@ -117,6 +122,7 @@ Studeerkamer:
         - switch.shelly_shplg_s_9d9823
         - light.shelly_shsw_1_40f520009959
         - switch.shelly_shsw_pm_98cdac1f389e
+        - climate.verwarming_zolder
 
 Schuur:
     entities:

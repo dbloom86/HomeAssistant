@@ -25,13 +25,11 @@ monitor_docker:
       - DockerProxy
       - ESPHome
       - WordpressDB
-      - Nginx-Proxy-Manager
     rename:
       Torrents: Deluge
       Unifi_Controller: Unifi Controller
       zwavejs2mqtt: ZwaveJS2MQTT
       DockerProxy: Docker Proxy
-      Nginx-Proxy-Manager: Nginx Proxy Manager
     monitored_conditions:
       - version
       - containers_running
@@ -140,20 +138,6 @@ sensor:
             friendly_name: "Mosquitto Bar"
             value_template: >-
                 {% if ( states.sensor.docker_mosquitto_state.state == 'running' ) %}
-                    100
-                {% else %}
-                    50
-                {% endif %}
-
-    #================================
-    # TasmoAdmin
-    #================================
-  - platform: template
-    sensors:
-        tasmoadmin_bar:
-            friendly_name: "TasmoAdmin Bar"
-            value_template: >-
-                {% if ( states.sensor.docker_tasmoadmin_state.state == 'running' ) %}
                     100
                 {% else %}
                     50

@@ -49,6 +49,7 @@ automation:
             - 60227a650a897b7ed18df83d4d826556
             - 094695d29b5553dbbbdd9c93ed2059c7
             - f2ecf356f26a33fbecafab2ae1ebecd3
+            - d55f1bb2b8d94cc025dac16e2a45be91
       - service: climate.turn_off
         target:
           device_id:
@@ -60,6 +61,7 @@ automation:
             - 60227a650a897b7ed18df83d4d826556
             - 094695d29b5553dbbbdd9c93ed2059c7
             - f2ecf356f26a33fbecafab2ae1ebecd3
+            - d55f1bb2b8d94cc025dac16e2a45be91
     id: 5b9d4568a9c449258a135702cd0a116a
 
   - alias: Set Climate to Comfort when back from vacation
@@ -94,6 +96,7 @@ automation:
         target:
           device_id:
             - 34b54cb00cac76b8e158c5e71abbd5fb
+            - d55f1bb2b8d94cc025dac16e2a45be91
       - service: climate.set_temperature
         data:
           hvac_mode: heat
@@ -134,21 +137,6 @@ automation:
       at: '08:00'
     - platform: time
       at: '23:30'
-    condition:
-      - condition: or
-        conditions:
-          - condition: state
-            entity_id: climate.toon_thermostat
-            attribute: preset_mode
-            state: comfort
-          - condition: state
-            entity_id: climate.toon_thermostat
-            attribute: preset_mode
-            state: sleep
-          - condition: state
-            entity_id: climate.toon_thermostat
-            attribute: preset_mode
-            state: home
     action:
       - service: climate.set_temperature
         data:
@@ -188,21 +176,6 @@ automation:
       at: '08:00'
     - platform: time
       at: '20:30'
-    condition:
-      - condition: or
-        conditions:
-          - condition: state
-            entity_id: climate.toon_thermostat
-            attribute: preset_mode
-            state: comfort
-          - condition: state
-            entity_id: climate.toon_thermostat
-            attribute: preset_mode
-            state: sleep
-          - condition: state
-            entity_id: climate.toon_thermostat
-            attribute: preset_mode
-            state: home
     action:
       - service: climate.set_temperature
         data:
@@ -247,28 +220,6 @@ automation:
     trigger:
     - platform: time
       at: '18:00'
-    condition:
-      - condition: or
-        conditions:
-          - condition: state
-            entity_id: climate.toon_thermostat
-            attribute: preset_mode
-            state: comfort
-          - condition: state
-            entity_id: climate.toon_thermostat
-            attribute: preset_mode
-            state: sleep
-          - condition: state
-            entity_id: climate.toon_thermostat
-            attribute: preset_mode
-            state: home
-      - condition: time
-        weekday:
-          - mon
-          - tue
-          - wed
-          - thu
-          - fri
     action:
       - service: climate.set_temperature
         data:
@@ -310,21 +261,6 @@ automation:
     trigger:
     - platform: time
       at: '23:00'
-    condition:
-      - condition: or
-        conditions:
-          - condition: state
-            entity_id: climate.toon_thermostat
-            attribute: preset_mode
-            state: comfort
-          - condition: state
-            entity_id: climate.toon_thermostat
-            attribute: preset_mode
-            state: sleep
-          - condition: state
-            entity_id: climate.toon_thermostat
-            attribute: preset_mode
-            state: home
     action:
       - service: climate.set_temperature
         data:
@@ -339,6 +275,44 @@ automation:
             - 60227a650a897b7ed18df83d4d826556
             - 34b54cb00cac76b8e158c5e71abbd5fb
     id: 5b9d4568ah7d3m5dsa3a9502cd0a116a
+
+
+  - alias: Set Radiator Badkamer aan
+    trigger:
+    - platform: time
+      at: '06:00'
+    - platform: time
+      at: '18:30'
+    condition:
+      - condition: numeric_state
+        entity_id: climate.toon_thermostat
+        attribute: temperature
+        above: 17
+    action:
+      - service: climate.set_temperature
+        data:
+          hvac_mode: heat
+          temperature: 20
+        target:
+          device_id: d55f1bb2b8d94cc025dac16e2a45be91
+    id: 5b9d4568a9c449ka7gb395hj81fh5f1
+
+  - alias: Set Radiator Badkamer uit
+    trigger:
+    - platform: time
+      at: '09:00'
+    - platform: time
+      at: '23:30'
+    action:
+      - service: climate.set_temperature
+        data:
+          temperature: 5
+        target:
+          device_id: d55f1bb2b8d94cc025dac16e2a45be91
+      - service: climate.turn_off
+        target:
+          device_id: d55f1bb2b8d94cc025dac16e2a45be91
+    id: 5b9dkal097n6tf258a3a9502cd0a116a
 
   #===============
   # Sensors

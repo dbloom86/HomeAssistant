@@ -196,12 +196,6 @@
         icon_template: mdi:map-marker-radius
         value_template: "{{ states.zone | list | length }}"
 
-      #----- Count Tasmota Devices
-      total_tasmota_devices:
-        friendly_name: 'Tasmota'
-        icon_template: mdi:tasmota
-        value_template: "{{states.light |selectattr('entity_id','in',state_attr('group.Tasmota','entity_id'))| map(attribute='name') | list|count }}"   
-        
       #----- Count Shelly Devices
       total_shelly_devices:
         friendly_name: 'Shelly'
