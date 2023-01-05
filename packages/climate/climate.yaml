@@ -114,7 +114,7 @@ automation:
   - alias: Set Radiator Slaapkamer aan
     trigger:
     - platform: time
-      at: '06:00'
+      at: '06:10'
     - platform: time
       at: '22:00'
     condition:
@@ -134,7 +134,7 @@ automation:
   - alias: Set Radiator Slaapkamer uit
     trigger:
     - platform: time
-      at: '08:00'
+      at: '08:30'
     - platform: time
       at: '23:30'
     action:
@@ -151,7 +151,7 @@ automation:
   - alias: Set Radiator Luca en Fynn aan
     trigger:
     - platform: time
-      at: '06:00'
+      at: '06:10'
     - platform: time
       at: '18:30'
     condition:
@@ -280,7 +280,7 @@ automation:
   - alias: Set Radiator Badkamer aan
     trigger:
     - platform: time
-      at: '06:00'
+      at: '06:10'
     - platform: time
       at: '18:30'
     condition:
