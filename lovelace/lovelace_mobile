@@ -2861,6 +2861,124 @@
               "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
             },
             {
+              "type": "horizontal-stack",
+              "cards": [
+                {
+                  "type": "custom:button-card",
+                  "entity": "light.verlichting_douche",
+                  "tap_action": {
+                    "action": "call-service",
+                    "service": "light.toggle",
+                    "service_data": {
+                      "entity_id": "entity",
+                      "brightness": 61
+                    }
+                  },
+                  "aspect_ratio": "1/1",
+                  "name": "Verlichting Douche",
+                  "entity_picture": "/local/Custom_Icons/verlichting_douche.png",
+                  "size": "50%",
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "show_entity_picture": true,
+                  "styles": {
+                    "card": [
+                      {
+                        "background-color": "var(--ha-card-background)"
+                      }
+                    ],
+                    "grid": [
+                      {
+                        "grid-template-areas": "\"i i verbruik\" \"n n n\""
+                      },
+                      {
+                        "grid-template-columns": "50% 25% 25%"
+                      },
+                      {
+                        "grid-template-rows": "85% 15%"
+                      }
+                    ],
+                    "name": [
+                      {
+                        "justify-self": "center"
+                      },
+                      {
+                        "font-size": "15px"
+                      },
+                      {
+                        "align-items": "middle"
+                      }
+                    ],
+                    "img_cell": [
+                      {
+                        "justify-content": "start"
+                      },
+                      {
+                        "align-items": "middle"
+                      },
+                      {
+                        "grid-column-start": 1
+                      },
+                      {
+                        "grid-column-end": 4
+                      }
+                    ],
+                    "custom_fields": {
+                      "verbruik": [
+                        {
+                          "align-self": "center"
+                        },
+                        {
+                          "justify-self": "end"
+                        },
+                        {
+                          "font-size": "12px"
+                        },
+                        {
+                          "padding-right": "10px"
+                        },
+                        {
+                          "paddin-top": "50px"
+                        }
+                      ]
+                    }
+                  },
+                  "state": [
+                    {
+                      "value": "off",
+                      "styles": {
+                        "card": [
+                          {
+                            "filter": "opacity(50%)"
+                          }
+                        ],
+                        "icon": [
+                          {
+                            "filter": "grayscale(100%)"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "value": "on",
+                      "styles": null
+                    }
+                  ],
+                  "custom_fields": {
+                    "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['light.verlichting_douche'].state}</span></span>`\n]]]\n"
+                  },
+                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                },
+                {
+                  "type": "custom:gap-card"
+                },
+                {
+                  "type": "custom:gap-card"
+                }
+              ]
+            },
+            {
               "type": "custom:mod-card",
               "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n",
               "card": {

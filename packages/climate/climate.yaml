@@ -314,6 +314,31 @@ automation:
           device_id: d55f1bb2b8d94cc025dac16e2a45be91
     id: 5b9dkal097n6tf258a3a9502cd0a116a
 
+    #================================  
+    # Batteries
+    #================================
+
+#  - alias: Radiator Valve Replace Battery
+#    trigger:
+#    - platform: state
+#      entity_id: binary_sensor.verwarming_badkamer_battery_low
+#      to: "on"
+#    action:
+#      service: notify.mobile_app_telefoon_duncan
+#      data:
+#        title: >
+#          {% if is_state('binary_sensor.verwarming_badkamer_battery_low', 'on') %}
+#            Vervang batterij Radiator Badkamer
+#        message: Vervang batterij, batterij is bijna leeg.
+#        data:
+#          group: radiators
+#          icon_url: /local/Custom_Icons/battery-empty-ico.png
+#          ttl: 0
+#          priority: high
+#    id: 455a2a3la962a7c086c3e626a5f9ae7d
+
+
+
   #===============
   # Sensors
   #===============
