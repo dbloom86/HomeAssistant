@@ -58,9 +58,6 @@
           - automation.turn_on_lampjes_veranda_at_sunset
           - automation.vacuum_kitchen_and_living
           - automation.radio_aan_sochtends
-#  - service: switch.turn_on
-#    target:
-#      entity_id: switch.presence_simulation
   id: f8a0c07e00a24377b78773bab12dd157
 
 - alias: Vakantiemode uit
@@ -83,9 +80,6 @@
           - automation.turn_on_lampjes_veranda_at_sunset
           - automation.vacuum_kitchen_and_living
           - automation.radio_aan_sochtends
-#  - service: switch.turn_off
-#    target:
-#      entity_id: switch.presence_simulation
   id: 5f450d9467d244c597dd1645f33f358c
 
 #================================  

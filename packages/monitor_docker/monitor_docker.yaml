@@ -25,6 +25,8 @@ monitor_docker:
       - DockerProxy
       - ESPHome
       - WordpressDB
+      - InfluxDB
+      - Grafana
     rename:
       Torrents: Deluge
       Unifi_Controller: Unifi Controller

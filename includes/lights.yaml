@@ -37,3 +37,12 @@
       - light.lamp_trap
       - light.lamp_achterdeur
       - light.lamp_haard
+
+#=====================
+# Badkamer
+#=====================
+
+  - platform: group
+    name: Lampen Badkamer
+    entities:
+      - light.verlichting_douche

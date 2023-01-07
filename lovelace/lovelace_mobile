@@ -2856,7 +2856,15 @@
               "type": "custom:banner-card",
               "heading": "🛁 Badkamer",
               "entities": [
-                "light.lampen_badkamer"
+                {
+                  "entity": "light.lampen_badkamer",
+                  "name": "Lampen"
+                },
+                {
+                  "entity": "climate.verwarming_badkamer",
+                  "attribute": "current_temperature",
+                  "name": "Temperatuur"
+                }
               ],
               "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
             },
@@ -3893,7 +3901,7 @@
                   "entity": "light.lampjes_veranda",
                   "aspect_ratio": "1/1",
                   "name": "Lampjes Veranda",
-                  "entity_picture": "/local/Custom_Icons/lampjes_overkapping-ico.png",
+                  "entity_picture": "/local/Custom_Icons/lampjes_veranda.png",
                   "size": "50%",
                   "show_entity_picture": true,
                   "styles": {
@@ -4254,11 +4262,6 @@
               ]
             },
             {
-              "type": "markdown",
-              "content": "<ha-icon icon=\"mdi:home-assistant\"></ha-icon>&nbsp;Add-on updates: &nbsp;&nbsp; {{ states.sensor.supervisor_updates.state }}\n\n> {% for addon in states.sensor.supervisor_updates.addons %}\n> {{ addon.name }}&nbsp; {{ addon.installed }} -> {{ addon.version }}\n> {% endfor %}\n<ha-icon icon=\"hacs:hacs\"></ha-icon>&nbsp;HACS updates: &nbsp;&nbsp; {{ states.sensor.hacs.state }}\n\n> {% for repo in states.sensor.hacs.attributes.repositories %}\n>    **{{repo.display_name }}** {{ repo[\"installed_version\"] }} -> {{ repo[\"available_version\"] }}\n> {% endfor %}\n|          | &nbsp;&nbsp;&nbsp;&nbsp;Current&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |   Latest  |\n|--- |:---: |:---:|\n| Supervisor&nbsp;&nbsp;&nbsp;    | {{ states.sensor.supervisor_updates.attributes.current_version }} | {{ states.sensor.supervisor_updates.attributes.newest_version }} | \n|Audio | {{ states.sensor.updater_audio.attributes.current_version }} | {{ states.sensor.updater_audio.attributes.newest_version }} | \n|CLI           | {{ states.sensor.updater_cli.attributes.current_version }} | {{ states.sensor.updater_cli.attributes.newest_version }} | \n|Core           | {{ states.sensor.updater_core.attributes.current_version }} | {{ states.sensor.updater_core.attributes.newest_version }} | \n|DNS| {{states.sensor.updater_dns.attributes.current_version }} |  {{ states.sensor.updater_dns.attributes.newest_version }} | \n|Multicast| {{ states.sensor.updater_multicast.attributes.current_version }} |  {{ states.sensor.updater_multicast.attributes.newest_version }} |\n|Observer     | {{ states.sensor.updater_observer.attributes.current_version }} |  {{ states.sensor.updater_observer.attributes.newest_version }} |\n",
-              "style": "ha-card {\n  box-shadow: none;\n  border: solid 1px var(--primary-color);\n  font-size: 12px;\n}\n"
-            },
-            {
               "type": "entities",
               "entities": [
                 {
@@ -4266,22 +4269,25 @@
                   "name": "Shelly Devices Needing Upgrade"
                 },
                 {
-                  "entity": "sensor.tasmota_devices_needing_upgrade",
-                  "name": "Tasmota Devices Needing Upgrade"
+                  "type": "custom:auto-entities",
+                  "card": {
+                    "type": "entities",
+                    "show_header_toggle": false,
+                    "style": {
+                      ".": "#states > * {\n  margin: -1px -15px !important;\n}\nha-card {\n  height: 100%;\n  box-shadow: none;\n  background-color: rgba(255, 255, 255, 0);\n  background: none;\n  border: none;\n}\n"
+                    }
+                  },
+                  "filter": {
+                    "include": [
+                      {
+                        "entity_id": "switch.shelly*firmware*"
+                      }
+                    ]
+                  },
+                  "sort": "entity_id"
                 }
               ],
               "show_header_toggle": false,
-              "style": "ha-card {\n  box-shadow: none;\n  border: solid 1px var(--primary-color);\n}\n"
-            },
-            {
-              "type": "custom:button-card",
-              "entity": "switch.upgrade_tasmota_firmware",
-              "show_entity_picture": true,
-              "aspect_ratio": "4/1",
-              "size": "15%",
-              "hold_action": {
-                "action": "toggle"
-              },
               "style": "ha-card {\n  box-shadow: none;\n  border: solid 1px var(--primary-color);\n}\n"
             },
             {
@@ -4328,25 +4334,6 @@
               ],
               "show_header_toggle": false,
               "style": "ha-card {\n  box-shadow: none;\n  border: solid 1px var(--primary-color);\n}\n"
-            },
-            {
-              "type": "custom:auto-entities",
-              "show_empty": false,
-              "card": {
-                "type": "entities",
-                "show_header_toggle": false,
-                "style": {
-                  ".": "#states > * {\n  margin: -1px -15px !important;\n}\nha-card {\n  height: 100%;\n  box-shadow: none;\n  background-color: var(--ha-card-background);\n  border: solid 1px var(--primary-color);\n}\n"
-                }
-              },
-              "filter": {
-                "include": [
-                  {
-                    "entity_id": "switch.shelly*firmware*"
-                  }
-                ]
-              },
-              "sort": "entity_id"
             }
           ]
         },
