@@ -200,7 +200,7 @@ device_tracker.shellyplug_s_9d9823:
 device_tracker.shelly1_40f520009959:
   entity_picture: /local/Custom_Icons/spotjes-dakkapel-ico.png
   
-device_tracker.unifi_ac_5f_ea_51_73_89_default:
+device_tracker.unifi_8e_24_3c_bb_82_9a_default:
   entity_picture: /local/Custom_Icons/oneplus_nord-ico.png
 
 device_tracker.shelly1pm_98cdac1f389e:

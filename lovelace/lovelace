@@ -3127,7 +3127,7 @@
                 {
                   "card_style": "full",
                   "show_title": false,
-                  "entity": "sensor.rpi_monitor_zig_pi",
+                  "entity": "sensor.rpi_monitor_nginx",
                   "fs_severity": [
                     {
                       "color": "#00e64d",

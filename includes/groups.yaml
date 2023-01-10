@@ -14,7 +14,6 @@ Ouders:
         - person.sabrine
         - device_tracker.telefoon_duncan
         - device_tracker.telefoon_sabrine
-        - device_tracker.unifi_ac_5f_ea_51_73_89_default
         - device_tracker.a51_van_sabrine
 
 Kids:
@@ -117,7 +116,6 @@ Badkamer:
     
 Studeerkamer:
     entities:
-        - light.bureaulamp
         - switch.shelly_shplg_s_9a5381
         - switch.shelly_shplg_s_9d9823
         - light.shelly_shsw_1_40f520009959
@@ -161,5 +159,4 @@ Buiten:
     entities:
         - group.Schuur
         - group.Voortuin
-        - group.Overkapping
         - group.Achtertuin

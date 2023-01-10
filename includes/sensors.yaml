@@ -254,6 +254,19 @@
         - type: throughput_network_out
           arg: enp0s3
         
+  - platform: template
+    sensors:
+      homeassistant_hardware:
+          friendly_name: "HomeAssistant Hardware"
+          value_template: "{{ 'Synology VMM OVA' }}"
+
+      homeassistant_os:
+          friendly_name: "HomeAssistant OS"
+          value_template: "{{ 'Home Assistant OS' }} {{states('sensor.home_assistant_operating_system_version')}}"
+
+      supervisor_version:
+          friendly_name: "Supervisor Version"
+          value_template: "{{state_attr('sensor.supervisor_updates', 'current_version')}}"
   #================================  
   # Uptime
   #================================    

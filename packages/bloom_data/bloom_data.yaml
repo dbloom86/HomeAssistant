@@ -253,3 +253,34 @@ sensor:
           {% endif %}
           
           {{ text }}
+
+    #================================
+    # Firmware
+    #================================  
+
+  - platform: template
+    sensors:
+      synology_os:
+          friendly_name: "Synology OS"
+          value_template: "{{ 'Synology Diskstation Manager' }}"
+
+      bloom_data_hardware:
+          friendly_name: "Bloom-Data Hardware"
+          value_template: "{{ 'DiskStation DS 920+' }}"
+
+      bloom_data_installed_firmware:
+          friendly_name: "Bloom-Data Installed Firmware"
+          value_template: "{{state_attr('update.bloom_data_dsm_update', 'installed_version')}}"
+
+      bloom_data_latest_firmware:
+          friendly_name: "Bloom-Data Latest Firmware"
+          value_template: "{{state_attr('update.bloom_data_dsm_update', 'latest_version')}}"
+
+      bloom_data_average_disk_temp:
+          friendly_name: "Bloom-Data Average Disk Temperature"
+          value_template: > 
+            {{ ((float(states('sensor.bloom_data_drive_1_temperature')) +
+                 float(states('sensor.bloom_data_drive_2_temperature')) +
+                 float(states('sensor.bloom_data_drive_3_temperature')) +
+                 float(states('sensor.bloom_data_drive_4_temperature'))) / 4) | round(2)
+            }}
