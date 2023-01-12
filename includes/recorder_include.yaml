@@ -27,6 +27,7 @@
         - sensor.shelly*temp*
         - sensor.speedtest*
         - sensor.value*
+        - sensor.ups*
 
 
     entities:

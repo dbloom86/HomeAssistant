@@ -262,7 +262,7 @@
 
       homeassistant_os:
           friendly_name: "HomeAssistant OS"
-          value_template: "{{ 'Home Assistant OS' }} {{states('sensor.home_assistant_operating_system_version')}}"
+          value_template: "{{ 'Hass OS' }} {{states('sensor.home_assistant_operating_system_version')}}"
 
       supervisor_version:
           friendly_name: "Supervisor Version"
@@ -352,28 +352,6 @@
     source: hassio
     image: raspberrypi4
     
-  - platform: template
-    sensors:
-      hassos_update_available:
-        friendly_name: "HassOS Update Available"
-        value_template: >-
-            {% if (states.update.home_assistant_operating_system_update.state == "off") %}
-                100
-            {% else %}
-                50
-            {% endif %}
-
-  - platform: template
-    sensors:
-      ha_update_available:
-        friendly_name: "HA Update Available"
-        value_template: >-
-            {% if (states.sensor.updater_core.state == "off") %}
-                100
-            {% else %}
-                50
-            {% endif %}        
-        
   - platform: version
     name: version_current
     source: local
@@ -467,34 +445,8 @@
   #================================  
 
     #================================
-    # Home Assistant Config Checker
-    #================================
-    
-  - platform: template
-    sensors:
-        check_config_update_available:
-            friendly_name: "Check Config Update Available"
-            value_template: >-
-                {% if ( states.update.check_home_assistant_configuration_update.state == 'off' ) %}
-                    100
-                {% else %}
-                    50
-                {% endif %}
-
-    #================================
     # Samba Backup
     #================================
-    
-  - platform: template
-    sensors:
-        samba_backup_update_available:
-            friendly_name: "Samba Backup Update Available"
-            value_template: >-
-                {% if ( states.update.samba_backup_update.state == 'off' ) %}
-                    100
-                {% else %}
-                    50
-                {% endif %}
 
   - platform: template
     sensors:
@@ -516,36 +468,6 @@
         friendly_name: "Latest Backups"
         unit_of_measurement: ' '
         value_template: "{{ as_timestamp(state_attr('sensor.samba_backup', 'last_backup')) | timestamp_custom('%d-%m-%Y') }}" 
-
-    #================================
-    # Samba Share
-    #================================
-    
-  - platform: template
-    sensors:
-        samba_share_update_available:
-            friendly_name: "Samba Share Update Available"
-            value_template: >-
-                {% if ( states.update.samba_share_update.state == 'off' ) %}
-                    100
-                {% else %}
-                    50
-                {% endif %}
-
-    #================================
-    # SSH & Webterminal
-    #================================
-    
-  - platform: template
-    sensors:
-        ssh_terminal_update_available:
-            friendly_name: "SSH Terminal Update Available"
-            value_template: >-
-                {% if ( states.update.ssh_web_terminal_update.state == 'off' ) %}
-                    100
-                {% else %}
-                    50
-                {% endif %}
 
   #================================
   # CUPS

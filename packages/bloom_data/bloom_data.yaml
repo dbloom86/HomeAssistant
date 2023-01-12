@@ -262,7 +262,7 @@ sensor:
     sensors:
       synology_os:
           friendly_name: "Synology OS"
-          value_template: "{{ 'Synology Diskstation Manager' }}"
+          value_template: "{{ 'Synology DSM' }}"
 
       bloom_data_hardware:
           friendly_name: "Bloom-Data Hardware"
