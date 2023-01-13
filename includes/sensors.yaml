@@ -367,23 +367,6 @@
     - update_available
     - addons
 
-  - platform: template
-    sensors:
-      supervisor_updates_available:
-        friendly_name: "Supervisor Updates Available"
-        value_template: "{{ state_attr('sensor.supervisor_updates', 'update_available') }}"
-
-  - platform: template
-    sensors:
-      supervisor_update_available:
-        friendly_name: "Supervisor Update Available"
-        value_template: >-
-            {% if (states.sensor.supervisor_updates_available.state == "False") %}
-                100
-            {% else %}
-                50
-            {% endif %}
-
   - platform: command_line
     name: Updater Audio
     command: 'curl http://supervisor/audio/info -H "Authorization: Bearer $(printenv SUPERVISOR_TOKEN)" | jq ''{"newest_version":.data.version_latest,"current_version":.data.version, "update_available":.data.update_available}'''

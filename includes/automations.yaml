@@ -463,7 +463,6 @@
     - sensor.total_switches
     - sensor.total_timers
     - sensor.total_zones
-    - sensor.total_tasmota_devices
     - sensor.domains_in_use
     - sensor.total_shelly_devices
     - sensor.outdated_shelly_devices
