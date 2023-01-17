@@ -32,3 +32,26 @@ sensor:
                   /local/Custom_Icons/certificate-nok-ico.png
                 {% endif %}
             unit_of_measurement: 'days'
+
+        nginx_os:
+            friendly_name: NGINX OS
+            value_template: "{{ 'RPi OS' }} {{ state_attr('sensor.rpi_monitor_nginx', 'ux_release') }} {{ state_attr('sensor.rpi_monitor_nginx', 'ux_version') }}"
+
+        nginx_model:
+            friendly_name: NGINX Model
+            value_template: "{{ state_attr('sensor.rpi_monitor_nginx', 'rpi_model') }}"
+
+        nginx_ram_usage:
+            friendly_name: NGINX RAM usage
+            unit_of_measurement: '%'
+            value_template: "{{ (((state_attr('sensor.rpi_monitor_nginx', 'memory').size_mb | float) - (state_attr('sensor.rpi_monitor_nginx', 'memory').free_mb | float)) / (state_attr('sensor.rpi_monitor_nginx', 'memory').size_mb | float ) * 100) | round(0) }}"
+
+        nginx_last_update:
+            friendly_name: NGINX Last Update
+            value_template: >
+              {% set last_update = (as_timestamp(state_attr('sensor.rpi_monitor_nginx', 'last_update'))) %}
+              {{ last_update | timestamp_custom('%d-%m-%Y')}}
+
+        nginx_uptime:
+            friendly_name: NGINX Uptime
+            value_template: "{{ state_attr('sensor.rpi_monitor_nginx', 'up_time') }}"

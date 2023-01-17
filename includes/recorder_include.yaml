@@ -28,6 +28,8 @@
         - sensor.speedtest*
         - sensor.value*
         - sensor.ups*
+        - sensor.*nginx*
+        - sensor.*printserver*
 
 
     entities:

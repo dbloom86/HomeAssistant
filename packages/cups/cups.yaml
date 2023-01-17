@@ -1,0 +1,33 @@
+#================================
+# CUPS
+#================================
+
+  #===============
+  # Sensors
+  #===============
+sensor:
+
+  - platform: template
+    sensors:
+        printserver_os:
+            friendly_name: Printserver OS
+            value_template: "{{ 'RPi OS' }} {{ state_attr('sensor.rpi_monitor_printserver', 'ux_release') }} {{ state_attr('sensor.rpi_monitor_printserver', 'ux_version') }}"
+
+        printserver_model:
+            friendly_name: Printserver Model
+            value_template: "{{ state_attr('sensor.rpi_monitor_printserver', 'rpi_model') }}"
+
+        printserver_ram_usage:
+            friendly_name: Printserver RAM usage
+            unit_of_measurement: '%'
+            value_template: "{{ (((state_attr('sensor.rpi_monitor_printserver', 'memory').size_mb | float) - (state_attr('sensor.rpi_monitor_printserver', 'memory').free_mb | float)) / (state_attr('sensor.rpi_monitor_printserver', 'memory').size_mb | float ) * 100) | round(0) }}"
+
+        printserver_last_update:
+            friendly_name: Printserver Last Update
+            value_template: >
+              {% set last_update = (as_timestamp(state_attr('sensor.rpi_monitor_printserver', 'last_update'))) %}
+              {{ last_update | timestamp_custom('%d-%m-%Y')}}
+
+        printserver_uptime:
+            friendly_name: Printserver Uptime
+            value_template: "{{ state_attr('sensor.rpi_monitor_printserver', 'up_time') }}"
