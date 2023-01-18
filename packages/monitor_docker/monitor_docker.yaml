@@ -41,6 +41,8 @@ monitor_docker:
       - status
       - containers_memory_percentage
       - containers_1cpu_percentage
+      - network_speed_up
+      - network_speed_down
 
   #================================
   # Sensors
@@ -52,3 +54,39 @@ sensor:
       docker_kernel:
           friendly_name: "Docker Kernel"
           value_template: "{{state_attr('sensor.docker_version', 'Kernel')}}"
+
+      docker_network_up:
+          friendly_name: Docker Network Up
+          unit_of_measurement: 'kB/s'
+          value_template: "{{ (states.sensor.docker_bazarr_network_speed_up.state | float) 
+                            + (states.sensor.docker_deluge_network_speed_up.state | float)
+                            + (states.sensor.docker_dockerproxy_network_speed_up.state | float)
+                            + (states.sensor.docker_grafana_network_speed_up.state | float)
+                            + (states.sensor.docker_ha_influxdb_network_speed_up.state | float)
+                            + (states.sensor.docker_harepository_network_speed_up.state | float)
+                            + (states.sensor.docker_jackett_network_speed_up.state | float)
+                            + (states.sensor.docker_phpmyadmin_network_speed_up.state | float)
+                            + (states.sensor.docker_portainer_network_speed_up.state | float)
+                            + (states.sensor.docker_radarr_network_speed_up.state | float)
+                            + (states.sensor.docker_watchtower_network_speed_up.state | float)
+                            + (states.sensor.docker_wordpress_network_speed_up.state | float)
+                            + (states.sensor.docker_wordpressdb_network_speed_up.state | float)
+                            + (states.sensor.docker_zwavejs2mqtt_network_speed_up.state | float) | round(0) }}"
+
+      docker_network_down:
+          friendly_name: Docker Network Down
+          unit_of_measurement: 'kB/s'
+          value_template: "{{ (states.sensor.docker_bazarr_network_speed_down.state | float) 
+                            + (states.sensor.docker_deluge_network_speed_down.state | float)
+                            + (states.sensor.docker_dockerproxy_network_speed_down.state | float)
+                            + (states.sensor.docker_grafana_network_speed_down.state | float)
+                            + (states.sensor.docker_ha_influxdb_network_speed_down.state | float)
+                            + (states.sensor.docker_harepository_network_speed_down.state | float)
+                            + (states.sensor.docker_jackett_network_speed_down.state | float)
+                            + (states.sensor.docker_phpmyadmin_network_speed_down.state | float)
+                            + (states.sensor.docker_portainer_network_speed_down.state | float)
+                            + (states.sensor.docker_radarr_network_speed_down.state | float)
+                            + (states.sensor.docker_watchtower_network_speed_down.state | float)
+                            + (states.sensor.docker_wordpress_network_speed_down.state | float)
+                            + (states.sensor.docker_wordpressdb_network_speed_down.state | float)
+                            + (states.sensor.docker_zwavejs2mqtt_network_speed_down.state | float) | round(0) }}"

@@ -21,7 +21,7 @@
         - sensor.*energy*
         - sensor.experiabox*
         - sensor.*verbruik*
-        - sensor.network*
+        - sensor.*network*
         - sensor.rpi*
         - sensor.shelly*consumption*
         - sensor.shelly*temp*
@@ -78,3 +78,7 @@
         - sensor.toon_p1_power_use_cnt_low
         - sensor.toon_p1_power_prod_cnt_high
         - sensor.toon_p1_power_prod_cnt_low
+        - sensor.ap_zolder_cpu_usage
+        - sensor.ap_woonkamer_cpu_usage
+        - sensor.ap_woonkamer_ram_usage
+        - sensor.ap_zolder_ram_usage
