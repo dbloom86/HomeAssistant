@@ -31,3 +31,7 @@ sensor:
         printserver_uptime:
             friendly_name: Printserver Uptime
             value_template: "{{ state_attr('sensor.rpi_monitor_printserver', 'up_time') }}"
+
+        printserver_ip:
+            friendly_name: Printserver IP
+            value_template: "{{ state_attr('sensor.rpi_monitor_printserver', 'networking').eth0.IP }}"

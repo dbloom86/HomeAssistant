@@ -258,7 +258,7 @@
     sensors:
       homeassistant_hardware:
           friendly_name: "HomeAssistant Hardware"
-          value_template: "{{ 'Synology VMM OVA' }}"
+          value_template: "{{ 'Synology Virtual Machine Manager OVA' }}"
 
       homeassistant_os:
           friendly_name: "HomeAssistant OS"
@@ -316,7 +316,7 @@
     sensors:
 
       ha_uptime:
-        friendly_name: RPi Uptime
+        friendly_name: HA Uptime
         value_template: >
           {% set up_time = as_timestamp(now()) - as_timestamp(states('sensor.uptime')) %}
 

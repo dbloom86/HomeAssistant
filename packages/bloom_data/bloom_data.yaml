@@ -47,18 +47,14 @@ sensor:
             Unsafe
           {% endif %}
           
-  - platform: template
-    sensors:
-        bloom_data_update:
-            value_template: >-
-                {% if is_state('update.bloom_data_dsm_update', 'off') %}
-                    Up-To-Date
-                {% else %}
-                    Needs Update
-                {% endif %}
+      bloom_data_update:
+        value_template: >-
+          {% if is_state('update.bloom_data_dsm_update', 'off') %}
+            Up-To-Date
+          {% else %}
+            Needs Update
+          {% endif %}
 
-  - platform: template
-    sensors:
       bloom_data_safety:
         value_template: >-
           {% if is_state('binary_sensor.bloom_data_security_status', 'on') %}
@@ -69,6 +65,14 @@ sensor:
             Safe
           {% endif %}
 
+      bloom_data_average_disk_temp:
+          friendly_name: "Bloom-Data Average Disk Temperature"
+          value_template: > 
+            {{ ((float(states('sensor.bloom_data_drive_1_temperature')) +
+                 float(states('sensor.bloom_data_drive_2_temperature')) +
+                 float(states('sensor.bloom_data_drive_3_temperature')) +
+                 float(states('sensor.bloom_data_drive_4_temperature'))) / 4) | round(2)
+            }}
     #================================
     # Disk 1
     #================================
@@ -276,11 +280,3 @@ sensor:
           friendly_name: "Bloom-Data Latest Firmware"
           value_template: "{{state_attr('update.bloom_data_dsm_update', 'latest_version')}}"
 
-      bloom_data_average_disk_temp:
-          friendly_name: "Bloom-Data Average Disk Temperature"
-          value_template: > 
-            {{ ((float(states('sensor.bloom_data_drive_1_temperature')) +
-                 float(states('sensor.bloom_data_drive_2_temperature')) +
-                 float(states('sensor.bloom_data_drive_3_temperature')) +
-                 float(states('sensor.bloom_data_drive_4_temperature'))) / 4) | round(2)
-            }}

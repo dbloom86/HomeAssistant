@@ -1,0 +1,22 @@
+#================================
+# KPN
+#================================
+
+  #===============
+  # Sensors
+  #===============
+sensor:
+
+  - platform: template
+    sensors:
+        experiabox_model:
+            friendly_name: Experiabox Model
+            value_template: "{{ 'ZTE H369A' }}"
+
+        experiabox_ip:
+            friendly_name: Experiabox IP
+            value_template: "{{ '192.168.2.254' }}"
+
+        experiabox_firmware:
+            friendly_name: Experiabox Firmware
+            value_template: "{{ 'V1.01.00T03.8V4' }}"

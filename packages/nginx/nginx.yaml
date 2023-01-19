@@ -55,3 +55,7 @@ sensor:
         nginx_uptime:
             friendly_name: NGINX Uptime
             value_template: "{{ state_attr('sensor.rpi_monitor_nginx', 'up_time') }}"
+
+        nginx_ip:
+            friendly_name: NGINX IP
+            value_template: "{{ state_attr('sensor.rpi_monitor_nginx', 'networking').eth0.IP }}"
