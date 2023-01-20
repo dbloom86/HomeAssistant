@@ -82,17 +82,29 @@
         icon_template: mdi:checkbox-multiple-marked-circle
         value_template: "{{ states.binary_sensor | list | length }}"
 
+      #----- Count Buttons
+      total_buttons:
+        friendly_name: 'Buttons'
+        icon_template: mdi:button-pointer
+        value_template: "{{ states.button | list | length }}"
+
+      #----- Count Calendars
+      total_calendars:
+        friendly_name: 'Calendars'
+        icon_template: mdi:calendar
+        value_template: "{{ states.calendar | list | length }}"
+
       #----- Count Cameras
       total_cameras:
         friendly_name: 'Cameras'
         icon_template: mdi:cctv
         value_template: "{{ states.camera | list | length }}"
 
-      #----- Count Counters (haha)
-      total_counters:
-        friendly_name: 'Counters'
+      #----- Count Climate
+      total_climates:
+        friendly_name: 'Thermostaten'
         icon_template: mdi:counter
-        value_template: "{{ states.counter | list | length }}"
+        value_template: "{{ states.climate | list | length }}"
 
       #----- Count Device Trackers
       total_devicetrackers:
@@ -111,12 +123,6 @@
         friendly_name: 'Input Booleans'
         icon_template: mdi:toggle-switch
         value_template: "{{ states.input_boolean | list | length }}"
-
-      #----- Count Input Datetimes
-      total_input_datetimes:
-        friendly_name: 'Input Datetimes'
-        icon_template: mdi:calendar-clock
-        value_template: "{{ states.input_datetime | list | length }}"
 
       #----- Count Input Numbers
       total_input_numbers:
@@ -142,17 +148,35 @@
         icon_template: mdi:lightbulb-on
         value_template: "{{ states.light | list | length }}"
 
+      #----- Count Locks
+      total_locks:
+        friendly_name: 'Locks'
+        icon_template: mdi:lock
+        value_template: "{{ states.lock | list | length }}"
+
       #----- Count Media Players
       total_media_players:
         friendly_name: 'Media Players'
         icon_template: mdi:cast-connected
         value_template: "{{ states.media_player | list | length }}"
 
+      #----- Count Numbers
+      total_numbers:
+        friendly_name: 'Numbers'
+        icon_template: mdi:numeric
+        value_template: "{{ states.number | list | length }}"
+
       #----- Count Persons
       total_persons:
         friendly_name: 'Persons'
         icon_template: mdi:account-multiple
         value_template: "{{ states.person | list | length }}"
+
+      #----- Count Proximities
+      total_proximities:
+        friendly_name: 'Proximities'
+        icon_template: mdi:human-greeting-proximity
+        value_template: "{{ states.proximity | list | length }}"
 
       #----- Count Remotes
       total_remotes:
@@ -172,11 +196,23 @@
         icon_template: mdi:script-text-outline
         value_template: "{{ states.script | list | length }}"
 
+      #----- Count Selects
+      total_selects:
+        friendly_name: 'Selects'
+        icon_template: mdi:select
+        value_template: "{{ states.select | list | length }}"
+
       #----- Count Sensors
       total_sensors:
         friendly_name: 'Sensors'
         icon_template: mdi:pulse
         value_template: "{{ states.sensor | list | length }}"
+
+      #----- Count Suns
+      total_suns:
+        friendly_name: 'Suns'
+        icon_template: mdi:sun
+        value_template: "{{ states.sun | list | length }}"
 
       #----- Count Switches
       total_switches:
@@ -184,11 +220,23 @@
         icon_template: mdi:power-socket-us
         value_template: "{{ states.switch | list | length }}"
 
-      #----- Count Timers
-      total_timers:
-        friendly_name: 'Timers'
-        icon_template: mdi:timer
-        value_template: "{{ states.timer | list | length }}"
+      #----- Count Updaters
+      total_updaters:
+        friendly_name: 'Updaters'
+        icon_template: mdi:update
+        value_template: "{{ states.update | list | length }}"
+
+      #----- Count Vacuums
+      total_vacuums:
+        friendly_name: 'Vacuums'
+        icon_template: mdi:robot-vacuum
+        value_template: "{{ states.vacuum | list | length }}"
+
+      #----- Count Weather
+      total_weathers:
+        friendly_name: 'Weathers'
+        icon_template: mdi:weather-partly-rain
+        value_template: "{{ states.weather | list | length }}"
 
       #----- Count Zones
       total_zones:

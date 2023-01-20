@@ -94,3 +94,13 @@ sensor:
     name: 'AP Zolder CPU Usage'
     host: 192.168.2.116
     baseoid: 1.3.6.1.4.1.10002.1.1.1.4.2.1.3.1
+
+  - platform: snmp
+    name: 'AP Woonkamer IP'
+    host: 192.168.2.43
+    baseoid: .1.3.6.1.4.1.41112.1.6.3.1.0
+
+  - platform: snmp
+    name: 'AP Zolder IP'
+    host: 192.168.2.116
+    baseoid: .1.3.6.1.4.1.41112.1.6.3.1.0

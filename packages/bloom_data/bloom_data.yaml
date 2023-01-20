@@ -39,14 +39,6 @@ sensor:
 
   - platform: template
     sensors:
-      bloom_data_security:
-        value_template: >-
-          {% if is_state('binary_sensor.bloom_data_security_status', 'off') %}
-            Safe
-          {% else %}
-            Unsafe
-          {% endif %}
-          
       bloom_data_update:
         value_template: >-
           {% if is_state('update.bloom_data_dsm_update', 'off') %}
@@ -271,6 +263,10 @@ sensor:
       bloom_data_hardware:
           friendly_name: "Bloom-Data Hardware"
           value_template: "{{ 'DiskStation DS 920+' }}"
+
+      bloom_data_ip:
+          friendly_name: "Bloom-Data IP"
+          value_template: "{{ '192.168.2.208' }}"
 
       bloom_data_installed_firmware:
           friendly_name: "Bloom-Data Installed Firmware"
