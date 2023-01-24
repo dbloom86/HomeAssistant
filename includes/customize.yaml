@@ -27,12 +27,15 @@ sensor.total_automations:
   
 sensor.total_binary_sensors:
   entity_picture: /local/Custom_Icons/binary-ico.png
+
+sensor.total_buttons:
+  entity_picture: /local/Custom_Icons/buttons-ico.png
+
+sensor.total_calendars:
+  entity_picture: /local/Custom_Icons/calendar-ico.png
   
 sensor.total_cameras:
   entity_picture: /local/Custom_Icons/camera-ico.png
-  
-sensor.total_counters:
-  entity_picture: /local/Custom_Icons/counter-ico.png
   
 sensor.total_devicetrackers:
   entity_picture: /local/Custom_Icons/devices-ico.png
@@ -42,10 +45,7 @@ sensor.total_groups:
   
 sensor.total_input_booleans:
   entity_picture: /local/Custom_Icons/boolean-ico.png
-  
-sensor.total_input_datetimes:
-  entity_picture: /local/Custom_Icons/datetime-ico.png
-  
+   
 sensor.total_input_numbers:
   entity_picture: /local/Custom_Icons/numbers-ico.png
   
@@ -57,12 +57,21 @@ sensor.total_input_texts:
   
 sensor.total_lights:
   entity_picture: /local/Custom_Icons/lights-ico.png
+
+sensor.total_locks:
+  entity_picture: /local/Custom_Icons/locks-ico.png
   
 sensor.total_media_players:
   entity_picture: /local/Custom_Icons/player-ico.png
+
+sensor.total_numbers:
+  entity_picture: /local/Custom_Icons/numbers2-ico.png
   
 sensor.total_persons:
   entity_picture: /local/Custom_Icons/people-ico.png
+
+sensor.total_proximities:
+  entity_picture: /local/Custom_Icons/proximities-ico.png
   
 sensor.total_remotes:
   entity_picture: /local/Custom_Icons/remote-ico.png
@@ -72,18 +81,33 @@ sensor.total_scenes:
   
 sensor.total_scripts:
   entity_picture: /local/Custom_Icons/script-ico.png
+
+sensor.total_selects:
+  entity_picture: /local/Custom_Icons/selects2-ico.png
   
 sensor.total_sensors:
   entity_picture: /local/Custom_Icons/sensor-ico.png
+
+sensor.total_suns:
+  entity_picture: /local/Custom_Icons/suns-ico.png
   
 sensor.total_switches:
   entity_picture: /local/Custom_Icons/switch-ico.png
-  
-sensor.total_timers:
-  entity_picture: /local/Custom_Icons/timer-ico.png
+
+sensor.total_climates:
+  entity_picture: /local/Custom_Icons/climates-ico.png
+
+sensor.total_updaters:
+  entity_picture: /local/Custom_Icons/updaters-ico.png
+
+sensor.total_vacuums:
+  entity_picture: /local/Custom_Icons/miep.png
+
+sensor.total_weathers:
+  entity_picture: /local/Custom_Icons/weathers.png
   
 sensor.total_zones:
-  entity_picture: /local/Custom_Icons/Zone-ico.png
+  entity_picture: /local/Custom_Icons/zone-ico.png
   
 sensor.total_tasmota_devices:
   entity_picture: /local/Custom_Icons/Tasmota-3d-icon.png
@@ -93,9 +117,6 @@ sensor.total_shelly_devices:
   
 sensor.outdated_shelly_devices:  
   entity_picture: /local/Custom_Icons/shelly-ico.png
-
-sensor.tasmota_devices_needing_upgrade:
-  entity_picture: /local/Custom_Icons/Tasmota-3d-icon.png
 
 sensor.total_zigbee_devices:  
   entity_picture: /local/Pictures/addons/zigbee-ico.png
@@ -250,10 +271,3 @@ device_tracker.unifi_dc_ef_ca_a9_60_5f_default:
 
 device_tracker.wii:
   entity_picture: /local/Custom_Icons/wii-ico.png
-
-#================================  
-# Automations
-#================================
-
-automation.vacuum_kitchen_and_living:
-  entity_picture: /local/Custom_Icons/miep.png

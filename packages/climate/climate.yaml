@@ -118,10 +118,12 @@ automation:
     - platform: time
       at: '22:00'
     condition:
-      - condition: numeric_state
+    - condition: not
+      conditions:
+      - condition: state
         entity_id: climate.toon_thermostat
-        attribute: temperature
-        above: 17
+        attribute: preset_modes
+        state: eco
     action:
       - service: climate.set_temperature
         data:
@@ -155,10 +157,12 @@ automation:
     - platform: time
       at: '18:30'
     condition:
-      - condition: numeric_state
+    - condition: not
+      conditions:
+      - condition: state
         entity_id: climate.toon_thermostat
-        attribute: temperature
-        above: 17
+        attribute: preset_modes
+        state: eco
     action:
       - service: climate.set_temperature
         data:
@@ -196,17 +200,19 @@ automation:
     - platform: time
       at: '07:00'
     condition:
-      - condition: numeric_state
+    - condition: not
+      conditions:
+      - condition: state
         entity_id: climate.toon_thermostat
-        attribute: temperature
-        above: 17
-      - condition: time
-        weekday:
-          - mon
-          - tue
-          - wed
-          - thu
-          - fri
+        attribute: preset_modes
+        state: eco
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
     action:
       - service: climate.set_temperature
         data:
@@ -236,10 +242,12 @@ automation:
     - platform: time
       at: '06:30'
     condition:
-      - condition: numeric_state
+    - condition: not
+      conditions:
+      - condition: state
         entity_id: climate.toon_thermostat
-        attribute: temperature
-        above: 17
+        attribute: preset_modes
+        state: eco
     action:
       - service: climate.set_temperature
         data:
@@ -284,10 +292,12 @@ automation:
     - platform: time
       at: '18:30'
     condition:
-      - condition: numeric_state
+    - condition: not
+      conditions:
+      - condition: state
         entity_id: climate.toon_thermostat
-        attribute: temperature
-        above: 17
+        attribute: preset_modes
+        state: eco
     action:
       - service: climate.set_temperature
         data:

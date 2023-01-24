@@ -110,6 +110,10 @@ bloom-theme-dark:
   app-header-background-color: rgba(155, 155, 155, 0.8)
   markdown-code-background-color: "#464646"
   input-fill-color: rgba(0, 0, 0, 0)
+  # Mushroom
+  mush-card-primary-font-size: 12px
+  mush-card-secondary-font-size: 15px
+  mush-rgb-state-automation-off: rgb(255, 77, 77, 0.4)
   # Custom
   bar-card-border-radius: 3px
   mcg-title-letter-spacing: .0em
