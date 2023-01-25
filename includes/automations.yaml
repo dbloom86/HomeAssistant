@@ -656,7 +656,6 @@
   trigger:
     - platform: time
       at: '03:03'
-  condition: []
   action:
     - service: shell_command.github_backup
   id: f8a0c07e00a15795b78773bab12dd157

@@ -27,6 +27,7 @@ monitor_docker:
       - WordpressDB
       - HA_InfluxDB
       - Grafana
+      - Uptime-Kuma
     rename:
       Torrents: Deluge
       Unifi_Controller: Unifi Controller

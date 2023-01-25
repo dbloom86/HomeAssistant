@@ -1334,13 +1334,13 @@
                         },
                         {
                           "type": "custom:button-card",
-                          "entity": "update.ssh_web_terminal_update",
+                          "entity": "update.terminal_ssh_update",
                           "tap_action": {
                             "action": "navigate",
-                            "navigation_path": "/hassio/addon/a0d7b954_ssh/info"
+                            "navigation_path": "/hassio/addon/core_ssh/info"
                           },
                           "aspect_ratio": "4/3",
-                          "name": "SSH & Webterminal",
+                          "name": "Terminal SSH",
                           "entity_picture": "/local/Pictures/addons/terminal_ssh-ico.png",
                           "size": "50%",
                           "show_entity_picture": true,
@@ -1655,173 +1655,34 @@
               ]
             },
             {
-              "id": "home_assistant_status",
-              "type": "entities",
-              "show_header_toggle": "off",
-              "style": ".card-header {\n  padding: 0px 0px 0px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n",
-              "entities": [
+              "type": "vertical-stack",
+              "cards": [
                 {
-                  "type": "custom:gap-card",
-                  "height": 10
-                },
-                {
-                  "type": "custom:vertical-stack-in-card",
-                  "style": "ha-card {\n  border: none;\n  background: none;\n}\n",
-                  "cards": [
-                    {
-                      "type": "horizontal-stack",
-                      "cards": [
-                        {
-                          "type": "picture",
-                          "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: none;\n    --ha-card-box-shadow: 'none';\n    width: 90%;\n    left:5%;\n    border: none;\n}\n",
-                          "image": "/local/Pictures/github.png"
-                        }
-                      ]
-                    },
+                  "type": "entities",
+                  "show_header_toggle": "off",
+                  "style": ".card-header {\n  padding: 0px 0px 0px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n",
+                  "entities": [
                     {
                       "type": "custom:gap-card",
                       "height": 10
                     },
                     {
-                      "type": "custom:button-card",
-                      "layout": "icon_name_state2nd",
-                      "show_icon": true,
-                      "show_state": true,
-                      "styles": {
-                        "grid": [
-                          {
-                            "grid-template-columns": "auto"
-                          }
-                        ],
-                        "icon": [
-                          {
-                            "padding": "0px 0px"
-                          },
-                          {
-                            "height": "30px"
-                          },
-                          {
-                            "width": "30px"
-                          }
-                        ],
-                        "card": [
-                          {
-                            "--ha-card-background": "rgba(0, 0, 0, 0.0)"
-                          },
-                          {
-                            "--ha-card-box-shadow": "none"
-                          },
-                          {
-                            "border": "none"
-                          }
-                        ],
-                        "state": [
-                          {
-                            "padding": "0px 10px"
-                          },
-                          {
-                            "justify-self": "start"
-                          },
-                          {
-                            "font-family": "Roboto, sans-serif"
-                          },
-                          {
-                            "font-size": "12px"
-                          },
-                          {
-                            "font-weight": "bold"
-                          }
-                        ],
-                        "name": [
-                          {
-                            "padding": "0px 10px"
-                          },
-                          {
-                            "justify-self": "start"
-                          },
-                          {
-                            "font-size": "12px"
-                          },
-                          {
-                            "color": "var(--secondary-text-color)"
-                          }
-                        ]
-                      },
-                      "entity": "sensor.dbloom86_homeassistant_latest_commit",
-                      "name": "HA Config Latest Commit",
-                      "icon": "mdi:source-commit"
-                    },
-                    {
-                      "type": "horizontal-stack",
+                      "type": "custom:vertical-stack-in-card",
+                      "style": "ha-card {\n  border: none;\n  background: none;\n}\n",
                       "cards": [
                         {
-                          "type": "custom:button-card",
-                          "layout": "icon_name_state2nd",
-                          "show_icon": true,
-                          "show_state": true,
-                          "styles": {
-                            "grid": [
-                              {
-                                "grid-template-columns": "50px auto"
-                              }
-                            ],
-                            "icon": [
-                              {
-                                "padding": "0px 0px"
-                              },
-                              {
-                                "height": "30px"
-                              },
-                              {
-                                "width": "30px"
-                              }
-                            ],
-                            "card": [
-                              {
-                                "--ha-card-background": "rgba(0, 0, 0, 0.0)"
-                              },
-                              {
-                                "--ha-card-box-shadow": "none"
-                              },
-                              {
-                                "border": "none"
-                              }
-                            ],
-                            "state": [
-                              {
-                                "padding": "0px 10px"
-                              },
-                              {
-                                "justify-self": "start"
-                              },
-                              {
-                                "font-family": "Roboto, sans-serif"
-                              },
-                              {
-                                "font-size": "12px"
-                              },
-                              {
-                                "font-weight": "bold"
-                              }
-                            ],
-                            "name": [
-                              {
-                                "padding": "0px 10px"
-                              },
-                              {
-                                "justify-self": "start"
-                              },
-                              {
-                                "font-size": "12px"
-                              },
-                              {
-                                "color": "var(--secondary-text-color)"
-                              }
-                            ]
-                          },
-                          "entity": "sensor.dbloom86_homeassistant_stars",
-                          "name": "HA Config Stars",
-                          "icon": "mdi:star"
+                          "type": "horizontal-stack",
+                          "cards": [
+                            {
+                              "type": "picture",
+                              "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: none;\n    --ha-card-box-shadow: 'none';\n    width: 90%;\n    left:5%;\n    border: none;\n}\n",
+                              "image": "/local/Pictures/github.png"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "custom:gap-card",
+                          "height": 10
                         },
                         {
                           "type": "custom:button-card",
@@ -1831,7 +1692,7 @@
                           "styles": {
                             "grid": [
                               {
-                                "grid-template-columns": "50px auto"
+                                "grid-template-columns": "auto"
                               }
                             ],
                             "icon": [
@@ -1888,154 +1749,363 @@
                               }
                             ]
                           },
-                          "entity": "sensor.dbloom86_homeassistant_watchers",
-                          "name": "HA Config Watchers",
-                          "icon": "mdi:glasses"
+                          "entity": "sensor.dbloom86_homeassistant_latest_commit",
+                          "name": "HA Config Latest Commit",
+                          "icon": "mdi:source-commit"
+                        },
+                        {
+                          "type": "horizontal-stack",
+                          "cards": [
+                            {
+                              "type": "custom:button-card",
+                              "layout": "icon_name_state2nd",
+                              "show_icon": true,
+                              "show_state": true,
+                              "styles": {
+                                "grid": [
+                                  {
+                                    "grid-template-columns": "50px auto"
+                                  }
+                                ],
+                                "icon": [
+                                  {
+                                    "padding": "0px 0px"
+                                  },
+                                  {
+                                    "height": "30px"
+                                  },
+                                  {
+                                    "width": "30px"
+                                  }
+                                ],
+                                "card": [
+                                  {
+                                    "--ha-card-background": "rgba(0, 0, 0, 0.0)"
+                                  },
+                                  {
+                                    "--ha-card-box-shadow": "none"
+                                  },
+                                  {
+                                    "border": "none"
+                                  }
+                                ],
+                                "state": [
+                                  {
+                                    "padding": "0px 10px"
+                                  },
+                                  {
+                                    "justify-self": "start"
+                                  },
+                                  {
+                                    "font-family": "Roboto, sans-serif"
+                                  },
+                                  {
+                                    "font-size": "12px"
+                                  },
+                                  {
+                                    "font-weight": "bold"
+                                  }
+                                ],
+                                "name": [
+                                  {
+                                    "padding": "0px 10px"
+                                  },
+                                  {
+                                    "justify-self": "start"
+                                  },
+                                  {
+                                    "font-size": "12px"
+                                  },
+                                  {
+                                    "color": "var(--secondary-text-color)"
+                                  }
+                                ]
+                              },
+                              "entity": "sensor.dbloom86_homeassistant_stars",
+                              "name": "HA Config Stars",
+                              "icon": "mdi:star"
+                            },
+                            {
+                              "type": "custom:button-card",
+                              "layout": "icon_name_state2nd",
+                              "show_icon": true,
+                              "show_state": true,
+                              "styles": {
+                                "grid": [
+                                  {
+                                    "grid-template-columns": "50px auto"
+                                  }
+                                ],
+                                "icon": [
+                                  {
+                                    "padding": "0px 0px"
+                                  },
+                                  {
+                                    "height": "30px"
+                                  },
+                                  {
+                                    "width": "30px"
+                                  }
+                                ],
+                                "card": [
+                                  {
+                                    "--ha-card-background": "rgba(0, 0, 0, 0.0)"
+                                  },
+                                  {
+                                    "--ha-card-box-shadow": "none"
+                                  },
+                                  {
+                                    "border": "none"
+                                  }
+                                ],
+                                "state": [
+                                  {
+                                    "padding": "0px 10px"
+                                  },
+                                  {
+                                    "justify-self": "start"
+                                  },
+                                  {
+                                    "font-family": "Roboto, sans-serif"
+                                  },
+                                  {
+                                    "font-size": "12px"
+                                  },
+                                  {
+                                    "font-weight": "bold"
+                                  }
+                                ],
+                                "name": [
+                                  {
+                                    "padding": "0px 10px"
+                                  },
+                                  {
+                                    "justify-self": "start"
+                                  },
+                                  {
+                                    "font-size": "12px"
+                                  },
+                                  {
+                                    "color": "var(--secondary-text-color)"
+                                  }
+                                ]
+                              },
+                              "entity": "sensor.dbloom86_homeassistant_watchers",
+                              "name": "HA Config Watchers",
+                              "icon": "mdi:glasses"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "horizontal-stack",
+                          "cards": [
+                            {
+                              "type": "custom:button-card",
+                              "layout": "icon_name_state2nd",
+                              "show_icon": true,
+                              "show_state": true,
+                              "styles": {
+                                "grid": [
+                                  {
+                                    "grid-template-columns": "50px auto"
+                                  }
+                                ],
+                                "icon": [
+                                  {
+                                    "padding": "0px 0px"
+                                  },
+                                  {
+                                    "height": "30px"
+                                  },
+                                  {
+                                    "width": "30px"
+                                  }
+                                ],
+                                "card": [
+                                  {
+                                    "--ha-card-background": "rgba(0, 0, 0, 0.0)"
+                                  },
+                                  {
+                                    "--ha-card-box-shadow": "none"
+                                  },
+                                  {
+                                    "border": "none"
+                                  }
+                                ],
+                                "state": [
+                                  {
+                                    "padding": "0px 10px"
+                                  },
+                                  {
+                                    "justify-self": "start"
+                                  },
+                                  {
+                                    "font-family": "Roboto, sans-serif"
+                                  },
+                                  {
+                                    "font-size": "12px"
+                                  },
+                                  {
+                                    "font-weight": "bold"
+                                  }
+                                ],
+                                "name": [
+                                  {
+                                    "padding": "0px 10px"
+                                  },
+                                  {
+                                    "justify-self": "start"
+                                  },
+                                  {
+                                    "font-size": "12px"
+                                  },
+                                  {
+                                    "color": "var(--secondary-text-color)"
+                                  }
+                                ]
+                              },
+                              "entity": "sensor.dbloom86_homeassistant_forks",
+                              "name": "HA Config Forks",
+                              "icon": "mdi:source-fork"
+                            },
+                            {
+                              "type": "custom:button-card",
+                              "layout": "icon_name_state2nd",
+                              "show_icon": true,
+                              "show_state": true,
+                              "styles": {
+                                "grid": [
+                                  {
+                                    "grid-template-columns": "50px auto"
+                                  }
+                                ],
+                                "icon": [
+                                  {
+                                    "padding": "0px 0px"
+                                  },
+                                  {
+                                    "height": "30px"
+                                  },
+                                  {
+                                    "width": "30px"
+                                  }
+                                ],
+                                "card": [
+                                  {
+                                    "--ha-card-background": "rgba(0, 0, 0, 0.0)"
+                                  },
+                                  {
+                                    "--ha-card-box-shadow": "none"
+                                  },
+                                  {
+                                    "border": "none"
+                                  }
+                                ],
+                                "state": [
+                                  {
+                                    "padding": "0px 10px"
+                                  },
+                                  {
+                                    "justify-self": "start"
+                                  },
+                                  {
+                                    "font-family": "Roboto, sans-serif"
+                                  },
+                                  {
+                                    "font-size": "12px"
+                                  },
+                                  {
+                                    "font-weight": "bold"
+                                  }
+                                ],
+                                "name": [
+                                  {
+                                    "padding": "0px 10px"
+                                  },
+                                  {
+                                    "justify-self": "start"
+                                  },
+                                  {
+                                    "font-size": "12px"
+                                  },
+                                  {
+                                    "color": "var(--secondary-text-color)"
+                                  }
+                                ]
+                              },
+                              "entity": "sensor.dbloom86_homeassistant_issues",
+                              "name": "HA Config Issues",
+                              "icon": "mdi:alert-circle-outline"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "entities",
+                  "show_header_toggle": "off",
+                  "style": ".card-header {\n  padding: 0px 0px 0px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n",
+                  "entities": [
+                    {
+                      "type": "custom:gap-card",
+                      "height": 10
+                    },
+                    {
+                      "type": "custom:vertical-stack-in-card",
+                      "style": "ha-card {\n  border: none;\n  background: none;\n}\n",
+                      "cards": [
+                        {
+                          "type": "horizontal-stack",
+                          "cards": [
+                            {
+                              "type": "picture",
+                              "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: none;\n    --ha-card-box-shadow: 'none';\n    width: 90%;\n    left:5%;\n    border: none;\n}\n",
+                              "image": "/local/Pictures/uptime-kuma-banner.png"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "custom:gap-card",
+                          "height": 10
                         }
                       ]
                     },
                     {
-                      "type": "horizontal-stack",
-                      "cards": [
+                      "type": "custom:hui-element",
+                      "card_type": "entities",
+                      "entities": [
                         {
-                          "type": "custom:button-card",
-                          "layout": "icon_name_state2nd",
-                          "show_icon": true,
-                          "show_state": true,
-                          "styles": {
-                            "grid": [
+                          "type": "custom:hui-element",
+                          "card_type": "custom:auto-entities",
+                          "card": {
+                            "type": "history-graph"
+                          },
+                          "filter": {
+                            "include": [
                               {
-                                "grid-template-columns": "50px auto"
+                                "entity_id": "sensor.*kuma*"
                               }
                             ],
-                            "icon": [
+                            "exclude": [
                               {
-                                "padding": "0px 0px"
+                                "entity_id": "sensor.*network*"
                               },
                               {
-                                "height": "30px"
-                              },
-                              {
-                                "width": "30px"
-                              }
-                            ],
-                            "card": [
-                              {
-                                "--ha-card-background": "rgba(0, 0, 0, 0.0)"
-                              },
-                              {
-                                "--ha-card-box-shadow": "none"
-                              },
-                              {
-                                "border": "none"
-                              }
-                            ],
-                            "state": [
-                              {
-                                "padding": "0px 10px"
-                              },
-                              {
-                                "justify-self": "start"
-                              },
-                              {
-                                "font-family": "Roboto, sans-serif"
-                              },
-                              {
-                                "font-size": "12px"
-                              },
-                              {
-                                "font-weight": "bold"
-                              }
-                            ],
-                            "name": [
-                              {
-                                "padding": "0px 10px"
-                              },
-                              {
-                                "justify-self": "start"
-                              },
-                              {
-                                "font-size": "12px"
-                              },
-                              {
-                                "color": "var(--secondary-text-color)"
+                                "entity_id": "sensor.*docker*"
                               }
                             ]
                           },
-                          "entity": "sensor.dbloom86_homeassistant_forks",
-                          "name": "HA Config Forks",
-                          "icon": "mdi:source-fork"
-                        },
-                        {
-                          "type": "custom:button-card",
-                          "layout": "icon_name_state2nd",
-                          "show_icon": true,
-                          "show_state": true,
-                          "styles": {
-                            "grid": [
-                              {
-                                "grid-template-columns": "50px auto"
-                              }
-                            ],
-                            "icon": [
-                              {
-                                "padding": "0px 0px"
-                              },
-                              {
-                                "height": "30px"
-                              },
-                              {
-                                "width": "30px"
-                              }
-                            ],
-                            "card": [
-                              {
-                                "--ha-card-background": "rgba(0, 0, 0, 0.0)"
-                              },
-                              {
-                                "--ha-card-box-shadow": "none"
-                              },
-                              {
-                                "border": "none"
-                              }
-                            ],
-                            "state": [
-                              {
-                                "padding": "0px 10px"
-                              },
-                              {
-                                "justify-self": "start"
-                              },
-                              {
-                                "font-family": "Roboto, sans-serif"
-                              },
-                              {
-                                "font-size": "12px"
-                              },
-                              {
-                                "font-weight": "bold"
-                              }
-                            ],
-                            "name": [
-                              {
-                                "padding": "0px 10px"
-                              },
-                              {
-                                "justify-self": "start"
-                              },
-                              {
-                                "font-size": "12px"
-                              },
-                              {
-                                "color": "var(--secondary-text-color)"
-                              }
-                            ]
+                          "sort": {
+                            "method": "friendly_name"
                           },
-                          "entity": "sensor.dbloom86_homeassistant_issues",
-                          "name": "HA Config Issues",
-                          "icon": "mdi:alert-circle-outline"
+                          "style": "state-history-charts$state-history-chart-line$ha-chart-base$: |\n  .border {\n    display: none;\n  }\n"
                         }
-                      ]
+                      ],
+                      "card_mod": {
+                        "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                      }
                     }
                   ]
                 }
@@ -6044,6 +6114,54 @@
                       "cards": [
                         {
                           "type": "custom:button-card",
+                          "entity": "switch.docker_uptime_kuma",
+                          "hold_action": {
+                            "action": "url",
+                            "url_path": "https://uptime-kuma.bloomlan.nl/"
+                          },
+                          "aspect_ratio": "4/3",
+                          "name": "Uptime-Kuma",
+                          "entity_picture": "/local/Pictures/addons/uptime-kuma.png",
+                          "size": "50%",
+                          "show_entity_picture": true,
+                          "show_label": true,
+                          "label": "[[[ return `${states[ 'sensor.docker_uptime_kuma_status' ].state}` ]]]",
+                          "color_type": "card",
+                          "styles": {
+                            "name": [
+                              {
+                                "font-size": "12px"
+                              },
+                              {
+                                "font-weight": "bold"
+                              },
+                              {
+                                "color": "var(--primary-text-color)"
+                              }
+                            ],
+                            "label": [
+                              {
+                                "font-size": "12px"
+                              },
+                              {
+                                "color": "var(--primary-text-color)"
+                              }
+                            ]
+                          },
+                          "state": [
+                            {
+                              "value": "off",
+                              "color": "rgb(255, 77, 77, 0.4)"
+                            },
+                            {
+                              "value": "on",
+                              "color": "rgb(255, 77, 77, 0)"
+                            }
+                          ],
+                          "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        },
+                        {
+                          "type": "custom:button-card",
                           "entity": "switch.docker_watchtower",
                           "hold_action": {
                             "action": "url",
@@ -6137,7 +6255,12 @@
                             }
                           ],
                           "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
-                        },
+                        }
+                      ]
+                    },
+                    {
+                      "type": "horizontal-stack",
+                      "cards": [
                         {
                           "type": "custom:button-card",
                           "entity": "switch.docker_wordpressdb",
@@ -6185,12 +6308,7 @@
                             }
                           ],
                           "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "horizontal-stack",
-                      "cards": [
+                        },
                         {
                           "type": "custom:button-card",
                           "entity": "switch.docker_zigbee2mqtt",
@@ -6286,9 +6404,6 @@
                             }
                           ],
                           "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
-                        },
-                        {
-                          "type": "custom:gap-card"
                         }
                       ]
                     },

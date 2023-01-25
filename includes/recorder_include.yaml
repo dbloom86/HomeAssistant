@@ -30,6 +30,8 @@
         - sensor.ups*
         - sensor.*nginx*
         - sensor.*printserver*
+        - binary_sensor.*kuma*
+        - sensor.*kuma*
 
 
     entities:
