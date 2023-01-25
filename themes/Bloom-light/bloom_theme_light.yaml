@@ -113,7 +113,6 @@ bloom-theme-light:
   # Mushroom
   mush-card-primary-font-size: 12px
   mush-card-secondary-font-size: 15px
-  mush-rgb-state-automation-off: rgb(255, 77, 77, 0.4)
   # Custom
   bar-card-border-radius: 3px
   mcg-title-letter-spacing: .0em

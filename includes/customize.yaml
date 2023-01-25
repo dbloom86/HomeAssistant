@@ -104,13 +104,10 @@ sensor.total_vacuums:
   entity_picture: /local/Custom_Icons/miep.png
 
 sensor.total_weathers:
-  entity_picture: /local/Custom_Icons/weathers.png
+  entity_picture: /local/Custom_Icons/weathers-ico.png
   
 sensor.total_zones:
-  entity_picture: /local/Custom_Icons/zone-ico.png
-  
-sensor.total_tasmota_devices:
-  entity_picture: /local/Custom_Icons/Tasmota-3d-icon.png
+  entity_picture: /local/Custom_Icons/Zone-ico.png
   
 sensor.total_shelly_devices:
   entity_picture: /local/Custom_Icons/shelly-ico.png
