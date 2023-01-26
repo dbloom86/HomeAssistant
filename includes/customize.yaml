@@ -268,3 +268,13 @@ device_tracker.unifi_dc_ef_ca_a9_60_5f_default:
 
 device_tracker.wii:
   entity_picture: /local/Custom_Icons/wii-ico.png
+
+#================================  
+# Uptime Kuma
+#================================
+
+sensor.uptimekuma_experiabox:
+  friendly_name: "KPN"
+
+sensor.uptimekuma_home_assistant:
+  friendly_name: "HA"

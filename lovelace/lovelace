@@ -2069,13 +2069,7 @@
                         {
                           "type": "custom:gap-card",
                           "height": 10
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:hui-element",
-                      "card_type": "entities",
-                      "entities": [
+                        },
                         {
                           "type": "custom:hui-element",
                           "card_type": "custom:auto-entities",
@@ -2099,13 +2093,9 @@
                           },
                           "sort": {
                             "method": "friendly_name"
-                          },
-                          "style": "state-history-charts$state-history-chart-line$ha-chart-base$: |\n  .border {\n    display: none;\n  }\n"
+                          }
                         }
-                      ],
-                      "card_mod": {
-                        "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
-                      }
+                      ]
                     }
                   ]
                 }
