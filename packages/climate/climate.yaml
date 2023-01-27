@@ -308,24 +308,49 @@ automation:
     # Batteries
     #================================
 
-#  - alias: Radiator Valve Replace Battery
-#    trigger:
-#    - platform: state
-#      entity_id: binary_sensor.verwarming_badkamer_battery_low
-#      to: "on"
-#    action:
-#      service: notify.mobile_app_telefoon_duncan
-#      data:
-#        title: >
-#          {% if is_state('binary_sensor.verwarming_badkamer_battery_low', 'on') %}
-#            Vervang batterij Radiator Badkamer
-#        message: Vervang batterij, batterij is bijna leeg.
-#        data:
-#          group: radiators
-#          icon_url: /local/Custom_Icons/battery-empty-ico.png
-#          ttl: 0
-#          priority: high
-#    id: 455a2a3la962a7c086c3e626a5f9ae7d
+  - alias: Replace Radiator Valve Batteries Notification
+    trigger:
+    - platform: state
+      entity_id: binary_sensor.verwarming_badkamer_battery_low
+      to: "on"
+    - platform: state
+      entity_id: binary_sensor.verwarming_fynn_battery_low
+      to: "on"
+    - platform: state
+      entity_id: binary_sensor.verwarming_hal_battery_low
+      to: "on"
+    - platform: state
+      entity_id: binary_sensor.verwarming_keuken_battery_low
+      to: "on"
+    - platform: state
+      entity_id: binary_sensor.verwarming_luca_battery_low
+      to: "on"
+    - platform: state
+      entity_id: binary_sensor.verwarming_slaapkamer_battery_low
+      to: "on"
+    - platform: state
+      entity_id: binary_sensor.verwarming_toilet_battery_low
+      to: "on"
+    - platform: state
+      entity_id: binary_sensor.verwarming_woonkamer_battery_low
+      to: "on"
+    - platform: state
+      entity_id: binary_sensor.verwarming_zolder_battery_low
+      to: "on"
+    action:
+      service: notify.mobile_app_telefoon_duncan
+      data:
+        message: >-
+            Vervang batterijen van de radiatorknoppen in de volgende kamers:<br>
+            {% set x = expand('binary_sensor.verwarming_badkamer_battery_low', 'binary_sensor.verwarming_fynn_battery_low', 'binary_sensor.verwarming_hal_battery_low', 'binary_sensor.verwarming_keuken_battery_low', 'binary_sensor.verwarming_luca_battery_low', 'binary_sensor.verwarming_slaapkamer_battery_low', 'binary_sensor.verwarming_toilet_battery_low', 'binary_sensor.verwarming_woonkamer_battery_low', 'binary_sensor.verwarming_zolder_battery_low') | selectattr('state','eq','on') | map(attribute='object_id') | list %}
+            {{ 'none' if x | count == 0 else x | join('<br>') | replace('verwarming_badkamer_battery_low', '- Badkamer') | replace('verwarming_fynn_battery_low', '- Slaapkamer Fynn') | replace('verwarming_hal_battery_low', '- Hal') | replace('verwarming_keuken_battery_low', '- Keuken') | replace('verwarming_luca_battery_low', '- Slaapkamer Luca') | replace('verwarming_slaapkamer_battery_low', '- Slaapkamer') | replace('verwarming_toilet_battery_low', '- Toilet') | replace('verwarming_woonkamer_battery_low', '- Woonkamer') | replace('verwarming_zolder_battery_low', '- Zolder') }}
+        data:
+          group: radiators
+          icon_url: /local/Custom_Icons/battery-empty-ico.png
+          ttl: 0
+          priority: high
+          tag: "replace-radiator-valve-batteries"
+    id: 455a2a3la962a7c086c3e626a5f9ae7d
 
 
 

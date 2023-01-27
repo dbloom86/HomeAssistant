@@ -72,6 +72,7 @@ sensor:
                             + (states.sensor.docker_watchtower_network_speed_up.state | float)
                             + (states.sensor.docker_wordpress_network_speed_up.state | float)
                             + (states.sensor.docker_wordpressdb_network_speed_up.state | float)
+                            + (states.sensor.docker_uptime_kuma_network_speed_up.state | float)
                             + (states.sensor.docker_zwavejs2mqtt_network_speed_up.state | float) | round(0) }}"
 
       docker_network_down:
@@ -90,4 +91,5 @@ sensor:
                             + (states.sensor.docker_watchtower_network_speed_down.state | float)
                             + (states.sensor.docker_wordpress_network_speed_down.state | float)
                             + (states.sensor.docker_wordpressdb_network_speed_down.state | float)
+                            + (states.sensor.docker_uptime_kuma_network_speed_down.state | float)
                             + (states.sensor.docker_zwavejs2mqtt_network_speed_down.state | float) | round(0) }}"
