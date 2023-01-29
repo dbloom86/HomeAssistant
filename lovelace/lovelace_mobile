@@ -2050,13 +2050,409 @@
                   "entity": "climate.verwarming_slaapkamer",
                   "attribute": "current_temperature",
                   "name": "Temperatuur"
-                },
-                {
-                  "entity": "media_player.bloomtv",
-                  "name": "TV"
                 }
               ],
               "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+            },
+            {
+              "type": "horizontal-stack",
+              "cards": [
+                {
+                  "type": "custom:gap-card"
+                },
+                {
+                  "type": "custom:button-card",
+                  "entity": "light.shelly_shsw_1_40f520009959",
+                  "aspect_ratio": "1/1",
+                  "name": "Spotjes Dakkapel",
+                  "entity_picture": "/local/Custom_Icons/spotjes-dakkapel-ico.png",
+                  "size": "50%",
+                  "show_entity_picture": true,
+                  "styles": {
+                    "card": [
+                      {
+                        "background-color": "var(--ha-card-background)"
+                      }
+                    ],
+                    "grid": [
+                      {
+                        "grid-template-areas": "\"i i verbruik\" \"n n n\""
+                      },
+                      {
+                        "grid-template-columns": "50% 25% 25%"
+                      },
+                      {
+                        "grid-template-rows": "85% 15%"
+                      }
+                    ],
+                    "name": [
+                      {
+                        "justify-self": "center"
+                      },
+                      {
+                        "font-size": "15px"
+                      },
+                      {
+                        "align-items": "middle"
+                      }
+                    ],
+                    "img_cell": [
+                      {
+                        "justify-content": "start"
+                      },
+                      {
+                        "align-items": "middle"
+                      },
+                      {
+                        "grid-column-start": 1
+                      },
+                      {
+                        "grid-column-end": 4
+                      }
+                    ],
+                    "custom_fields": {
+                      "verbruik": [
+                        {
+                          "align-self": "center"
+                        },
+                        {
+                          "justify-self": "end"
+                        },
+                        {
+                          "font-size": "12px"
+                        },
+                        {
+                          "padding-right": "10px"
+                        },
+                        {
+                          "paddin-top": "50px"
+                        }
+                      ]
+                    }
+                  },
+                  "state": [
+                    {
+                      "value": "off",
+                      "styles": {
+                        "card": [
+                          {
+                            "filter": "opacity(50%)"
+                          }
+                        ],
+                        "icon": [
+                          {
+                            "filter": "grayscale(100%)"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "value": "on",
+                      "styles": null
+                    }
+                  ],
+                  "custom_fields": {
+                    "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['light.shelly_shsw_1_40f520009959'].state}</span></span>`\n]]]\n"
+                  },
+                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                },
+                {
+                  "type": "custom:button-card",
+                  "entity": "switch.shelly_shplg_s_9d9823",
+                  "aspect_ratio": "1/1",
+                  "name": "Wasmachine",
+                  "entity_picture": "/local/Custom_Icons/wasmachine-ico.png",
+                  "size": "50%",
+                  "show_entity_picture": true,
+                  "styles": {
+                    "card": [
+                      {
+                        "background-color": "var(--ha-card-background)"
+                      }
+                    ],
+                    "grid": [
+                      {
+                        "grid-template-areas": "\"i i verbruik\" \"n n n\""
+                      },
+                      {
+                        "grid-template-columns": "50% 25% 25%"
+                      },
+                      {
+                        "grid-template-rows": "85% 15%"
+                      }
+                    ],
+                    "name": [
+                      {
+                        "justify-self": "center"
+                      },
+                      {
+                        "font-size": "15px"
+                      },
+                      {
+                        "align-items": "middle"
+                      }
+                    ],
+                    "img_cell": [
+                      {
+                        "justify-content": "start"
+                      },
+                      {
+                        "align-items": "middle"
+                      },
+                      {
+                        "grid-column-start": 1
+                      },
+                      {
+                        "grid-column-end": 4
+                      }
+                    ],
+                    "custom_fields": {
+                      "verbruik": [
+                        {
+                          "align-self": "center"
+                        },
+                        {
+                          "justify-self": "end"
+                        },
+                        {
+                          "font-size": "12px"
+                        },
+                        {
+                          "padding-right": "10px"
+                        },
+                        {
+                          "paddin-top": "50px"
+                        }
+                      ]
+                    }
+                  },
+                  "state": [
+                    {
+                      "value": "off",
+                      "styles": {
+                        "card": [
+                          {
+                            "filter": "opacity(50%)"
+                          }
+                        ],
+                        "icon": [
+                          {
+                            "filter": "grayscale(100%)"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "value": "on",
+                      "styles": null
+                    }
+                  ],
+                  "custom_fields": {
+                    "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['sensor.maandelijks_verbruik_wasmachine'].state} Kwh</span></span>`\n]]]\n"
+                  },
+                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                }
+              ]
+            },
+            {
+              "type": "horizontal-stack",
+              "cards": [
+                {
+                  "type": "custom:button-card",
+                  "entity": "switch.shelly_shsw_pm_98cdac1f389e",
+                  "aspect_ratio": "1/1",
+                  "name": "Droger",
+                  "entity_picture": "/local/Custom_Icons/droger-ico.png",
+                  "size": "50%",
+                  "show_entity_picture": true,
+                  "styles": {
+                    "card": [
+                      {
+                        "background-color": "var(--ha-card-background)"
+                      }
+                    ],
+                    "grid": [
+                      {
+                        "grid-template-areas": "\"i i verbruik\" \"n n n\""
+                      },
+                      {
+                        "grid-template-columns": "50% 25% 25%"
+                      },
+                      {
+                        "grid-template-rows": "85% 15%"
+                      }
+                    ],
+                    "name": [
+                      {
+                        "justify-self": "center"
+                      },
+                      {
+                        "font-size": "15px"
+                      },
+                      {
+                        "align-items": "middle"
+                      }
+                    ],
+                    "img_cell": [
+                      {
+                        "justify-content": "start"
+                      },
+                      {
+                        "align-items": "middle"
+                      },
+                      {
+                        "grid-column-start": 1
+                      },
+                      {
+                        "grid-column-end": 4
+                      }
+                    ],
+                    "custom_fields": {
+                      "verbruik": [
+                        {
+                          "align-self": "center"
+                        },
+                        {
+                          "justify-self": "end"
+                        },
+                        {
+                          "font-size": "12px"
+                        },
+                        {
+                          "padding-right": "10px"
+                        },
+                        {
+                          "paddin-top": "50px"
+                        }
+                      ]
+                    }
+                  },
+                  "state": [
+                    {
+                      "value": "off",
+                      "styles": {
+                        "card": [
+                          {
+                            "filter": "opacity(50%)"
+                          }
+                        ],
+                        "icon": [
+                          {
+                            "filter": "grayscale(100%)"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "value": "on",
+                      "styles": null
+                    }
+                  ],
+                  "custom_fields": {
+                    "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['sensor.maandelijks_verbruik_droger'].state} Kwh</span></span>`\n]]]\n"
+                  },
+                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                },
+                {
+                  "type": "custom:button-card",
+                  "entity": "switch.shelly_shplg_s_9a5381",
+                  "aspect_ratio": "1/1",
+                  "name": "CV",
+                  "entity_picture": "/local/Custom_Icons/remeha_tzerra-ico.png",
+                  "size": "50%",
+                  "show_entity_picture": true,
+                  "styles": {
+                    "card": [
+                      {
+                        "background-color": "var(--ha-card-background)"
+                      }
+                    ],
+                    "grid": [
+                      {
+                        "grid-template-areas": "\"i i verbruik\" \"n n n\""
+                      },
+                      {
+                        "grid-template-columns": "50% 25% 25%"
+                      },
+                      {
+                        "grid-template-rows": "85% 15%"
+                      }
+                    ],
+                    "name": [
+                      {
+                        "justify-self": "center"
+                      },
+                      {
+                        "font-size": "15px"
+                      },
+                      {
+                        "align-items": "middle"
+                      }
+                    ],
+                    "img_cell": [
+                      {
+                        "justify-content": "start"
+                      },
+                      {
+                        "align-items": "middle"
+                      },
+                      {
+                        "grid-column-start": 1
+                      },
+                      {
+                        "grid-column-end": 4
+                      }
+                    ],
+                    "custom_fields": {
+                      "verbruik": [
+                        {
+                          "align-self": "center"
+                        },
+                        {
+                          "justify-self": "end"
+                        },
+                        {
+                          "font-size": "12px"
+                        },
+                        {
+                          "padding-right": "10px"
+                        },
+                        {
+                          "paddin-top": "50px"
+                        }
+                      ]
+                    }
+                  },
+                  "state": [
+                    {
+                      "value": "off",
+                      "styles": {
+                        "card": [
+                          {
+                            "filter": "opacity(50%)"
+                          }
+                        ],
+                        "icon": [
+                          {
+                            "filter": "grayscale(100%)"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "value": "on",
+                      "styles": null
+                    }
+                  ],
+                  "custom_fields": {
+                    "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['sensor.maandelijks_verbruik_cv'].state} Kwh</span></span>`\n]]]\n"
+                  },
+                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                },
+                {
+                  "type": "custom:gap-card"
+                }
+              ]
             },
             {
               "type": "custom:mod-card",
@@ -2264,6 +2660,10 @@
                   "entity": "climate.verwarming_luca",
                   "attribute": "current_temperature",
                   "name": "Temperatuur"
+                },
+                {
+                  "entity": "media_player.bloomtv",
+                  "name": "TV"
                 }
               ],
               "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
@@ -3180,7 +3580,7 @@
             },
             {
               "type": "custom:banner-card",
-              "heading": "💻 Zolder",
+              "heading": "💻 Kantoor",
               "entities": [
                 {
                   "entity": "light.lampen_zolder",
@@ -3195,406 +3595,6 @@
               "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
             },
             {
-              "type": "horizontal-stack",
-              "cards": [
-                {
-                  "type": "custom:gap-card"
-                },
-                {
-                  "type": "custom:button-card",
-                  "entity": "light.shelly_shsw_1_40f520009959",
-                  "aspect_ratio": "1/1",
-                  "name": "Spotjes Dakkapel",
-                  "entity_picture": "/local/Custom_Icons/spotjes-dakkapel-ico.png",
-                  "size": "50%",
-                  "show_entity_picture": true,
-                  "styles": {
-                    "card": [
-                      {
-                        "background-color": "var(--ha-card-background)"
-                      }
-                    ],
-                    "grid": [
-                      {
-                        "grid-template-areas": "\"i i verbruik\" \"n n n\""
-                      },
-                      {
-                        "grid-template-columns": "50% 25% 25%"
-                      },
-                      {
-                        "grid-template-rows": "85% 15%"
-                      }
-                    ],
-                    "name": [
-                      {
-                        "justify-self": "center"
-                      },
-                      {
-                        "font-size": "15px"
-                      },
-                      {
-                        "align-items": "middle"
-                      }
-                    ],
-                    "img_cell": [
-                      {
-                        "justify-content": "start"
-                      },
-                      {
-                        "align-items": "middle"
-                      },
-                      {
-                        "grid-column-start": 1
-                      },
-                      {
-                        "grid-column-end": 4
-                      }
-                    ],
-                    "custom_fields": {
-                      "verbruik": [
-                        {
-                          "align-self": "center"
-                        },
-                        {
-                          "justify-self": "end"
-                        },
-                        {
-                          "font-size": "12px"
-                        },
-                        {
-                          "padding-right": "10px"
-                        },
-                        {
-                          "paddin-top": "50px"
-                        }
-                      ]
-                    }
-                  },
-                  "state": [
-                    {
-                      "value": "off",
-                      "styles": {
-                        "card": [
-                          {
-                            "filter": "opacity(50%)"
-                          }
-                        ],
-                        "icon": [
-                          {
-                            "filter": "grayscale(100%)"
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "value": "on",
-                      "styles": null
-                    }
-                  ],
-                  "custom_fields": {
-                    "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['light.shelly_shsw_1_40f520009959'].state}</span></span>`\n]]]\n"
-                  },
-                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
-                },
-                {
-                  "type": "custom:button-card",
-                  "entity": "switch.shelly_shplg_s_9d9823",
-                  "aspect_ratio": "1/1",
-                  "name": "Wasmachine",
-                  "entity_picture": "/local/Custom_Icons/wasmachine-ico.png",
-                  "size": "50%",
-                  "show_entity_picture": true,
-                  "styles": {
-                    "card": [
-                      {
-                        "background-color": "var(--ha-card-background)"
-                      }
-                    ],
-                    "grid": [
-                      {
-                        "grid-template-areas": "\"i i verbruik\" \"n n n\""
-                      },
-                      {
-                        "grid-template-columns": "50% 25% 25%"
-                      },
-                      {
-                        "grid-template-rows": "85% 15%"
-                      }
-                    ],
-                    "name": [
-                      {
-                        "justify-self": "center"
-                      },
-                      {
-                        "font-size": "15px"
-                      },
-                      {
-                        "align-items": "middle"
-                      }
-                    ],
-                    "img_cell": [
-                      {
-                        "justify-content": "start"
-                      },
-                      {
-                        "align-items": "middle"
-                      },
-                      {
-                        "grid-column-start": 1
-                      },
-                      {
-                        "grid-column-end": 4
-                      }
-                    ],
-                    "custom_fields": {
-                      "verbruik": [
-                        {
-                          "align-self": "center"
-                        },
-                        {
-                          "justify-self": "end"
-                        },
-                        {
-                          "font-size": "12px"
-                        },
-                        {
-                          "padding-right": "10px"
-                        },
-                        {
-                          "paddin-top": "50px"
-                        }
-                      ]
-                    }
-                  },
-                  "state": [
-                    {
-                      "value": "off",
-                      "styles": {
-                        "card": [
-                          {
-                            "filter": "opacity(50%)"
-                          }
-                        ],
-                        "icon": [
-                          {
-                            "filter": "grayscale(100%)"
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "value": "on",
-                      "styles": null
-                    }
-                  ],
-                  "custom_fields": {
-                    "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['sensor.maandelijks_verbruik_wasmachine'].state} Kwh</span></span>`\n]]]\n"
-                  },
-                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
-                }
-              ]
-            },
-            {
-              "type": "horizontal-stack",
-              "cards": [
-                {
-                  "type": "custom:button-card",
-                  "entity": "switch.shelly_shsw_pm_98cdac1f389e",
-                  "aspect_ratio": "1/1",
-                  "name": "Droger",
-                  "entity_picture": "/local/Custom_Icons/droger-ico.png",
-                  "size": "50%",
-                  "show_entity_picture": true,
-                  "styles": {
-                    "card": [
-                      {
-                        "background-color": "var(--ha-card-background)"
-                      }
-                    ],
-                    "grid": [
-                      {
-                        "grid-template-areas": "\"i i verbruik\" \"n n n\""
-                      },
-                      {
-                        "grid-template-columns": "50% 25% 25%"
-                      },
-                      {
-                        "grid-template-rows": "85% 15%"
-                      }
-                    ],
-                    "name": [
-                      {
-                        "justify-self": "center"
-                      },
-                      {
-                        "font-size": "15px"
-                      },
-                      {
-                        "align-items": "middle"
-                      }
-                    ],
-                    "img_cell": [
-                      {
-                        "justify-content": "start"
-                      },
-                      {
-                        "align-items": "middle"
-                      },
-                      {
-                        "grid-column-start": 1
-                      },
-                      {
-                        "grid-column-end": 4
-                      }
-                    ],
-                    "custom_fields": {
-                      "verbruik": [
-                        {
-                          "align-self": "center"
-                        },
-                        {
-                          "justify-self": "end"
-                        },
-                        {
-                          "font-size": "12px"
-                        },
-                        {
-                          "padding-right": "10px"
-                        },
-                        {
-                          "paddin-top": "50px"
-                        }
-                      ]
-                    }
-                  },
-                  "state": [
-                    {
-                      "value": "off",
-                      "styles": {
-                        "card": [
-                          {
-                            "filter": "opacity(50%)"
-                          }
-                        ],
-                        "icon": [
-                          {
-                            "filter": "grayscale(100%)"
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "value": "on",
-                      "styles": null
-                    }
-                  ],
-                  "custom_fields": {
-                    "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['sensor.maandelijks_verbruik_droger'].state} Kwh</span></span>`\n]]]\n"
-                  },
-                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
-                },
-                {
-                  "type": "custom:button-card",
-                  "entity": "switch.shelly_shplg_s_9a5381",
-                  "aspect_ratio": "1/1",
-                  "name": "CV",
-                  "entity_picture": "/local/Custom_Icons/remeha_tzerra-ico.png",
-                  "size": "50%",
-                  "show_entity_picture": true,
-                  "styles": {
-                    "card": [
-                      {
-                        "background-color": "var(--ha-card-background)"
-                      }
-                    ],
-                    "grid": [
-                      {
-                        "grid-template-areas": "\"i i verbruik\" \"n n n\""
-                      },
-                      {
-                        "grid-template-columns": "50% 25% 25%"
-                      },
-                      {
-                        "grid-template-rows": "85% 15%"
-                      }
-                    ],
-                    "name": [
-                      {
-                        "justify-self": "center"
-                      },
-                      {
-                        "font-size": "15px"
-                      },
-                      {
-                        "align-items": "middle"
-                      }
-                    ],
-                    "img_cell": [
-                      {
-                        "justify-content": "start"
-                      },
-                      {
-                        "align-items": "middle"
-                      },
-                      {
-                        "grid-column-start": 1
-                      },
-                      {
-                        "grid-column-end": 4
-                      }
-                    ],
-                    "custom_fields": {
-                      "verbruik": [
-                        {
-                          "align-self": "center"
-                        },
-                        {
-                          "justify-self": "end"
-                        },
-                        {
-                          "font-size": "12px"
-                        },
-                        {
-                          "padding-right": "10px"
-                        },
-                        {
-                          "paddin-top": "50px"
-                        }
-                      ]
-                    }
-                  },
-                  "state": [
-                    {
-                      "value": "off",
-                      "styles": {
-                        "card": [
-                          {
-                            "filter": "opacity(50%)"
-                          }
-                        ],
-                        "icon": [
-                          {
-                            "filter": "grayscale(100%)"
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "value": "on",
-                      "styles": null
-                    }
-                  ],
-                  "custom_fields": {
-                    "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['sensor.maandelijks_verbruik_cv'].state} Kwh</span></span>`\n]]]\n"
-                  },
-                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
-                },
-                {
-                  "type": "custom:gap-card"
-                }
-              ]
-            },
-            {
               "type": "custom:mod-card",
               "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n",
               "card": {
@@ -3602,7 +3602,7 @@
                 "cards": [
                   {
                     "type": "custom:simple-thermostat",
-                    "entity": "climate.verwarming_zolder",
+                    "entity": "climate.verwarming_kantoor",
                     "header": {
                       "name": "Verwarming",
                       "icon": false
@@ -3613,7 +3613,7 @@
                     },
                     "sensors": [
                       {
-                        "entity": "climate.verwarming_zolder",
+                        "entity": "climate.verwarming_kantoor",
                         "attribute": "system_mode",
                         "name": "Mode",
                         "icon": "mdi:radiator"
@@ -3634,7 +3634,7 @@
                     "cards": [
                       {
                         "type": "custom:button-card",
-                        "entity": "lock.verwarming_zolder_child_lock",
+                        "entity": "lock.verwarming_kantoor_child_lock",
                         "name": "Kinderslot",
                         "aspect_ratio": "2/1",
                         "tap_action": {
@@ -3663,7 +3663,7 @@
                       },
                       {
                         "type": "custom:button-card",
-                        "entity": "switch.verwarming_zolder_window_detection",
+                        "entity": "switch.verwarming_kantoor_window_detection",
                         "name": "Open Raam Detectie",
                         "aspect_ratio": "2/1",
                         "tap_action": {
@@ -3692,7 +3692,7 @@
                       },
                       {
                         "type": "custom:button-card",
-                        "entity": "switch.verwarming_zolder_away_mode",
+                        "entity": "switch.verwarming_kantoor_away_mode",
                         "name": "Afwezigheidsdetectie",
                         "aspect_ratio": "2/1",
                         "tap_action": {
@@ -3725,14 +3725,14 @@
                     "type": "custom:mini-graph-card",
                     "entities": [
                       {
-                        "entity": "climate.verwarming_zolder",
+                        "entity": "climate.verwarming_kantoor",
                         "attribute": "current_temperature",
                         "name": "Temperatuur",
                         "smoothing": true,
                         "show_fill": true
                       },
                       {
-                        "entity": "climate.verwarming_zolder",
+                        "entity": "climate.verwarming_kantoor",
                         "attribute": "current_heating_setpoint",
                         "name": "Ingesteld",
                         "smoothing": false,

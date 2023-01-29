@@ -18,11 +18,11 @@
       - light.shelly_shsw_1_40f52000c449
 
 #=====================
-# Slaapkamer Fynn
+# Kantoor
 #=====================
 
   - platform: group
-    name: Lampen Kamer Fynn
+    name: Lampen Kantoor
     entities:
       - light.lamp_hoekje
 

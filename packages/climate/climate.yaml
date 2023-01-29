@@ -130,7 +130,7 @@ automation:
           hvac_mode: heat
           temperature: 16
         target:
-          device_id: e42629fa9b96f7cde4df1555664810b8
+          device_id: 309265144a15110bc63467a83a8759a3
     id: 5b9d4568a9c449258a3a95hj81fh5f1
 
   - alias: Set Radiator Slaapkamer uit
@@ -144,7 +144,7 @@ automation:
         data:
           temperature: 5
         target:
-          device_id: e42629fa9b96f7cde4df1555664810b8
+          device_id: 309265144a15110bc63467a83a8759a3
     id: 5b9d4568akn6tf258a3a9502cd0a116a
 
   - alias: Set Radiator Luca en Fynn aan
@@ -168,7 +168,7 @@ automation:
         target:
           device_id:
             - 59dc73e6760d124ca96a4101045b4bcd
-            - d34ef0ce55dbd76e688cea09e359cca8
+            - e42629fa9b96f7cde4df1555664810b8
     id: 5b9d4568a9c449jks5gv95hj81fh5f1
 
   - alias: Set Radiator Luca en Fynn uit
@@ -184,10 +184,10 @@ automation:
         target:
           device_id:
             - 59dc73e6760d124ca96a4101045b4bcd
-            - d34ef0ce55dbd76e688cea09e359cca8
+            - e42629fa9b96f7cde4df1555664810b8
     id: 5b9ja5dfv6n6tf258a3ahg56200a116a
 
-  - alias: Set Radiator Zolder aan
+  - alias: Set Radiator Kantoor aan
     trigger:
     - platform: time
       at: '07:00'
@@ -211,10 +211,10 @@ automation:
           hvac_mode: heat
           temperature: 16
         target:
-          device_id: 309265144a15110bc63467a83a8759a3
+          device_id: d34ef0ce55dbd76e688cea09e359cca8
     id: 5b9d45hjna5249258a3a95hj81fh5f1
 
-  - alias: Set Radiator Zolder uit
+  - alias: Set Radiator Kantoor uit
     trigger:
     - platform: time
       at: '18:00'
@@ -223,7 +223,7 @@ automation:
         data:
           temperature: 5
         target:
-          device_id: 309265144a15110bc63467a83a8759a3
+          device_id: d34ef0ce55dbd76e688cea09e359cca8
     id: 5b9d4568akn8kh5dsa3a9502cd0a116a
 
   - alias: Set Radiator Toilet en Gang aan
