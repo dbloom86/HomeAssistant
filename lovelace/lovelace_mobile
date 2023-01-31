@@ -269,7 +269,7 @@
             },
             {
               "type": "custom:button-card",
-              "name": "Zolder",
+              "name": "Kantoor",
               "icon": "mdi:briefcase",
               "aspect_ratio": "3/1",
               "show_label": true,
@@ -3587,7 +3587,7 @@
                   "name": "Lampen"
                 },
                 {
-                  "entity": "climate.verwarming_zolder",
+                  "entity": "climate.verwarming_kantoor",
                   "attribute": "current_temperature",
                   "name": "Temperatuur"
                 }

@@ -190,7 +190,7 @@ automation:
   - alias: Set Radiator Kantoor aan
     trigger:
     - platform: time
-      at: '07:00'
+      at: '06:30'
     condition:
     - condition: not
       conditions:
