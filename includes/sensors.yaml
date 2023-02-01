@@ -29,11 +29,11 @@
         days_this_month:
             friendly_name: "Dagen deze maand"
             value_template: >-
-              {% set this = now().replace(hour=0).replace(minute=0).replace(second=0).replace(microsecond=0) %}
+              {% set this = now() %}
               {% set next = this.month + 1 if this.month + 1 <= 12 else 1 %}
               {% set nextyear = this.year + 1 %}
               {% set first = this.replace(day=1) %}
-              {% set last = this.replace(month=next, day=1, year=nextyear) %}
+              {% set last = this.replace(month=next, day=1) %}
               {{ (last.date() - first.date()).days }}
             unit_of_measurement: days
 

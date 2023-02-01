@@ -8220,12 +8220,6 @@
                             "entity_id": "device_tracker.telefoon_sabrine"
                           },
                           {
-                            "entity_id": "device_tracker.tablet_luca"
-                          },
-                          {
-                            "entity_id": "device_tracker.tablet_fynn"
-                          },
-                          {
                             "entity_id": "device_tracker.jered_s_galaxy_note20_ultra_5g"
                           }
                         ]
