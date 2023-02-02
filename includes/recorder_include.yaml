@@ -32,6 +32,7 @@
         - sensor.*printserver*
         - binary_sensor.*kuma*
         - sensor.*kuma*
+        - sensor.connectix*
 
 
     entities:
@@ -84,3 +85,17 @@
         - sensor.ap_woonkamer_cpu_usage
         - sensor.ap_woonkamer_ram_usage
         - sensor.ap_zolder_ram_usage
+        - sensor.watermeter_usage_last_minute
+        - sensor.waterprijs_per_dag
+        - sensor.waterprijs_per_kwartaal
+        - sensor.waterprijs_per_maand
+        - sensor.waterprijs_per_week
+        - sensor.waterverbruik_deze_maand
+        - sensor.waterverbruik_deze_week
+        - sensor.waterverbruik_dit_kwartaal
+        - sensor.waterverbruik_dit_kwartier
+        - sensor.waterverbruik_dit_uur
+        - sensor.waterverbruik_gisteren
+        - sensor.waterverbruik_vandaag
+        - sensor.waterverbruik_vorige_maand
+        - sensor.waterverbruik_vorige_week

@@ -35,7 +35,7 @@ sensor:
 
         nginx_os:
             friendly_name: NGINX OS
-            value_template: "{{ 'RPi OS' }} {{ state_attr('sensor.rpi_monitor_nginx', 'ux_release') }} {{ state_attr('sensor.rpi_monitor_nginx', 'ux_version') }}"
+            value_template: "{{ state_attr('sensor.rpi_monitor_nginx', 'ux_release') }} {{ state_attr('sensor.rpi_monitor_nginx', 'ux_version') }}"
 
         nginx_model:
             friendly_name: NGINX Model

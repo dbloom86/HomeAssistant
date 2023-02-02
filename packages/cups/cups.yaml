@@ -11,7 +11,7 @@ sensor:
     sensors:
         printserver_os:
             friendly_name: Printserver OS
-            value_template: "{{ 'RPi OS' }} {{ state_attr('sensor.rpi_monitor_printserver', 'ux_release') }} {{ state_attr('sensor.rpi_monitor_printserver', 'ux_version') }}"
+            value_template: "{{ state_attr('sensor.rpi_monitor_printserver', 'ux_release') }} {{ state_attr('sensor.rpi_monitor_printserver', 'ux_version') }}"
 
         printserver_model:
             friendly_name: Printserver Model

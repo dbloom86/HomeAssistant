@@ -8348,7 +8348,7 @@
                                 "--ha-card-box-shadow": "none"
                               },
                               {
-                                "boder": "none"
+                                "--ha-card-boder": "none"
                               }
                             ],
                             "state": [

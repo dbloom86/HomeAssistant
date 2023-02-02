@@ -1,0 +1,188 @@
+#================================
+# SmartGateways Watermeter Gateway
+#================================ 
+
+  #================================
+  # Verbruik berekeningen
+  #================================ 
+
+utility_meter:
+  waterverbruik_dit_kwartier:
+    source: sensor.connectix_watermeter_totaal
+    cycle: quarter-hourly
+  waterverbruik_dit_uur:
+    source: sensor.connectix_watermeter_totaal
+    cycle: hourly
+  waterverbruik_vandaag:
+    source: sensor.connectix_watermeter_totaal
+    cycle: daily
+  waterverbruik_deze_week:
+    source: sensor.connectix_watermeter_totaal
+    cycle: weekly
+  waterverbruik_deze_maand:
+    source: sensor.connectix_watermeter_totaal
+    cycle: monthly
+  waterverbruik_dit_kwartaal:
+    source: sensor.connectix_watermeter_totaal
+    cycle: quarterly
+  waterverbruik_dit_jaar:
+    source: sensor.connectix_watermeter_totaal
+    cycle: yearly
+
+  #================================
+  # MQTT
+  #================================ 
+mqtt:
+
+  #================================
+  # Sensors
+  #================================ 
+
+  sensor:
+    - name: "connectix_watermeter_totaal"
+      unique_id: watermeter_smart_gateways_current_value
+      state_topic: "homeassistant/watermeter/reading/current_value"
+      unit_of_measurement: "L"
+      icon: mdi:water
+      force_update: true
+      state_class: total_increasing
+      device_class: water
+    - name: "Watermeter MAC Adres"
+      state_topic: "homeassistant/watermeter/smart_gateways/mac_address"
+    - name: "Watermeter Firmware versie van gateway"
+      state_topic: "homeassistant/watermeter/smart_gateways/running_firmware_version"
+    - name: "Watermeter Beschikbare firmware versie"
+      state_topic: "homeassistant/watermeter/smart_gateways/available_firmware_version"
+    - name: "Watermeter Firmware update beschikbaar"
+      state_topic: "homeassistant/watermeter/smart_gateways/update_available"
+    - name: "Watermeter WiFi Signaalsterkte (rssi)"
+      state_topic: "homeassistant/watermeter/smart_gateways/wifi_rssi"
+      unit_of_measurement: "dB"
+    - name: "Watermeter startup time"
+      state_topic: "homeassistant/watermeter/smart_gateways/startup_time"
+    - name: "Watermeter usage_last_minute"
+      state_topic: "homeassistant/watermeter/reading/water_used_last_minute"
+    - name: "Watermeter leak_detect"
+      state_topic: "homeassistant/watermeter/reading/leak_detect"
+
+  #================================
+  # Switches
+  #================================ 
+
+  switch:
+    - name: "Watermeter Install firmware update?"
+      command_topic: "homeassistant/watermeter/smart_gateways/install_update"
+      payload_on: "yes"
+      payload_off: "no"
+
+    #================================
+    # Verbruik
+    #================================ 
+
+sensor:
+  - platform: template
+    sensors:
+      waterprijs_per_dag:
+        friendly_name: "Kosten Waterverbruik Vandaag"
+        unit_of_measurement: "EUR"
+        icon_template: "mdi:currency-eur"
+        value_template: >-
+          {% set a = states('sensor.waterverbruik_vandaag') | float %}
+          {% set b = states('input_number.waterprijs_per_liter') | float %}
+          {% set c = states('input_number.belasting_op_leidingwater') | float  %}
+          {% set d = states('input_number.vastrecht_water') | float / 365 %}
+          {{ (((a * b) + a * c) + d) | round(2) }}
+      waterprijs_per_week:
+        friendly_name: "Kosten Waterverbruik Deze Week"
+        unit_of_measurement: "EUR"
+        icon_template: "mdi:currency-eur"
+        value_template: >-
+          {% set a = states('sensor.waterverbruik_deze_week') | float %}
+          {% set b = states('input_number.waterprijs_per_liter') | float %}
+          {% set c = states('input_number.belasting_op_leidingwater') | float  %}
+          {% set d = states('input_number.vastrecht_water') | float / 52 %}
+          {{ (((a * b) + a * c) + d) | round(2) }}
+      waterprijs_per_maand:
+        friendly_name: "Kosten Waterverbruik Deze Maand"
+        unit_of_measurement: "EUR"
+        icon_template: "mdi:currency-eur"
+        value_template: >-
+          {% set a = states('sensor.waterverbruik_deze_maand') | float %}
+          {% set b = states('input_number.waterprijs_per_liter') | float %}
+          {% set c = states('input_number.belasting_op_leidingwater') | float  %}
+          {% set d = states('input_number.vastrecht_water') | float /12 %}
+          {{ (((a * b) + a * c) + d) | round(2) }}
+      waterprijs_per_kwartaal:
+        friendly_name: "Kosten Waterverbruik Dit Kwartaal"
+        unit_of_measurement: "EUR"
+        icon_template: "mdi:currency-eur"
+        value_template: >-
+          {% set a = states('sensor.waterverbruik_dit_kwartaal') | float %}
+          {% set b = states('input_number.waterprijs_per_liter') | float %}
+          {% set c = states('input_number.belasting_op_leidingwater') | float  %}
+          {% set d = states('input_number.vastrecht_water') | float / 4 %}
+          {{ (((a * b) + a * c) + d) | round(2) }}
+      waterprijs_per_jaar:
+        friendly_name: "Kosten Waterverbruik Dit Jaar"
+        unit_of_measurement: "EUR"
+        icon_template: "mdi:currency-eur"
+        value_template: >-
+          {% set a = states('sensor.waterverbruik_dit_jaar') | float %}
+          {% set b = states('input_number.waterprijs_per_liter') | float %}
+          {% set c = states('input_number.belasting_op_leidingwater') | float  %}
+          {% set d = states('input_number.vastrecht_water') | float  %}
+          {{ (((a * b) + a * c) + d) | round(2) }}
+
+    #================================
+    # Sensors Verbruik geschiedenis
+    #================================ 
+
+      waterverbruik_gisteren:
+        friendly_name: Waterverbruik Gisteren
+        unit_of_measurement: L
+        icon_template: "mdi:water"
+        value_template: "{{ state_attr('sensor.waterverbruik_vandaag','last_period') }}"
+      waterverbruik_vorige_week:
+        friendly_name: Waterverbruik Vorige Week
+        unit_of_measurement: L
+        icon_template: "mdi:water"
+        value_template: "{{ state_attr('sensor.waterverbruik_deze_week','last_period') }}"
+      waterverbruik_vorige_maand:
+        friendly_name: Waterverbruik Vorige Maand
+        unit_of_measurement: L
+        icon_template: "mdi:water"
+        value_template: "{{ state_attr('sensor.waterverbruik_deze_maand','last_period') }}"
+      waterverbruik_vorig_jaar:
+        friendly_name: Waterverbruik Vorig Jaar
+        unit_of_measurement: L
+        icon_template: "mdi:water"
+        value_template: "{{ state_attr('sensor.waterverbruik_dit_jaar','last_period') }}"
+
+    #================================
+    # Helpers
+    #================================ 
+
+input_number:
+  water_belasting:
+    name: Water - Belasting
+    min: 0.000416
+    max: 1
+    step: 0.000001
+    unit_of_measurement: €/Liter
+    icon: mdi:currency-eur
+
+  waterprijs_per_liter:
+    name: Water - Prijs per liter
+    min: 0.00085
+    max: 1
+    step: 0.000001
+    unit_of_measurement: €/Liter
+    icon: mdi:currency-eur
+
+  water_vastrecht:
+    name: Water - Vastrecht
+    min: 54.50
+    max: 100
+    step: 0.01
+    unit_of_measurement: €/Jaar
+    icon: mdi:currency-eur

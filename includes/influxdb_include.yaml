@@ -18,3 +18,11 @@
       - sensor.maandelijks_energie_verbruik_laag
       - sensor.maandelijks_gas_verbruik
       - sensor.total_energy_this_month
+      - sensor.waterverbruik_vorige_maand
+      - sensor.waterverbruik_vorig_jaar
+      - sensor.waterverbruik_dit_jaar
+      - sensor.waterverbruik_deze_maand
+      - sensor.waterprijs_per_maand
+      - sensor.waterprijs_per_kwartaal
+      - sensor.waterprijs_per_jaar
+      - sensor.watermeter_totaal
