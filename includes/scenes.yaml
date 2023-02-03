@@ -32,7 +32,7 @@
     icon: "mdi:flower-tulip"
     entities:
       media_player.sony_bravia_tv:
-        state: "playing"
+        state: "on"
       light.lamp_achterdeur:
         state: "on"
         brightness: 28
