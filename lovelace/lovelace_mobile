@@ -275,7 +275,7 @@
               "show_label": true,
               "tap_action": {
                 "action": "navigate",
-                "navigation_path": "/lovelace-mobile/zolder"
+                "navigation_path": "/lovelace-mobile/kantoor"
               },
               "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
             },

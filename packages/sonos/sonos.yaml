@@ -53,7 +53,6 @@ automation:
           source: Qmusic
         target:
           device_id: 3cfc8e892445437eb9649e411d74542a
-
       - service: media_player.volume_set
         target:
           device_id: 3cfc8e892445437eb9649e411d74542a
@@ -63,3 +62,83 @@ automation:
         target:
           device_id: 3cfc8e892445437eb9649e411d74542a
     id: 5795jk84a9c449258a3a9502cd0a116a
+
+  - alias: Radio aan tijdens het eten
+    description: ''
+    mode: single
+    trigger:
+      - platform: time
+        at: "17:30:00"
+      - platform: state
+        entity_id:
+          - media_player.sony_bravia_tv
+        to: "off"
+        for:
+          hours: 0
+          minutes: 3
+          seconds: 0
+    condition:
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: person.duncan
+            state: home
+          - condition: state
+            entity_id: person.sabrine
+            state: home
+          - condition: state
+            entity_id: input_boolean.guest_mode
+            state: 'on'
+      - condition: time
+        after: "17:30:00"
+        before: "18:30:00"
+      - condition: state
+        entity_id: media_player.sony_bravia_tv
+        state: "off"
+        for:
+          hours: 0
+          minutes: 3
+          seconds: 0 
+    action:
+      - service: media_player.select_source
+        data:
+          source: Qmusic
+        target:
+          device_id: 3cfc8e892445437eb9649e411d74542a
+      - service: media_player.volume_set
+        target:
+          device_id: 3cfc8e892445437eb9649e411d74542a
+        data:
+          volume_level: 0.03
+      - service: media_player.media_play
+        target:
+          device_id: 3cfc8e892445437eb9649e411d74542a
+    id: 5795jk84ikab12258a3a9502cd0a116a
+
+  - alias: Radio uit bij weg gaan van huis
+    description: ''
+    mode: single
+    trigger:
+      - platform: state
+        entity_id: group.ouders
+        from: 'home'
+        to: 'not_home'
+        for:
+          hours: 0
+          minutes: 5
+          seconds: 0
+    condition:
+      - condition: state
+        entity_id: input_boolean.guest_mode
+        state: 'off'
+      - condition: state
+        entity_id: media_player.sonos_woonkamer
+        state: "playing"
+        for:
+          hours: 0
+          minutes: 3
+          seconds: 0 
+    action:
+      - service: media_player.media_stop
+        target:
+          device_id: 3cfc8e892445437eb9649e411d74542a

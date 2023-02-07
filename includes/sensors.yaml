@@ -310,7 +310,7 @@
 
       homeassistant_os:
           friendly_name: "HomeAssistant OS"
-          value_template: "{{ 'Hass OS' }} {{states('sensor.home_assistant_operating_system_version')}}"
+          value_template: "{{ 'Hass OS' }} {{state_attr('sensor.version_available', 'os')}}"
 
       supervisor_version:
           friendly_name: "Supervisor Version"

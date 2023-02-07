@@ -276,7 +276,7 @@
                                 "--ha-card-box-shadow": "none"
                               },
                               {
-                                "border": "none"
+                                "--ha-card-border": "none"
                               }
                             ],
                             "state": [
@@ -666,9 +666,9 @@
                               }
                             ]
                           },
-                          "entity": "sensor.version_available",
-                          "name": "Latest Version",
-                          "icon": "mdi:update"
+                          "entity": "sensor.ha_uptime",
+                          "name": "Uptime:",
+                          "icon": "mdi:clock-time-four-outline"
                         }
                       ]
                     },
@@ -740,9 +740,9 @@
                               }
                             ]
                           },
-                          "entity": "sensor.ha_uptime",
-                          "name": "Uptime:",
-                          "icon": "mdi:clock-time-four-outline"
+                          "entity": "sensor.version_current",
+                          "name": "Core Version",
+                          "icon": "mdi:set-center"
                         },
                         {
                           "type": "custom:button-card",
@@ -809,9 +809,9 @@
                               }
                             ]
                           },
-                          "entity": "sensor.version_current",
-                          "name": "Core Version",
-                          "icon": "mdi:set-center"
+                          "entity": "sensor.version_available",
+                          "name": "Latest Version",
+                          "icon": "mdi:update"
                         }
                       ]
                     },
@@ -2072,28 +2072,60 @@
                         },
                         {
                           "type": "custom:hui-element",
-                          "card_type": "custom:auto-entities",
-                          "card": {
-                            "type": "history-graph",
-                            "hours_to_show": 24
-                          },
-                          "filter": {
-                            "include": [
-                              {
-                                "entity_id": "sensor.*kuma*"
-                              }
-                            ],
-                            "exclude": [
-                              {
-                                "entity_id": "sensor.*network*"
+                          "card_type": "entities",
+                          "entities": [
+                            {
+                              "type": "custom:hui-element",
+                              "card_type": "custom:auto-entities",
+                              "card": {
+                                "type": "grid",
+                                "columns": 1,
+                                "square": false
                               },
-                              {
-                                "entity_id": "sensor.*docker*"
+                              "card_param": "cards",
+                              "filter": {
+                                "include": [
+                                  {
+                                    "entity_id": "sensor.*kuma*",
+                                    "options": {
+                                      "type": "custom:uptime-card",
+                                      "ok": "up",
+                                      "ko": "down",
+                                      "hours_to_show": 24,
+                                      "hour24": true,
+                                      "bar": {
+                                        "spacing": 4,
+                                        "height": 25,
+                                        "round": 2
+                                      },
+                                      "show": {
+                                        "average": false,
+                                        "icon": false,
+                                        "footer": false
+                                      },
+                                      "alignment": {
+                                        "status": "spaced",
+                                        "header": "left"
+                                      }
+                                    }
+                                  }
+                                ],
+                                "exclude": [
+                                  {
+                                    "entity_id": "sensor.*network*"
+                                  },
+                                  {
+                                    "entity_id": "sensor.*docker*"
+                                  }
+                                ]
+                              },
+                              "sort": {
+                                "method": "friendly_name"
                               }
-                            ]
-                          },
-                          "sort": {
-                            "method": "friendly_name"
+                            }
+                          ],
+                          "card_mod": {
+                            "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n.card-content {\n  max-height: 425px;\n  overflow-y: scroll;\n}\n"
                           }
                         }
                       ]
@@ -8168,6 +8200,9 @@
                         "include": [
                           {
                             "domain": "device_tracker",
+                            "attributes": {
+                              "ip": "! undefined"
+                            },
                             "options": {
                               "type": "custom:button-card",
                               "size": "45%",

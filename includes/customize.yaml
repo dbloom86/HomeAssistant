@@ -270,13 +270,16 @@ device_tracker.wii:
   entity_picture: /local/Custom_Icons/nintendo-wii-ico.png
 
 device_tracker.tablet_fynn:
-  entity_picture: /local/Custom_Icons/nintendo-wii-ico.png
+  entity_picture: /local/Custom_Icons/tablet-fynn-ico.png
 
 device_tracker.tablet_luca:
-  entity_picture: /local/Custom_Icons/nintendo-wii-ico.png
+  entity_picture: /local/Custom_Icons/tablet-luca-ico.png
 
 device_tracker.unifi_cc_5b_31_b5_a5_d3_default:
   entity_picture: /local/Custom_Icons/nintendo_switch-ico.png
+
+device_tracker.smartgatewayswatermet:
+  entity_picture: /local/Custom_Icons/watermeter-ico.png
 
 #================================  
 # Uptime Kuma

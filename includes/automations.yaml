@@ -201,14 +201,13 @@
     entity_id: input_boolean.guest_mode
     state: 'off'
   action:
-    service: light.turn_off
-    target:
-      entity_id:
-        - light.lamp_achterdeur
-        - light.lamp_haard
-        - light.lamp_trap
+    - service: light.turn_off
+      target:
+        entity_id:
+          - light.lamp_achterdeur
+          - light.lamp_haard
+          - light.lamp_trap
   id: 5b9dad4d6hjk95258h679502cd0a116a
-
 
 - alias: Turn off Lampen Woonkamer sochtends
   trigger:
@@ -443,29 +442,41 @@
     entity_id:
     - sensor.total_automations
     - sensor.total_binary_sensors
+    - sensor.total_buttons
+    - sensor.total_calendars
     - sensor.total_cameras
-    - sensor.total_counters
     - sensor.total_devicetrackers
+    - sensor.domains_in_use
     - sensor.total_entities
     - sensor.total_groups
     - sensor.total_input_booleans
-    - sensor.total_input_datetimes
     - sensor.total_input_numbers
     - sensor.total_input_selects
     - sensor.total_input_texts
     - sensor.total_lights
+    - sensor.total_locks
     - sensor.total_media_players
+    - sensor.total_numbers
     - sensor.total_persons
+    - sensor.total_proximities
     - sensor.total_remotes
     - sensor.total_scenes
     - sensor.total_scripts
+    - sensor.total_selects
     - sensor.total_sensors
+    - sensor.total_suns
     - sensor.total_switches
+    - sensor.total_climates
     - sensor.total_timers
     - sensor.total_zones
     - sensor.domains_in_use
     - sensor.total_shelly_devices
     - sensor.outdated_shelly_devices
+    - sensor.total_updaters
+    - sensor.total_vacuums
+    - sensor.total_weathers
+    - sensor.total_zigbee_devices
+    - sensor.total_zwave_devices
   id: 3fe07bd3a8a4424ebf5395df92b65b00
 
   #================================  
