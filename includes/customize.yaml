@@ -267,7 +267,16 @@ device_tracker.unifi_dc_ef_ca_a9_60_5f_default:
   entity_picture: /local/Custom_Icons/toon-ico.png
 
 device_tracker.wii:
-  entity_picture: /local/Custom_Icons/wii-ico.png
+  entity_picture: /local/Custom_Icons/nintendo-wii-ico.png
+
+device_tracker.tablet_fynn:
+  entity_picture: /local/Custom_Icons/nintendo-wii-ico.png
+
+device_tracker.tablet_luca:
+  entity_picture: /local/Custom_Icons/nintendo-wii-ico.png
+
+device_tracker.unifi_cc_5b_31_b5_a5_d3_default:
+  entity_picture: /local/Custom_Icons/nintendo_switch-ico.png
 
 #================================  
 # Uptime Kuma

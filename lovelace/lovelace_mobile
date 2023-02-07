@@ -2880,187 +2880,6 @@
               "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
             },
             {
-              "type": "horizontal-stack",
-              "cards": [
-                {
-                  "type": "custom:button-card",
-                  "entity": "light.lamp_hoekje",
-                  "aspect_ratio": "1/1",
-                  "name": "Lamp Hoekje",
-                  "entity_picture": "/local/Custom_Icons/lamp_hoekje-ico.png",
-                  "show_entity_picture": true,
-                  "hold_action": {
-                    "action": "more-info"
-                  },
-                  "styles": {
-                    "card": [
-                      {
-                        "background-color": "var(--ha-card-background)"
-                      }
-                    ],
-                    "grid": [
-                      {
-                        "grid-template-areas": "\"i i verbruik\" \"n n n\""
-                      },
-                      {
-                        "grid-template-columns": "50% 25% 25%"
-                      },
-                      {
-                        "grid-template-rows": "85% 15%"
-                      }
-                    ],
-                    "name": [
-                      {
-                        "justify-self": "center"
-                      },
-                      {
-                        "font-size": "15px"
-                      },
-                      {
-                        "align-items": "middle"
-                      }
-                    ],
-                    "img_cell": [
-                      {
-                        "justify-content": "start"
-                      },
-                      {
-                        "align-items": "middle"
-                      },
-                      {
-                        "grid-column-start": 1
-                      },
-                      {
-                        "grid-column-end": 4
-                      }
-                    ],
-                    "custom_fields": {
-                      "verbruik": [
-                        {
-                          "align-self": "center"
-                        },
-                        {
-                          "justify-self": "end"
-                        },
-                        {
-                          "font-size": "12px"
-                        },
-                        {
-                          "padding-right": "10px"
-                        },
-                        {
-                          "paddin-top": "50px"
-                        }
-                      ]
-                    }
-                  },
-                  "state": [
-                    {
-                      "value": "off",
-                      "styles": {
-                        "card": [
-                          {
-                            "filter": "opacity(50%)"
-                          }
-                        ],
-                        "icon": [
-                          {
-                            "filter": "grayscale(100%)"
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "value": "on",
-                      "styles": null
-                    }
-                  ],
-                  "custom_fields": {
-                    "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['light.lamp_hoekje'].state}</span></span>`\n]]]\n"
-                  },
-                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
-                },
-                {
-                  "type": "custom:button-card",
-                  "entity": "sensor.switch_lamp_hoekje_battery",
-                  "aspect_ratio": "1/1",
-                  "name": "Schakelaar Lamp Hoekje",
-                  "entity_picture": "/local/Custom_Icons/schakelaar_lamp_hoekje-ico.png",
-                  "size": "50%",
-                  "show_entity_picture": true,
-                  "styles": {
-                    "card": [
-                      {
-                        "background-color": "var(--ha-card-background)"
-                      }
-                    ],
-                    "grid": [
-                      {
-                        "grid-template-areas": "\"i i verbruik\" \"n n n\""
-                      },
-                      {
-                        "grid-template-columns": "50% 25% 25%"
-                      },
-                      {
-                        "grid-template-rows": "85% 15%"
-                      }
-                    ],
-                    "name": [
-                      {
-                        "justify-self": "center"
-                      },
-                      {
-                        "font-size": "15px"
-                      },
-                      {
-                        "align-items": "middle"
-                      }
-                    ],
-                    "img_cell": [
-                      {
-                        "justify-content": "start"
-                      },
-                      {
-                        "align-items": "middle"
-                      },
-                      {
-                        "grid-column-start": 1
-                      },
-                      {
-                        "grid-column-end": 4
-                      }
-                    ],
-                    "custom_fields": {
-                      "verbruik": [
-                        {
-                          "align-self": "center"
-                        },
-                        {
-                          "justify-self": "end"
-                        },
-                        {
-                          "font-size": "12px"
-                        },
-                        {
-                          "padding-right": "10px"
-                        },
-                        {
-                          "paddin-top": "50px"
-                        }
-                      ]
-                    }
-                  },
-                  "custom_fields": {
-                    "verbruik": "[[[\n  return `<span>Battery <span style=\"color: var(--text-color-sensor);\">${states['sensor.switch_lamp_hoekje_battery'].state}%</span></span>`\n]]]\n"
-                  },
-                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
-                },
-                {
-                  "type": "custom:gap-card"
-                }
-              ]
-            },
-            {
               "type": "custom:mod-card",
               "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n",
               "card": {
@@ -3551,8 +3370,9 @@
           ]
         },
         {
-          "title": "Zolder",
-          "path": "zolder",
+          "theme": "Backend-selected",
+          "title": "Kantoor",
+          "path": "kantoor",
           "icon": "mdi:briefcase",
           "visible": [
             {
@@ -3593,6 +3413,187 @@
                 }
               ],
               "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+            },
+            {
+              "type": "horizontal-stack",
+              "cards": [
+                {
+                  "type": "custom:button-card",
+                  "entity": "light.lamp_hoekje",
+                  "aspect_ratio": "1/1",
+                  "name": "Lamp Hoekje",
+                  "entity_picture": "/local/Custom_Icons/lamp_hoekje-ico.png",
+                  "show_entity_picture": true,
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "styles": {
+                    "card": [
+                      {
+                        "background-color": "var(--ha-card-background)"
+                      }
+                    ],
+                    "grid": [
+                      {
+                        "grid-template-areas": "\"i i verbruik\" \"n n n\""
+                      },
+                      {
+                        "grid-template-columns": "50% 25% 25%"
+                      },
+                      {
+                        "grid-template-rows": "85% 15%"
+                      }
+                    ],
+                    "name": [
+                      {
+                        "justify-self": "center"
+                      },
+                      {
+                        "font-size": "15px"
+                      },
+                      {
+                        "align-items": "middle"
+                      }
+                    ],
+                    "img_cell": [
+                      {
+                        "justify-content": "start"
+                      },
+                      {
+                        "align-items": "middle"
+                      },
+                      {
+                        "grid-column-start": 1
+                      },
+                      {
+                        "grid-column-end": 4
+                      }
+                    ],
+                    "custom_fields": {
+                      "verbruik": [
+                        {
+                          "align-self": "center"
+                        },
+                        {
+                          "justify-self": "end"
+                        },
+                        {
+                          "font-size": "12px"
+                        },
+                        {
+                          "padding-right": "10px"
+                        },
+                        {
+                          "paddin-top": "50px"
+                        }
+                      ]
+                    }
+                  },
+                  "state": [
+                    {
+                      "value": "off",
+                      "styles": {
+                        "card": [
+                          {
+                            "filter": "opacity(50%)"
+                          }
+                        ],
+                        "icon": [
+                          {
+                            "filter": "grayscale(100%)"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "value": "on",
+                      "styles": null
+                    }
+                  ],
+                  "custom_fields": {
+                    "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['light.lamp_hoekje'].state}</span></span>`\n]]]\n"
+                  },
+                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                },
+                {
+                  "type": "custom:button-card",
+                  "entity": "sensor.switch_lamp_hoekje_battery",
+                  "aspect_ratio": "1/1",
+                  "name": "Schakelaar Lamp Hoekje",
+                  "entity_picture": "/local/Custom_Icons/schakelaar_lamp_hoekje-ico.png",
+                  "size": "50%",
+                  "show_entity_picture": true,
+                  "styles": {
+                    "card": [
+                      {
+                        "background-color": "var(--ha-card-background)"
+                      }
+                    ],
+                    "grid": [
+                      {
+                        "grid-template-areas": "\"i i verbruik\" \"n n n\""
+                      },
+                      {
+                        "grid-template-columns": "50% 25% 25%"
+                      },
+                      {
+                        "grid-template-rows": "85% 15%"
+                      }
+                    ],
+                    "name": [
+                      {
+                        "justify-self": "center"
+                      },
+                      {
+                        "font-size": "15px"
+                      },
+                      {
+                        "align-items": "middle"
+                      }
+                    ],
+                    "img_cell": [
+                      {
+                        "justify-content": "start"
+                      },
+                      {
+                        "align-items": "middle"
+                      },
+                      {
+                        "grid-column-start": 1
+                      },
+                      {
+                        "grid-column-end": 4
+                      }
+                    ],
+                    "custom_fields": {
+                      "verbruik": [
+                        {
+                          "align-self": "center"
+                        },
+                        {
+                          "justify-self": "end"
+                        },
+                        {
+                          "font-size": "12px"
+                        },
+                        {
+                          "padding-right": "10px"
+                        },
+                        {
+                          "paddin-top": "50px"
+                        }
+                      ]
+                    }
+                  },
+                  "custom_fields": {
+                    "verbruik": "[[[\n  return `<span>Battery <span style=\"color: var(--text-color-sensor);\">${states['sensor.switch_lamp_hoekje_battery'].state}%</span></span>`\n]]]\n"
+                  },
+                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                },
+                {
+                  "type": "custom:gap-card"
+                }
+              ]
             },
             {
               "type": "custom:mod-card",
@@ -4295,16 +4296,7 @@
               "strict": true,
               "sort_by": "name+",
               "entities": {
-                "include": "sensor.docker*",
-                "exclude": [
-                  "sensor.docker*.status",
-                  "sensor.docker_memory_percent",
-                  "sensor.docker_1cpu",
-                  "sensor.docker_containers_running",
-                  "sensor.docker_containers_total",
-                  "sensor.docker_version",
-                  "sensor.dockerproxy_bar"
-                ]
+                "include": "sensor.docker*state"
               },
               "columns": [
                 {
