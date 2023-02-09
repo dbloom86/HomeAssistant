@@ -211,7 +211,7 @@
           "subview": false,
           "layout": {
             "max_cols": 5,
-            "width": 350
+            "width": 250
           },
           "badges": [],
           "cards": [
@@ -2735,7 +2735,7 @@
           "type": "custom:horizontal-layout",
           "layout": {
             "max_cols": 5,
-            "width": 350
+            "width": 250
           },
           "badges": [],
           "cards": [
@@ -6510,7 +6510,7 @@
           "type": "custom:horizontal-layout",
           "layout": {
             "max_cols": 5,
-            "width": 350
+            "width": 250
           },
           "badges": [],
           "cards": [
@@ -8318,7 +8318,7 @@
           "type": "custom:horizontal-layout",
           "layout": {
             "max_cols": 5,
-            "width": 350
+            "width": 250
           },
           "badges": [],
           "cards": [
@@ -11143,6 +11143,7 @@
           ]
         },
         {
+          "theme": "Backend-selected",
           "icon": "mdi:power-plug",
           "path": "Power_Usage",
           "title": "",
@@ -11153,558 +11154,574 @@
           ],
           "type": "custom:masonry-layout",
           "layout": {
-            "max_cols": 3
+            "max_cols": 3,
+            "width": 300
           },
           "badges": [],
           "cards": [
             {
-              "type": "entities",
-              "entities": [
-                {
-                  "type": "custom:text-divider-row",
-                  "text": "Energie Gebruik",
-                  "style": "h2:before, h2:after {\n  position: absolute;\n  top: 51%;\n  overflow: hidden;\n  width: 50%;\n  height: var(--line-size);\n  content: '\\a0';\n  background-color: var(--divider-color);\n}\n\nh2:before {\n  margin-left: -50%;\n  text-align: right;\n}\nh2.text-divider {\n  border-bottom: none;\n}\n\nh2.text-divider span {\n  background: none;\n}\n"
-                },
-                {
-                  "card_type": "energy-distribution",
-                  "type": "custom:hui-element",
-                  "style": "ha-card {\n  border-radius: 5px;\n  box-shadow: none;\n  background: none;\n  border: none;\n }\n"
-                }
-              ],
-              "style": {
-                ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
-              }
-            },
-            {
-              "align_state": "left",
-              "entities": [
-                {
-                  "entity": "sensor.power_usage"
-                },
-                {
-                  "entity": "input_number.nighttime",
-                  "color": "#046bd1",
-                  "show_line": false,
-                  "show_points": false,
-                  "show_legend": false,
-                  "y_axis": "secondary"
-                }
-              ],
-              "color_thresholds": [
-                {
-                  "value": 0,
-                  "color": "#00e64d"
-                },
-                {
-                  "value": 1500,
-                  "color": "#ff4d4d"
-                }
-              ],
-              "color_thresholds_transition": "hard",
-              "upper_bound_secondary": 1,
-              "lower_bound_secondary": 0,
-              "font_size": 80,
-              "font_size_header": 15,
-              "update_interval": 30,
-              "height": 75,
-              "hour24": true,
-              "hours_to_show": 24,
-              "icon": "mdi:gauge",
-              "name": "Energie Gebruik",
-              "points_per_hour": 6,
-              "line_width": 2,
-              "show": {
-                "extrema": true,
-                "icon": false,
-                "labels": false,
-                "labels_secondary": false,
-                "name": false,
-                "average": true,
-                "state": true
-              },
-              "style": {
-                ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}     \n"
-              },
-              "type": "custom:mini-graph-card"
-            },
-            {
-              "type": "entities",
-              "entities": [
-                {
-                  "type": "custom:text-divider-row",
-                  "text": "Device per Maand",
-                  "style": "h2:before, h2:after {\n  position: absolute;\n  top: 51%;\n  overflow: hidden;\n  width: 50%;\n  height: var(--line-size);\n  content: '\\a0';\n  background-color: var(--divider-color);\n}\n\nh2:before {\n  margin-left: -50%;\n  text-align: right;\n}\nh2.text-divider {\n  border-bottom: none;\n}\n\nh2.text-divider span {\n  background: none;\n}\n"
-                },
-                {
-                  "type": "custom:auto-entities",
-                  "card": {
-                    "type": "entities",
-                    "show_header_toggle": false,
-                    "style": {
-                      ".": "#states > * {\n  margin: -1px -15px !important;\n}\nha-card {\n  height: 100%;\n  box-shadow: none;\n  background-color: rgba(255, 255, 255, 0);\n  background: none;\n  border: none;\n}\n"
-                    }
-                  },
-                  "filter": {
-                    "include": [
-                      {
-                        "entity_id": "sensor.maandelijks_verbruik_*",
-                        "options": {
-                          "icon": "mdi:chart-bar"
-                        }
-                      }
-                    ]
-                  },
-                  "sort": {
-                    "method": "state",
-                    "numeric": true,
-                    "reverse": true
-                  }
-                }
-              ],
-              "style": {
-                ".": "#states > * {\n  margin: -5px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
-              }
-            },
-            {
               "type": "vertical-stack",
               "cards": [
                 {
-                  "type": "horizontal-stack",
-                  "cards": [
-                    {
-                      "type": "custom:mini-graph-card",
-                      "align_state": "left",
-                      "entities": [
-                        {
-                          "entity": "sensor.shelly_shplg_s_9a53ab_current_consumption",
-                          "color": "#3399ff"
-                        }
-                      ],
-                      "font_size": 80,
-                      "font_size_header": 15,
-                      "height": 85,
-                      "hour24": true,
-                      "hours_to_show": 24,
-                      "icon": "mdi:gauge",
-                      "points_per_hour": 6,
-                      "line_width": 4,
-                      "show": {
-                        "extrema": false,
-                        "icon": true,
-                        "labels": false,
-                        "name": true,
-                        "average": false,
-                        "state": true
-                      },
-                      "style": {
-                        ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
-                      }
-                    },
-                    {
-                      "type": "custom:mini-graph-card",
-                      "align_state": "left",
-                      "entities": [
-                        {
-                          "entity": "sensor.shelly_shplg_s_9a5381_current_consumption",
-                          "color": "#3399ff"
-                        }
-                      ],
-                      "font_size": 80,
-                      "font_size_header": 15,
-                      "height": 85,
-                      "hour24": true,
-                      "hours_to_show": 24,
-                      "icon": "mdi:gauge",
-                      "points_per_hour": 6,
-                      "line_width": 4,
-                      "show": {
-                        "extrema": false,
-                        "icon": true,
-                        "labels": false,
-                        "name": true,
-                        "average": false,
-                        "state": true
-                      },
-                      "style": {
-                        ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "horizontal-stack",
-                  "cards": [
-                    {
-                      "type": "custom:mini-graph-card",
-                      "align_state": "left",
-                      "entities": [
-                        {
-                          "entity": "sensor.shelly_shplg_s_9d9823_current_consumption",
-                          "color": "#3399ff"
-                        }
-                      ],
-                      "font_size": 80,
-                      "font_size_header": 15,
-                      "height": 85,
-                      "hour24": true,
-                      "hours_to_show": 24,
-                      "icon": "mdi:gauge",
-                      "points_per_hour": 6,
-                      "line_width": 4,
-                      "show": {
-                        "extrema": false,
-                        "icon": true,
-                        "labels": false,
-                        "name": true,
-                        "average": false,
-                        "state": true
-                      },
-                      "style": {
-                        ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
-                      }
-                    },
-                    {
-                      "type": "custom:mini-graph-card",
-                      "align_state": "left",
-                      "entities": [
-                        {
-                          "entity": "sensor.shelly_shsw_pm_98cdac1f389e_current_consumption",
-                          "color": "#3399ff"
-                        }
-                      ],
-                      "font_size": 80,
-                      "font_size_header": 15,
-                      "height": 85,
-                      "hour24": true,
-                      "hours_to_show": 24,
-                      "icon": "mdi:gauge",
-                      "points_per_hour": 6,
-                      "line_width": 4,
-                      "show": {
-                        "extrema": false,
-                        "icon": true,
-                        "labels": false,
-                        "name": true,
-                        "average": false,
-                        "state": true
-                      },
-                      "style": {
-                        ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
-                      }
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "entities",
-              "entities": [
-                {
-                  "type": "custom:text-divider-row",
-                  "text": "Energie Verbruik",
-                  "style": "h2:before, h2:after {\n  position: absolute;\n  top: 51%;\n  overflow: hidden;\n  width: 50%;\n  height: var(--line-size);\n  content: '\\a0';\n  background-color: var(--divider-color);\n}\n\nh2:before {\n  margin-left: -50%;\n  text-align: right;\n}\nh2.text-divider {\n  border-bottom: none;\n}\n\nh2.text-divider span {\n  background: none;\n}\n"
-                },
-                {
-                  "entity": "sensor.kosten"
-                },
-                {
-                  "entity": "sensor.energy_cost_today"
-                },
-                {
-                  "entity": "sensor.gas_cost_today"
-                },
-                {
-                  "entity": "sensor.total_cost_today"
-                },
-                {
-                  "entity": "sensor.energy_cost_this_month"
-                },
-                {
-                  "entity": "sensor.gas_cost_this_month"
-                },
-                {
-                  "entity": "sensor.total_cost_this_month"
-                },
-                {
-                  "type": "divider"
-                },
-                {
-                  "entity": "sensor.daily_usage"
-                },
-                {
-                  "entity": "sensor.dagelijks_energie_verbruik_laag",
-                  "name": "Energie Vandaag Laag"
-                },
-                {
-                  "entity": "sensor.dagelijks_energie_verbruik_hoog",
-                  "name": "Energie Vandaag Hoog"
-                },
-                {
-                  "entity": "sensor.dagelijks_gas_verbruik",
-                  "name": "Gas Vandaag"
-                },
-                {
-                  "type": "divider"
-                },
-                {
-                  "entity": "sensor.monthly_usage"
-                },
-                {
-                  "entity": "sensor.maandelijks_energie_verbruik_laag",
-                  "name": "Energie deze maand Laag"
-                },
-                {
-                  "entity": "sensor.maandelijks_energie_verbruik_hoog",
-                  "name": "Energie deze maand Hoog"
-                },
-                {
-                  "entity": "sensor.maandelijks_gas_verbruik",
-                  "name": "Gas deze maand"
-                },
-                {
-                  "type": "divider"
-                },
-                {
-                  "entity": "sensor.toon_p1_power_use_cnt_low",
-                  "name": "Meterstand Elektra Laag",
-                  "icon": "mdi:counter"
-                },
-                {
-                  "entity": "sensor.toon_p1_power_use_cnt_high",
-                  "name": "Meterstand Elektra Hoog",
-                  "icon": "mdi:counter"
-                },
-                {
-                  "entity": "sensor.toon_gas_used_cnt",
-                  "name": "Meterstand Gas",
-                  "icon": "mdi:counter"
-                },
-                {
-                  "type": "custom:fold-entity-row",
-                  "head": {
-                    "type": "section",
-                    "label": "Tarieven"
-                  },
+                  "type": "entities",
                   "entities": [
                     {
-                      "entity": "input_number.energy_cost_daily"
+                      "type": "custom:text-divider-row",
+                      "text": "Energie Gebruik",
+                      "style": "h2:before, h2:after {\n  position: absolute;\n  top: 51%;\n  overflow: hidden;\n  width: 50%;\n  height: var(--line-size);\n  content: '\\a0';\n  background-color: var(--divider-color);\n}\n\nh2:before {\n  margin-left: -50%;\n  text-align: right;\n}\nh2.text-divider {\n  border-bottom: none;\n}\n\nh2.text-divider span {\n  background: none;\n}\n"
                     },
                     {
-                      "entity": "input_number.energy_cost"
-                    },
-                    {
-                      "entity": "input_number.gas_cost_daily"
-                    },
-                    {
-                      "entity": "input_number.gas_cost"
+                      "card_type": "energy-distribution",
+                      "type": "custom:hui-element",
+                      "style": "ha-card {\n  border-radius: 5px;\n  box-shadow: none;\n  background: none;\n  border: none;\n }\n"
                     }
                   ],
-                  "style": ":host div#items {\n  margin: 0px 0px 0px -25px\n}\n"
-                }
-              ],
-              "style": {
-                ".": "#states > * {\n  margin: -5px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
-              }
-            },
-            {
-              "type": "vertical-stack",
-              "cards": [
-                {
-                  "type": "horizontal-stack",
-                  "cards": [
-                    {
-                      "align_state": "left",
-                      "entities": [
-                        {
-                          "entity": "sensor.total_energy_this_month"
-                        }
-                      ],
-                      "color_thresholds": [
-                        {
-                          "value": 0,
-                          "color": "#3399ff"
-                        },
-                        {
-                          "value": 300,
-                          "color": "#00e64d"
-                        },
-                        {
-                          "value": 420,
-                          "color": "#ff944d"
-                        },
-                        {
-                          "value": 500,
-                          "color": "#ff4d4d"
-                        }
-                      ],
-                      "color_thresholds_transition": "hard",
-                      "font_size": 80,
-                      "font_size_header": 15,
-                      "height": 85,
-                      "hour24": true,
-                      "icon": "mdi:flash",
-                      "name": "Maandelijks Energie",
-                      "hours_to_show": 720,
-                      "show": {
-                        "graph": "bar"
-                      },
-                      "group_by": "date",
-                      "style": {
-                        ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}  \n"
-                      },
-                      "type": "custom:mini-graph-card"
-                    },
-                    {
-                      "align_state": "left",
-                      "entities": [
-                        {
-                          "entity": "sensor.energy_cost_this_month"
-                        }
-                      ],
-                      "color_thresholds": [
-                        {
-                          "value": 0,
-                          "color": "#3399ff"
-                        },
-                        {
-                          "value": 30,
-                          "color": "#00e64d"
-                        },
-                        {
-                          "value": 50,
-                          "color": "#ff944d"
-                        },
-                        {
-                          "value": 75,
-                          "color": "#ff4d4d"
-                        }
-                      ],
-                      "color_thresholds_transition": "hard",
-                      "font_size": 80,
-                      "font_size_header": 15,
-                      "height": 85,
-                      "hour24": true,
-                      "hours_to_show": 720,
-                      "icon": "mdi:currency-eur",
-                      "name": "Maandelijkse Kosten",
-                      "line_width": 2,
-                      "show": {
-                        "graph": "bar"
-                      },
-                      "group_by": "date",
-                      "style": {
-                        ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}     \n"
-                      },
-                      "type": "custom:mini-graph-card"
-                    }
-                  ]
+                  "style": {
+                    ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                  }
                 },
                 {
-                  "type": "horizontal-stack",
-                  "cards": [
+                  "align_state": "left",
+                  "entities": [
                     {
-                      "align_state": "left",
-                      "entities": [
-                        {
-                          "entity": "sensor.maandelijks_gas_verbruik"
-                        }
-                      ],
-                      "color_thresholds": [
-                        {
-                          "value": 0,
-                          "color": "#3399ff"
-                        },
-                        {
-                          "value": 25,
-                          "color": "#00e64d"
-                        },
-                        {
-                          "value": 80,
-                          "color": "#ff944d"
-                        },
-                        {
-                          "value": 125,
-                          "color": "#ff4d4d"
-                        }
-                      ],
-                      "color_thresholds_transition": "hard",
-                      "font_size": 80,
-                      "font_size_header": 15,
-                      "height": 85,
-                      "hour24": true,
-                      "hours_to_show": 720,
-                      "icon": "mdi:gas-cylinder",
-                      "name": "Maandelijks Gas",
-                      "show": {
-                        "graph": "bar"
-                      },
-                      "group_by": "date",
-                      "style": {
-                        ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}     \n"
-                      },
-                      "type": "custom:mini-graph-card"
+                      "entity": "sensor.power_usage"
                     },
                     {
-                      "align_state": "left",
-                      "entities": [
+                      "entity": "input_number.nighttime",
+                      "color": "#046bd1",
+                      "show_line": false,
+                      "show_points": false,
+                      "show_legend": false,
+                      "y_axis": "secondary"
+                    }
+                  ],
+                  "color_thresholds": [
+                    {
+                      "value": 0,
+                      "color": "#00e64d"
+                    },
+                    {
+                      "value": 1500,
+                      "color": "#ff4d4d"
+                    }
+                  ],
+                  "color_thresholds_transition": "hard",
+                  "upper_bound_secondary": 1,
+                  "lower_bound_secondary": 0,
+                  "font_size": 80,
+                  "font_size_header": 15,
+                  "update_interval": 30,
+                  "height": 75,
+                  "hour24": true,
+                  "hours_to_show": 24,
+                  "icon": "mdi:gauge",
+                  "name": "Energie Gebruik",
+                  "points_per_hour": 6,
+                  "line_width": 2,
+                  "show": {
+                    "extrema": true,
+                    "icon": false,
+                    "labels": false,
+                    "labels_secondary": false,
+                    "name": false,
+                    "average": true,
+                    "state": true
+                  },
+                  "style": {
+                    ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}     \n"
+                  },
+                  "type": "custom:mini-graph-card"
+                },
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "horizontal-stack",
+                      "cards": [
                         {
-                          "entity": "sensor.gas_cost_this_month"
+                          "align_state": "left",
+                          "entities": [
+                            {
+                              "entity": "sensor.total_energy_this_month"
+                            }
+                          ],
+                          "color_thresholds": [
+                            {
+                              "value": 0,
+                              "color": "#3399ff"
+                            },
+                            {
+                              "value": 300,
+                              "color": "#00e64d"
+                            },
+                            {
+                              "value": 420,
+                              "color": "#ff944d"
+                            },
+                            {
+                              "value": 500,
+                              "color": "#ff4d4d"
+                            }
+                          ],
+                          "color_thresholds_transition": "hard",
+                          "font_size": 80,
+                          "font_size_header": 15,
+                          "height": 85,
+                          "hour24": true,
+                          "icon": "mdi:flash",
+                          "name": "Maandelijks Energie",
+                          "hours_to_show": 720,
+                          "show": {
+                            "graph": "bar"
+                          },
+                          "group_by": "date",
+                          "style": {
+                            ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}  \n"
+                          },
+                          "type": "custom:mini-graph-card"
+                        },
+                        {
+                          "align_state": "left",
+                          "entities": [
+                            {
+                              "entity": "sensor.energy_cost_this_month"
+                            }
+                          ],
+                          "color_thresholds": [
+                            {
+                              "value": 0,
+                              "color": "#3399ff"
+                            },
+                            {
+                              "value": 30,
+                              "color": "#00e64d"
+                            },
+                            {
+                              "value": 50,
+                              "color": "#ff944d"
+                            },
+                            {
+                              "value": 75,
+                              "color": "#ff4d4d"
+                            }
+                          ],
+                          "color_thresholds_transition": "hard",
+                          "font_size": 80,
+                          "font_size_header": 15,
+                          "height": 85,
+                          "hour24": true,
+                          "hours_to_show": 720,
+                          "icon": "mdi:currency-eur",
+                          "name": "Maandelijkse Kosten",
+                          "line_width": 2,
+                          "show": {
+                            "graph": "bar"
+                          },
+                          "group_by": "date",
+                          "style": {
+                            ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}     \n"
+                          },
+                          "type": "custom:mini-graph-card"
                         }
-                      ],
-                      "color_thresholds": [
+                      ]
+                    },
+                    {
+                      "type": "horizontal-stack",
+                      "cards": [
                         {
-                          "value": 0,
-                          "color": "#3399ff"
+                          "align_state": "left",
+                          "entities": [
+                            {
+                              "entity": "sensor.maandelijks_gas_verbruik"
+                            }
+                          ],
+                          "color_thresholds": [
+                            {
+                              "value": 0,
+                              "color": "#3399ff"
+                            },
+                            {
+                              "value": 25,
+                              "color": "#00e64d"
+                            },
+                            {
+                              "value": 80,
+                              "color": "#ff944d"
+                            },
+                            {
+                              "value": 125,
+                              "color": "#ff4d4d"
+                            }
+                          ],
+                          "color_thresholds_transition": "hard",
+                          "font_size": 80,
+                          "font_size_header": 15,
+                          "height": 85,
+                          "hour24": true,
+                          "hours_to_show": 720,
+                          "icon": "mdi:gas-cylinder",
+                          "name": "Maandelijks Gas",
+                          "show": {
+                            "graph": "bar"
+                          },
+                          "group_by": "date",
+                          "style": {
+                            ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}     \n"
+                          },
+                          "type": "custom:mini-graph-card"
                         },
                         {
-                          "value": 45,
-                          "color": "#00e64d"
-                        },
-                        {
-                          "value": 80,
-                          "color": "#ff944d"
-                        },
-                        {
-                          "value": 130,
-                          "color": "#ff4d4d"
+                          "align_state": "left",
+                          "entities": [
+                            {
+                              "entity": "sensor.gas_cost_this_month"
+                            }
+                          ],
+                          "color_thresholds": [
+                            {
+                              "value": 0,
+                              "color": "#3399ff"
+                            },
+                            {
+                              "value": 45,
+                              "color": "#00e64d"
+                            },
+                            {
+                              "value": 80,
+                              "color": "#ff944d"
+                            },
+                            {
+                              "value": 130,
+                              "color": "#ff4d4d"
+                            }
+                          ],
+                          "color_thresholds_transition": "hard",
+                          "font_size": 80,
+                          "font_size_header": 15,
+                          "height": 85,
+                          "hour24": true,
+                          "hours_to_show": 720,
+                          "icon": "mdi:currency-eur",
+                          "name": "Maandelijkse Kosten",
+                          "show": {
+                            "graph": "bar"
+                          },
+                          "group_by": "date",
+                          "style": {
+                            ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}     \n"
+                          },
+                          "type": "custom:mini-graph-card"
                         }
-                      ],
-                      "color_thresholds_transition": "hard",
-                      "font_size": 80,
-                      "font_size_header": 15,
-                      "height": 85,
-                      "hour24": true,
-                      "hours_to_show": 720,
-                      "icon": "mdi:currency-eur",
-                      "name": "Maandelijkse Kosten",
-                      "show": {
-                        "graph": "bar"
-                      },
-                      "group_by": "date",
-                      "style": {
-                        ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}     \n"
-                      },
-                      "type": "custom:mini-graph-card"
+                      ]
                     }
                   ]
                 }
               ]
             },
             {
-              "type": "iframe",
-              "url": "https://grafana.bloomlan.nl/d/PbO_uVKVk/home-assistant?orgId=1&viewPanel=6&kiosk",
-              "aspect_ratio": "75%",
-              "style": {
-                ".": "#states > * {\n  margin: -5px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
-              }
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "horizontal-stack",
+                      "cards": [
+                        {
+                          "type": "custom:mini-graph-card",
+                          "align_state": "left",
+                          "entities": [
+                            {
+                              "entity": "sensor.shelly_shplg_s_9a53ab_current_consumption",
+                              "color": "#3399ff"
+                            }
+                          ],
+                          "font_size": 80,
+                          "font_size_header": 15,
+                          "height": 85,
+                          "hour24": true,
+                          "hours_to_show": 24,
+                          "icon": "mdi:gauge",
+                          "points_per_hour": 6,
+                          "line_width": 4,
+                          "show": {
+                            "extrema": false,
+                            "icon": true,
+                            "labels": false,
+                            "name": true,
+                            "average": false,
+                            "state": true
+                          },
+                          "style": {
+                            ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                          }
+                        },
+                        {
+                          "type": "custom:mini-graph-card",
+                          "align_state": "left",
+                          "entities": [
+                            {
+                              "entity": "sensor.shelly_shplg_s_9a5381_current_consumption",
+                              "color": "#3399ff"
+                            }
+                          ],
+                          "font_size": 80,
+                          "font_size_header": 15,
+                          "height": 85,
+                          "hour24": true,
+                          "hours_to_show": 24,
+                          "icon": "mdi:gauge",
+                          "points_per_hour": 6,
+                          "line_width": 4,
+                          "show": {
+                            "extrema": false,
+                            "icon": true,
+                            "labels": false,
+                            "name": true,
+                            "average": false,
+                            "state": true
+                          },
+                          "style": {
+                            ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "horizontal-stack",
+                      "cards": [
+                        {
+                          "type": "custom:mini-graph-card",
+                          "align_state": "left",
+                          "entities": [
+                            {
+                              "entity": "sensor.shelly_shplg_s_9d9823_current_consumption",
+                              "color": "#3399ff"
+                            }
+                          ],
+                          "font_size": 80,
+                          "font_size_header": 15,
+                          "height": 85,
+                          "hour24": true,
+                          "hours_to_show": 24,
+                          "icon": "mdi:gauge",
+                          "points_per_hour": 6,
+                          "line_width": 4,
+                          "show": {
+                            "extrema": false,
+                            "icon": true,
+                            "labels": false,
+                            "name": true,
+                            "average": false,
+                            "state": true
+                          },
+                          "style": {
+                            ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                          }
+                        },
+                        {
+                          "type": "custom:mini-graph-card",
+                          "align_state": "left",
+                          "entities": [
+                            {
+                              "entity": "sensor.shelly_shsw_pm_98cdac1f389e_current_consumption",
+                              "color": "#3399ff"
+                            }
+                          ],
+                          "font_size": 80,
+                          "font_size_header": 15,
+                          "height": 85,
+                          "hour24": true,
+                          "hours_to_show": 24,
+                          "icon": "mdi:gauge",
+                          "points_per_hour": 6,
+                          "line_width": 4,
+                          "show": {
+                            "extrema": false,
+                            "icon": true,
+                            "labels": false,
+                            "name": true,
+                            "average": false,
+                            "state": true
+                          },
+                          "style": {
+                            ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "iframe",
+                  "url": "https://grafana.bloomlan.nl/d/PbO_uVKVk/home-assistant?orgId=1&viewPanel=6&kiosk",
+                  "aspect_ratio": "75%",
+                  "style": {
+                    ".": "#states > * {\n  margin: -5px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                  }
+                },
+                {
+                  "type": "iframe",
+                  "url": "https://grafana.bloomlan.nl/d/PbO_uVKVk/home-assistant?orgId=1&viewPanel=5&kiosk",
+                  "aspect_ratio": "75%",
+                  "style": {
+                    ".": "#states > * {\n  margin: -5px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                  }
+                }
+              ]
             },
             {
-              "type": "iframe",
-              "url": "https://grafana.bloomlan.nl/d/PbO_uVKVk/home-assistant?orgId=1&viewPanel=5&kiosk",
-              "aspect_ratio": "75%",
-              "style": {
-                ".": "#states > * {\n  margin: -5px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
-              }
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "type": "custom:text-divider-row",
+                      "text": "Device per Maand",
+                      "style": "h2:before, h2:after {\n  position: absolute;\n  top: 51%;\n  overflow: hidden;\n  width: 50%;\n  height: var(--line-size);\n  content: '\\a0';\n  background-color: var(--divider-color);\n}\n\nh2:before {\n  margin-left: -50%;\n  text-align: right;\n}\nh2.text-divider {\n  border-bottom: none;\n}\n\nh2.text-divider span {\n  background: none;\n}\n"
+                    },
+                    {
+                      "type": "custom:auto-entities",
+                      "card": {
+                        "type": "entities",
+                        "show_header_toggle": false,
+                        "style": {
+                          ".": "#states > * {\n  margin: -1px -15px !important;\n}\nha-card {\n  height: 100%;\n  box-shadow: none;\n  background-color: rgba(255, 255, 255, 0);\n  background: none;\n  border: none;\n}\n"
+                        }
+                      },
+                      "filter": {
+                        "include": [
+                          {
+                            "entity_id": "sensor.maandelijks_verbruik_*",
+                            "options": {
+                              "icon": "mdi:chart-bar"
+                            }
+                          }
+                        ]
+                      },
+                      "sort": {
+                        "method": "state",
+                        "numeric": true,
+                        "reverse": true
+                      }
+                    }
+                  ],
+                  "style": {
+                    ".": "#states > * {\n  margin: -5px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                  }
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "type": "custom:text-divider-row",
+                      "text": "Energie Verbruik",
+                      "style": "h2:before, h2:after {\n  position: absolute;\n  top: 51%;\n  overflow: hidden;\n  width: 50%;\n  height: var(--line-size);\n  content: '\\a0';\n  background-color: var(--divider-color);\n}\n\nh2:before {\n  margin-left: -50%;\n  text-align: right;\n}\nh2.text-divider {\n  border-bottom: none;\n}\n\nh2.text-divider span {\n  background: none;\n}\n"
+                    },
+                    {
+                      "entity": "sensor.kosten"
+                    },
+                    {
+                      "entity": "sensor.energy_cost_today"
+                    },
+                    {
+                      "entity": "sensor.gas_cost_today"
+                    },
+                    {
+                      "entity": "sensor.total_cost_today"
+                    },
+                    {
+                      "entity": "sensor.energy_cost_this_month"
+                    },
+                    {
+                      "entity": "sensor.gas_cost_this_month"
+                    },
+                    {
+                      "entity": "sensor.total_cost_this_month"
+                    },
+                    {
+                      "type": "divider"
+                    },
+                    {
+                      "entity": "sensor.daily_usage"
+                    },
+                    {
+                      "entity": "sensor.dagelijks_energie_verbruik_laag",
+                      "name": "Energie Vandaag Laag"
+                    },
+                    {
+                      "entity": "sensor.dagelijks_energie_verbruik_hoog",
+                      "name": "Energie Vandaag Hoog"
+                    },
+                    {
+                      "entity": "sensor.dagelijks_gas_verbruik",
+                      "name": "Gas Vandaag"
+                    },
+                    {
+                      "type": "divider"
+                    },
+                    {
+                      "entity": "sensor.monthly_usage"
+                    },
+                    {
+                      "entity": "sensor.maandelijks_energie_verbruik_laag",
+                      "name": "Energie deze maand Laag"
+                    },
+                    {
+                      "entity": "sensor.maandelijks_energie_verbruik_hoog",
+                      "name": "Energie deze maand Hoog"
+                    },
+                    {
+                      "entity": "sensor.maandelijks_gas_verbruik",
+                      "name": "Gas deze maand"
+                    },
+                    {
+                      "type": "divider"
+                    },
+                    {
+                      "entity": "sensor.toon_p1_power_use_cnt_low",
+                      "name": "Meterstand Elektra Laag",
+                      "icon": "mdi:counter"
+                    },
+                    {
+                      "entity": "sensor.toon_p1_power_use_cnt_high",
+                      "name": "Meterstand Elektra Hoog",
+                      "icon": "mdi:counter"
+                    },
+                    {
+                      "entity": "sensor.toon_gas_used_cnt",
+                      "name": "Meterstand Gas",
+                      "icon": "mdi:counter"
+                    },
+                    {
+                      "type": "custom:fold-entity-row",
+                      "head": {
+                        "type": "section",
+                        "label": "Tarieven"
+                      },
+                      "entities": [
+                        {
+                          "entity": "input_number.energy_cost_daily"
+                        },
+                        {
+                          "entity": "input_number.energy_cost"
+                        },
+                        {
+                          "entity": "input_number.gas_cost_daily"
+                        },
+                        {
+                          "entity": "input_number.gas_cost"
+                        }
+                      ],
+                      "style": ":host div#items {\n  margin: 0px 0px 0px -25px\n}\n"
+                    }
+                  ],
+                  "style": {
+                    ".": "#states > * {\n  margin: -5px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                  }
+                }
+              ]
             }
           ]
         },

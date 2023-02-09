@@ -1,0 +1,21 @@
+#================================
+# Multiscrape
+#================================
+
+multiscrape:
+  - name: vattenfall scraper
+    resource: https://www.vattenfall.nl/service/mijn-vattenfall/#/vf/contract
+    scan_interval: 10
+    form_submit:
+      submit_once: true
+      resource: "https://accounts.vattenfall.nl/iamng/nlb2c-revamp/#/inloggen"
+      select: ".iam-web-login"
+      input:
+        username: !secret vattenfall_username
+        password: !secret vattenfall_password
+    log_response: true
+    sensor:
+      - unique_id: energieprijs_vattenfall
+        name: Energieprijs Vattenfall
+        select: ".ng-star-inserted"
+        unit_of_measurement: "€/kWh"
