@@ -114,7 +114,7 @@ automation:
   - alias: Set Radiator Slaapkamer aan
     trigger:
     - platform: time
-      at: '06:10'
+      at: '06:00'
     - platform: time
       at: '22:00'
     condition:
@@ -128,7 +128,7 @@ automation:
       - service: climate.set_temperature
         data:
           hvac_mode: heat
-          temperature: 17
+          temperature: 18
         target:
           device_id: 309265144a15110bc63467a83a8759a3
     id: 5b9d4568a9c449258a3a95hj81fh5f1
@@ -150,7 +150,7 @@ automation:
   - alias: Set Radiator Luca en Fynn aan
     trigger:
     - platform: time
-      at: '06:10'
+      at: '06:00'
     - platform: time
       at: '18:30'
     condition:
@@ -208,7 +208,6 @@ automation:
     action:
       - service: climate.set_temperature
         data:
-          hvac_mode: heat
           temperature: 22
         target:
           device_id: d34ef0ce55dbd76e688cea09e359cca8
