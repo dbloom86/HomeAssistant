@@ -11705,13 +11705,22 @@
                           "entity": "input_number.energy_cost_daily"
                         },
                         {
-                          "entity": "input_number.energy_cost"
+                          "entity": "sensor.energieprijs_vattenfall",
+                          "name": "Energieprijs",
+                          "icon": "mdi:currency-eur"
+                        },
+                        {
+                          "entity": "sensor.terugleververgoeding_vattenfall",
+                          "name": "Terugleververgoeding",
+                          "icon": "mdi:currency-eur"
                         },
                         {
                           "entity": "input_number.gas_cost_daily"
                         },
                         {
-                          "entity": "input_number.gas_cost"
+                          "entity": "sensor.gasprijs_vattenfall",
+                          "name": "Gasprijs",
+                          "icon": "mdi:currency-eur"
                         }
                       ],
                       "style": ":host div#items {\n  margin: 0px 0px 0px -25px\n}\n"

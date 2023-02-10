@@ -99,3 +99,7 @@
         - sensor.waterverbruik_vandaag
         - sensor.waterverbruik_vorige_maand
         - sensor.waterverbruik_vorige_week
+        - sensor.toon_p1_power_use_cnt_low_cost
+        - sensor.toon_p1_power_prod_cnt_high_compensation
+        - sensor.toon_p1_power_prod_cnt_low_compensation
+        - sensor.toon_p1_power_use_cnt_high_cost

@@ -4,18 +4,22 @@
 
 multiscrape:
   - name: vattenfall scraper
-    resource: https://www.vattenfall.nl/service/mijn-vattenfall/#/vf/contract
-    scan_interval: 10
-    form_submit:
-      submit_once: true
-      resource: "https://accounts.vattenfall.nl/iamng/nlb2c-revamp/#/inloggen"
-      select: ".iam-web-login"
-      input:
-        username: !secret vattenfall_username
-        password: !secret vattenfall_password
-    log_response: true
+    resource: "https://www.overstappen.nl/energie/leveranciers/vattenfall/"
+    scan_interval: 3600
+    log_response: false
     sensor:
       - unique_id: energieprijs_vattenfall
         name: Energieprijs Vattenfall
-        select: ".ng-star-inserted"
+        select: "#tarieven > div.tableBlock__tableWrapper > table > tbody > tr > td"
         unit_of_measurement: "€/kWh"
+        value_template: '{{ (((value.lstrip("€ ") | replace(",", ".")) | float) * 0.8) | round(6) }}'
+      - unique_id: gasprijs_vattenfall
+        name: Gasprijs Vattenfall
+        select: "#tarieven > div.tableBlock__tableWrapper > table > tbody > tr:nth-child(4) > td"
+        unit_of_measurement: "€/m3"
+        value_template: '{{ ((value.lstrip("€ ") | replace(",", ".")) | float) }}'
+      - unique_id: terugleververgoeding_vattenfall
+        name: Terugleververgoeding Vattenfall
+        select: "#tarieven > div.tableBlock__tableWrapper > table > tbody > tr:nth-child(5) > td"
+        unit_of_measurement: "€/kWh"
+        value_template: '{{ ((value.lstrip("€ ") | replace(",", ".")) | float) }}'

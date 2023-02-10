@@ -407,7 +407,7 @@ sensor:
     sensors:
       energy_cost_today:
         friendly_name: 'Energie Kosten Vandaag'
-        value_template: "{{ ((states('sensor.dagelijks_energie_verbruik_laag')|float + states('sensor.dagelijks_energie_verbruik_hoog')|float) * ( states('input_number.energy_cost')|float) + states('input_number.energy_cost_daily')|float )|round(2)}}"
+        value_template: "{{ ((states('sensor.dagelijks_energie_verbruik_laag')|float + states('sensor.dagelijks_energie_verbruik_hoog')|float) * ( states('sensor.energieprijs_vattenfall')|float) + states('input_number.energy_cost_daily')|float )|round(2)}}"
         unit_of_measurement: "€"
         icon_template: mdi:currency-eur
 
@@ -415,7 +415,7 @@ sensor:
     sensors:
       gas_cost_today:
         friendly_name: 'Gas Kosten Vandaag'
-        value_template: "{{ (states('sensor.dagelijks_gas_verbruik')|float * states('input_number.gas_cost')|float + states('input_number.gas_cost_daily')|float)|round(2) }}"
+        value_template: "{{ (states('sensor.dagelijks_gas_verbruik')|float * states('sensor.gasprijs_vattenfall')|float + states('input_number.gas_cost_daily')|float)|round(2) }}"
         unit_of_measurement: "€"
         icon_template: mdi:currency-eur
 
@@ -431,7 +431,7 @@ sensor:
     sensors:
       energy_cost_this_month:
         friendly_name: 'Energie Kosten Deze Maand'
-        value_template: "{{ (((states('sensor.maandelijks_energie_verbruik_laag')|float + states('sensor.maandelijks_energie_verbruik_hoog')|float) * ( states('input_number.energy_cost')|float)) + ((states('input_number.energy_cost_daily')|float) * (states('sensor.days_this_month')|float)) )|round(2)}}"
+        value_template: "{{ (((states('sensor.maandelijks_energie_verbruik_laag')|float + states('sensor.maandelijks_energie_verbruik_hoog')|float) * ( states('sensor.energieprijs_vattenfall')|float)) + ((states('input_number.energy_cost_daily')|float) * (states('sensor.days_this_month')|float)) )|round(2)}}"
         unit_of_measurement: "€"
         icon_template: mdi:currency-eur
 
@@ -439,7 +439,7 @@ sensor:
     sensors:
       energy_cost_this_year:
         friendly_name: 'Energie Kosten Dit Jaar'
-        value_template: "{{ (((states('sensor.jaarlijks_energie_verbruik_laag')|float + states('sensor.jaarlijks_energie_verbruik_hoog')|float) * ( states('input_number.energy_cost')|float)) + ((states('input_number.energy_cost_daily')|float) * (states('sensor.days_this_year')|float)) )|round(2)}}"
+        value_template: "{{ (((states('sensor.jaarlijks_energie_verbruik_laag')|float + states('sensor.jaarlijks_energie_verbruik_hoog')|float) * ( states('sensor.energieprijs_vattenfall')|float)) + ((states('input_number.energy_cost_daily')|float) * (states('sensor.days_this_year')|float)) )|round(2)}}"
         unit_of_measurement: "€"
         icon_template: mdi:currency-eur
 
@@ -447,7 +447,7 @@ sensor:
     sensors:
       gas_cost_this_month:
         friendly_name: 'Gas Kosten Deze Maand'
-        value_template: "{{ ((states('sensor.maandelijks_gas_verbruik')|float ) * ( states('input_number.gas_cost')|float) + (states('input_number.gas_cost_daily')|float) * (states('sensor.days_this_month')|float) )|round(2)}}"
+        value_template: "{{ ((states('sensor.maandelijks_gas_verbruik')|float ) * ( states('sensor.gasprijs_vattenfall')|float) + (states('input_number.gas_cost_daily')|float) * (states('sensor.days_this_month')|float) )|round(2)}}"
         unit_of_measurement: "€"
         icon_template: mdi:currency-eur
 

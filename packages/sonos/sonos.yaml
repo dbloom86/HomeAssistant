@@ -92,6 +92,9 @@ automation:
       - condition: time
         after: "17:30:00"
         before: "18:30:00"
+      - condition: time
+        after: "06:00:00"
+        before: "08:30:00"
       - condition: state
         entity_id: media_player.sony_bravia_tv
         state: "off"
