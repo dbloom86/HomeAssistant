@@ -667,10 +667,7 @@
     - platform: time
       at: '03:03'
   action:
-    - data:
-        addon: a0d7b954_ssh
-        input: /config/ha_gitpush.sh
-      service: hassio.addon_stdin
+    - service: shell_command.github_backup
   id: f8a0c07e00a15795b78773bab12dd157
   
 #================================  
