@@ -6,7 +6,6 @@ multiscrape:
   - name: vattenfall scraper
     resource: "https://www.overstappen.nl/energie/leveranciers/vattenfall/"
     scan_interval: 3600
-    log_response: false
     sensor:
       - unique_id: energieprijs_vattenfall
         name: Energieprijs Vattenfall

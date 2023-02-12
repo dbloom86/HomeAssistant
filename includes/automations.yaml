@@ -467,7 +467,6 @@
     - sensor.total_suns
     - sensor.total_switches
     - sensor.total_climates
-    - sensor.total_timers
     - sensor.total_zones
     - sensor.domains_in_use
     - sensor.total_shelly_devices
