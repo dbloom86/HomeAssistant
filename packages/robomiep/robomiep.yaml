@@ -35,8 +35,8 @@ input_boolean:
     name: Kamer Luca
     initial: off
 
-  slaapkamer:
-    name: Slaapkamer
+  kantoor:
+    name: Kantoor
     initial: off
 
   badkamer:
@@ -419,10 +419,10 @@ script:
         segments: 18
 
     #=====================
-    # Stofzuig Kamer Fynn
+    # Stofzuig Kantoor
     #=====================
   vacuum_fynn:
-    alias: "Vacuum Kamer Fynn"
+    alias: "Vacuum Kantoor"
     sequence:
       service: xiaomi_miio.vacuum_clean_segment
       target:
@@ -431,10 +431,10 @@ script:
         segments: 20 
 
     #=====================
-    # Stofzuig Kamer Luca
+    # Stofzuig Kamer Fynn
     #=====================
   vacuum_luca:
-    alias: "Vacuum Kamer Luca"
+    alias: "Vacuum Kamer Fynn"
     sequence:
       service: xiaomi_miio.vacuum_clean_segment
       target:
@@ -443,10 +443,10 @@ script:
         segments: 19
 
     #=====================
-    # Stofzuig Kamer Sab en Dunc
+    # Stofzuig Kamer Luca
     #=====================
   vacuum_sleep:
-    alias: "Vacuum Kamer Sab en Dunc"
+    alias: "Vacuum Kamer Luca"
     sequence:
       service: xiaomi_miio.vacuum_clean_segment
       target:
@@ -479,10 +479,10 @@ script:
         segments: [16,18,19,20]
 
     #=====================
-    # Stofzuig Overloop en kamer Luca
+    # Stofzuig Overloop en kamer Fynn
     #=====================
   vacuum_overloop_luca:
-    alias: "Vacuum Overloop en Luca"
+    alias: "Vacuum Overloop en Fynn"
     sequence:
       service: xiaomi_miio.vacuum_clean_segment
       target:
@@ -491,10 +491,10 @@ script:
         segments: [18,19]
 
     #=====================
-    # Stofzuig Overloop en kamer Fynn
+    # Stofzuig Overloop en Kantoor
     #=====================
   vacuum_overloop_fynn:
-    alias: "Vacuum Overloop en Fynn"
+    alias: "Vacuum Overloop en Kantoor"
     sequence:
       service: xiaomi_miio.vacuum_clean_segment
       target:
@@ -503,10 +503,10 @@ script:
         segments: [18,20]
 
     #=====================
-    # Stofzuig Overloop en Slaapkamer
+    # Stofzuig Overloop en kamer Luca
     #=====================
   vacuum_overloop_sleep:
-    alias: "Vacuum Overloop en Slaapkamer"
+    alias: "Vacuum Overloop en Luca"
     sequence:
       service: xiaomi_miio.vacuum_clean_segment
       target:
@@ -515,10 +515,10 @@ script:
         segments: [18,16]
 
     #=====================
-    # Stofzuig kamer Luca en Fynn
+    # Stofzuig kamer Fynn en Kantoor
     #=====================
   vacuum_luca_fynn:
-    alias: "Vacuum Luca en Fynn"
+    alias: "Vacuum Fynn en Kantoor"
     sequence:
       service: xiaomi_miio.vacuum_clean_segment
       target:
@@ -527,10 +527,10 @@ script:
         segments: [20,19]
 
     #=====================
-    # Stofzuig kamer Luca en Slaapkamer
+    # Stofzuig kamer Fynn en Luca
     #=====================
   vacuum_luca_sleep:
-    alias: "Vacuum Luca en Slaapkamer"
+    alias: "Vacuum Fynn en Luca"
     sequence:
       service: xiaomi_miio.vacuum_clean_segment
       target:
@@ -539,10 +539,10 @@ script:
         segments: [16,19]
 
     #=====================
-    # Stofzuig kamer Fynn en Slaapkamer
+    # Stofzuig kamer Kantoor en Luca
     #=====================
   vacuum_fynn_sleep:
-    alias: "Vacuum Fynn en Slaapkamer"
+    alias: "Vacuum Kantoor en Luca"
     sequence:
       service: xiaomi_miio.vacuum_clean_segment
       target:
@@ -551,10 +551,10 @@ script:
         segments: [16,20]
 
     #=====================
-    # Stofzuig Slaapkamers
+    # Stofzuig Slaapkamers Luca, Fynn en Kantoor
     #=====================
   vacuum_slaapkamers:
-    alias: "Vacuum Slaapkamers"
+    alias: "Vacuum Slaapkamers Luca, Fynn en Kantoor"
     sequence:
       service: xiaomi_miio.vacuum_clean_segment
       target:
@@ -563,10 +563,10 @@ script:
         segments: [16,19,20]
 
     #=====================
-    # Stofzuig kinderkamers en overloop
+    # Stofzuig Kantoor, Fynn en overloop
     #=====================
   vacuum_kids_overloop:
-    alias: "Vacuum Kinderkamers en Overloop"
+    alias: "Vacuum Kantoor, Fynn en Overloop"
     sequence:
       service: xiaomi_miio.vacuum_clean_segment
       target:
@@ -575,10 +575,10 @@ script:
         segments: [18,19,20]
 
     #=====================
-    # Stofzuig Luca, Slaapkamer en overloop
+    # Stofzuig Fynn, Luca en overloop
     #=====================
   vacuum_luca_sleep_overloop:
-    alias: "Vacuum Luca, Slaapkamer en overloop"
+    alias: "Vacuum Fynn, Luca en overloop"
     sequence:
       service: xiaomi_miio.vacuum_clean_segment
       target:
@@ -587,10 +587,10 @@ script:
         segments: [18,19,16]
 
     #=====================
-    # Stofzuig Fynn, Slaapkamer en overloop
+    # Stofzuig Kantoor, Luca en overloop
     #=====================
   vacuum_fynn_sleep_overloop:
-    alias: "Vacuum Fynn, Slaapkamer en overloop"
+    alias: "Vacuum Kantoor, Luca en overloop"
     sequence:
       service: xiaomi_miio.vacuum_clean_segment
       target:

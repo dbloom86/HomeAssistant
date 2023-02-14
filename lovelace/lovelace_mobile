@@ -5008,9 +5008,9 @@
                       {
                         "type": "custom:button-card",
                         "aspect_ratio": "1/1",
-                        "entity": "input_boolean.slaapkamer",
-                        "name": "Sab en Dunc",
-                        "entity_picture": "/local/Pictures/clean_slaap.png",
+                        "entity": "input_boolean.kantoor",
+                        "name": "Kantoor",
+                        "entity_picture": "/local/Pictures/kantoor.png",
                         "size": "50%",
                         "show_entity_picture": true,
                         "styles": {

@@ -1334,13 +1334,13 @@
                         },
                         {
                           "type": "custom:button-card",
-                          "entity": "update.terminal_ssh_update",
+                          "entity": "update.ssh_web_terminal_update",
                           "tap_action": {
                             "action": "navigate",
-                            "navigation_path": "/hassio/addon/core_ssh/info"
+                            "navigation_path": "/hassio/addon/a0d7b954_ssh/info"
                           },
                           "aspect_ratio": "4/3",
-                          "name": "Terminal SSH",
+                          "name": "Web Terminal SSH",
                           "entity_picture": "/local/Pictures/addons/terminal_ssh-ico.png",
                           "size": "50%",
                           "show_entity_picture": true,
