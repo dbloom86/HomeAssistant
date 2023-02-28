@@ -77,6 +77,21 @@ utility_meter:
     cycle: monthly
     name: Maandelijks Verbruik Droger
 
+  monthly_vaatwasser:
+    source: sensor.vaatwasser_energy
+    cycle: monthly
+    name: Maandelijks Verbruik Vaatwasser
+
+  monthly_koelkast:
+    source: sensor.koelkast_energy
+    cycle: monthly
+    name: Maandelijks Verbruik Koelkast
+
+  monthly_oven:
+    source: sensor.oven_energy
+    cycle: monthly
+    name: Maandelijks Verbruik Oven
+
   #================================
   # Input Numbers
   #================================ 
