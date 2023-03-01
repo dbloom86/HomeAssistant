@@ -11549,6 +11549,69 @@
                           }
                         }
                       ]
+                    },
+                    {
+                      "type": "horizontal-stack",
+                      "cards": [
+                        {
+                          "type": "custom:mini-graph-card",
+                          "align_state": "left",
+                          "entities": [
+                            {
+                              "entity": "sensor.vaatwasser_power",
+                              "color": "#3399ff"
+                            }
+                          ],
+                          "font_size": 80,
+                          "font_size_header": 15,
+                          "height": 85,
+                          "hour24": true,
+                          "hours_to_show": 24,
+                          "icon": "mdi:gauge",
+                          "points_per_hour": 6,
+                          "line_width": 4,
+                          "show": {
+                            "extrema": false,
+                            "icon": true,
+                            "labels": false,
+                            "name": true,
+                            "average": false,
+                            "state": true
+                          },
+                          "style": {
+                            ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                          }
+                        },
+                        {
+                          "type": "custom:mini-graph-card",
+                          "align_state": "left",
+                          "entities": [
+                            {
+                              "entity": "sensor.koelkast_power",
+                              "color": "#3399ff"
+                            }
+                          ],
+                          "font_size": 80,
+                          "font_size_header": 15,
+                          "height": 85,
+                          "hour24": true,
+                          "hours_to_show": 24,
+                          "icon": "mdi:gauge",
+                          "points_per_hour": 6,
+                          "line_width": 4,
+                          "show": {
+                            "extrema": false,
+                            "icon": true,
+                            "labels": false,
+                            "name": true,
+                            "average": false,
+                            "state": true
+                          },
+                          "style": {
+                            ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                          }
+                        }
+                      ]
                     }
                   ]
                 },
