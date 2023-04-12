@@ -4197,6 +4197,9 @@
                   "name": "Lampjes Veranda",
                   "entity_picture": "/local/Custom_Icons/lampjes_veranda.png",
                   "size": "50%",
+                  "hold_action": {
+                    "action": "more-info"
+                  },
                   "show_entity_picture": true,
                   "styles": {
                     "card": [
