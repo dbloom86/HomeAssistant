@@ -14496,8 +14496,6 @@
 	function isRouteErrorResponse(error) {
 	  return error != null && typeof error.status === "number" && typeof error.statusText === "string" && typeof error.internal === "boolean" && "data" in error;
 	}
-	const validMutationMethodsArr = ["post", "put", "patch", "delete"];
-	["get", ...validMutationMethodsArr];
 
 	/**
 	 * React Router v6.8.1
