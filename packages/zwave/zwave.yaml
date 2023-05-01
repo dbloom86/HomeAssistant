@@ -1,0 +1,24 @@
+#================================
+# Zwave
+#================================ 
+
+  #============
+  # Automations
+  #============
+
+automation:
+
+  - alias: Ping all z-wave devices every 30 mins
+    description: ''
+    mode: single
+    trigger:
+      - platform: time_pattern
+        minutes: "30"
+    action:
+      - service: button.press
+        data: {}
+        target:
+          entity_id:
+            - button.co_melder_zolder_ping
+            - button.lampjes_veranda_ping
+    id: 5795jk84a9c4492ka8tr4502cd0a116a
