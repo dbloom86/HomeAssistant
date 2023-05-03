@@ -11556,6 +11556,7 @@
                         {
                           "type": "custom:mini-graph-card",
                           "align_state": "left",
+                          "name": "Vaatwasser",
                           "entities": [
                             {
                               "entity": "sensor.vaatwasser_power",
@@ -11585,6 +11586,7 @@
                         {
                           "type": "custom:mini-graph-card",
                           "align_state": "left",
+                          "name": "Koelkast",
                           "entities": [
                             {
                               "entity": "sensor.koelkast_power",
