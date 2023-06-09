@@ -1,0 +1,74 @@
+#================================
+# Command Lines
+#================================ 
+
+  #================================
+  # Software
+  #================================ 
+    
+  - sensor:
+      name: Supervisor updates
+      command: 'curl http://supervisor/supervisor/info -H "Authorization: Bearer $(printenv SUPERVISOR_TOKEN)" | jq ''{"newest_version":.data.version_latest,"current_version":.data.version,"update_available":.data.update_available,"addons":[.data.addons[] | select(.update_available)]}'''
+      value_template: "{{ value_json.addons | length }}"
+      scan_interval: 1440
+      json_attributes:
+      - newest_version
+      - current_version
+      - update_available
+      - addons
+
+
+  - sensor:
+      name: Updater Audio
+      command: 'curl http://supervisor/audio/info -H "Authorization: Bearer $(printenv SUPERVISOR_TOKEN)" | jq ''{"newest_version":.data.version_latest,"current_version":.data.version, "update_available":.data.update_available}'''
+      value_template: "{% if value_json.update_available %}on{% else %}off{% endif %}"
+      json_attributes:
+      - update_available
+      - newest_version
+      - current_version
+
+  - sensor:
+      name: Updater DNS
+      command: 'curl http://supervisor/dns/info -H "Authorization: Bearer $(printenv SUPERVISOR_TOKEN)" | jq ''{"newest_version":.data.version_latest,"current_version":.data.version, "update_available":.data.update_available}'''
+      value_template: "{% if value_json.update_available %}on{% else %}off{% endif %}"
+      json_attributes:
+      - update_available
+      - newest_version
+      - current_version
+
+  - sensor:
+      name: Updater CLI
+      command: 'curl http://supervisor/cli/info -H "Authorization: Bearer $(printenv SUPERVISOR_TOKEN)" | jq ''{"newest_version":.data.version_latest,"current_version":.data.version, "update_available":.data.update_available}'''
+      value_template: "{% if value_json.update_available %}on{% else %}off{% endif %}"
+      json_attributes:
+      - update_available
+      - newest_version
+      - current_version
+
+  - sensor:
+      name: Updater Multicast
+      command: 'curl http://supervisor/multicast/info -H "Authorization: Bearer $(printenv SUPERVISOR_TOKEN)" | jq ''{"newest_version":.data.version_latest,"current_version":.data.version, "update_available":.data.update_available}'''
+      value_template: "{% if value_json.update_available %}on{% else %}off{% endif %}"
+      json_attributes:
+      - update_available
+      - newest_version
+      - current_version
+
+  - sensor:
+      name: Updater Observer
+      command: 'curl http://supervisor/observer/info -H "Authorization: Bearer $(printenv SUPERVISOR_TOKEN)" | jq ''{"newest_version":.data.version_latest,"current_version":.data.version, "update_available":.data.update_available}'''
+      value_template: "{% if value_json.update_available %}on{% else %}off{% endif %}"
+      json_attributes:
+      - update_available
+      - newest_version
+      - current_version
+
+  # Alternate updater sensor for core since binary_sensor.updater is very slow to recognize updates
+  - sensor:
+      name: Updater Core
+      command: 'curl http://supervisor/core/info -H "Authorization: Bearer $(printenv SUPERVISOR_TOKEN)" | jq ''{"newest_version":.data.version_latest,"current_version":.data.version, "update_available":.data.update_available}'''
+      value_template: "{% if value_json.update_available %}on{% else %}off{% endif %}"
+      json_attributes:
+      - update_available
+      - newest_version
+      - current_version 

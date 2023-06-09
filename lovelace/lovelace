@@ -740,7 +740,7 @@
                               }
                             ]
                           },
-                          "entity": "sensor.version_current",
+                          "entity": "sensor.current_version",
                           "name": "Core Version",
                           "icon": "mdi:set-center"
                         },

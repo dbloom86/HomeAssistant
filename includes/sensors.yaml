@@ -276,12 +276,6 @@
         icon_template: mdi:flash
         value_template: "{{states |selectattr('entity_id','in',state_attr('group.zwave','entity_id'))| map(attribute='name') | list|count }}"
 
-  #================================
-  # Internal IP
-  #================================
-  - platform: command_line
-    command: "ip route get 1 | awk '{print $NF;exit}'"
-    
   #================================  
   # System
   #================================
@@ -310,7 +304,7 @@
 
       homeassistant_os:
           friendly_name: "HomeAssistant OS"
-          value_template: "{{ 'Hass OS' }} {{state_attr('sensor.version_available', 'os')}}"
+          value_template: "{{ 'Hass OS' }} {{state_attr('sensor.home_assistant_versions', 'os')}}"
 
       supervisor_version:
           friendly_name: "Supervisor Version"
@@ -357,86 +351,6 @@
           {% endif %}
           
           {{ text }}
-
-    #================================
-    # Software
-    #================================
-
-  - platform: version
-    name: version_available
-    source: hassio
-    image: raspberrypi4
-    
-  - platform: version
-    name: version_current
-    source: local
-    
-  - platform: command_line
-    name: Supervisor updates
-    command: 'curl http://supervisor/supervisor/info -H "Authorization: Bearer $(printenv SUPERVISOR_TOKEN)" | jq ''{"newest_version":.data.version_latest,"current_version":.data.version,"update_available":.data.update_available,"addons":[.data.addons[] | select(.update_available)]}'''
-    value_template: "{{ value_json.addons | length }}"
-    scan_interval: 1440
-    json_attributes:
-    - newest_version
-    - current_version
-    - update_available
-    - addons
-
-  - platform: command_line
-    name: Updater Audio
-    command: 'curl http://supervisor/audio/info -H "Authorization: Bearer $(printenv SUPERVISOR_TOKEN)" | jq ''{"newest_version":.data.version_latest,"current_version":.data.version, "update_available":.data.update_available}'''
-    value_template: "{% if value_json.update_available %}on{% else %}off{% endif %}"
-    json_attributes:
-    - update_available
-    - newest_version
-    - current_version
-
-  - platform: command_line
-    name: Updater DNS
-    command: 'curl http://supervisor/dns/info -H "Authorization: Bearer $(printenv SUPERVISOR_TOKEN)" | jq ''{"newest_version":.data.version_latest,"current_version":.data.version, "update_available":.data.update_available}'''
-    value_template: "{% if value_json.update_available %}on{% else %}off{% endif %}"
-    json_attributes:
-    - update_available
-    - newest_version
-    - current_version
-
-  - platform: command_line
-    name: Updater CLI
-    command: 'curl http://supervisor/cli/info -H "Authorization: Bearer $(printenv SUPERVISOR_TOKEN)" | jq ''{"newest_version":.data.version_latest,"current_version":.data.version, "update_available":.data.update_available}'''
-    value_template: "{% if value_json.update_available %}on{% else %}off{% endif %}"
-    json_attributes:
-    - update_available
-    - newest_version
-    - current_version
-
-  - platform: command_line
-    name: Updater Multicast
-    command: 'curl http://supervisor/multicast/info -H "Authorization: Bearer $(printenv SUPERVISOR_TOKEN)" | jq ''{"newest_version":.data.version_latest,"current_version":.data.version, "update_available":.data.update_available}'''
-    value_template: "{% if value_json.update_available %}on{% else %}off{% endif %}"
-    json_attributes:
-    - update_available
-    - newest_version
-    - current_version
-
-  - platform: command_line
-    name: Updater Observer
-    command: 'curl http://supervisor/observer/info -H "Authorization: Bearer $(printenv SUPERVISOR_TOKEN)" | jq ''{"newest_version":.data.version_latest,"current_version":.data.version, "update_available":.data.update_available}'''
-    value_template: "{% if value_json.update_available %}on{% else %}off{% endif %}"
-    json_attributes:
-    - update_available
-    - newest_version
-    - current_version
-
-  # Alternate updater sensor for core since binary_sensor.updater is very slow to recognize updates
-  - platform: command_line
-    name: Updater Core
-    command: 'curl http://supervisor/core/info -H "Authorization: Bearer $(printenv SUPERVISOR_TOKEN)" | jq ''{"newest_version":.data.version_latest,"current_version":.data.version, "update_available":.data.update_available}'''
-    value_template: "{% if value_json.update_available %}on{% else %}off{% endif %}"
-    json_attributes:
-    - update_available
-    - newest_version
-    - current_version 
-
 
   #================================  
   # Addons
