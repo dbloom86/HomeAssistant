@@ -5,7 +5,7 @@
   home_duncan: 
     zone: home
     devices:
-      - device_tracker.telefoon_duncan
+      - device_tracker.telefoon_duncan_2
     tolerance: 50
     unit_of_measurement: km
 
@@ -34,7 +34,7 @@
     zone: home
     devices:
       - device_tracker.telefoon_sabrine
-      - device_tracker.telefoon_duncan
+      - device_tracker.telefoon_duncan_2
       - device_tracker.tablet_luca
       - device_tracker.tablet_fynn
     tolerance: 50

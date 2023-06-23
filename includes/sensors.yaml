@@ -399,10 +399,10 @@
     sensors:
         duncan_presence:
             value_template: >-
-                {% if is_state('device_tracker.telefoon_duncan', 'unknown') %}
+                {% if is_state('device_tracker.telefoon_duncan_2', 'unknown') %}
                     Away
                 {% else %}
-                    {{ states.device_tracker.telefoon_duncan.state}}
+                    {{ states.device_tracker.telefoon_duncan_2.state}}
                 {% endif %}  
 
   - platform: template
