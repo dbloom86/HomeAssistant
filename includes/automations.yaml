@@ -5,7 +5,7 @@
 - alias: Turn off alle Lampen savonds
   trigger:
   - platform: state
-    entity_id: binary_sensor.telefoon_duncan_is_charging
+    entity_id: binary_sensor.telefoon_duncan_is_charging_2
     to: 'on'
     for:
       minutes: 5
@@ -19,7 +19,7 @@
       entity_id: light.lampen_woonkamer
       state: 'on'
     - condition: state 
-      entity_id: binary_sensor.telefoon_duncan_is_charging
+      entity_id: binary_sensor.telefoon_duncan_is_charging_2
       state: 'on'
       for:
         minutes: 5
@@ -58,6 +58,7 @@
           - automation.turn_on_lampjes_veranda_at_sunset
           - automation.vacuum_kitchen_and_living
           - automation.radio_aan_sochtends
+          - automation.radio_aan_tijdens_het_eten
   id: f8a0c07e00a24377b78773bab12dd157
 
 - alias: Vakantiemode uit
@@ -80,6 +81,7 @@
           - automation.turn_on_lampjes_veranda_at_sunset
           - automation.vacuum_kitchen_and_living
           - automation.radio_aan_sochtends
+          - automation.radio_aan_tijdens_het_eten
   id: 5f450d9467d244c597dd1645f33f358c
 
 #================================  
@@ -226,7 +228,7 @@
 - alias: Turn on Lamp Bank Hoek in the morning
   trigger:
   - platform: state
-    entity_id: binary_sensor.telefoon_duncan_is_charging
+    entity_id: binary_sensor.telefoon_duncan_is_charging_2
     to: 'off'
     for:
       minutes: 10

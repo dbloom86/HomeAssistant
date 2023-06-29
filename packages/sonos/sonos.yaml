@@ -13,7 +13,7 @@ automation:
     mode: single
     trigger:
       - platform: state
-        entity_id: binary_sensor.telefoon_duncan_is_aan_het_opladen
+        entity_id: binary_sensor.telefoon_duncan_is_charging_2
         to: 'off'
         for:
           minutes: 5
