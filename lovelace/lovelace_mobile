@@ -55,7 +55,10 @@
                 "step": "column"
               },
               "control": {
-                "preset": true
+                "preset": {
+                  "mode": null,
+                  "_name": "Mode"
+                }
               }
             },
             {
