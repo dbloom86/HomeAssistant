@@ -3,9 +3,8 @@
 #=====================
 
   - platform: group
-    name: Lampen Zolder
+    name: Lampen Slaapkamer
     entities:
-      - light.bureaulamp
       - light.shelly_shsw_1_40f520009959
 
 #=====================
@@ -16,6 +15,7 @@
     name: Lampen Achtertuin
     entities:
       - light.shelly_shsw_1_40f52000c449
+      - light.lampjes_veranda
 
 #=====================
 # Kantoor
