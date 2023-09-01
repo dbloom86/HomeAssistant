@@ -421,7 +421,7 @@ script:
     #=====================
     # Stofzuig Kantoor
     #=====================
-  vacuum_fynn:
+  vacuum_kantoor:
     alias: "Vacuum Kantoor"
     sequence:
       service: xiaomi_miio.vacuum_clean_segment
@@ -433,7 +433,7 @@ script:
     #=====================
     # Stofzuig Kamer Fynn
     #=====================
-  vacuum_luca:
+  vacuum_fynn:
     alias: "Vacuum Kamer Fynn"
     sequence:
       service: xiaomi_miio.vacuum_clean_segment
@@ -445,7 +445,7 @@ script:
     #=====================
     # Stofzuig Kamer Luca
     #=====================
-  vacuum_sleep:
+  vacuum_luca:
     alias: "Vacuum Kamer Luca"
     sequence:
       service: xiaomi_miio.vacuum_clean_segment
@@ -481,7 +481,7 @@ script:
     #=====================
     # Stofzuig Overloop en kamer Fynn
     #=====================
-  vacuum_overloop_luca:
+  vacuum_overloop_fynn:
     alias: "Vacuum Overloop en Fynn"
     sequence:
       service: xiaomi_miio.vacuum_clean_segment
@@ -493,7 +493,7 @@ script:
     #=====================
     # Stofzuig Overloop en Kantoor
     #=====================
-  vacuum_overloop_fynn:
+  vacuum_overloop_kantoor:
     alias: "Vacuum Overloop en Kantoor"
     sequence:
       service: xiaomi_miio.vacuum_clean_segment
@@ -505,7 +505,7 @@ script:
     #=====================
     # Stofzuig Overloop en kamer Luca
     #=====================
-  vacuum_overloop_sleep:
+  vacuum_overloop_luca:
     alias: "Vacuum Overloop en Luca"
     sequence:
       service: xiaomi_miio.vacuum_clean_segment
@@ -517,7 +517,7 @@ script:
     #=====================
     # Stofzuig kamer Fynn en Kantoor
     #=====================
-  vacuum_luca_fynn:
+  vacuum_fynn_kantoor:
     alias: "Vacuum Fynn en Kantoor"
     sequence:
       service: xiaomi_miio.vacuum_clean_segment
@@ -529,7 +529,7 @@ script:
     #=====================
     # Stofzuig kamer Fynn en Luca
     #=====================
-  vacuum_luca_sleep:
+  vacuum_luca_fynn:
     alias: "Vacuum Fynn en Luca"
     sequence:
       service: xiaomi_miio.vacuum_clean_segment
@@ -541,7 +541,7 @@ script:
     #=====================
     # Stofzuig kamer Kantoor en Luca
     #=====================
-  vacuum_fynn_sleep:
+  vacuum_luca_kantoor:
     alias: "Vacuum Kantoor en Luca"
     sequence:
       service: xiaomi_miio.vacuum_clean_segment
@@ -553,7 +553,7 @@ script:
     #=====================
     # Stofzuig Slaapkamers Luca, Fynn en Kantoor
     #=====================
-  vacuum_slaapkamers:
+  vacuum_slaapkamers_kantoor:
     alias: "Vacuum Slaapkamers Luca, Fynn en Kantoor"
     sequence:
       service: xiaomi_miio.vacuum_clean_segment
@@ -565,7 +565,7 @@ script:
     #=====================
     # Stofzuig Kantoor, Fynn en overloop
     #=====================
-  vacuum_kids_overloop:
+  vacuum_fynn_kantoor_overloop:
     alias: "Vacuum Kantoor, Fynn en Overloop"
     sequence:
       service: xiaomi_miio.vacuum_clean_segment
@@ -577,7 +577,7 @@ script:
     #=====================
     # Stofzuig Fynn, Luca en overloop
     #=====================
-  vacuum_luca_sleep_overloop:
+  vacuum_kids_overloop:
     alias: "Vacuum Fynn, Luca en overloop"
     sequence:
       service: xiaomi_miio.vacuum_clean_segment
@@ -589,7 +589,7 @@ script:
     #=====================
     # Stofzuig Kantoor, Luca en overloop
     #=====================
-  vacuum_fynn_sleep_overloop:
+  vacuum_luca_kantoor_overloop:
     alias: "Vacuum Kantoor, Luca en overloop"
     sequence:
       service: xiaomi_miio.vacuum_clean_segment
@@ -694,7 +694,7 @@ script:
               entity_id: input_boolean.kamer_fynn
               state: "on"
             - condition: state
-              entity_id: input_boolean.slaapkamer
+              entity_id: input_boolean.kantoor
               state: "on"
             - condition: state
               entity_id: input_boolean.badkamer
@@ -712,7 +712,7 @@ script:
               entity_id: input_boolean.kamer_fynn
               state: "off"
             - condition: state
-              entity_id: input_boolean.slaapkamer
+              entity_id: input_boolean.kantoor
               state: "off"
             - condition: state
               entity_id: input_boolean.badkamer
@@ -730,7 +730,7 @@ script:
               entity_id: input_boolean.kamer_fynn
               state: "off"
             - condition: state
-              entity_id: input_boolean.slaapkamer
+              entity_id: input_boolean.kantoor
               state: "off"
             - condition: state
               entity_id: input_boolean.badkamer
@@ -748,7 +748,7 @@ script:
               entity_id: input_boolean.kamer_fynn
               state: "on"
             - condition: state
-              entity_id: input_boolean.slaapkamer
+              entity_id: input_boolean.kantoor
               state: "off"
             - condition: state
               entity_id: input_boolean.badkamer
@@ -766,13 +766,13 @@ script:
               entity_id: input_boolean.kamer_fynn
               state: "off"
             - condition: state
-              entity_id: input_boolean.slaapkamer
+              entity_id: input_boolean.kantoor
               state: "on"
             - condition: state
               entity_id: input_boolean.badkamer
               state: "off"
           sequence:
-            - service: script.vacuum_sleep
+            - service: script.vacuum_kantoor
         - conditions:
             - condition: state
               entity_id: input_boolean.overloop
@@ -784,7 +784,7 @@ script:
               entity_id: input_boolean.kamer_fynn
               state: "off"
             - condition: state
-              entity_id: input_boolean.slaapkamer
+              entity_id: input_boolean.kantoor
               state: "off"
             - condition: state
               entity_id: input_boolean.badkamer
@@ -802,7 +802,7 @@ script:
               entity_id: input_boolean.kamer_fynn
               state: "off"
             - condition: state
-              entity_id: input_boolean.slaapkamer
+              entity_id: input_boolean.kantoor
               state: "off"
             - condition: state
               entity_id: input_boolean.badkamer
@@ -820,7 +820,7 @@ script:
               entity_id: input_boolean.kamer_fynn
               state: "on"
             - condition: state
-              entity_id: input_boolean.slaapkamer
+              entity_id: input_boolean.kantoor
               state: "off"
             - condition: state
               entity_id: input_boolean.badkamer
@@ -838,13 +838,13 @@ script:
               entity_id: input_boolean.kamer_fynn
               state: "off"
             - condition: state
-              entity_id: input_boolean.slaapkamer
+              entity_id: input_boolean.kantoor
               state: "on"
             - condition: state
               entity_id: input_boolean.badkamer
               state: "off"
           sequence:
-            - service: script.vacuum_overloop_sleep
+            - service: script.vacuum_overloop_kantoor
         - conditions:
             - condition: state
               entity_id: input_boolean.overloop
@@ -856,7 +856,7 @@ script:
               entity_id: input_boolean.kamer_fynn
               state: "on"
             - condition: state
-              entity_id: input_boolean.slaapkamer
+              entity_id: input_boolean.kantoor
               state: "off"
             - condition: state
               entity_id: input_boolean.badkamer
@@ -874,13 +874,13 @@ script:
               entity_id: input_boolean.kamer_fynn
               state: "off"
             - condition: state
-              entity_id: input_boolean.slaapkamer
+              entity_id: input_boolean.kantoor
               state: "on"
             - condition: state
               entity_id: input_boolean.badkamer
               state: "off"
           sequence:
-            - service: script.vacuum_luca_sleep
+            - service: script.vacuum_luca_kantoor
         - conditions:
             - condition: state
               entity_id: input_boolean.overloop
@@ -892,13 +892,13 @@ script:
               entity_id: input_boolean.kamer_fynn
               state: "on"
             - condition: state
-              entity_id: input_boolean.slaapkamer
+              entity_id: input_boolean.kantoor
               state: "on"
             - condition: state
               entity_id: input_boolean.badkamer
               state: "off"
           sequence:
-            - service: script.vacuum_fynn_sleep
+            - service: script.vacuum_fynn_kantoor
         - conditions:
             - condition: state
               entity_id: input_boolean.overloop
@@ -910,13 +910,13 @@ script:
               entity_id: input_boolean.kamer_fynn
               state: "on"
             - condition: state
-              entity_id: input_boolean.slaapkamer
+              entity_id: input_boolean.kantoor
               state: "on"
             - condition: state
               entity_id: input_boolean.badkamer
               state: "off"
           sequence:
-            - service: script.vacuum_slaapkamers
+            - service: script.vacuum_slaapkamers_kantoor
         - conditions:
             - condition: state
               entity_id: input_boolean.overloop
@@ -928,7 +928,7 @@ script:
               entity_id: input_boolean.kamer_fynn
               state: "on"
             - condition: state
-              entity_id: input_boolean.slaapkamer
+              entity_id: input_boolean.kantoor
               state: "off"
             - condition: state
               entity_id: input_boolean.badkamer
@@ -946,13 +946,13 @@ script:
               entity_id: input_boolean.kamer_fynn
               state: "off"
             - condition: state
-              entity_id: input_boolean.slaapkamer
+              entity_id: input_boolean.kantoor
               state: "on"
             - condition: state
               entity_id: input_boolean.badkamer
               state: "off"
           sequence:
-            - service: script.vacuum_luca_sleep_overloop
+            - service: script.vacuum_luca_kantoor_overloop
         - conditions:
             - condition: state
               entity_id: input_boolean.overloop
@@ -964,13 +964,13 @@ script:
               entity_id: input_boolean.kamer_fynn
               state: "on"
             - condition: state
-              entity_id: input_boolean.slaapkamer
+              entity_id: input_boolean.kantoor
               state: "on"
             - condition: state
               entity_id: input_boolean.badkamer
               state: "off"
           sequence:
-            - service: script.vacuum_fynn_sleep_overloop
+            - service: script.vacuum_fynn_kantoor_overloop
       default:
         - service: browser_mod.toast
           data:
