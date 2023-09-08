@@ -84,7 +84,7 @@ automation:
       - service: climate.set_temperature
         data:
           hvac_mode: heat
-          temperature: 30
+          temperature: 23
         target:
           device_id:
             - 094695d29b5553dbbbdd9c93ed2059c7
@@ -333,7 +333,7 @@ automation:
       entity_id: binary_sensor.verwarming_woonkamer_battery_low
       to: "on"
     - platform: state
-      entity_id: binary_sensor.verwarming_zolder_battery_low
+      entity_id: binary_sensor.verwarming_kantoor_battery_low
       to: "on"
     action:
       service: notify.mobile_app_telefoon_duncan
@@ -341,7 +341,7 @@ automation:
         message: >-
             Vervang batterijen van de radiatorknoppen in de volgende kamers:<br>
             {% set x = expand('binary_sensor.verwarming_badkamer_battery_low', 'binary_sensor.verwarming_fynn_battery_low', 'binary_sensor.verwarming_hal_battery_low', 'binary_sensor.verwarming_keuken_battery_low', 'binary_sensor.verwarming_luca_battery_low', 'binary_sensor.verwarming_slaapkamer_battery_low', 'binary_sensor.verwarming_toilet_battery_low', 'binary_sensor.verwarming_woonkamer_battery_low', 'binary_sensor.verwarming_zolder_battery_low') | selectattr('state','eq','on') | map(attribute='object_id') | list %}
-            {{ 'none' if x | count == 0 else x | join('<br>') | replace('verwarming_badkamer_battery_low', '- Badkamer') | replace('verwarming_fynn_battery_low', '- Slaapkamer Fynn') | replace('verwarming_hal_battery_low', '- Hal') | replace('verwarming_keuken_battery_low', '- Keuken') | replace('verwarming_luca_battery_low', '- Slaapkamer Luca') | replace('verwarming_slaapkamer_battery_low', '- Slaapkamer') | replace('verwarming_toilet_battery_low', '- Toilet') | replace('verwarming_woonkamer_battery_low', '- Woonkamer') | replace('verwarming_zolder_battery_low', '- Zolder') }}
+            {{ 'none' if x | count == 0 else x | join('<br>') | replace('verwarming_badkamer_battery_low', '- Badkamer') | replace('verwarming_fynn_battery_low', '- Slaapkamer Fynn') | replace('verwarming_hal_battery_low', '- Hal') | replace('verwarming_keuken_battery_low', '- Keuken') | replace('verwarming_luca_battery_low', '- Slaapkamer Luca') | replace('verwarming_slaapkamer_battery_low', '- Slaapkamer') | replace('verwarming_toilet_battery_low', '- Toilet') | replace('verwarming_woonkamer_battery_low', '- Woonkamer') | replace('verwarming_kantoor_battery_low', '- Kantoor') }}
         data:
           group: radiators
           icon_url: /local/Custom_Icons/battery-empty-ico.png

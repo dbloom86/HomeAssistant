@@ -3,6 +3,8 @@
 #================================
 
 - alias: Turn off alle Lampen savonds
+  mode: parallel
+  max: 3
   trigger:
   - platform: state
     entity_id: binary_sensor.telefoon_duncan_is_charging_2
