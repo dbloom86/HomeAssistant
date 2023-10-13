@@ -15,25 +15,25 @@ monitor_docker:
       - Plex
       - Portainer
       - Radarr
-      - TasmoAdmin
       - Deluge
-      - Unifi_Controller
+      - Unifi-Network-Application
       - watchtower
       - Wordpress
       - Zigbee2MQTT
       - ZwaveJS2MQTT
       - DockerProxy
-      - ESPHome
+      - Unifi-db
       - WordpressDB
       - HA_InfluxDB
       - Grafana
       - Uptime-Kuma
     rename:
       Torrents: Deluge
-      Unifi_Controller: Unifi Controller
+      Unifi-Network-Application: Unifi
       zwavejs2mqtt: ZwaveJS2MQTT
       DockerProxy: Docker Proxy
       HA_InfluxDB: HA InfluxDB
+      Unifi-db: Unifi DB
     monitored_conditions:
       - version
       - containers_running

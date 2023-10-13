@@ -1,0 +1,127 @@
+#================================
+# Eufy
+#================================
+
+  #===============
+  # Automations
+  #===============
+
+automation:
+  - alias: Aanbellen
+    mode: single
+    trigger:
+      - platform: state
+        entity_id:
+          - binary_sensor.deurbel_ringing
+        to: "on"
+    condition: []
+    action:
+      - if:
+          - condition: time
+            after: "08:00:00"
+            before: "19:00:00"
+        then:
+          - service: media_player.play_media
+            target:
+              entity_id: media_player.nesthub052e
+            data:
+              media_content_id: >-
+                media-source://media_source/local/mixkit-uplifting-bells-notification-938.wav
+              media_content_type: audio/x-wav
+            metadata:
+              title: mixkit-uplifting-bells-notification-938.wav
+              thumbnail: null
+              media_class: music
+              children_media_class: null
+              navigateIds:
+                - {}
+                - media_content_type: app
+                  media_content_id: media-source://media_source
+          - service: media_player.play_media
+            target:
+              entity_id: media_player.alle_kamers
+            data:
+              media_content_id: >-
+                media-source://media_source/local/mixkit-uplifting-bells-notification-938.wav
+              media_content_type: audio/x-wav
+            metadata:
+              title: mixkit-uplifting-bells-notification-938.wav
+              thumbnail: null
+              media_class: music
+              children_media_class: null
+              navigateIds:
+                - {}
+                - media_content_type: app
+                  media_content_id: media-source://media_source
+          - service: media_player.play_media
+            target:
+              entity_id: media_player.googlehome9925
+            data:
+              media_content_id: >-
+                media-source://media_source/local/mixkit-uplifting-bells-notification-938.wav
+              media_content_type: audio/x-wav
+            metadata:
+              title: mixkit-uplifting-bells-notification-938.wav
+              thumbnail: null
+              media_class: music
+              children_media_class: null
+              navigateIds:
+                - {}
+                - media_content_type: app
+                  media_content_id: media-source://media_source
+        else:
+          - service: media_player.play_media
+            target:
+              entity_id: media_player.googlehome9925
+            data:
+              media_content_id: >-
+                media-source://media_source/local/mixkit-uplifting-bells-notification-938.wav
+              media_content_type: audio/x-wav
+            metadata:
+              title: mixkit-uplifting-bells-notification-938.wav
+              thumbnail: null
+              media_class: music
+              children_media_class: null
+              navigateIds:
+                - {}
+                - media_content_type: app
+                  media_content_id: media-source://media_source
+          - service: media_player.play_media
+            target:
+              entity_id: media_player.nesthub052e
+            data:
+              media_content_id: >-
+                media-source://media_source/local/mixkit-uplifting-bells-notification-938.wav
+              media_content_type: audio/x-wav
+            metadata:
+              title: mixkit-uplifting-bells-notification-938.wav
+              thumbnail: null
+              media_class: music
+              children_media_class: null
+              navigateIds:
+                - {}
+                - media_content_type: app
+                  media_content_id: media-source://media_source
+    id: 455a2a32ja752km3hm03e626a5f9ae7d
+
+    #================================  
+    # Batteries
+    #================================
+
+  - alias: Doorbell battery low
+    trigger:
+    - platform: numeric_state
+      entity_id: sensor.deurbel_battery_percentage
+      below: 10
+    action:
+      service: notify.mobile_app_telefoon_duncan
+      data:
+        title: Laad de deurbel op!
+        message: Laad de deurbel op, batterij heeft nog {{ states('sensor.deurbel_battery_percentage')
+          }}%
+        data:
+          group: home_security
+          icon_url: /local/Custom_Icons/battery-empty-ico.png
+          ttl: 0
+          priority: high
+    id: 455a2a9a5gn17kc086c3e626a5f9ae7d

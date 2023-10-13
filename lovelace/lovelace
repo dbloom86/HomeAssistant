@@ -2116,6 +2116,9 @@
                                   },
                                   {
                                     "entity_id": "sensor.*docker*"
+                                  },
+                                  {
+                                    "entity_id": "sensor.uptimekuma_192_168_2_208"
                                   }
                                 ]
                               },
@@ -5541,54 +5544,6 @@
                       "cards": [
                         {
                           "type": "custom:button-card",
-                          "entity": "switch.docker_esphome",
-                          "hold_action": {
-                            "action": "url",
-                            "url_path": "https://esphome.bloomlan.nl/"
-                          },
-                          "aspect_ratio": "4/3",
-                          "name": "ESP Home",
-                          "entity_picture": "/local/Pictures/addons/esphome-ico.png",
-                          "size": "45%",
-                          "show_entity_picture": true,
-                          "show_label": true,
-                          "label": "[[[ return `${states[ 'sensor.docker_esphome_status' ].state}` ]]]",
-                          "color_type": "card",
-                          "styles": {
-                            "name": [
-                              {
-                                "font-size": "12px"
-                              },
-                              {
-                                "font-weight": "bold"
-                              },
-                              {
-                                "color": "var(--primary-text-color)"
-                              }
-                            ],
-                            "label": [
-                              {
-                                "font-size": "12px"
-                              },
-                              {
-                                "color": "var(--primary-text-color)"
-                              }
-                            ]
-                          },
-                          "state": [
-                            {
-                              "value": "off",
-                              "color": "rgb(255, 77, 77, 0.4)"
-                            },
-                            {
-                              "value": "on",
-                              "color": "rgb(255, 77, 77, 0)"
-                            }
-                          ],
-                          "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
-                        },
-                        {
-                          "type": "custom:button-card",
                           "entity": "switch.docker_grafana",
                           "hold_action": {
                             "action": "url",
@@ -5682,12 +5637,7 @@
                             }
                           ],
                           "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "horizontal-stack",
-                      "cards": [
+                        },
                         {
                           "type": "custom:button-card",
                           "entity": "switch.docker_harepository",
@@ -5735,7 +5685,12 @@
                             }
                           ],
                           "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
-                        },
+                        }
+                      ]
+                    },
+                    {
+                      "type": "horizontal-stack",
+                      "cards": [
                         {
                           "type": "custom:button-card",
                           "entity": "switch.docker_jackett",
@@ -5831,12 +5786,7 @@
                             }
                           ],
                           "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "horizontal-stack",
-                      "cards": [
+                        },
                         {
                           "type": "custom:button-card",
                           "entity": "switch.docker_nodered",
@@ -5884,7 +5834,12 @@
                             }
                           ],
                           "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
-                        },
+                        }
+                      ]
+                    },
+                    {
+                      "type": "horizontal-stack",
+                      "cards": [
                         {
                           "type": "custom:button-card",
                           "entity": "switch.docker_phpmyadmin",
@@ -5980,12 +5935,7 @@
                             }
                           ],
                           "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "horizontal-stack",
-                      "cards": [
+                        },
                         {
                           "type": "custom:button-card",
                           "entity": "switch.docker_portainer",
@@ -6033,7 +5983,12 @@
                             }
                           ],
                           "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
-                        },
+                        }
+                      ]
+                    },
+                    {
+                      "type": "horizontal-stack",
+                      "cards": [
                         {
                           "type": "custom:button-card",
                           "entity": "switch.docker_radarr",
@@ -6084,7 +6039,7 @@
                         },
                         {
                           "type": "custom:button-card",
-                          "entity": "switch.docker_unifi_controller",
+                          "entity": "switch.docker_unifi_network_application",
                           "hold_action": {
                             "action": "url",
                             "url_path": "https://unifi.bloomlan.nl/"
@@ -6095,7 +6050,55 @@
                           "size": "45%",
                           "show_entity_picture": true,
                           "show_label": true,
-                          "label": "[[[ return `${states[ 'sensor.docker_unifi_controller_status' ].state}` ]]]",
+                          "label": "[[[ return `${states[ 'sensor.docker_unifi_network_application_status' ].state}` ]]]",
+                          "color_type": "card",
+                          "styles": {
+                            "name": [
+                              {
+                                "font-size": "12px"
+                              },
+                              {
+                                "font-weight": "bold"
+                              },
+                              {
+                                "color": "var(--primary-text-color)"
+                              }
+                            ],
+                            "label": [
+                              {
+                                "font-size": "12px"
+                              },
+                              {
+                                "color": "var(--primary-text-color)"
+                              }
+                            ]
+                          },
+                          "state": [
+                            {
+                              "value": "off",
+                              "color": "rgb(255, 77, 77, 0.4)"
+                            },
+                            {
+                              "value": "on",
+                              "color": "rgb(255, 77, 77, 0)"
+                            }
+                          ],
+                          "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        },
+                        {
+                          "type": "custom:button-card",
+                          "entity": "switch.docker_unifi_db",
+                          "hold_action": {
+                            "action": "url",
+                            "url_path": "https://unifi.bloomlan.nl/"
+                          },
+                          "aspect_ratio": "4/3",
+                          "name": "Unifi DB",
+                          "entity_picture": "/local/Pictures/addons/mongodb-ico.png",
+                          "size": "45%",
+                          "show_entity_picture": true,
+                          "show_label": true,
+                          "label": "[[[ return `${states[ 'sensor.docker_unifi_db_status' ].state}` ]]]",
                           "color_type": "card",
                           "styles": {
                             "name": [
