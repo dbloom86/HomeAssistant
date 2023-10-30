@@ -651,7 +651,7 @@
                     "service": "light.toggle",
                     "service_data": {
                       "entity_id": "entity",
-                      "brightness": 28
+                      "brightness": 38
                     }
                   },
                   "aspect_ratio": "1/1",
@@ -758,7 +758,7 @@
                     "service": "light.toggle",
                     "service_data": {
                       "entity_id": "entity",
-                      "brightness": 28
+                      "brightness": 38
                     }
                   },
                   "aspect_ratio": "1/1",
@@ -865,7 +865,7 @@
                     "service": "light.toggle",
                     "service_data": {
                       "entity_id": "entity",
-                      "brightness": 28
+                      "brightness": 38
                     }
                   },
                   "aspect_ratio": "1/1",
@@ -977,7 +977,7 @@
                     "service": "light.toggle",
                     "service_data": {
                       "entity_id": "entity",
-                      "brightness": 28
+                      "brightness": 38
                     }
                   },
                   "aspect_ratio": "1/1",

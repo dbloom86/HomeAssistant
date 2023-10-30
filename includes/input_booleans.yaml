@@ -21,3 +21,11 @@ romantic_scene:
 standaard_scene:
   name: Standaard sfeer
   initial: off
+
+#================================
+# Knippen Scene
+#================================
+
+knippen_scene:
+  name: Knippen sfeer
+  initial: off

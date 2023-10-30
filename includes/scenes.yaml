@@ -35,15 +35,37 @@
         state: "on"
       light.lamp_achterdeur:
         state: "on"
-        brightness: 28
+        brightness: 38
       light.lamp_haard:
         state: "on"
-        brightness: 28
+        brightness: 38
       light.lamp_bank_hoek: 
         state: "on"
-        brightness: 28
+        brightness: 38
       light.lamp_trap: 
         state: "on"
-        brightness: 28
+        brightness: 38
       input_boolean.standaard_scene:
+        state: "off"
+
+#================================  
+# Verlichting voor knippen
+#================================
+
+  - name: Knippen
+    icon: "mdi:flower-tulip"
+    entities:
+      light.lamp_achterdeur:
+        state: "on"
+        brightness: 255
+      light.lamp_haard:
+        state: "on"
+        brightness: 255
+      light.lamp_bank_hoek: 
+        state: "on"
+        brightness: 255
+      light.lamp_trap: 
+        state: "on"
+        brightness: 255
+      input_boolean.knippen_scene:
         state: "off"

@@ -285,6 +285,15 @@
     entity_id: scene.standaard
   id: 5b9dad4d6h8g49258a3a9502cdibna75
 
+- alias: Turn on Lampen Woonkamer for Knippen
+  trigger:
+  - platform: state
+    entity_id: input_boolean.knippen_scene
+    to: 'on'
+  action:
+    service: scene.turn_on
+    entity_id: scene.knippen
+  id: 5b9dad4d6h8g49akg7sh2502cdhnv58k
 
 #================================  
 # Lampen slaapkamer Fynn
