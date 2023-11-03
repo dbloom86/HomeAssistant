@@ -46,3 +46,11 @@ sensor:
         value_template: "{{ state_attr('sensor.coinbase_skl_wallet', 'Balance in native currency')|replace(' EUR','') }}"
         unit_of_measurement: "€"
         icon_template: mdi:currency-eur
+
+  - platform: template
+    sensors:
+      value_doge:
+        friendly_name: 'Value Doge'
+        value_template: "{{ state_attr('sensor.coinbase_doge_wallet', 'Balance in native currency')|replace(' EUR','') }}"
+        unit_of_measurement: "€"
+        icon_template: mdi:currency-eur
