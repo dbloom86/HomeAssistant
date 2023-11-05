@@ -333,7 +333,7 @@ automation:
   - alias: "Vacuum kitchen and living"
     trigger:
     - platform: time
-      at: '19:30:00'
+      at: '19:45:00'
     condition:
     - condition: not
       conditions:
