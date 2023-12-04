@@ -1751,7 +1751,7 @@
               "cards": [
                 {
                   "type": "custom:button-card",
-                  "entity": "switch.oven",
+                  "entity": "switch.kerstboom",
                   "aspect_ratio": "1/1",
                   "name": "Boiler",
                   "entity_picture": "/local/Custom_Icons/oven-ico.png",

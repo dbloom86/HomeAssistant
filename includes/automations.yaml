@@ -295,6 +295,28 @@
     entity_id: scene.knippen
   id: 5b9dad4d6h8g49akg7sh2502cdhnv58k
 
+- alias: Turn on Kerstboom
+  trigger:
+    - platform: time
+      at: "06:00:00"
+    - platform: time
+      at: "16:00:00"
+  action:
+    service: switch.turn_on
+    entity_id: switch.kerstboom
+  id: 5b9dad4d6h8g49akg7sh2561hgqwv58k
+
+- alias: Turn off Kerstboom
+  trigger:
+    - platform: time
+      at: "08:00:00"
+    - platform: time
+      at: "23:00:00"
+  action:
+    service: switch.turn_off
+    entity_id: switch.kerstboom
+  id: 50plva4d6h8g49akg7sh2561hgqwv58k
+
 #================================  
 # Lampen slaapkamer Fynn
 #================================
