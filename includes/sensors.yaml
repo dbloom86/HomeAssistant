@@ -364,22 +364,19 @@
     sensors:
       local_snapshots:
         friendly_name: "Local Backups"
-        unit_of_measurement: ' '
         value_template: "{{ state_attr('sensor.samba_backup', 'backups_local') }}"
         
   - platform: template
     sensors:
       remote_snapshots:
         friendly_name: "Remote Backups"
-        unit_of_measurement: ' '
         value_template: "{{ state_attr('sensor.samba_backup', 'backups_remote') }}"        
 
   - platform: template
     sensors:
       latest_snapshot:
-        friendly_name: "Latest Backups"
-        unit_of_measurement: ' '
-        value_template: "{{ as_timestamp(state_attr('sensor.samba_backup', 'last_backup')) | timestamp_custom('%d-%m-%Y') }}" 
+        friendly_name: "Latest Backup"
+        value_template: "{{ as_timestamp(state_attr('sensor.samba_backup', 'last_backup')) | timestamp_custom('%d-%m-%Y') }}"  
 
   #================================
   # CUPS
@@ -434,13 +431,3 @@
                 {% else %}
                     {{ states.device_tracker.tablet_fynn.state}}
                 {% endif %}
-
-  #================================
-  # Database Sizes
-  #================================
-
-  - platform: command_line
-    name: 'InfluxDB Size'
-    command: cat /config/packages/database_files/influxdb2size
-    value_template: "{{ (value.split('\t')[0]|int/1024)|round(1) }}"
-    unit_of_measurement: 'MB'

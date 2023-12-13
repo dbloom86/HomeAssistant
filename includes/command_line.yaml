@@ -72,3 +72,13 @@
       - update_available
       - newest_version
       - current_version 
+
+  #================================
+  # Database Sizes
+  #================================
+
+  - sensor:
+      name: 'InfluxDB Size'
+      command: cat /config/packages/database_files/influxdb2size
+      value_template: "{{ (value.split('\t')[0]|int/1024)|round(1) }}"
+      unit_of_measurement: 'MB'

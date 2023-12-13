@@ -83,3 +83,4 @@ input_boolean: !include  includes/input_booleans.yaml
 shell_command: !include includes/shell_commands.yaml
 input_text: !include includes/input_texts.yaml
 command_line: !include includes/command_line.yaml
+template: !include  includes/template.yaml

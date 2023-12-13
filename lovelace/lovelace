@@ -174,7 +174,7 @@
                     {
                       "card_type": "markdown",
                       "type": "custom:hui-element",
-                      "content": "|         |            | Hoeveelheid  | Koers  | Waarde  |\n| ------------- |-------------|-----:|---------:|-----------:|\n| <img src=\"/local/Custom_Icons/ankr-ico.png\" width=\"40\"/>  | Anker      | {{ states('sensor.coinbase_ankr_portemonnee') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.ankr_koers') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.value_ankr') }} |\n| <img src=\"/local/Custom_Icons/bsv-ico.png\" width=\"40\"/>  | Bitcoin SV      | {{ states('sensor.coinbase_bsv_wallet') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.bsv_koers') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.value_bsv') }} |\n| <img src=\"/local/Custom_Icons/bnb-ico.png\" width=\"40\"/>      | BNB | {{ states('sensor.bnb') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.bnb_koers') }}  | &nbsp;&nbsp;€&nbsp;{{ states('sensor.value_bnb') }}  |\n| <img src=\"/local/Custom_Icons/btc-ico.png\" width=\"40\"/>      | BTC | {{ states('sensor.coinbase_btc_wallet') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.btc_koers') }}  | &nbsp;&nbsp;€&nbsp;{{ states('sensor.value_btc') }}  |\n| <img src=\"/local/Custom_Icons/btc-ico.png\" width=\"40\"/>      | Doge | {{ states('sensor.coinbase_doge_wallet') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.doge_koers') }}  | &nbsp;&nbsp;€&nbsp;{{ states('sensor.value_doge') }}  |\n| <img src=\"/local/Custom_Icons/eth-ico.png\" width=\"40\"/>  | Ethereum      | {{ states('sensor.eth') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.eth_koers') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.value_eth') }} |\n| <img src=\"/local/Custom_Icons/stmx-ico.png\" width=\"40\"/>      |  StormX      | {{ states('sensor.stormx') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.stmx_koers') }}  |&nbsp;&nbsp;€&nbsp;{{ states('sensor.value_stmx') }}  |\n| <img src=\"/local/Custom_Icons/vtho-ico.png\" width=\"40\"/>  | VeThor Token      | {{ states('sensor.vethor_token') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.vtho_koers') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.value_vtho') }} |",
+                      "content": "|         |            | Hoeveelheid  | Koers  | Waarde  |\n| ------------- |-------------|-----:|---------:|-----------:|\n| <img src=\"/local/Custom_Icons/ankr-ico.png\" width=\"40\"/>  | Anker      | {{ states('sensor.coinbase_ankr_portemonnee') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.ankr_koers') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.value_ankr') }} |\n| <img src=\"/local/Custom_Icons/bsv-ico.png\" width=\"40\"/>  | Bitcoin SV      | {{ states('sensor.coinbase_bsv_wallet') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.bsv_koers') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.value_bsv') }} |\n| <img src=\"/local/Custom_Icons/bnb-ico.png\" width=\"40\"/>      | BNB | {{ states('sensor.bnb') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.bnb_koers') }}  | &nbsp;&nbsp;€&nbsp;{{ states('sensor.value_bnb') }}  |\n| <img src=\"/local/Custom_Icons/btc-ico.png\" width=\"40\"/>      | BTC | {{ states('sensor.coinbase_btc_wallet') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.btc_koers') }}  | &nbsp;&nbsp;€&nbsp;{{ states('sensor.value_btc') }}  |\n| <img src=\"/local/Custom_Icons/doge-icon.png\" width=\"40\"/>      | Doge | {{ states('sensor.coinbase_doge_wallet') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.doge_koers') }}  | &nbsp;&nbsp;€&nbsp;{{ states('sensor.value_doge') }}  |\n| <img src=\"/local/Custom_Icons/eth-ico.png\" width=\"40\"/>  | Ethereum      | {{ states('sensor.eth') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.eth_koers') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.value_eth') }} |\n| <img src=\"/local/Custom_Icons/stmx-ico.png\" width=\"40\"/>      |  StormX      | {{ states('sensor.stormx') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.stmx_koers') }}  |&nbsp;&nbsp;€&nbsp;{{ states('sensor.value_stmx') }}  |\n| <img src=\"/local/Custom_Icons/vtho-ico.png\" width=\"40\"/>  | VeThor Token      | {{ states('sensor.vethor_token') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.vtho_koers') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.value_vtho') }} |",
                       "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  border: none;\n  font-size: 13px;\n\n}\n"
                     },
                     {
@@ -1258,6 +1258,43 @@
                     {
                       "type": "horizontal-stack",
                       "cards": [
+                        {
+                          "type": "custom:button-card",
+                          "entity": "update.eufy_security_ws_update",
+                          "tap_action": {
+                            "action": "navigate",
+                            "navigation_path": "/hassio/addon/402f1039_eufy_security_ws/info"
+                          },
+                          "aspect_ratio": "4/3",
+                          "name": "Eufy Security WS",
+                          "entity_picture": "/local/Pictures/addons/eufy-security-ico.png",
+                          "size": "50%",
+                          "show_entity_picture": true,
+                          "color_type": "card",
+                          "styles": {
+                            "name": [
+                              {
+                                "font-size": "12px"
+                              },
+                              {
+                                "font-weight": "bold"
+                              },
+                              {
+                                "color": "var(--primary-text-color)"
+                              }
+                            ]
+                          },
+                          "state": [
+                            {
+                              "value": "on",
+                              "color": "rgb(255, 77, 77, 0.4)"
+                            },
+                            {
+                              "value": "off",
+                              "color": "rgb(255, 77, 77, 0)"
+                            }
+                          ]
+                        },
                         {
                           "type": "custom:button-card",
                           "entity": "update.samba_backup_update",
