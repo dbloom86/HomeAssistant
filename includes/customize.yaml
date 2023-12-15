@@ -281,6 +281,27 @@ device_tracker.unifi_cc_5b_31_b5_a5_d3_default:
 device_tracker.smartgatewayswatermet:
   entity_picture: /local/Custom_Icons/watermeter-ico.png
 
+device_tracker.wlan0:
+  entity_picture: /local/Custom_Icons/leds_kids-ico.png
+
+device_tracker.wlan0_2:
+  entity_picture: /local/Custom_Icons/leds_kids-ico.png
+
+device_tracker.google_nest_hub:
+  entity_picture: /local/Custom_Icons/google_nest_hub_2-ico.png
+
+device_tracker.nest_audio_2:
+  entity_picture: /local/Custom_Icons/google_nest_audio-ico.png
+
+device_tracker.nest_audio:
+  entity_picture: /local/Custom_Icons/google_nest_audio-ico.png
+
+device_tracker.pixel_7:
+  entity_picture: /local/Custom_Icons/google_pixel_7-ico.png
+
+device_tracker.usg_3p:
+  entity_picture: /local/Custom_Icons/unifi_usg-ico.png
+
 #================================  
 # Uptime Kuma
 #================================
