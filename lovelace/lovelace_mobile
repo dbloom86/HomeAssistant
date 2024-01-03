@@ -43,7 +43,9 @@
           "badges": [],
           "cards": [
             {
-              "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n",
+              "card_mod": {
+                "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+              },
               "type": "custom:simple-thermostat",
               "entity": "climate.toon_thermostat",
               "header": {
@@ -71,7 +73,9 @@
                 "action": "navigate",
                 "navigation_path": "/lovelace-mobile/schoonmaken"
               },
-              "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              "card_mod": {
+                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              }
             },
             {
               "type": "entities",
@@ -81,7 +85,9 @@
                   "icon": "mdi:account-child"
                 }
               ],
-              "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              "card_mod": {
+                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              }
             },
             {
               "type": "horizontal-stack",
@@ -96,7 +102,9 @@
                     "action": "navigate",
                     "navigation_path": "/lovelace-mobile/persons"
                   },
-                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  }
                 },
                 {
                   "type": "custom:button-card",
@@ -108,7 +116,9 @@
                     "action": "navigate",
                     "navigation_path": "/lovelace-mobile/system_mobile"
                   },
-                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  }
                 },
                 {
                   "type": "custom:button-card",
@@ -120,7 +130,9 @@
                     "action": "navigate",
                     "navigation_path": "/lovelace-mobile/home-security"
                   },
-                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  }
                 },
                 {
                   "type": "custom:button-card",
@@ -132,7 +144,9 @@
                     "action": "navigate",
                     "navigation_path": "/lovelace-mobile/energy-mobile"
                   },
-                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  }
                 }
               ]
             },
@@ -142,10 +156,14 @@
                 {
                   "type": "custom:text-divider-row",
                   "text": "Ruimtes",
-                  "style": "h2:before, h2:after {\n  position: absolute;\n  top: 51%;\n  overflow: hidden;\n  width: 50%;\n  height: var(--line-size);\n  content: '\\a0';\n  background-color: var(--divider-color);\n}\n\nh2:before {\n  margin-left: -50%;\n  text-align: right;\n}\nh2.text-divider {\n  border-bottom: none;\n}\n\nh2.text-divider span {\n  background: none;\n}\n"
+                  "card_mod": {
+                    "style": "h2:before, h2:after {\n  position: absolute;\n  top: 51%;\n  overflow: hidden;\n  width: 50%;\n  height: var(--line-size);\n  content: '\\a0';\n  background-color: var(--divider-color);\n}\n\nh2:before {\n  margin-left: -50%;\n  text-align: right;\n}\nh2.text-divider {\n  border-bottom: none;\n}\n\nh2.text-divider span {\n  background: none;\n}\n"
+                  }
                 }
               ],
-              "style": "ha-card {\n  background: none;\n  box-shadow: none;\n}\n"
+              "card_mod": {
+                "style": "ha-card {\n  background: none;\n  box-shadow: none;\n}\n"
+              }
             },
             {
               "type": "horizontal-stack",
@@ -160,7 +178,9 @@
                     "action": "navigate",
                     "navigation_path": "/lovelace-mobile/woonkamer"
                   },
-                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  }
                 },
                 {
                   "type": "custom:button-card",
@@ -172,7 +192,9 @@
                     "action": "navigate",
                     "navigation_path": "/lovelace-mobile/keuken"
                   },
-                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  }
                 },
                 {
                   "type": "custom:button-card",
@@ -184,7 +206,9 @@
                     "action": "navigate",
                     "navigation_path": "/lovelace-mobile/toilet"
                   },
-                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  }
                 }
               ]
             },
@@ -201,7 +225,9 @@
                     "action": "navigate",
                     "navigation_path": "/lovelace-mobile/hal"
                   },
-                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  }
                 },
                 {
                   "type": "custom:button-card",
@@ -213,7 +239,9 @@
                     "action": "navigate",
                     "navigation_path": "/lovelace-mobile/overloop"
                   },
-                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  }
                 },
                 {
                   "type": "custom:button-card",
@@ -225,7 +253,9 @@
                     "action": "navigate",
                     "navigation_path": "/lovelace-mobile/slaapkamer-sab-dunc"
                   },
-                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  }
                 }
               ]
             },
@@ -242,7 +272,9 @@
                     "action": "navigate",
                     "navigation_path": "/lovelace-mobile/slaapkamer-luca"
                   },
-                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  }
                 },
                 {
                   "type": "custom:button-card",
@@ -254,7 +286,9 @@
                     "action": "navigate",
                     "navigation_path": "/lovelace-mobile/slaapkamer-fynn"
                   },
-                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  }
                 },
                 {
                   "type": "custom:button-card",
@@ -266,7 +300,9 @@
                     "action": "navigate",
                     "navigation_path": "/lovelace-mobile/badkamer"
                   },
-                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  }
                 }
               ]
             },
@@ -280,7 +316,9 @@
                 "action": "navigate",
                 "navigation_path": "/lovelace-mobile/kantoor"
               },
-              "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              "card_mod": {
+                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              }
             },
             {
               "type": "horizontal-stack",
@@ -295,7 +333,9 @@
                     "action": "navigate",
                     "navigation_path": "/lovelace-mobile/achtertuin"
                   },
-                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  }
                 },
                 {
                   "type": "custom:button-card",
@@ -307,7 +347,9 @@
                     "action": "navigate",
                     "navigation_path": "/lovelace-mobile/oprit"
                   },
-                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  }
                 },
                 {
                   "type": "custom:button-card",
@@ -319,7 +361,9 @@
                     "action": "navigate",
                     "navigation_path": "/lovelace-mobile/schuur"
                   },
-                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  }
                 }
               ]
             }
@@ -351,13 +395,17 @@
                 "action": "navigate",
                 "navigation_path": "/lovelace-mobile/mobile"
               },
-              "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              "card_mod": {
+                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              }
             },
             {
               "type": "custom:banner-card",
               "heading": "👨‍👩‍👦‍👦 Personen",
               "entities": null,
-              "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              "card_mod": {
+                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              }
             },
             {
               "type": "horizontal-stack",
@@ -395,7 +443,9 @@
                       "entity": "proximity.home_duncan"
                     }
                   ],
-                  "style": "ha-card {\n  border: solid 2px var(--primary-color);\n  background-color: rgba(255, 255, 255, 0);\n}    \n"
+                  "card_mod": {
+                    "style": "ha-card {\n  border: solid 2px var(--primary-color);\n  background-color: rgba(255, 255, 255, 0);\n}    \n"
+                  }
                 },
                 {
                   "type": "picture-elements",
@@ -430,7 +480,9 @@
                       "entity": "proximity.home_sabrine"
                     }
                   ],
-                  "style": "ha-card {\n  border: solid 2px var(--primary-color);\n  background-color: rgba(255, 255, 255, 0);\n}                      \n"
+                  "card_mod": {
+                    "style": "ha-card {\n  border: solid 2px var(--primary-color);\n  background-color: rgba(255, 255, 255, 0);\n}                      \n"
+                  }
                 }
               ]
             },
@@ -458,7 +510,7 @@
                         "left": "88%"
                       },
                       "type": "state-label",
-                      "entity": "sensor.tablet_luca_batterijniveau"
+                      "entity": "sensor.luca_s_tablet_battery_level"
                     },
                     {
                       "style": {
@@ -470,7 +522,9 @@
                       "entity": "proximity.home_luca"
                     }
                   ],
-                  "style": "ha-card {\n  border: solid 2px var(--primary-color);\n  background-color: rgba(255, 255, 255, 0);\n}    \n"
+                  "card_mod": {
+                    "style": "ha-card {\n  border: solid 2px var(--primary-color);\n  background-color: rgba(255, 255, 255, 0);\n}    \n"
+                  }
                 },
                 {
                   "type": "picture-elements",
@@ -493,7 +547,7 @@
                         "left": "88%"
                       },
                       "type": "state-label",
-                      "entity": "sensor.tablet_fynn_batterijniveau"
+                      "entity": "sensor.fynn_s_tablet_battery_level"
                     },
                     {
                       "style": {
@@ -505,7 +559,9 @@
                       "entity": "proximity.home_fynn"
                     }
                   ],
-                  "style": "ha-card {\n  border: solid 2px var(--primary-color);\n  background-color: rgba(255, 255, 255, 0);\n}                      \n"
+                  "card_mod": {
+                    "style": "ha-card {\n  border: solid 2px var(--primary-color);\n  background-color: rgba(255, 255, 255, 0);\n}                      \n"
+                  }
                 }
               ]
             },
@@ -530,7 +586,9 @@
                   "entity": "person.fynn"
                 }
               ],
-              "style": "ha-card {\n  border: solid 2px var(--primary-color);\n  background-color: rgba(255, 255, 255, 0);\n}       \n"
+              "card_mod": {
+                "style": "ha-card {\n  border: solid 2px var(--primary-color);\n  background-color: rgba(255, 255, 255, 0);\n}       \n"
+              }
             }
           ]
         },
@@ -560,7 +618,9 @@
                 "action": "navigate",
                 "navigation_path": "/lovelace-mobile/mobile"
               },
-              "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              "card_mod": {
+                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              }
             },
             {
               "type": "custom:banner-card",
@@ -585,7 +645,9 @@
                   "name": "Sonos"
                 }
               ],
-              "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              "card_mod": {
+                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              }
             },
             {
               "type": "horizontal-stack",
@@ -600,7 +662,9 @@
                     "action": "navigate",
                     "navigation_path": "/lovelace-mobile/films"
                   },
-                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  }
                 },
                 {
                   "type": "custom:button-card",
@@ -612,7 +676,9 @@
                     "action": "navigate",
                     "navigation_path": "/lovelace-mobile/series"
                   },
-                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  }
                 },
                 {
                   "type": "custom:button-card",
@@ -624,7 +690,9 @@
                     "action": "navigate",
                     "navigation_path": "/lovelace-mobile/kids-films"
                   },
-                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  }
                 },
                 {
                   "type": "custom:button-card",
@@ -636,7 +704,9 @@
                     "action": "navigate",
                     "navigation_path": "/lovelace-mobile/kids-series"
                   },
-                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  }
                 }
               ]
             },
@@ -748,7 +818,9 @@
                   "custom_fields": {
                     "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['light.lamp_bank_hoek'].state}</span></span>`\n]]]\n"
                   },
-                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  }
                 },
                 {
                   "type": "custom:button-card",
@@ -855,7 +927,9 @@
                   "custom_fields": {
                     "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['light.lamp_trap'].state}</span></span>`\n]]]\n"
                   },
-                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  }
                 },
                 {
                   "type": "custom:button-card",
@@ -962,7 +1036,9 @@
                   "custom_fields": {
                     "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['light.lamp_haard'].state}</span></span>`\n]]]\n"
                   },
-                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  }
                 }
               ]
             },
@@ -1074,7 +1150,9 @@
                   "custom_fields": {
                     "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['light.lamp_achterdeur'].state}</span></span>`\n]]]\n"
                   },
-                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  }
                 },
                 {
                   "type": "custom:gap-card"
@@ -1086,7 +1164,9 @@
             },
             {
               "type": "custom:mod-card",
-              "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n",
+              "card_mod": {
+                "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+              },
               "card": {
                 "type": "vertical-stack",
                 "cards": [
@@ -1117,7 +1197,9 @@
                       "temperature": "Temperatuur",
                       "state": "Mode"
                     },
-                    "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
+                    "card_mod": {
+                      "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
+                    }
                   },
                   {
                     "type": "horizontal-stack",
@@ -1149,7 +1231,9 @@
                             "color": "#00e64d"
                           }
                         ],
-                        "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        "card_mod": {
+                          "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        }
                       },
                       {
                         "type": "custom:button-card",
@@ -1178,7 +1262,9 @@
                             "color": "#00e64d"
                           }
                         ],
-                        "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        "card_mod": {
+                          "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        }
                       },
                       {
                         "type": "custom:button-card",
@@ -1207,7 +1293,9 @@
                             "color": "#ff4d4d"
                           }
                         ],
-                        "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        "card_mod": {
+                          "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        }
                       }
                     ]
                   },
@@ -1240,10 +1328,14 @@
                       "state": false
                     },
                     "icon": "mdi:fire",
-                    "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
+                    "card_mod": {
+                      "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
+                    }
                   }
                 ],
-                "style": "ha-card {\n          box-shadow: none;\n          border: solid 1px var(--primary-color);\n          background-color: var(--ha-card-background);\n        \n}\n"
+                "card_mod": {
+                  "style": "ha-card {\n          box-shadow: none;\n          border: solid 1px var(--primary-color);\n          background-color: var(--ha-card-background);\n        \n}\n"
+                }
               }
             }
           ]
@@ -1274,7 +1366,9 @@
                 "action": "navigate",
                 "navigation_path": "/lovelace-mobile/mobile"
               },
-              "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              "card_mod": {
+                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              }
             },
             {
               "type": "custom:banner-card",
@@ -1289,7 +1383,9 @@
                   "name": "Temperatuur"
                 }
               ],
-              "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              "card_mod": {
+                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              }
             },
             {
               "type": "horizontal-stack",
@@ -1388,7 +1484,9 @@
                   "custom_fields": {
                     "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['sensor.maandelijks_verbruik_boiler'].state} Kwh</span></span>`\n]]]\n"
                   },
-                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  }
                 },
                 {
                   "type": "custom:button-card",
@@ -1484,7 +1582,9 @@
                   "custom_fields": {
                     "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['sensor.maandelijks_verbruik_vaatwasser'].state} Kwh</span></span>`\n]]]\n"
                   },
-                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  }
                 },
                 {
                   "type": "custom:button-card",
@@ -1580,13 +1680,17 @@
                   "custom_fields": {
                     "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['sensor.maandelijks_verbruik_koelkast'].state} Kwh</span></span>`\n]]]\n"
                   },
-                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  }
                 }
               ]
             },
             {
               "type": "custom:mod-card",
-              "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n",
+              "card_mod": {
+                "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+              },
               "card": {
                 "type": "vertical-stack",
                 "cards": [
@@ -1617,7 +1721,9 @@
                       "temperature": "Temperatuur",
                       "state": "Mode"
                     },
-                    "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
+                    "card_mod": {
+                      "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
+                    }
                   },
                   {
                     "type": "horizontal-stack",
@@ -1649,7 +1755,9 @@
                             "color": "#00e64d"
                           }
                         ],
-                        "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        "card_mod": {
+                          "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        }
                       },
                       {
                         "type": "custom:button-card",
@@ -1678,7 +1786,9 @@
                             "color": "#00e64d"
                           }
                         ],
-                        "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        "card_mod": {
+                          "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        }
                       },
                       {
                         "type": "custom:button-card",
@@ -1707,7 +1817,9 @@
                             "color": "#ff4d4d"
                           }
                         ],
-                        "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        "card_mod": {
+                          "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        }
                       }
                     ]
                   },
@@ -1740,10 +1852,14 @@
                       "state": false
                     },
                     "icon": "mdi:fire",
-                    "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
+                    "card_mod": {
+                      "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
+                    }
                   }
                 ],
-                "style": "ha-card {\n          box-shadow: none;\n          border: solid 1px var(--primary-color);\n          background-color: var(--ha-card-background);\n        \n}\n"
+                "card_mod": {
+                  "style": "ha-card {\n          box-shadow: none;\n          border: solid 1px var(--primary-color);\n          background-color: var(--ha-card-background);\n        \n}\n"
+                }
               }
             },
             {
@@ -1843,7 +1959,9 @@
                   "custom_fields": {
                     "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['sensor.maandelijks_verbruik_oven'].state} Kwh</span></span>`\n]]]\n"
                   },
-                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  }
                 },
                 {
                   "type": "custom:gap-card"
@@ -1881,7 +1999,9 @@
                 "action": "navigate",
                 "navigation_path": "/lovelace-mobile/mobile"
               },
-              "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              "card_mod": {
+                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              }
             },
             {
               "type": "custom:banner-card",
@@ -1896,11 +2016,15 @@
                   "name": "Temperatuur"
                 }
               ],
-              "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              "card_mod": {
+                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              }
             },
             {
               "type": "custom:mod-card",
-              "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n",
+              "card_mod": {
+                "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+              },
               "card": {
                 "type": "vertical-stack",
                 "cards": [
@@ -1931,7 +2055,9 @@
                       "temperature": "Temperatuur",
                       "state": "Mode"
                     },
-                    "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
+                    "card_mod": {
+                      "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
+                    }
                   },
                   {
                     "type": "horizontal-stack",
@@ -1963,7 +2089,9 @@
                             "color": "#00e64d"
                           }
                         ],
-                        "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        "card_mod": {
+                          "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        }
                       },
                       {
                         "type": "custom:button-card",
@@ -1992,7 +2120,9 @@
                             "color": "#00e64d"
                           }
                         ],
-                        "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        "card_mod": {
+                          "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        }
                       },
                       {
                         "type": "custom:button-card",
@@ -2021,7 +2151,9 @@
                             "color": "#ff4d4d"
                           }
                         ],
-                        "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        "card_mod": {
+                          "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        }
                       }
                     ]
                   },
@@ -2054,10 +2186,14 @@
                       "state": false
                     },
                     "icon": "mdi:fire",
-                    "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
+                    "card_mod": {
+                      "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
+                    }
                   }
                 ],
-                "style": "ha-card {\n          box-shadow: none;\n          border: solid 1px var(--primary-color);\n          background-color: var(--ha-card-background);\n        \n}\n"
+                "card_mod": {
+                  "style": "ha-card {\n          box-shadow: none;\n          border: solid 1px var(--primary-color);\n          background-color: var(--ha-card-background);\n        \n}\n"
+                }
               }
             }
           ]
@@ -2088,7 +2224,9 @@
                 "action": "navigate",
                 "navigation_path": "/lovelace-mobile/mobile"
               },
-              "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              "card_mod": {
+                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              }
             },
             {
               "type": "custom:banner-card",
@@ -2103,11 +2241,15 @@
                   "name": "Temperatuur"
                 }
               ],
-              "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              "card_mod": {
+                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              }
             },
             {
               "type": "custom:mod-card",
-              "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n",
+              "card_mod": {
+                "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+              },
               "card": {
                 "type": "vertical-stack",
                 "cards": [
@@ -2138,7 +2280,9 @@
                       "temperature": "Temperatuur",
                       "state": "Mode"
                     },
-                    "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
+                    "card_mod": {
+                      "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
+                    }
                   },
                   {
                     "type": "horizontal-stack",
@@ -2170,7 +2314,9 @@
                             "color": "#00e64d"
                           }
                         ],
-                        "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        "card_mod": {
+                          "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        }
                       },
                       {
                         "type": "custom:button-card",
@@ -2199,7 +2345,9 @@
                             "color": "#00e64d"
                           }
                         ],
-                        "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        "card_mod": {
+                          "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        }
                       },
                       {
                         "type": "custom:button-card",
@@ -2228,7 +2376,9 @@
                             "color": "#ff4d4d"
                           }
                         ],
-                        "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        "card_mod": {
+                          "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        }
                       }
                     ]
                   },
@@ -2261,10 +2411,14 @@
                       "state": false
                     },
                     "icon": "mdi:fire",
-                    "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
+                    "card_mod": {
+                      "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
+                    }
                   }
                 ],
-                "style": "ha-card {\n          box-shadow: none;\n          border: solid 1px var(--primary-color);\n          background-color: var(--ha-card-background);\n        \n}\n"
+                "card_mod": {
+                  "style": "ha-card {\n          box-shadow: none;\n          border: solid 1px var(--primary-color);\n          background-color: var(--ha-card-background);\n        \n}\n"
+                }
               }
             }
           ]
@@ -2295,7 +2449,9 @@
                 "action": "navigate",
                 "navigation_path": "/lovelace-mobile/mobile"
               },
-              "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              "card_mod": {
+                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              }
             },
             {
               "type": "custom:banner-card",
@@ -2303,7 +2459,9 @@
               "entities": [
                 "light.lampen_overloop"
               ],
-              "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              "card_mod": {
+                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              }
             }
           ]
         },
@@ -2333,7 +2491,9 @@
                 "action": "navigate",
                 "navigation_path": "/lovelace-mobile/mobile"
               },
-              "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              "card_mod": {
+                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              }
             },
             {
               "type": "custom:banner-card",
@@ -2348,7 +2508,9 @@
                   "name": "Temperatuur"
                 }
               ],
-              "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              "card_mod": {
+                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              }
             },
             {
               "type": "horizontal-stack",
@@ -2450,7 +2612,9 @@
                   "custom_fields": {
                     "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['light.shelly_shsw_1_40f520009959'].state}</span></span>`\n]]]\n"
                   },
-                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  }
                 },
                 {
                   "type": "custom:button-card",
@@ -2546,7 +2710,9 @@
                   "custom_fields": {
                     "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['sensor.maandelijks_verbruik_wasmachine'].state} Kwh</span></span>`\n]]]\n"
                   },
-                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  }
                 }
               ]
             },
@@ -2647,7 +2813,9 @@
                   "custom_fields": {
                     "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['sensor.maandelijks_verbruik_droger'].state} Kwh</span></span>`\n]]]\n"
                   },
-                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  }
                 },
                 {
                   "type": "custom:button-card",
@@ -2743,7 +2911,9 @@
                   "custom_fields": {
                     "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['sensor.maandelijks_verbruik_cv'].state} Kwh</span></span>`\n]]]\n"
                   },
-                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  }
                 },
                 {
                   "type": "custom:gap-card"
@@ -2752,7 +2922,9 @@
             },
             {
               "type": "custom:mod-card",
-              "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n",
+              "card_mod": {
+                "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+              },
               "card": {
                 "type": "vertical-stack",
                 "cards": [
@@ -2783,7 +2955,9 @@
                       "temperature": "Temperatuur",
                       "state": "Mode"
                     },
-                    "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
+                    "card_mod": {
+                      "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
+                    }
                   },
                   {
                     "type": "horizontal-stack",
@@ -2815,7 +2989,9 @@
                             "color": "#00e64d"
                           }
                         ],
-                        "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        "card_mod": {
+                          "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        }
                       },
                       {
                         "type": "custom:button-card",
@@ -2844,7 +3020,9 @@
                             "color": "#00e64d"
                           }
                         ],
-                        "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        "card_mod": {
+                          "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        }
                       },
                       {
                         "type": "custom:button-card",
@@ -2873,7 +3051,9 @@
                             "color": "#ff4d4d"
                           }
                         ],
-                        "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        "card_mod": {
+                          "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        }
                       }
                     ]
                   },
@@ -2906,10 +3086,14 @@
                       "state": false
                     },
                     "icon": "mdi:fire",
-                    "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
+                    "card_mod": {
+                      "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
+                    }
                   }
                 ],
-                "style": "ha-card {\n          box-shadow: none;\n          border: solid 1px var(--primary-color);\n          background-color: var(--ha-card-background);\n        \n}\n"
+                "card_mod": {
+                  "style": "ha-card {\n          box-shadow: none;\n          border: solid 1px var(--primary-color);\n          background-color: var(--ha-card-background);\n        \n}\n"
+                }
               }
             }
           ]
@@ -2943,7 +3127,9 @@
                 "action": "navigate",
                 "navigation_path": "/lovelace-mobile/mobile"
               },
-              "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              "card_mod": {
+                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              }
             },
             {
               "type": "custom:banner-card",
@@ -2962,11 +3148,15 @@
                   "name": "TV"
                 }
               ],
-              "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              "card_mod": {
+                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              }
             },
             {
               "type": "custom:mod-card",
-              "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n",
+              "card_mod": {
+                "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+              },
               "card": {
                 "type": "vertical-stack",
                 "cards": [
@@ -2997,7 +3187,9 @@
                       "temperature": "Temperatuur",
                       "state": "Mode"
                     },
-                    "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
+                    "card_mod": {
+                      "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
+                    }
                   },
                   {
                     "type": "horizontal-stack",
@@ -3029,7 +3221,9 @@
                             "color": "#00e64d"
                           }
                         ],
-                        "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        "card_mod": {
+                          "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        }
                       },
                       {
                         "type": "custom:button-card",
@@ -3058,7 +3252,9 @@
                             "color": "#00e64d"
                           }
                         ],
-                        "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        "card_mod": {
+                          "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        }
                       },
                       {
                         "type": "custom:button-card",
@@ -3087,7 +3283,9 @@
                             "color": "#ff4d4d"
                           }
                         ],
-                        "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        "card_mod": {
+                          "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        }
                       }
                     ]
                   },
@@ -3120,10 +3318,14 @@
                       "state": false
                     },
                     "icon": "mdi:fire",
-                    "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
+                    "card_mod": {
+                      "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
+                    }
                   }
                 ],
-                "style": "ha-card {\n          box-shadow: none;\n          border: solid 1px var(--primary-color);\n          background-color: var(--ha-card-background);\n        \n}\n"
+                "card_mod": {
+                  "style": "ha-card {\n          box-shadow: none;\n          border: solid 1px var(--primary-color);\n          background-color: var(--ha-card-background);\n        \n}\n"
+                }
               }
             }
           ]
@@ -3157,7 +3359,9 @@
                 "action": "navigate",
                 "navigation_path": "/lovelace-mobile/mobile"
               },
-              "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              "card_mod": {
+                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              }
             },
             {
               "type": "custom:banner-card",
@@ -3173,11 +3377,15 @@
                   "name": "Temperatuur"
                 }
               ],
-              "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              "card_mod": {
+                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              }
             },
             {
               "type": "custom:mod-card",
-              "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n",
+              "card_mod": {
+                "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+              },
               "card": {
                 "type": "vertical-stack",
                 "cards": [
@@ -3208,7 +3416,9 @@
                       "temperature": "Temperatuur",
                       "state": "Mode"
                     },
-                    "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
+                    "card_mod": {
+                      "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
+                    }
                   },
                   {
                     "type": "horizontal-stack",
@@ -3240,7 +3450,9 @@
                             "color": "#00e64d"
                           }
                         ],
-                        "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        "card_mod": {
+                          "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        }
                       },
                       {
                         "type": "custom:button-card",
@@ -3269,7 +3481,9 @@
                             "color": "#00e64d"
                           }
                         ],
-                        "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        "card_mod": {
+                          "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        }
                       },
                       {
                         "type": "custom:button-card",
@@ -3298,7 +3512,9 @@
                             "color": "#ff4d4d"
                           }
                         ],
-                        "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        "card_mod": {
+                          "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        }
                       }
                     ]
                   },
@@ -3331,10 +3547,14 @@
                       "state": false
                     },
                     "icon": "mdi:fire",
-                    "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
+                    "card_mod": {
+                      "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
+                    }
                   }
                 ],
-                "style": "ha-card {\n          box-shadow: none;\n          border: solid 1px var(--primary-color);\n          background-color: var(--ha-card-background);\n        \n}\n"
+                "card_mod": {
+                  "style": "ha-card {\n          box-shadow: none;\n          border: solid 1px var(--primary-color);\n          background-color: var(--ha-card-background);\n        \n}\n"
+                }
               }
             }
           ]
@@ -3365,7 +3585,9 @@
                 "action": "navigate",
                 "navigation_path": "/lovelace-mobile/mobile"
               },
-              "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              "card_mod": {
+                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              }
             },
             {
               "type": "custom:banner-card",
@@ -3381,7 +3603,9 @@
                   "name": "Temperatuur"
                 }
               ],
-              "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              "card_mod": {
+                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              }
             },
             {
               "type": "horizontal-stack",
@@ -3491,7 +3715,9 @@
                   "custom_fields": {
                     "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['light.verlichting_douche'].state}</span></span>`\n]]]\n"
                   },
-                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  }
                 },
                 {
                   "type": "custom:gap-card"
@@ -3503,7 +3729,9 @@
             },
             {
               "type": "custom:mod-card",
-              "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n",
+              "card_mod": {
+                "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+              },
               "card": {
                 "type": "vertical-stack",
                 "cards": [
@@ -3534,7 +3762,9 @@
                       "temperature": "Temperatuur",
                       "state": "Mode"
                     },
-                    "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
+                    "card_mod": {
+                      "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
+                    }
                   },
                   {
                     "type": "horizontal-stack",
@@ -3566,7 +3796,9 @@
                             "color": "#00e64d"
                           }
                         ],
-                        "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        "card_mod": {
+                          "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        }
                       },
                       {
                         "type": "custom:button-card",
@@ -3595,7 +3827,9 @@
                             "color": "#00e64d"
                           }
                         ],
-                        "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        "card_mod": {
+                          "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        }
                       },
                       {
                         "type": "custom:button-card",
@@ -3624,7 +3858,9 @@
                             "color": "#ff4d4d"
                           }
                         ],
-                        "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        "card_mod": {
+                          "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        }
                       }
                     ]
                   },
@@ -3657,10 +3893,14 @@
                       "state": false
                     },
                     "icon": "mdi:fire",
-                    "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
+                    "card_mod": {
+                      "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
+                    }
                   }
                 ],
-                "style": "ha-card {\n          box-shadow: none;\n          border: solid 1px var(--primary-color);\n          background-color: var(--ha-card-background);\n        \n}\n"
+                "card_mod": {
+                  "style": "ha-card {\n          box-shadow: none;\n          border: solid 1px var(--primary-color);\n          background-color: var(--ha-card-background);\n        \n}\n"
+                }
               }
             }
           ]
@@ -3692,7 +3932,9 @@
                 "action": "navigate",
                 "navigation_path": "/lovelace-mobile/mobile"
               },
-              "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              "card_mod": {
+                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              }
             },
             {
               "type": "custom:banner-card",
@@ -3708,7 +3950,9 @@
                   "name": "Temperatuur"
                 }
               ],
-              "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              "card_mod": {
+                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              }
             },
             {
               "type": "horizontal-stack",
@@ -3809,7 +4053,9 @@
                   "custom_fields": {
                     "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['light.lamp_hoekje'].state}</span></span>`\n]]]\n"
                   },
-                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  }
                 },
                 {
                   "type": "custom:button-card",
@@ -3884,7 +4130,9 @@
                   "custom_fields": {
                     "verbruik": "[[[\n  return `<span>Battery <span style=\"color: var(--text-color-sensor);\">${states['sensor.switch_lamp_hoekje_battery'].state}%</span></span>`\n]]]\n"
                   },
-                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  }
                 },
                 {
                   "type": "custom:gap-card"
@@ -3893,7 +4141,9 @@
             },
             {
               "type": "custom:mod-card",
-              "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n",
+              "card_mod": {
+                "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+              },
               "card": {
                 "type": "vertical-stack",
                 "cards": [
@@ -3924,7 +4174,9 @@
                       "temperature": "Temperatuur",
                       "state": "Mode"
                     },
-                    "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
+                    "card_mod": {
+                      "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
+                    }
                   },
                   {
                     "type": "horizontal-stack",
@@ -3956,7 +4208,9 @@
                             "color": "#00e64d"
                           }
                         ],
-                        "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        "card_mod": {
+                          "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        }
                       },
                       {
                         "type": "custom:button-card",
@@ -3985,7 +4239,9 @@
                             "color": "#00e64d"
                           }
                         ],
-                        "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        "card_mod": {
+                          "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        }
                       },
                       {
                         "type": "custom:button-card",
@@ -4014,7 +4270,9 @@
                             "color": "#ff4d4d"
                           }
                         ],
-                        "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        "card_mod": {
+                          "style": "ha-card {\n  box-shadow: none;\n  border: none;\n  background: none;\n}\n"
+                        }
                       }
                     ]
                   },
@@ -4047,10 +4305,14 @@
                       "state": false
                     },
                     "icon": "mdi:fire",
-                    "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
+                    "card_mod": {
+                      "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
+                    }
                   }
                 ],
-                "style": "ha-card {\n          box-shadow: none;\n          border: solid 1px var(--primary-color);\n          background-color: var(--ha-card-background);\n        \n}\n"
+                "card_mod": {
+                  "style": "ha-card {\n          box-shadow: none;\n          border: solid 1px var(--primary-color);\n          background-color: var(--ha-card-background);\n        \n}\n"
+                }
               }
             }
           ]
@@ -4081,7 +4343,9 @@
                 "action": "navigate",
                 "navigation_path": "/lovelace-mobile/mobile"
               },
-              "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              "card_mod": {
+                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              }
             },
             {
               "type": "custom:banner-card",
@@ -4092,7 +4356,9 @@
                   "name": "Lampen"
                 }
               ],
-              "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              "card_mod": {
+                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              }
             },
             {
               "type": "horizontal-stack",
@@ -4191,7 +4457,9 @@
                   "custom_fields": {
                     "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['light.shelly_shsw_1_40f52000c449'].state}</span></span>`\n]]]\n"
                   },
-                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  }
                 },
                 {
                   "type": "custom:button-card",
@@ -4290,7 +4558,9 @@
                   "custom_fields": {
                     "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['light.lampjes_veranda'].state}</span></span>`\n]]]\n"
                   },
-                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  }
                 },
                 {
                   "type": "custom:gap-card"
@@ -4325,7 +4595,9 @@
                 "action": "navigate",
                 "navigation_path": "/lovelace-mobile/mobile"
               },
-              "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              "card_mod": {
+                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              }
             },
             {
               "type": "custom:banner-card",
@@ -4333,7 +4605,9 @@
               "entities": [
                 "light.lampen_oprit"
               ],
-              "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              "card_mod": {
+                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              }
             }
           ]
         },
@@ -4363,7 +4637,9 @@
                 "action": "navigate",
                 "navigation_path": "/lovelace-mobile/mobile"
               },
-              "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              "card_mod": {
+                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              }
             },
             {
               "type": "custom:banner-card",
@@ -4371,7 +4647,9 @@
               "entities": [
                 "light.lampen_schuur"
               ],
-              "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              "card_mod": {
+                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              }
             }
           ]
         },
@@ -4401,13 +4679,17 @@
                 "action": "navigate",
                 "navigation_path": "/lovelace-mobile/mobile"
               },
-              "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              "card_mod": {
+                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              }
             },
             {
               "type": "custom:banner-card",
               "heading": "🖥 System",
               "entities": null,
-              "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              "card_mod": {
+                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              }
             },
             {
               "type": "horizontal-stack",
@@ -4429,7 +4711,9 @@
                       "color": "#00e64d"
                     }
                   ],
-                  "style": "ha-card {\n  box-shadow: none;\n  background: none;\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n  box-shadow: none;\n  background: none;\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                  }
                 },
                 {
                   "type": "custom:button-card",
@@ -4448,7 +4732,9 @@
                       "color": "#00e64d"
                     }
                   ],
-                  "style": "ha-card {\n  box-shadow: none;\n  background: none;\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n  box-shadow: none;\n  background: none;\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                  }
                 }
               ]
             },
@@ -4479,7 +4765,9 @@
                       "color": "#00e64d"
                     }
                   ],
-                  "style": "ha-card {\n  box-shadow: none;\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n  box-shadow: none;\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                  }
                 },
                 {
                   "type": "custom:button-card",
@@ -4505,7 +4793,9 @@
                       "color": "#00e64d"
                     }
                   ],
-                  "style": "ha-card {\n  box-shadow: none;\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n  box-shadow: none;\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                  }
                 },
                 {
                   "type": "custom:button-card",
@@ -4531,7 +4821,9 @@
                       "color": "#00e64d"
                     }
                   ],
-                  "style": "ha-card {\n  box-shadow: none;\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n  box-shadow: none;\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                  }
                 },
                 {
                   "type": "custom:button-card",
@@ -4557,7 +4849,9 @@
                       "color": "#00e64d"
                     }
                   ],
-                  "style": "ha-card {\n  box-shadow: none;\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n  box-shadow: none;\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                  }
                 }
               ]
             },
@@ -4573,8 +4867,10 @@
                   "card": {
                     "type": "entities",
                     "show_header_toggle": false,
-                    "style": {
-                      ".": "#states > * {\n  margin: -1px -15px !important;\n}\nha-card {\n  height: 100%;\n  box-shadow: none;\n  background-color: rgba(255, 255, 255, 0);\n  background: none;\n  border: none;\n}\n"
+                    "card_mod": {
+                      "style": {
+                        ".": "#states > * {\n  margin: -1px -15px !important;\n}\nha-card {\n  height: 100%;\n  box-shadow: none;\n  background-color: rgba(255, 255, 255, 0);\n  background: none;\n  border: none;\n}\n"
+                      }
                     }
                   },
                   "filter": {
@@ -4588,7 +4884,9 @@
                 }
               ],
               "show_header_toggle": false,
-              "style": "ha-card {\n  box-shadow: none;\n  border: solid 1px var(--primary-color);\n}\n"
+              "card_mod": {
+                "style": "ha-card {\n  box-shadow: none;\n  border: solid 1px var(--primary-color);\n}\n"
+              }
             },
             {
               "type": "custom:flex-table-card",
@@ -4613,7 +4911,9 @@
                 "tbody tr:nth-child(odd)": "background-color: rgb(217,217,217,0.3);",
                 "thead th": "background-color: rgb(217,217,217,0.7)"
               },
-              "style": "ha-card {\n  box-shadow: none;\n  border: solid 1px var(--primary-color);\n}\n"
+              "card_mod": {
+                "style": "ha-card {\n  box-shadow: none;\n  border: solid 1px var(--primary-color);\n}\n"
+              }
             },
             {
               "type": "entities",
@@ -4624,7 +4924,9 @@
                 }
               ],
               "show_header_toggle": false,
-              "style": "ha-card {\n  box-shadow: none;\n  border: solid 1px var(--primary-color);\n}\n"
+              "card_mod": {
+                "style": "ha-card {\n  box-shadow: none;\n  border: solid 1px var(--primary-color);\n}\n"
+              }
             },
             {
               "type": "custom:button-card",
@@ -4636,7 +4938,9 @@
                 "action": "navigate",
                 "navigation_path": "/config/dashboard"
               },
-              "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              "card_mod": {
+                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              }
             }
           ]
         },
@@ -4666,13 +4970,17 @@
                 "action": "navigate",
                 "navigation_path": "/lovelace-mobile/mobile"
               },
-              "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              "card_mod": {
+                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              }
             },
             {
               "type": "custom:banner-card",
               "heading": "🛡 Security",
               "entities": null,
-              "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              "card_mod": {
+                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              }
             },
             {
               "type": "horizontal-stack",
@@ -4750,7 +5058,9 @@
                   "custom_fields": {
                     "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['sensor.carbon_monoxide_sensor_carbon_monoxide_co_level'].state} ppm</span></span>`\n]]]\n"
                   },
-                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  }
                 },
                 {
                   "type": "custom:button-card",
@@ -4841,7 +5151,9 @@
                   "custom_fields": {
                     "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['sensor.co_alarm'].state}</span></span>`\n]]]\n"
                   },
-                  "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                  }
                 },
                 {
                   "type": "custom:gap-card"
@@ -4865,7 +5177,9 @@
                 "action": "navigate",
                 "navigation_path": "/lovelace-mobile/mobile"
               },
-              "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              "card_mod": {
+                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              }
             },
             {
               "type": "custom:button-card",
@@ -4924,11 +5238,15 @@
                   "styles": null
                 }
               ],
-              "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              "card_mod": {
+                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              }
             },
             {
               "type": "custom:mod-card",
-              "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n",
+              "card_mod": {
+                "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+              },
               "card": {
                 "type": "custom:xiaomi-vacuum-card",
                 "entity": "vacuum.miep",
@@ -4951,12 +5269,16 @@
                     "label": "Zij borstels: "
                   }
                 },
-                "style": "ha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                "card_mod": {
+                  "style": "ha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                }
               }
             },
             {
               "type": "custom:mod-card",
-              "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n",
+              "card_mod": {
+                "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+              },
               "card": {
                 "type": "picture-entity",
                 "entity": "camera.robomiep_camera",
@@ -4974,7 +5296,9 @@
             },
             {
               "type": "custom:mod-card",
-              "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n  padding: 0.8em;\n}\n",
+              "card_mod": {
+                "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n  padding: 0.8em;\n}\n"
+              },
               "card": {
                 "type": "vertical-stack",
                 "cards": [
@@ -4987,7 +5311,9 @@
                       "action": "call-service",
                       "service": "script.stofzuig_bg"
                     },
-                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                    "card_mod": {
+                      "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                    }
                   },
                   {
                     "type": "horizontal-stack",
@@ -5039,7 +5365,9 @@
                             "styles": null
                           }
                         ],
-                        "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        "card_mod": {
+                          "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        }
                       },
                       {
                         "type": "custom:button-card",
@@ -5088,7 +5416,9 @@
                             "styles": null
                           }
                         ],
-                        "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        "card_mod": {
+                          "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        }
                       },
                       {
                         "type": "custom:button-card",
@@ -5137,7 +5467,9 @@
                             "styles": null
                           }
                         ],
-                        "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        "card_mod": {
+                          "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        }
                       }
                     ]
                   }
@@ -5146,7 +5478,9 @@
             },
             {
               "type": "custom:mod-card",
-              "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n  padding: 0.8em;\n}\n",
+              "card_mod": {
+                "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n  padding: 0.8em;\n}\n"
+              },
               "card": {
                 "type": "vertical-stack",
                 "cards": [
@@ -5159,7 +5493,9 @@
                       "action": "call-service",
                       "service": "script.stofzuig_v1"
                     },
-                    "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                    "card_mod": {
+                      "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                    }
                   },
                   {
                     "type": "horizontal-stack",
@@ -5211,7 +5547,9 @@
                             "styles": null
                           }
                         ],
-                        "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        "card_mod": {
+                          "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        }
                       },
                       {
                         "type": "custom:button-card",
@@ -5260,7 +5598,9 @@
                             "styles": null
                           }
                         ],
-                        "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        "card_mod": {
+                          "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        }
                       },
                       {
                         "type": "custom:button-card",
@@ -5309,7 +5649,9 @@
                             "styles": null
                           }
                         ],
-                        "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        "card_mod": {
+                          "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        }
                       }
                     ]
                   },
@@ -5363,7 +5705,9 @@
                             "styles": null
                           }
                         ],
-                        "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        "card_mod": {
+                          "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        }
                       },
                       {
                         "type": "custom:button-card",
@@ -5412,7 +5756,9 @@
                             "styles": null
                           }
                         ],
-                        "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        "card_mod": {
+                          "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                        }
                       },
                       {
                         "type": "custom:gap-card"
@@ -5450,7 +5796,9 @@
                 "action": "navigate",
                 "navigation_path": "/lovelace-mobile/mobile"
               },
-              "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              "card_mod": {
+                "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+              }
             },
             {
               "type": "entities",
@@ -5458,11 +5806,15 @@
                 {
                   "card_type": "energy-distribution",
                   "type": "custom:hui-element",
-                  "style": "ha-card {\n  border-radius: 5px;\n  box-shadow: none;\n  background: none;\n  border: none;\n }\n"
+                  "card_mod": {
+                    "style": "ha-card {\n  border-radius: 5px;\n  box-shadow: none;\n  background: none;\n  border: none;\n }\n"
+                  }
                 }
               ],
-              "style": {
-                ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+              "card_mod": {
+                "style": {
+                  ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                }
               }
             },
             {
@@ -5512,8 +5864,10 @@
                 "average": true,
                 "state": true
               },
-              "style": {
-                ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}     \n"
+              "card_mod": {
+                "style": {
+                  ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}     \n"
+                }
               },
               "type": "custom:mini-graph-card"
             },
@@ -5548,8 +5902,10 @@
                         "average": false,
                         "state": true
                       },
-                      "style": {
-                        ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                      "card_mod": {
+                        "style": {
+                          ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                        }
                       }
                     },
                     {
@@ -5577,8 +5933,10 @@
                         "average": false,
                         "state": true
                       },
-                      "style": {
-                        ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                      "card_mod": {
+                        "style": {
+                          ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                        }
                       }
                     }
                   ]
@@ -5611,8 +5969,10 @@
                         "average": false,
                         "state": true
                       },
-                      "style": {
-                        ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                      "card_mod": {
+                        "style": {
+                          ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                        }
                       }
                     },
                     {
@@ -5640,8 +6000,10 @@
                         "average": false,
                         "state": true
                       },
-                      "style": {
-                        ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                      "card_mod": {
+                        "style": {
+                          ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                        }
                       }
                     }
                   ]

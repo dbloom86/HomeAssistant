@@ -54,7 +54,9 @@
                     "hour": "2-digit",
                     "minute": "2-digit"
                   },
-                  "style": "ha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                  }
                 },
                 {
                   "type": "custom:atomic-calendar-revive",
@@ -98,12 +100,16 @@
                   "softLimit": true,
                   "show_colors": true,
                   "defaultMode": "Calendar",
-                  "style": "ha-card {\n      border: solid 2px var(--primary-color);\n      background-color: var(--ha-card-background);\n      }\n"
+                  "card_mod": {
+                    "style": "ha-card {\n      border: solid 2px var(--primary-color);\n      background-color: var(--ha-card-background);\n      }\n"
+                  }
                 },
                 {
                   "entity": "sensor.nintendo_wishlist",
                   "image_style": "backgroundart",
-                  "style": "ha-card {\n      border: solid 2px var(--primary-color);\n      background-color: var(--ha-card-background);\n}\n",
+                  "card_mod": {
+                    "style": "ha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                  },
                   "title": "Nintendo Switch Wishlist",
                   "type": "custom:nintendo-wishlist-card"
                 },
@@ -116,19 +122,26 @@
                   "name": "Weersverwachting Apeldoorn ",
                   "show_forecast": true,
                   "theme": "ios-dark-mode",
-                  "style": "ha-card {\n      border: solid 2px var(--primary-color);\n      background-color: var(--ha-card-background);\n      }\n"
+                  "forecast_type": "daily",
+                  "card_mod": {
+                    "style": "ha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                  }
                 },
                 {
                   "entities": [
                     {
                       "type": "custom:text-divider-row",
                       "text": "Afvalwijzer",
-                      "style": "h2:before, h2:after {\n  position: absolute;\n  top: 51%;\n  overflow: hidden;\n  width: 50%;\n  height: var(--line-size);\n  content: '\\a0';\n  background-color: var(--divider-color);\n}\n\nh2:before {\n  margin-left: -50%;\n  text-align: right;\n}\nh2.text-divider {\n  border-bottom: none;\n}\n\nh2.text-divider span {\n  background: none;\n}\n"
+                      "card_mod": {
+                        "style": "h2:before, h2:after {\n  position: absolute;\n  top: 51%;\n  overflow: hidden;\n  width: 50%;\n  height: var(--line-size);\n  content: '\\a0';\n  background-color: var(--divider-color);\n}\n\nh2:before {\n  margin-left: -50%;\n  text-align: right;\n}\nh2.text-divider {\n  border-bottom: none;\n}\n\nh2.text-divider span {\n  background: none;\n}\n"
+                      }
                     },
                     {
                       "card_type": "markdown",
                       "content": "<ha-icon icon= {{'mdi:delete-alert' if states('sensor.circulus_afval_vandaag') != 'Geen' else 'mdi:delete-outline'}}> </ha-icon> Vandaag, {{states('sensor.simple_date')}}: <font color = {% if states('sensor.circulus_afval_vandaag') == 'pmd' %}'#ff944d'\n            {% elif states('sensor.circulus_afval_vandaag') == 'gft' %}'#00e64d'\n            {% elif states('sensor.circulus_afval_vandaag') == 'papier' %}'#3399ff'\n            {% else %}'grey'\n            {% endif %}> **{{states('sensor.circulus_afval_vandaag')}}</font>**      \n      \n            \n<ha-icon icon= {{'mdi:delete-alert' if states('sensor.circulus_afval_morgen') != 'Geen' else 'mdi:delete-outline'}}> </ha-icon>  Morgen, {{states('sensor.simple_tomorrow')}}:  <font color = {% if states('sensor.circulus_afval_morgen') == 'pmd' %}'#ff944d'\n            {% elif states('sensor.circulus_afval_morgen') == 'gft' %}'#00e64d'\n            {% elif states('sensor.circulus_afval_morgen') == 'papier' %}'#3399ff'\n            {% else %}'grey'\n            {% endif %}> **{{states('sensor.circulus_afval_morgen')}}</font>**  \n",
-                      "style": "ha-card {\n  box-shadow: none;\n  border-radius: 10px;\n  border: none;\n  background: none;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card {\n  box-shadow: none;\n  border-radius: 10px;\n  border: none;\n  background: none;\n}\n"
+                      },
                       "type": "custom:hui-element"
                     },
                     {
@@ -151,12 +164,16 @@
                           "name": "PMD"
                         }
                       ],
-                      "style": "ha-card {\n  box-shadow: none;\n  border-radius: 10px;\n  border: none;\n  background: none;\n  }\n",
+                      "card_mod": {
+                        "style": "ha-card {\n  box-shadow: none;\n  border-radius: 10px;\n  border: none;\n  background: none;\n  }\n"
+                      },
                       "type": "custom:hui-element"
                     }
                   ],
-                  "style": {
-                    ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                  "card_mod": {
+                    "style": {
+                      ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                    }
                   },
                   "type": "entities"
                 },
@@ -169,13 +186,17 @@
                     {
                       "type": "custom:text-divider-row",
                       "text": "Crypto",
-                      "style": "h2:before, h2:after {\n  position: absolute;\n  top: 51%;\n  overflow: hidden;\n  width: 50%;\n  height: var(--line-size);\n  content: '\\a0';\n  background-color: var(--divider-color);\n}\n\nh2:before {\n  margin-left: -50%;\n  text-align: right;\n}\nh2.text-divider {\n  border-bottom: none;\n}\n\nh2.text-divider span {\n  background: none;\n}\n"
+                      "card_mod": {
+                        "style": "h2:before, h2:after {\n  position: absolute;\n  top: 51%;\n  overflow: hidden;\n  width: 50%;\n  height: var(--line-size);\n  content: '\\a0';\n  background-color: var(--divider-color);\n}\n\nh2:before {\n  margin-left: -50%;\n  text-align: right;\n}\nh2.text-divider {\n  border-bottom: none;\n}\n\nh2.text-divider span {\n  background: none;\n}\n"
+                      }
                     },
                     {
                       "card_type": "markdown",
                       "type": "custom:hui-element",
                       "content": "|         |            | Hoeveelheid  | Koers  | Waarde  |\n| ------------- |-------------|-----:|---------:|-----------:|\n| <img src=\"/local/Custom_Icons/ankr-ico.png\" width=\"40\"/>  | Anker      | {{ states('sensor.coinbase_ankr_portemonnee') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.ankr_koers') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.value_ankr') }} |\n| <img src=\"/local/Custom_Icons/bsv-ico.png\" width=\"40\"/>  | Bitcoin SV      | {{ states('sensor.coinbase_bsv_wallet') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.bsv_koers') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.value_bsv') }} |\n| <img src=\"/local/Custom_Icons/bnb-ico.png\" width=\"40\"/>      | BNB | {{ states('sensor.bnb') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.bnb_koers') }}  | &nbsp;&nbsp;€&nbsp;{{ states('sensor.value_bnb') }}  |\n| <img src=\"/local/Custom_Icons/btc-ico.png\" width=\"40\"/>      | BTC | {{ states('sensor.coinbase_btc_wallet') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.btc_koers') }}  | &nbsp;&nbsp;€&nbsp;{{ states('sensor.value_btc') }}  |\n| <img src=\"/local/Custom_Icons/doge-icon.png\" width=\"40\"/>      | Doge | {{ states('sensor.coinbase_doge_wallet') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.doge_koers') }}  | &nbsp;&nbsp;€&nbsp;{{ states('sensor.value_doge') }}  |\n| <img src=\"/local/Custom_Icons/eth-ico.png\" width=\"40\"/>  | Ethereum      | {{ states('sensor.eth') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.eth_koers') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.value_eth') }} |\n| <img src=\"/local/Custom_Icons/stmx-ico.png\" width=\"40\"/>      |  StormX      | {{ states('sensor.stormx') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.stmx_koers') }}  |&nbsp;&nbsp;€&nbsp;{{ states('sensor.value_stmx') }}  |\n| <img src=\"/local/Custom_Icons/vtho-ico.png\" width=\"40\"/>  | VeThor Token      | {{ states('sensor.vethor_token') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.vtho_koers') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.value_vtho') }} |",
-                      "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  border: none;\n  font-size: 13px;\n\n}\n"
+                      "card_mod": {
+                        "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  border: none;\n  font-size: 13px;\n\n}\n"
+                      }
                     },
                     {
                       "type": "divider"
@@ -184,10 +205,14 @@
                       "card_type": "markdown",
                       "type": "custom:hui-element",
                       "content": "|         |            |   |   |   |\n| ------------- |-------------|-----:|---------:|-----------:|\n| <img src=\"/local/Custom_Icons/crypto-ico.png\" width=\"40\"/>  | Totaal Crypto      |  |               | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;€&nbsp;{{ states('sensor.total_value_crypto') }}  |",
-                      "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  border: none;\n  font-size: 13px;\n}\n"
+                      "card_mod": {
+                        "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  border: none;\n  font-size: 13px;\n}\n"
+                      }
                     }
                   ],
-                  "style": "ha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                  "card_mod": {
+                    "style": "ha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                  }
                 }
               ],
               "layout_options": {},
@@ -219,7 +244,9 @@
               "id": "home_assistant_status",
               "type": "entities",
               "show_header_toggle": "off",
-              "style": ".card-header {\n  padding: 0px 0px 0px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n",
+              "card_mod": {
+                "style": ".card-header {\n  padding: 0px 0px 0px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+              },
               "entities": [
                 {
                   "type": "custom:gap-card",
@@ -227,14 +254,18 @@
                 },
                 {
                   "type": "custom:vertical-stack-in-card",
-                  "style": "ha-card {\n  border: none;\n  background: none;\n}\n",
+                  "card_mod": {
+                    "style": "ha-card {\n  border: none;\n  background: none;\n}\n"
+                  },
                   "cards": [
                     {
                       "type": "horizontal-stack",
                       "cards": [
                         {
                           "type": "picture",
-                          "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: none;\n    --ha-card-box-shadow: 'none';\n    border: none;\n}\n",
+                          "card_mod": {
+                            "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: none;\n    --ha-card-box-shadow: 'none';\n    border: none;\n}\n"
+                          },
                           "image": "/local/Pictures/home-assistant-banner.png"
                         }
                       ]
@@ -1424,7 +1455,9 @@
                         "state": false,
                         "graph": "line"
                       },
-                      "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n"
+                      },
                       "entities": [
                         "sensor.disk_use_percent"
                       ],
@@ -1472,7 +1505,9 @@
                           "color": "#e45e65"
                         }
                       ],
-                      "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n}\n"
+                      },
                       "entities": [
                         {
                           "entity": "sensor.disk_use_percent"
@@ -1497,7 +1532,9 @@
                         "state": false,
                         "graph": "line"
                       },
-                      "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n"
+                      },
                       "entities": [
                         "sensor.memory_use_percent"
                       ],
@@ -1545,7 +1582,9 @@
                           "color": "#e45e65"
                         }
                       ],
-                      "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n}\n"
+                      },
                       "entities": [
                         {
                           "entity": "sensor.memory_use_percent"
@@ -1570,7 +1609,9 @@
                         "state": false,
                         "graph": "line"
                       },
-                      "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n"
+                      },
                       "entities": [
                         "sensor.processor_use"
                       ],
@@ -1618,7 +1659,9 @@
                           "color": "#e45e65"
                         }
                       ],
-                      "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n}\n"
+                      },
                       "entities": [
                         {
                           "entity": "sensor.processor_use"
@@ -1685,7 +1728,9 @@
                           "invert": true
                         }
                       ],
-                      "style": "ha-card {\n  border: none;\n  background: none;\n}\n"
+                      "card_mod": {
+                        "style": "ha-card {\n  border: none;\n  background: none;\n}\n"
+                      }
                     }
                   ]
                 }
@@ -1697,7 +1742,9 @@
                 {
                   "type": "entities",
                   "show_header_toggle": "off",
-                  "style": ".card-header {\n  padding: 0px 0px 0px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n",
+                  "card_mod": {
+                    "style": ".card-header {\n  padding: 0px 0px 0px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                  },
                   "entities": [
                     {
                       "type": "custom:gap-card",
@@ -1705,14 +1752,18 @@
                     },
                     {
                       "type": "custom:vertical-stack-in-card",
-                      "style": "ha-card {\n  border: none;\n  background: none;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card {\n  border: none;\n  background: none;\n}\n"
+                      },
                       "cards": [
                         {
                           "type": "horizontal-stack",
                           "cards": [
                             {
                               "type": "picture",
-                              "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: none;\n    --ha-card-box-shadow: 'none';\n    width: 90%;\n    left:5%;\n    border: none;\n}\n",
+                              "card_mod": {
+                                "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: none;\n    --ha-card-box-shadow: 'none';\n    width: 90%;\n    left:5%;\n    border: none;\n}\n"
+                              },
                               "image": "/local/Pictures/github.png"
                             }
                           ]
@@ -2083,7 +2134,9 @@
                 {
                   "type": "entities",
                   "show_header_toggle": "off",
-                  "style": ".card-header {\n  padding: 0px 0px 0px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n",
+                  "card_mod": {
+                    "style": ".card-header {\n  padding: 0px 0px 0px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                  },
                   "entities": [
                     {
                       "type": "custom:gap-card",
@@ -2091,14 +2144,18 @@
                     },
                     {
                       "type": "custom:vertical-stack-in-card",
-                      "style": "ha-card {\n  border: none;\n  background: none;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card {\n  border: none;\n  background: none;\n}\n"
+                      },
                       "cards": [
                         {
                           "type": "horizontal-stack",
                           "cards": [
                             {
                               "type": "picture",
-                              "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: none;\n    --ha-card-box-shadow: 'none';\n    width: 90%;\n    left:5%;\n    border: none;\n}\n",
+                              "card_mod": {
+                                "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: none;\n    --ha-card-box-shadow: 'none';\n    width: 90%;\n    left:5%;\n    border: none;\n}\n"
+                              },
                               "image": "/local/Pictures/uptime-kuma-banner.png"
                             }
                           ]
@@ -2183,7 +2240,9 @@
                     {
                       "type": "custom:text-divider-row",
                       "text": "Component Count",
-                      "style": "h2:before, h2:after {\n  position: absolute;\n  top: 51%;\n  overflow: hidden;\n  width: 50%;\n  height: var(--line-size);\n  content: '\\a0';\n  background-color: var(--divider-color);\n}\n\nh2:before {\n  margin-left: -50%;\n  text-align: right;\n}\nh2.text-divider {\n  border-bottom: none;\n}\n\nh2.text-divider span {\n  background: none;\n}\n"
+                      "card_mod": {
+                        "style": "h2:before, h2:after {\n  position: absolute;\n  top: 51%;\n  overflow: hidden;\n  width: 50%;\n  height: var(--line-size);\n  content: '\\a0';\n  background-color: var(--divider-color);\n}\n\nh2:before {\n  margin-left: -50%;\n  text-align: right;\n}\nh2.text-divider {\n  border-bottom: none;\n}\n\nh2.text-divider span {\n  background: none;\n}\n"
+                      }
                     },
                     {
                       "type": "custom:mushroom-chips-card",
@@ -2701,11 +2760,15 @@
                         }
                       ],
                       "alignment": "center",
-                      "style": "ha-card {\n  height: 100%;\n  font-size: 10px;\n  border-radius: 5px;\n  background-image: none;\n  box-shadow: none;\n  border: none;\n  background-color: rgba(255, 255, 255, 0);\n}\n"
+                      "card_mod": {
+                        "style": "ha-card {\n  height: 100%;\n  font-size: 10px;\n  border-radius: 5px;\n  background-image: none;\n  box-shadow: none;\n  border: none;\n  background-color: rgba(255, 255, 255, 0);\n}\n"
+                      }
                     }
                   ],
-                  "style": {
-                    ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n}\n"
+                  "card_mod": {
+                    "style": {
+                      ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n}\n"
+                    }
                   }
                 },
                 {
@@ -2714,7 +2777,9 @@
                     {
                       "type": "custom:text-divider-row",
                       "text": "Automations",
-                      "style": "h2:before, h2:after {\n  position: absolute;\n  top: 51%;\n  overflow: hidden;\n  width: 50%;\n  height: var(--line-size);\n  content: '\\a0';\n  background-color: var(--divider-color);\n}\n\nh2:before {\n  margin-left: -50%;\n  text-align: right;\n}\nh2.text-divider {\n  border-bottom: none;\n}\n\nh2.text-divider span {\n  background: none;\n}\n"
+                      "card_mod": {
+                        "style": "h2:before, h2:after {\n  position: absolute;\n  top: 51%;\n  overflow: hidden;\n  width: 50%;\n  height: var(--line-size);\n  content: '\\a0';\n  background-color: var(--divider-color);\n}\n\nh2:before {\n  margin-left: -50%;\n  text-align: right;\n}\nh2.text-divider {\n  border-bottom: none;\n}\n\nh2.text-divider span {\n  background: none;\n}\n"
+                      }
                     },
                     {
                       "type": "custom:hui-element",
@@ -2753,8 +2818,10 @@
                       }
                     }
                   ],
-                  "style": {
-                    ".": "#states > * {\n  margin: 0px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  height: 100%;\n}            \n"
+                  "card_mod": {
+                    "style": {
+                      ".": "#states > * {\n  margin: 0px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  height: 100%;\n}            \n"
+                    }
                   }
                 }
               ]
@@ -2783,7 +2850,9 @@
               "id": "synology_status",
               "type": "entities",
               "show_header_toggle": "off",
-              "style": ".card-header {\n  padding: 0px 0px 0px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n",
+              "card_mod": {
+                "style": ".card-header {\n  padding: 0px 0px 0px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+              },
               "entities": [
                 {
                   "type": "custom:gap-card",
@@ -2791,14 +2860,18 @@
                 },
                 {
                   "type": "custom:vertical-stack-in-card",
-                  "style": "ha-card {\n  border: none;\n  background: none;\n}\n",
+                  "card_mod": {
+                    "style": "ha-card {\n  border: none;\n  background: none;\n}\n"
+                  },
                   "cards": [
                     {
                       "type": "horizontal-stack",
                       "cards": [
                         {
                           "type": "picture",
-                          "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --ha-card-box-shadow: 'none';\n    border: none;\n}\n",
+                          "card_mod": {
+                            "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --ha-card-box-shadow: 'none';\n    border: none;\n}\n"
+                          },
                           "image": "/local/Pictures/synology-banner.png"
                         }
                       ]
@@ -3842,7 +3915,9 @@
                         "state": false,
                         "graph": "line"
                       },
-                      "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n"
+                      },
                       "entities": [
                         "sensor.bloom_data_volume_1_volume_used"
                       ],
@@ -3890,7 +3965,9 @@
                           "color": "#e45e65"
                         }
                       ],
-                      "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n}\n"
+                      },
                       "entities": [
                         {
                           "entity": "sensor.bloom_data_volume_1_volume_used"
@@ -3916,7 +3993,9 @@
                         "state": false,
                         "graph": "line"
                       },
-                      "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n"
+                      },
                       "entities": [
                         "sensor.bloom_data_memory_usage_real"
                       ],
@@ -3964,7 +4043,9 @@
                           "color": "#e45e65"
                         }
                       ],
-                      "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n}\n"
+                      },
                       "entities": [
                         {
                           "entity": "sensor.bloom_data_memory_usage_real"
@@ -3989,7 +4070,9 @@
                         "state": false,
                         "graph": "line"
                       },
-                      "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n"
+                      },
                       "entities": [
                         "sensor.bloom_data_cpu_load_total"
                       ],
@@ -4037,7 +4120,9 @@
                           "color": "#e45e65"
                         }
                       ],
-                      "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n}\n"
+                      },
                       "entities": [
                         {
                           "entity": "sensor.bloom_data_cpu_load_total"
@@ -4069,7 +4154,9 @@
                             "state": false,
                             "graph": "line"
                           },
-                          "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n  border: none;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n",
+                          "card_mod": {
+                            "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n  border: none;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n"
+                          },
                           "entities": [
                             "sensor.bloom_data_temperature"
                           ],
@@ -4108,7 +4195,9 @@
                             "state": false,
                             "graph": "line"
                           },
-                          "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 0px;\n  border: none;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n",
+                          "card_mod": {
+                            "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 0px;\n  border: none;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n"
+                          },
                           "entities": [
                             "sensor.bloom_data_average_disk_temp"
                           ],
@@ -4161,7 +4250,9 @@
                               "color": "#e45e65"
                             }
                           ],
-                          "style": "ha-card { \n  --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --paper-item-icon-color: 'var(--text-primary-color';\n  --ha-card-box-shadow: 'none';\n  font-size: 12px;\n  border: none;\n}\n",
+                          "card_mod": {
+                            "style": "ha-card { \n  --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --paper-item-icon-color: 'var(--text-primary-color';\n  --ha-card-box-shadow: 'none';\n  font-size: 12px;\n  border: none;\n}\n"
+                          },
                           "entity": "sensor.bloom_data_temperature",
                           "name": "Temp. NAS",
                           "entity_row": true,
@@ -4198,7 +4289,9 @@
                               "color": "#e45e65"
                             }
                           ],
-                          "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n  border: none;\n}\n",
+                          "card_mod": {
+                            "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n  border: none;\n}\n"
+                          },
                           "entity": "sensor.bloom_data_average_disk_temp",
                           "name": "Temp. HDD",
                           "icon": "mdi:thermometer",
@@ -4264,7 +4357,9 @@
                           "invert": true
                         }
                       ],
-                      "style": "ha-card {\n  border: none;\n  background: none;\n}\n"
+                      "card_mod": {
+                        "style": "ha-card {\n  border: none;\n  background: none;\n}\n"
+                      }
                     }
                   ]
                 }
@@ -4274,7 +4369,9 @@
               "id": "synology_status",
               "type": "entities",
               "show_header_toggle": "off",
-              "style": ".card-header {\n  padding: 0px 0px 0px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n",
+              "card_mod": {
+                "style": ".card-header {\n  padding: 0px 0px 0px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+              },
               "entities": [
                 {
                   "type": "custom:gap-card",
@@ -4282,14 +4379,18 @@
                 },
                 {
                   "type": "custom:vertical-stack-in-card",
-                  "style": "ha-card {\n  border: none;\n  background: none;\n}\n",
+                  "card_mod": {
+                    "style": "ha-card {\n  border: none;\n  background: none;\n}\n"
+                  },
                   "cards": [
                     {
                       "type": "horizontal-stack",
                       "cards": [
                         {
                           "type": "picture",
-                          "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --ha-card-box-shadow: 'none';\n    border: none;\n}\n",
+                          "card_mod": {
+                            "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --ha-card-box-shadow: 'none';\n    border: none;\n}\n"
+                          },
                           "image": "/local/Pictures/apc-banner.png"
                         }
                       ]
@@ -4749,7 +4850,9 @@
                         "state": false,
                         "graph": "line"
                       },
-                      "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n"
+                      },
                       "entities": [
                         "sensor.ups_load"
                       ],
@@ -4797,7 +4900,9 @@
                           "color": "#e45e65"
                         }
                       ],
-                      "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n}\n"
+                      },
                       "entities": [
                         {
                           "entity": "sensor.ups_load"
@@ -4823,7 +4928,9 @@
                         "state": false,
                         "graph": "line"
                       },
-                      "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n"
+                      },
                       "entities": [
                         "sensor.ups_battery_voltage"
                       ],
@@ -4871,7 +4978,9 @@
                           "color": "#e45e65"
                         }
                       ],
-                      "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n}\n"
+                      },
                       "entities": [
                         {
                           "entity": "sensor.ups_battery_voltage"
@@ -4897,7 +5006,9 @@
                         "state": false,
                         "graph": "line"
                       },
-                      "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n"
+                      },
                       "entities": [
                         "sensor.ups_input_voltage"
                       ],
@@ -4945,7 +5056,9 @@
                           "color": "#3498db"
                         }
                       ],
-                      "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n}\n"
+                      },
                       "entities": [
                         {
                           "entity": "sensor.ups_input_voltage"
@@ -4967,7 +5080,9 @@
               "id": "home_assistant_status",
               "type": "entities",
               "show_header_toggle": "off",
-              "style": ".card-header {\n  padding: 0px 0px 0px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n",
+              "card_mod": {
+                "style": ".card-header {\n  padding: 0px 0px 0px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+              },
               "entities": [
                 {
                   "type": "custom:gap-card",
@@ -4975,14 +5090,18 @@
                 },
                 {
                   "type": "custom:vertical-stack-in-card",
-                  "style": "ha-card {\n  border: none;\n  background: none;\n}\n",
+                  "card_mod": {
+                    "style": "ha-card {\n  border: none;\n  background: none;\n}\n"
+                  },
                   "cards": [
                     {
                       "type": "horizontal-stack",
                       "cards": [
                         {
                           "type": "picture",
-                          "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: none;\n    --ha-card-box-shadow: 'none';\n    border: none;\n}\n",
+                          "card_mod": {
+                            "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: none;\n    --ha-card-box-shadow: 'none';\n    border: none;\n}\n"
+                          },
                           "image": "/local/Pictures/docker-banner.png"
                         }
                       ]
@@ -5293,7 +5412,9 @@
                         "state": false,
                         "graph": "line"
                       },
-                      "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n"
+                      },
                       "entities": [
                         "sensor.docker_memory_percent"
                       ],
@@ -5341,7 +5462,9 @@
                           "color": "#e45e65"
                         }
                       ],
-                      "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n}\n"
+                      },
                       "entities": [
                         {
                           "entity": "sensor.docker_memory_percent"
@@ -5366,7 +5489,9 @@
                         "state": false,
                         "graph": "line"
                       },
-                      "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n"
+                      },
                       "entities": [
                         "sensor.docker_1cpu"
                       ],
@@ -5414,7 +5539,9 @@
                           "color": "#e45e65"
                         }
                       ],
-                      "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n}\n"
+                      },
                       "entities": [
                         {
                           "entity": "sensor.docker_1cpu"
@@ -5476,7 +5603,9 @@
                               "color": "rgb(255, 77, 77, 0)"
                             }
                           ],
-                          "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                          "card_mod": {
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                          }
                         },
                         {
                           "type": "custom:button-card",
@@ -5524,7 +5653,9 @@
                               "color": "rgb(255, 77, 77, 0)"
                             }
                           ],
-                          "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                          "card_mod": {
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                          }
                         },
                         {
                           "type": "custom:button-card",
@@ -5572,7 +5703,9 @@
                               "color": "rgb(255, 77, 77, 0)"
                             }
                           ],
-                          "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                          "card_mod": {
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                          }
                         }
                       ]
                     },
@@ -5625,7 +5758,9 @@
                               "color": "rgb(255, 77, 77, 0)"
                             }
                           ],
-                          "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                          "card_mod": {
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                          }
                         },
                         {
                           "type": "custom:button-card",
@@ -5673,7 +5808,9 @@
                               "color": "rgb(255, 77, 77, 0)"
                             }
                           ],
-                          "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                          "card_mod": {
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                          }
                         },
                         {
                           "type": "custom:button-card",
@@ -5721,7 +5858,9 @@
                               "color": "rgb(255, 77, 77, 0)"
                             }
                           ],
-                          "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                          "card_mod": {
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                          }
                         }
                       ]
                     },
@@ -5774,7 +5913,9 @@
                               "color": "rgb(255, 77, 77, 0)"
                             }
                           ],
-                          "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                          "card_mod": {
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                          }
                         },
                         {
                           "type": "custom:button-card",
@@ -5822,7 +5963,9 @@
                               "color": "rgb(255, 77, 77, 0)"
                             }
                           ],
-                          "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                          "card_mod": {
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                          }
                         },
                         {
                           "type": "custom:button-card",
@@ -5870,7 +6013,9 @@
                               "color": "rgb(255, 77, 77, 0)"
                             }
                           ],
-                          "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                          "card_mod": {
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                          }
                         }
                       ]
                     },
@@ -5923,7 +6068,9 @@
                               "color": "rgb(255, 77, 77, 0)"
                             }
                           ],
-                          "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                          "card_mod": {
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                          }
                         },
                         {
                           "type": "custom:button-card",
@@ -5971,7 +6118,9 @@
                               "color": "rgb(255, 77, 77, 0)"
                             }
                           ],
-                          "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                          "card_mod": {
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                          }
                         },
                         {
                           "type": "custom:button-card",
@@ -6019,7 +6168,9 @@
                               "color": "rgb(255, 77, 77, 0)"
                             }
                           ],
-                          "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                          "card_mod": {
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                          }
                         }
                       ]
                     },
@@ -6072,7 +6223,9 @@
                               "color": "rgb(255, 77, 77, 0)"
                             }
                           ],
-                          "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                          "card_mod": {
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                          }
                         },
                         {
                           "type": "custom:button-card",
@@ -6120,7 +6273,9 @@
                               "color": "rgb(255, 77, 77, 0)"
                             }
                           ],
-                          "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                          "card_mod": {
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                          }
                         },
                         {
                           "type": "custom:button-card",
@@ -6168,7 +6323,9 @@
                               "color": "rgb(255, 77, 77, 0)"
                             }
                           ],
-                          "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                          "card_mod": {
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                          }
                         }
                       ]
                     },
@@ -6221,7 +6378,9 @@
                               "color": "rgb(255, 77, 77, 0)"
                             }
                           ],
-                          "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                          "card_mod": {
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                          }
                         },
                         {
                           "type": "custom:button-card",
@@ -6269,7 +6428,9 @@
                               "color": "rgb(255, 77, 77, 0)"
                             }
                           ],
-                          "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                          "card_mod": {
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                          }
                         },
                         {
                           "type": "custom:button-card",
@@ -6317,7 +6478,9 @@
                               "color": "rgb(255, 77, 77, 0)"
                             }
                           ],
-                          "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                          "card_mod": {
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                          }
                         }
                       ]
                     },
@@ -6370,7 +6533,9 @@
                               "color": "rgb(255, 77, 77, 0)"
                             }
                           ],
-                          "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                          "card_mod": {
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                          }
                         },
                         {
                           "type": "custom:button-card",
@@ -6418,7 +6583,9 @@
                               "color": "rgb(255, 77, 77, 0)"
                             }
                           ],
-                          "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                          "card_mod": {
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                          }
                         },
                         {
                           "type": "custom:button-card",
@@ -6466,7 +6633,9 @@
                               "color": "rgb(255, 77, 77, 0)"
                             }
                           ],
-                          "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                          "card_mod": {
+                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
+                          }
                         }
                       ]
                     },
@@ -6528,7 +6697,9 @@
                           "invert": true
                         }
                       ],
-                      "style": "ha-card {\n  border: none;\n  background: none;\n}\n"
+                      "card_mod": {
+                        "style": "ha-card {\n  border: none;\n  background: none;\n}\n"
+                      }
                     }
                   ]
                 }
@@ -6558,7 +6729,9 @@
               "id": "synology_status",
               "type": "entities",
               "show_header_toggle": "off",
-              "style": ".card-header {\n  padding: 0px 0px 0px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n",
+              "card_mod": {
+                "style": ".card-header {\n  padding: 0px 0px 0px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+              },
               "entities": [
                 {
                   "type": "custom:gap-card",
@@ -6566,14 +6739,18 @@
                 },
                 {
                   "type": "custom:vertical-stack-in-card",
-                  "style": "ha-card {\n  border: none;\n  background: none;\n}\n",
+                  "card_mod": {
+                    "style": "ha-card {\n  border: none;\n  background: none;\n}\n"
+                  },
                   "cards": [
                     {
                       "type": "horizontal-stack",
                       "cards": [
                         {
                           "type": "picture",
-                          "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --ha-card-box-shadow: 'none';\n    border: none;\n}\n",
+                          "card_mod": {
+                            "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --ha-card-box-shadow: 'none';\n    border: none;\n}\n"
+                          },
                           "image": "/local/Pictures/kpn-banner.png"
                         }
                       ]
@@ -6926,7 +7103,9 @@
                           "invert": true
                         }
                       ],
-                      "style": "ha-card {\n  border: none;\n  background: none;\n}\n"
+                      "card_mod": {
+                        "style": "ha-card {\n  border: none;\n  background: none;\n}\n"
+                      }
                     },
                     {
                       "type": "custom:gap-card",
@@ -6940,7 +7119,9 @@
                       "cards": [
                         {
                           "type": "picture",
-                          "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --ha-card-box-shadow: 'none';\n    border: none;\n}\n",
+                          "card_mod": {
+                            "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --ha-card-box-shadow: 'none';\n    border: none;\n}\n"
+                          },
                           "image": "/local/Pictures/speedtest-banner.png"
                         }
                       ]
@@ -7305,7 +7486,9 @@
                           "color": "rgb(244, 208, 63)"
                         }
                       ],
-                      "style": "ha-card {\n  border: none;\n  background: none;\n}\n"
+                      "card_mod": {
+                        "style": "ha-card {\n  border: none;\n  background: none;\n}\n"
+                      }
                     }
                   ]
                 }
@@ -7315,7 +7498,9 @@
               "id": "raspi_unifi_status",
               "type": "entities",
               "show_header_toggle": "off",
-              "style": ".card-header {\n  padding: 0px 0px 0px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n",
+              "card_mod": {
+                "style": ".card-header {\n  padding: 0px 0px 0px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+              },
               "entities": [
                 {
                   "type": "custom:gap-card",
@@ -7323,14 +7508,18 @@
                 },
                 {
                   "type": "custom:vertical-stack-in-card",
-                  "style": "ha-card {\n  border: none;\n  background: none;\n}\n",
+                  "card_mod": {
+                    "style": "ha-card {\n  border: none;\n  background: none;\n}\n"
+                  },
                   "cards": [
                     {
                       "type": "horizontal-stack",
                       "cards": [
                         {
                           "type": "picture",
-                          "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --ha-card-box-shadow: 'none';\n}\n",
+                          "card_mod": {
+                            "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --ha-card-box-shadow: 'none';\n}\n"
+                          },
                           "image": "/local/Pictures/unifi-banner.png"
                         }
                       ]
@@ -7930,7 +8119,9 @@
                             "state": false,
                             "graph": "line"
                           },
-                          "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n  border: none;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n",
+                          "card_mod": {
+                            "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n  border: none;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n"
+                          },
                           "entities": [
                             "sensor.ap_woonkamer_cpu_usage"
                           ],
@@ -7969,7 +8160,9 @@
                             "state": false,
                             "graph": "line"
                           },
-                          "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 0px;\n  border: none;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n",
+                          "card_mod": {
+                            "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 0px;\n  border: none;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n"
+                          },
                           "entities": [
                             "sensor.ap_zolder_cpu_usage"
                           ],
@@ -8022,7 +8215,9 @@
                               "color": "#e45e65"
                             }
                           ],
-                          "style": "ha-card { \n  --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --paper-item-icon-color: 'var(--text-primary-color';\n  --ha-card-box-shadow: 'none';\n  font-size: 10px;\n  border: none;\n}\n",
+                          "card_mod": {
+                            "style": "ha-card { \n  --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --paper-item-icon-color: 'var(--text-primary-color';\n  --ha-card-box-shadow: 'none';\n  font-size: 10px;\n  border: none;\n}\n"
+                          },
                           "entity": "sensor.ap_woonkamer_cpu_usage",
                           "name": "CPU (880 MHz)",
                           "entity_row": true,
@@ -8059,7 +8254,9 @@
                               "color": "#e45e65"
                             }
                           ],
-                          "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 10px;\n  border: none;\n}\n",
+                          "card_mod": {
+                            "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 10px;\n  border: none;\n}\n"
+                          },
                           "entity": "sensor.ap_zolder_cpu_usage",
                           "name": "CPU (880 MHz)",
                           "icon": "mdi:chip",
@@ -8086,7 +8283,9 @@
                             "state": false,
                             "graph": "line"
                           },
-                          "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n  border: none;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n",
+                          "card_mod": {
+                            "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n  border: none;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n"
+                          },
                           "entities": [
                             "sensor.ap_woonkamer_ram_usage"
                           ],
@@ -8125,7 +8324,9 @@
                             "state": false,
                             "graph": "line"
                           },
-                          "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 0px;\n  border: none;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n",
+                          "card_mod": {
+                            "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 0px;\n  border: none;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n"
+                          },
                           "entities": [
                             "sensor.ap_zolder_ram_usage"
                           ],
@@ -8178,7 +8379,9 @@
                               "color": "#e45e65"
                             }
                           ],
-                          "style": "ha-card { \n  --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --paper-item-icon-color: 'var(--text-primary-color';\n  --ha-card-box-shadow: 'none';\n  font-size: 10px;\n  border: none;\n}\n",
+                          "card_mod": {
+                            "style": "ha-card { \n  --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --paper-item-icon-color: 'var(--text-primary-color';\n  --ha-card-box-shadow: 'none';\n  font-size: 10px;\n  border: none;\n}\n"
+                          },
                           "entity": "sensor.ap_woonkamer_ram_usage",
                           "name": "RAM (256MB)",
                           "entity_row": true,
@@ -8215,7 +8418,9 @@
                               "color": "#e45e65"
                             }
                           ],
-                          "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 10px;\n  border: none;\n}\n",
+                          "card_mod": {
+                            "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 10px;\n  border: none;\n}\n"
+                          },
                           "entity": "sensor.ap_zolder_ram_usage",
                           "name": "RAM (256MB)",
                           "icon": "mdi:memory",
@@ -8247,7 +8452,9 @@
                               "type": "custom:button-card",
                               "size": "45%",
                               "show_entity_picture": true,
-                              "style": "ha-card {\n  background: none;\n  box-shadow: none;\n  border: none;\n}\n",
+                              "card_mod": {
+                                "style": "ha-card {\n  background: none;\n  box-shadow: none;\n  border: none;\n}\n"
+                              },
                               "styles": {
                                 "grid": [
                                   {
@@ -8313,14 +8520,18 @@
               "entities": [
                 {
                   "type": "custom:vertical-stack-in-card",
-                  "style": "ha-card {\n  border: none;\n  background: none;\n}\n",
+                  "card_mod": {
+                    "style": "ha-card {\n  border: none;\n  background: none;\n}\n"
+                  },
                   "cards": [
                     {
                       "type": "horizontal-stack",
                       "cards": [
                         {
                           "type": "picture",
-                          "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: none;\n    --ha-card-box-shadow: 'none';\n    border: none;\n}\n",
+                          "card_mod": {
+                            "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: none;\n    --ha-card-box-shadow: 'none';\n    border: none;\n}\n"
+                          },
                           "image": "/local/Pictures/zigbee-banner.png"
                         }
                       ]
@@ -8337,11 +8548,15 @@
                   "font_size": 10,
                   "link_width": 1,
                   "height": 275,
-                  "style": "ha-card {\n  border-radius: 5px;\n  box-shadow: none;\n  background: none;\n  border: none;\n }\n",
+                  "card_mod": {
+                    "style": "ha-card {\n  border-radius: 5px;\n  box-shadow: none;\n  background: none;\n  border: none;\n }\n"
+                  },
                   "css": ":host {\n  --zigbee2mqtt-networkmap-node-color: rgba(18, 120, 98, .7);\n  --zigbee2mqtt-networkmap-node-fill-color: #dcfaf3;\n  --zigbee2mqtt-networkmap-node-pinned-color: rgba(190, 56, 93, .6);\n  --zigbee2mqtt-networkmap-link-color: rgba(18, 120, 98, .5);\n  --zigbee2mqtt-networkmap-hover-color: #be385d;\n  --zigbee2mqtt-networkmap-link-selected-color: rgba(202, 164, 85, .6);\n  --zigbee2mqtt-networkmap-label-color: #127862;\n  --zigbee2mqtt-networkmap-arrow-color: rgba(18, 120, 98, 0.7);\n  --zigbee2mqtt-networkmap-node-coordinator-color: rgba(224, 78, 93, .7);\n  --zigbee2mqtt-networkmap-node-router-color: rgba(0, 165, 255, .7);\n}\n"
                 }
               ],
-              "style": ".card-header {\n  padding: 0px 0px 0px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+              "card_mod": {
+                "style": ".card-header {\n  padding: 0px 0px 0px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+              }
             }
           ]
         },
@@ -8366,7 +8581,9 @@
               "id": "home_assistant_status",
               "type": "entities",
               "show_header_toggle": "off",
-              "style": ".card-header {\n  padding: 0px 0px 0px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n",
+              "card_mod": {
+                "style": ".card-header {\n  padding: 0px 0px 0px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+              },
               "entities": [
                 {
                   "type": "custom:gap-card",
@@ -8374,14 +8591,18 @@
                 },
                 {
                   "type": "custom:vertical-stack-in-card",
-                  "style": "ha-card {\n  border: none;\n  background: none;\n}\n",
+                  "card_mod": {
+                    "style": "ha-card {\n  border: none;\n  background: none;\n}\n"
+                  },
                   "cards": [
                     {
                       "type": "horizontal-stack",
                       "cards": [
                         {
                           "type": "picture",
-                          "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --ha-card-box-shadow: 'none';\n    border: none;\n}\n",
+                          "card_mod": {
+                            "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --ha-card-box-shadow: 'none';\n    border: none;\n}\n"
+                          },
                           "image": "/local/Pictures/pihole-banner.png"
                         }
                       ]
@@ -9304,7 +9525,9 @@
                         "state": false,
                         "graph": "line"
                       },
-                      "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n"
+                      },
                       "entities": [
                         "sensor.rpi_used_bloomhole"
                       ],
@@ -9352,7 +9575,9 @@
                           "color": "#e45e65"
                         }
                       ],
-                      "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n}\n"
+                      },
                       "entities": [
                         {
                           "entity": "sensor.rpi_used_bloomhole"
@@ -9377,7 +9602,9 @@
                         "state": false,
                         "graph": "line"
                       },
-                      "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n"
+                      },
                       "entities": [
                         "sensor.bloomhole_ram_usage"
                       ],
@@ -9425,7 +9652,9 @@
                           "color": "#e45e65"
                         }
                       ],
-                      "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n}\n"
+                      },
                       "entities": [
                         {
                           "entity": "sensor.bloomhole_ram_usage"
@@ -9451,7 +9680,9 @@
                         "state": false,
                         "graph": "line"
                       },
-                      "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n"
+                      },
                       "entities": [
                         "sensor.rpi_cpu_use_bloomhole"
                       ],
@@ -9499,7 +9730,9 @@
                           "color": "#e45e65"
                         }
                       ],
-                      "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n}\n"
+                      },
                       "entities": [
                         {
                           "entity": "sensor.rpi_cpu_use_bloomhole"
@@ -9525,7 +9758,9 @@
                         "state": false,
                         "graph": "line"
                       },
-                      "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n"
+                      },
                       "entities": [
                         "sensor.rpi_temp_bloomhole"
                       ],
@@ -9573,7 +9808,9 @@
                           "color": "#e45e65"
                         }
                       ],
-                      "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n}\n"
+                      },
                       "entities": [
                         {
                           "entity": "sensor.rpi_temp_bloomhole"
@@ -9656,7 +9893,9 @@
                           "unit": " "
                         }
                       ],
-                      "style": "ha-card {\n  border: none;\n  background: none;\n}\n"
+                      "card_mod": {
+                        "style": "ha-card {\n  border: none;\n  background: none;\n}\n"
+                      }
                     }
                   ]
                 }
@@ -9666,7 +9905,9 @@
               "id": "home_assistant_status",
               "type": "entities",
               "show_header_toggle": "off",
-              "style": ".card-header {\n  padding: 0px 0px 0px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n",
+              "card_mod": {
+                "style": ".card-header {\n  padding: 0px 0px 0px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+              },
               "entities": [
                 {
                   "type": "custom:gap-card",
@@ -9674,14 +9915,18 @@
                 },
                 {
                   "type": "custom:vertical-stack-in-card",
-                  "style": "ha-card {\n  border: none;\n  background: none;\n}\n",
+                  "card_mod": {
+                    "style": "ha-card {\n  border: none;\n  background: none;\n}\n"
+                  },
                   "cards": [
                     {
                       "type": "horizontal-stack",
                       "cards": [
                         {
                           "type": "picture",
-                          "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --ha-card-box-shadow: 'none';\n    border: none;\n}\n",
+                          "card_mod": {
+                            "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --ha-card-box-shadow: 'none';\n    border: none;\n}\n"
+                          },
                           "image": "/local/Pictures/nginx-banner.png"
                         }
                       ]
@@ -10135,7 +10380,9 @@
                         "state": false,
                         "graph": "line"
                       },
-                      "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n"
+                      },
                       "entities": [
                         "sensor.rpi_used_nginx"
                       ],
@@ -10183,7 +10430,9 @@
                           "color": "#e45e65"
                         }
                       ],
-                      "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n}\n"
+                      },
                       "entities": [
                         {
                           "entity": "sensor.rpi_used_nginx"
@@ -10208,7 +10457,9 @@
                         "state": false,
                         "graph": "line"
                       },
-                      "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n"
+                      },
                       "entities": [
                         "sensor.nginx_ram_usage"
                       ],
@@ -10256,7 +10507,9 @@
                           "color": "#e45e65"
                         }
                       ],
-                      "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n}\n"
+                      },
                       "entities": [
                         {
                           "entity": "sensor.nginx_ram_usage"
@@ -10282,7 +10535,9 @@
                         "state": false,
                         "graph": "line"
                       },
-                      "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n"
+                      },
                       "entities": [
                         "sensor.rpi_cpu_use_nginx"
                       ],
@@ -10330,7 +10585,9 @@
                           "color": "#e45e65"
                         }
                       ],
-                      "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n}\n"
+                      },
                       "entities": [
                         {
                           "entity": "sensor.rpi_cpu_use_nginx"
@@ -10356,7 +10613,9 @@
                         "state": false,
                         "graph": "line"
                       },
-                      "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n"
+                      },
                       "entities": [
                         "sensor.rpi_temp_nginx"
                       ],
@@ -10404,7 +10663,9 @@
                           "color": "#e45e65"
                         }
                       ],
-                      "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n}\n"
+                      },
                       "entities": [
                         {
                           "entity": "sensor.rpi_temp_nginx"
@@ -10425,7 +10686,9 @@
               "id": "home_assistant_status",
               "type": "entities",
               "show_header_toggle": "off",
-              "style": ".card-header {\n  padding: 0px 0px 0px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n",
+              "card_mod": {
+                "style": ".card-header {\n  padding: 0px 0px 0px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+              },
               "entities": [
                 {
                   "type": "custom:gap-card",
@@ -10433,14 +10696,18 @@
                 },
                 {
                   "type": "custom:vertical-stack-in-card",
-                  "style": "ha-card {\n  border: none;\n  background: none;\n}\n",
+                  "card_mod": {
+                    "style": "ha-card {\n  border: none;\n  background: none;\n}\n"
+                  },
                   "cards": [
                     {
                       "type": "horizontal-stack",
                       "cards": [
                         {
                           "type": "picture",
-                          "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --ha-card-box-shadow: 'none';\n    border: none;\n}\n",
+                          "card_mod": {
+                            "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --ha-card-box-shadow: 'none';\n    border: none;\n}\n"
+                          },
                           "image": "/local/Pictures/cups.png"
                         }
                       ]
@@ -10894,7 +11161,9 @@
                         "state": false,
                         "graph": "line"
                       },
-                      "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n"
+                      },
                       "entities": [
                         "sensor.rpi_used_printserver"
                       ],
@@ -10942,7 +11211,9 @@
                           "color": "#e45e65"
                         }
                       ],
-                      "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n}\n"
+                      },
                       "entities": [
                         {
                           "entity": "sensor.rpi_used_printserver"
@@ -10967,7 +11238,9 @@
                         "state": false,
                         "graph": "line"
                       },
-                      "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n"
+                      },
                       "entities": [
                         "sensor.printserver_ram_usage"
                       ],
@@ -11015,7 +11288,9 @@
                           "color": "#e45e65"
                         }
                       ],
-                      "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n}\n"
+                      },
                       "entities": [
                         {
                           "entity": "sensor.printserver_ram_usage"
@@ -11041,7 +11316,9 @@
                         "state": false,
                         "graph": "line"
                       },
-                      "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n"
+                      },
                       "entities": [
                         "sensor.rpi_cpu_use_printserver"
                       ],
@@ -11089,7 +11366,9 @@
                           "color": "#e45e65"
                         }
                       ],
-                      "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n}\n"
+                      },
                       "entities": [
                         {
                           "entity": "sensor.rpi_cpu_use_printserver"
@@ -11115,7 +11394,9 @@
                         "state": false,
                         "graph": "line"
                       },
-                      "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n"
+                      },
                       "entities": [
                         "sensor.rpi_temp_printserver"
                       ],
@@ -11163,7 +11444,9 @@
                           "color": "#e45e65"
                         }
                       ],
-                      "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n}\n",
+                      "card_mod": {
+                        "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --paper-item-icon-color: 'var(--text-primary-color';\n    --ha-card-box-shadow: 'none';\n    font-size: 12px;\n}\n"
+                      },
                       "entities": [
                         {
                           "entity": "sensor.rpi_temp_printserver"
@@ -11208,16 +11491,22 @@
                     {
                       "type": "custom:text-divider-row",
                       "text": "Energie Gebruik",
-                      "style": "h2:before, h2:after {\n  position: absolute;\n  top: 51%;\n  overflow: hidden;\n  width: 50%;\n  height: var(--line-size);\n  content: '\\a0';\n  background-color: var(--divider-color);\n}\n\nh2:before {\n  margin-left: -50%;\n  text-align: right;\n}\nh2.text-divider {\n  border-bottom: none;\n}\n\nh2.text-divider span {\n  background: none;\n}\n"
+                      "card_mod": {
+                        "style": "h2:before, h2:after {\n  position: absolute;\n  top: 51%;\n  overflow: hidden;\n  width: 50%;\n  height: var(--line-size);\n  content: '\\a0';\n  background-color: var(--divider-color);\n}\n\nh2:before {\n  margin-left: -50%;\n  text-align: right;\n}\nh2.text-divider {\n  border-bottom: none;\n}\n\nh2.text-divider span {\n  background: none;\n}\n"
+                      }
                     },
                     {
                       "card_type": "energy-distribution",
                       "type": "custom:hui-element",
-                      "style": "ha-card {\n  border-radius: 5px;\n  box-shadow: none;\n  background: none;\n  border: none;\n }\n"
+                      "card_mod": {
+                        "style": "ha-card {\n  border-radius: 5px;\n  box-shadow: none;\n  background: none;\n  border: none;\n }\n"
+                      }
                     }
                   ],
-                  "style": {
-                    ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                  "card_mod": {
+                    "style": {
+                      ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                    }
                   }
                 },
                 {
@@ -11267,8 +11556,10 @@
                     "average": true,
                     "state": true
                   },
-                  "style": {
-                    ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}     \n"
+                  "card_mod": {
+                    "style": {
+                      ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}     \n"
+                    }
                   },
                   "type": "custom:mini-graph-card"
                 },
@@ -11315,8 +11606,10 @@
                             "graph": "bar"
                           },
                           "group_by": "date",
-                          "style": {
-                            ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}  \n"
+                          "card_mod": {
+                            "style": {
+                              ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}  \n"
+                            }
                           },
                           "type": "custom:mini-graph-card"
                         },
@@ -11358,8 +11651,10 @@
                             "graph": "bar"
                           },
                           "group_by": "date",
-                          "style": {
-                            ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}     \n"
+                          "card_mod": {
+                            "style": {
+                              ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}     \n"
+                            }
                           },
                           "type": "custom:mini-graph-card"
                         }
@@ -11405,8 +11700,10 @@
                             "graph": "bar"
                           },
                           "group_by": "date",
-                          "style": {
-                            ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}     \n"
+                          "card_mod": {
+                            "style": {
+                              ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}     \n"
+                            }
                           },
                           "type": "custom:mini-graph-card"
                         },
@@ -11447,8 +11744,10 @@
                             "graph": "bar"
                           },
                           "group_by": "date",
-                          "style": {
-                            ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}     \n"
+                          "card_mod": {
+                            "style": {
+                              ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}     \n"
+                            }
                           },
                           "type": "custom:mini-graph-card"
                         }
@@ -11492,8 +11791,10 @@
                             "average": false,
                             "state": true
                           },
-                          "style": {
-                            ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                          "card_mod": {
+                            "style": {
+                              ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                            }
                           }
                         },
                         {
@@ -11521,8 +11822,10 @@
                             "average": false,
                             "state": true
                           },
-                          "style": {
-                            ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                          "card_mod": {
+                            "style": {
+                              ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                            }
                           }
                         }
                       ]
@@ -11555,8 +11858,10 @@
                             "average": false,
                             "state": true
                           },
-                          "style": {
-                            ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                          "card_mod": {
+                            "style": {
+                              ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                            }
                           }
                         },
                         {
@@ -11584,8 +11889,10 @@
                             "average": false,
                             "state": true
                           },
-                          "style": {
-                            ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                          "card_mod": {
+                            "style": {
+                              ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                            }
                           }
                         }
                       ]
@@ -11619,8 +11926,10 @@
                             "average": false,
                             "state": true
                           },
-                          "style": {
-                            ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                          "card_mod": {
+                            "style": {
+                              ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                            }
                           }
                         },
                         {
@@ -11649,8 +11958,10 @@
                             "average": false,
                             "state": true
                           },
-                          "style": {
-                            ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                          "card_mod": {
+                            "style": {
+                              ".": "#states > * {\n  margin: 2px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                            }
                           }
                         }
                       ]
@@ -11661,16 +11972,20 @@
                   "type": "iframe",
                   "url": "https://grafana.bloomlan.nl/d/PbO_uVKVk/home-assistant?orgId=1&viewPanel=6&kiosk",
                   "aspect_ratio": "75%",
-                  "style": {
-                    ".": "#states > * {\n  margin: -5px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                  "card_mod": {
+                    "style": {
+                      ".": "#states > * {\n  margin: -5px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                    }
                   }
                 },
                 {
                   "type": "iframe",
                   "url": "https://grafana.bloomlan.nl/d/PbO_uVKVk/home-assistant?orgId=1&viewPanel=5&kiosk",
                   "aspect_ratio": "75%",
-                  "style": {
-                    ".": "#states > * {\n  margin: -5px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                  "card_mod": {
+                    "style": {
+                      ".": "#states > * {\n  margin: -5px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                    }
                   }
                 }
               ]
@@ -11684,15 +11999,19 @@
                     {
                       "type": "custom:text-divider-row",
                       "text": "Device per Maand",
-                      "style": "h2:before, h2:after {\n  position: absolute;\n  top: 51%;\n  overflow: hidden;\n  width: 50%;\n  height: var(--line-size);\n  content: '\\a0';\n  background-color: var(--divider-color);\n}\n\nh2:before {\n  margin-left: -50%;\n  text-align: right;\n}\nh2.text-divider {\n  border-bottom: none;\n}\n\nh2.text-divider span {\n  background: none;\n}\n"
+                      "card_mod": {
+                        "style": "h2:before, h2:after {\n  position: absolute;\n  top: 51%;\n  overflow: hidden;\n  width: 50%;\n  height: var(--line-size);\n  content: '\\a0';\n  background-color: var(--divider-color);\n}\n\nh2:before {\n  margin-left: -50%;\n  text-align: right;\n}\nh2.text-divider {\n  border-bottom: none;\n}\n\nh2.text-divider span {\n  background: none;\n}\n"
+                      }
                     },
                     {
                       "type": "custom:auto-entities",
                       "card": {
                         "type": "entities",
                         "show_header_toggle": false,
-                        "style": {
-                          ".": "#states > * {\n  margin: -1px -15px !important;\n}\nha-card {\n  height: 100%;\n  box-shadow: none;\n  background-color: rgba(255, 255, 255, 0);\n  background: none;\n  border: none;\n}\n"
+                        "card_mod": {
+                          "style": {
+                            ".": "#states > * {\n  margin: -1px -15px !important;\n}\nha-card {\n  height: 100%;\n  box-shadow: none;\n  background-color: rgba(255, 255, 255, 0);\n  background: none;\n  border: none;\n}\n"
+                          }
                         }
                       },
                       "filter": {
@@ -11712,8 +12031,10 @@
                       }
                     }
                   ],
-                  "style": {
-                    ".": "#states > * {\n  margin: -5px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                  "card_mod": {
+                    "style": {
+                      ".": "#states > * {\n  margin: -5px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                    }
                   }
                 },
                 {
@@ -11722,7 +12043,9 @@
                     {
                       "type": "custom:text-divider-row",
                       "text": "Energie Verbruik",
-                      "style": "h2:before, h2:after {\n  position: absolute;\n  top: 51%;\n  overflow: hidden;\n  width: 50%;\n  height: var(--line-size);\n  content: '\\a0';\n  background-color: var(--divider-color);\n}\n\nh2:before {\n  margin-left: -50%;\n  text-align: right;\n}\nh2.text-divider {\n  border-bottom: none;\n}\n\nh2.text-divider span {\n  background: none;\n}\n"
+                      "card_mod": {
+                        "style": "h2:before, h2:after {\n  position: absolute;\n  top: 51%;\n  overflow: hidden;\n  width: 50%;\n  height: var(--line-size);\n  content: '\\a0';\n  background-color: var(--divider-color);\n}\n\nh2:before {\n  margin-left: -50%;\n  text-align: right;\n}\nh2.text-divider {\n  border-bottom: none;\n}\n\nh2.text-divider span {\n  background: none;\n}\n"
+                      }
                     },
                     {
                       "entity": "sensor.kosten"
@@ -11828,11 +12151,15 @@
                           "icon": "mdi:currency-eur"
                         }
                       ],
-                      "style": ":host div#items {\n  margin: 0px 0px 0px -25px\n}\n"
+                      "card_mod": {
+                        "style": ":host div#items {\n  margin: 0px 0px 0px -25px\n}\n"
+                      }
                     }
                   ],
-                  "style": {
-                    ".": "#states > * {\n  margin: -5px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                  "card_mod": {
+                    "style": {
+                      ".": "#states > * {\n  margin: -5px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+                    }
                   }
                 }
               ]
@@ -11870,12 +12197,16 @@
                         {
                           "type": "picture",
                           "image": "\\local\\Pictures\\battery-icon.png",
-                          "style": "ha-card{\n  width: 250px;\n  background: none;\n  box-shadow: none;\n  left: -20%;\n  border: none;\n}\n"
+                          "card_mod": {
+                            "style": "ha-card{\n  width: 250px;\n  background: none;\n  box-shadow: none;\n  left: -20%;\n  border: none;\n}\n"
+                          }
                         },
                         {
                           "type": "markdown",
                           "content": "## <center>Fibaro CO Sensor</center> ##\n<center><img\nsrc=\"/local/Custom_Icons/co-sensor-ico.png\"\nwidth=\"100\"/> <center>Battery type: CR123A</center> \n",
-                          "style": "ha-card{\n  left: -10%;\n  top: 20px;\n  font-size: 11px;\n  width: 75%;\n  background: none;\n  box-shadow: none;\n  border: none;\n}\n"
+                          "card_mod": {
+                            "style": "ha-card{\n  left: -10%;\n  top: 20px;\n  font-size: 11px;\n  width: 75%;\n  background: none;\n  box-shadow: none;\n  border: none;\n}\n"
+                          }
                         },
                         {
                           "type": "entities",
@@ -11913,17 +12244,23 @@
                               ],
                               "type": "custom:bar-card",
                               "width": "100%",
-                              "style": "ha-card {\n  border: none;\n}\n"
+                              "card_mod": {
+                                "style": "ha-card {\n  border: none;\n}\n"
+                              }
                             }
                           ],
-                          "style": {
-                            ".": "#states > * {\n  margin: -8px 0px !important;\n}\nha-card {\n  bar-card-border-radius: 5px;\n  left: -35%;\n  top: 45%;\n  width: 100%;\n  background: none;\n  box-shadow: none;\n  border: none;\n}\n"
+                          "card_mod": {
+                            "style": {
+                              ".": "#states > * {\n  margin: -8px 0px !important;\n}\nha-card {\n  bar-card-border-radius: 5px;\n  left: -35%;\n  top: 45%;\n  width: 100%;\n  background: none;\n  box-shadow: none;\n  border: none;\n}\n"
+                            }
                           }
                         },
                         {
                           "type": "markdown",
                           "content": "## <center>IKEA Tradfri Dimmer</center> ##\n<center><img\nsrc=\"/local/Custom_Icons/schakelaar_lamp_hoekje-ico.png\"\nwidth=\"100\"/> <center>Battery type: CR2032</center> \n",
-                          "style": "ha-card{\n  left: -10%;\n  top: 20px;\n  font-size: 11px;\n  width: 75%;\n  background: none;\n  box-shadow: none;\n  border: none;\n}\n"
+                          "card_mod": {
+                            "style": "ha-card{\n  left: -10%;\n  top: 20px;\n  font-size: 11px;\n  width: 75%;\n  background: none;\n  box-shadow: none;\n  border: none;\n}\n"
+                          }
                         },
                         {
                           "type": "entities",
@@ -11964,15 +12301,19 @@
                               "style": "ha-card {\n  border:none;\n}\n"
                             }
                           ],
-                          "style": {
-                            ".": "#states > * {\n  margin: -8px 0px !important;\n}\nha-card {\n  bar-card-border-radius: 5px;\n  left: -35%;\n  top: 45%;\n  width: 100%;\n  background: none;\n  box-shadow: none;\n  border: none;\n}\n"
+                          "card_mod": {
+                            "style": {
+                              ".": "#states > * {\n  margin: -8px 0px !important;\n}\nha-card {\n  bar-card-border-radius: 5px;\n  left: -35%;\n  top: 45%;\n  width: 100%;\n  background: none;\n  box-shadow: none;\n  border: none;\n}\n"
+                            }
                           }
                         },
                         {
                           "type": "custom:gap-card"
                         }
                       ],
-                      "style": "ha-card {\n  border: solid 2px var(--primary-color);\n  height: 100%;\n}\n"
+                      "card_mod": {
+                        "style": "ha-card {\n  border: solid 2px var(--primary-color);\n  height: 100%;\n}\n"
+                      }
                     }
                   ],
                   "layout_type": "grid",
@@ -11997,7 +12338,9 @@
           "cards": [
             {
               "type": "custom:mod-card",
-              "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n",
+              "card_mod": {
+                "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+              },
               "card": {
                 "type": "custom:xiaomi-vacuum-card",
                 "entity": "vacuum.miep",
@@ -12024,7 +12367,9 @@
             },
             {
               "type": "custom:mod-card",
-              "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n",
+              "card_mod": {
+                "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+              },
               "card": {
                 "type": "picture-entity",
                 "entity": "camera.robomiep_camera",
