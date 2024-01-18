@@ -1,0 +1,1571 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace.lovelace_test",
+  "data": {
+    "config": {
+      "background": "var(--background-image)",
+      "kiosk_mode": {
+        "user_settings": [
+          {
+            "users": [
+              "wall tablets"
+            ],
+            "hide_sidebar": true
+          },
+          {
+            "users": [
+              "Duncan",
+              "Sabrine"
+            ],
+            "hide_header": true
+          }
+        ]
+      },
+      "views": [
+        {
+          "theme": "Backend-selected",
+          "title": "test",
+          "path": "test",
+          "icon": "mdi:cellphone-arrow-down",
+          "visible": [
+            {
+              "user": "edf6650cd84b44ba853cfd5ba02fa72c"
+            },
+            {
+              "user": "914ff3c93def4ff6a59b7eb6296ef2d3"
+            }
+          ],
+          "type": "custom:masonry-layout",
+          "badges": [],
+          "cards": [
+            {
+              "type": "custom:mushroom-chips-card",
+              "chips": [
+                {
+                  "type": "entity",
+                  "entity": "sensor.chromecast_tx",
+                  "name": "System",
+                  "icon": "mdi:server",
+                  "tap_action": {
+                    "action": "navigate",
+                    "navigation_path": "/lovelace-mobile/system_mobile"
+                  },
+                  "content_info": "name"
+                },
+                {
+                  "type": "entity",
+                  "entity": "binary_sensor.bloom_data_security_status",
+                  "content_info": "name",
+                  "name": "Security",
+                  "tap_action": {
+                    "action": "navigate",
+                    "navigation_path": "/lovelace-mobile/home-security"
+                  }
+                },
+                {
+                  "type": "entity",
+                  "entity": "sensor.energy_cost_this_month",
+                  "name": "Energy",
+                  "content_info": "name",
+                  "icon": "mdi:flash",
+                  "tap_action": {
+                    "action": "navigate",
+                    "navigation_path": "/lovelace-mobile/energy-mobile"
+                  }
+                }
+              ],
+              "alignment": "center"
+            },
+            {
+              "type": "custom:vertical-stack-in-card",
+              "cards": [
+                {
+                  "type": "custom:layout-card",
+                  "layout_type": "custom:grid-layout",
+                  "layout": {
+                    "margin": "4px 0px 0px 0px;"
+                  },
+                  "cards": null
+                },
+                {
+                  "type": "custom:layout-card",
+                  "layout_type": "custom:grid-layout",
+                  "layout": {
+                    "margin": "-15px 0px 0px 0px;"
+                  },
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-title-card",
+                      "title": "{% set time = now().hour %}\n{% if (time >= 18) %} \n Goedenavond {{ user}}!\n{% elif (time >= 12) %}\n Goedemiddag {{ user}}!\n{% elif (time >= 5) %}\n Goedemorgen {{ user }}!\n{% else %}\n Hallo {{ user }}!\n{% endif %}",
+                      "subtitle": "De weersverwachting van vandaag:"
+                    },
+                    {
+                      "type": "custom:layout-card",
+                      "layout_type": "custom:grid-layout",
+                      "layout": {
+                        "margin": "-20px 0px -10px 0px;"
+                      },
+                      "cards": [
+                        {
+                          "type": "weather-forecast",
+                          "entity": "weather.fam_bloom",
+                          "name": "Max/Min",
+                          "show_forecast": true,
+                          "card_mod": {
+                            "style": "ha-card {\n  box-shadow: none;\n  background: none;\n  --ha-card-border-width: 0;\n}\n"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "horizontal-stack",
+              "cards": [
+                {
+                  "type": "custom:stack-in-card",
+                  "mode": "vertical",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-person-card",
+                      "entity": "person.sabrine",
+                      "use_entity_picture": true,
+                      "hide_name": false,
+                      "layout": "horizontal",
+                      "card_mod": {
+                        "style": "ha-card {\n  box-shadow: none;\n  background: none;\n  --ha-card-border-width: 0;\n}\n"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-chips-card",
+                      "chips": [
+                        {
+                          "type": "entity",
+                          "entity": "binary_sensor.telefoon_sabrine_is_aan_het_opladen",
+                          "content_info": "none",
+                          "card_mod": {
+                            "style": "ha-card {\n  box-shadow: 0px 0px;\n}\n"
+                          },
+                          "icon_color": "{% if state=='on' %}\ngreen\n{% elif state=='off' %}\nyellow\n{% else %}\nred\n{% endif %}"
+                        },
+                        {
+                          "type": "entity",
+                          "entity": "sensor.telefoon_sabrine_batterijniveau",
+                          "card_mod": {
+                            "style": "ha-card {\n  box-shadow: 0px 0px;\n}\n"
+                          }
+                        },
+                        {
+                          "type": "entity",
+                          "entity": "proximity.home_sabrine",
+                          "card_mod": {
+                            "style": "ha-card {\n  box-shadow: 0px 0px;\n}\n"
+                          }
+                        }
+                      ],
+                      "alignment": "center"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:stack-in-card",
+                  "mode": "vertical",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-person-card",
+                      "entity": "person.duncan",
+                      "use_entity_picture": true,
+                      "hide_name": false,
+                      "layout": "horizontal",
+                      "card_mod": {
+                        "style": "ha-card {\n  box-shadow: none;\n  background: none;\n  --ha-card-border-width: 0;\n}\n"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-chips-card",
+                      "chips": [
+                        {
+                          "type": "entity",
+                          "entity": "binary_sensor.telefoon_duncan_is_charging_2",
+                          "content_info": "none",
+                          "card_mod": {
+                            "style": "ha-card {\n  box-shadow: 0px 0px;\n}\n"
+                          },
+                          "icon_color": "{% set state=states('binary_sensor.telefoon_duncan_is_charging_2') %}\n{% if state=='on' %}\ngreen\n{% elif state=='off' %}\nyellow\n{% else %}\nred\n{% endif %}"
+                        },
+                        {
+                          "type": "entity",
+                          "entity": "sensor.telefoon_duncan_battery_level_2",
+                          "card_mod": {
+                            "style": "ha-card {\n  box-shadow: 0px 0px;\n}\n"
+                          }
+                        },
+                        {
+                          "type": "entity",
+                          "entity": "proximity.home_duncan",
+                          "card_mod": {
+                            "style": "ha-card {\n  box-shadow: 0px 0px;\n}\n"
+                          }
+                        }
+                      ],
+                      "alignment": "center"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "horizontal-stack",
+              "cards": [
+                {
+                  "type": "custom:stack-in-card",
+                  "mode": "vertical",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-person-card",
+                      "entity": "person.luca",
+                      "use_entity_picture": true,
+                      "hide_name": false,
+                      "card_mod": {
+                        "style": "ha-card {\n  box-shadow: none;\n  background: none;\n  --ha-card-border-width: 0;\n}\n"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-chips-card",
+                      "chips": [
+                        {
+                          "type": "entity",
+                          "entity": "binary_sensor.tablet_luca_is_aan_het_opladen",
+                          "content_info": "none",
+                          "card_mod": {
+                            "style": "ha-card {\n  box-shadow: 0px 0px;\n}\n"
+                          },
+                          "icon_color": "{% set state=states('binary_sensor.tablet_luca_is_aan_het_opladen') %}\n{% if state=='on' %}\ngreen\n{% elif state=='off' %}\nyellow\n{% else %}\nred\n{% endif %}"
+                        },
+                        {
+                          "type": "entity",
+                          "entity": "sensor.tablet_luca_batterijniveau",
+                          "card_mod": {
+                            "style": "ha-card {\n  box-shadow: 0px 0px;\n}\n"
+                          }
+                        },
+                        {
+                          "type": "entity",
+                          "entity": "proximity.home_luca",
+                          "card_mod": {
+                            "style": "ha-card {\n  box-shadow: 0px 0px;\n}\n"
+                          }
+                        }
+                      ],
+                      "alignment": "center"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:stack-in-card",
+                  "mode": "vertical",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-person-card",
+                      "entity": "person.fynn",
+                      "use_entity_picture": true,
+                      "hide_name": false,
+                      "card_mod": {
+                        "style": "ha-card {\n  box-shadow: none;\n  background: none;\n  --ha-card-border-width: 0;\n}\n"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-chips-card",
+                      "chips": [
+                        {
+                          "type": "entity",
+                          "entity": "binary_sensor.tablet_fynn_is_aan_het_opladen",
+                          "content_info": "none",
+                          "card_mod": {
+                            "style": "ha-card {\n  box-shadow: 0px 0px;\n}\n"
+                          },
+                          "icon_color": "{% set state=states('binary_sensor.tablet_fynn_is_aan_het_opladen') %}\n{% if state=='on' %}\ngreen\n{% elif state=='off' %}\nyellow\n{% else %}\nred\n{% endif %}"
+                        },
+                        {
+                          "type": "entity",
+                          "entity": "sensor.tablet_fynn_batterijniveau",
+                          "card_mod": {
+                            "style": "ha-card {\n  box-shadow: 0px 0px;\n}\n"
+                          }
+                        },
+                        {
+                          "type": "entity",
+                          "entity": "proximity.home_fynn",
+                          "card_mod": {
+                            "style": "ha-card {\n  box-shadow: 0px 0px;\n}\n"
+                          }
+                        }
+                      ],
+                      "alignment": "center"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "custom:mushroom-climate-card",
+              "entity": "climate.toon_thermostat",
+              "name": "Thermostaat",
+              "icon": "",
+              "fill_container": true,
+              "hvac_modes": [],
+              "show_temperature_control": true,
+              "collapsible_controls": false
+            },
+            {
+              "type": "horizontal-stack",
+              "cards": [
+                {
+                  "type": "custom:mushroom-vacuum-card",
+                  "entity": "vacuum.miep",
+                  "name": "Schoonmaken",
+                  "icon_animation": true,
+                  "fill_container": true,
+                  "secondary_info": "none",
+                  "commands": [
+                    "return_home"
+                  ],
+                  "tap_action": {
+                    "action": "navigate",
+                    "navigation_path": "/lovelace-mobile/schoonmaken"
+                  }
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "input_boolean.guest_mode",
+                  "icon": "mdi:account-child",
+                  "fill_container": true,
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "layout": "vertical"
+                }
+              ]
+            },
+            {
+              "type": "custom:mushroom-title-card",
+              "title": "Ruimtes"
+            },
+            {
+              "type": "horizontal-stack",
+              "cards": [
+                {
+                  "type": "custom:vertical-stack-in-card",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "entity": "light.lampen_woonkamer",
+                      "icon": "mdi:sofa",
+                      "icon_color": "{% if is_state(entity, 'on') %}\n  #03A9F4\n{% else %}  \n  grey\n{% endif %}\n",
+                      "primary": "Woonkamer",
+                      "secondary": "{{ state_attr('climate.toon_thermostat', 'current_temperature') | round(1) }}°C",
+                      "layout": "horizontal",
+                      "tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "/lovelace-mobile/woonkamer"
+                      },
+                      "double_tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "/lovelace-mobile/woonkamer"
+                      },
+                      "hold_action": {
+                        "action": "toggle"
+                      },
+                      "badge_icon": "{% if state_attr('climate.verwarming_woonkamer', 'current_heating_setpoint')|float > state_attr('climate.verwarming_woonkamer', 'local_temperature')|float %}\n  mdi:radiator\n{% elif state_attr('climate.verwarming_woonkamer', 'current_heating_setpoint')|float < state_attr('climate.verwarming_woonkamer', 'local_temperature')|float %}\n  mdi:snowflake\n{% else %}  {% endif %}\n",
+                      "badge_color": "{% if state_attr('climate.verwarming_woonkamer', 'current_heating_setpoint')|float > state_attr('climate.verwarming_woonkamer', 'local_temperature')|float %}\n  red\n{% elif state_attr('climate.verwarming_woonkamer', 'current_heating_setpoint')|float < state_attr('climate.verwarming_woonkamer', 'local_temperature')|float %}\n  #03A9F4\n{% else %} {% endif %}\n",
+                      "card_mod": {
+                        "style": {
+                          "mushroom-state-info$": ".primary {\n  font-size: 12px !important;\n  position: relative;\n  top: -35px;\n  left: -120px;\n  overflow: visible !important;\n  white-space: normal !important;\n}\n.secondary {\n  font-size: 12px !important;\n  position: relative;\n  overflow: visible !important;\n  top: -35px;\n  left: -120px;\n}\n",
+                          "mushroom-shape-icon$": ".shape {\n  position: relative;\n  left: -35px;\n  top: 30px;\n}\n",
+                          ".": ":host {\n  --mush-icon-size: 105px;\n}\n",
+                          "style": "mushroom-badge-icon {\n  left: 45px;\n  top: 20px;\n}\n"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-chips-card",
+                      "chips": [
+                        {
+                          "type": "template",
+                          "entity": "light.lampen_woonkamer",
+                          "hold_action": {
+                            "action": "fire-dom-event",
+                            "browser_mod": {
+                              "service": "browser_mod.popup",
+                              "data": {
+                                "title": "Woonkamer Lampen",
+                                "content": {
+                                  "type": "vertical-stack",
+                                  "cards": [
+                                    {
+                                      "type": "custom:mushroom-light-card",
+                                      "entity": "light.lamp_achterdeur",
+                                      "name": "Lamp Achtedeur",
+                                      "use_light_color": true,
+                                      "show_brightness_control": true,
+                                      "show_color_temp_control": false,
+                                      "show_color_control": false,
+                                      "collapsible_controls": true,
+                                      "card_mod": {
+                                        "style": "ha-card {\n  --ha-card-border-width: 0;\n}\n"
+                                      }
+                                    },
+                                    {
+                                      "type": "custom:mushroom-light-card",
+                                      "entity": "light.lamp_bank_hoek",
+                                      "name": "Lamp Bank",
+                                      "use_light_color": true,
+                                      "show_brightness_control": true,
+                                      "show_color_temp_control": false,
+                                      "show_color_control": false,
+                                      "collapsible_controls": true,
+                                      "card_mod": {
+                                        "style": "ha-card {\n  --ha-card-border-width: 0;\n}\n"
+                                      }
+                                    },
+                                    {
+                                      "type": "custom:mushroom-light-card",
+                                      "entity": "light.lamp_haard",
+                                      "name": "Lamp Haard",
+                                      "use_light_color": true,
+                                      "show_brightness_control": true,
+                                      "show_color_temp_control": false,
+                                      "show_color_control": false,
+                                      "collapsible_controls": true,
+                                      "card_mod": {
+                                        "style": "ha-card {\n  --ha-card-border-width: 0;\n}\n"
+                                      }
+                                    },
+                                    {
+                                      "type": "custom:mushroom-light-card",
+                                      "entity": "light.lamp_trap",
+                                      "name": "Lamp Trap",
+                                      "use_light_color": true,
+                                      "show_brightness_control": true,
+                                      "show_color_temp_control": false,
+                                      "show_color_control": false,
+                                      "collapsible_controls": true,
+                                      "card_mod": {
+                                        "style": "ha-card {\n  --ha-card-border-width: 0;\n}\n"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          },
+                          "icon": "mdi:lightbulb",
+                          "tap_action": {
+                            "action": "toggle"
+                          },
+                          "icon_color": "{% if is_state(entity, 'on') %} \n orange\n{% elif is_state(entity, 'off') %} \n grey\n{% else %}\n grey\n{% endif %}"
+                        },
+                        {
+                          "type": "template",
+                          "entity": "media_player.sonos_woonkamer",
+                          "icon": "mdi:play-pause",
+                          "icon_color": "{% if is_state(entity, 'playing') %} \n  #03A9F4\n{% else %}\n grey\n{% endif %}",
+                          "tap_action": {
+                            "action": "fire-dom-event",
+                            "browser_mod": {
+                              "service": "browser_mod.popup",
+                              "data": {
+                                "title": "Sonos Woonkamer",
+                                "content": {
+                                  "type": "custom:stack-in-card",
+                                  "cards": [
+                                    {
+                                      "type": "custom:mini-media-player",
+                                      "entity": "media_player.sonos_woonkamer",
+                                      "source": "full",
+                                      "volume_stateless": false,
+                                      "group": true,
+                                      "artwork": "full-cover"
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        }
+                      ],
+                      "card_mod": {
+                        "style": {
+                          ".": "ha-card {\n  width: 66px;\n  margin-left: 70%;\n  top: -130px;\n  background: none;\n  --chip-border-width: 0;\n}\n"
+                        }
+                      }
+                    }
+                  ],
+                  "card_mod": {
+                    "style": "ha-card {\n  height: 120px ;\n  background: none;\n  margin-left: auto;\n  margin-right: auto;\n}\n"
+                  }
+                },
+                {
+                  "type": "custom:vertical-stack-in-card",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "entity": "Verlichting_Keuken",
+                      "icon": "mdi:countertop",
+                      "icon_color": "{% if is_state(entity, 'on') %}\n  #03A9F4\n{% else %}  \n  grey\n{% endif %}\n",
+                      "primary": "Keuken",
+                      "secondary": "{{ state_attr('climate.toon_thermostat', 'current_temperature') | round(1) }}°C",
+                      "layout": "horizontal",
+                      "tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "/lovelace-mobile/keuken"
+                      },
+                      "double_tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "/lovelace-mobile/keuken"
+                      },
+                      "hold_action": {
+                        "action": "toggle"
+                      },
+                      "badge_icon": "{% if state_attr('climate.verwarming_keuken', 'current_heating_setpoint')|float > state_attr('climate.verwarming_keuken', 'local_temperature')|float %}\n  mdi:radiator\n{% elif state_attr('climate.verwarming_keuken', 'current_heating_setpoint')|float < state_attr('climate.verwarming_keuken', 'local_temperature')|float %}\n  mdi:snowflake\n{% else %}  {% endif %}\n",
+                      "badge_color": "{% if state_attr('climate.verwarming_keuken', 'current_heating_setpoint')|float > state_attr('climate.verwarming_keuken', 'local_temperature')|float %}\n  red\n{% elif state_attr('climate.verwarming_keuken', 'current_heating_setpoint')|float < state_attr('climate.verwarming_keuken', 'local_temperature')|float %}\n  #03A9F4\n{% else %} {% endif %}\n",
+                      "card_mod": {
+                        "style": {
+                          "mushroom-state-info$": ".primary {\n  font-size: 12px !important;\n  position: relative;\n  top: -35px;\n  left: -120px;\n  overflow: visible !important;\n  white-space: normal !important;\n}\n.secondary {\n  font-size: 12px !important;\n  position: relative;\n  overflow: visible !important;\n  top: -35px;\n  left: -120px;\n}\n",
+                          "mushroom-shape-icon$": ".shape {\n  position: relative;\n  left: -35px;\n  top: 30px;\n}\n",
+                          ".": ":host {\n  --mush-icon-size: 105px;\n}\n",
+                          "style": "mushroom-badge-icon {\n  left: 45px;\n  top: 20px;\n}\n"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-chips-card",
+                      "chips": [
+                        {
+                          "type": "template",
+                          "entity": "light.lampen_keuken",
+                          "hold_action": {
+                            "action": "fire-dom-event",
+                            "browser_mod": {
+                              "service": "browser_mod.popup",
+                              "data": {
+                                "title": "Keuken Lampen",
+                                "content": {
+                                  "type": "vertical-stack",
+                                  "cards": [
+                                    {
+                                      "type": "custom:mushroom-light-card",
+                                      "entity": "light.keuken",
+                                      "name": "Lamp Keuken",
+                                      "use_light_color": true,
+                                      "show_brightness_control": true,
+                                      "show_color_temp_control": false,
+                                      "show_color_control": false,
+                                      "collapsible_controls": true,
+                                      "card_mod": {
+                                        "style": "ha-card {\n  --ha-card-border-width: 0;\n}\n"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          },
+                          "icon": "mdi:lightbulb",
+                          "tap_action": {
+                            "action": "toggle"
+                          },
+                          "icon_color": "{% if is_state(entity, 'on') %} \n orange\n{% elif is_state(entity, 'off') %} \n grey\n{% else %}\n grey\n{% endif %}"
+                        }
+                      ],
+                      "card_mod": {
+                        "style": {
+                          ".": "ha-card {\n  width: 66px;\n  margin-left: 70%;\n  top: -130px;\n  background: none;\n  --chip-border-width: 0;\n}\n"
+                        }
+                      }
+                    }
+                  ],
+                  "card_mod": {
+                    "style": "ha-card {\n  height: 120px ;\n  background: none;\n  margin-left: auto;\n  margin-right: auto;\n}\n"
+                  }
+                },
+                {
+                  "type": "custom:vertical-stack-in-card",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "entity": "Verlichting_Toilet",
+                      "icon": "mdi:toilet",
+                      "icon_color": "{% if is_state(entity, 'on') %}\n  #03A9F4\n{% else %}  \n  grey\n{% endif %}\n",
+                      "primary": "Toilet",
+                      "secondary": "{{ state_attr('climate.verwarming_toilet', 'current_temperature') | round(1) }}°C",
+                      "layout": "horizontal",
+                      "tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "/lovelace-mobile/toilet"
+                      },
+                      "double_tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "/lovelace-mobile/toilet"
+                      },
+                      "hold_action": {
+                        "action": "toggle"
+                      },
+                      "badge_icon": "{% if state_attr('climate.verwarming_toilet', 'current_heating_setpoint')|float > state_attr('climate.verwarming_toilet', 'local_temperature')|float %}\n  mdi:radiator\n{% elif state_attr('climate.verwarming_toilet', 'current_heating_setpoint')|float < state_attr('climate.verwarming_toilet', 'local_temperature')|float %}\n  mdi:snowflake\n{% else %}  {% endif %}\n",
+                      "badge_color": "{% if state_attr('climate.verwarming_toilet', 'current_heating_setpoint')|float > state_attr('climate.verwarming_toilet', 'local_temperature')|float %}\n  red\n{% elif state_attr('climate.verwarming_toilet', 'current_heating_setpoint')|float < state_attr('climate.verwarming_toilet', 'local_temperature')|float %}\n  #03A9F4\n{% else %} {% endif %}\n",
+                      "card_mod": {
+                        "style": {
+                          "mushroom-state-info$": ".primary {\n  font-size: 12px !important;\n  position: relative;\n  top: -35px;\n  left: -120px;\n  overflow: visible !important;\n  white-space: normal !important;\n}\n.secondary {\n  font-size: 12px !important;\n  position: relative;\n  overflow: visible !important;\n  top: -35px;\n  left: -120px;\n}\n",
+                          "mushroom-shape-icon$": ".shape {\n  position: relative;\n  left: -35px;\n  top: 30px;\n}\n",
+                          ".": ":host {\n  --mush-icon-size: 105px;\n}\n",
+                          "style": "mushroom-badge-icon {\n  left: 45px;\n  top: 20px;\n}\n"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-chips-card",
+                      "chips": [
+                        {
+                          "type": "template",
+                          "entity": "light.lampen_toilet",
+                          "hold_action": {
+                            "action": "fire-dom-event",
+                            "browser_mod": {
+                              "service": "browser_mod.popup",
+                              "data": {
+                                "title": "Toilet Lampen",
+                                "content": {
+                                  "type": "vertical-stack",
+                                  "cards": [
+                                    {
+                                      "type": "custom:mushroom-light-card",
+                                      "entity": "light.toilet",
+                                      "name": "Lamp Toilet",
+                                      "use_light_color": true,
+                                      "show_brightness_control": true,
+                                      "show_color_temp_control": false,
+                                      "show_color_control": false,
+                                      "collapsible_controls": true,
+                                      "card_mod": {
+                                        "style": "ha-card {\n  --ha-card-border-width: 0;\n}\n"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          },
+                          "icon": "mdi:lightbulb",
+                          "tap_action": {
+                            "action": "toggle"
+                          },
+                          "icon_color": "{% if is_state(entity, 'on') %} \n orange\n{% elif is_state(entity, 'off') %} \n grey\n{% else %}\n grey\n{% endif %}"
+                        }
+                      ],
+                      "card_mod": {
+                        "style": {
+                          ".": "ha-card {\n  width: 66px;\n  margin-left: 70%;\n  top: -130px;\n  background: none;\n  --chip-border-width: 0;\n}\n"
+                        }
+                      }
+                    }
+                  ],
+                  "card_mod": {
+                    "style": "ha-card {\n  height: 120px ;\n  background: none;\n  margin-left: auto;\n  margin-right: auto;\n}\n"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "horizontal-stack",
+              "cards": [
+                {
+                  "type": "custom:vertical-stack-in-card",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "entity": "Verlichting_hal",
+                      "icon": "mdi:key",
+                      "icon_color": "{% if is_state(entity, 'on') %}\n  #03A9F4\n{% else %}  \n  grey\n{% endif %}\n",
+                      "primary": "Hal",
+                      "secondary": "{{ state_attr('climate.verwarming_hal', 'local_temperature') | round(1) }}°C",
+                      "layout": "horizontal",
+                      "tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "/lovelace-mobile/hal"
+                      },
+                      "double_tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "/lovelace-mobile/hal"
+                      },
+                      "hold_action": {
+                        "action": "toggle"
+                      },
+                      "badge_icon": "{% if state_attr('climate.verwarming_hal', 'current_heating_setpoint')|float > state_attr('climate.verwarming_hal', 'local_temperature')|float %}\n  mdi:radiator\n{% elif state_attr('climate.verwarming_hal', 'current_heating_setpoint')|float < state_attr('climate.verwarming_hal', 'local_temperature')|float %}\n  mdi:snowflake\n{% else %}  {% endif %}\n",
+                      "badge_color": "{% if state_attr('climate.verwarming_hal', 'current_heating_setpoint')|float > state_attr('climate.verwarming_hal', 'local_temperature')|float %}\n  red\n{% elif state_attr('climate.verwarming_hal', 'current_heating_setpoint')|float < state_attr('climate.verwarming_hal', 'local_temperature')|float %}\n  #03A9F4\n{% else %} {% endif %}\n",
+                      "card_mod": {
+                        "style": {
+                          "mushroom-state-info$": ".primary {\n  font-size: 12px !important;\n  position: relative;\n  top: -35px;\n  left: -120px;\n  overflow: visible !important;\n  white-space: normal !important;\n}\n.secondary {\n  font-size: 12px !important;\n  position: relative;\n  overflow: visible !important;\n  top: -35px;\n  left: -120px;\n}\n",
+                          "mushroom-shape-icon$": ".shape {\n  position: relative;\n  left: -35px;\n  top: 30px;\n}\n",
+                          ".": ":host {\n  --mush-icon-size: 105px;\n}\n",
+                          "style": "mushroom-badge-icon {\n  left: 45px;\n  top: 20px;\n}\n"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-chips-card",
+                      "chips": [
+                        {
+                          "type": "template",
+                          "entity": "light.lampen_hal",
+                          "hold_action": {
+                            "action": "fire-dom-event",
+                            "browser_mod": {
+                              "service": "browser_mod.popup",
+                              "data": {
+                                "title": "Hal Lampen",
+                                "content": {
+                                  "type": "vertical-stack",
+                                  "cards": [
+                                    {
+                                      "type": "custom:mushroom-light-card",
+                                      "entity": "light.hal",
+                                      "name": "Lamp Hal",
+                                      "use_light_color": true,
+                                      "show_brightness_control": true,
+                                      "show_color_temp_control": false,
+                                      "show_color_control": false,
+                                      "collapsible_controls": true,
+                                      "card_mod": {
+                                        "style": "ha-card {\n  --ha-card-border-width: 0;\n}\n"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          },
+                          "icon": "mdi:lightbulb",
+                          "tap_action": {
+                            "action": "toggle"
+                          },
+                          "icon_color": "{% if is_state(entity, 'on') %} \n orange\n{% elif is_state(entity, 'off') %} \n grey\n{% else %}\n grey\n{% endif %}"
+                        }
+                      ],
+                      "card_mod": {
+                        "style": {
+                          ".": "ha-card {\n  width: 66px;\n  margin-left: 70%;\n  top: -130px;\n  background: none;\n  --chip-border-width: 0;\n}\n"
+                        }
+                      }
+                    }
+                  ],
+                  "card_mod": {
+                    "style": "ha-card {\n  height: 120px ;\n  background: none;\n  margin-left: auto;\n  margin-right: auto;\n}\n"
+                  }
+                },
+                {
+                  "type": "custom:vertical-stack-in-card",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "entity": "Verlichting_overloop",
+                      "icon": "mdi:stairs",
+                      "icon_color": "{% if is_state(entity, 'on') %}\n  #03A9F4\n{% else %}  \n  grey\n{% endif %}\n",
+                      "primary": "Overloop",
+                      "secondary": "",
+                      "layout": "horizontal",
+                      "tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "/lovelace-mobile/overloop"
+                      },
+                      "double_tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "/lovelace-mobile/overloop"
+                      },
+                      "hold_action": {
+                        "action": "toggle"
+                      },
+                      "badge_color": "",
+                      "card_mod": {
+                        "style": {
+                          "mushroom-state-info$": ".primary {\n  font-size: 12px !important;\n  position: relative;\n  top: -35px;\n  left: -120px;\n  overflow: visible !important;\n  white-space: normal !important;\n}\n.secondary {\n  font-size: 12px !important;\n  position: relative;\n  overflow: visible !important;\n  top: -35px;\n  left: -120px;\n}\n",
+                          "mushroom-shape-icon$": ".shape {\n  position: relative;\n  left: -35px;\n  top: 30px;\n}\n",
+                          ".": ":host {\n  --mush-icon-size: 105px;\n}\n",
+                          "style": "mushroom-badge-icon {\n  left: 45px;\n  top: 20px;\n}\n"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-chips-card",
+                      "chips": [
+                        {
+                          "type": "template",
+                          "entity": "light.lampen_overloop",
+                          "hold_action": {
+                            "action": "fire-dom-event",
+                            "browser_mod": {
+                              "service": "browser_mod.popup",
+                              "data": {
+                                "title": "Overloop Lampen",
+                                "content": {
+                                  "type": "vertical-stack",
+                                  "cards": [
+                                    {
+                                      "type": "custom:mushroom-light-card",
+                                      "entity": "light.overloop",
+                                      "name": "Lamp overloop",
+                                      "use_light_color": true,
+                                      "show_brightness_control": true,
+                                      "show_color_temp_control": false,
+                                      "show_color_control": false,
+                                      "collapsible_controls": true,
+                                      "card_mod": {
+                                        "style": "ha-card {\n  --ha-card-border-width: 0;\n}\n"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          },
+                          "icon": "mdi:lightbulb",
+                          "tap_action": {
+                            "action": "toggle"
+                          },
+                          "icon_color": "{% if is_state(entity, 'on') %} \n orange\n{% elif is_state(entity, 'off') %} \n grey\n{% else %}\n grey\n{% endif %}"
+                        }
+                      ],
+                      "card_mod": {
+                        "style": {
+                          ".": "ha-card {\n  width: 66px;\n  margin-left: 70%;\n  top: -130px;\n  background: none;\n  --chip-border-width: 0;\n}\n"
+                        }
+                      }
+                    }
+                  ],
+                  "card_mod": {
+                    "style": "ha-card {\n  height: 120px ;\n  background: none;\n  margin-left: auto;\n  margin-right: auto;\n}\n"
+                  }
+                },
+                {
+                  "type": "custom:vertical-stack-in-card",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "entity": "Verlichting_slaapkamer",
+                      "icon": "mdi:bed-double",
+                      "icon_color": "{% if is_state(entity, 'on') %}\n  #03A9F4\n{% else %}  \n  grey\n{% endif %}\n",
+                      "primary": "Kamer S & D",
+                      "secondary": "{{ state_attr('climate.verwarming_slaapkamer', 'local_temperature') | round(1) }}°C",
+                      "layout": "horizontal",
+                      "tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "/lovelace-mobile/slaapkamer"
+                      },
+                      "double_tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "/lovelace-mobile/slaapkamer"
+                      },
+                      "hold_action": {
+                        "action": "toggle"
+                      },
+                      "badge_icon": "{% if state_attr('climate.verwarming_slaapkamer', 'current_heating_setpoint')|float > state_attr('climate.verwarming_slaapkamer', 'local_temperature')|float %}\n  mdi:radiator\n{% elif state_attr('climate.verwarming_slaapkamer', 'current_heating_setpoint')|float < state_attr('climate.verwarming_slaapkamer', 'local_temperature')|float %}\n  mdi:snowflake\n{% else %}  {% endif %}\n",
+                      "badge_color": "{% if state_attr('climate.verwarming_slaapkamer', 'current_heating_setpoint')|float > state_attr('climate.verwarming_slaapkamer', 'local_temperature')|float %}\n  red\n{% elif state_attr('climate.verwarming_slaapkamer', 'current_heating_setpoint')|float < state_attr('climate.verwarming_slaapkamer', 'local_temperature')|float %}\n  #03A9F4\n{% else %} {% endif %}\n",
+                      "card_mod": {
+                        "style": {
+                          "mushroom-state-info$": ".primary {\n  font-size: 12px !important;\n  position: relative;\n  top: -35px;\n  left: -120px;\n  overflow: visible !important;\n  white-space: none !important;\n}\n.secondary {\n  font-size: 12px !important;\n  position: relative;\n  overflow: visible !important;\n  top: -35px;\n  left: -120px;\n}\n",
+                          "mushroom-shape-icon$": ".shape {\n  position: relative;\n  left: -35px;\n  top: 30px;\n}\n",
+                          ".": ":host {\n  --mush-icon-size: 105px;\n}\n",
+                          "style": "mushroom-badge-icon {\n  left: 45px;\n  top: 20px;\n}\n"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-chips-card",
+                      "chips": [
+                        {
+                          "type": "template",
+                          "entity": "light.lampen_slaapkamer",
+                          "hold_action": {
+                            "action": "fire-dom-event",
+                            "browser_mod": {
+                              "service": "browser_mod.popup",
+                              "data": {
+                                "title": "slaapkamer Lampen",
+                                "content": {
+                                  "type": "vertical-stack",
+                                  "cards": [
+                                    {
+                                      "type": "custom:mushroom-light-card",
+                                      "entity": "light.shelly_shsw_1_40f520009959",
+                                      "name": "Lampjes Dakkapel",
+                                      "use_light_color": true,
+                                      "show_brightness_control": true,
+                                      "show_color_temp_control": false,
+                                      "show_color_control": false,
+                                      "collapsible_controls": true,
+                                      "card_mod": {
+                                        "style": "ha-card {\n  --ha-card-border-width: 0;\n}\n"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          },
+                          "icon": "mdi:lightbulb",
+                          "tap_action": {
+                            "action": "toggle"
+                          },
+                          "icon_color": "{% if is_state(entity, 'on') %} \n orange\n{% elif is_state(entity, 'off') %} \n grey\n{% else %}\n grey\n{% endif %}"
+                        }
+                      ],
+                      "card_mod": {
+                        "style": {
+                          ".": "ha-card {\n  width: 66px;\n  margin-left: 70%;\n  top: -130px;\n  background: none;\n  --chip-border-width: 0;\n}\n"
+                        }
+                      }
+                    }
+                  ],
+                  "card_mod": {
+                    "style": "ha-card {\n  height: 120px ;\n  background: none;\n  margin-left: auto;\n  margin-right: auto;\n}\n"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "horizontal-stack",
+              "cards": [
+                {
+                  "type": "custom:vertical-stack-in-card",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "entity": "group.verlichting_luca",
+                      "icon": "mdi:bed",
+                      "icon_color": "{% if is_state(entity, 'on') %}\n  #03A9F4\n{% else %}  \n  grey\n{% endif %}\n",
+                      "primary": "Kamer Luca",
+                      "secondary": "{{ state_attr('climate.verwarming_luca', 'local_temperature') | round(1) }}°C",
+                      "layout": "horizontal",
+                      "tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "/lovelace-mobile/luca"
+                      },
+                      "double_tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "/lovelace-mobile/luca"
+                      },
+                      "hold_action": {
+                        "action": "toggle"
+                      },
+                      "badge_icon": "{% if state_attr('climate.verwarming_luca', 'current_heating_setpoint')|float > state_attr('climate.verwarming_luca', 'local_temperature')|float %}\n  mdi:radiator\n{% elif state_attr('climate.verwarming_luca', 'current_heating_setpoint')|float < state_attr('climate.verwarming_luca', 'local_temperature')|float %}\n  mdi:snowflake\n{% else %}  {% endif %}\n",
+                      "badge_color": "{% if state_attr('climate.verwarming_luca', 'current_heating_setpoint')|float > state_attr('climate.verwarming_luca', 'local_temperature')|float %}\n  red\n{% elif state_attr('climate.verwarming_luca', 'current_heating_setpoint')|float < state_attr('climate.verwarming_luca', 'local_temperature')|float %}\n  #03A9F4\n{% else %} {% endif %}\n",
+                      "card_mod": {
+                        "style": {
+                          "mushroom-state-info$": ".primary {\n  font-size: 12px !important;\n  position: relative;\n  top: -35px;\n  left: -120px;\n  overflow: visible !important;\n  white-space: none !important;\n}\n.secondary {\n  font-size: 12px !important;\n  position: relative;\n  overflow: visible !important;\n  top: -35px;\n  left: -120px;\n}\n",
+                          "mushroom-shape-icon$": ".shape {\n  position: relative;\n  left: -35px;\n  top: 30px;\n}\n",
+                          ".": ":host {\n  --mush-icon-size: 105px;\n}\n",
+                          "style": "mushroom-badge-icon {\n  left: 45px;\n  top: 20px;\n}\n"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-chips-card",
+                      "chips": [
+                        {
+                          "type": "template",
+                          "entity": "light.lampen_luca",
+                          "hold_action": {
+                            "action": "fire-dom-event",
+                            "browser_mod": {
+                              "service": "browser_mod.popup",
+                              "data": {
+                                "title": "Kamer Luca Lampen",
+                                "content": {
+                                  "type": "vertical-stack",
+                                  "cards": [
+                                    {
+                                      "type": "custom:mushroom-light-card",
+                                      "entity": "light.luca",
+                                      "name": "Lamp Kamer Luca",
+                                      "use_light_color": true,
+                                      "show_brightness_control": true,
+                                      "show_color_temp_control": false,
+                                      "show_color_control": false,
+                                      "collapsible_controls": true,
+                                      "card_mod": {
+                                        "style": "ha-card {\n  --ha-card-border-width: 0;\n}\n"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          },
+                          "icon": "mdi:lightbulb",
+                          "tap_action": {
+                            "action": "toggle"
+                          },
+                          "icon_color": "{% if is_state(entity, 'on') %} \n orange\n{% elif is_state(entity, 'off') %} \n grey\n{% else %}\n grey\n{% endif %}"
+                        }
+                      ],
+                      "card_mod": {
+                        "style": {
+                          ".": "ha-card {\n  width: 66px;\n  margin-left: 70%;\n  top: -130px;\n  background: none;\n  --chip-border-width: 0;\n}\n"
+                        }
+                      }
+                    }
+                  ],
+                  "card_mod": {
+                    "style": "ha-card {\n  height: 120px ;\n  background: none;\n  margin-left: auto;\n  margin-right: auto;\n}\n"
+                  }
+                },
+                {
+                  "type": "custom:vertical-stack-in-card",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "entity": "group.verlichting_fynn",
+                      "icon": "mdi:bed",
+                      "icon_color": "{% if is_state(entity, 'on') %}\n  #03A9F4\n{% else %}  \n  grey\n{% endif %}\n",
+                      "primary": "Kamer Fynn",
+                      "secondary": "{{ state_attr('climate.verwarming_fynn', 'local_temperature') | round(1) }}°C",
+                      "layout": "horizontal",
+                      "tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "/lovelace-mobile/fynn"
+                      },
+                      "double_tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "/lovelace-mobile/fynn"
+                      },
+                      "hold_action": {
+                        "action": "toggle"
+                      },
+                      "badge_icon": "{% if state_attr('climate.verwarming_fynn', 'current_heating_setpoint')|float > state_attr('climate.verwarming_fynn', 'local_temperature')|float %}\n  mdi:radiator\n{% elif state_attr('climate.verwarming_fynn', 'current_heating_setpoint')|float < state_attr('climate.verwarming_fynn', 'local_temperature')|float %}\n  mdi:snowflake\n{% else %}  {% endif %}\n",
+                      "badge_color": "{% if state_attr('climate.verwarming_fynn', 'current_heating_setpoint')|float > state_attr('climate.verwarming_fynn', 'local_temperature')|float %}\n  red\n{% elif state_attr('climate.verwarming_fynn', 'current_heating_setpoint')|float < state_attr('climate.verwarming_fynn', 'local_temperature')|float %}\n  #03A9F4\n{% else %} {% endif %}\n",
+                      "card_mod": {
+                        "style": {
+                          "mushroom-state-info$": ".primary {\n  font-size: 12px !important;\n  position: relative;\n  top: -35px;\n  left: -120px;\n  overflow: visible !important;\n  white-space: none !important;\n}\n.secondary {\n  font-size: 12px !important;\n  position: relative;\n  overflow: visible !important;\n  top: -35px;\n  left: -120px;\n}\n",
+                          "mushroom-shape-icon$": ".shape {\n  position: relative;\n  left: -35px;\n  top: 30px;\n}\n",
+                          ".": ":host {\n  --mush-icon-size: 105px;\n}\n",
+                          "style": "mushroom-badge-icon {\n  left: 45px;\n  top: 20px;\n}\n"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-chips-card",
+                      "chips": [
+                        {
+                          "type": "template",
+                          "entity": "light.lampen_fynn",
+                          "hold_action": {
+                            "action": "fire-dom-event",
+                            "browser_mod": {
+                              "service": "browser_mod.popup",
+                              "data": {
+                                "title": "Kamer Fynn Lampen",
+                                "content": {
+                                  "type": "vertical-stack",
+                                  "cards": [
+                                    {
+                                      "type": "custom:mushroom-light-card",
+                                      "entity": "light.fynn",
+                                      "name": "Lamp Kamer Fynn",
+                                      "use_light_color": true,
+                                      "show_brightness_control": true,
+                                      "show_color_temp_control": false,
+                                      "show_color_control": false,
+                                      "collapsible_controls": true,
+                                      "card_mod": {
+                                        "style": "ha-card {\n  --ha-card-border-width: 0;\n}\n"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          },
+                          "icon": "mdi:lightbulb",
+                          "tap_action": {
+                            "action": "toggle"
+                          },
+                          "icon_color": "{% if is_state(entity, 'on') %} \n orange\n{% elif is_state(entity, 'off') %} \n grey\n{% else %}\n grey\n{% endif %}"
+                        }
+                      ],
+                      "card_mod": {
+                        "style": {
+                          ".": "ha-card {\n  width: 66px;\n  margin-left: 70%;\n  top: -130px;\n  background: none;\n  --chip-border-width: 0;\n}\n"
+                        }
+                      }
+                    }
+                  ],
+                  "card_mod": {
+                    "style": "ha-card {\n  height: 120px ;\n  background: none;\n  margin-left: auto;\n  margin-right: auto;\n}\n"
+                  }
+                },
+                {
+                  "type": "custom:vertical-stack-in-card",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "entity": "light.lampen_badkamer",
+                      "icon": "mdi:shower",
+                      "icon_color": "{% if is_state(entity, 'on') %}\n  #03A9F4\n{% else %}  \n  grey\n{% endif %}\n",
+                      "primary": "Badkamer",
+                      "secondary": "{{ state_attr('climate.verwarming_badkamer', 'local_temperature') | round(1) }}°C",
+                      "layout": "horizontal",
+                      "tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "/lovelace-mobile/badkamer"
+                      },
+                      "double_tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "/lovelace-mobile/badkamer"
+                      },
+                      "hold_action": {
+                        "action": "toggle"
+                      },
+                      "badge_icon": "{% if state_attr('climate.verwarming_badkamer', 'current_heating_setpoint')|float > state_attr('climate.verwarming_badkamer', 'local_temperature')|float %}\n  mdi:radiator\n{% elif state_attr('climate.verwarming_badkamer', 'current_heating_setpoint')|float < state_attr('climate.verwarming_badkamer', 'local_temperature')|float %}\n  mdi:snowflake\n{% else %}  {% endif %}\n",
+                      "badge_color": "{% if state_attr('climate.verwarming_badkamer', 'current_heating_setpoint')|float > state_attr('climate.verwarming_badkamer', 'local_temperature')|float %}\n  red\n{% elif state_attr('climate.verwarming_badkamer', 'current_heating_setpoint')|float < state_attr('climate.verwarming_badkamer', 'local_temperature')|float %}\n  #03A9F4\n{% else %} {% endif %}\n",
+                      "card_mod": {
+                        "style": {
+                          "mushroom-state-info$": ".primary {\n  font-size: 12px !important;\n  position: relative;\n  top: -35px;\n  left: -120px;\n  overflow: visible !important;\n  white-space: none !important;\n}\n.secondary {\n  font-size: 12px !important;\n  position: relative;\n  overflow: visible !important;\n  top: -35px;\n  left: -120px;\n}\n",
+                          "mushroom-shape-icon$": ".shape {\n  position: relative;\n  left: -35px;\n  top: 30px;\n}\n",
+                          ".": ":host {\n  --mush-icon-size: 105px;\n}\n",
+                          "style": "mushroom-badge-icon {\n  left: 45px;\n  top: 20px;\n}\n"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-chips-card",
+                      "chips": [
+                        {
+                          "type": "template",
+                          "entity": "light.lampen_badkamer",
+                          "hold_action": {
+                            "action": "fire-dom-event",
+                            "browser_mod": {
+                              "service": "browser_mod.popup",
+                              "data": {
+                                "title": "Badkamer Lampen",
+                                "content": {
+                                  "type": "vertical-stack",
+                                  "cards": [
+                                    {
+                                      "type": "custom:mushroom-light-card",
+                                      "entity": "light.verlichting_douche",
+                                      "name": "Verlichting Douche",
+                                      "use_light_color": true,
+                                      "show_brightness_control": true,
+                                      "show_color_temp_control": false,
+                                      "show_color_control": false,
+                                      "collapsible_controls": true,
+                                      "card_mod": {
+                                        "style": "ha-card {\n  --ha-card-border-width: 0;\n}\n"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          },
+                          "icon": "mdi:lightbulb",
+                          "tap_action": {
+                            "action": "toggle"
+                          },
+                          "icon_color": "{% if is_state(entity, 'on') %} \n orange\n{% elif is_state(entity, 'off') %} \n grey\n{% else %}\n grey\n{% endif %}"
+                        }
+                      ],
+                      "card_mod": {
+                        "style": {
+                          ".": "ha-card {\n  width: 66px;\n  margin-left: 70%;\n  top: -130px;\n  background: none;\n  --chip-border-width: 0;\n}\n"
+                        }
+                      }
+                    }
+                  ],
+                  "card_mod": {
+                    "style": "ha-card {\n  height: 120px ;\n  background: none;\n  margin-left: auto;\n  margin-right: auto;\n}\n"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "horizontal-stack",
+              "cards": [
+                {
+                  "type": "custom:vertical-stack-in-card",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "entity": "light.lampen_kantoor",
+                      "icon": "mdi:briefcase",
+                      "icon_color": "{% if is_state(entity, 'on') %}\n  #03A9F4\n{% else %}  \n  grey\n{% endif %}\n",
+                      "primary": "Kantoor",
+                      "secondary": "{{ state_attr('climate.verwarming_kantoor', 'local_temperature') | round(1) }}°C",
+                      "layout": "horizontal",
+                      "tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "/lovelace-mobile/kantoor"
+                      },
+                      "double_tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "/lovelace-mobile/kantoor"
+                      },
+                      "hold_action": {
+                        "action": "toggle"
+                      },
+                      "badge_icon": "{% if state_attr('climate.verwarming_kantoor', 'current_heating_setpoint')|float > state_attr('climate.verwarming_kantoor', 'local_temperature')|float %}\n  mdi:radiator\n{% elif state_attr('climate.verwarming_kantoor', 'current_heating_setpoint')|float < state_attr('climate.verwarming_kantoor', 'local_temperature')|float %}\n  mdi:snowflake\n{% else %}  {% endif %}\n",
+                      "badge_color": "{% if state_attr('climate.verwarming_kantoor', 'current_heating_setpoint')|float > state_attr('climate.verwarming_kantoor', 'local_temperature')|float %}\n  red\n{% elif state_attr('climate.verwarming_kantoor', 'current_heating_setpoint')|float < state_attr('climate.verwarming_kantoor', 'local_temperature')|float %}\n  #03A9F4\n{% else %} {% endif %}\n",
+                      "card_mod": {
+                        "style": {
+                          "mushroom-state-info$": ".primary {\n  font-size: 12px !important;\n  position: relative;\n  top: -35px;\n  left: -120px;\n  overflow: visible !important;\n  white-space: none !important;\n}\n.secondary {\n  font-size: 12px !important;\n  position: relative;\n  overflow: visible !important;\n  top: -35px;\n  left: -120px;\n}\n",
+                          "mushroom-shape-icon$": ".shape {\n  position: relative;\n  left: -35px;\n  top: 30px;\n}\n",
+                          ".": ":host {\n  --mush-icon-size: 105px;\n}\n",
+                          "style": "mushroom-badge-icon {\n  left: 45px;\n  top: 20px;\n}\n"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-chips-card",
+                      "chips": [
+                        {
+                          "type": "template",
+                          "entity": "light.lampen_kantoor",
+                          "hold_action": {
+                            "action": "fire-dom-event",
+                            "browser_mod": {
+                              "service": "browser_mod.popup",
+                              "data": {
+                                "title": "Kantoor Lampen",
+                                "content": {
+                                  "type": "vertical-stack",
+                                  "cards": [
+                                    {
+                                      "type": "custom:mushroom-light-card",
+                                      "entity": "light.lamp_hoekje",
+                                      "name": "Lamp Hoekje",
+                                      "use_light_color": true,
+                                      "show_brightness_control": true,
+                                      "show_color_temp_control": false,
+                                      "show_color_control": false,
+                                      "collapsible_controls": true,
+                                      "card_mod": {
+                                        "style": "ha-card {\n  --ha-card-border-width: 0;\n}\n"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          },
+                          "icon": "mdi:lightbulb",
+                          "tap_action": {
+                            "action": "toggle"
+                          },
+                          "icon_color": "{% if is_state(entity, 'on') %} \n orange\n{% elif is_state(entity, 'off') %} \n grey\n{% else %}\n grey\n{% endif %}"
+                        }
+                      ],
+                      "card_mod": {
+                        "style": {
+                          ".": "ha-card {\n  width: 66px;\n  margin-left: 70%;\n  top: -130px;\n  background: none;\n  --chip-border-width: 0;\n}\n"
+                        }
+                      }
+                    }
+                  ],
+                  "card_mod": {
+                    "style": "ha-card {\n  height: 120px ;\n  background: none;\n  margin-left: auto;\n  margin-right: auto;\n}\n"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "horizontal-stack",
+              "cards": [
+                {
+                  "type": "custom:vertical-stack-in-card",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "entity": "group.verlichting_achtertuin",
+                      "icon": "mdi:shovel",
+                      "icon_color": "{% if is_state(entity, 'on') %}\n  #03A9F4\n{% else %}  \n  grey\n{% endif %}\n",
+                      "primary": "Achtertuin",
+                      "layout": "horizontal",
+                      "tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "/lovelace-mobile/achtertuin"
+                      },
+                      "double_tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "/lovelace-mobile/achtertuin"
+                      },
+                      "hold_action": {
+                        "action": "toggle"
+                      },
+                      "secondary": "",
+                      "badge_color": "",
+                      "badge_icon": "",
+                      "card_mod": {
+                        "style": {
+                          "mushroom-state-info$": ".primary {\n  font-size: 12px !important;\n  position: relative;\n  top: -35px;\n  left: -120px;\n  overflow: visible !important;\n  white-space: none !important;\n}\n.secondary {\n  font-size: 12px !important;\n  position: relative;\n  overflow: visible !important;\n  top: -35px;\n  left: -120px;\n}\n",
+                          "mushroom-shape-icon$": ".shape {\n  position: relative;\n  left: -35px;\n  top: 30px;\n}\n",
+                          ".": ":host {\n  --mush-icon-size: 105px;\n}\n",
+                          "style": "mushroom-badge-icon {\n  left: 45px;\n  top: 20px;\n}\n"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-chips-card",
+                      "chips": [
+                        {
+                          "type": "template",
+                          "entity": "light.lampen_achtertuin",
+                          "hold_action": {
+                            "action": "fire-dom-event",
+                            "browser_mod": {
+                              "service": "browser_mod.popup",
+                              "data": {
+                                "title": "Lampen Achtertuin",
+                                "content": {
+                                  "type": "vertical-stack",
+                                  "cards": [
+                                    {
+                                      "type": "custom:mushroom-light-card",
+                                      "entity": "light.shelly_shsw_1_40f52000c449",
+                                      "name": "Lamp Tuinkast",
+                                      "use_light_color": true,
+                                      "show_brightness_control": true,
+                                      "show_color_temp_control": false,
+                                      "show_color_control": false,
+                                      "collapsible_controls": true,
+                                      "card_mod": {
+                                        "style": "ha-card {\n  --ha-card-border-width: 0;\n}\n"
+                                      }
+                                    },
+                                    {
+                                      "type": "custom:mushroom-light-card",
+                                      "entity": "light.lampjes_veranda",
+                                      "name": "Lampjes Veranda",
+                                      "use_light_color": true,
+                                      "show_brightness_control": true,
+                                      "show_color_temp_control": false,
+                                      "show_color_control": false,
+                                      "collapsible_controls": true,
+                                      "card_mod": {
+                                        "style": "ha-card {\n  --ha-card-border-width: 0;\n}\n"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          },
+                          "icon": "mdi:lightbulb",
+                          "tap_action": {
+                            "action": "toggle"
+                          },
+                          "icon_color": "{% if is_state(entity, 'on') %} \n orange\n{% elif is_state(entity, 'off') %} \n grey\n{% else %}\n grey\n{% endif %}"
+                        }
+                      ],
+                      "card_mod": {
+                        "style": {
+                          ".": "ha-card {\n  width: 66px;\n  margin-left: 70%;\n  top: -130px;\n  background: none;\n  --chip-border-width: 0;\n}\n"
+                        }
+                      }
+                    }
+                  ],
+                  "card_mod": {
+                    "style": "ha-card {\n  height: 120px ;\n  background: none;\n  margin-left: auto;\n  margin-right: auto;\n}\n"
+                  }
+                },
+                {
+                  "type": "custom:vertical-stack-in-card",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "entity": "group.verlichting_oprit",
+                      "icon": "mdi:car",
+                      "icon_color": "{% if is_state(entity, 'on') %}\n  #03A9F4\n{% else %}  \n  grey\n{% endif %}\n",
+                      "primary": "Oprit",
+                      "layout": "horizontal",
+                      "tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "/lovelace-mobile/oprit"
+                      },
+                      "double_tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "/lovelace-mobile/oprit"
+                      },
+                      "hold_action": {
+                        "action": "toggle"
+                      },
+                      "secondary": "",
+                      "badge_color": "",
+                      "badge_icon": "",
+                      "card_mod": {
+                        "style": {
+                          "mushroom-state-info$": ".primary {\n  font-size: 12px !important;\n  position: relative;\n  top: -35px;\n  left: -120px;\n  overflow: visible !important;\n  white-space: none !important;\n}\n.secondary {\n  font-size: 12px !important;\n  position: relative;\n  overflow: visible !important;\n  top: -35px;\n  left: -120px;\n}\n",
+                          "mushroom-shape-icon$": ".shape {\n  position: relative;\n  left: -35px;\n  top: 30px;\n}\n",
+                          ".": ":host {\n  --mush-icon-size: 105px;\n}\n",
+                          "style": "mushroom-badge-icon {\n  left: 45px;\n  top: 20px;\n}\n"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-chips-card",
+                      "chips": [
+                        {
+                          "type": "template",
+                          "entity": "light.lampen_oprit",
+                          "hold_action": {
+                            "action": "fire-dom-event",
+                            "browser_mod": {
+                              "service": "browser_mod.popup",
+                              "data": {
+                                "title": "Lampen Oprit",
+                                "content": {
+                                  "type": "vertical-stack",
+                                  "cards": [
+                                    {
+                                      "type": "custom:mushroom-light-card",
+                                      "entity": "light.oprit",
+                                      "name": "Lamp Oprit",
+                                      "use_light_color": true,
+                                      "show_brightness_control": true,
+                                      "show_color_temp_control": false,
+                                      "show_color_control": false,
+                                      "collapsible_controls": true,
+                                      "card_mod": {
+                                        "style": "ha-card {\n  --ha-card-border-width: 0;\n}\n"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          },
+                          "icon": "mdi:lightbulb",
+                          "tap_action": {
+                            "action": "toggle"
+                          },
+                          "icon_color": "{% if is_state(entity, 'on') %} \n orange\n{% elif is_state(entity, 'off') %} \n grey\n{% else %}\n grey\n{% endif %}"
+                        }
+                      ],
+                      "card_mod": {
+                        "style": {
+                          ".": "ha-card {\n  width: 66px;\n  margin-left: 70%;\n  top: -130px;\n  background: none;\n  --chip-border-width: 0;\n}\n"
+                        }
+                      }
+                    }
+                  ],
+                  "card_mod": {
+                    "style": "ha-card {\n  height: 120px ;\n  background: none;\n  margin-left: auto;\n  margin-right: auto;\n}\n"
+                  }
+                },
+                {
+                  "type": "custom:vertical-stack-in-card",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-template-card",
+                      "entity": "group.verlichting_schuur",
+                      "icon": "mdi:barn",
+                      "icon_color": "{% if is_state(entity, 'on') %}\n  #03A9F4\n{% else %}  \n  grey\n{% endif %}\n",
+                      "primary": "Schuur",
+                      "layout": "horizontal",
+                      "tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "/lovelace-mobile/schuur"
+                      },
+                      "double_tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "/lovelace-mobile/schuur"
+                      },
+                      "hold_action": {
+                        "action": "toggle"
+                      },
+                      "secondary": "",
+                      "badge_color": "",
+                      "badge_icon": "",
+                      "card_mod": {
+                        "style": {
+                          "mushroom-state-info$": ".primary {\n  font-size: 12px !important;\n  position: relative;\n  top: -35px;\n  left: -120px;\n  overflow: visible !important;\n  white-space: none !important;\n}\n.secondary {\n  font-size: 12px !important;\n  position: relative;\n  overflow: visible !important;\n  top: -35px;\n  left: -120px;\n}\n",
+                          "mushroom-shape-icon$": ".shape {\n  position: relative;\n  left: -35px;\n  top: 30px;\n}\n",
+                          ".": ":host {\n  --mush-icon-size: 105px;\n}\n",
+                          "style": "mushroom-badge-icon {\n  left: 45px;\n  top: 20px;\n}\n"
+                        }
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-chips-card",
+                      "chips": [
+                        {
+                          "type": "template",
+                          "entity": "light.lampen_schuur",
+                          "hold_action": {
+                            "action": "fire-dom-event",
+                            "browser_mod": {
+                              "service": "browser_mod.popup",
+                              "data": {
+                                "title": "Lampen Schuur",
+                                "content": {
+                                  "type": "vertical-stack",
+                                  "cards": [
+                                    {
+                                      "type": "custom:mushroom-light-card",
+                                      "entity": "light.schuur",
+                                      "name": "Lamp Schuur",
+                                      "use_light_color": true,
+                                      "show_brightness_control": true,
+                                      "show_color_temp_control": false,
+                                      "show_color_control": false,
+                                      "collapsible_controls": true,
+                                      "card_mod": {
+                                        "style": "ha-card {\n  --ha-card-border-width: 0;\n}\n"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          },
+                          "icon": "mdi:lightbulb",
+                          "tap_action": {
+                            "action": "toggle"
+                          },
+                          "icon_color": "{% if is_state(entity, 'on') %} \n orange\n{% elif is_state(entity, 'off') %} \n grey\n{% else %}\n grey\n{% endif %}"
+                        }
+                      ],
+                      "card_mod": {
+                        "style": {
+                          ".": "ha-card {\n  width: 66px;\n  margin-left: 70%;\n  top: -130px;\n  background: none;\n  --chip-border-width: 0;\n}\n"
+                        }
+                      }
+                    }
+                  ],
+                  "card_mod": {
+                    "style": "ha-card {\n  height: 120px ;\n  background: none;\n  margin-left: auto;\n  margin-right: auto;\n}\n"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "theme": "Backend-selected",
+          "title": "test2",
+          "path": "test2",
+          "layout": {
+            "grid-template-columns": "250px auto",
+            "grid-template-rows": "auto",
+            "grid-template-areas": "\"header header header\"\n"
+          },
+          "type": "custom:horizontal-layout",
+          "badges": [],
+          "cards": []
+        }
+      ]
+    }
+  }
+}
