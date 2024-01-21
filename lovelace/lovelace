@@ -4467,7 +4467,7 @@
                               }
                             ]
                           },
-                          "entity": "sensor.ups_status",
+                          "entity": "sensor.ups_status_2",
                           "name": "UPS Status",
                           "icon": "mdi:alert"
                         },
@@ -4536,7 +4536,7 @@
                               }
                             ]
                           },
-                          "entity": "sensor.ups_battery_chemistry",
+                          "entity": "sensor.ups_battery_chemistry_2",
                           "name": "Battery Type",
                           "icon": "mdi:car-battery"
                         }
@@ -4610,7 +4610,7 @@
                               }
                             ]
                           },
-                          "entity": "sensor.ups_battery_runtime",
+                          "entity": "sensor.ups_battery_runtime_2",
                           "name": "Battery Runtime",
                           "icon": "mdi:progress-clock"
                         },
@@ -4682,7 +4682,7 @@
                               }
                             ]
                           },
-                          "entity": "sensor.ups_self_test_result",
+                          "entity": "sensor.ups_self_test_result_2",
                           "name": "Self Test Result",
                           "icon": "mdi:battery-check"
                         }
@@ -4756,7 +4756,7 @@
                               }
                             ]
                           },
-                          "entity": "sensor.ups_battery_charge",
+                          "entity": "sensor.ups_battery_charge_2",
                           "name": "Battery Charge",
                           "icon": "mdi:power-plug"
                         },
@@ -4828,7 +4828,7 @@
                               }
                             ]
                           },
-                          "entity": "sensor.ups_beeper_status",
+                          "entity": "sensor.ups_beeper_status_2",
                           "name": "Beeper Status",
                           "icon": "mdi:alert-circle-outline"
                         }
@@ -4854,7 +4854,7 @@
                         "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n"
                       },
                       "entities": [
-                        "sensor.ups_load"
+                        "sensor.ups_load_2"
                       ],
                       "name": null,
                       "color_thresholds": [
@@ -4905,7 +4905,7 @@
                       },
                       "entities": [
                         {
-                          "entity": "sensor.ups_load"
+                          "entity": "sensor.ups_load_2"
                         }
                       ],
                       "name": "Battery Load",
@@ -4932,7 +4932,7 @@
                         "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n"
                       },
                       "entities": [
-                        "sensor.ups_battery_voltage"
+                        "sensor.ups_battery_voltage_2"
                       ],
                       "name": null,
                       "color_thresholds": [
@@ -4983,7 +4983,7 @@
                       },
                       "entities": [
                         {
-                          "entity": "sensor.ups_battery_voltage"
+                          "entity": "sensor.ups_battery_voltage_2"
                         }
                       ],
                       "name": "Battery Voltage",
@@ -5010,7 +5010,7 @@
                         "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n"
                       },
                       "entities": [
-                        "sensor.ups_input_voltage"
+                        "sensor.ups_input_voltage_2"
                       ],
                       "name": null,
                       "color_thresholds": [
@@ -5061,7 +5061,7 @@
                       },
                       "entities": [
                         {
-                          "entity": "sensor.ups_input_voltage"
+                          "entity": "sensor.ups_input_voltage_2"
                         }
                       ],
                       "name": "Input Voltage",
