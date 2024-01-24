@@ -152,7 +152,7 @@ automation:
     - platform: time
       at: '06:00'
     - platform: time
-      at: '18:30'
+      at: '18:00'
     condition:
     - condition: not
       conditions:
@@ -164,7 +164,7 @@ automation:
       - service: climate.set_temperature
         data:
           hvac_mode: heat
-          temperature: 17
+          temperature: 18
         target:
           device_id:
             - 59dc73e6760d124ca96a4101045b4bcd
@@ -180,7 +180,7 @@ automation:
     action:
       - service: climate.set_temperature
         data:
-          temperature: 5
+          temperature: 15
         target:
           device_id:
             - 59dc73e6760d124ca96a4101045b4bcd

@@ -279,22 +279,6 @@
   #================================  
   # System
   #================================
-#  - platform: systemmonitor
-#    resources:
-#        - type: disk_use_percent
-#          arg: /
-#        - type: memory_use_percent
-#        - type: swap_use_percent
-#        - type: processor_use
-#        - type: last_boot
-#        - type: network_in
-#          arg: enp0s3
-#        - type: network_out
-#          arg: enp0s3
-#        - type: throughput_network_in
-#          arg: enp0s3
-#        - type: throughput_network_out
-#          arg: enp0s3
         
   - platform: template
     sensors:
