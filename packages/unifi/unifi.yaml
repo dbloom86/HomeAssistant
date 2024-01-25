@@ -17,6 +17,10 @@ sensor:
           friendly_name: "AP Zolder Firmware"
           value_template: "{{state_attr('update.ap_zolder', 'installed_version')}}"
 
+      usg_firmware:
+          friendly_name: "USG Firmware"
+          value_template: "{{state_attr('update.usg_3p', 'installed_version')}}"
+
       ap_woonkamer_ram_usage:
           friendly_name: AP Woonkamer RAM usage
           unit_of_measurement: '%'
@@ -27,6 +31,16 @@ sensor:
           unit_of_measurement: '%'
           value_template: "{{ (((states.sensor.ap_zolder_total_memory.state | float) - (states.sensor.ap_zolder_free_memory.state | float)) / (states.sensor.ap_zolder_total_memory.state | float ) * 100) | round(0) }}"
 
+      usg_ram_usage:
+          friendly_name: USG RAM usage
+          unit_of_measurement: '%'
+          value_template: "{{ (((states.sensor.usg_total_memory.state | float) - (states.sensor.usg_free_memory.state | float)) / (states.sensor.usg_total_memory.state | float ) * 100) | round(0) }}"
+
+      usg_cpu_usage:
+          friendly_name: USG CPU usage
+          unit_of_measurement: '%'
+          value_template: "{{ (((states.sensor.usg_cpu1_usage.state | float) + (states.sensor.usg_cpu2_usage.state | float)) / 2) | round(0) }}"
+
   - platform: snmp
     name: 'AP Woonkamer Model'
     host: 192.168.2.43
@@ -36,6 +50,11 @@ sensor:
     name: 'AP Zolder Model'
     host: 192.168.2.116
     baseoid: 1.3.6.1.4.1.41112.1.6.3.3.0
+
+  - platform: snmp
+    name: 'USG Model'
+    host: 192.168.2.254
+    baseoid: .1.3.6.1.2.1.1.5.0
 
   - platform: snmp
     name: 'AP Woonkamer Uptime'
@@ -76,6 +95,11 @@ sensor:
     baseoid: 1.3.6.1.4.1.10002.1.1.1.1.2.0
 
   - platform: snmp
+    name: 'USG Total Memory'
+    host: 192.168.2.254
+    baseoid: .1.3.6.1.4.1.2021.4.5.0
+
+  - platform: snmp
     name: 'AP Zolder Total Memory'
     host: 192.168.2.116
     baseoid: 1.3.6.1.4.1.10002.1.1.1.1.1.0
@@ -84,6 +108,21 @@ sensor:
     name: 'AP Zolder Free Memory'
     host: 192.168.2.116
     baseoid: 1.3.6.1.4.1.10002.1.1.1.1.2.0
+
+  - platform: snmp
+    name: 'USG Free Memory'
+    host: 192.168.2.254
+    baseoid: .1.3.6.1.4.1.2021.4.11.0
+
+  - platform: snmp
+    name: 'USG CPU1 Usage'
+    host: 192.168.2.254
+    baseoid: .1.3.6.1.2.1.25.3.3.1.2.196608
+
+  - platform: snmp
+    name: 'USG CPU2 Usage'
+    host: 192.168.2.254
+    baseoid: .1.3.6.1.2.1.25.3.3.1.2.196609
 
   - platform: snmp
     name: 'AP Woonkamer CPU Usage'
@@ -104,3 +143,13 @@ sensor:
     name: 'AP Zolder IP'
     host: 192.168.2.116
     baseoid: .1.3.6.1.4.1.41112.1.6.3.1.0
+
+  - platform: snmp
+    name: 'USG Private IP'
+    host: 192.168.2.254
+    baseoid: .1.3.6.1.2.1.4.20.1.1.192.168.2.254
+
+  - platform: snmp
+    name: 'USG Public IP'
+    host: 192.168.2.254
+    baseoid: ..1.3.6.1.2.1.4.20.1.1.82.170.187.67
