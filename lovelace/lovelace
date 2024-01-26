@@ -9401,14 +9401,6 @@
                           "layout": "icon_name_state2nd",
                           "show_icon": true,
                           "show_state": true,
-                          "tap_action": {
-                            "action": "call-service",
-                            "service": "input_select.select_option",
-                            "service_data": {
-                              "option": "600",
-                              "entity_id": "input_select.pihole_time"
-                            }
-                          },
                           "styles": {
                             "grid": [
                               {
@@ -9434,7 +9426,7 @@
                                 "--ha-card-box-shadow": "none"
                               },
                               {
-                                "boder": "none"
+                                "border": "none"
                               }
                             ],
                             "state": [
@@ -9469,21 +9461,9 @@
                               }
                             ]
                           },
-                          "entity": "input_select.pihole_time",
-                          "name": "Disable 10 Minutes",
-                          "icon": "mdi:timelapse",
-                          "state": [
-                            {
-                              "value": "600",
-                              "styles": {
-                                "card": [
-                                  {
-                                    "background-color": "rgb(33,204,90,0.5)"
-                                  }
-                                ]
-                              }
-                            }
-                          ]
+                          "entity": "sensor.cert_expiry_days_bloomlannl",
+                          "name": "Certificate Expiry",
+                          "icon": "mdi:certificate-outline"
                         },
                         {
                           "type": "custom:button-card",
@@ -11363,7 +11343,7 @@
                           "entity": "sensor.printserver_ram_usage"
                         }
                       ],
-                      "name": "RAM 1GB LPDDR2 SDRAM",
+                      "name": "RAM 2GB LPDDR4 SDRAM",
                       "icon": "mdi:memory",
                       "entity_row": true
                     },
@@ -11441,7 +11421,7 @@
                           "entity": "sensor.rpi_cpu_use_printserver"
                         }
                       ],
-                      "name": "Broadcom BCM2836 (Quad Core 900MHz)",
+                      "name": "Broadcom BCM2711 (Quad Core 1,5GHz)",
                       "icon": "mdi:chip",
                       "entity_row": true
                     },

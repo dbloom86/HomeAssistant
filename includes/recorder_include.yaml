@@ -12,6 +12,7 @@
         - binary_sensor.bloom_data*
         - sensor.bloom_data*
         - sensor.bloomhole*
+        - sensor.pi_hole*
         - sensor.cert_expiry*
         - sensor.coinbase*
         - sensor.*koers*
