@@ -11186,7 +11186,7 @@
                               }
                             ]
                           },
-                          "entity": "sensor.canonmg2555",
+                          "entity": "sensor.canon_pixma_mg2555s_cups_gutenprint_v5_3_4",
                           "name": "Printer Status",
                           "icon": "mdi:printer"
                         }
