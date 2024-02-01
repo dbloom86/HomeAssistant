@@ -462,7 +462,7 @@ sensor:
     sensors:
       power_usage:
         friendly_name: 'Energie Gebruik'
-        value_template: "{{ (states('sensor.toon_p1_power_use_high')|float + states('sensor.toon_p1_power_use_low')|float )|round(2) }}"
+        value_template: "{{ (states('sensor.toon_p1_power_use_high_2')|float + states('sensor.toon_p1_power_use_low_2')|float )|round(2) }}"
         unit_of_measurement: "W"
         icon_template: mdi:flash-outline
 

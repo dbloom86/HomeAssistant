@@ -12155,17 +12155,17 @@
                       "type": "divider"
                     },
                     {
-                      "entity": "sensor.toon_p1_power_use_cnt_low",
+                      "entity": "sensor.toon_p1_power_use_cnt_low_2",
                       "name": "Meterstand Elektra Laag",
                       "icon": "mdi:counter"
                     },
                     {
-                      "entity": "sensor.toon_p1_power_use_cnt_high",
+                      "entity": "sensor.toon_p1_power_use_cnt_high_2",
                       "name": "Meterstand Elektra Hoog",
                       "icon": "mdi:counter"
                     },
                     {
-                      "entity": "sensor.toon_gas_used_cnt",
+                      "entity": "sensor.toon_gas_used_cnt_2",
                       "name": "Meterstand Gas",
                       "icon": "mdi:counter"
                     },

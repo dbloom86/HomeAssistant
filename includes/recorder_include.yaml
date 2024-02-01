@@ -78,10 +78,12 @@
         - input_number.gas_cost_daily
         - input_number.nighttime
         - sensor.influxdb_size
-        - sensor.toon_p1_power_use_cnt_high
-        - sensor.toon_p1_power_use_cnt_low
-        - sensor.toon_p1_power_prod_cnt_high
-        - sensor.toon_p1_power_prod_cnt_low
+        - sensor.toon_p1_power_use_cnt_high_2
+        - sensor.toon_p1_power_use_cnt_low_2
+        - sensor.toon_p1_power_prod_cnt_high_2
+        - sensor.toon_p1_power_prod_cnt_low_2
+        - sensor.usg_cpu_usage
+        - sensor.usg_ram_usage
         - sensor.ap_zolder_cpu_usage
         - sensor.ap_woonkamer_cpu_usage
         - sensor.ap_woonkamer_ram_usage
@@ -100,7 +102,11 @@
         - sensor.waterverbruik_vandaag
         - sensor.waterverbruik_vorige_maand
         - sensor.waterverbruik_vorige_week
-        - sensor.toon_p1_power_use_cnt_low_cost
-        - sensor.toon_p1_power_prod_cnt_high_compensation
-        - sensor.toon_p1_power_prod_cnt_low_compensation
-        - sensor.toon_p1_power_use_cnt_high_cost
+        - sensor.toon_p1_power_use_cnt_low_cost_2
+        - sensor.toon_p1_power_prod_cnt_high_compensation_2
+        - sensor.toon_p1_power_prod_cnt_low_compensation_2
+        - sensor.toon_p1_power_use_cnt_high_cost_2
+        - sensor.toon_p1_power_use_cnt_low_2_cost
+        - sensor.toon_p1_power_prod_cnt_high_2_compensation
+        - sensor.toon_p1_power_prod_cnt_low_2_compensation
+        - sensor.toon_p1_power_use_cnt_high_2_cost

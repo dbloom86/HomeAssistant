@@ -9,47 +9,47 @@ utility_meter:
   #================================ 
 
   monthly_energy_low:
-    source: sensor.toon_p1_power_use_cnt_low
+    source: sensor.toon_p1_power_use_cnt_low_2
     cycle: monthly
     name: Maandelijks Energie Verbruik Laag
 
   monthly_energy_high:
-    source: sensor.toon_p1_power_use_cnt_high
+    source: sensor.toon_p1_power_use_cnt_high_2
     cycle: monthly
     name: Maandelijks Energie Verbruik Hoog
     
   daily_energy_low:
-    source: sensor.toon_p1_power_use_cnt_low
+    source: sensor.toon_p1_power_use_cnt_low_2
     cycle: daily
     name: Dagelijks Energie Verbruik Laag
 
   daily_energy_high:
-    source: sensor.toon_p1_power_use_cnt_high
+    source: sensor.toon_p1_power_use_cnt_high_2
     cycle: daily
     name: Dagelijks Energie Verbruik Hoog
 
   yearly_energy_low:
-    source: sensor.toon_p1_power_use_cnt_low
+    source: sensor.toon_p1_power_use_cnt_low_2
     cycle: yearly
     name: Jaarlijks Energie Verbruik Laag
 
   yearly_energy_high:
-    source: sensor.toon_p1_power_use_cnt_high
+    source: sensor.toon_p1_power_use_cnt_high_2
     cycle: yearly
     name: Jaarlijks Energie Verbruik Hoog
 
   monthly_gas:
-    source: sensor.toon_gas_used_cnt
+    source: sensor.toon_gas_used_cnt_2
     cycle: monthly
     name: Maandelijks Gas Verbruik
     
   daily_gas:
-    source: sensor.toon_gas_used_cnt
+    source: sensor.toon_gas_used_cnt_2
     cycle: daily
     name: Dagelijks Gas Verbruik
 
   yearly_gas:
-    source: sensor.toon_gas_used_cnt
+    source: sensor.toon_gas_used_cnt_2
     cycle: yearly
     name: Jaarlijks Gas Verbruik
 
