@@ -6785,784 +6785,19 @@
               "user": "edf6650cd84b44ba853cfd5ba02fa72c"
             }
           ],
-          "type": "custom:horizontal-layout",
+          "type": "custom:grid-layout",
           "layout": {
-            "max_cols": 5,
-            "width": 250
+            "grid-template-columns": "auto",
+            "grid-template-rows": "auto",
+            "grid-template-areas": "\"main main main main main main sidebar sidebar sidebar sidebar\"\n\"speedtest speedtest footer footer footer footer footer footer footer footer\"\n"
           },
           "badges": [],
           "cards": [
             {
-              "id": "synology_status",
-              "type": "entities",
-              "show_header_toggle": "off",
-              "card_mod": {
-                "style": ".card-header {\n  padding: 0px 0px 0px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
-              },
-              "entities": [
-                {
-                  "type": "custom:gap-card",
-                  "height": 10
-                },
-                {
-                  "type": "custom:vertical-stack-in-card",
-                  "card_mod": {
-                    "style": "ha-card {\n  border: none;\n  background: none;\n}\n"
-                  },
-                  "cards": [
-                    {
-                      "type": "horizontal-stack",
-                      "cards": [
-                        {
-                          "type": "picture",
-                          "card_mod": {
-                            "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --ha-card-box-shadow: 'none';\n    border: none;\n}\n"
-                          },
-                          "image": "/local/Pictures/kpn-banner.png"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:gap-card",
-                      "height": 10
-                    },
-                    {
-                      "type": "horizontal-stack",
-                      "cards": [
-                        {
-                          "type": "custom:button-card",
-                          "layout": "icon_name_state2nd",
-                          "show_icon": true,
-                          "show_state": true,
-                          "styles": {
-                            "grid": [
-                              {
-                                "grid-template-columns": "50px auto"
-                              }
-                            ],
-                            "icon": [
-                              {
-                                "padding": "0px 0px"
-                              },
-                              {
-                                "height": "30px"
-                              },
-                              {
-                                "width": "30px"
-                              }
-                            ],
-                            "card": [
-                              {
-                                "--ha-card-background": "rgba(0, 0, 0, 0.0)"
-                              },
-                              {
-                                "--ha-card-box-shadow": "none"
-                              },
-                              {
-                                "border": "none"
-                              }
-                            ],
-                            "state": [
-                              {
-                                "padding": "0px 10px"
-                              },
-                              {
-                                "justify-self": "start"
-                              },
-                              {
-                                "font-family": "Roboto, sans-serif"
-                              },
-                              {
-                                "font-size": "12px"
-                              },
-                              {
-                                "font-weight": "bold"
-                              }
-                            ],
-                            "name": [
-                              {
-                                "padding": "0px 10px"
-                              },
-                              {
-                                "justify-self": "start"
-                              },
-                              {
-                                "font-size": "12px"
-                              },
-                              {
-                                "color": "var(--secondary-text-color)"
-                              }
-                            ]
-                          },
-                          "entity": "sensor.experiabox_model",
-                          "name": "Experiabox Model",
-                          "icon": "mdi:router-wireless"
-                        },
-                        {
-                          "type": "custom:button-card",
-                          "layout": "icon_name_state2nd",
-                          "show_icon": true,
-                          "show_state": true,
-                          "styles": {
-                            "grid": [
-                              {
-                                "grid-template-columns": "50px auto"
-                              }
-                            ],
-                            "icon": [
-                              {
-                                "padding": "0px 0px"
-                              },
-                              {
-                                "height": "30px"
-                              },
-                              {
-                                "width": "30px"
-                              }
-                            ],
-                            "card": [
-                              {
-                                "--ha-card-background": "rgba(0, 0, 0, 0.0)"
-                              },
-                              {
-                                "--ha-card-box-shadow": "none"
-                              },
-                              {
-                                "border": "none"
-                              }
-                            ],
-                            "state": [
-                              {
-                                "padding": "0px 10px"
-                              },
-                              {
-                                "justify-self": "start"
-                              },
-                              {
-                                "font-family": "Roboto, sans-serif"
-                              },
-                              {
-                                "font-size": "12px"
-                              },
-                              {
-                                "font-weight": "bold"
-                              }
-                            ],
-                            "name": [
-                              {
-                                "padding": "0px 10px"
-                              },
-                              {
-                                "justify-self": "start"
-                              },
-                              {
-                                "font-size": "12px"
-                              },
-                              {
-                                "color": "var(--secondary-text-color)"
-                              }
-                            ]
-                          },
-                          "entity": "sensor.experiabox_firmware",
-                          "name": "Firmware",
-                          "icon": "mdi:router-wireless-settings"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "horizontal-stack",
-                      "cards": [
-                        {
-                          "type": "custom:button-card",
-                          "layout": "icon_name_state2nd",
-                          "show_icon": true,
-                          "show_state": true,
-                          "styles": {
-                            "grid": [
-                              {
-                                "grid-template-columns": "50px auto"
-                              }
-                            ],
-                            "icon": [
-                              {
-                                "padding": "0px 0px"
-                              },
-                              {
-                                "height": "30px"
-                              },
-                              {
-                                "width": "30px"
-                              }
-                            ],
-                            "card": [
-                              {
-                                "--ha-card-background": "rgba(0, 0, 0, 0.0)"
-                              },
-                              {
-                                "--ha-card-box-shadow": "none"
-                              },
-                              {
-                                "border": "none"
-                              }
-                            ],
-                            "state": [
-                              {
-                                "padding": "0px 10px"
-                              },
-                              {
-                                "justify-self": "start"
-                              },
-                              {
-                                "font-family": "Roboto, sans-serif"
-                              },
-                              {
-                                "font-size": "12px"
-                              },
-                              {
-                                "font-weight": "bold"
-                              }
-                            ],
-                            "name": [
-                              {
-                                "padding": "0px 10px"
-                              },
-                              {
-                                "justify-self": "start"
-                              },
-                              {
-                                "font-size": "12px"
-                              },
-                              {
-                                "color": "var(--secondary-text-color)"
-                              }
-                            ]
-                          },
-                          "entity": "sensor.experiabox_v10_external_ip",
-                          "name": "Public IP",
-                          "icon": "mdi:wan"
-                        },
-                        {
-                          "type": "custom:button-card",
-                          "layout": "icon_name_state2nd",
-                          "show_icon": true,
-                          "show_state": true,
-                          "styles": {
-                            "grid": [
-                              {
-                                "grid-template-columns": "50px auto"
-                              }
-                            ],
-                            "icon": [
-                              {
-                                "padding": "0px 0px"
-                              },
-                              {
-                                "height": "30px"
-                              },
-                              {
-                                "width": "30px"
-                              }
-                            ],
-                            "card": [
-                              {
-                                "--ha-card-background": "rgba(0, 0, 0, 0.0)"
-                              },
-                              {
-                                "--ha-card-box-shadow": "none"
-                              },
-                              {
-                                "border": "none"
-                              }
-                            ],
-                            "state": [
-                              {
-                                "padding": "0px 10px"
-                              },
-                              {
-                                "justify-self": "start"
-                              },
-                              {
-                                "font-family": "Roboto, sans-serif"
-                              },
-                              {
-                                "font-size": "12px"
-                              },
-                              {
-                                "font-weight": "bold"
-                              }
-                            ],
-                            "name": [
-                              {
-                                "padding": "0px 10px"
-                              },
-                              {
-                                "justify-self": "start"
-                              },
-                              {
-                                "font-size": "12px"
-                              },
-                              {
-                                "color": "var(--secondary-text-color)"
-                              }
-                            ]
-                          },
-                          "entity": "sensor.experiabox_ip",
-                          "name": "Private IP",
-                          "icon": "mdi:lan"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:gap-card",
-                      "height": 10
-                    },
-                    {
-                      "type": "custom:apexcharts-card",
-                      "layout": "minimal",
-                      "graph_span": "1h",
-                      "update_interval": "2min",
-                      "apex_config": {
-                        "chart": {
-                          "height": "150px"
-                        },
-                        "legend": {
-                          "show": true
-                        },
-                        "fill": {
-                          "type": "gradient",
-                          "gradient": {
-                            "type": "vertical",
-                            "shadeIntensity": 0.1,
-                            "inverseColors": false,
-                            "opacityFrom": 0.5,
-                            "opacityTo": 0.1,
-                            "stops": [
-                              0
-                            ]
-                          }
-                        }
-                      },
-                      "header": {
-                        "show": true,
-                        "show_states": false,
-                        "colorize_states": true
-                      },
-                      "all_series_config": {
-                        "stroke_width": 2,
-                        "opacity": 0.1,
-                        "type": "area",
-                        "curve": "smooth",
-                        "group_by": {
-                          "func": "avg",
-                          "duration": "2min"
-                        }
-                      },
-                      "series": [
-                        {
-                          "entity": "sensor.experiabox_v10_kib_s_received",
-                          "name": "Download",
-                          "color": "rgb(175, 122, 197)"
-                        },
-                        {
-                          "entity": "sensor.experiabox_v10_kib_s_sent",
-                          "name": "Upload",
-                          "color": "rgb(240, 178, 122)",
-                          "invert": true
-                        }
-                      ],
-                      "card_mod": {
-                        "style": "ha-card {\n  border: none;\n  background: none;\n}\n"
-                      }
-                    },
-                    {
-                      "type": "custom:gap-card",
-                      "height": 10
-                    },
-                    {
-                      "type": "divider"
-                    },
-                    {
-                      "type": "horizontal-stack",
-                      "cards": [
-                        {
-                          "type": "picture",
-                          "card_mod": {
-                            "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --ha-card-box-shadow: 'none';\n    border: none;\n}\n"
-                          },
-                          "image": "/local/Pictures/speedtest-banner.png"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:gap-card",
-                      "height": 10
-                    },
-                    {
-                      "type": "horizontal-stack",
-                      "cards": [
-                        {
-                          "type": "custom:button-card",
-                          "layout": "icon_name_state2nd",
-                          "show_icon": true,
-                          "show_state": true,
-                          "styles": {
-                            "grid": [
-                              {
-                                "grid-template-columns": "50px auto"
-                              }
-                            ],
-                            "icon": [
-                              {
-                                "padding": "0px 0px"
-                              },
-                              {
-                                "height": "30px"
-                              },
-                              {
-                                "width": "30px"
-                              }
-                            ],
-                            "card": [
-                              {
-                                "--ha-card-background": "rgba(0, 0, 0, 0.0)"
-                              },
-                              {
-                                "--ha-card-box-shadow": "none"
-                              },
-                              {
-                                "border": "none"
-                              }
-                            ],
-                            "state": [
-                              {
-                                "padding": "0px 10px"
-                              },
-                              {
-                                "justify-self": "start"
-                              },
-                              {
-                                "font-family": "Roboto, sans-serif"
-                              },
-                              {
-                                "font-size": "12px"
-                              },
-                              {
-                                "font-weight": "bold"
-                              }
-                            ],
-                            "name": [
-                              {
-                                "padding": "0px 10px"
-                              },
-                              {
-                                "justify-self": "start"
-                              },
-                              {
-                                "font-size": "12px"
-                              },
-                              {
-                                "color": "var(--secondary-text-color)"
-                              }
-                            ]
-                          },
-                          "entity": "sensor.speedtest_download",
-                          "name": "Download",
-                          "icon": "mdi:download"
-                        },
-                        {
-                          "type": "custom:button-card",
-                          "layout": "icon_name",
-                          "show_icon": true,
-                          "show_state": true,
-                          "styles": {
-                            "grid": [
-                              {
-                                "grid-template-columns": "50px auto"
-                              }
-                            ],
-                            "icon": [
-                              {
-                                "padding": "0px 0px"
-                              },
-                              {
-                                "height": "30px"
-                              },
-                              {
-                                "width": "30px"
-                              }
-                            ],
-                            "card": [
-                              {
-                                "--ha-card-background": "rgba(0, 0, 0, 0.0)"
-                              },
-                              {
-                                "--ha-card-box-shadow": "none"
-                              },
-                              {
-                                "border": "none"
-                              }
-                            ],
-                            "state": [
-                              {
-                                "padding": "0px 10px"
-                              },
-                              {
-                                "justify-self": "start"
-                              },
-                              {
-                                "font-family": "Roboto, sans-serif"
-                              },
-                              {
-                                "font-size": "12px"
-                              },
-                              {
-                                "font-weight": "bold"
-                              }
-                            ],
-                            "name": [
-                              {
-                                "padding": "0px 10px"
-                              },
-                              {
-                                "justify-self": "start"
-                              },
-                              {
-                                "font-size": "12px"
-                              },
-                              {
-                                "color": "var(--secondary-text-color)"
-                              }
-                            ]
-                          },
-                          "entity": "",
-                          "name": "Start Speedtest",
-                          "icon": "mdi:play-speed",
-                          "tap_action": {
-                            "action": "call-service",
-                            "service": "homeassistant.update_entity",
-                            "service_data": {
-                              "entity_id": [
-                                "sensor.speedtest_download",
-                                "sensor.speedtest_ping",
-                                "sensor.speedtest_upload"
-                              ]
-                            }
-                          }
-                        }
-                      ]
-                    },
-                    {
-                      "type": "horizontal-stack",
-                      "cards": [
-                        {
-                          "type": "custom:button-card",
-                          "layout": "icon_name_state2nd",
-                          "show_icon": true,
-                          "show_state": true,
-                          "styles": {
-                            "grid": [
-                              {
-                                "grid-template-columns": "50px auto"
-                              }
-                            ],
-                            "icon": [
-                              {
-                                "padding": "0px 0px"
-                              },
-                              {
-                                "height": "30px"
-                              },
-                              {
-                                "width": "30px"
-                              }
-                            ],
-                            "card": [
-                              {
-                                "--ha-card-background": "rgba(0, 0, 0, 0.0)"
-                              },
-                              {
-                                "--ha-card-box-shadow": "none"
-                              },
-                              {
-                                "border": "none"
-                              }
-                            ],
-                            "state": [
-                              {
-                                "padding": "0px 10px"
-                              },
-                              {
-                                "justify-self": "start"
-                              },
-                              {
-                                "font-family": "Roboto, sans-serif"
-                              },
-                              {
-                                "font-size": "12px"
-                              },
-                              {
-                                "font-weight": "bold"
-                              }
-                            ],
-                            "name": [
-                              {
-                                "padding": "0px 10px"
-                              },
-                              {
-                                "justify-self": "start"
-                              },
-                              {
-                                "font-size": "12px"
-                              },
-                              {
-                                "color": "var(--secondary-text-color)"
-                              }
-                            ]
-                          },
-                          "entity": "sensor.speedtest_upload",
-                          "name": "Upload",
-                          "icon": "mdi:upload"
-                        },
-                        {
-                          "type": "custom:button-card",
-                          "layout": "icon_name_state2nd",
-                          "show_icon": true,
-                          "show_state": true,
-                          "styles": {
-                            "grid": [
-                              {
-                                "grid-template-columns": "50px auto"
-                              }
-                            ],
-                            "icon": [
-                              {
-                                "padding": "0px 0px"
-                              },
-                              {
-                                "height": "30px"
-                              },
-                              {
-                                "width": "30px"
-                              }
-                            ],
-                            "card": [
-                              {
-                                "--ha-card-background": "rgba(0, 0, 0, 0.0)"
-                              },
-                              {
-                                "--ha-card-box-shadow": "none"
-                              },
-                              {
-                                "border": "none"
-                              }
-                            ],
-                            "state": [
-                              {
-                                "padding": "0px 10px"
-                              },
-                              {
-                                "justify-self": "start"
-                              },
-                              {
-                                "font-family": "Roboto, sans-serif"
-                              },
-                              {
-                                "font-size": "12px"
-                              },
-                              {
-                                "font-weight": "bold"
-                              }
-                            ],
-                            "name": [
-                              {
-                                "padding": "0px 10px"
-                              },
-                              {
-                                "justify-self": "start"
-                              },
-                              {
-                                "font-size": "12px"
-                              },
-                              {
-                                "color": "var(--secondary-text-color)"
-                              }
-                            ]
-                          },
-                          "entity": "sensor.speedtest_ping",
-                          "name": "Ping",
-                          "icon": "mdi:speedometer"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "custom:gap-card",
-                      "height": 10
-                    },
-                    {
-                      "type": "custom:apexcharts-card",
-                      "layout": "minimal",
-                      "graph_span": "24h",
-                      "update_interval": "60min",
-                      "apex_config": {
-                        "legend": {
-                          "show": true
-                        },
-                        "fill": {
-                          "type": "gradient",
-                          "gradient": {
-                            "type": "vertical",
-                            "shadeIntensity": 0.1,
-                            "inverseColors": false,
-                            "opacityFrom": 0.5,
-                            "opacityTo": 0.1,
-                            "stops": [
-                              0
-                            ]
-                          }
-                        }
-                      },
-                      "header": {
-                        "show": true,
-                        "show_states": false,
-                        "colorize_states": true
-                      },
-                      "all_series_config": {
-                        "stroke_width": 2,
-                        "opacity": 0.1,
-                        "type": "area",
-                        "curve": "smooth",
-                        "group_by": {
-                          "func": "avg",
-                          "duration": "2min"
-                        }
-                      },
-                      "series": [
-                        {
-                          "entity": "sensor.speedtest_download",
-                          "name": "Download",
-                          "color": "rgb(9, 197, 248)"
-                        },
-                        {
-                          "entity": "sensor.speedtest_upload",
-                          "name": "Upload",
-                          "color": "rgb(9, 248, 118)"
-                        },
-                        {
-                          "entity": "sensor.speedtest_ping",
-                          "name": "Ping",
-                          "color": "rgb(244, 208, 63)"
-                        }
-                      ],
-                      "card_mod": {
-                        "style": "ha-card {\n  border: none;\n  background: none;\n}\n"
-                      }
-                    }
-                  ]
-                }
-              ]
-            },
-            {
               "id": "raspi_unifi_status",
+              "view_layout": {
+                "grid-area": "main"
+              },
               "type": "entities",
               "show_header_toggle": "off",
               "card_mod": {
@@ -7585,7 +6820,7 @@
                         {
                           "type": "picture",
                           "card_mod": {
-                            "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --ha-card-box-shadow: 'none';\n}\n"
+                            "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --ha-card-box-shadow: 'none';\n    width: 45%;\n    left: 25%;\n}\n"
                           },
                           "image": "/local/Pictures/unifi-banner.png"
                         }
@@ -7663,9 +6898,78 @@
                               }
                             ]
                           },
+                          "entity": "sensor.usg_model",
+                          "name": "Gateway Model",
+                          "icon": "mdi:router-network"
+                        },
+                        {
+                          "type": "custom:button-card",
+                          "layout": "icon_name_state2nd",
+                          "show_icon": true,
+                          "show_state": true,
+                          "styles": {
+                            "grid": [
+                              {
+                                "grid-template-columns": "50px auto"
+                              }
+                            ],
+                            "icon": [
+                              {
+                                "padding": "0px 0px"
+                              },
+                              {
+                                "height": "30px"
+                              },
+                              {
+                                "width": "30px"
+                              }
+                            ],
+                            "card": [
+                              {
+                                "--ha-card-background": "rgba(0, 0, 0, 0.0)"
+                              },
+                              {
+                                "--ha-card-box-shadow": "none"
+                              },
+                              {
+                                "border": "none"
+                              }
+                            ],
+                            "state": [
+                              {
+                                "padding": "0px 10px"
+                              },
+                              {
+                                "justify-self": "start"
+                              },
+                              {
+                                "font-family": "Roboto, sans-serif"
+                              },
+                              {
+                                "font-size": "12px"
+                              },
+                              {
+                                "font-weight": "bold"
+                              }
+                            ],
+                            "name": [
+                              {
+                                "padding": "0px 10px"
+                              },
+                              {
+                                "justify-self": "start"
+                              },
+                              {
+                                "font-size": "12px"
+                              },
+                              {
+                                "color": "var(--secondary-text-color)"
+                              }
+                            ]
+                          },
                           "entity": "sensor.ap_woonkamer_model",
                           "name": "AP Woonkamer Model",
-                          "icon": "mdi:access-point"
+                          "icon": "mdi:access-point-network"
                         },
                         {
                           "type": "custom:button-card",
@@ -7734,13 +7038,82 @@
                           },
                           "entity": "sensor.ap_zolder_model",
                           "name": "AP Zolder Model",
-                          "icon": "mdi:access-point"
+                          "icon": "mdi:access-point-network"
                         }
                       ]
                     },
                     {
                       "type": "horizontal-stack",
                       "cards": [
+                        {
+                          "type": "custom:button-card",
+                          "layout": "icon_name_state2nd",
+                          "show_icon": true,
+                          "show_state": true,
+                          "styles": {
+                            "grid": [
+                              {
+                                "grid-template-columns": "50px auto"
+                              }
+                            ],
+                            "icon": [
+                              {
+                                "padding": "0px 0px"
+                              },
+                              {
+                                "height": "30px"
+                              },
+                              {
+                                "width": "30px"
+                              }
+                            ],
+                            "card": [
+                              {
+                                "--ha-card-background": "rgba(0, 0, 0, 0.0)"
+                              },
+                              {
+                                "--ha-card-box-shadow": "none"
+                              },
+                              {
+                                "boder": "none"
+                              }
+                            ],
+                            "state": [
+                              {
+                                "padding": "0px 10px"
+                              },
+                              {
+                                "justify-self": "start"
+                              },
+                              {
+                                "font-family": "Roboto, sans-serif"
+                              },
+                              {
+                                "font-size": "12px"
+                              },
+                              {
+                                "font-weight": "bold"
+                              }
+                            ],
+                            "name": [
+                              {
+                                "padding": "0px 10px"
+                              },
+                              {
+                                "justify-self": "start"
+                              },
+                              {
+                                "font-size": "12px"
+                              },
+                              {
+                                "color": "var(--secondary-text-color)"
+                              }
+                            ]
+                          },
+                          "entity": "sensor.usg_firmware",
+                          "name": "Gateway FW",
+                          "icon": "mdi:router-wireless-settings"
+                        },
                         {
                           "type": "custom:button-card",
                           "layout": "icon_name_state2nd",
@@ -7949,6 +7322,75 @@
                               }
                             ]
                           },
+                          "entity": "sensor.usg_uptime",
+                          "name": "Gateway Uptime",
+                          "icon": "mdi:clock-time-five-outline"
+                        },
+                        {
+                          "type": "custom:button-card",
+                          "layout": "icon_name_state2nd",
+                          "show_icon": true,
+                          "show_state": true,
+                          "styles": {
+                            "grid": [
+                              {
+                                "grid-template-columns": "50px auto"
+                              }
+                            ],
+                            "icon": [
+                              {
+                                "padding": "0px 0px"
+                              },
+                              {
+                                "height": "30px"
+                              },
+                              {
+                                "width": "30px"
+                              }
+                            ],
+                            "card": [
+                              {
+                                "--ha-card-background": "rgba(0, 0, 0, 0.0)"
+                              },
+                              {
+                                "--ha-card-box-shadow": "none"
+                              },
+                              {
+                                "boder": "none"
+                              }
+                            ],
+                            "state": [
+                              {
+                                "padding": "0px 10px"
+                              },
+                              {
+                                "justify-self": "start"
+                              },
+                              {
+                                "font-family": "Roboto, sans-serif"
+                              },
+                              {
+                                "font-size": "12px"
+                              },
+                              {
+                                "font-weight": "bold"
+                              }
+                            ],
+                            "name": [
+                              {
+                                "padding": "0px 10px"
+                              },
+                              {
+                                "justify-self": "start"
+                              },
+                              {
+                                "font-size": "12px"
+                              },
+                              {
+                                "color": "var(--secondary-text-color)"
+                              }
+                            ]
+                          },
                           "entity": "sensor.ap_woonkamer_uptime",
                           "name": "AP Woonkamer Uptime",
                           "icon": "mdi:clock-time-five-outline"
@@ -8027,6 +7469,75 @@
                     {
                       "type": "horizontal-stack",
                       "cards": [
+                        {
+                          "type": "custom:button-card",
+                          "layout": "icon_name_state2nd",
+                          "show_icon": true,
+                          "show_state": true,
+                          "styles": {
+                            "grid": [
+                              {
+                                "grid-template-columns": "50px auto"
+                              }
+                            ],
+                            "icon": [
+                              {
+                                "padding": "0px 0px"
+                              },
+                              {
+                                "height": "30px"
+                              },
+                              {
+                                "width": "30px"
+                              }
+                            ],
+                            "card": [
+                              {
+                                "--ha-card-background": "rgba(0, 0, 0, 0.0)"
+                              },
+                              {
+                                "--ha-card-box-shadow": "none"
+                              },
+                              {
+                                "boder": "none"
+                              }
+                            ],
+                            "state": [
+                              {
+                                "padding": "0px 10px"
+                              },
+                              {
+                                "justify-self": "start"
+                              },
+                              {
+                                "font-family": "Roboto, sans-serif"
+                              },
+                              {
+                                "font-size": "12px"
+                              },
+                              {
+                                "font-weight": "bold"
+                              }
+                            ],
+                            "name": [
+                              {
+                                "padding": "0px 10px"
+                              },
+                              {
+                                "justify-self": "start"
+                              },
+                              {
+                                "font-size": "12px"
+                              },
+                              {
+                                "color": "var(--secondary-text-color)"
+                              }
+                            ]
+                          },
+                          "entity": "sensor.usg_private_ip",
+                          "name": "Gateway IP",
+                          "icon": "mdi:lan"
+                        },
                         {
                           "type": "custom:button-card",
                           "layout": "icon_name_state2nd",
@@ -8171,6 +7682,127 @@
                       "type": "horizontal-stack",
                       "cards": [
                         {
+                          "type": "custom:button-card",
+                          "layout": "icon_name_state2nd",
+                          "show_icon": true,
+                          "show_state": true,
+                          "styles": {
+                            "grid": [
+                              {
+                                "grid-template-columns": "50px auto"
+                              }
+                            ],
+                            "icon": [
+                              {
+                                "padding": "0px 0px"
+                              },
+                              {
+                                "height": "30px"
+                              },
+                              {
+                                "width": "30px"
+                              }
+                            ],
+                            "card": [
+                              {
+                                "--ha-card-background": "rgba(0, 0, 0, 0.0)"
+                              },
+                              {
+                                "--ha-card-box-shadow": "none"
+                              },
+                              {
+                                "boder": "none"
+                              }
+                            ],
+                            "state": [
+                              {
+                                "padding": "0px 10px"
+                              },
+                              {
+                                "justify-self": "start"
+                              },
+                              {
+                                "font-family": "Roboto, sans-serif"
+                              },
+                              {
+                                "font-size": "12px"
+                              },
+                              {
+                                "font-weight": "bold"
+                              }
+                            ],
+                            "name": [
+                              {
+                                "padding": "0px 10px"
+                              },
+                              {
+                                "justify-self": "start"
+                              },
+                              {
+                                "font-size": "12px"
+                              },
+                              {
+                                "color": "var(--secondary-text-color)"
+                              }
+                            ]
+                          },
+                          "entity": "sensor.usg_public_ip",
+                          "name": "Gateway Public IP",
+                          "icon": "mdi:wan"
+                        },
+                        {
+                          "type": "custom:gap-card"
+                        },
+                        {
+                          "type": "custom:gap-card"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "horizontal-stack",
+                      "cards": [
+                        {
+                          "type": "custom:mini-graph-card",
+                          "height": 30,
+                          "line_width": 2,
+                          "font_size": 70,
+                          "hours_to_show": 24,
+                          "points_per_hour": 1,
+                          "show": {
+                            "extrema": false,
+                            "fill": true,
+                            "average": false,
+                            "name": false,
+                            "icon": false,
+                            "state": false,
+                            "graph": "line"
+                          },
+                          "card_mod": {
+                            "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n  border: none;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n"
+                          },
+                          "entities": [
+                            "sensor.usg_cpu_usage"
+                          ],
+                          "name": null,
+                          "color_thresholds": [
+                            {
+                              "value": 30,
+                              "color": "#3498db"
+                            },
+                            {
+                              "value": 50,
+                              "color": "#f39c12"
+                            },
+                            {
+                              "value": 80,
+                              "color": "#ff0000"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "custom:layout-break"
+                        },
+                        {
                           "type": "custom:mini-graph-card",
                           "height": 30,
                           "line_width": 2,
@@ -8285,6 +7917,45 @@
                           "card_mod": {
                             "style": "ha-card { \n  --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --paper-item-icon-color: 'var(--text-primary-color';\n  --ha-card-box-shadow: 'none';\n  font-size: 10px;\n  border: none;\n}\n"
                           },
+                          "entity": "sensor.usg_cpu_usage",
+                          "name": "CPU (500 MHz)",
+                          "entity_row": true,
+                          "icon": "mdi:chip"
+                        },
+                        {
+                          "type": "custom:layout-break"
+                        },
+                        {
+                          "type": "custom:bar-card",
+                          "show_icon": true,
+                          "align": "split",
+                          "columns": 1,
+                          "max": 100,
+                          "height": "30px",
+                          "positions": {
+                            "icon": "inside",
+                            "indicator": "inside",
+                            "name": "inside",
+                            "value": "inside"
+                          },
+                          "unit_of_measurement": "%",
+                          "severity": [
+                            {
+                              "value": 50,
+                              "color": "#3498db"
+                            },
+                            {
+                              "value": 75,
+                              "color": "#f39c12"
+                            },
+                            {
+                              "value": 100,
+                              "color": "#e45e65"
+                            }
+                          ],
+                          "card_mod": {
+                            "style": "ha-card { \n  --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --paper-item-icon-color: 'var(--text-primary-color';\n  --ha-card-box-shadow: 'none';\n  font-size: 10px;\n  border: none;\n}\n"
+                          },
                           "entity": "sensor.ap_woonkamer_cpu_usage",
                           "name": "CPU (880 MHz)",
                           "entity_row": true,
@@ -8334,6 +8005,47 @@
                     {
                       "type": "horizontal-stack",
                       "cards": [
+                        {
+                          "type": "custom:mini-graph-card",
+                          "height": 30,
+                          "line_width": 2,
+                          "font_size": 70,
+                          "hours_to_show": 24,
+                          "points_per_hour": 1,
+                          "show": {
+                            "extrema": false,
+                            "fill": true,
+                            "average": false,
+                            "name": false,
+                            "icon": false,
+                            "state": false,
+                            "graph": "line"
+                          },
+                          "card_mod": {
+                            "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n  border: none;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n"
+                          },
+                          "entities": [
+                            "sensor.usg_ram_usage"
+                          ],
+                          "name": null,
+                          "color_thresholds": [
+                            {
+                              "value": 30,
+                              "color": "#3498db"
+                            },
+                            {
+                              "value": 50,
+                              "color": "#f39c12"
+                            },
+                            {
+                              "value": 80,
+                              "color": "#ff0000"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "custom:layout-break"
+                        },
                         {
                           "type": "custom:mini-graph-card",
                           "height": 30,
@@ -8449,6 +8161,45 @@
                           "card_mod": {
                             "style": "ha-card { \n  --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --paper-item-icon-color: 'var(--text-primary-color';\n  --ha-card-box-shadow: 'none';\n  font-size: 10px;\n  border: none;\n}\n"
                           },
+                          "entity": "sensor.usg_ram_usage",
+                          "name": "RAM (512MB)",
+                          "entity_row": true,
+                          "icon": "mdi:memory"
+                        },
+                        {
+                          "type": "custom:layout-break"
+                        },
+                        {
+                          "type": "custom:bar-card",
+                          "show_icon": true,
+                          "align": "split",
+                          "columns": 1,
+                          "max": 100,
+                          "height": "30px",
+                          "positions": {
+                            "icon": "inside",
+                            "indicator": "inside",
+                            "name": "inside",
+                            "value": "inside"
+                          },
+                          "unit_of_measurement": "%",
+                          "severity": [
+                            {
+                              "value": 50,
+                              "color": "#3498db"
+                            },
+                            {
+                              "value": 75,
+                              "color": "#f39c12"
+                            },
+                            {
+                              "value": 100,
+                              "color": "#e45e65"
+                            }
+                          ],
+                          "card_mod": {
+                            "style": "ha-card { \n  --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --paper-item-icon-color: 'var(--text-primary-color';\n  --ha-card-box-shadow: 'none';\n  font-size: 10px;\n  border: none;\n}\n"
+                          },
                           "entity": "sensor.ap_woonkamer_ram_usage",
                           "name": "RAM (256MB)",
                           "entity_row": true,
@@ -8498,85 +8249,6 @@
                     {
                       "type": "custom:gap-card",
                       "height": 10
-                    },
-                    {
-                      "type": "divider"
-                    },
-                    {
-                      "type": "custom:auto-entities",
-                      "card": {
-                        "type": "grid",
-                        "columns": 4
-                      },
-                      "filter": {
-                        "include": [
-                          {
-                            "domain": "device_tracker",
-                            "attributes": {
-                              "ip": "! undefined"
-                            },
-                            "options": {
-                              "type": "custom:button-card",
-                              "size": "45%",
-                              "show_entity_picture": true,
-                              "card_mod": {
-                                "style": "ha-card {\n  background: none;\n  box-shadow: none;\n  border: none;\n}\n"
-                              },
-                              "styles": {
-                                "grid": [
-                                  {
-                                    "grid-template-areas": "\"i\" \"n\" \"ip\""
-                                  }
-                                ],
-                                "card": [
-                                  {
-                                    "height": "90px"
-                                  },
-                                  {
-                                    "width": "90px"
-                                  }
-                                ],
-                                "name": [
-                                  {
-                                    "font-size": "10px"
-                                  }
-                                ],
-                                "custom_fields": {
-                                  "ip": [
-                                    {
-                                      "align-self": "center"
-                                    },
-                                    {
-                                      "justify-self": "center"
-                                    },
-                                    {
-                                      "font-size": "10px"
-                                    }
-                                  ]
-                                }
-                              },
-                              "custom_fields": {
-                                "ip": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">IP: ${states['this.entity_id'].attributes.ip}</span></span>`\n]]]\n"
-                              }
-                            }
-                          }
-                        ],
-                        "exclude": [
-                          {
-                            "entity_id": "device_tracker.telefoon_duncan"
-                          },
-                          {
-                            "entity_id": "device_tracker.telefoon_sabrine"
-                          },
-                          {
-                            "entity_id": "device_tracker.jered_s_galaxy_note20_ultra_5g"
-                          }
-                        ]
-                      },
-                      "sort": {
-                        "method": "friendly_name"
-                      },
-                      "card_param": "cards"
                     }
                   ]
                 }
@@ -8624,6 +8296,409 @@
               "card_mod": {
                 "style": ".card-header {\n  padding: 0px 0px 0px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
               }
+            },
+            {
+              "id": "raspi_unifi_status",
+              "view_layout": {
+                "grid-area": "speedtest"
+              },
+              "type": "entities",
+              "show_header_toggle": "off",
+              "card_mod": {
+                "style": ".card-header {\n  padding: 0px 0px 0px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+              },
+              "entities": [
+                {
+                  "type": "custom:gap-card",
+                  "height": 10
+                },
+                {
+                  "type": "custom:vertical-stack-in-card",
+                  "card_mod": {
+                    "style": "ha-card {\n  border: none;\n  background: none;\n}\n"
+                  },
+                  "cards": [
+                    {
+                      "type": "horizontal-stack",
+                      "cards": [
+                        {
+                          "type": "picture",
+                          "card_mod": {
+                            "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --ha-card-box-shadow: 'none';\n}\n"
+                          },
+                          "image": "/local/Pictures/speedtest-banner.png"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:gap-card",
+                      "height": 10
+                    },
+                    {
+                      "type": "horizontal-stack",
+                      "cards": [
+                        {
+                          "type": "custom:button-card",
+                          "layout": "icon_name_state2nd",
+                          "show_icon": true,
+                          "show_state": true,
+                          "styles": {
+                            "grid": [
+                              {
+                                "grid-template-columns": "50px auto"
+                              }
+                            ],
+                            "icon": [
+                              {
+                                "padding": "0px 0px"
+                              },
+                              {
+                                "height": "30px"
+                              },
+                              {
+                                "width": "30px"
+                              }
+                            ],
+                            "card": [
+                              {
+                                "--ha-card-background": "rgba(0, 0, 0, 0.0)"
+                              },
+                              {
+                                "--ha-card-box-shadow": "none"
+                              },
+                              {
+                                "border": "none"
+                              }
+                            ],
+                            "state": [
+                              {
+                                "padding": "0px 10px"
+                              },
+                              {
+                                "justify-self": "start"
+                              },
+                              {
+                                "font-family": "Roboto, sans-serif"
+                              },
+                              {
+                                "font-size": "12px"
+                              },
+                              {
+                                "font-weight": "bold"
+                              }
+                            ],
+                            "name": [
+                              {
+                                "padding": "0px 10px"
+                              },
+                              {
+                                "justify-self": "start"
+                              },
+                              {
+                                "font-size": "12px"
+                              },
+                              {
+                                "color": "var(--secondary-text-color)"
+                              }
+                            ]
+                          },
+                          "entity": "sensor.speedtest_download",
+                          "name": "Download",
+                          "icon": "mdi:download"
+                        },
+                        {
+                          "type": "custom:button-card",
+                          "layout": "icon_name_state2nd",
+                          "show_icon": true,
+                          "show_state": true,
+                          "styles": {
+                            "grid": [
+                              {
+                                "grid-template-columns": "50px auto"
+                              }
+                            ],
+                            "icon": [
+                              {
+                                "padding": "0px 0px"
+                              },
+                              {
+                                "height": "30px"
+                              },
+                              {
+                                "width": "30px"
+                              }
+                            ],
+                            "card": [
+                              {
+                                "--ha-card-background": "rgba(0, 0, 0, 0.0)"
+                              },
+                              {
+                                "--ha-card-box-shadow": "none"
+                              },
+                              {
+                                "border": "none"
+                              }
+                            ],
+                            "state": [
+                              {
+                                "padding": "0px 10px"
+                              },
+                              {
+                                "justify-self": "start"
+                              },
+                              {
+                                "font-family": "Roboto, sans-serif"
+                              },
+                              {
+                                "font-size": "12px"
+                              },
+                              {
+                                "font-weight": "bold"
+                              }
+                            ],
+                            "name": [
+                              {
+                                "padding": "0px 10px"
+                              },
+                              {
+                                "justify-self": "start"
+                              },
+                              {
+                                "font-size": "12px"
+                              },
+                              {
+                                "color": "var(--secondary-text-color)"
+                              }
+                            ]
+                          },
+                          "entity": "sensor.speedtest_upload",
+                          "name": "Upload",
+                          "icon": "mdi:upload"
+                        },
+                        {
+                          "type": "custom:button-card",
+                          "layout": "icon_name_state2nd",
+                          "show_icon": true,
+                          "show_state": true,
+                          "styles": {
+                            "grid": [
+                              {
+                                "grid-template-columns": "50px auto"
+                              }
+                            ],
+                            "icon": [
+                              {
+                                "padding": "0px 0px"
+                              },
+                              {
+                                "height": "30px"
+                              },
+                              {
+                                "width": "30px"
+                              }
+                            ],
+                            "card": [
+                              {
+                                "--ha-card-background": "rgba(0, 0, 0, 0.0)"
+                              },
+                              {
+                                "--ha-card-box-shadow": "none"
+                              },
+                              {
+                                "border": "none"
+                              }
+                            ],
+                            "state": [
+                              {
+                                "padding": "0px 10px"
+                              },
+                              {
+                                "justify-self": "start"
+                              },
+                              {
+                                "font-family": "Roboto, sans-serif"
+                              },
+                              {
+                                "font-size": "12px"
+                              },
+                              {
+                                "font-weight": "bold"
+                              }
+                            ],
+                            "name": [
+                              {
+                                "padding": "0px 10px"
+                              },
+                              {
+                                "justify-self": "start"
+                              },
+                              {
+                                "font-size": "12px"
+                              },
+                              {
+                                "color": "var(--secondary-text-color)"
+                              }
+                            ]
+                          },
+                          "entity": "sensor.speedtest_ping",
+                          "name": "Ping",
+                          "icon": "mdi:speedometer"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "custom:gap-card",
+                      "height": 10
+                    },
+                    {
+                      "type": "custom:apexcharts-card",
+                      "layout": "minimal",
+                      "graph_span": "24h",
+                      "update_interval": "60min",
+                      "apex_config": {
+                        "legend": {
+                          "show": true
+                        },
+                        "fill": {
+                          "type": "gradient",
+                          "gradient": {
+                            "type": "vertical",
+                            "shadeIntensity": 0.1,
+                            "inverseColors": false,
+                            "opacityFrom": 0.5,
+                            "opacityTo": 0.1,
+                            "stops": [
+                              0
+                            ]
+                          }
+                        }
+                      },
+                      "header": {
+                        "show": true,
+                        "show_states": false,
+                        "colorize_states": true
+                      },
+                      "all_series_config": {
+                        "stroke_width": 2,
+                        "opacity": 0.1,
+                        "type": "area",
+                        "curve": "smooth",
+                        "group_by": {
+                          "func": "avg",
+                          "duration": "2min"
+                        }
+                      },
+                      "series": [
+                        {
+                          "entity": "sensor.speedtest_download",
+                          "name": "Download",
+                          "color": "rgb(9, 197, 248)"
+                        },
+                        {
+                          "entity": "sensor.speedtest_upload",
+                          "name": "Upload",
+                          "color": "rgb(9, 248, 118)"
+                        },
+                        {
+                          "entity": "sensor.speedtest_ping",
+                          "name": "Ping",
+                          "color": "rgb(244, 208, 63)"
+                        }
+                      ],
+                      "card_mod": {
+                        "style": "ha-card {\n  border: none;\n  background: none;\n}\n"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "entities",
+              "view_layout": {
+                "grid-area": "footer"
+              },
+              "card_mod": {
+                "style": ".card-header {\n  padding: 0px 0px 0px 0px !important;\n}\nha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+              },
+              "entities": [
+                {
+                  "type": "custom:auto-entities",
+                  "card": {
+                    "type": "grid",
+                    "columns": 8
+                  },
+                  "filter": {
+                    "include": [
+                      {
+                        "domain": "device_tracker",
+                        "attributes": {
+                          "ip": "! undefined"
+                        },
+                        "options": {
+                          "type": "custom:button-card",
+                          "size": "45%",
+                          "show_entity_picture": true,
+                          "card_mod": {
+                            "style": "ha-card {\n  background: none;\n  box-shadow: none;\n  border: none;\n}\n"
+                          },
+                          "styles": {
+                            "grid": [
+                              {
+                                "grid-template-areas": "\"i\" \"n\" \"ip\""
+                              }
+                            ],
+                            "card": [
+                              {
+                                "height": "90px"
+                              },
+                              {
+                                "width": "90px"
+                              }
+                            ],
+                            "name": [
+                              {
+                                "font-size": "10px"
+                              }
+                            ],
+                            "custom_fields": {
+                              "ip": [
+                                {
+                                  "align-self": "center"
+                                },
+                                {
+                                  "justify-self": "center"
+                                },
+                                {
+                                  "font-size": "10px"
+                                }
+                              ]
+                            }
+                          },
+                          "custom_fields": {
+                            "ip": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">IP: ${states['this.entity_id'].attributes.ip}</span></span>`\n]]]\n"
+                          }
+                        }
+                      }
+                    ],
+                    "exclude": [
+                      {
+                        "entity_id": "device_tracker.telefoon_duncan"
+                      },
+                      {
+                        "entity_id": "device_tracker.telefoon_sabrine"
+                      },
+                      {
+                        "entity_id": "device_tracker.jered_s_galaxy_note20_ultra_5g"
+                      }
+                    ]
+                  },
+                  "sort": {
+                    "method": "friendly_name"
+                  },
+                  "card_param": "cards"
+                }
+              ]
             }
           ]
         },
@@ -8670,7 +8745,7 @@
                           "card_mod": {
                             "style": "ha-card { \n    --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';\n    --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n    --ha-card-box-shadow: 'none';\n    border: none;\n}\n"
                           },
-                          "image": "/local/Pictures/pihole-banner.png"
+                          "image": "/local/Pictures/pihole-nginx-banner.png"
                         }
                       ]
                     },

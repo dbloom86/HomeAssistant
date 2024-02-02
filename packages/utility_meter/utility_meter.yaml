@@ -87,10 +87,10 @@ utility_meter:
     cycle: monthly
     name: Maandelijks Verbruik Koelkast
 
-  monthly_oven:
-    source: sensor.oven_energy
+  monthly_tablets:
+    source: sensor.tablets_energy
     cycle: monthly
-    name: Maandelijks Verbruik Oven
+    name: Maandelijks Verbruik tablets
 
   #================================
   # Input Numbers
