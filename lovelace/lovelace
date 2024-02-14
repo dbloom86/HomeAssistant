@@ -2589,20 +2589,6 @@
                         },
                         {
                           "type": "entity",
-                          "entity": "sensor.total_proximities",
-                          "double_tap_action": {
-                            "action": "none"
-                          },
-                          "use_entity_picture": true,
-                          "tap_action": {
-                            "action": "none"
-                          },
-                          "hold_action": {
-                            "action": "none"
-                          }
-                        },
-                        {
-                          "type": "entity",
                           "entity": "sensor.total_remotes",
                           "double_tap_action": {
                             "action": "none"
@@ -12255,12 +12241,12 @@
                           "entity": "input_number.energy_cost_daily"
                         },
                         {
-                          "entity": "sensor.energieprijs_vattenfall",
+                          "entity": "sensor.energieprijs_oxxio",
                           "name": "Energieprijs",
                           "icon": "mdi:currency-eur"
                         },
                         {
-                          "entity": "sensor.terugleververgoeding_vattenfall",
+                          "entity": "sensor.terugleververgoeding_oxxio",
                           "name": "Terugleververgoeding",
                           "icon": "mdi:currency-eur"
                         },
@@ -12268,7 +12254,7 @@
                           "entity": "input_number.gas_cost_daily"
                         },
                         {
-                          "entity": "sensor.gasprijs_vattenfall",
+                          "entity": "sensor.gasprijs_oxxio",
                           "name": "Gasprijs",
                           "icon": "mdi:currency-eur"
                         }

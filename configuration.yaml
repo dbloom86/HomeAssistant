@@ -76,7 +76,6 @@ automation: !include includes/automations.yaml
 scene: !include includes/scenes.yaml
 sensor: !include includes/sensors.yaml
 input_number: !include includes/input_numbers.yaml
-proximity: !include includes/proximity.yaml
 light: !include includes/lights.yaml
 notify: !include includes/notify.yaml
 binary_sensor: !include  includes/binary_sensors.yaml

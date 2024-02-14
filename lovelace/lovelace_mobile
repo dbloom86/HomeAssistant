@@ -440,7 +440,7 @@
                         "left": "12%"
                       },
                       "type": "state-label",
-                      "entity": "proximity.home_duncan"
+                      "entity": "sensor.fam_bloom_telefoon_duncan_distance"
                     }
                   ],
                   "card_mod": {
@@ -477,7 +477,7 @@
                         "left": "12%"
                       },
                       "type": "state-label",
-                      "entity": "proximity.home_sabrine"
+                      "entity": "sensor.fam_bloom_telefoon_sabrine_distance"
                     }
                   ],
                   "card_mod": {
@@ -519,7 +519,7 @@
                         "left": "12%"
                       },
                       "type": "state-label",
-                      "entity": "proximity.home_luca"
+                      "entity": "sensor.fam_bloom_luca_s_tablet_distance"
                     }
                   ],
                   "card_mod": {
@@ -556,7 +556,7 @@
                         "left": "12%"
                       },
                       "type": "state-label",
-                      "entity": "proximity.home_fynn"
+                      "entity": "sensor.fam_bloom_fynn_s_tablet_distance"
                     }
                   ],
                   "card_mod": {

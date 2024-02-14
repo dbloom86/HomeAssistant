@@ -2,40 +2,40 @@
 # Proximity People
 #=====================
 
-  home_duncan: 
-    zone: home
-    devices:
-      - device_tracker.telefoon_duncan_2
-    tolerance: 50
-    unit_of_measurement: km
+# home_duncan: 
+#    zone: home
+#    devices:
+#      - device_tracker.telefoon_duncan_2
+#    tolerance: 50
+#    unit_of_measurement: km
 
-  home_sabrine: 
-    zone: home
-    devices:
-      - device_tracker.telefoon_sabrine
-    tolerance: 50
-    unit_of_measurement: km
+#  home_sabrine: 
+#    zone: home
+#    devices:
+#      - device_tracker.telefoon_sabrine
+#    tolerance: 50
+#    unit_of_measurement: km
 
-  home_luca: 
-    zone: home
-    devices:
-      - device_tracker.tablet_luca
-    tolerance: 50
-    unit_of_measurement: km
+#  home_luca: 
+#    zone: home
+#    devices:
+#      - device_tracker.tablet_luca
+#    tolerance: 50
+#    unit_of_measurement: km
 
-  home_fynn: 
-    zone: home
-    devices:
-      - device_tracker.tablet_fynn
-    tolerance: 50
-    unit_of_measurement: km
+#  home_fynn: 
+#    zone: home
+#    devices:
+#      - device_tracker.tablet_fynn
+#    tolerance: 50
+#    unit_of_measurement: km
 
-  home: 
-    zone: home
-    devices:
-      - device_tracker.telefoon_sabrine
-      - device_tracker.telefoon_duncan_2
-      - device_tracker.tablet_luca
-      - device_tracker.tablet_fynn
-    tolerance: 50
-    unit_of_measurement: km
+#  home: 
+#    zone: home
+#    devices:
+#      - device_tracker.telefoon_sabrine
+#      - device_tracker.telefoon_duncan_2
+#      - device_tracker.tablet_luca
+#      - device_tracker.tablet_fynn
+#    tolerance: 50
+#    unit_of_measurement: km

@@ -3,22 +3,22 @@
 #================================
 
 multiscrape:
-  - name: vattenfall scraper
-    resource: "https://www.overstappen.nl/energie/leveranciers/vattenfall/"
+  - name: oxxio scraper
+    resource: "https://www.overstappen.nl/energie/leveranciers/oxxio-energie/"
     scan_interval: 3600
     sensor:
-      - unique_id: energieprijs_vattenfall
-        name: Energieprijs Vattenfall
+      - unique_id: energieprijs_oxxio
+        name: Energieprijs Oxxio
         select: "#tarieven > div.tableBlock__tableWrapper > table > tbody > tr > td"
         unit_of_measurement: "€/kWh"
         value_template: '{{ (((value.lstrip("€ ") | replace(",", ".")) | float) * 0.8) | round(6) }}'
-      - unique_id: gasprijs_vattenfall
-        name: Gasprijs Vattenfall
+      - unique_id: gasprijs_oxxio
+        name: Gasprijs Oxxio
         select: "#tarieven > div.tableBlock__tableWrapper > table > tbody > tr:nth-child(4) > td"
         unit_of_measurement: "€/m3"
         value_template: '{{ ((value.lstrip("€ ") | replace(",", ".")) | float) }}'
-      - unique_id: terugleververgoeding_vattenfall
-        name: Terugleververgoeding Vattenfall
+      - unique_id: terugleververgoeding_oxxio
+        name: Terugleververgoeding Oxxio
         select: "#tarieven > div.tableBlock__tableWrapper > table > tbody > tr:nth-child(5) > td"
         unit_of_measurement: "€/kWh"
         value_template: '{{ ((value.lstrip("€ ") | replace(",", ".")) | float) }}'

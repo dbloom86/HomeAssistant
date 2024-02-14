@@ -10,7 +10,6 @@
       - 'date_time_iso'
       - 'time_date'
       - 'time_utc'
-      - 'beat'
 
   - platform: template
     sensors:
@@ -171,12 +170,6 @@
         friendly_name: 'Persons'
         icon_template: mdi:account-multiple
         value_template: "{{ states.person | list | length }}"
-
-      #----- Count Proximities
-      total_proximities:
-        friendly_name: 'Proximities'
-        icon_template: mdi:human-greeting-proximity
-        value_template: "{{ states.proximity | list | length }}"
 
       #----- Count Remotes
       total_remotes:

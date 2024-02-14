@@ -238,7 +238,7 @@
                       "chips": [
                         {
                           "type": "entity",
-                          "entity": "binary_sensor.tablet_luca_is_aan_het_opladen",
+                          "entity": "binary_sensor.luca_s_tablet_is_charging",
                           "content_info": "none",
                           "card_mod": {
                             "style": "ha-card {\n  box-shadow: 0px 0px;\n}\n"
@@ -247,7 +247,7 @@
                         },
                         {
                           "type": "entity",
-                          "entity": "sensor.tablet_luca_batterijniveau",
+                          "entity": "sensor.luca_s_tablet_battery_level",
                           "card_mod": {
                             "style": "ha-card {\n  box-shadow: 0px 0px;\n}\n"
                           }
@@ -291,7 +291,7 @@
                         },
                         {
                           "type": "entity",
-                          "entity": "sensor.tablet_fynn_batterijniveau",
+                          "entity": "sensor.fynn_s_tablet_battery_level",
                           "card_mod": {
                             "style": "ha-card {\n  box-shadow: 0px 0px;\n}\n"
                           }
