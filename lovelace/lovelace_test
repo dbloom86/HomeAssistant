@@ -1579,9 +1579,6 @@
                       "subtitle": "Core v{{ state_attr('update.home_assistant_core_update', 'installed_version') }} - OS v{{ state_attr('update.home_assistant_operating_system_update','installed_version') }} - Supervisor v{{ state_attr('update.home_assistant_supervisor_update', 'installed_version') }}\n"
                     },
                     {
-                      "type": "section"
-                    },
-                    {
                       "type": "custom:mushroom-chips-card",
                       "chips": [
                         {
@@ -1650,9 +1647,6 @@
                       "layout": "horizontal"
                     },
                     {
-                      "type": "section"
-                    },
-                    {
                       "type": "custom:mushroom-title-card",
                       "title": "Home Assistant Operating System",
                       "card_mod": {
@@ -1691,9 +1685,6 @@
                       "show_buttons_control": true,
                       "icon_type": "entity-picture",
                       "layout": "horizontal"
-                    },
-                    {
-                      "type": "section"
                     },
                     {
                       "type": "custom:mushroom-title-card",
@@ -1752,6 +1743,9 @@
                       "type": "custom:mushroom-title-card",
                       "title": "Add-ons",
                       "subtitle": "{{ integration_entities('Supervisor') | map('device_id') | unique | list | length }} Installed Add-ons"
+                    },
+                    {
+                      "type": "section"
                     }
                   ]
                 },
@@ -1764,8 +1758,9 @@
                     }
                   },
                   "filter": {
-                    "template": "{%- set dev = namespace() %} {%- set dev.name = '' %} {%- set dev.running = '' %} {%- set dev.newest_version = '' %} {%- set dev.version = '' %} {%- set dev.cpu_percent = '' %} {%- set dev.memory_percent = '' %} {%- set dev.update = '' %}\n{%- for devid in (integration_entities('Supervisor') | map('device_id') | unique)  %}\n  {%- set dev.name = device_attr(devid, \"name\") %}\n  {%- for ent in device_entities(devid) %}\n    {%- if (ent.find(\"running\") | int>=0) %}\n      {%- set dev.running = ent %}\n    {%- endif %}\n    {%- if (ent.find(\"newest_version\") | int>=0) %}\n      {%- set dev.newest_version = ent %}\n    {%- endif %}\n    {%- if (ent.find(\"version\") | int>=0) %}\n      {%- set dev.version = ent %}\n    {%- endif %}\n    {%- if (ent.find(\"cpu_percent\") | int>=0) %}\n      {%- set dev.cpu_percent = ent %}\n    {%- endif %}\n    {%- if (ent.find(\"memory_percent\") | int>=0) %}\n      {%- set dev.memory_percent = ent %}\n    {%- endif %}\n    {%- if (ent.find(\"update\") | int>=0) %}\n      {%- set dev.update = ent %}\n    {%- endif %}\n  {%- endfor %}\n  {%- if dev.version > '' %}\n    {{-\n      { 'type': 'section'\n      }\n    }},\n    {{-\n      { 'type': 'custom:mushroom-title-card',\n        'title': dev.name\n      }\n    }},\n    {{-\n      { 'type': 'custom:mushroom-chips-card',\n        'chips': [\n          {\n            'type': 'entity',\n            'entity': dev.running,\n            'icon_color': 'green'\n          },\n          {\n            'type': 'entity',\n            'entity': dev.version,\n            'icon_color': 'green',\n            'icon': 'mdi:package-variant-closed-check'\n          },\n          {\n            'type': 'entity',\n            'entity': dev.newest_version,\n            'icon_color': 'purple',\n            'icon': 'mdi:package-variant'\n          },\n          {\n            'type': 'entity',\n            'entity': dev.cpu_percent,\n            'icon_color': 'blue'\n          },\n          {\n            'type': 'entity',\n            'entity': dev.memory_percent,\n            'icon_color': 'orange'\n          },\n        ]\n      }\n    }},\n    {{-\n      { 'type': 'custom:mushroom-update-card',\n        'entity': dev.update,\n        'name': dev.name,\n        'show_buttons_control': true,\n        'collapsible_controls': false,\n        'icon_type': 'entity-picture',\n        'layout': 'horizontal'\n      }\n    }},\n  {%- endif %}\n{%- endfor %}\n"
-                  }
+                    "template": "{%- set dev = namespace() %} {%- set dev.name = '' %} {%- set dev.running = '' %} {%- set dev.newest_version = '' %} {%- set dev.version = '' %} {%- set dev.cpu_percent = '' %} {%- set dev.memory_percent = '' %} {%- set dev.update = '' %}\n{%- for devid in (integration_entities('Supervisor') | map('device_id') | unique)  %}\n  {%- set dev.name = device_attr(devid, \"name\") %}\n  {%- for ent in device_entities(devid) %}\n    {%- if (ent.find(\"running\") | int>=0) %}\n      {%- set dev.running = ent %}\n    {%- endif %}\n    {%- if (ent.find(\"newest_version\") | int>=0) %}\n      {%- set dev.newest_version = ent %}\n    {%- endif %}\n    {%- if (ent.find(\"version\") | int>=0) %}\n      {%- set dev.version = ent %}\n    {%- endif %}\n    {%- if (ent.find(\"cpu_percent\") | int>=0) %}\n      {%- set dev.cpu_percent = ent %}\n    {%- endif %}\n    {%- if (ent.find(\"memory_percent\") | int>=0) %}\n      {%- set dev.memory_percent = ent %}\n    {%- endif %}\n    {%- if (ent.find(\"update\") | int>=0) %}\n      {%- set dev.update = ent %}\n    {%- endif %}\n  {%- endfor %}\n  {%- if dev.version > '' %}\n    {{-\n      { 'type': 'custom:mushroom-title-card',\n        'title': dev.name\n      }\n    }},\n    {{-\n      { 'type': 'custom:mushroom-chips-card',\n        'chips': [\n          {\n            'type': 'entity',\n            'entity': dev.running,\n            'icon_color': 'green'\n          },\n          {\n            'type': 'entity',\n            'entity': dev.version,\n            'icon_color': 'green',\n            'icon': 'mdi:package-variant-closed-check'\n          },\n          {\n            'type': 'entity',\n            'entity': dev.newest_version,\n            'icon_color': 'purple',\n            'icon': 'mdi:package-variant'\n          },\n          {\n            'type': 'entity',\n            'entity': dev.cpu_percent,\n            'icon_color': 'blue'\n          },\n          {\n            'type': 'entity',\n            'entity': dev.memory_percent,\n            'icon_color': 'orange'\n          },\n        ]\n      }\n    }},\n    {{-\n      { 'type': 'custom:mushroom-update-card',\n        'entity': dev.update,\n        'name': dev.name,\n        'show_buttons_control': true,\n        'collapsible_controls': false,\n        'icon_type': 'entity-picture',\n        'layout': 'horizontal'\n      }\n    }},\n  {%- endif %}\n{%- endfor %}\n"
+                  },
+                  "sort": {}
                 }
               ]
             },
@@ -1782,9 +1777,6 @@
                       "type": "custom:mushroom-title-card",
                       "title": "HACS",
                       "subtitle": "Installed v{{ state_attr('update.hacs_update', 'installed_version') }} - Latest v{{ state_attr('update.hacs_update', 'latest_version') }}"
-                    },
-                    {
-                      "type": "section"
                     },
                     {
                       "type": "custom:mushroom-chips-card",
@@ -1831,11 +1823,14 @@
                   "card": {
                     "type": "entities",
                     "card_mod": {
-                      "style": "ha-card {\n  border-style: none;\n  background: none;\n}\ndiv.card-content {\n  padding: 0px;\n}\n"
+                      "style": "ha-card {\n  border-style: none;\n  background: none;\n}\ndiv.card-content {\n  padding: 15px;\n}\n"
                     }
                   },
                   "filter": {
                     "template": "{%- set dev = namespace() %} {%- set dev.name = '' %} {%- set dev.update = '' %}\n{%- for devid in (integration_entities('hacs') | map('device_id') | list) %}\n  {%- set dev.name = device_attr(devid, \"name\") %}\n  {%- for ent in device_entities(devid) %}\n    {%- if (ent.find(\"update\") | int>=0) %}\n      {%- set dev.update = ent %}\n    {%- endif %}\n  {%- endfor %}\n  {{-\n    { 'type': 'custom:mushroom-update-card',\n      'entity': dev.update,\n      'name': dev.name,\n      'show_buttons_control': true,\n      'collapsible_controls': false,\n      'layout': 'horizontal'\n    }\n  }},\n{%- endfor %}\n"
+                  },
+                  "sort": {
+                    "method": "friendly_name"
                   }
                 }
               ]
