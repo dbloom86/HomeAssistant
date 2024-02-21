@@ -1823,7 +1823,7 @@
                   "card": {
                     "type": "entities",
                     "card_mod": {
-                      "style": "ha-card {\n  border-style: none;\n  background: none;\n}\ndiv.card-content {\n  padding: 15px;\n}\n"
+                      "style": "ha-card {\n  border-style: none;\n  background: none;\n}\ndiv.card-content {\n  padding: 15px;\n}\n.card-content {\n    max-height: 350px;\n    overflow-y: scroll;\n}\n"
                     }
                   },
                   "filter": {
