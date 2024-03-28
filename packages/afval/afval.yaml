@@ -49,11 +49,11 @@ sensor:
       trash_color_tomorrow:
         friendly_name: afvalkleur
         value_template: >-
-            {% if (states.sensor.circulus_afval_morgen == "gft") %}
+            {% if (states.sensor.circulus_afval_morgen == "GFT") %}
                 green
             {% elif (states.sensor.circulus_afval_morgen == "papier") %}
                 blue
-            {% elif (states.sensor.circulus_afval_morgen == "pmd") %}
+            {% elif (states.sensor.circulus_afval_morgen == "PMD") %}
                 orange
             {% else %}
                 grey
@@ -76,7 +76,7 @@ automation:
     condition:
     - condition: state
       entity_id: sensor.circulus_afval_morgen
-      state: pmd
+      state: PMD
     action:
       service: notify.mobile_app_telefoon_duncan
       data:
@@ -97,7 +97,7 @@ automation:
     condition:
     - condition: state
       entity_id: sensor.circulus_afval_morgen
-      state: gft
+      state: GFT
     action:
       service: notify.mobile_app_telefoon_duncan
       data:
@@ -141,10 +141,10 @@ automation:
       conditions:
       - condition: state
         entity_id: sensor.circulus_afval_vandaag
-        state: pmd
+        state: PMD
       - condition: state
         entity_id: sensor.circulus_afval_vandaag
-        state: gft
+        state: GFT
       - condition: state
         entity_id: sensor.circulus_afval_vandaag
         state: papier
