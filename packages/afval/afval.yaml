@@ -34,11 +34,11 @@ sensor:
       trash_color:
         friendly_name: afvalkleur
         value_template: >-
-            {% if (states.sensor.circulus_afval_vandaag == "gft") %}
+            {% if is_state('sensor.circulus_afval_vandaag', 'GFT') %}
                 green
-            {% elif (states.sensor.circulus_afval_vandaag == "papier") %}
+            {% elif is_state('sensor.circulus_afval_vandaag', 'papier') %}
                 blue
-            {% elif (states.sensor.circulus_afval_vandaag == "pmd") %}
+            {% elif is_state('sensor.circulus_afval_vandaag', 'PMD') %}
                 orange
             {% else %}
                 grey
@@ -49,11 +49,11 @@ sensor:
       trash_color_tomorrow:
         friendly_name: afvalkleur
         value_template: >-
-            {% if (states.sensor.circulus_afval_morgen == "GFT") %}
+            {% if is_state('sensor.circulus_afval_morgen', 'GFT') %}
                 green
-            {% elif (states.sensor.circulus_afval_morgen == "papier") %}
+            {% elif is_state('sensor.circulus_afval_morgen', 'papier') %}
                 blue
-            {% elif (states.sensor.circulus_afval_morgen == "PMD") %}
+            {% elif is_state('sensor.circulus_afval_morgen', 'PMD') %}
                 orange
             {% else %}
                 grey

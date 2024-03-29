@@ -9,30 +9,6 @@
 sensor:
   - platform: template
     sensors:
-      value_bsv:
-        friendly_name: 'Value BSV'
-        value_template: "{{ state_attr('sensor.coinbase_bsv_wallet', 'Balance in native currency')|replace(' EUR','') }}"
-        unit_of_measurement: "€"
-        icon_template: mdi:currency-eur
-
-  - platform: template
-    sensors:
-      value_btc:
-        friendly_name: 'Value BTC'
-        value_template: "{{ state_attr('sensor.coinbase_btc_wallet', 'Balance in native currency')|replace(' EUR','') }}"
-        unit_of_measurement: "€"
-        icon_template: mdi:currency-eur
-
-  - platform: template
-    sensors:
-      value_forth:
-        friendly_name: 'Value Forth'
-        value_template: "{{ state_attr('sensor.coinbase_forth_wallet', 'Balance in native currency')|replace(' EUR','') }}"
-        unit_of_measurement: "€"
-        icon_template: mdi:currency-eur
-
-  - platform: template
-    sensors:
       value_ankr:
         friendly_name: 'Value ANKR'
         value_template: "{{ state_attr('sensor.coinbase_ankr_portemonnee', 'Balance in native currency')|replace(' EUR','') }}"
@@ -41,9 +17,9 @@ sensor:
 
   - platform: template
     sensors:
-      value_skl:
-        friendly_name: 'Value SKALE'
-        value_template: "{{ state_attr('sensor.coinbase_skl_wallet', 'Balance in native currency')|replace(' EUR','') }}"
+      value_atom:
+        friendly_name: 'Value ATOM'
+        value_template: "{{ state_attr('sensor.coinbase_staked_atom', 'Balance in native currency')|replace(' EUR','') }}"
         unit_of_measurement: "€"
         icon_template: mdi:currency-eur
 

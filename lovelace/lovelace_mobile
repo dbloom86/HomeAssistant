@@ -1292,6 +1292,11 @@
                       "temperature": "Temperatuur",
                       "state": "Mode"
                     },
+                    "control": {
+                      "hvac": {
+                        "_name": "Mode"
+                      }
+                    },
                     "card_mod": {
                       "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
                     }
@@ -1816,6 +1821,11 @@
                       "temperature": "Temperatuur",
                       "state": "Mode"
                     },
+                    "control": {
+                      "hvac": {
+                        "_name": "Mode"
+                      }
+                    },
                     "card_mod": {
                       "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
                     }
@@ -2041,6 +2051,11 @@
                       "temperature": "Temperatuur",
                       "state": "Mode"
                     },
+                    "control": {
+                      "hvac": {
+                        "_name": "Mode"
+                      }
+                    },
                     "card_mod": {
                       "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
                     }
@@ -2265,6 +2280,11 @@
                     "label": {
                       "temperature": "Temperatuur",
                       "state": "Mode"
+                    },
+                    "control": {
+                      "hvac": {
+                        "_name": "Mode"
+                      }
                     },
                     "card_mod": {
                       "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
@@ -2941,6 +2961,11 @@
                       "temperature": "Temperatuur",
                       "state": "Mode"
                     },
+                    "control": {
+                      "hvac": {
+                        "_name": "Mode"
+                      }
+                    },
                     "card_mod": {
                       "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
                     }
@@ -3173,6 +3198,11 @@
                       "temperature": "Temperatuur",
                       "state": "Mode"
                     },
+                    "control": {
+                      "hvac": {
+                        "_name": "Mode"
+                      }
+                    },
                     "card_mod": {
                       "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
                     }
@@ -3401,6 +3431,11 @@
                     "label": {
                       "temperature": "Temperatuur",
                       "state": "Mode"
+                    },
+                    "control": {
+                      "hvac": {
+                        "_name": "Mode"
+                      }
                     },
                     "card_mod": {
                       "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
@@ -3747,6 +3782,11 @@
                     "label": {
                       "temperature": "Temperatuur",
                       "state": "Mode"
+                    },
+                    "control": {
+                      "hvac": {
+                        "_name": "Mode"
+                      }
                     },
                     "card_mod": {
                       "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
@@ -4159,6 +4199,11 @@
                     "label": {
                       "temperature": "Temperatuur",
                       "state": "Mode"
+                    },
+                    "control": {
+                      "hvac": {
+                        "_name": "Mode"
+                      }
                     },
                     "card_mod": {
                       "style": "ha-card {\n      border: none;\n      background: none;\n}\n"
