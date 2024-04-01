@@ -6,13 +6,13 @@
     platform: group
     services:
       - service: mobile_app_telefoon_duncan
-      - service: mobile_app_telefoon_sabrine
+      - service: mobile_app_telefoon_sab
 
   - name: all
     platform: group
     services:
-      - service: mobile_app_telefoon_duncan
-      - service: mobile_app_telefoon_sabrine
+      - service: mobile_app_telefoon_duncan_2
+      - service: mobile_app_telefoon_sab
       - service: woonkamer_tv
       - service: mobile_app_tablet_fynn
       - service: mobile_app_tablet_luca

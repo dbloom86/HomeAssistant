@@ -66,8 +66,8 @@ automation:
           notify.all_mobile
         {% elif is_state('device_tracker.telefoon_duncan_2', 'home') %}
           notify.mobile_app_telefoon_duncan
-        {% elif is_state('device_tracker.telefoon_sabrine', 'home') %}
-          notify.mobile_app_telefoon_sabrine
+        {% elif is_state('device_tracker.telefoon_sab', 'home') %}
+          notify.mobile_app_telefoon_sab
         {% endif %}
       data:
         title: De wasmachine is klaar
@@ -110,8 +110,8 @@ automation:
           notify.all_mobile
         {% elif is_state('device_tracker.telefoon_duncan_2', 'home') %}
           notify.mobile_app_telefoon_duncan
-        {% elif is_state('device_tracker.telefoon_sabrine', 'home') %}
-          notify.mobile_app_telefoon_sabrine
+        {% elif is_state('device_tracker.telefoon_sab', 'home') %}
+          notify.mobile_app_telefoon_sab
         {% endif %}
       data:
         title: De droger is klaar

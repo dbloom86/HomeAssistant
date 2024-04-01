@@ -13,8 +13,7 @@ Ouders:
         - person.duncan
         - person.sabrine
         - device_tracker.telefoon_duncan_2
-        - device_tracker.telefoon_sabrine
-        - device_tracker.a51_van_sabrine
+        - device_tracker.telefoon_sab
 
 Kids:
     entities:

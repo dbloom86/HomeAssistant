@@ -468,7 +468,7 @@
                         "left": "88%"
                       },
                       "type": "state-label",
-                      "entity": "sensor.telefoon_sabrine_batterijniveau"
+                      "entity": "sensor.telefoon_sab_battery_level"
                     },
                     {
                       "style": {
@@ -477,7 +477,7 @@
                         "left": "12%"
                       },
                       "type": "state-label",
-                      "entity": "sensor.fam_bloom_telefoon_sabrine_distance"
+                      "entity": "sensor.fam_bloom_telefoon_sab_distance"
                     }
                   ],
                   "card_mod": {
