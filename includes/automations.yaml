@@ -12,7 +12,7 @@
     for:
       minutes: 5
   - platform: state
-    entity_id: binary_sensor.telefoon_sabrine_is_aan_het_opladen
+    entity_id: binary_sensor.telefoon_sab_is_charging
     to: 'on'
     for:
       minutes: 5
@@ -26,7 +26,7 @@
       for:
         minutes: 5
     - condition: state
-      entity_id: binary_sensor.telefoon_sabrine_is_aan_het_opladen
+      entity_id: binary_sensor.telefoon_sab_is_charging
       state: 'on'
       for:
         minutes: 5
@@ -235,7 +235,7 @@
     for:
       minutes: 10
   - platform: state
-    entity_id: binary_sensor.telefoon_sabrine_is_aan_het_opladen
+    entity_id: binary_sensor.telefoon_sab_is_charging
     to: 'off'
     for:
       minutes: 10
@@ -314,11 +314,11 @@
   id: 50plva4d6h8g49akg7sh2561hgqwv58k
 
 #================================  
-# Lampen slaapkamer Fynn
+# Lampen kantoor
 #================================
 
 - alias: Bediening lamp hoekje - Switch
-  description: 'Bediening Lamp hoekje in Slaapkamer Fynn'
+  description: 'Bediening Lamp hoekje in Kantoor'
   use_blueprint:
     path: EPMatt/ikea_e1743.yaml
     input:
@@ -352,7 +352,7 @@
   id: 5jk87d4d6h8g4925hgb79502cd0a116a
 
 - alias: Bediening lamp hoekje - Light
-  description: 'Bediening Lamp hoekje in Slaapkamer Fynn'
+  description: 'Bediening Lamp hoekje in Kantoor'
   use_blueprint:
     path: EPMatt/light.yaml
     input:
