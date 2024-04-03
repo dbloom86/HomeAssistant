@@ -36,7 +36,7 @@ sensor:
         value_template: >-
             {% if is_state('sensor.circulus_afval_vandaag', 'GFT') %}
                 green
-            {% elif is_state('sensor.circulus_afval_vandaag', 'papier') %}
+            {% elif is_state('sensor.circulus_afval_vandaag', 'Papier') %}
                 blue
             {% elif is_state('sensor.circulus_afval_vandaag', 'PMD') %}
                 orange
@@ -51,7 +51,7 @@ sensor:
         value_template: >-
             {% if is_state('sensor.circulus_afval_morgen', 'GFT') %}
                 green
-            {% elif is_state('sensor.circulus_afval_morgen', 'papier') %}
+            {% elif is_state('sensor.circulus_afval_morgen', 'Papier') %}
                 blue
             {% elif is_state('sensor.circulus_afval_morgen', 'PMD') %}
                 orange
@@ -118,7 +118,7 @@ automation:
     condition:
     - condition: state
       entity_id: sensor.circulus_afval_morgen
-      state: papier
+      state: Papier
     action:
       service: notify.mobile_app_telefoon_duncan
       data:
@@ -147,7 +147,7 @@ automation:
         state: GFT
       - condition: state
         entity_id: sensor.circulus_afval_vandaag
-        state: papier
+        state: Papier
     action:
       service: notify.mobile_app_telefoon_duncan
       data:
