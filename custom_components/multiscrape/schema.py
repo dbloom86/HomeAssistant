@@ -1,6 +1,7 @@
 """The multiscrape component schemas."""
 import homeassistant.helpers.config_validation as cv
 import voluptuous as vol
+import logging
 from homeassistant.components.binary_sensor import (
     DEVICE_CLASSES_SCHEMA as BINARY_SENSOR_DEVICE_CLASSES_SCHEMA,
 )
@@ -38,7 +39,6 @@ from homeassistant.const import HTTP_DIGEST_AUTHENTICATION
 from .const import CONF_ATTR
 from .const import CONF_FORM_INPUT
 from .const import CONF_FORM_INPUT_FILTER
-from .const import CONF_FORM_RESOURCE
 from .const import CONF_FORM_RESUBMIT_ERROR
 from .const import CONF_FORM_SELECT
 from .const import CONF_FORM_SUBMIT
@@ -72,16 +72,9 @@ from .const import LOG_LEVELS
 from .const import METHODS
 from .scraper import DEFAULT_TIMEOUT
 
-FORM_SUBMIT_SCHEMA = {
-    vol.Optional(CONF_FORM_RESOURCE): cv.string,
-    vol.Optional(CONF_FORM_SELECT): cv.string,
-    vol.Optional(CONF_FORM_INPUT): vol.Schema({cv.string: cv.string}),
-    vol.Optional(CONF_FORM_INPUT_FILTER, default=[]): cv.ensure_list,
-    vol.Optional(CONF_FORM_SUBMIT_ONCE, default=False): cv.boolean,
-    vol.Optional(CONF_FORM_RESUBMIT_ERROR, default=True): cv.boolean,
-}
+_LOGGER = logging.getLogger(__name__)
 
-INTEGRATION_SCHEMA = {
+HTTP_SCHEMA = {
     vol.Exclusive(CONF_RESOURCE, CONF_RESOURCE): cv.url,
     vol.Exclusive(CONF_RESOURCE_TEMPLATE, CONF_RESOURCE): cv.template,
     vol.Optional(CONF_AUTHENTICATION): vol.In(
@@ -95,6 +88,19 @@ INTEGRATION_SCHEMA = {
     vol.Optional(CONF_PAYLOAD): cv.template,
     vol.Optional(CONF_VERIFY_SSL, default=DEFAULT_VERIFY_SSL): cv.boolean,
     vol.Optional(CONF_TIMEOUT, default=DEFAULT_TIMEOUT): cv.positive_int,
+}
+
+FORM_SUBMIT_SCHEMA = {
+    **HTTP_SCHEMA,
+    vol.Optional(CONF_FORM_SELECT): cv.string,
+    vol.Optional(CONF_FORM_INPUT): vol.Schema({cv.string: cv.string}),
+    vol.Optional(CONF_FORM_INPUT_FILTER, default=[]): cv.ensure_list,
+    vol.Optional(CONF_FORM_SUBMIT_ONCE, default=False): cv.boolean,
+    vol.Optional(CONF_FORM_RESUBMIT_ERROR, default=True): cv.boolean,
+}
+
+INTEGRATION_SCHEMA = {
+    **HTTP_SCHEMA,
     vol.Optional(CONF_PARSER, default=DEFAULT_PARSER): cv.string,
     vol.Optional(CONF_NAME): cv.string,
     vol.Optional(CONF_SCAN_INTERVAL): cv.time_period,
@@ -103,9 +109,7 @@ INTEGRATION_SCHEMA = {
 }
 
 ON_ERROR_SCHEMA = {
-    vol.Optional(CONF_ON_ERROR_LOG, default=LOG_ERROR): vol.In(
-        [key for key in LOG_LEVELS.keys()]
-    ),
+    vol.Optional(CONF_ON_ERROR_LOG, default=LOG_ERROR): vol.In(list(LOG_LEVELS.keys())),
     vol.Optional(CONF_ON_ERROR_VALUE, default=CONF_ON_ERROR_VALUE_NONE): vol.In(
         [
             CONF_ON_ERROR_VALUE_LAST,
@@ -179,3 +183,56 @@ CONFIG_SCHEMA = vol.Schema(
     {DOMAIN: vol.All(cv.ensure_list, [COMBINED_SCHEMA])},
     extra=vol.ALLOW_EXTRA,
 )
+
+
+def create_service_schema():
+    """Create a schema without templates that render an output value."""
+    # Templates are evaluated by home assistant when the service is triggered, so we make them a string and restore them afterwards.
+    SERVICE_SELECTOR_SCHEMA = dict(SELECTOR_SCHEMA)
+    SERVICE_SELECTOR_SCHEMA.update({vol.Optional(CONF_VALUE_TEMPLATE): cv.string})
+
+    SERVICE_SENSOR_ATTRIBUTE_SCHEMA = {
+        vol.Required(CONF_NAME): cv.string,
+        **SERVICE_SELECTOR_SCHEMA,
+    }
+
+    SERVICE_SENSOR_SCHEMA = dict(SENSOR_SCHEMA)
+    SERVICE_SENSOR_SCHEMA.update({vol.Optional(CONF_VALUE_TEMPLATE): cv.string})
+    SERVICE_SENSOR_SCHEMA.update({vol.Optional(CONF_ICON): cv.string})
+    SERVICE_SENSOR_SCHEMA.update(
+        {
+            vol.Optional(CONF_SENSOR_ATTRS): vol.All(
+                cv.ensure_list, [vol.Schema(SERVICE_SENSOR_ATTRIBUTE_SCHEMA)]
+            )
+        }
+    )
+
+    SERVICE_BINARY_SENSOR_SCHEMA = dict(BINARY_SENSOR_SCHEMA)
+    SERVICE_BINARY_SENSOR_SCHEMA.update({vol.Optional(CONF_VALUE_TEMPLATE): cv.string})
+    SERVICE_BINARY_SENSOR_SCHEMA.update({vol.Optional(CONF_ICON): cv.string})
+    SERVICE_BINARY_SENSOR_SCHEMA.update(
+        {
+            vol.Optional(CONF_SENSOR_ATTRS): vol.All(
+                cv.ensure_list, [vol.Schema(SERVICE_SENSOR_ATTRIBUTE_SCHEMA)]
+            )
+        }
+    )
+
+    return vol.Schema(
+        {
+            **INTEGRATION_SCHEMA,
+            vol.Optional(CONF_FORM_SUBMIT): vol.Schema(FORM_SUBMIT_SCHEMA),
+            vol.Optional(SENSOR_DOMAIN): vol.All(
+                cv.ensure_list, [vol.Schema(SERVICE_SENSOR_SCHEMA)]
+            ),
+            vol.Optional(BINARY_SENSOR_DOMAIN): vol.All(
+                cv.ensure_list, [vol.Schema(SERVICE_BINARY_SENSOR_SCHEMA)]
+            ),
+            vol.Optional(BUTTON_DOMAIN): vol.All(
+                cv.ensure_list, [vol.Schema(BUTTON_SCHEMA)]
+            ),
+        }
+    )
+
+
+SERVICE_COMBINED_SCHEMA = create_service_schema()
