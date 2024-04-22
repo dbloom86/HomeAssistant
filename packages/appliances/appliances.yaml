@@ -62,7 +62,7 @@ automation:
       state: 'home'
     action:
       service: >
-        {% if (is_state('device_tracker.telefoon_duncan_2', 'home')) and (is_state('device_tracker.telefoon_sabrine', 'home'))  %}
+        {% if (is_state('device_tracker.telefoon_duncan_2', 'home')) and (is_state('device_tracker.telefoon_sab', 'home'))  %}
           notify.all_mobile
         {% elif is_state('device_tracker.telefoon_duncan_2', 'home') %}
           notify.mobile_app_telefoon_duncan
@@ -106,7 +106,7 @@ automation:
           {% endif %}
     action:
       service: >
-        {% if (is_state('device_tracker.telefoon_duncan_2', 'home')) and (is_state('device_tracker.telefoon_sabrine', 'home'))  %}
+        {% if (is_state('device_tracker.telefoon_duncan_2', 'home')) and (is_state('device_tracker.telefoon_sab', 'home'))  %}
           notify.all_mobile
         {% elif is_state('device_tracker.telefoon_duncan_2', 'home') %}
           notify.mobile_app_telefoon_duncan
