@@ -122,8 +122,8 @@ automation:
   - alias: Notification clean sensors
     trigger:
     - platform: numeric_state
-      entity_id: sensor.miep_sensor_dirty_left
-      below: '0'
+      entity_id: sensor.roborock_s6_sensor_dirty_left
+      below: 2
     action:
       service: notify.mobile_app_telefoon_duncan
       data:
@@ -149,7 +149,7 @@ automation:
   - alias: Notification onderhoud zij borstel
     trigger:
     - platform: numeric_state
-      entity_id: sensor.miep_side_brush_left
+      entity_id: sensor.roborock_s6_side_brush_left
       below: '0'
     action:
       service: notify.mobile_app_telefoon_duncan
@@ -176,8 +176,8 @@ automation:
   - alias: Notification onderhoud borstel
     trigger:
     - platform: numeric_state
-      entity_id: sensor.miep_main_brush_left
-      below: '0'
+      entity_id: sensor.roborock_s6_main_brush_left
+      below: 2
     action:
       service: notify.mobile_app_telefoon_duncan
       data:
@@ -203,8 +203,8 @@ automation:
   - alias: Notification onderhoud filter
     trigger:
     - platform: numeric_state
-      entity_id: sensor.miep_filter_left
-      below: '0'
+      entity_id: sensor.roborock_s6_filter_left
+      below: 2
     action:
       service: notify.mobile_app_telefoon_duncan
       data:
@@ -238,12 +238,9 @@ automation:
       event_data:
         action: RESET_MIEP_FILTER_LEFT
     action:
-    - service: vacuum.send_command
+    - service: button.press
       target:
-        entity_id: vacuum.miep
-      data:
-        command: reset_consumable
-        params: ['filter_work_time']
+        entity_id: button.roborock_s6_reset_air_filter_consumable
     - service: notify.mobile_app_telefoon_duncan
       data:
         message: clear_notification
@@ -262,12 +259,9 @@ automation:
       event_data:
         action: RESET_MIEP_MAIN_BRUSH_LEFT
     action:
-    - service: vacuum.send_command
+    - service: button.press
       target:
-        entity_id: vacuum.miep
-      data:
-        command: reset_consumable
-        params: ['main_brush_work_time']
+        entity_id: button.roborock_s6_reset_main_brush_consumable
     - service: notify.mobile_app_telefoon_duncan
       data:
         message: clear_notification
@@ -286,12 +280,9 @@ automation:
       event_data:
         action: RESET_MIEP_DIRTY_SENSORS
     action:
-    - service: vacuum.send_command
+    - service: press.button
       target:
-        entity_id: vacuum.miep
-      data:
-        command: reset_consumable
-        params: ['sensor_dirty_time']
+        entity_id: button.roborock_s6_reset_sensor_consumable
     - service: notify.mobile_app_telefoon_duncan
       data:
         message: clear_notification
@@ -310,12 +301,9 @@ automation:
       event_data:
         action: RESET_MIEP_SIDE_BRUSH_LEFT
     action:
-    - service: vacuum.send_command
+    - service: button.press
       target:
-        entity_id: vacuum.miep
-      data:
-        command: reset_consumable
-        params: ['side_brush_work_time']
+        entity_id: button.roborock_s6_reset_side_brush_consumable
     - service: notify.mobile_app_telefoon_duncan
       data:
         message: clear_notification
@@ -366,7 +354,7 @@ script:
     sequence:
       service: xiaomi_miio.vacuum_clean_segment
       target:
-        entity_id: vacuum.miep
+        entity_id: vacuum.roborock_s6
       data:
         segments: 18
 
@@ -378,7 +366,7 @@ script:
     sequence:
       service: xiaomi_miio.vacuum_clean_segment
       target:
-        entity_id: vacuum.miep
+        entity_id: vacuum.roborock_s6
       data:
         segments: 16 
 
@@ -390,7 +378,7 @@ script:
     sequence:
       service: xiaomi_miio.vacuum_clean_segment
       target:
-        entity_id: vacuum.miep
+        entity_id: vacuum.roborock_s6
       data:
         segments: 17
 
@@ -400,11 +388,15 @@ script:
   vacuum_kitchen_living:
     alias: "Vacuum Kitchen and Living"
     sequence:
-      service: xiaomi_miio.vacuum_clean_segment
-      target:
-        entity_id: vacuum.miep
+      service: xvacuum.send_command
       data:
-        segments: [17,18]
+        command: app_segment_clean
+        params:
+          - segments:
+            - 17
+            - 18
+            repeat: 1
+        target: vacuum.roborock_s6
 
     #=====================
     # Stofzuig Overloop
@@ -414,7 +406,7 @@ script:
     sequence:
       service: xiaomi_miio.vacuum_clean_segment
       target:
-        entity_id: vacuum.miep
+        entity_id: vacuum.roborock_s6
       data:
         segments: 18
 
@@ -426,7 +418,7 @@ script:
     sequence:
       service: xiaomi_miio.vacuum_clean_segment
       target:
-        entity_id: vacuum.miep
+        entity_id: vacuum.roborock_s6
       data:
         segments: 20 
 
@@ -438,7 +430,7 @@ script:
     sequence:
       service: xiaomi_miio.vacuum_clean_segment
       target:
-        entity_id: vacuum.miep
+        entity_id: vacuum.roborock_s6
       data:
         segments: 19
 
@@ -450,7 +442,7 @@ script:
     sequence:
       service: xiaomi_miio.vacuum_clean_segment
       target:
-        entity_id: vacuum.miep
+        entity_id: vacuum.roborock_s6
       data:
         segments: 16
 
@@ -462,7 +454,7 @@ script:
     sequence:
       service: xiaomi_miio.vacuum_clean_segment
       target:
-        entity_id: vacuum.miep
+        entity_id: vacuum.roborock_s6
       data:
         segments: 17
 
@@ -474,7 +466,7 @@ script:
     sequence:
       service: xiaomi_miio.vacuum_clean_segment
       target:
-        entity_id: vacuum.miep
+        entity_id: vacuum.roborock_s6
       data:
         segments: [16,18,19,20]
 
@@ -486,7 +478,7 @@ script:
     sequence:
       service: xiaomi_miio.vacuum_clean_segment
       target:
-        entity_id: vacuum.miep
+        entity_id: vacuum.roborock_s6
       data:
         segments: [18,19]
 
@@ -498,7 +490,7 @@ script:
     sequence:
       service: xiaomi_miio.vacuum_clean_segment
       target:
-        entity_id: vacuum.miep
+        entity_id: vacuum.roborock_s6
       data:
         segments: [18,20]
 
@@ -510,7 +502,7 @@ script:
     sequence:
       service: xiaomi_miio.vacuum_clean_segment
       target:
-        entity_id: vacuum.miep
+        entity_id: vacuum.roborock_s6
       data:
         segments: [18,16]
 
@@ -522,7 +514,7 @@ script:
     sequence:
       service: xiaomi_miio.vacuum_clean_segment
       target:
-        entity_id: vacuum.miep
+        entity_id: vacuum.roborock_s6
       data:
         segments: [20,19]
 
@@ -534,7 +526,7 @@ script:
     sequence:
       service: xiaomi_miio.vacuum_clean_segment
       target:
-        entity_id: vacuum.miep
+        entity_id: vacuum.roborock_s6
       data:
         segments: [16,19]
 
@@ -546,7 +538,7 @@ script:
     sequence:
       service: xiaomi_miio.vacuum_clean_segment
       target:
-        entity_id: vacuum.miep
+        entity_id: vacuum.roborock_s6
       data:
         segments: [16,20]
 
@@ -558,7 +550,7 @@ script:
     sequence:
       service: xiaomi_miio.vacuum_clean_segment
       target:
-        entity_id: vacuum.miep
+        entity_id: vacuum.roborock_s6
       data:
         segments: [16,19,20]
 
@@ -570,7 +562,7 @@ script:
     sequence:
       service: xiaomi_miio.vacuum_clean_segment
       target:
-        entity_id: vacuum.miep
+        entity_id: vacuum.roborock_s6
       data:
         segments: [18,19,20]
 
@@ -582,7 +574,7 @@ script:
     sequence:
       service: xiaomi_miio.vacuum_clean_segment
       target:
-        entity_id: vacuum.miep
+        entity_id: vacuum.roborock_s6
       data:
         segments: [18,19,16]
 
@@ -594,7 +586,7 @@ script:
     sequence:
       service: xiaomi_miio.vacuum_clean_segment
       target:
-        entity_id: vacuum.miep
+        entity_id: vacuum.roborock_s6
       data:
         segments: [18,20,16]
 

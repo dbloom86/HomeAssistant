@@ -5280,7 +5280,7 @@
               },
               "card": {
                 "type": "custom:xiaomi-vacuum-card",
-                "entity": "vacuum.miep",
+                "entity": "vacuum.roborock_s6",
                 "image": "/local/Pictures/Robomiep-icon.jpg",
                 "name": "Miep",
                 "vendor": "xiaomi",

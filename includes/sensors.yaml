@@ -383,7 +383,7 @@
     sensors:
         sabrine_presence:
             value_template: >-
-                {% if is_state('device_tracker.telefoon_sabrine', 'unknown') %}
+                {% if is_state('device_tracker.telefoon_sab', 'unknown') %}
                     Away
                 {% else %}
                     {{ states.device_tracker.telefoon_sabrine.state}}
@@ -396,14 +396,14 @@
                 {% if is_state('device_tracker.tablet_luca', 'unknown') %}
                     Away
                 {% else %}
-                    {{ states.device_tracker.tablet_luca.state}}
+                    {{ states.device_tracker.luca_s_tablet.state}}
                 {% endif %}
 
   - platform: template
     sensors:
         fynn_presence:
             value_template: >-
-                {% if is_state('device_tracker.tablet_fynn', 'unknown') %}
+                {% if is_state('device_tracker.fynns_tablet', 'unknown') %}
                     Away
                 {% else %}
                     {{ states.device_tracker.tablet_fynn.state}}
