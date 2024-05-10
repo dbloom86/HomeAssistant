@@ -282,16 +282,16 @@
                       "chips": [
                         {
                           "type": "entity",
-                          "entity": "binary_sensor.tablet_fynn_is_charging",
+                          "entity": "binary_sensor.fynns_tablet_is_charging",
                           "content_info": "none",
                           "card_mod": {
                             "style": "ha-card {\n  box-shadow: 0px 0px;\n}\n"
                           },
-                          "icon_color": "{% set state=states('binary_sensor.tablet_fynn_is_aan_het_opladen') %}\n{% if state=='on' %}\ngreen\n{% elif state=='off' %}\nyellow\n{% else %}\nred\n{% endif %}"
+                          "icon_color": "{% set state=states('binary_sensor.fynns_tablet_is_charging') %}\n{% if state=='on' %}\ngreen\n{% elif state=='off' %}\nyellow\n{% else %}\nred\n{% endif %}"
                         },
                         {
                           "type": "entity",
-                          "entity": "sensor.fynn_s_tablet_battery_level",
+                          "entity": "sensor.fynns_tablet_battery_level",
                           "card_mod": {
                             "style": "ha-card {\n  box-shadow: 0px 0px;\n}\n"
                           }
@@ -325,13 +325,14 @@
               "cards": [
                 {
                   "type": "custom:mushroom-vacuum-card",
-                  "entity": "vacuum.miep",
+                  "entity": "vacuum.roborock_s6",
                   "name": "Schoonmaken",
                   "icon_animation": true,
                   "fill_container": true,
                   "secondary_info": "none",
                   "commands": [
-                    "return_home"
+                    "return_home",
+                    "start_pause"
                   ],
                   "tap_action": {
                     "action": "navigate",

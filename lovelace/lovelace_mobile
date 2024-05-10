@@ -5274,35 +5274,203 @@
               }
             },
             {
-              "type": "custom:mod-card",
-              "card_mod": {
-                "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
-              },
-              "card": {
-                "type": "custom:xiaomi-vacuum-card",
-                "entity": "vacuum.roborock_s6",
-                "image": "/local/Pictures/Robomiep-icon.jpg",
-                "name": "Miep",
-                "vendor": "xiaomi",
-                "buttons": {
-                  "start": false,
-                  "stop": false,
-                  "locate": false,
-                  "return": {
-                    "service": "script.miep_return_to_dock"
-                  }
-                },
-                "attributes": {
-                  "main_brush": {
-                    "label": "Borstels: "
-                  },
-                  "side_brush": {
-                    "label": "Zij borstels: "
-                  }
-                },
-                "card_mod": {
-                  "style": "ha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
+              "type": "custom:layout-card",
+              "cards": [
+                {
+                  "type": "picture-elements",
+                  "image": "/local/Pictures/Robomiep.jpg",
+                  "elements": [
+                    {
+                      "type": "state-label",
+                      "entity": "vacuum.roborock_s6",
+                      "attribute": "friendly_name",
+                      "style": {
+                        "top": "15%",
+                        "left": "49%",
+                        "font-size": "1.3vw",
+                        "color": "white",
+                        "font-weight": "bold"
+                      }
+                    },
+                    {
+                      "type": "state-icon",
+                      "entity": "vacuum.roborock_s6",
+                      "style": {
+                        "transform": "translate(0,0)",
+                        "top": "20%",
+                        "left": "5%",
+                        "--paper-item-icon-color": "white"
+                      }
+                    },
+                    {
+                      "type": "state-label",
+                      "entity": "vacuum.roborock_s6",
+                      "style": {
+                        "transform": "translate(0,0)",
+                        "top": "20%",
+                        "left": "12%",
+                        "font-size": "1.0vw",
+                        "color": "white"
+                      }
+                    },
+                    {
+                      "type": "state-icon",
+                      "entity": "sensor.roborock_s6_battery",
+                      "icon": "mdi:battery-charging-100",
+                      "state_color": false,
+                      "style": {
+                        "transform": "translate(0,0)",
+                        "top": "35%",
+                        "left": "5%",
+                        "--paper-item-icon-color": "white"
+                      }
+                    },
+                    {
+                      "type": "state-label",
+                      "entity": "sensor.roborock_s6_battery",
+                      "style": {
+                        "transform": "translate(0,0)",
+                        "top": "35%",
+                        "left": "12%",
+                        "font-size": "1.0vw",
+                        "color": "white"
+                      }
+                    },
+                    {
+                      "type": "state-icon",
+                      "entity": "vacuum.roborock_s6",
+                      "attribute": "fan_speed",
+                      "icon": "mdi:fan",
+                      "style": {
+                        "transform": "translate(0,0)",
+                        "top": "50%",
+                        "left": "5%",
+                        "--paper-item-icon-color": "white"
+                      }
+                    },
+                    {
+                      "type": "state-label",
+                      "entity": "vacuum.roborock_s6",
+                      "attribute": "fan_speed",
+                      "style": {
+                        "transform": "translate(0,0)",
+                        "top": "50%",
+                        "left": "12%",
+                        "font-size": "1.0vw",
+                        "color": "white"
+                      }
+                    },
+                    {
+                      "type": "state-label",
+                      "entity": "sensor.miep_main_brush_left",
+                      "prefix": "Main Brush: ",
+                      "suffix": " h",
+                      "style": {
+                        "position": "absolute",
+                        "transform": "translate(0,0)",
+                        "top": "17%",
+                        "right": "5%",
+                        "font-size": "1.0vm",
+                        "color": "white"
+                      }
+                    },
+                    {
+                      "type": "state-label",
+                      "entity": "sensor.miep_side_brush_left",
+                      "prefix": "Side Brush: ",
+                      "suffix": " h",
+                      "style": {
+                        "position": "absolute",
+                        "transform": "translate(0,0)",
+                        "top": "28%",
+                        "right": "5%",
+                        "font-size": "1.0vm",
+                        "color": "white"
+                      }
+                    },
+                    {
+                      "type": "state-label",
+                      "entity": "sensor.miep_filter_left",
+                      "prefix": "Filter: ",
+                      "suffix": " h",
+                      "style": {
+                        "position": "absolute",
+                        "transform": "translate(0,0)",
+                        "top": "39%",
+                        "right": "5%",
+                        "font-size": "1.0vm",
+                        "color": "white"
+                      }
+                    },
+                    {
+                      "type": "state-label",
+                      "entity": "sensor.miep_dirty_sensorst",
+                      "prefix": "Sensor: ",
+                      "suffix": " h",
+                      "style": {
+                        "position": "absolute",
+                        "transform": "translate(0,0)",
+                        "top": "50%",
+                        "right": "5%",
+                        "font-size": "1.0vm",
+                        "color": "white"
+                      }
+                    },
+                    {
+                      "type": "state-icon",
+                      "entity": "script.vacuum_kitchen_living",
+                      "title": "Start",
+                      "icon": "mdi:play",
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "script.vacuum_kitchen_living"
+                      },
+                      "style": {
+                        "top": "80%",
+                        "left": "20%",
+                        "--paper-item-icon-color": "white"
+                      }
+                    },
+                    {
+                      "type": "state-icon",
+                      "entity": "script.vacuum_kitchen_living",
+                      "title": "Pause",
+                      "icon": "mdi:pause",
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "vacuum.pause",
+                        "target": {
+                          "device_id": [
+                            "122a8a65b1a8e6870391ff4dd677c276"
+                          ]
+                        }
+                      },
+                      "style": {
+                        "top": "80%",
+                        "left": "50%",
+                        "--paper-item-icon-color": "white"
+                      }
+                    },
+                    {
+                      "type": "state-icon",
+                      "entity": "script.miep_return_to_dock",
+                      "title": "Dock",
+                      "icon": "mdi:home-map-marker",
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "script.miep_return_to_dock"
+                      },
+                      "style": {
+                        "top": "80%",
+                        "left": "80%",
+                        "--paper-item-icon-color": "white"
+                      }
+                    }
+                  ]
                 }
+              ],
+              "card_mod": {
+                "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n  font-size: 12px !important;\n}\n"
               }
             },
             {

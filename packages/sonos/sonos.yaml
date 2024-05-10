@@ -18,7 +18,7 @@ automation:
         for:
           minutes: 5
       - platform: state
-        entity_id: binary_sensor.telefoon_sabrine_is_aan_het_opladen
+        entity_id: binary_sensor.telefoon_sab_is_charging
         to: 'off'
         for:
           minutes: 5
@@ -47,6 +47,13 @@ automation:
           - fri
         after: '06:00'
         before: '08:30'
+      - condition: state
+        entity_id: media_player.sony_bravia_tv
+        state: "off"
+        for:
+          hours: 0
+          minutes: 3
+          seconds: 0 
     action:
       - service: media_player.select_source
         data:

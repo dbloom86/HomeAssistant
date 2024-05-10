@@ -352,11 +352,15 @@ script:
   vacuum_living:
     alias: "Vacuum Living"
     sequence:
-      service: xiaomi_miio.vacuum_clean_segment
+      service: vacuum.send_command
       target:
-        entity_id: vacuum.roborock_s6
+        device_id: 122a8a65b1a8e6870391ff4dd677c276
       data:
-        segments: 18
+        command: app_segment_clean
+        params:
+          - segments:
+            - 18
+            repeat: 1
 
     #=====================
     # Stofzuig Hal
@@ -364,11 +368,15 @@ script:
   vacuum_hall:
     alias: "Vacuum Hall"
     sequence:
-      service: xiaomi_miio.vacuum_clean_segment
+      service: vacuum.send_command
       target:
-        entity_id: vacuum.roborock_s6
+        device_id: 122a8a65b1a8e6870391ff4dd677c276
       data:
-        segments: 16 
+        command: app_segment_clean
+        params:
+          - segments:
+            - 16
+            repeat: 1
 
     #=====================
     # Stofzuig Keuken
@@ -376,11 +384,15 @@ script:
   vacuum_kitchen:
     alias: "Vacuum Kitchen"
     sequence:
-      service: xiaomi_miio.vacuum_clean_segment
+      service: vacuum.send_command
       target:
-        entity_id: vacuum.roborock_s6
+        device_id: 122a8a65b1a8e6870391ff4dd677c276
       data:
-        segments: 17
+        command: app_segment_clean
+        params:
+          - segments:
+            - 17
+            repeat: 1
 
     #=====================
     # Stofzuig Keuken en Woonkamer
@@ -388,7 +400,9 @@ script:
   vacuum_kitchen_living:
     alias: "Vacuum Kitchen and Living"
     sequence:
-      service: xvacuum.send_command
+      service: vacuum.send_command
+      target:
+        device_id: 122a8a65b1a8e6870391ff4dd677c276
       data:
         command: app_segment_clean
         params:
@@ -396,7 +410,6 @@ script:
             - 17
             - 18
             repeat: 1
-        target: vacuum.roborock_s6
 
     #=====================
     # Stofzuig Overloop
@@ -404,11 +417,15 @@ script:
   vacuum_overloop:
     alias: "Vacuum Overloop"
     sequence:
-      service: xiaomi_miio.vacuum_clean_segment
+      service: vacuum.send_command
       target:
-        entity_id: vacuum.roborock_s6
+        device_id: 122a8a65b1a8e6870391ff4dd677c276
       data:
-        segments: 18
+        command: app_segment_clean
+        params:
+          - segments:
+            - 18
+            repeat: 1
 
     #=====================
     # Stofzuig Kantoor
@@ -416,11 +433,15 @@ script:
   vacuum_kantoor:
     alias: "Vacuum Kantoor"
     sequence:
-      service: xiaomi_miio.vacuum_clean_segment
+      service: vacuum.send_command
       target:
-        entity_id: vacuum.roborock_s6
+        device_id: 122a8a65b1a8e6870391ff4dd677c276
       data:
-        segments: 20 
+        command: app_segment_clean
+        params:
+          - segments:
+            - 20
+            repeat: 1
 
     #=====================
     # Stofzuig Kamer Fynn
@@ -428,11 +449,15 @@ script:
   vacuum_fynn:
     alias: "Vacuum Kamer Fynn"
     sequence:
-      service: xiaomi_miio.vacuum_clean_segment
+      service: vacuum.send_command
       target:
-        entity_id: vacuum.roborock_s6
+        device_id: 122a8a65b1a8e6870391ff4dd677c276
       data:
-        segments: 19
+        command: app_segment_clean
+        params:
+          - segments:
+            - 19
+            repeat: 1
 
     #=====================
     # Stofzuig Kamer Luca
@@ -440,11 +465,15 @@ script:
   vacuum_luca:
     alias: "Vacuum Kamer Luca"
     sequence:
-      service: xiaomi_miio.vacuum_clean_segment
+      service: vacuum.send_command
       target:
-        entity_id: vacuum.roborock_s6
+        device_id: 122a8a65b1a8e6870391ff4dd677c276
       data:
-        segments: 16
+        command: app_segment_clean
+        params:
+          - segments:
+            - 16
+            repeat: 1
 
     #=====================
     # Stofzuig Badkamer
@@ -452,11 +481,15 @@ script:
   vacuum_bathroom:
     alias: "Vacuum Badkamer"
     sequence:
-      service: xiaomi_miio.vacuum_clean_segment
+      service: vacuum.send_command
       target:
-        entity_id: vacuum.roborock_s6
+        device_id: 122a8a65b1a8e6870391ff4dd677c276
       data:
-        segments: 17
+        command: app_segment_clean
+        params:
+          - segments:
+            - 17
+            repeat: 1
 
     #=====================
     # Stofzuig Verdieping
@@ -464,11 +497,18 @@ script:
   vacuum_floor1:
     alias: "Vacuum Verdieping"
     sequence:
-      service: xiaomi_miio.vacuum_clean_segment
+      service: vacuum.send_command
       target:
-        entity_id: vacuum.roborock_s6
+        device_id: 122a8a65b1a8e6870391ff4dd677c276
       data:
-        segments: [16,18,19,20]
+        command: app_segment_clean
+        params:
+          - segments:
+            - 16
+            - 18
+            - 19
+            - 20
+            repeat: 1
 
     #=====================
     # Stofzuig Overloop en kamer Fynn
@@ -476,11 +516,16 @@ script:
   vacuum_overloop_fynn:
     alias: "Vacuum Overloop en Fynn"
     sequence:
-      service: xiaomi_miio.vacuum_clean_segment
+      service: vacuum.send_command
       target:
-        entity_id: vacuum.roborock_s6
+        device_id: 122a8a65b1a8e6870391ff4dd677c276
       data:
-        segments: [18,19]
+        command: app_segment_clean
+        params:
+          - segments:
+            - 18
+            - 19
+            repeat: 1
 
     #=====================
     # Stofzuig Overloop en Kantoor
@@ -488,11 +533,16 @@ script:
   vacuum_overloop_kantoor:
     alias: "Vacuum Overloop en Kantoor"
     sequence:
-      service: xiaomi_miio.vacuum_clean_segment
+      service: vacuum.send_command
       target:
-        entity_id: vacuum.roborock_s6
+        device_id: 122a8a65b1a8e6870391ff4dd677c276
       data:
-        segments: [18,20]
+        command: app_segment_clean
+        params:
+          - segments:
+            - 18
+            - 20
+            repeat: 1
 
     #=====================
     # Stofzuig Overloop en kamer Luca
@@ -500,11 +550,16 @@ script:
   vacuum_overloop_luca:
     alias: "Vacuum Overloop en Luca"
     sequence:
-      service: xiaomi_miio.vacuum_clean_segment
+      service: vacuum.send_command
       target:
-        entity_id: vacuum.roborock_s6
+        device_id: 122a8a65b1a8e6870391ff4dd677c276
       data:
-        segments: [18,16]
+        command: app_segment_clean
+        params:
+          - segments:
+            - 16
+            - 18
+            repeat: 1
 
     #=====================
     # Stofzuig kamer Fynn en Kantoor
@@ -512,11 +567,16 @@ script:
   vacuum_fynn_kantoor:
     alias: "Vacuum Fynn en Kantoor"
     sequence:
-      service: xiaomi_miio.vacuum_clean_segment
+      service: vacuum.send_command
       target:
-        entity_id: vacuum.roborock_s6
+        device_id: 122a8a65b1a8e6870391ff4dd677c276
       data:
-        segments: [20,19]
+        command: app_segment_clean
+        params:
+          - segments:
+            - 19
+            - 20
+            repeat: 1
 
     #=====================
     # Stofzuig kamer Fynn en Luca
@@ -524,11 +584,16 @@ script:
   vacuum_luca_fynn:
     alias: "Vacuum Fynn en Luca"
     sequence:
-      service: xiaomi_miio.vacuum_clean_segment
+      service: vacuum.send_command
       target:
-        entity_id: vacuum.roborock_s6
+        device_id: 122a8a65b1a8e6870391ff4dd677c276
       data:
-        segments: [16,19]
+        command: app_segment_clean
+        params:
+          - segments:
+            - 16
+            - 19
+            repeat: 1
 
     #=====================
     # Stofzuig kamer Kantoor en Luca
@@ -536,11 +601,16 @@ script:
   vacuum_luca_kantoor:
     alias: "Vacuum Kantoor en Luca"
     sequence:
-      service: xiaomi_miio.vacuum_clean_segment
+      service: vacuum.send_command
       target:
-        entity_id: vacuum.roborock_s6
+        device_id: 122a8a65b1a8e6870391ff4dd677c276
       data:
-        segments: [16,20]
+        command: app_segment_clean
+        params:
+          - segments:
+            - 16
+            - 20
+            repeat: 1
 
     #=====================
     # Stofzuig Slaapkamers Luca, Fynn en Kantoor
@@ -548,11 +618,17 @@ script:
   vacuum_slaapkamers_kantoor:
     alias: "Vacuum Slaapkamers Luca, Fynn en Kantoor"
     sequence:
-      service: xiaomi_miio.vacuum_clean_segment
+      service: vacuum.send_command
       target:
-        entity_id: vacuum.roborock_s6
+        device_id: 122a8a65b1a8e6870391ff4dd677c276
       data:
-        segments: [16,19,20]
+        command: app_segment_clean
+        params:
+          - segments:
+            - 16
+            - 19
+            - 20
+            repeat: 1
 
     #=====================
     # Stofzuig Kantoor, Fynn en overloop
@@ -560,11 +636,17 @@ script:
   vacuum_fynn_kantoor_overloop:
     alias: "Vacuum Kantoor, Fynn en Overloop"
     sequence:
-      service: xiaomi_miio.vacuum_clean_segment
+      service: vacuum.send_command
       target:
-        entity_id: vacuum.roborock_s6
+        device_id: 122a8a65b1a8e6870391ff4dd677c276
       data:
-        segments: [18,19,20]
+        command: app_segment_clean
+        params:
+          - segments:
+            - 18
+            - 19
+            - 20
+            repeat: 1
 
     #=====================
     # Stofzuig Fynn, Luca en overloop
@@ -572,11 +654,17 @@ script:
   vacuum_kids_overloop:
     alias: "Vacuum Fynn, Luca en overloop"
     sequence:
-      service: xiaomi_miio.vacuum_clean_segment
+      service: vacuum.send_command
       target:
-        entity_id: vacuum.roborock_s6
+        device_id: 122a8a65b1a8e6870391ff4dd677c276
       data:
-        segments: [18,19,16]
+        command: app_segment_clean
+        params:
+          - segments:
+            - 16
+            - 18
+            - 19
+            repeat: 1
 
     #=====================
     # Stofzuig Kantoor, Luca en overloop
@@ -584,11 +672,17 @@ script:
   vacuum_luca_kantoor_overloop:
     alias: "Vacuum Kantoor, Luca en overloop"
     sequence:
-      service: xiaomi_miio.vacuum_clean_segment
+      service: vacuum.send_command
       target:
-        entity_id: vacuum.roborock_s6
+        device_id: 122a8a65b1a8e6870391ff4dd677c276
       data:
-        segments: [18,20,16]
+        command: app_segment_clean
+        params:
+          - segments:
+            - 16
+            - 18
+            - 20
+            repeat: 1
 
     #=====================
     # Stofzuigen BG
@@ -987,3 +1081,31 @@ script:
     - service: vacuum.return_to_base
       target:
         device_id: 122a8a65b1a8e6870391ff4dd677c276
+
+#=====================
+# Sensors
+#=====================
+
+sensor:
+
+    #=====================
+    # Value templates
+    #=====================
+  - platform: template
+    sensors:
+
+      miep_main_brush_left:
+        friendly_name: Miep Main Brush Left
+        value_template: "{{ (states.sensor.roborock_s6_main_brush_time_left.state | float / 3600) | round(0) }}"
+
+      miep_side_brush_left:
+        friendly_name: Miep Side Brush Left
+        value_template: "{{ (states.sensor.roborock_s6_side_brush_time_left.state | float / 3600) | round(0) }}"
+
+      miep_filter_left:
+        friendly_name: Miep Filter Left
+        value_template: "{{ (states.sensor.roborock_s6_filter_time_left.state | float / 3600) | round(0) }}"
+
+      miep_dirty_sensorst:
+        friendly_name: Miep Dirty Sensors
+        value_template: "{{ (states.sensor.roborock_s6_sensor_time_left.state | float / 3600) | round(0) }}"
