@@ -47,63 +47,63 @@ input_boolean:
   # Map
   #=====================
 
-camera:
-  - platform: xiaomi_cloud_map_extractor
-    host: !secret xiaomi_vacuum_host
-    token: !secret xiaomi_vacuum_token
-    username: !secret xiaomi_cloud_username
-    password: !secret xiaomi_cloud_password
-    country: "de"
-    name: "Robomiep Camera"
-    draw: ['all']
-    attributes:
-      - calibration_points
-      - charger
-      - cleaned_rooms
-      - country
-      - goto
-      - goto_path
-      - goto_predicted_path
-      - image
-      - is_empty
-      - map_name
-      - no_go_areas
-      - no_mopping_areas
-      - obstacles
-      - ignored_obstacles
-      - obstacles_with_photo
-      - ignored_obstacles_with_photo
-      - path
-      - room_numbers
-      - rooms
-      - vacuum_position
-      - vacuum_room
-      - vacuum_room_name
-      - walls
-      - zones
-    colors:
-      color_map_inside: [0, 0, 0, 0]
-      color_map_outside: [0, 0, 0, 0]
-      color_unknown: [0, 0, 0, 0]
-      color_robo: [235, 235, 235]
-      color_path: [255, 255, 255]
-      color_charger: [201, 204, 173]
-      color_room_names: [255, 255, 255]
-      color_cleaned_area: [140, 140, 140]
-    room_colors:
-      16: [252, 186, 3]
-      17: [10, 182, 194]
-      18: [34, 150, 227]
-      19: [191, 107, 88]
-      20: [165, 114, 181]
-    map_transformation:
-      scale: 2
-    sizes:
-      charger_radius: 6.5
-      vacuum_radius: 8
-    scan_interval:
-      seconds: 5
-    auto_update: true
+#camera:
+#  - platform: xiaomi_cloud_map_extractor
+#    host: !secret xiaomi_vacuum_host
+#    token: !secret xiaomi_vacuum_token
+#    username: !secret xiaomi_cloud_username
+#    password: !secret xiaomi_cloud_password
+#    country: "de"
+#    name: "Robomiep Camera"
+#    draw: ['all']
+#    attributes:
+#      - calibration_points
+#      - charger
+#      - cleaned_rooms
+#      - country
+#      - goto
+#      - goto_path
+#      - goto_predicted_path
+#      - image
+#      - is_empty
+#      - map_name
+#      - no_go_areas
+#      - no_mopping_areas
+#      - obstacles
+#      - ignored_obstacles
+#      - obstacles_with_photo
+#      - ignored_obstacles_with_photo
+#      - path
+#      - room_numbers
+#      - rooms
+#      - vacuum_position
+#      - vacuum_room
+#      - vacuum_room_name
+#      - walls
+#      - zones
+#    colors:
+#      color_map_inside: [0, 0, 0, 0]
+#      color_map_outside: [0, 0, 0, 0]
+#      color_unknown: [0, 0, 0, 0]
+#      color_robo: [235, 235, 235]
+#      color_path: [255, 255, 255]
+#      color_charger: [201, 204, 173]
+#      color_room_names: [255, 255, 255]
+#      color_cleaned_area: [140, 140, 140]
+#    room_colors:
+#      16: [252, 186, 3]
+#      17: [10, 182, 194]
+#      18: [34, 150, 227]
+#      19: [191, 107, 88]
+#      20: [165, 114, 181]
+#    map_transformation:
+#      scale: 2
+#    sizes:
+#      charger_radius: 6.5
+#      vacuum_radius: 8
+#    scan_interval:
+#      seconds: 5
+#    auto_update: true
     
   #=====================
   # Automations
