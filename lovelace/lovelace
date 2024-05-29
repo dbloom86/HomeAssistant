@@ -27,21 +27,15 @@
       "views": [
         {
           "title": "Home",
-          "path": "home",
           "icon": "mdi:home-city",
-          "panel": true,
-          "visible": [
-            {
-              "user": "edf6650cd84b44ba853cfd5ba02fa72c"
-            }
-          ],
-          "type": "custom:vertical-layout",
-          "badges": [],
+          "type": "custom:horizontal-layout",
+          "layout": {
+            "max_cols": 3,
+            "width": 250
+          },
           "cards": [
             {
-              "type": "custom:layout-card",
-              "layout": "vertical",
-              "column_width": "100%",
+              "type": "vertical-stack",
               "cards": [
                 {
                   "type": "custom:digital-clock",
@@ -112,10 +106,12 @@
                   },
                   "title": "Nintendo Switch Wishlist",
                   "type": "custom:nintendo-wishlist-card"
-                },
-                {
-                  "type": "custom:layout-break"
-                },
+                }
+              ]
+            },
+            {
+              "type": "vertical-stack",
+              "cards": [
                 {
                   "type": "weather-forecast",
                   "entity": "weather.fam_bloom",
@@ -176,10 +172,12 @@
                     }
                   },
                   "type": "entities"
-                },
-                {
-                  "type": "custom:layout-break"
-                },
+                }
+              ]
+            },
+            {
+              "type": "vertical-stack",
+              "cards": [
                 {
                   "type": "entities",
                   "entities": [
@@ -193,9 +191,9 @@
                     {
                       "card_type": "markdown",
                       "type": "custom:hui-element",
-                      "content": "|         |            | Hoeveelheid  | Koers  | Waarde  |\n| ------------- |-------------|-----:|---------:|-----------:|\n| <img src=\"/local/Custom_Icons/ankr-ico.png\" width=\"40\"/>  | Anker      | {{ states('sensor.coinbase_ankr_portemonnee') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.ankr_koers') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.value_ankr') }} |\n| <img src=\"/local/Custom_Icons/atom-ico.png\" width=\"40\"/>  | Cosmos      | {{ states('sensor.coinbase_staked_atom') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.atom_koers') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.value_atom') }} |\n| <img src=\"/local/Custom_Icons/doge-icon.png\" width=\"40\"/>      | Doge | {{ states('sensor.coinbase_doge_wallet') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.doge_koers') }}  | &nbsp;&nbsp;€&nbsp;{{ states('sensor.value_doge') }}  |",
+                      "content": "|         |            | Hoeveelheid  | Koers  | Waarde  |\n| ------------- |-------------|-----:|---------:|-----------:|\n| <img src=\"/local/Custom_Icons/ankr-ico.png\" width=\"40\"/>  | Anker      | {{ states('sensor.coinbase_ankr_portemonnee') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.ankr_koers') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.value_ankr') }} |\n| <img src=\"/local/Custom_Icons/atom-ico.png\" width=\"40\"/>  | Cosmos      | {{ states('sensor.coinbase_staked_atom') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.atom_koers') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.value_atom') }} |\n| <img src=\"/local/Custom_Icons/doge-icon.png\" width=\"40\"/>      | Doge | {{ states('sensor.coinbase_doge_wallet') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.doge_koers') }}  | &nbsp;&nbsp;€&nbsp;{{ states('sensor.value_doge') }}  |\n| <img src=\"/local/Custom_Icons/xrp-icon.png\" width=\"40\"/>      | Ripple | {{ states('sensor.coinbase_xrp_wallet') }} | &nbsp;&nbsp;€&nbsp;{{ states('sensor.xrp_koers') }}  | &nbsp;&nbsp;€&nbsp;{{ states('sensor.value_xrp') }}  |",
                       "card_mod": {
-                        "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  border: none;\n  font-size: 13px;\n\n}\n"
+                        "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  border: none;\n  font-size: 12px;\n\n}\n"
                       }
                     },
                     {
@@ -206,7 +204,7 @@
                       "type": "custom:hui-element",
                       "content": "|         |            |   |   |   |\n| ------------- |-------------|-----:|---------:|-----------:|\n| <img src=\"/local/Custom_Icons/crypto-ico.png\" width=\"40\"/>  | Totaal Crypto      |  |               | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;€&nbsp;{{ states('sensor.total_value_crypto') }}  |",
                       "card_mod": {
-                        "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  border: none;\n  font-size: 13px;\n}\n"
+                        "style": "ha-card{\n  background: none;\n  box-shadow: none;\n  border: none;\n  font-size: 12px;\n}\n"
                       }
                     }
                   ],
@@ -214,12 +212,10 @@
                     "style": "ha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
                   }
                 }
-              ],
-              "layout_options": {},
-              "layout_type": "vertical",
-              "view_layout": "vertical"
+              ]
             }
-          ]
+          ],
+          "path": "home"
         },
         {
           "theme": "Backend-selected",
@@ -12445,52 +12441,203 @@
           "badges": [],
           "cards": [
             {
-              "type": "custom:mod-card",
-              "card_mod": {
-                "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
-              },
-              "card": {
-                "type": "custom:xiaomi-vacuum-card",
-                "entity": "vacuum.miep",
-                "image": "/local/Pictures/Robomiep-icon.jpg",
-                "name": "Miep",
-                "vendor": "xiaomi",
-                "buttons": {
-                  "start": false,
-                  "stop": false,
-                  "locate": false,
-                  "return": {
-                    "service": "script.miep_return_to_dock"
-                  }
-                },
-                "attributes": {
-                  "main_brush": {
-                    "label": "Borstels: "
-                  },
-                  "side_brush": {
-                    "label": "Zij borstels: "
-                  }
+              "type": "custom:layout-card",
+              "cards": [
+                {
+                  "type": "picture-elements",
+                  "image": "/local/Pictures/Robomiep.jpg",
+                  "elements": [
+                    {
+                      "type": "state-label",
+                      "entity": "vacuum.roborock_s6",
+                      "attribute": "friendly_name",
+                      "style": {
+                        "top": "15%",
+                        "left": "49%",
+                        "font-size": "1.3vw",
+                        "color": "white",
+                        "font-weight": "bold"
+                      }
+                    },
+                    {
+                      "type": "state-icon",
+                      "entity": "vacuum.roborock_s6",
+                      "style": {
+                        "transform": "translate(0,0)",
+                        "top": "20%",
+                        "left": "5%",
+                        "--paper-item-icon-color": "white"
+                      }
+                    },
+                    {
+                      "type": "state-label",
+                      "entity": "vacuum.roborock_s6",
+                      "style": {
+                        "transform": "translate(0,0)",
+                        "top": "20%",
+                        "left": "12%",
+                        "font-size": "1.0vw",
+                        "color": "white"
+                      }
+                    },
+                    {
+                      "type": "state-icon",
+                      "entity": "sensor.roborock_s6_battery",
+                      "icon": "mdi:battery-charging-100",
+                      "state_color": false,
+                      "style": {
+                        "transform": "translate(0,0)",
+                        "top": "35%",
+                        "left": "5%",
+                        "--paper-item-icon-color": "white"
+                      }
+                    },
+                    {
+                      "type": "state-label",
+                      "entity": "sensor.roborock_s6_battery",
+                      "style": {
+                        "transform": "translate(0,0)",
+                        "top": "35%",
+                        "left": "12%",
+                        "font-size": "1.0vw",
+                        "color": "white"
+                      }
+                    },
+                    {
+                      "type": "state-icon",
+                      "entity": "vacuum.roborock_s6",
+                      "attribute": "fan_speed",
+                      "icon": "mdi:fan",
+                      "style": {
+                        "transform": "translate(0,0)",
+                        "top": "50%",
+                        "left": "5%",
+                        "--paper-item-icon-color": "white"
+                      }
+                    },
+                    {
+                      "type": "state-label",
+                      "entity": "vacuum.roborock_s6",
+                      "attribute": "fan_speed",
+                      "style": {
+                        "transform": "translate(0,0)",
+                        "top": "50%",
+                        "left": "12%",
+                        "font-size": "1.0vw",
+                        "color": "white"
+                      }
+                    },
+                    {
+                      "type": "state-label",
+                      "entity": "sensor.miep_main_brush_left",
+                      "prefix": "Main Brush: ",
+                      "suffix": " h",
+                      "style": {
+                        "position": "absolute",
+                        "transform": "translate(0,0)",
+                        "top": "17%",
+                        "right": "5%",
+                        "font-size": "1.0vm",
+                        "color": "white"
+                      }
+                    },
+                    {
+                      "type": "state-label",
+                      "entity": "sensor.miep_side_brush_left",
+                      "prefix": "Side Brush: ",
+                      "suffix": " h",
+                      "style": {
+                        "position": "absolute",
+                        "transform": "translate(0,0)",
+                        "top": "28%",
+                        "right": "5%",
+                        "font-size": "1.0vm",
+                        "color": "white"
+                      }
+                    },
+                    {
+                      "type": "state-label",
+                      "entity": "sensor.miep_filter_left",
+                      "prefix": "Filter: ",
+                      "suffix": " h",
+                      "style": {
+                        "position": "absolute",
+                        "transform": "translate(0,0)",
+                        "top": "39%",
+                        "right": "5%",
+                        "font-size": "1.0vm",
+                        "color": "white"
+                      }
+                    },
+                    {
+                      "type": "state-label",
+                      "entity": "sensor.miep_dirty_sensorst",
+                      "prefix": "Sensor: ",
+                      "suffix": " h",
+                      "style": {
+                        "position": "absolute",
+                        "transform": "translate(0,0)",
+                        "top": "50%",
+                        "right": "5%",
+                        "font-size": "1.0vm",
+                        "color": "white"
+                      }
+                    },
+                    {
+                      "type": "state-icon",
+                      "entity": "script.vacuum_kitchen_living",
+                      "title": "Start",
+                      "icon": "mdi:play",
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "script.vacuum_kitchen_living"
+                      },
+                      "style": {
+                        "top": "80%",
+                        "left": "20%",
+                        "--paper-item-icon-color": "white"
+                      }
+                    },
+                    {
+                      "type": "state-icon",
+                      "entity": "script.vacuum_kitchen_living",
+                      "title": "Pause",
+                      "icon": "mdi:pause",
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "vacuum.pause",
+                        "target": {
+                          "device_id": [
+                            "122a8a65b1a8e6870391ff4dd677c276"
+                          ]
+                        }
+                      },
+                      "style": {
+                        "top": "80%",
+                        "left": "50%",
+                        "--paper-item-icon-color": "white"
+                      }
+                    },
+                    {
+                      "type": "state-icon",
+                      "entity": "script.miep_return_to_dock",
+                      "title": "Dock",
+                      "icon": "mdi:home-map-marker",
+                      "tap_action": {
+                        "action": "call-service",
+                        "service": "script.miep_return_to_dock"
+                      },
+                      "style": {
+                        "top": "80%",
+                        "left": "80%",
+                        "--paper-item-icon-color": "white"
+                      }
+                    }
+                  ]
                 }
-              }
-            },
-            {
-              "type": "custom:mod-card",
+              ],
               "card_mod": {
-                "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
-              },
-              "card": {
-                "type": "picture-entity",
-                "entity": "camera.robomiep_camera",
-                "image": "https://demo.home-assistant.io/stub_config/bedroom.png",
-                "show_name": false,
-                "show_state": false,
-                "camera_image": "camera.robomiep_camera",
-                "tap_action": {
-                  "action": "none"
-                },
-                "hold_action": {
-                  "action": "none"
-                }
+                "style": "ha-card {\n  border: solid 1px var(--primary-color);\n  background-color: var(--ha-card-background);\n  font-size: 12px !important;\n}\n"
               }
             }
           ]
