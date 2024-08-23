@@ -238,7 +238,7 @@ automation:
       event_data:
         action: RESET_MIEP_FILTER_LEFT
     action:
-    - service: button.press
+    - action: button.press
       target:
         entity_id: button.roborock_s6_reset_air_filter_consumable
     - service: notify.mobile_app_telefoon_duncan
@@ -259,7 +259,7 @@ automation:
       event_data:
         action: RESET_MIEP_MAIN_BRUSH_LEFT
     action:
-    - service: button.press
+    - action: button.press
       target:
         entity_id: button.roborock_s6_reset_main_brush_consumable
     - service: notify.mobile_app_telefoon_duncan
@@ -280,7 +280,7 @@ automation:
       event_data:
         action: RESET_MIEP_DIRTY_SENSORS
     action:
-    - service: press.button
+    - action: press.button
       target:
         entity_id: button.roborock_s6_reset_sensor_consumable
     - service: notify.mobile_app_telefoon_duncan
@@ -301,7 +301,7 @@ automation:
       event_data:
         action: RESET_MIEP_SIDE_BRUSH_LEFT
     action:
-    - service: button.press
+    - action: button.press
       target:
         entity_id: button.roborock_s6_reset_side_brush_consumable
     - service: notify.mobile_app_telefoon_duncan
