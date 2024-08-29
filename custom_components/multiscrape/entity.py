@@ -90,7 +90,8 @@ class MultiscrapeEntity(Entity):
         )
         if self.coordinator:
             self.async_on_remove(
-                self.coordinator.async_add_listener(self._handle_coordinator_update)
+                self.coordinator.async_add_listener(
+                    self._handle_coordinator_update)
             )
 
     @callback
@@ -131,7 +132,8 @@ class MultiscrapeEntity(Entity):
             )
             for name, attr_selector in self._attribute_selectors.items():
                 try:
-                    attr_value = self.scraper.scrape(attr_selector, self._name, name)
+                    attr_value = self.scraper.scrape(
+                        attr_selector, self._name, name, variables=self.coordinator.form_variables)
                     self._attr_extra_state_attributes[name] = attr_value
                 except Exception as exception:
                     _LOGGER.debug(
