@@ -8608,7 +8608,7 @@
                   "type": "custom:auto-entities",
                   "card": {
                     "type": "grid",
-                    "columns": 8
+                    "columns": 10
                   },
                   "filter": {
                     "include": [
