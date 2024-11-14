@@ -132,7 +132,7 @@ automation:
     action:
       - service: climate.set_temperature
         data:
-          hvac_mode: heat
+          hvac_mode: auto
           temperature: 18
         target:
           device_id: 309265144a15110bc63467a83a8759a3
@@ -168,7 +168,7 @@ automation:
     action:
       - service: climate.set_temperature
         data:
-          hvac_mode: heat
+          hvac_mode: auto
           temperature: 18
         target:
           device_id:
@@ -213,6 +213,7 @@ automation:
     action:
       - service: climate.set_temperature
         data:
+          hvac_mode: auto
           temperature: 20
         target:
           device_id: d34ef0ce55dbd76e688cea09e359cca8
@@ -244,14 +245,14 @@ automation:
     action:
       - service: climate.set_temperature
         data:
-          hvac_mode: heat
+          hvac_mode: auto
           temperature: 21
         target:
           device_id:
             - 34b54cb00cac76b8e158c5e71abbd5fb
       - service: climate.set_temperature
         data:
-          hvac_mode: heat
+          hvac_mode: auto
           temperature: 20
         target:
           device_id:
@@ -288,6 +289,7 @@ automation:
     action:
       - service: climate.set_temperature
         data:
+          hvac_mode: auto
           temperature: 21
         target:
           device_id: d55f1bb2b8d94cc025dac16e2a45be91
