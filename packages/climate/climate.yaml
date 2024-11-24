@@ -105,7 +105,7 @@ automation:
       - service: climate.set_temperature
         data:
           hvac_mode: heat
-          temperature: 20
+          temperature: 18
         target:
           device_id:
             - 60227a650a897b7ed18df83d4d826556
@@ -147,7 +147,7 @@ automation:
     action:
       - service: climate.set_temperature
         data:
-          temperature: 5
+          temperature: 15
         target:
           device_id: 309265144a15110bc63467a83a8759a3
     id: 5b9d4568akn6tf258a3a9502cd0a116a
@@ -253,7 +253,7 @@ automation:
       - service: climate.set_temperature
         data:
           hvac_mode: heat
-          temperature: 20
+          temperature: 18
         target:
           device_id:
             - 60227a650a897b7ed18df83d4d826556
