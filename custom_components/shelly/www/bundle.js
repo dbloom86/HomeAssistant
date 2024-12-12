@@ -1,21 +1,6 @@
 (function () {
 	'use strict';
 
-	function _mergeNamespaces(n, m) {
-		m.forEach(function (e) {
-			e && typeof e !== 'string' && !Array.isArray(e) && Object.keys(e).forEach(function (k) {
-				if (k !== 'default' && !(k in n)) {
-					var d = Object.getOwnPropertyDescriptor(e, k);
-					Object.defineProperty(n, k, d.get ? d : {
-						enumerable: true,
-						get: function () { return e[k]; }
-					});
-				}
-			});
-		});
-		return Object.freeze(n);
-	}
-
 	function getDefaultExportFromCjs (x) {
 		return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
 	}
@@ -2443,11 +2428,6 @@
 
 	var React = /*@__PURE__*/getDefaultExportFromCjs(reactExports);
 
-	var React$1 = /*#__PURE__*/_mergeNamespaces({
-		__proto__: null,
-		default: React
-	}, [reactExports]);
-
 	function SendWebSocketAction(hass, Type, Data = undefined) {
 	    let message;
 	    message = {
@@ -2565,7 +2545,7 @@
 	  return _extends$4.apply(this, arguments);
 	}
 
-	function _objectWithoutPropertiesLoose$6(source, excluded) {
+	function _objectWithoutPropertiesLoose$b(source, excluded) {
 	  if (source == null) return {};
 	  var target = {};
 	  var sourceKeys = Object.keys(source);
@@ -2577,6 +2557,36 @@
 	  }
 	  return target;
 	}
+
+	/**
+	 * Copyright (c) 2013-present, Facebook, Inc.
+	 *
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
+	 */
+	var invariant$1 = function (condition, format, a, b, c, d, e, f) {
+	  {
+	    if (format === undefined) {
+	      throw new Error('invariant requires an error message argument');
+	    }
+	  }
+	  if (!condition) {
+	    var error;
+	    if (format === undefined) {
+	      error = new Error('Minified exception occurred; use the non-minified dev environment ' + 'for the full error message and additional helpful warnings.');
+	    } else {
+	      var args = [a, b, c, d, e, f];
+	      var argIndex = 0;
+	      error = new Error(format.replace(/%s/g, function () {
+	        return args[argIndex++];
+	      }));
+	      error.name = 'Invariant Violation';
+	    }
+	    error.framesToPop = 1; // we don't care about invariant's own frame
+	    throw error;
+	  }
+	};
+	var invariant_1 = invariant$1;
 
 	function defaultKey(key) {
 	  return 'default' + key.charAt(0).toUpperCase() + key.substr(1);
@@ -2590,11 +2600,11 @@
 	  if (typeof input !== "object" || input === null) return input;
 	  var prim = input[Symbol.toPrimitive];
 	  if (prim !== undefined) {
-	    var res = prim.call(input, hint || "default");
+	    var res = prim.call(input, hint);
 	    if (typeof res !== "object") return res;
 	    throw new TypeError("@@toPrimitive must return a primitive value.");
 	  }
-	  return (hint === "string" ? String : Number)(input);
+	  return (String )(input);
 	}
 	function useUncontrolledProp(propValue, defaultValue, handler) {
 	  var wasPropRef = reactExports.useRef(propValue !== undefined);
@@ -2626,7 +2636,7 @@
 	    var _ref = result,
 	      defaultValue = _ref[defaultKey(fieldName)],
 	      propsValue = _ref[fieldName],
-	      rest = _objectWithoutPropertiesLoose$6(_ref, [defaultKey(fieldName), fieldName].map(_toPropertyKey));
+	      rest = _objectWithoutPropertiesLoose$b(_ref, [defaultKey(fieldName), fieldName].map(_toPropertyKey));
 	    var handlerName = config[fieldName];
 	    var _useUncontrolledProp = useUncontrolledProp(propsValue, defaultValue, props[handlerName]),
 	      value = _useUncontrolledProp[0],
@@ -3526,11 +3536,6 @@
 	    }
 	    function getSourceInfoErrorAddendum(source) {
 	      {
-	        if (source !== undefined) {
-	          var fileName = source.fileName.replace(/^.*[\\\/]/, '');
-	          var lineNumber = source.lineNumber;
-	          return '\n\nCheck your code at ' + fileName + ':' + lineNumber + '.';
-	        }
 	        return '';
 	      }
 	    }
@@ -3707,7 +3712,7 @@
 	          if (type === undefined || typeof type === 'object' && type !== null && Object.keys(type).length === 0) {
 	            info += ' You likely forgot to export your component from the file ' + "it's defined in, or you might have mixed up default and named imports.";
 	          }
-	          var sourceInfo = getSourceInfoErrorAddendum(source);
+	          var sourceInfo = getSourceInfoErrorAddendum();
 	          if (sourceInfo) {
 	            info += sourceInfo;
 	          } else {
@@ -3808,6 +3813,24 @@
 	  } = reactExports.useContext(ThemeContext);
 	  return prefix || prefixes[defaultPrefix] || defaultPrefix;
 	}
+	function useBootstrapBreakpoints() {
+	  const {
+	    breakpoints
+	  } = reactExports.useContext(ThemeContext);
+	  return breakpoints;
+	}
+	function useBootstrapMinBreakpoint() {
+	  const {
+	    minBreakpoint
+	  } = reactExports.useContext(ThemeContext);
+	  return minBreakpoint;
+	}
+	function useIsRTL() {
+	  const {
+	    dir
+	  } = reactExports.useContext(ThemeContext);
+	  return dir === 'rtl';
+	}
 
 	/**
 	 * Returns the owner document of a given element.
@@ -3836,7 +3859,7 @@
 	 * @param psuedoElement the style property
 	 */
 
-	function getComputedStyle(node, psuedoElement) {
+	function getComputedStyle$2(node, psuedoElement) {
 	  return ownerWindow(node).getComputedStyle(node, psuedoElement);
 	}
 
@@ -3864,7 +3887,7 @@
 	  var css = '';
 	  var transforms = '';
 	  if (typeof property === 'string') {
-	    return node.style.getPropertyValue(hyphenateStyleName(property)) || getComputedStyle(node).getPropertyValue(hyphenateStyleName(property));
+	    return node.style.getPropertyValue(hyphenateStyleName(property)) || getComputedStyle$2(node).getPropertyValue(hyphenateStyleName(property));
 	  }
 	  Object.keys(property).forEach(function (key) {
 	    var value = property[key];
@@ -3883,7 +3906,7 @@
 	}
 
 	var propTypesExports = {};
-	var propTypes$1 = {
+	var propTypes$7 = {
 	  get exports(){ return propTypesExports; },
 	  set exports(v){ propTypesExports = v; },
 	};
@@ -4159,7 +4182,7 @@
 	var ReactPropTypesSecret$2 = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 	var ReactPropTypesSecret_1 = ReactPropTypesSecret$2;
 
-	var has$2 = Function.call.bind(Object.prototype.hasOwnProperty);
+	var has$3 = Function.call.bind(Object.prototype.hasOwnProperty);
 
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
@@ -4168,12 +4191,12 @@
 	 * LICENSE file in the root directory of this source tree.
 	 */
 
-	var printWarning$1 = function () {};
+	var printWarning$2 = function () {};
 	{
 	  var ReactPropTypesSecret$1 = ReactPropTypesSecret_1;
 	  var loggedTypeFailures = {};
-	  var has$1 = has$2;
-	  printWarning$1 = function (text) {
+	  var has$2 = has$3;
+	  printWarning$2 = function (text) {
 	    var message = 'Warning: ' + text;
 	    if (typeof console !== 'undefined') {
 	      console.error(message);
@@ -4201,7 +4224,7 @@
 	function checkPropTypes$1(typeSpecs, values, location, componentName, getStack) {
 	  {
 	    for (var typeSpecName in typeSpecs) {
-	      if (has$1(typeSpecs, typeSpecName)) {
+	      if (has$2(typeSpecs, typeSpecName)) {
 	        var error;
 	        // Prop type validation may throw. In case they do, we don't want to
 	        // fail the render phase where it didn't fail before. So we log it.
@@ -4219,14 +4242,14 @@
 	          error = ex;
 	        }
 	        if (error && !(error instanceof Error)) {
-	          printWarning$1((componentName || 'React class') + ': type specification of ' + location + ' `' + typeSpecName + '` is invalid; the type checker ' + 'function must return `null` or an `Error` but returned a ' + typeof error + '. ' + 'You may have forgotten to pass an argument to the type checker ' + 'creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and ' + 'shape all require an argument).');
+	          printWarning$2((componentName || 'React class') + ': type specification of ' + location + ' `' + typeSpecName + '` is invalid; the type checker ' + 'function must return `null` or an `Error` but returned a ' + typeof error + '. ' + 'You may have forgotten to pass an argument to the type checker ' + 'creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and ' + 'shape all require an argument).');
 	        }
 	        if (error instanceof Error && !(error.message in loggedTypeFailures)) {
 	          // Only monitor this failure once because there tends to be a lot of the
 	          // same error.
 	          loggedTypeFailures[error.message] = true;
 	          var stack = getStack ? getStack() : '';
-	          printWarning$1('Failed ' + location + ' type: ' + error.message + (stack != null ? stack : ''));
+	          printWarning$2('Failed ' + location + ' type: ' + error.message + (stack != null ? stack : ''));
 	        }
 	      }
 	    }
@@ -4255,11 +4278,11 @@
 	var ReactIs$1 = reactIsExports;
 	var assign = objectAssign;
 	var ReactPropTypesSecret = ReactPropTypesSecret_1;
-	var has = has$2;
+	var has$1 = has$3;
 	var checkPropTypes = checkPropTypes_1;
-	var printWarning = function () {};
+	var printWarning$1 = function () {};
 	{
-	  printWarning = function (text) {
+	  printWarning$1 = function (text) {
 	    var message = 'Warning: ' + text;
 	    if (typeof console !== 'undefined') {
 	      console.error(message);
@@ -4426,7 +4449,7 @@
 	          if (!manualPropTypeCallCache[cacheKey] &&
 	          // Avoid spamming the console because they are often not actionable except for lib authors
 	          manualPropTypeWarningCount < 3) {
-	            printWarning('You are manually calling a React.PropTypes validation ' + 'function for the `' + propFullName + '` prop on `' + componentName + '`. This is deprecated ' + 'and will throw in the standalone `prop-types` package. ' + 'You may be seeing this warning due to a third-party PropTypes ' + 'library. See https://fb.me/react-warning-dont-call-proptypes ' + 'for details.');
+	            printWarning$1('You are manually calling a React.PropTypes validation ' + 'function for the `' + propFullName + '` prop on `' + componentName + '`. This is deprecated ' + 'and will throw in the standalone `prop-types` package. ' + 'You may be seeing this warning due to a third-party PropTypes ' + 'library. See https://fb.me/react-warning-dont-call-proptypes ' + 'for details.');
 	            manualPropTypeCallCache[cacheKey] = true;
 	            manualPropTypeWarningCount++;
 	          }
@@ -4525,9 +4548,9 @@
 	    if (!Array.isArray(expectedValues)) {
 	      {
 	        if (arguments.length > 1) {
-	          printWarning('Invalid arguments supplied to oneOf, expected an array, got ' + arguments.length + ' arguments. ' + 'A common mistake is to write oneOf(x, y, z) instead of oneOf([x, y, z]).');
+	          printWarning$1('Invalid arguments supplied to oneOf, expected an array, got ' + arguments.length + ' arguments. ' + 'A common mistake is to write oneOf(x, y, z) instead of oneOf([x, y, z]).');
 	        } else {
-	          printWarning('Invalid argument supplied to oneOf, expected an array.');
+	          printWarning$1('Invalid argument supplied to oneOf, expected an array.');
 	        }
 	      }
 	      return emptyFunctionThatReturnsNull;
@@ -4561,7 +4584,7 @@
 	        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an object.'));
 	      }
 	      for (var key in propValue) {
-	        if (has(propValue, key)) {
+	        if (has$1(propValue, key)) {
 	          var error = typeChecker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret);
 	          if (error instanceof Error) {
 	            return error;
@@ -4574,13 +4597,13 @@
 	  }
 	  function createUnionTypeChecker(arrayOfTypeCheckers) {
 	    if (!Array.isArray(arrayOfTypeCheckers)) {
-	      printWarning('Invalid argument supplied to oneOfType, expected an instance of array.') ;
+	      printWarning$1('Invalid argument supplied to oneOfType, expected an instance of array.') ;
 	      return emptyFunctionThatReturnsNull;
 	    }
 	    for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
 	      var checker = arrayOfTypeCheckers[i];
 	      if (typeof checker !== 'function') {
-	        printWarning('Invalid argument supplied to oneOfType. Expected an array of check functions, but ' + 'received ' + getPostfixForTypeWarning(checker) + ' at index ' + i + '.');
+	        printWarning$1('Invalid argument supplied to oneOfType. Expected an array of check functions, but ' + 'received ' + getPostfixForTypeWarning(checker) + ' at index ' + i + '.');
 	        return emptyFunctionThatReturnsNull;
 	      }
 	    }
@@ -4592,7 +4615,7 @@
 	        if (checkerResult == null) {
 	          return null;
 	        }
-	        if (checkerResult.data && has(checkerResult.data, 'expectedType')) {
+	        if (checkerResult.data && has$1(checkerResult.data, 'expectedType')) {
 	          expectedTypes.push(checkerResult.data.expectedType);
 	        }
 	      }
@@ -4645,7 +4668,7 @@
 	      var allKeys = assign({}, props[propName], shapeTypes);
 	      for (var key in allKeys) {
 	        var checker = shapeTypes[key];
-	        if (has(shapeTypes, key) && typeof checker !== 'function') {
+	        if (has$1(shapeTypes, key) && typeof checker !== 'function') {
 	          return invalidValidatorError(componentName, location, propFullName, key, getPreciseType(checker));
 	        }
 	        if (!checker) {
@@ -4805,7 +4828,7 @@
 	  // By explicitly using `prop-types` you are opting into new development behavior.
 	  // http://fb.me/prop-types-in-prod
 	  var throwOnDirectAccess = true;
-	  propTypes$1.exports = factoryWithTypeCheckers(ReactIs.isElement, throwOnDirectAccess);
+	  propTypes$7.exports = factoryWithTypeCheckers(ReactIs.isElement, throwOnDirectAccess);
 	}
 
 	var reactDomExports = {};
@@ -6353,7 +6376,7 @@
 	// already attempted and failed to hydrate at that level. Also check if we're
 	// already rendering that lane, which is rare but could happen.
 	if((lane&(root.suspendedLanes|renderLanes))!==NoLane){// Give up trying to hydrate and fall back to client render.
-	return NoLane;}return lane;}function addFiberToLanesMap(root,fiber,lanes){if(!isDevToolsPresent){return;}var pendingUpdatersLaneMap=root.pendingUpdatersLaneMap;while(lanes>0){var index=laneToIndex(lanes);var lane=1<<index;var updaters=pendingUpdatersLaneMap[index];updaters.add(fiber);lanes&=~lane;}}function movePendingFibersToMemoized(root,lanes){if(!isDevToolsPresent){return;}var pendingUpdatersLaneMap=root.pendingUpdatersLaneMap;var memoizedUpdaters=root.memoizedUpdaters;while(lanes>0){var index=laneToIndex(lanes);var lane=1<<index;var updaters=pendingUpdatersLaneMap[index];if(updaters.size>0){updaters.forEach(function(fiber){var alternate=fiber.alternate;if(alternate===null||!memoizedUpdaters.has(alternate)){memoizedUpdaters.add(fiber);}});updaters.clear();}lanes&=~lane;}}function getTransitionsForLanes(root,lanes){{return null;}}var DiscreteEventPriority=SyncLane;var ContinuousEventPriority=InputContinuousLane;var DefaultEventPriority=DefaultLane;var IdleEventPriority=IdleLane;var currentUpdatePriority=NoLane;function getCurrentUpdatePriority(){return currentUpdatePriority;}function setCurrentUpdatePriority(newPriority){currentUpdatePriority=newPriority;}function runWithPriority(priority,fn){var previousPriority=currentUpdatePriority;try{currentUpdatePriority=priority;return fn();}finally{currentUpdatePriority=previousPriority;}}function higherEventPriority(a,b){return a!==0&&a<b?a:b;}function lowerEventPriority(a,b){return a===0||a>b?a:b;}function isHigherEventPriority(a,b){return a!==0&&a<b;}function lanesToEventPriority(lanes){var lane=getHighestPriorityLane(lanes);if(!isHigherEventPriority(DiscreteEventPriority,lane)){return DiscreteEventPriority;}if(!isHigherEventPriority(ContinuousEventPriority,lane)){return ContinuousEventPriority;}if(includesNonIdleWork(lane)){return DefaultEventPriority;}return IdleEventPriority;}// This is imported by the event replaying implementation in React DOM. It's
+	return NoLane;}return lane;}function addFiberToLanesMap(root,fiber,lanes){if(!isDevToolsPresent){return;}var pendingUpdatersLaneMap=root.pendingUpdatersLaneMap;while(lanes>0){var index=laneToIndex(lanes);var lane=1<<index;var updaters=pendingUpdatersLaneMap[index];updaters.add(fiber);lanes&=~lane;}}function movePendingFibersToMemoized(root,lanes){if(!isDevToolsPresent){return;}var pendingUpdatersLaneMap=root.pendingUpdatersLaneMap;var memoizedUpdaters=root.memoizedUpdaters;while(lanes>0){var index=laneToIndex(lanes);var lane=1<<index;var updaters=pendingUpdatersLaneMap[index];if(updaters.size>0){updaters.forEach(function(fiber){var alternate=fiber.alternate;if(alternate===null||!memoizedUpdaters.has(alternate)){memoizedUpdaters.add(fiber);}});updaters.clear();}lanes&=~lane;}}function getTransitionsForLanes(root,lanes){{return null;}}var DiscreteEventPriority=SyncLane;var ContinuousEventPriority=InputContinuousLane;var DefaultEventPriority=DefaultLane;var IdleEventPriority=IdleLane;var currentUpdatePriority=NoLane;function getCurrentUpdatePriority(){return currentUpdatePriority;}function setCurrentUpdatePriority(newPriority){currentUpdatePriority=newPriority;}function runWithPriority(priority,fn){var previousPriority=currentUpdatePriority;try{currentUpdatePriority=priority;return fn();}finally{currentUpdatePriority=previousPriority;}}function higherEventPriority(a,b){return a!==0&&a<b?a:b;}function lowerEventPriority(a,b){return a>b?a:b;}function isHigherEventPriority(a,b){return a!==0&&a<b;}function lanesToEventPriority(lanes){var lane=getHighestPriorityLane(lanes);if(!isHigherEventPriority(DiscreteEventPriority,lane)){return DiscreteEventPriority;}if(!isHigherEventPriority(ContinuousEventPriority,lane)){return ContinuousEventPriority;}if(includesNonIdleWork(lane)){return DefaultEventPriority;}return IdleEventPriority;}// This is imported by the event replaying implementation in React DOM. It's
 	// in a separate file to break a circular dependency between the renderer and
 	// the reconciler.
 	function isRootDehydrated(root){var currentState=root.current.memoizedState;return currentState.isDehydrated;}var _attemptSynchronousHydration;function setAttemptSynchronousHydration(fn){_attemptSynchronousHydration=fn;}function attemptSynchronousHydration(fiber){_attemptSynchronousHydration(fiber);}var attemptContinuousHydration;function setAttemptContinuousHydration(fn){attemptContinuousHydration=fn;}var attemptHydrationAtCurrentPriority;function setAttemptHydrationAtCurrentPriority(fn){attemptHydrationAtCurrentPriority=fn;}var getCurrentUpdatePriority$1;function setGetCurrentUpdatePriority(fn){getCurrentUpdatePriority$1=fn;}var attemptHydrationAtPriority;function setAttemptHydrationAtPriority(fn){attemptHydrationAtPriority=fn;}// TODO: Upgrade this definition once we're on a newer version of Flow that
@@ -7025,7 +7048,7 @@
 	// because these events do not consistently bubble in the DOM.
 	var nonDelegatedEvents=new Set(['cancel','close','invalid','load','scroll','toggle'].concat(mediaEventTypes));function executeDispatch(event,listener,currentTarget){var type=event.type||'unknown-event';event.currentTarget=currentTarget;invokeGuardedCallbackAndCatchFirstError(type,listener,undefined,event);event.currentTarget=null;}function processDispatchQueueItemsInOrder(event,dispatchListeners,inCapturePhase){var previousInstance;if(inCapturePhase){for(var i=dispatchListeners.length-1;i>=0;i--){var _dispatchListeners$i=dispatchListeners[i],instance=_dispatchListeners$i.instance,currentTarget=_dispatchListeners$i.currentTarget,listener=_dispatchListeners$i.listener;if(instance!==previousInstance&&event.isPropagationStopped()){return;}executeDispatch(event,listener,currentTarget);previousInstance=instance;}}else {for(var _i=0;_i<dispatchListeners.length;_i++){var _dispatchListeners$_i=dispatchListeners[_i],_instance=_dispatchListeners$_i.instance,_currentTarget=_dispatchListeners$_i.currentTarget,_listener=_dispatchListeners$_i.listener;if(_instance!==previousInstance&&event.isPropagationStopped()){return;}executeDispatch(event,_listener,_currentTarget);previousInstance=_instance;}}}function processDispatchQueue(dispatchQueue,eventSystemFlags){var inCapturePhase=(eventSystemFlags&IS_CAPTURE_PHASE)!==0;for(var i=0;i<dispatchQueue.length;i++){var _dispatchQueue$i=dispatchQueue[i],event=_dispatchQueue$i.event,listeners=_dispatchQueue$i.listeners;processDispatchQueueItemsInOrder(event,listeners,inCapturePhase);//  event system doesn't use pooling.
 	}// This would be a good time to rethrow if any of the event handlers threw.
-	rethrowCaughtError();}function dispatchEventsForPlugins(domEventName,eventSystemFlags,nativeEvent,targetInst,targetContainer){var nativeEventTarget=getEventTarget(nativeEvent);var dispatchQueue=[];extractEvents$5(dispatchQueue,domEventName,targetInst,nativeEvent,nativeEventTarget,eventSystemFlags);processDispatchQueue(dispatchQueue,eventSystemFlags);}function listenToNonDelegatedEvent(domEventName,targetElement){{if(!nonDelegatedEvents.has(domEventName)){error('Did not expect a listenToNonDelegatedEvent() call for "%s". '+'This is a bug in React. Please file an issue.',domEventName);}}var isCapturePhaseListener=false;var listenerSet=getEventListenerSet(targetElement);var listenerSetKey=getListenerSetKey(domEventName,isCapturePhaseListener);if(!listenerSet.has(listenerSetKey)){addTrappedEventListener(targetElement,domEventName,IS_NON_DELEGATED,isCapturePhaseListener);listenerSet.add(listenerSetKey);}}function listenToNativeEvent(domEventName,isCapturePhaseListener,target){{if(nonDelegatedEvents.has(domEventName)&&!isCapturePhaseListener){error('Did not expect a listenToNativeEvent() call for "%s" in the bubble phase. '+'This is a bug in React. Please file an issue.',domEventName);}}var eventSystemFlags=0;if(isCapturePhaseListener){eventSystemFlags|=IS_CAPTURE_PHASE;}addTrappedEventListener(target,domEventName,eventSystemFlags,isCapturePhaseListener);}// This is only used by createEventHandle when the
+	rethrowCaughtError();}function dispatchEventsForPlugins(domEventName,eventSystemFlags,nativeEvent,targetInst,targetContainer){var nativeEventTarget=getEventTarget(nativeEvent);var dispatchQueue=[];extractEvents$5(dispatchQueue,domEventName,targetInst,nativeEvent,nativeEventTarget,eventSystemFlags);processDispatchQueue(dispatchQueue,eventSystemFlags);}function listenToNonDelegatedEvent(domEventName,targetElement){{if(!nonDelegatedEvents.has(domEventName)){error('Did not expect a listenToNonDelegatedEvent() call for "%s". '+'This is a bug in React. Please file an issue.',domEventName);}}var isCapturePhaseListener=false;var listenerSet=getEventListenerSet(targetElement);var listenerSetKey=getListenerSetKey(domEventName);if(!listenerSet.has(listenerSetKey)){addTrappedEventListener(targetElement,domEventName,IS_NON_DELEGATED,isCapturePhaseListener);listenerSet.add(listenerSetKey);}}function listenToNativeEvent(domEventName,isCapturePhaseListener,target){{if(nonDelegatedEvents.has(domEventName)&&!isCapturePhaseListener){error('Did not expect a listenToNativeEvent() call for "%s" in the bubble phase. '+'This is a bug in React. Please file an issue.',domEventName);}}var eventSystemFlags=0;if(isCapturePhaseListener){eventSystemFlags|=IS_CAPTURE_PHASE;}addTrappedEventListener(target,domEventName,eventSystemFlags,isCapturePhaseListener);}// This is only used by createEventHandle when the
 	var listeningMarker='_reactListening'+Math.random().toString(36).slice(2);function listenToAllSupportedEvents(rootContainerElement){if(!rootContainerElement[listeningMarker]){rootContainerElement[listeningMarker]=true;allNativeEvents.forEach(function(domEventName){// We handle selectionchange separately because it
 	// doesn't bubble and needs to be on the document.
 	if(domEventName!=='selectionchange'){if(!nonDelegatedEvents.has(domEventName)){listenToNativeEvent(domEventName,false,rootContainerElement);}listenToNativeEvent(domEventName,true,rootContainerElement);}});var ownerDocument=rootContainerElement.nodeType===DOCUMENT_NODE?rootContainerElement:rootContainerElement.ownerDocument;if(ownerDocument!==null){// The selectionchange event also needs deduplication
@@ -7094,7 +7117,7 @@
 	// This is because we only process this plugin
 	// in the bubble phase, so we need to accumulate two
 	// phase event listeners.
-	function accumulateEnterLeaveTwoPhaseListeners(dispatchQueue,leaveEvent,enterEvent,from,to){var common=from&&to?getLowestCommonAncestor(from,to):null;if(from!==null){accumulateEnterLeaveListenersForEvent(dispatchQueue,leaveEvent,from,common,false);}if(to!==null&&enterEvent!==null){accumulateEnterLeaveListenersForEvent(dispatchQueue,enterEvent,to,common,true);}}function getListenerSetKey(domEventName,capture){return domEventName+"__"+(capture?'capture':'bubble');}var didWarnInvalidHydration=false;var DANGEROUSLY_SET_INNER_HTML='dangerouslySetInnerHTML';var SUPPRESS_CONTENT_EDITABLE_WARNING='suppressContentEditableWarning';var SUPPRESS_HYDRATION_WARNING='suppressHydrationWarning';var AUTOFOCUS='autoFocus';var CHILDREN='children';var STYLE='style';var HTML$1='__html';var warnedUnknownTags;var validatePropertiesInDevelopment;var warnForPropDifference;var warnForExtraAttributes;var warnForInvalidEventListener;var canDiffStyleForHydrationWarning;var normalizeHTML;{warnedUnknownTags={// There are working polyfills for <dialog>. Let people use it.
+	function accumulateEnterLeaveTwoPhaseListeners(dispatchQueue,leaveEvent,enterEvent,from,to){var common=from&&to?getLowestCommonAncestor(from,to):null;if(from!==null){accumulateEnterLeaveListenersForEvent(dispatchQueue,leaveEvent,from,common,false);}if(to!==null&&enterEvent!==null){accumulateEnterLeaveListenersForEvent(dispatchQueue,enterEvent,to,common,true);}}function getListenerSetKey(domEventName,capture){return domEventName+"__"+('bubble');}var didWarnInvalidHydration=false;var DANGEROUSLY_SET_INNER_HTML='dangerouslySetInnerHTML';var SUPPRESS_CONTENT_EDITABLE_WARNING='suppressContentEditableWarning';var SUPPRESS_HYDRATION_WARNING='suppressHydrationWarning';var AUTOFOCUS='autoFocus';var CHILDREN='children';var STYLE='style';var HTML$1='__html';var warnedUnknownTags;var validatePropertiesInDevelopment;var warnForPropDifference;var warnForExtraAttributes;var warnForInvalidEventListener;var canDiffStyleForHydrationWarning;var normalizeHTML;{warnedUnknownTags={// There are working polyfills for <dialog>. Let people use it.
 	dialog:true,// Electron ships a custom <webview> tag to display external web content in
 	// an isolated frame and process.
 	// This tag is not present in non Electron environments such as JSDom which
@@ -10303,7 +10326,7 @@
 
 	var ReactDOM = /*@__PURE__*/getDefaultExportFromCjs(reactDomExports);
 
-	var config = {
+	var config$1 = {
 	  disabled: false
 	};
 
@@ -10559,7 +10582,7 @@
 	    var enterTimeout = appearing ? timeouts.appear : timeouts.enter; // no enter animation skip right to ENTERED
 	    // if we are mounting and running this it means appear _must_ be set
 
-	    if (!mounting && !enter || config.disabled) {
+	    if (!mounting && !enter || config$1.disabled) {
 	      this.safeSetState({
 	        status: ENTERED
 	      }, function () {
@@ -10587,7 +10610,7 @@
 	    var timeouts = this.getTimeouts();
 	    var maybeNode = this.props.nodeRef ? undefined : ReactDOM.findDOMNode(this); // no exit animation skip right to EXITED
 
-	    if (!exit || config.disabled) {
+	    if (!exit || config$1.disabled) {
 	      this.safeSetState({
 	        status: EXITED
 	      }, function () {
@@ -10677,7 +10700,7 @@
 	      _this$props.onExiting;
 	      _this$props.onExited;
 	      _this$props.nodeRef;
-	      var childProps = _objectWithoutPropertiesLoose$6(_this$props, ["children", "in", "mountOnEnter", "unmountOnExit", "appear", "enter", "exit", "timeout", "addEndListener", "onEnter", "onEntering", "onEntered", "onExit", "onExiting", "onExited", "nodeRef"]);
+	      var childProps = _objectWithoutPropertiesLoose$b(_this$props, ["children", "in", "mountOnEnter", "unmountOnExit", "appear", "enter", "exit", "timeout", "addEndListener", "onEnter", "onEntering", "onEntered", "onExit", "onExiting", "onExited", "nodeRef"]);
 	    return /*#__PURE__*/(
 	      // allows for nested Transitions
 	      React.createElement(TransitionGroupContext.Provider, {
@@ -10859,7 +10882,7 @@
 	  onExited: propTypesExports.func
 	} ; // Name the function so it is clearer in the documentation
 
-	function noop$1() {}
+	function noop$9() {}
 	Transition.defaultProps = {
 	  in: false,
 	  mountOnEnter: false,
@@ -10867,12 +10890,12 @@
 	  appear: false,
 	  enter: true,
 	  exit: true,
-	  onEnter: noop$1,
-	  onEntering: noop$1,
-	  onEntered: noop$1,
-	  onExit: noop$1,
-	  onExiting: noop$1,
-	  onExited: noop$1
+	  onEnter: noop$9,
+	  onEntering: noop$9,
+	  onEntered: noop$9,
+	  onExit: noop$9,
+	  onExiting: noop$9,
+	  onExited: noop$9
 	};
 	Transition.UNMOUNTED = UNMOUNTED;
 	Transition.EXITED = EXITED;
@@ -10880,7 +10903,7 @@
 	Transition.ENTERED = ENTERED;
 	Transition.EXITING = EXITING;
 
-	var canUseDOM$1 = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
+	var canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
 
 	/* eslint-disable no-return-assign */
 	var optionsSupported = false;
@@ -10895,7 +10918,7 @@
 	      return onceSupported = optionsSupported = true;
 	    }
 	  };
-	  if (canUseDOM$1) {
+	  if (canUseDOM) {
 	    window.addEventListener('test', options, options);
 	    window.removeEventListener('test', options, true);
 	  }
@@ -10960,9 +10983,6 @@
 	 * @param cancelable whether the event should be cancelable
 	 */
 	function triggerEvent(node, eventName, bubbles, cancelable) {
-	  if (bubbles === void 0) {
-	    bubbles = false;
-	  }
 	  if (cancelable === void 0) {
 	    cancelable = true;
 	  }
@@ -11149,7 +11169,6 @@
 	    })
 	  });
 	});
-	var TransitionWrapper$1 = TransitionWrapper;
 
 	const MARGINS = {
 	  height: ['marginTop', 'marginBottom'],
@@ -11171,7 +11190,7 @@
 	  [ENTERING]: 'collapsing',
 	  [ENTERED]: 'collapse show'
 	};
-	const defaultProps$c = {
+	const defaultProps$B = {
 	  in: false,
 	  timeout: 300,
 	  mountOnEnter: false,
@@ -11214,7 +11233,7 @@
 	  const handleExiting = reactExports.useMemo(() => createChainedFunction(elem => {
 	    elem.style[computedDimension] = null;
 	  }, onExiting), [computedDimension, onExiting]);
-	  return /*#__PURE__*/jsxRuntimeExports.jsx(TransitionWrapper$1, {
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(TransitionWrapper, {
 	    ref: ref,
 	    addEndListener: transitionEndListener,
 	    ...props,
@@ -11235,8 +11254,219 @@
 	// @ts-ignore
 
 	// @ts-ignore
-	Collapse.defaultProps = defaultProps$c;
-	var Collapse$1 = Collapse;
+	Collapse.defaultProps = defaultProps$B;
+
+	function isAccordionItemSelected(activeEventKey, eventKey) {
+	  return Array.isArray(activeEventKey) ? activeEventKey.includes(eventKey) : activeEventKey === eventKey;
+	}
+	const context$4 = /*#__PURE__*/reactExports.createContext({});
+	context$4.displayName = 'AccordionContext';
+
+	/**
+	 * This component accepts all of [`Collapse`'s props](/utilities/transitions/#collapse-props).
+	 */
+	const AccordionCollapse = /*#__PURE__*/reactExports.forwardRef(({
+	  as: Component = 'div',
+	  bsPrefix,
+	  className,
+	  children,
+	  eventKey,
+	  ...props
+	}, ref) => {
+	  const {
+	    activeEventKey
+	  } = reactExports.useContext(context$4);
+	  bsPrefix = useBootstrapPrefix(bsPrefix, 'accordion-collapse');
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(Collapse, {
+	    ref: ref,
+	    in: isAccordionItemSelected(activeEventKey, eventKey),
+	    ...props,
+	    className: classNames(className, bsPrefix),
+	    children: /*#__PURE__*/jsxRuntimeExports.jsx(Component, {
+	      children: reactExports.Children.only(children)
+	    })
+	  });
+	});
+	AccordionCollapse.displayName = 'AccordionCollapse';
+
+	const context$3 = /*#__PURE__*/reactExports.createContext({
+	  eventKey: ''
+	});
+	context$3.displayName = 'AccordionItemContext';
+
+	const AccordionBody = /*#__PURE__*/reactExports.forwardRef(({
+	  // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
+	  as: Component = 'div',
+	  bsPrefix,
+	  className,
+	  onEnter,
+	  onEntering,
+	  onEntered,
+	  onExit,
+	  onExiting,
+	  onExited,
+	  ...props
+	}, ref) => {
+	  bsPrefix = useBootstrapPrefix(bsPrefix, 'accordion-body');
+	  const {
+	    eventKey
+	  } = reactExports.useContext(context$3);
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(AccordionCollapse, {
+	    eventKey: eventKey,
+	    onEnter: onEnter,
+	    onEntering: onEntering,
+	    onEntered: onEntered,
+	    onExit: onExit,
+	    onExiting: onExiting,
+	    onExited: onExited,
+	    children: /*#__PURE__*/jsxRuntimeExports.jsx(Component, {
+	      ref: ref,
+	      ...props,
+	      className: classNames(className, bsPrefix)
+	    })
+	  });
+	});
+	AccordionBody.displayName = 'AccordionBody';
+
+	function useAccordionButton(eventKey, onClick) {
+	  const {
+	    activeEventKey,
+	    onSelect,
+	    alwaysOpen
+	  } = reactExports.useContext(context$4);
+	  return e => {
+	    /*
+	      Compare the event key in context with the given event key.
+	      If they are the same, then collapse the component.
+	    */
+	    let eventKeyPassed = eventKey === activeEventKey ? null : eventKey;
+	    if (alwaysOpen) {
+	      if (Array.isArray(activeEventKey)) {
+	        if (activeEventKey.includes(eventKey)) {
+	          eventKeyPassed = activeEventKey.filter(k => k !== eventKey);
+	        } else {
+	          eventKeyPassed = [...activeEventKey, eventKey];
+	        }
+	      } else {
+	        // activeEventKey is undefined.
+	        eventKeyPassed = [eventKey];
+	      }
+	    }
+	    onSelect == null ? void 0 : onSelect(eventKeyPassed, e);
+	    onClick == null ? void 0 : onClick(e);
+	  };
+	}
+	const AccordionButton = /*#__PURE__*/reactExports.forwardRef(({
+	  // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
+	  as: Component = 'button',
+	  bsPrefix,
+	  className,
+	  onClick,
+	  ...props
+	}, ref) => {
+	  bsPrefix = useBootstrapPrefix(bsPrefix, 'accordion-button');
+	  const {
+	    eventKey
+	  } = reactExports.useContext(context$3);
+	  const accordionOnClick = useAccordionButton(eventKey, onClick);
+	  const {
+	    activeEventKey
+	  } = reactExports.useContext(context$4);
+	  if (Component === 'button') {
+	    props.type = 'button';
+	  }
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(Component, {
+	    ref: ref,
+	    onClick: accordionOnClick,
+	    ...props,
+	    "aria-expanded": Array.isArray(activeEventKey) ? activeEventKey.includes(eventKey) : eventKey === activeEventKey,
+	    className: classNames(className, bsPrefix, !isAccordionItemSelected(activeEventKey, eventKey) && 'collapsed')
+	  });
+	});
+	AccordionButton.displayName = 'AccordionButton';
+
+	const AccordionHeader = /*#__PURE__*/reactExports.forwardRef(({
+	  // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
+	  as: Component = 'h2',
+	  bsPrefix,
+	  className,
+	  children,
+	  onClick,
+	  ...props
+	}, ref) => {
+	  bsPrefix = useBootstrapPrefix(bsPrefix, 'accordion-header');
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(Component, {
+	    ref: ref,
+	    ...props,
+	    className: classNames(className, bsPrefix),
+	    children: /*#__PURE__*/jsxRuntimeExports.jsx(AccordionButton, {
+	      onClick: onClick,
+	      children: children
+	    })
+	  });
+	});
+	AccordionHeader.displayName = 'AccordionHeader';
+
+	const AccordionItem = /*#__PURE__*/reactExports.forwardRef(({
+	  // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
+	  as: Component = 'div',
+	  bsPrefix,
+	  className,
+	  eventKey,
+	  ...props
+	}, ref) => {
+	  bsPrefix = useBootstrapPrefix(bsPrefix, 'accordion-item');
+	  const contextValue = reactExports.useMemo(() => ({
+	    eventKey
+	  }), [eventKey]);
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(context$3.Provider, {
+	    value: contextValue,
+	    children: /*#__PURE__*/jsxRuntimeExports.jsx(Component, {
+	      ref: ref,
+	      ...props,
+	      className: classNames(className, bsPrefix)
+	    })
+	  });
+	});
+	AccordionItem.displayName = 'AccordionItem';
+
+	const Accordion = /*#__PURE__*/reactExports.forwardRef((props, ref) => {
+	  const {
+	    // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
+	    as: Component = 'div',
+	    activeKey,
+	    bsPrefix,
+	    className,
+	    onSelect,
+	    flush,
+	    alwaysOpen,
+	    ...controlledProps
+	  } = useUncontrolled(props, {
+	    activeKey: 'onSelect'
+	  });
+	  const prefix = useBootstrapPrefix(bsPrefix, 'accordion');
+	  const contextValue = reactExports.useMemo(() => ({
+	    activeEventKey: activeKey,
+	    onSelect,
+	    alwaysOpen
+	  }), [activeKey, onSelect, alwaysOpen]);
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(context$4.Provider, {
+	    value: contextValue,
+	    children: /*#__PURE__*/jsxRuntimeExports.jsx(Component, {
+	      ref: ref,
+	      ...controlledProps,
+	      className: classNames(className, prefix, flush && `${prefix}-flush`)
+	    })
+	  });
+	});
+	Accordion.displayName = 'Accordion';
+	Object.assign(Accordion, {
+	  Button: AccordionButton,
+	  Collapse: AccordionCollapse,
+	  Item: AccordionItem,
+	  Header: AccordionHeader,
+	  Body: AccordionBody
+	});
 
 	/**
 	 * Creates a `Ref` whose value is updated in an effect, ensuring the most recent
@@ -11261,6 +11491,58 @@
 	  return reactExports.useCallback(function () {
 	    return ref.current && ref.current.apply(ref, arguments);
 	  }, [ref]);
+	}
+
+	/**
+	 * A convenience hook around `useState` designed to be paired with
+	 * the component [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) api.
+	 * Callback refs are useful over `useRef()` when you need to respond to the ref being set
+	 * instead of lazily accessing it in an effect.
+	 *
+	 * ```ts
+	 * const [element, attachRef] = useCallbackRef<HTMLDivElement>()
+	 *
+	 * useEffect(() => {
+	 *   if (!element) return
+	 *
+	 *   const calendar = new FullCalendar.Calendar(element)
+	 *
+	 *   return () => {
+	 *     calendar.destroy()
+	 *   }
+	 * }, [element])
+	 *
+	 * return <div ref={attachRef} />
+	 * ```
+	 *
+	 * @category refs
+	 */
+
+	function useCallbackRef() {
+	  return reactExports.useState(null);
+	}
+
+	/**
+	 * Attaches an event handler outside directly to specified DOM element
+	 * bypassing the react synthetic event system.
+	 *
+	 * @param element The target to listen for events on
+	 * @param event The DOM event name
+	 * @param handler An event handler
+	 * @param capture Whether or not to listen during the capture event phase
+	 */
+	function useEventListener(eventTarget, event, listener, capture) {
+	  if (capture === void 0) {
+	    capture = false;
+	  }
+	  var handler = useEventCallback(listener);
+	  reactExports.useEffect(function () {
+	    var target = typeof eventTarget === 'function' ? eventTarget() : eventTarget;
+	    target.addEventListener(event, handler, capture);
+	    return function () {
+	      return target.removeEventListener(event, handler, capture);
+	    };
+	  }, [eventTarget]);
 	}
 
 	/**
@@ -11341,8 +11623,8 @@
 
 	var useIsomorphicEffect = isDOM || isReactNative ? reactExports.useLayoutEffect : reactExports.useEffect;
 
-	const _excluded$5 = ["as", "disabled"];
-	function _objectWithoutPropertiesLoose$5(source, excluded) {
+	const _excluded$a = ["as", "disabled"];
+	function _objectWithoutPropertiesLoose$a(source, excluded) {
 	  if (source == null) return {};
 	  var target = {};
 	  var sourceKeys = Object.keys(source);
@@ -11421,12 +11703,12 @@
 	    onKeyDown: handleKeyDown
 	  }, meta];
 	}
-	const Button = /*#__PURE__*/reactExports.forwardRef((_ref, ref) => {
+	const Button$1 = /*#__PURE__*/reactExports.forwardRef((_ref, ref) => {
 	  let {
 	      as: asProp,
 	      disabled
 	    } = _ref,
-	    props = _objectWithoutPropertiesLoose$5(_ref, _excluded$5);
+	    props = _objectWithoutPropertiesLoose$a(_ref, _excluded$a);
 	  const [buttonProps, {
 	    tagName: Component
 	  }] = useButtonProps(Object.assign({
@@ -11437,10 +11719,10 @@
 	    ref: ref
 	  }));
 	});
-	Button.displayName = 'Button';
+	Button$1.displayName = 'Button';
 
-	const _excluded$4 = ["onKeyDown"];
-	function _objectWithoutPropertiesLoose$4(source, excluded) {
+	const _excluded$9 = ["onKeyDown"];
+	function _objectWithoutPropertiesLoose$9(source, excluded) {
 	  if (source == null) return {};
 	  var target = {};
 	  var sourceKeys = Object.keys(source);
@@ -11463,7 +11745,7 @@
 	  let {
 	      onKeyDown
 	    } = _ref,
-	    props = _objectWithoutPropertiesLoose$4(_ref, _excluded$4);
+	    props = _objectWithoutPropertiesLoose$9(_ref, _excluded$9);
 	  const [buttonProps] = useButtonProps(Object.assign({
 	    tagName: 'a'
 	  }, props));
@@ -11485,16 +11767,15 @@
 	  }));
 	});
 	Anchor.displayName = 'Anchor';
-	var Anchor$1 = Anchor;
 
-	const defaultProps$b = {
+	const defaultProps$A = {
 	  in: false,
 	  timeout: 300,
 	  mountOnEnter: false,
 	  unmountOnExit: false,
 	  appear: false
 	};
-	const fadeStyles = {
+	const fadeStyles$1 = {
 	  [ENTERING]: 'show',
 	  [ENTERED]: 'show'
 	};
@@ -11508,7 +11789,7 @@
 	    triggerBrowserReflow(node);
 	    props.onEnter == null ? void 0 : props.onEnter(node, isAppearing);
 	  }, [props]);
-	  return /*#__PURE__*/jsxRuntimeExports.jsx(TransitionWrapper$1, {
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(TransitionWrapper, {
 	    ref: ref,
 	    addEndListener: transitionEndListener,
 	    ...props,
@@ -11516,15 +11797,14 @@
 	    childRef: children.ref,
 	    children: (status, innerProps) => /*#__PURE__*/reactExports.cloneElement(children, {
 	      ...innerProps,
-	      className: classNames('fade', className, children.props.className, fadeStyles[status], transitionClasses[status])
+	      className: classNames('fade', className, children.props.className, fadeStyles$1[status], transitionClasses[status])
 	    })
 	  });
 	});
-	Fade.defaultProps = defaultProps$b;
+	Fade.defaultProps = defaultProps$A;
 	Fade.displayName = 'Fade';
-	var Fade$1 = Fade;
 
-	const propTypes = {
+	const propTypes$6 = {
 	  /** An accessible label indicating the relevant information about the Close Button. */
 	  'aria-label': propTypesExports.string,
 	  /** A callback fired after the Close Button is clicked. */
@@ -11536,7 +11816,7 @@
 	   */
 	  variant: propTypesExports.oneOf(['white'])
 	};
-	const defaultProps$a = {
+	const defaultProps$z = {
 	  'aria-label': 'Close'
 	};
 	const CloseButton = /*#__PURE__*/reactExports.forwardRef(({
@@ -11550,9 +11830,8 @@
 	  ...props
 	}));
 	CloseButton.displayName = 'CloseButton';
-	CloseButton.propTypes = propTypes;
-	CloseButton.defaultProps = defaultProps$a;
-	var CloseButton$1 = CloseButton;
+	CloseButton.propTypes = propTypes$6;
+	CloseButton.defaultProps = defaultProps$z;
 
 	var divWithClassName = (className => /*#__PURE__*/reactExports.forwardRef((p, ref) => /*#__PURE__*/jsxRuntimeExports.jsx("div", {
 	  ...p,
@@ -11561,13 +11840,13 @@
 	})));
 
 	var rHyphen = /-(.)/g;
-	function camelize(string) {
+	function camelize$1(string) {
 	  return string.replace(rHyphen, function (_, chr) {
 	    return chr.toUpperCase();
 	  });
 	}
 
-	const pascalCase = str => str[0].toUpperCase() + camelize(str).slice(1);
+	const pascalCase = str => str[0].toUpperCase() + camelize$1(str).slice(1);
 	// TODO: emstricten & fix the typing here! `createWithBsPrefix<TElementType>...`
 	function createWithBsPrefix(prefix, {
 	  displayName = pascalCase(prefix),
@@ -11592,6 +11871,239 @@
 	  return BsComponent;
 	}
 
+	const DivStyledAsH4$1 = divWithClassName('h4');
+	DivStyledAsH4$1.displayName = 'DivStyledAsH4';
+	const AlertHeading = createWithBsPrefix('alert-heading', {
+	  Component: DivStyledAsH4$1
+	});
+	const AlertLink = createWithBsPrefix('alert-link', {
+	  Component: Anchor
+	});
+	const defaultProps$y = {
+	  variant: 'primary',
+	  show: true,
+	  transition: Fade,
+	  closeLabel: 'Close alert'
+	};
+	const Alert = /*#__PURE__*/reactExports.forwardRef((uncontrolledProps, ref) => {
+	  const {
+	    bsPrefix,
+	    show,
+	    closeLabel,
+	    closeVariant,
+	    className,
+	    children,
+	    variant,
+	    onClose,
+	    dismissible,
+	    transition,
+	    ...props
+	  } = useUncontrolled(uncontrolledProps, {
+	    show: 'onClose'
+	  });
+	  const prefix = useBootstrapPrefix(bsPrefix, 'alert');
+	  const handleClose = useEventCallback(e => {
+	    if (onClose) {
+	      onClose(false, e);
+	    }
+	  });
+	  const Transition = transition === true ? Fade : transition;
+	  const alert = /*#__PURE__*/jsxRuntimeExports.jsxs("div", {
+	    role: "alert",
+	    ...(!Transition ? props : undefined),
+	    ref: ref,
+	    className: classNames(className, prefix, variant && `${prefix}-${variant}`, dismissible && `${prefix}-dismissible`),
+	    children: [dismissible && /*#__PURE__*/jsxRuntimeExports.jsx(CloseButton, {
+	      onClick: handleClose,
+	      "aria-label": closeLabel,
+	      variant: closeVariant
+	    }), children]
+	  });
+	  if (!Transition) return show ? alert : null;
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(Transition, {
+	    unmountOnExit: true,
+	    ...props,
+	    ref: undefined,
+	    in: show,
+	    children: alert
+	  });
+	});
+	Alert.displayName = 'Alert';
+	Alert.defaultProps = defaultProps$y;
+	Object.assign(Alert, {
+	  Link: AlertLink,
+	  Heading: AlertHeading
+	});
+
+	const defaultProps$x = {
+	  bg: 'primary',
+	  pill: false
+	};
+	const Badge = /*#__PURE__*/reactExports.forwardRef(({
+	  bsPrefix,
+	  bg,
+	  pill,
+	  text,
+	  className,
+	  as: Component = 'span',
+	  ...props
+	}, ref) => {
+	  const prefix = useBootstrapPrefix(bsPrefix, 'badge');
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(Component, {
+	    ref: ref,
+	    ...props,
+	    className: classNames(className, prefix, pill && `rounded-pill`, text && `text-${text}`, bg && `bg-${bg}`)
+	  });
+	});
+	Badge.displayName = 'Badge';
+	Badge.defaultProps = defaultProps$x;
+
+	const defaultProps$w = {
+	  active: false,
+	  linkProps: {}
+	};
+	const BreadcrumbItem = /*#__PURE__*/reactExports.forwardRef(({
+	  bsPrefix,
+	  active,
+	  children,
+	  className,
+	  // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
+	  as: Component = 'li',
+	  linkAs: LinkComponent = Anchor,
+	  linkProps,
+	  href,
+	  title,
+	  target,
+	  ...props
+	}, ref) => {
+	  const prefix = useBootstrapPrefix(bsPrefix, 'breadcrumb-item');
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(Component, {
+	    ref: ref,
+	    ...props,
+	    className: classNames(prefix, className, {
+	      active
+	    }),
+	    "aria-current": active ? 'page' : undefined,
+	    children: active ? children : /*#__PURE__*/jsxRuntimeExports.jsx(LinkComponent, {
+	      ...linkProps,
+	      href: href,
+	      title: title,
+	      target: target,
+	      children: children
+	    })
+	  });
+	});
+	BreadcrumbItem.displayName = 'BreadcrumbItem';
+	BreadcrumbItem.defaultProps = defaultProps$w;
+
+	const defaultProps$v = {
+	  label: 'breadcrumb',
+	  listProps: {}
+	};
+	const Breadcrumb = /*#__PURE__*/reactExports.forwardRef(({
+	  bsPrefix,
+	  className,
+	  listProps,
+	  children,
+	  label,
+	  // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
+	  as: Component = 'nav',
+	  ...props
+	}, ref) => {
+	  const prefix = useBootstrapPrefix(bsPrefix, 'breadcrumb');
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(Component, {
+	    "aria-label": label,
+	    className: className,
+	    ref: ref,
+	    ...props,
+	    children: /*#__PURE__*/jsxRuntimeExports.jsx("ol", {
+	      ...listProps,
+	      className: classNames(prefix, listProps == null ? void 0 : listProps.className),
+	      children: children
+	    })
+	  });
+	});
+	Breadcrumb.displayName = 'Breadcrumb';
+	Breadcrumb.defaultProps = defaultProps$v;
+	Object.assign(Breadcrumb, {
+	  Item: BreadcrumbItem
+	});
+
+	const defaultProps$u = {
+	  variant: 'primary',
+	  active: false,
+	  disabled: false
+	};
+	const Button = /*#__PURE__*/reactExports.forwardRef(({
+	  as,
+	  bsPrefix,
+	  variant,
+	  size,
+	  active,
+	  className,
+	  ...props
+	}, ref) => {
+	  const prefix = useBootstrapPrefix(bsPrefix, 'btn');
+	  const [buttonProps, {
+	    tagName
+	  }] = useButtonProps({
+	    tagName: as,
+	    ...props
+	  });
+	  const Component = tagName;
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(Component, {
+	    ...buttonProps,
+	    ...props,
+	    ref: ref,
+	    className: classNames(className, prefix, active && 'active', variant && `${prefix}-${variant}`, size && `${prefix}-${size}`, props.href && props.disabled && 'disabled')
+	  });
+	});
+	Button.displayName = 'Button';
+	Button.defaultProps = defaultProps$u;
+
+	const defaultProps$t = {
+	  vertical: false,
+	  role: 'group'
+	};
+	const ButtonGroup = /*#__PURE__*/reactExports.forwardRef(({
+	  bsPrefix,
+	  size,
+	  vertical,
+	  className,
+	  // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
+	  as: Component = 'div',
+	  ...rest
+	}, ref) => {
+	  const prefix = useBootstrapPrefix(bsPrefix, 'btn-group');
+	  let baseClass = prefix;
+	  if (vertical) baseClass = `${prefix}-vertical`;
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(Component, {
+	    ...rest,
+	    ref: ref,
+	    className: classNames(className, baseClass, size && `${prefix}-${size}`)
+	  });
+	});
+	ButtonGroup.displayName = 'ButtonGroup';
+	ButtonGroup.defaultProps = defaultProps$t;
+
+	const defaultProps$s = {
+	  role: 'toolbar'
+	};
+	const ButtonToolbar = /*#__PURE__*/reactExports.forwardRef(({
+	  bsPrefix,
+	  className,
+	  ...props
+	}, ref) => {
+	  const prefix = useBootstrapPrefix(bsPrefix, 'btn-toolbar');
+	  return /*#__PURE__*/jsxRuntimeExports.jsx("div", {
+	    ...props,
+	    ref: ref,
+	    className: classNames(className, prefix)
+	  });
+	});
+	ButtonToolbar.displayName = 'ButtonToolbar';
+	ButtonToolbar.defaultProps = defaultProps$s;
+
 	const CardImg = /*#__PURE__*/reactExports.forwardRef(
 	// Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
 	({
@@ -11609,11 +12121,9 @@
 	  });
 	});
 	CardImg.displayName = 'CardImg';
-	var CardImg$1 = CardImg;
 
-	const context$1 = /*#__PURE__*/reactExports.createContext(null);
-	context$1.displayName = 'CardHeaderContext';
-	var CardHeaderContext = context$1;
+	const context$2 = /*#__PURE__*/reactExports.createContext(null);
+	context$2.displayName = 'CardHeaderContext';
 
 	const CardHeader = /*#__PURE__*/reactExports.forwardRef(({
 	  bsPrefix,
@@ -11626,7 +12136,7 @@
 	  const contextValue = reactExports.useMemo(() => ({
 	    cardHeaderBsPrefix: prefix
 	  }), [prefix]);
-	  return /*#__PURE__*/jsxRuntimeExports.jsx(CardHeaderContext.Provider, {
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(context$2.Provider, {
 	    value: contextValue,
 	    children: /*#__PURE__*/jsxRuntimeExports.jsx(Component, {
 	      ref: ref,
@@ -11636,7 +12146,6 @@
 	  });
 	});
 	CardHeader.displayName = 'CardHeader';
-	var CardHeader$1 = CardHeader;
 
 	const DivStyledAsH5$1 = divWithClassName('h5');
 	const DivStyledAsH6 = divWithClassName('h6');
@@ -11655,7 +12164,7 @@
 	});
 	const CardFooter = createWithBsPrefix('card-footer');
 	const CardImgOverlay = createWithBsPrefix('card-img-overlay');
-	const defaultProps$9 = {
+	const defaultProps$r = {
 	  body: false
 	};
 	const Card = /*#__PURE__*/reactExports.forwardRef(({
@@ -11681,18 +12190,52 @@
 	  });
 	});
 	Card.displayName = 'Card';
-	Card.defaultProps = defaultProps$9;
+	Card.defaultProps = defaultProps$r;
 	var Card$1 = Object.assign(Card, {
-	  Img: CardImg$1,
+	  Img: CardImg,
 	  Title: CardTitle,
 	  Subtitle: CardSubtitle,
 	  Body: CardBody,
 	  Link: CardLink,
 	  Text: CardText,
-	  Header: CardHeader$1,
+	  Header: CardHeader,
 	  Footer: CardFooter,
 	  ImgOverlay: CardImgOverlay
 	});
+
+	createWithBsPrefix('card-group');
+
+	/**
+	 * Runs an effect only when the dependencies have changed, skipping the
+	 * initial "on mount" run. Caution, if the dependency list never changes,
+	 * the effect is **never run**
+	 *
+	 * ```ts
+	 *  const ref = useRef<HTMLInput>(null);
+	 *
+	 *  // focuses an element only if the focus changes, and not on mount
+	 *  useUpdateEffect(() => {
+	 *    const element = ref.current?.children[focusedIdx] as HTMLElement
+	 *
+	 *    element?.focus()
+	 *
+	 *  }, [focusedIndex])
+	 * ```
+	 * @param effect An effect to run on mount
+	 *
+	 * @category effects
+	 */
+
+	function useUpdateEffect(fn, deps) {
+	  var isFirst = reactExports.useRef(true);
+	  reactExports.useEffect(function () {
+	    if (isFirst.current) {
+	      isFirst.current = false;
+	      return;
+	    }
+	    return fn();
+	  }, deps);
+	}
 
 	/**
 	 * Returns a ref that is immediately updated with the new value
@@ -11723,7 +12266,509 @@
 	  }, []);
 	}
 
-	var toArray = Function.prototype.bind.call(Function.prototype.call, [].slice);
+	/*
+	 * Browsers including Internet Explorer, Chrome, Safari, and Firefox store the
+	 * delay as a 32-bit signed integer internally. This causes an integer overflow
+	 * when using delays larger than 2,147,483,647 ms (about 24.8 days),
+	 * resulting in the timeout being executed immediately.
+	 *
+	 * via: https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout
+	 */
+
+	var MAX_DELAY_MS = Math.pow(2, 31) - 1;
+	function setChainedTimeout(handleRef, fn, timeoutAtMs) {
+	  var delayMs = timeoutAtMs - Date.now();
+	  handleRef.current = delayMs <= MAX_DELAY_MS ? setTimeout(fn, delayMs) : setTimeout(function () {
+	    return setChainedTimeout(handleRef, fn, timeoutAtMs);
+	  }, MAX_DELAY_MS);
+	}
+	/**
+	 * Returns a controller object for setting a timeout that is properly cleaned up
+	 * once the component unmounts. New timeouts cancel and replace existing ones.
+	 *
+	 *
+	 *
+	 * ```tsx
+	 * const { set, clear } = useTimeout();
+	 * const [hello, showHello] = useState(false);
+	 * //Display hello after 5 seconds
+	 * set(() => showHello(true), 5000);
+	 * return (
+	 *   <div className="App">
+	 *     {hello ? <h3>Hello</h3> : null}
+	 *   </div>
+	 * );
+	 * ```
+	 */
+
+	function useTimeout() {
+	  var isMounted = useMounted(); // types are confused between node and web here IDK
+
+	  var handleRef = reactExports.useRef();
+	  useWillUnmount(function () {
+	    return clearTimeout(handleRef.current);
+	  });
+	  return reactExports.useMemo(function () {
+	    var clear = function clear() {
+	      return clearTimeout(handleRef.current);
+	    };
+	    function set(fn, delayMs) {
+	      if (delayMs === void 0) {
+	        delayMs = 0;
+	      }
+	      if (!isMounted()) return;
+	      clear();
+	      if (delayMs <= MAX_DELAY_MS) {
+	        // For simplicity, if the timeout is short, just set a normal timeout.
+	        handleRef.current = setTimeout(fn, delayMs);
+	      } else {
+	        setChainedTimeout(handleRef, fn, Date.now() + delayMs);
+	      }
+	    }
+	    return {
+	      set: set,
+	      clear: clear
+	    };
+	  }, []);
+	}
+
+	var CarouselCaption = createWithBsPrefix('carousel-caption');
+
+	const CarouselItem = /*#__PURE__*/reactExports.forwardRef(({
+	  // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
+	  as: Component = 'div',
+	  bsPrefix,
+	  className,
+	  ...props
+	}, ref) => {
+	  const finalClassName = classNames(className, useBootstrapPrefix(bsPrefix, 'carousel-item'));
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(Component, {
+	    ref: ref,
+	    ...props,
+	    className: finalClassName
+	  });
+	});
+	CarouselItem.displayName = 'CarouselItem';
+
+	/**
+	 * Iterates through children that are typically specified as `props.children`,
+	 * but only maps over children that are "valid elements".
+	 *
+	 * The mapFunction provided index will be normalised to the components mapped,
+	 * so an invalid component would not increase the index.
+	 *
+	 */
+	function map(children, func) {
+	  let index = 0;
+	  return reactExports.Children.map(children, child => /*#__PURE__*/ /*#__PURE__*/reactExports.isValidElement(child) ? func(child, index++) : child);
+	}
+
+	/**
+	 * Iterates through children that are "valid elements".
+	 *
+	 * The provided forEachFunc(child, index) will be called for each
+	 * leaf child with the index reflecting the position relative to "valid components".
+	 */
+	function forEach(children, func) {
+	  let index = 0;
+	  reactExports.Children.forEach(children, child => {
+	    if ( /*#__PURE__*/reactExports.isValidElement(child)) func(child, index++);
+	  });
+	}
+
+	/**
+	 * Finds whether a component's `children` prop includes a React element of the
+	 * specified type.
+	 */
+	function hasChildOfType(children, type) {
+	  return reactExports.Children.toArray(children).some(child => /*#__PURE__*/ /*#__PURE__*/reactExports.isValidElement(child) && child.type === type);
+	}
+
+	const SWIPE_THRESHOLD = 40;
+	const defaultProps$q = {
+	  slide: true,
+	  fade: false,
+	  controls: true,
+	  indicators: true,
+	  indicatorLabels: [],
+	  defaultActiveIndex: 0,
+	  interval: 5000,
+	  keyboard: true,
+	  pause: 'hover',
+	  wrap: true,
+	  touch: true,
+	  prevIcon: /*#__PURE__*/jsxRuntimeExports.jsx("span", {
+	    "aria-hidden": "true",
+	    className: "carousel-control-prev-icon"
+	  }),
+	  prevLabel: 'Previous',
+	  nextIcon: /*#__PURE__*/jsxRuntimeExports.jsx("span", {
+	    "aria-hidden": "true",
+	    className: "carousel-control-next-icon"
+	  }),
+	  nextLabel: 'Next'
+	};
+	function isVisible(element) {
+	  if (!element || !element.style || !element.parentNode || !element.parentNode.style) {
+	    return false;
+	  }
+	  const elementStyle = getComputedStyle(element);
+	  return elementStyle.display !== 'none' && elementStyle.visibility !== 'hidden' && getComputedStyle(element.parentNode).display !== 'none';
+	}
+	const Carousel = /*#__PURE__*/reactExports.forwardRef((uncontrolledProps, ref) => {
+	  const {
+	    // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
+	    as: Component = 'div',
+	    bsPrefix,
+	    slide,
+	    fade,
+	    controls,
+	    indicators,
+	    indicatorLabels,
+	    activeIndex,
+	    onSelect,
+	    onSlide,
+	    onSlid,
+	    interval,
+	    keyboard,
+	    onKeyDown,
+	    pause,
+	    onMouseOver,
+	    onMouseOut,
+	    wrap,
+	    touch,
+	    onTouchStart,
+	    onTouchMove,
+	    onTouchEnd,
+	    prevIcon,
+	    prevLabel,
+	    nextIcon,
+	    nextLabel,
+	    variant,
+	    className,
+	    children,
+	    ...props
+	  } = useUncontrolled(uncontrolledProps, {
+	    activeIndex: 'onSelect'
+	  });
+	  const prefix = useBootstrapPrefix(bsPrefix, 'carousel');
+	  const isRTL = useIsRTL();
+	  const nextDirectionRef = reactExports.useRef(null);
+	  const [direction, setDirection] = reactExports.useState('next');
+	  const [paused, setPaused] = reactExports.useState(false);
+	  const [isSliding, setIsSliding] = reactExports.useState(false);
+	  const [renderedActiveIndex, setRenderedActiveIndex] = reactExports.useState(activeIndex || 0);
+	  reactExports.useEffect(() => {
+	    if (!isSliding && activeIndex !== renderedActiveIndex) {
+	      if (nextDirectionRef.current) {
+	        setDirection(nextDirectionRef.current);
+	      } else {
+	        setDirection((activeIndex || 0) > renderedActiveIndex ? 'next' : 'prev');
+	      }
+	      if (slide) {
+	        setIsSliding(true);
+	      }
+	      setRenderedActiveIndex(activeIndex || 0);
+	    }
+	  }, [activeIndex, isSliding, renderedActiveIndex, slide]);
+	  reactExports.useEffect(() => {
+	    if (nextDirectionRef.current) {
+	      nextDirectionRef.current = null;
+	    }
+	  });
+	  let numChildren = 0;
+	  let activeChildInterval;
+
+	  // Iterate to grab all of the children's interval values
+	  // (and count them, too)
+	  forEach(children, (child, index) => {
+	    ++numChildren;
+	    if (index === activeIndex) {
+	      activeChildInterval = child.props.interval;
+	    }
+	  });
+	  const activeChildIntervalRef = useCommittedRef(activeChildInterval);
+	  const prev = reactExports.useCallback(event => {
+	    if (isSliding) {
+	      return;
+	    }
+	    let nextActiveIndex = renderedActiveIndex - 1;
+	    if (nextActiveIndex < 0) {
+	      if (!wrap) {
+	        return;
+	      }
+	      nextActiveIndex = numChildren - 1;
+	    }
+	    nextDirectionRef.current = 'prev';
+	    onSelect == null ? void 0 : onSelect(nextActiveIndex, event);
+	  }, [isSliding, renderedActiveIndex, onSelect, wrap, numChildren]);
+
+	  // This is used in the setInterval, so it should not invalidate.
+	  const next = useEventCallback(event => {
+	    if (isSliding) {
+	      return;
+	    }
+	    let nextActiveIndex = renderedActiveIndex + 1;
+	    if (nextActiveIndex >= numChildren) {
+	      if (!wrap) {
+	        return;
+	      }
+	      nextActiveIndex = 0;
+	    }
+	    nextDirectionRef.current = 'next';
+	    onSelect == null ? void 0 : onSelect(nextActiveIndex, event);
+	  });
+	  const elementRef = reactExports.useRef();
+	  reactExports.useImperativeHandle(ref, () => ({
+	    element: elementRef.current,
+	    prev,
+	    next
+	  }));
+
+	  // This is used in the setInterval, so it should not invalidate.
+	  const nextWhenVisible = useEventCallback(() => {
+	    if (!document.hidden && isVisible(elementRef.current)) {
+	      if (isRTL) {
+	        prev();
+	      } else {
+	        next();
+	      }
+	    }
+	  });
+	  const slideDirection = direction === 'next' ? 'start' : 'end';
+	  useUpdateEffect(() => {
+	    if (slide) {
+	      // These callbacks will be handled by the <Transition> callbacks.
+	      return;
+	    }
+	    onSlide == null ? void 0 : onSlide(renderedActiveIndex, slideDirection);
+	    onSlid == null ? void 0 : onSlid(renderedActiveIndex, slideDirection);
+	  }, [renderedActiveIndex]);
+	  const orderClassName = `${prefix}-item-${direction}`;
+	  const directionalClassName = `${prefix}-item-${slideDirection}`;
+	  const handleEnter = reactExports.useCallback(node => {
+	    triggerBrowserReflow(node);
+	    onSlide == null ? void 0 : onSlide(renderedActiveIndex, slideDirection);
+	  }, [onSlide, renderedActiveIndex, slideDirection]);
+	  const handleEntered = reactExports.useCallback(() => {
+	    setIsSliding(false);
+	    onSlid == null ? void 0 : onSlid(renderedActiveIndex, slideDirection);
+	  }, [onSlid, renderedActiveIndex, slideDirection]);
+	  const handleKeyDown = reactExports.useCallback(event => {
+	    if (keyboard && !/input|textarea/i.test(event.target.tagName)) {
+	      switch (event.key) {
+	        case 'ArrowLeft':
+	          event.preventDefault();
+	          if (isRTL) {
+	            next(event);
+	          } else {
+	            prev(event);
+	          }
+	          return;
+	        case 'ArrowRight':
+	          event.preventDefault();
+	          if (isRTL) {
+	            prev(event);
+	          } else {
+	            next(event);
+	          }
+	          return;
+	      }
+	    }
+	    onKeyDown == null ? void 0 : onKeyDown(event);
+	  }, [keyboard, onKeyDown, prev, next, isRTL]);
+	  const handleMouseOver = reactExports.useCallback(event => {
+	    if (pause === 'hover') {
+	      setPaused(true);
+	    }
+	    onMouseOver == null ? void 0 : onMouseOver(event);
+	  }, [pause, onMouseOver]);
+	  const handleMouseOut = reactExports.useCallback(event => {
+	    setPaused(false);
+	    onMouseOut == null ? void 0 : onMouseOut(event);
+	  }, [onMouseOut]);
+	  const touchStartXRef = reactExports.useRef(0);
+	  const touchDeltaXRef = reactExports.useRef(0);
+	  const touchUnpauseTimeout = useTimeout();
+	  const handleTouchStart = reactExports.useCallback(event => {
+	    touchStartXRef.current = event.touches[0].clientX;
+	    touchDeltaXRef.current = 0;
+	    if (pause === 'hover') {
+	      setPaused(true);
+	    }
+	    onTouchStart == null ? void 0 : onTouchStart(event);
+	  }, [pause, onTouchStart]);
+	  const handleTouchMove = reactExports.useCallback(event => {
+	    if (event.touches && event.touches.length > 1) {
+	      touchDeltaXRef.current = 0;
+	    } else {
+	      touchDeltaXRef.current = event.touches[0].clientX - touchStartXRef.current;
+	    }
+	    onTouchMove == null ? void 0 : onTouchMove(event);
+	  }, [onTouchMove]);
+	  const handleTouchEnd = reactExports.useCallback(event => {
+	    if (touch) {
+	      const touchDeltaX = touchDeltaXRef.current;
+	      if (Math.abs(touchDeltaX) > SWIPE_THRESHOLD) {
+	        if (touchDeltaX > 0) {
+	          prev(event);
+	        } else {
+	          next(event);
+	        }
+	      }
+	    }
+	    if (pause === 'hover') {
+	      touchUnpauseTimeout.set(() => {
+	        setPaused(false);
+	      }, interval || undefined);
+	    }
+	    onTouchEnd == null ? void 0 : onTouchEnd(event);
+	  }, [touch, pause, prev, next, touchUnpauseTimeout, interval, onTouchEnd]);
+	  const shouldPlay = interval != null && !paused && !isSliding;
+	  const intervalHandleRef = reactExports.useRef();
+	  reactExports.useEffect(() => {
+	    var _ref, _activeChildIntervalR;
+	    if (!shouldPlay) {
+	      return undefined;
+	    }
+	    const nextFunc = isRTL ? prev : next;
+	    intervalHandleRef.current = window.setInterval(document.visibilityState ? nextWhenVisible : nextFunc, (_ref = (_activeChildIntervalR = activeChildIntervalRef.current) != null ? _activeChildIntervalR : interval) != null ? _ref : undefined);
+	    return () => {
+	      if (intervalHandleRef.current !== null) {
+	        clearInterval(intervalHandleRef.current);
+	      }
+	    };
+	  }, [shouldPlay, prev, next, activeChildIntervalRef, interval, nextWhenVisible, isRTL]);
+	  const indicatorOnClicks = reactExports.useMemo(() => indicators && Array.from({
+	    length: numChildren
+	  }, (_, index) => event => {
+	    onSelect == null ? void 0 : onSelect(index, event);
+	  }), [indicators, numChildren, onSelect]);
+	  return /*#__PURE__*/jsxRuntimeExports.jsxs(Component, {
+	    ref: elementRef,
+	    ...props,
+	    onKeyDown: handleKeyDown,
+	    onMouseOver: handleMouseOver,
+	    onMouseOut: handleMouseOut,
+	    onTouchStart: handleTouchStart,
+	    onTouchMove: handleTouchMove,
+	    onTouchEnd: handleTouchEnd,
+	    className: classNames(className, prefix, slide && 'slide', fade && `${prefix}-fade`, variant && `${prefix}-${variant}`),
+	    children: [indicators && /*#__PURE__*/jsxRuntimeExports.jsx("div", {
+	      className: `${prefix}-indicators`,
+	      children: map(children, (_, index) => /*#__PURE__*/jsxRuntimeExports.jsx("button", {
+	        type: "button",
+	        "data-bs-target": "" // Bootstrap requires this in their css.
+	        ,
+
+	        "aria-label": indicatorLabels != null && indicatorLabels.length ? indicatorLabels[index] : `Slide ${index + 1}`,
+	        className: index === renderedActiveIndex ? 'active' : undefined,
+	        onClick: indicatorOnClicks ? indicatorOnClicks[index] : undefined,
+	        "aria-current": index === renderedActiveIndex
+	      }, index))
+	    }), /*#__PURE__*/jsxRuntimeExports.jsx("div", {
+	      className: `${prefix}-inner`,
+	      children: map(children, (child, index) => {
+	        const isActive = index === renderedActiveIndex;
+	        return slide ? /*#__PURE__*/jsxRuntimeExports.jsx(TransitionWrapper, {
+	          in: isActive,
+	          onEnter: isActive ? handleEnter : undefined,
+	          onEntered: isActive ? handleEntered : undefined,
+	          addEndListener: transitionEndListener,
+	          children: (status, innerProps) => /*#__PURE__*/reactExports.cloneElement(child, {
+	            ...innerProps,
+	            className: classNames(child.props.className, isActive && status !== 'entered' && orderClassName, (status === 'entered' || status === 'exiting') && 'active', (status === 'entering' || status === 'exiting') && directionalClassName)
+	          })
+	        }) : /*#__PURE__*/reactExports.cloneElement(child, {
+	          className: classNames(child.props.className, isActive && 'active')
+	        });
+	      })
+	    }), controls && /*#__PURE__*/jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
+	      children: [(wrap || activeIndex !== 0) && /*#__PURE__*/jsxRuntimeExports.jsxs(Anchor, {
+	        className: `${prefix}-control-prev`,
+	        onClick: prev,
+	        children: [prevIcon, prevLabel && /*#__PURE__*/jsxRuntimeExports.jsx("span", {
+	          className: "visually-hidden",
+	          children: prevLabel
+	        })]
+	      }), (wrap || activeIndex !== numChildren - 1) && /*#__PURE__*/jsxRuntimeExports.jsxs(Anchor, {
+	        className: `${prefix}-control-next`,
+	        onClick: next,
+	        children: [nextIcon, nextLabel && /*#__PURE__*/jsxRuntimeExports.jsx("span", {
+	          className: "visually-hidden",
+	          children: nextLabel
+	        })]
+	      })]
+	    })]
+	  });
+	});
+	Carousel.displayName = 'Carousel';
+	Carousel.defaultProps = defaultProps$q;
+	Object.assign(Carousel, {
+	  Caption: CarouselCaption,
+	  Item: CarouselItem
+	});
+
+	function useCol({
+	  as,
+	  bsPrefix,
+	  className,
+	  ...props
+	}) {
+	  bsPrefix = useBootstrapPrefix(bsPrefix, 'col');
+	  const breakpoints = useBootstrapBreakpoints();
+	  const minBreakpoint = useBootstrapMinBreakpoint();
+	  const spans = [];
+	  const classes = [];
+	  breakpoints.forEach(brkPoint => {
+	    const propValue = props[brkPoint];
+	    delete props[brkPoint];
+	    let span;
+	    let offset;
+	    let order;
+	    if (typeof propValue === 'object' && propValue != null) {
+	      ({
+	        span,
+	        offset,
+	        order
+	      } = propValue);
+	    } else {
+	      span = propValue;
+	    }
+	    const infix = brkPoint !== minBreakpoint ? `-${brkPoint}` : '';
+	    if (span) spans.push(span === true ? `${bsPrefix}${infix}` : `${bsPrefix}${infix}-${span}`);
+	    if (order != null) classes.push(`order${infix}-${order}`);
+	    if (offset != null) classes.push(`offset${infix}-${offset}`);
+	  });
+	  return [{
+	    ...props,
+	    className: classNames(className, ...spans, ...classes)
+	  }, {
+	    as,
+	    bsPrefix,
+	    spans
+	  }];
+	}
+	const Col = /*#__PURE__*/reactExports.forwardRef(
+	// Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
+	(props, ref) => {
+	  const [{
+	    className,
+	    ...colProps
+	  }, {
+	    as: Component = 'div',
+	    bsPrefix,
+	    spans
+	  }] = useCol(props);
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(Component, {
+	    ...colProps,
+	    ref: ref,
+	    className: classNames(className, !spans.length && bsPrefix)
+	  });
+	});
+	Col.displayName = 'Col';
+
+	var toArray$1 = Function.prototype.bind.call(Function.prototype.call, [].slice);
 	/**
 	 * Runs `querySelectorAll` on a given element.
 	 * 
@@ -11732,7 +12777,7 @@
 	 */
 
 	function qsa(element, selector) {
-	  return toArray(element.querySelectorAll(selector));
+	  return toArray$1(element.querySelectorAll(selector));
 	}
 
 	/**
@@ -11762,6 +12807,1948 @@
 	  return dispatch;
 	}
 
+	const DropdownContext$1 = /*#__PURE__*/reactExports.createContext(null);
+
+	var has = Object.prototype.hasOwnProperty;
+	function find(iter, tar, key) {
+	  for (key of iter.keys()) {
+	    if (dequal(key, tar)) return key;
+	  }
+	}
+	function dequal(foo, bar) {
+	  var ctor, len, tmp;
+	  if (foo === bar) return true;
+	  if (foo && bar && (ctor = foo.constructor) === bar.constructor) {
+	    if (ctor === Date) return foo.getTime() === bar.getTime();
+	    if (ctor === RegExp) return foo.toString() === bar.toString();
+	    if (ctor === Array) {
+	      if ((len = foo.length) === bar.length) {
+	        while (len-- && dequal(foo[len], bar[len]));
+	      }
+	      return len === -1;
+	    }
+	    if (ctor === Set) {
+	      if (foo.size !== bar.size) {
+	        return false;
+	      }
+	      for (len of foo) {
+	        tmp = len;
+	        if (tmp && typeof tmp === 'object') {
+	          tmp = find(bar, tmp);
+	          if (!tmp) return false;
+	        }
+	        if (!bar.has(tmp)) return false;
+	      }
+	      return true;
+	    }
+	    if (ctor === Map) {
+	      if (foo.size !== bar.size) {
+	        return false;
+	      }
+	      for (len of foo) {
+	        tmp = len[0];
+	        if (tmp && typeof tmp === 'object') {
+	          tmp = find(bar, tmp);
+	          if (!tmp) return false;
+	        }
+	        if (!dequal(len[1], bar.get(tmp))) {
+	          return false;
+	        }
+	      }
+	      return true;
+	    }
+	    if (ctor === ArrayBuffer) {
+	      foo = new Uint8Array(foo);
+	      bar = new Uint8Array(bar);
+	    } else if (ctor === DataView) {
+	      if ((len = foo.byteLength) === bar.byteLength) {
+	        while (len-- && foo.getInt8(len) === bar.getInt8(len));
+	      }
+	      return len === -1;
+	    }
+	    if (ArrayBuffer.isView(foo)) {
+	      if ((len = foo.byteLength) === bar.byteLength) {
+	        while (len-- && foo[len] === bar[len]);
+	      }
+	      return len === -1;
+	    }
+	    if (!ctor || typeof foo === 'object') {
+	      len = 0;
+	      for (ctor in foo) {
+	        if (has.call(foo, ctor) && ++len && !has.call(bar, ctor)) return false;
+	        if (!(ctor in bar) || !dequal(foo[ctor], bar[ctor])) return false;
+	      }
+	      return Object.keys(bar).length === len;
+	    }
+	  }
+	  return foo !== foo && bar !== bar;
+	}
+
+	function useSafeState(state) {
+	  var isMounted = useMounted();
+	  return [state[0], reactExports.useCallback(function (nextState) {
+	    if (!isMounted()) return;
+	    return state[1](nextState);
+	  }, [isMounted, state[1]])];
+	}
+
+	var top = 'top';
+	var bottom = 'bottom';
+	var right = 'right';
+	var left = 'left';
+	var auto = 'auto';
+	var basePlacements = [top, bottom, right, left];
+	var start = 'start';
+	var end$1 = 'end';
+	var clippingParents = 'clippingParents';
+	var viewport = 'viewport';
+	var popper = 'popper';
+	var reference = 'reference';
+	var variationPlacements = /*#__PURE__*/basePlacements.reduce(function (acc, placement) {
+	  return acc.concat([placement + "-" + start, placement + "-" + end$1]);
+	}, []);
+	var placements = /*#__PURE__*/[].concat(basePlacements, [auto]).reduce(function (acc, placement) {
+	  return acc.concat([placement, placement + "-" + start, placement + "-" + end$1]);
+	}, []); // modifiers that need to read the DOM
+
+	var beforeRead = 'beforeRead';
+	var read = 'read';
+	var afterRead = 'afterRead'; // pure-logic modifiers
+
+	var beforeMain = 'beforeMain';
+	var main = 'main';
+	var afterMain = 'afterMain'; // modifier with the purpose to write to the DOM (or write into a framework state)
+
+	var beforeWrite = 'beforeWrite';
+	var write = 'write';
+	var afterWrite = 'afterWrite';
+	var modifierPhases = [beforeRead, read, afterRead, beforeMain, main, afterMain, beforeWrite, write, afterWrite];
+
+	function getBasePlacement(placement) {
+	  return placement.split('-')[0];
+	}
+
+	function getWindow(node) {
+	  if (node == null) {
+	    return window;
+	  }
+	  if (node.toString() !== '[object Window]') {
+	    var ownerDocument = node.ownerDocument;
+	    return ownerDocument ? ownerDocument.defaultView || window : window;
+	  }
+	  return node;
+	}
+
+	function isElement(node) {
+	  var OwnElement = getWindow(node).Element;
+	  return node instanceof OwnElement || node instanceof Element;
+	}
+	function isHTMLElement(node) {
+	  var OwnElement = getWindow(node).HTMLElement;
+	  return node instanceof OwnElement || node instanceof HTMLElement;
+	}
+	function isShadowRoot(node) {
+	  // IE 11 has no ShadowRoot
+	  if (typeof ShadowRoot === 'undefined') {
+	    return false;
+	  }
+	  var OwnElement = getWindow(node).ShadowRoot;
+	  return node instanceof OwnElement || node instanceof ShadowRoot;
+	}
+
+	var max = Math.max;
+	var min = Math.min;
+	var round = Math.round;
+
+	function getUAString() {
+	  var uaData = navigator.userAgentData;
+	  if (uaData != null && uaData.brands) {
+	    return uaData.brands.map(function (item) {
+	      return item.brand + "/" + item.version;
+	    }).join(' ');
+	  }
+	  return navigator.userAgent;
+	}
+
+	function isLayoutViewport() {
+	  return !/^((?!chrome|android).)*safari/i.test(getUAString());
+	}
+
+	function getBoundingClientRect(element, includeScale, isFixedStrategy) {
+	  if (includeScale === void 0) {
+	    includeScale = false;
+	  }
+	  if (isFixedStrategy === void 0) {
+	    isFixedStrategy = false;
+	  }
+	  var clientRect = element.getBoundingClientRect();
+	  var scaleX = 1;
+	  var scaleY = 1;
+	  if (includeScale && isHTMLElement(element)) {
+	    scaleX = element.offsetWidth > 0 ? round(clientRect.width) / element.offsetWidth || 1 : 1;
+	    scaleY = element.offsetHeight > 0 ? round(clientRect.height) / element.offsetHeight || 1 : 1;
+	  }
+	  var _ref = isElement(element) ? getWindow(element) : window,
+	    visualViewport = _ref.visualViewport;
+	  var addVisualOffsets = !isLayoutViewport() && isFixedStrategy;
+	  var x = (clientRect.left + (addVisualOffsets && visualViewport ? visualViewport.offsetLeft : 0)) / scaleX;
+	  var y = (clientRect.top + (addVisualOffsets && visualViewport ? visualViewport.offsetTop : 0)) / scaleY;
+	  var width = clientRect.width / scaleX;
+	  var height = clientRect.height / scaleY;
+	  return {
+	    width: width,
+	    height: height,
+	    top: y,
+	    right: x + width,
+	    bottom: y + height,
+	    left: x,
+	    x: x,
+	    y: y
+	  };
+	}
+
+	// means it doesn't take into account transforms.
+
+	function getLayoutRect(element) {
+	  var clientRect = getBoundingClientRect(element); // Use the clientRect sizes if it's not been transformed.
+	  // Fixes https://github.com/popperjs/popper-core/issues/1223
+
+	  var width = element.offsetWidth;
+	  var height = element.offsetHeight;
+	  if (Math.abs(clientRect.width - width) <= 1) {
+	    width = clientRect.width;
+	  }
+	  if (Math.abs(clientRect.height - height) <= 1) {
+	    height = clientRect.height;
+	  }
+	  return {
+	    x: element.offsetLeft,
+	    y: element.offsetTop,
+	    width: width,
+	    height: height
+	  };
+	}
+
+	function contains$1(parent, child) {
+	  var rootNode = child.getRootNode && child.getRootNode(); // First, attempt with faster native method
+
+	  if (parent.contains(child)) {
+	    return true;
+	  } // then fallback to custom implementation with Shadow DOM support
+	  else if (rootNode && isShadowRoot(rootNode)) {
+	    var next = child;
+	    do {
+	      if (next && parent.isSameNode(next)) {
+	        return true;
+	      } // $FlowFixMe[prop-missing]: need a better way to handle this...
+
+	      next = next.parentNode || next.host;
+	    } while (next);
+	  } // Give up, the result is false
+
+	  return false;
+	}
+
+	function getNodeName(element) {
+	  return element ? (element.nodeName || '').toLowerCase() : null;
+	}
+
+	function getComputedStyle$1(element) {
+	  return getWindow(element).getComputedStyle(element);
+	}
+
+	function isTableElement(element) {
+	  return ['table', 'td', 'th'].indexOf(getNodeName(element)) >= 0;
+	}
+
+	function getDocumentElement(element) {
+	  // $FlowFixMe[incompatible-return]: assume body is always available
+	  return ((isElement(element) ? element.ownerDocument :
+	  // $FlowFixMe[prop-missing]
+	  element.document) || window.document).documentElement;
+	}
+
+	function getParentNode(element) {
+	  if (getNodeName(element) === 'html') {
+	    return element;
+	  }
+	  return (
+	    // this is a quicker (but less type safe) way to save quite some bytes from the bundle
+	    // $FlowFixMe[incompatible-return]
+	    // $FlowFixMe[prop-missing]
+	    element.assignedSlot ||
+	    // step into the shadow DOM of the parent of a slotted node
+	    element.parentNode || (
+	    // DOM Element detected
+	    isShadowRoot(element) ? element.host : null) ||
+	    // ShadowRoot detected
+	    // $FlowFixMe[incompatible-call]: HTMLElement is a Node
+	    getDocumentElement(element) // fallback
+	  );
+	}
+
+	function getTrueOffsetParent(element) {
+	  if (!isHTMLElement(element) ||
+	  // https://github.com/popperjs/popper-core/issues/837
+	  getComputedStyle$1(element).position === 'fixed') {
+	    return null;
+	  }
+	  return element.offsetParent;
+	} // `.offsetParent` reports `null` for fixed elements, while absolute elements
+	// return the containing block
+
+	function getContainingBlock(element) {
+	  var isFirefox = /firefox/i.test(getUAString());
+	  var isIE = /Trident/i.test(getUAString());
+	  if (isIE && isHTMLElement(element)) {
+	    // In IE 9, 10 and 11 fixed elements containing block is always established by the viewport
+	    var elementCss = getComputedStyle$1(element);
+	    if (elementCss.position === 'fixed') {
+	      return null;
+	    }
+	  }
+	  var currentNode = getParentNode(element);
+	  if (isShadowRoot(currentNode)) {
+	    currentNode = currentNode.host;
+	  }
+	  while (isHTMLElement(currentNode) && ['html', 'body'].indexOf(getNodeName(currentNode)) < 0) {
+	    var css = getComputedStyle$1(currentNode); // This is non-exhaustive but covers the most common CSS properties that
+	    // create a containing block.
+	    // https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block#identifying_the_containing_block
+
+	    if (css.transform !== 'none' || css.perspective !== 'none' || css.contain === 'paint' || ['transform', 'perspective'].indexOf(css.willChange) !== -1 || isFirefox && css.willChange === 'filter' || isFirefox && css.filter && css.filter !== 'none') {
+	      return currentNode;
+	    } else {
+	      currentNode = currentNode.parentNode;
+	    }
+	  }
+	  return null;
+	} // Gets the closest ancestor positioned element. Handles some edge cases,
+	// such as table ancestors and cross browser bugs.
+
+	function getOffsetParent(element) {
+	  var window = getWindow(element);
+	  var offsetParent = getTrueOffsetParent(element);
+	  while (offsetParent && isTableElement(offsetParent) && getComputedStyle$1(offsetParent).position === 'static') {
+	    offsetParent = getTrueOffsetParent(offsetParent);
+	  }
+	  if (offsetParent && (getNodeName(offsetParent) === 'html' || getNodeName(offsetParent) === 'body' && getComputedStyle$1(offsetParent).position === 'static')) {
+	    return window;
+	  }
+	  return offsetParent || getContainingBlock(element) || window;
+	}
+
+	function getMainAxisFromPlacement(placement) {
+	  return ['top', 'bottom'].indexOf(placement) >= 0 ? 'x' : 'y';
+	}
+
+	function within(min$1, value, max$1) {
+	  return max(min$1, min(value, max$1));
+	}
+	function withinMaxClamp(min, value, max) {
+	  var v = within(min, value, max);
+	  return v > max ? max : v;
+	}
+
+	function getFreshSideObject() {
+	  return {
+	    top: 0,
+	    right: 0,
+	    bottom: 0,
+	    left: 0
+	  };
+	}
+
+	function mergePaddingObject(paddingObject) {
+	  return Object.assign({}, getFreshSideObject(), paddingObject);
+	}
+
+	function expandToHashMap(value, keys) {
+	  return keys.reduce(function (hashMap, key) {
+	    hashMap[key] = value;
+	    return hashMap;
+	  }, {});
+	}
+
+	var toPaddingObject = function toPaddingObject(padding, state) {
+	  padding = typeof padding === 'function' ? padding(Object.assign({}, state.rects, {
+	    placement: state.placement
+	  })) : padding;
+	  return mergePaddingObject(typeof padding !== 'number' ? padding : expandToHashMap(padding, basePlacements));
+	};
+	function arrow(_ref) {
+	  var _state$modifiersData$;
+	  var state = _ref.state,
+	    name = _ref.name,
+	    options = _ref.options;
+	  var arrowElement = state.elements.arrow;
+	  var popperOffsets = state.modifiersData.popperOffsets;
+	  var basePlacement = getBasePlacement(state.placement);
+	  var axis = getMainAxisFromPlacement(basePlacement);
+	  var isVertical = [left, right].indexOf(basePlacement) >= 0;
+	  var len = isVertical ? 'height' : 'width';
+	  if (!arrowElement || !popperOffsets) {
+	    return;
+	  }
+	  var paddingObject = toPaddingObject(options.padding, state);
+	  var arrowRect = getLayoutRect(arrowElement);
+	  var minProp = axis === 'y' ? top : left;
+	  var maxProp = axis === 'y' ? bottom : right;
+	  var endDiff = state.rects.reference[len] + state.rects.reference[axis] - popperOffsets[axis] - state.rects.popper[len];
+	  var startDiff = popperOffsets[axis] - state.rects.reference[axis];
+	  var arrowOffsetParent = getOffsetParent(arrowElement);
+	  var clientSize = arrowOffsetParent ? axis === 'y' ? arrowOffsetParent.clientHeight || 0 : arrowOffsetParent.clientWidth || 0 : 0;
+	  var centerToReference = endDiff / 2 - startDiff / 2; // Make sure the arrow doesn't overflow the popper if the center point is
+	  // outside of the popper bounds
+
+	  var min = paddingObject[minProp];
+	  var max = clientSize - arrowRect[len] - paddingObject[maxProp];
+	  var center = clientSize / 2 - arrowRect[len] / 2 + centerToReference;
+	  var offset = within(min, center, max); // Prevents breaking syntax highlighting...
+
+	  var axisProp = axis;
+	  state.modifiersData[name] = (_state$modifiersData$ = {}, _state$modifiersData$[axisProp] = offset, _state$modifiersData$.centerOffset = offset - center, _state$modifiersData$);
+	}
+	function effect$1(_ref2) {
+	  var state = _ref2.state,
+	    options = _ref2.options;
+	  var _options$element = options.element,
+	    arrowElement = _options$element === void 0 ? '[data-popper-arrow]' : _options$element;
+	  if (arrowElement == null) {
+	    return;
+	  } // CSS selector
+
+	  if (typeof arrowElement === 'string') {
+	    arrowElement = state.elements.popper.querySelector(arrowElement);
+	    if (!arrowElement) {
+	      return;
+	    }
+	  }
+	  {
+	    if (!isHTMLElement(arrowElement)) {
+	      console.error(['Popper: "arrow" element must be an HTMLElement (not an SVGElement).', 'To use an SVG arrow, wrap it in an HTMLElement that will be used as', 'the arrow.'].join(' '));
+	    }
+	  }
+	  if (!contains$1(state.elements.popper, arrowElement)) {
+	    {
+	      console.error(['Popper: "arrow" modifier\'s `element` must be a child of the popper', 'element.'].join(' '));
+	    }
+	    return;
+	  }
+	  state.elements.arrow = arrowElement;
+	} // eslint-disable-next-line import/no-unused-modules
+
+	var arrow$1 = {
+	  name: 'arrow',
+	  enabled: true,
+	  phase: 'main',
+	  fn: arrow,
+	  effect: effect$1,
+	  requires: ['popperOffsets'],
+	  requiresIfExists: ['preventOverflow']
+	};
+
+	function getVariation(placement) {
+	  return placement.split('-')[1];
+	}
+
+	var unsetSides = {
+	  top: 'auto',
+	  right: 'auto',
+	  bottom: 'auto',
+	  left: 'auto'
+	}; // Round the offsets to the nearest suitable subpixel based on the DPR.
+	// Zooming can change the DPR, but it seems to report a value that will
+	// cleanly divide the values into the appropriate subpixels.
+
+	function roundOffsetsByDPR(_ref) {
+	  var x = _ref.x,
+	    y = _ref.y;
+	  var win = window;
+	  var dpr = win.devicePixelRatio || 1;
+	  return {
+	    x: round(x * dpr) / dpr || 0,
+	    y: round(y * dpr) / dpr || 0
+	  };
+	}
+	function mapToStyles(_ref2) {
+	  var _Object$assign2;
+	  var popper = _ref2.popper,
+	    popperRect = _ref2.popperRect,
+	    placement = _ref2.placement,
+	    variation = _ref2.variation,
+	    offsets = _ref2.offsets,
+	    position = _ref2.position,
+	    gpuAcceleration = _ref2.gpuAcceleration,
+	    adaptive = _ref2.adaptive,
+	    roundOffsets = _ref2.roundOffsets,
+	    isFixed = _ref2.isFixed;
+	  var _offsets$x = offsets.x,
+	    x = _offsets$x === void 0 ? 0 : _offsets$x,
+	    _offsets$y = offsets.y,
+	    y = _offsets$y === void 0 ? 0 : _offsets$y;
+	  var _ref3 = typeof roundOffsets === 'function' ? roundOffsets({
+	    x: x,
+	    y: y
+	  }) : {
+	    x: x,
+	    y: y
+	  };
+	  x = _ref3.x;
+	  y = _ref3.y;
+	  var hasX = offsets.hasOwnProperty('x');
+	  var hasY = offsets.hasOwnProperty('y');
+	  var sideX = left;
+	  var sideY = top;
+	  var win = window;
+	  if (adaptive) {
+	    var offsetParent = getOffsetParent(popper);
+	    var heightProp = 'clientHeight';
+	    var widthProp = 'clientWidth';
+	    if (offsetParent === getWindow(popper)) {
+	      offsetParent = getDocumentElement(popper);
+	      if (getComputedStyle$1(offsetParent).position !== 'static' && position === 'absolute') {
+	        heightProp = 'scrollHeight';
+	        widthProp = 'scrollWidth';
+	      }
+	    } // $FlowFixMe[incompatible-cast]: force type refinement, we compare offsetParent with window above, but Flow doesn't detect it
+
+	    offsetParent = offsetParent;
+	    if (placement === top || (placement === left || placement === right) && variation === end$1) {
+	      sideY = bottom;
+	      var offsetY = isFixed && offsetParent === win && win.visualViewport ? win.visualViewport.height :
+	      // $FlowFixMe[prop-missing]
+	      offsetParent[heightProp];
+	      y -= offsetY - popperRect.height;
+	      y *= gpuAcceleration ? 1 : -1;
+	    }
+	    if (placement === left || (placement === top || placement === bottom) && variation === end$1) {
+	      sideX = right;
+	      var offsetX = isFixed && offsetParent === win && win.visualViewport ? win.visualViewport.width :
+	      // $FlowFixMe[prop-missing]
+	      offsetParent[widthProp];
+	      x -= offsetX - popperRect.width;
+	      x *= gpuAcceleration ? 1 : -1;
+	    }
+	  }
+	  var commonStyles = Object.assign({
+	    position: position
+	  }, adaptive && unsetSides);
+	  var _ref4 = roundOffsets === true ? roundOffsetsByDPR({
+	    x: x,
+	    y: y
+	  }) : {
+	    x: x,
+	    y: y
+	  };
+	  x = _ref4.x;
+	  y = _ref4.y;
+	  if (gpuAcceleration) {
+	    var _Object$assign;
+	    return Object.assign({}, commonStyles, (_Object$assign = {}, _Object$assign[sideY] = hasY ? '0' : '', _Object$assign[sideX] = hasX ? '0' : '', _Object$assign.transform = (win.devicePixelRatio || 1) <= 1 ? "translate(" + x + "px, " + y + "px)" : "translate3d(" + x + "px, " + y + "px, 0)", _Object$assign));
+	  }
+	  return Object.assign({}, commonStyles, (_Object$assign2 = {}, _Object$assign2[sideY] = hasY ? y + "px" : '', _Object$assign2[sideX] = hasX ? x + "px" : '', _Object$assign2.transform = '', _Object$assign2));
+	}
+	function computeStyles(_ref5) {
+	  var state = _ref5.state,
+	    options = _ref5.options;
+	  var _options$gpuAccelerat = options.gpuAcceleration,
+	    gpuAcceleration = _options$gpuAccelerat === void 0 ? true : _options$gpuAccelerat,
+	    _options$adaptive = options.adaptive,
+	    adaptive = _options$adaptive === void 0 ? true : _options$adaptive,
+	    _options$roundOffsets = options.roundOffsets,
+	    roundOffsets = _options$roundOffsets === void 0 ? true : _options$roundOffsets;
+	  {
+	    var transitionProperty = getComputedStyle$1(state.elements.popper).transitionProperty || '';
+	    if (adaptive && ['transform', 'top', 'right', 'bottom', 'left'].some(function (property) {
+	      return transitionProperty.indexOf(property) >= 0;
+	    })) {
+	      console.warn(['Popper: Detected CSS transitions on at least one of the following', 'CSS properties: "transform", "top", "right", "bottom", "left".', '\n\n', 'Disable the "computeStyles" modifier\'s `adaptive` option to allow', 'for smooth transitions, or remove these properties from the CSS', 'transition declaration on the popper element if only transitioning', 'opacity or background-color for example.', '\n\n', 'We recommend using the popper element as a wrapper around an inner', 'element that can have any CSS property transitioned for animations.'].join(' '));
+	    }
+	  }
+	  var commonStyles = {
+	    placement: getBasePlacement(state.placement),
+	    variation: getVariation(state.placement),
+	    popper: state.elements.popper,
+	    popperRect: state.rects.popper,
+	    gpuAcceleration: gpuAcceleration,
+	    isFixed: state.options.strategy === 'fixed'
+	  };
+	  if (state.modifiersData.popperOffsets != null) {
+	    state.styles.popper = Object.assign({}, state.styles.popper, mapToStyles(Object.assign({}, commonStyles, {
+	      offsets: state.modifiersData.popperOffsets,
+	      position: state.options.strategy,
+	      adaptive: adaptive,
+	      roundOffsets: roundOffsets
+	    })));
+	  }
+	  if (state.modifiersData.arrow != null) {
+	    state.styles.arrow = Object.assign({}, state.styles.arrow, mapToStyles(Object.assign({}, commonStyles, {
+	      offsets: state.modifiersData.arrow,
+	      position: 'absolute',
+	      adaptive: false,
+	      roundOffsets: roundOffsets
+	    })));
+	  }
+	  state.attributes.popper = Object.assign({}, state.attributes.popper, {
+	    'data-popper-placement': state.placement
+	  });
+	} // eslint-disable-next-line import/no-unused-modules
+
+	var computeStyles$1 = {
+	  name: 'computeStyles',
+	  enabled: true,
+	  phase: 'beforeWrite',
+	  fn: computeStyles,
+	  data: {}
+	};
+
+	var passive = {
+	  passive: true
+	};
+	function effect(_ref) {
+	  var state = _ref.state,
+	    instance = _ref.instance,
+	    options = _ref.options;
+	  var _options$scroll = options.scroll,
+	    scroll = _options$scroll === void 0 ? true : _options$scroll,
+	    _options$resize = options.resize,
+	    resize = _options$resize === void 0 ? true : _options$resize;
+	  var window = getWindow(state.elements.popper);
+	  var scrollParents = [].concat(state.scrollParents.reference, state.scrollParents.popper);
+	  if (scroll) {
+	    scrollParents.forEach(function (scrollParent) {
+	      scrollParent.addEventListener('scroll', instance.update, passive);
+	    });
+	  }
+	  if (resize) {
+	    window.addEventListener('resize', instance.update, passive);
+	  }
+	  return function () {
+	    if (scroll) {
+	      scrollParents.forEach(function (scrollParent) {
+	        scrollParent.removeEventListener('scroll', instance.update, passive);
+	      });
+	    }
+	    if (resize) {
+	      window.removeEventListener('resize', instance.update, passive);
+	    }
+	  };
+	} // eslint-disable-next-line import/no-unused-modules
+
+	var eventListeners = {
+	  name: 'eventListeners',
+	  enabled: true,
+	  phase: 'write',
+	  fn: function fn() {},
+	  effect: effect,
+	  data: {}
+	};
+
+	var hash$1 = {
+	  left: 'right',
+	  right: 'left',
+	  bottom: 'top',
+	  top: 'bottom'
+	};
+	function getOppositePlacement(placement) {
+	  return placement.replace(/left|right|bottom|top/g, function (matched) {
+	    return hash$1[matched];
+	  });
+	}
+
+	var hash = {
+	  start: 'end',
+	  end: 'start'
+	};
+	function getOppositeVariationPlacement(placement) {
+	  return placement.replace(/start|end/g, function (matched) {
+	    return hash[matched];
+	  });
+	}
+
+	function getWindowScroll(node) {
+	  var win = getWindow(node);
+	  var scrollLeft = win.pageXOffset;
+	  var scrollTop = win.pageYOffset;
+	  return {
+	    scrollLeft: scrollLeft,
+	    scrollTop: scrollTop
+	  };
+	}
+
+	function getWindowScrollBarX(element) {
+	  // If <html> has a CSS width greater than the viewport, then this will be
+	  // incorrect for RTL.
+	  // Popper 1 is broken in this case and never had a bug report so let's assume
+	  // it's not an issue. I don't think anyone ever specifies width on <html>
+	  // anyway.
+	  // Browsers where the left scrollbar doesn't cause an issue report `0` for
+	  // this (e.g. Edge 2019, IE11, Safari)
+	  return getBoundingClientRect(getDocumentElement(element)).left + getWindowScroll(element).scrollLeft;
+	}
+
+	function getViewportRect(element, strategy) {
+	  var win = getWindow(element);
+	  var html = getDocumentElement(element);
+	  var visualViewport = win.visualViewport;
+	  var width = html.clientWidth;
+	  var height = html.clientHeight;
+	  var x = 0;
+	  var y = 0;
+	  if (visualViewport) {
+	    width = visualViewport.width;
+	    height = visualViewport.height;
+	    var layoutViewport = isLayoutViewport();
+	    if (layoutViewport || !layoutViewport && strategy === 'fixed') {
+	      x = visualViewport.offsetLeft;
+	      y = visualViewport.offsetTop;
+	    }
+	  }
+	  return {
+	    width: width,
+	    height: height,
+	    x: x + getWindowScrollBarX(element),
+	    y: y
+	  };
+	}
+
+	// of the `<html>` and `<body>` rect bounds if horizontally scrollable
+
+	function getDocumentRect(element) {
+	  var _element$ownerDocumen;
+	  var html = getDocumentElement(element);
+	  var winScroll = getWindowScroll(element);
+	  var body = (_element$ownerDocumen = element.ownerDocument) == null ? void 0 : _element$ownerDocumen.body;
+	  var width = max(html.scrollWidth, html.clientWidth, body ? body.scrollWidth : 0, body ? body.clientWidth : 0);
+	  var height = max(html.scrollHeight, html.clientHeight, body ? body.scrollHeight : 0, body ? body.clientHeight : 0);
+	  var x = -winScroll.scrollLeft + getWindowScrollBarX(element);
+	  var y = -winScroll.scrollTop;
+	  if (getComputedStyle$1(body || html).direction === 'rtl') {
+	    x += max(html.clientWidth, body ? body.clientWidth : 0) - width;
+	  }
+	  return {
+	    width: width,
+	    height: height,
+	    x: x,
+	    y: y
+	  };
+	}
+
+	function isScrollParent(element) {
+	  // Firefox wants us to check `-x` and `-y` variations as well
+	  var _getComputedStyle = getComputedStyle$1(element),
+	    overflow = _getComputedStyle.overflow,
+	    overflowX = _getComputedStyle.overflowX,
+	    overflowY = _getComputedStyle.overflowY;
+	  return /auto|scroll|overlay|hidden/.test(overflow + overflowY + overflowX);
+	}
+
+	function getScrollParent(node) {
+	  if (['html', 'body', '#document'].indexOf(getNodeName(node)) >= 0) {
+	    // $FlowFixMe[incompatible-return]: assume body is always available
+	    return node.ownerDocument.body;
+	  }
+	  if (isHTMLElement(node) && isScrollParent(node)) {
+	    return node;
+	  }
+	  return getScrollParent(getParentNode(node));
+	}
+
+	/*
+	given a DOM element, return the list of all scroll parents, up the list of ancesors
+	until we get to the top window object. This list is what we attach scroll listeners
+	to, because if any of these parent elements scroll, we'll need to re-calculate the
+	reference element's position.
+	*/
+
+	function listScrollParents(element, list) {
+	  var _element$ownerDocumen;
+	  if (list === void 0) {
+	    list = [];
+	  }
+	  var scrollParent = getScrollParent(element);
+	  var isBody = scrollParent === ((_element$ownerDocumen = element.ownerDocument) == null ? void 0 : _element$ownerDocumen.body);
+	  var win = getWindow(scrollParent);
+	  var target = isBody ? [win].concat(win.visualViewport || [], isScrollParent(scrollParent) ? scrollParent : []) : scrollParent;
+	  var updatedList = list.concat(target);
+	  return isBody ? updatedList :
+	  // $FlowFixMe[incompatible-call]: isBody tells us target will be an HTMLElement here
+	  updatedList.concat(listScrollParents(getParentNode(target)));
+	}
+
+	function rectToClientRect(rect) {
+	  return Object.assign({}, rect, {
+	    left: rect.x,
+	    top: rect.y,
+	    right: rect.x + rect.width,
+	    bottom: rect.y + rect.height
+	  });
+	}
+
+	function getInnerBoundingClientRect(element, strategy) {
+	  var rect = getBoundingClientRect(element, false, strategy === 'fixed');
+	  rect.top = rect.top + element.clientTop;
+	  rect.left = rect.left + element.clientLeft;
+	  rect.bottom = rect.top + element.clientHeight;
+	  rect.right = rect.left + element.clientWidth;
+	  rect.width = element.clientWidth;
+	  rect.height = element.clientHeight;
+	  rect.x = rect.left;
+	  rect.y = rect.top;
+	  return rect;
+	}
+	function getClientRectFromMixedType(element, clippingParent, strategy) {
+	  return clippingParent === viewport ? rectToClientRect(getViewportRect(element, strategy)) : isElement(clippingParent) ? getInnerBoundingClientRect(clippingParent, strategy) : rectToClientRect(getDocumentRect(getDocumentElement(element)));
+	} // A "clipping parent" is an overflowable container with the characteristic of
+	// clipping (or hiding) overflowing elements with a position different from
+	// `initial`
+
+	function getClippingParents(element) {
+	  var clippingParents = listScrollParents(getParentNode(element));
+	  var canEscapeClipping = ['absolute', 'fixed'].indexOf(getComputedStyle$1(element).position) >= 0;
+	  var clipperElement = canEscapeClipping && isHTMLElement(element) ? getOffsetParent(element) : element;
+	  if (!isElement(clipperElement)) {
+	    return [];
+	  } // $FlowFixMe[incompatible-return]: https://github.com/facebook/flow/issues/1414
+
+	  return clippingParents.filter(function (clippingParent) {
+	    return isElement(clippingParent) && contains$1(clippingParent, clipperElement) && getNodeName(clippingParent) !== 'body';
+	  });
+	} // Gets the maximum area that the element is visible in due to any number of
+	// clipping parents
+
+	function getClippingRect(element, boundary, rootBoundary, strategy) {
+	  var mainClippingParents = boundary === 'clippingParents' ? getClippingParents(element) : [].concat(boundary);
+	  var clippingParents = [].concat(mainClippingParents, [rootBoundary]);
+	  var firstClippingParent = clippingParents[0];
+	  var clippingRect = clippingParents.reduce(function (accRect, clippingParent) {
+	    var rect = getClientRectFromMixedType(element, clippingParent, strategy);
+	    accRect.top = max(rect.top, accRect.top);
+	    accRect.right = min(rect.right, accRect.right);
+	    accRect.bottom = min(rect.bottom, accRect.bottom);
+	    accRect.left = max(rect.left, accRect.left);
+	    return accRect;
+	  }, getClientRectFromMixedType(element, firstClippingParent, strategy));
+	  clippingRect.width = clippingRect.right - clippingRect.left;
+	  clippingRect.height = clippingRect.bottom - clippingRect.top;
+	  clippingRect.x = clippingRect.left;
+	  clippingRect.y = clippingRect.top;
+	  return clippingRect;
+	}
+
+	function computeOffsets(_ref) {
+	  var reference = _ref.reference,
+	    element = _ref.element,
+	    placement = _ref.placement;
+	  var basePlacement = placement ? getBasePlacement(placement) : null;
+	  var variation = placement ? getVariation(placement) : null;
+	  var commonX = reference.x + reference.width / 2 - element.width / 2;
+	  var commonY = reference.y + reference.height / 2 - element.height / 2;
+	  var offsets;
+	  switch (basePlacement) {
+	    case top:
+	      offsets = {
+	        x: commonX,
+	        y: reference.y - element.height
+	      };
+	      break;
+	    case bottom:
+	      offsets = {
+	        x: commonX,
+	        y: reference.y + reference.height
+	      };
+	      break;
+	    case right:
+	      offsets = {
+	        x: reference.x + reference.width,
+	        y: commonY
+	      };
+	      break;
+	    case left:
+	      offsets = {
+	        x: reference.x - element.width,
+	        y: commonY
+	      };
+	      break;
+	    default:
+	      offsets = {
+	        x: reference.x,
+	        y: reference.y
+	      };
+	  }
+	  var mainAxis = basePlacement ? getMainAxisFromPlacement(basePlacement) : null;
+	  if (mainAxis != null) {
+	    var len = mainAxis === 'y' ? 'height' : 'width';
+	    switch (variation) {
+	      case start:
+	        offsets[mainAxis] = offsets[mainAxis] - (reference[len] / 2 - element[len] / 2);
+	        break;
+	      case end$1:
+	        offsets[mainAxis] = offsets[mainAxis] + (reference[len] / 2 - element[len] / 2);
+	        break;
+	    }
+	  }
+	  return offsets;
+	}
+
+	function detectOverflow(state, options) {
+	  if (options === void 0) {
+	    options = {};
+	  }
+	  var _options = options,
+	    _options$placement = _options.placement,
+	    placement = _options$placement === void 0 ? state.placement : _options$placement,
+	    _options$strategy = _options.strategy,
+	    strategy = _options$strategy === void 0 ? state.strategy : _options$strategy,
+	    _options$boundary = _options.boundary,
+	    boundary = _options$boundary === void 0 ? clippingParents : _options$boundary,
+	    _options$rootBoundary = _options.rootBoundary,
+	    rootBoundary = _options$rootBoundary === void 0 ? viewport : _options$rootBoundary,
+	    _options$elementConte = _options.elementContext,
+	    elementContext = _options$elementConte === void 0 ? popper : _options$elementConte,
+	    _options$altBoundary = _options.altBoundary,
+	    altBoundary = _options$altBoundary === void 0 ? false : _options$altBoundary,
+	    _options$padding = _options.padding,
+	    padding = _options$padding === void 0 ? 0 : _options$padding;
+	  var paddingObject = mergePaddingObject(typeof padding !== 'number' ? padding : expandToHashMap(padding, basePlacements));
+	  var altContext = elementContext === popper ? reference : popper;
+	  var popperRect = state.rects.popper;
+	  var element = state.elements[altBoundary ? altContext : elementContext];
+	  var clippingClientRect = getClippingRect(isElement(element) ? element : element.contextElement || getDocumentElement(state.elements.popper), boundary, rootBoundary, strategy);
+	  var referenceClientRect = getBoundingClientRect(state.elements.reference);
+	  var popperOffsets = computeOffsets({
+	    reference: referenceClientRect,
+	    element: popperRect,
+	    strategy: 'absolute',
+	    placement: placement
+	  });
+	  var popperClientRect = rectToClientRect(Object.assign({}, popperRect, popperOffsets));
+	  var elementClientRect = elementContext === popper ? popperClientRect : referenceClientRect; // positive = overflowing the clipping rect
+	  // 0 or negative = within the clipping rect
+
+	  var overflowOffsets = {
+	    top: clippingClientRect.top - elementClientRect.top + paddingObject.top,
+	    bottom: elementClientRect.bottom - clippingClientRect.bottom + paddingObject.bottom,
+	    left: clippingClientRect.left - elementClientRect.left + paddingObject.left,
+	    right: elementClientRect.right - clippingClientRect.right + paddingObject.right
+	  };
+	  var offsetData = state.modifiersData.offset; // Offsets can be applied only to the popper element
+
+	  if (elementContext === popper && offsetData) {
+	    var offset = offsetData[placement];
+	    Object.keys(overflowOffsets).forEach(function (key) {
+	      var multiply = [right, bottom].indexOf(key) >= 0 ? 1 : -1;
+	      var axis = [top, bottom].indexOf(key) >= 0 ? 'y' : 'x';
+	      overflowOffsets[key] += offset[axis] * multiply;
+	    });
+	  }
+	  return overflowOffsets;
+	}
+
+	function computeAutoPlacement(state, options) {
+	  if (options === void 0) {
+	    options = {};
+	  }
+	  var _options = options,
+	    placement = _options.placement,
+	    boundary = _options.boundary,
+	    rootBoundary = _options.rootBoundary,
+	    padding = _options.padding,
+	    flipVariations = _options.flipVariations,
+	    _options$allowedAutoP = _options.allowedAutoPlacements,
+	    allowedAutoPlacements = _options$allowedAutoP === void 0 ? placements : _options$allowedAutoP;
+	  var variation = getVariation(placement);
+	  var placements$1 = variation ? flipVariations ? variationPlacements : variationPlacements.filter(function (placement) {
+	    return getVariation(placement) === variation;
+	  }) : basePlacements;
+	  var allowedPlacements = placements$1.filter(function (placement) {
+	    return allowedAutoPlacements.indexOf(placement) >= 0;
+	  });
+	  if (allowedPlacements.length === 0) {
+	    allowedPlacements = placements$1;
+	    {
+	      console.error(['Popper: The `allowedAutoPlacements` option did not allow any', 'placements. Ensure the `placement` option matches the variation', 'of the allowed placements.', 'For example, "auto" cannot be used to allow "bottom-start".', 'Use "auto-start" instead.'].join(' '));
+	    }
+	  } // $FlowFixMe[incompatible-type]: Flow seems to have problems with two array unions...
+
+	  var overflows = allowedPlacements.reduce(function (acc, placement) {
+	    acc[placement] = detectOverflow(state, {
+	      placement: placement,
+	      boundary: boundary,
+	      rootBoundary: rootBoundary,
+	      padding: padding
+	    })[getBasePlacement(placement)];
+	    return acc;
+	  }, {});
+	  return Object.keys(overflows).sort(function (a, b) {
+	    return overflows[a] - overflows[b];
+	  });
+	}
+
+	function getExpandedFallbackPlacements(placement) {
+	  if (getBasePlacement(placement) === auto) {
+	    return [];
+	  }
+	  var oppositePlacement = getOppositePlacement(placement);
+	  return [getOppositeVariationPlacement(placement), oppositePlacement, getOppositeVariationPlacement(oppositePlacement)];
+	}
+	function flip(_ref) {
+	  var state = _ref.state,
+	    options = _ref.options,
+	    name = _ref.name;
+	  if (state.modifiersData[name]._skip) {
+	    return;
+	  }
+	  var _options$mainAxis = options.mainAxis,
+	    checkMainAxis = _options$mainAxis === void 0 ? true : _options$mainAxis,
+	    _options$altAxis = options.altAxis,
+	    checkAltAxis = _options$altAxis === void 0 ? true : _options$altAxis,
+	    specifiedFallbackPlacements = options.fallbackPlacements,
+	    padding = options.padding,
+	    boundary = options.boundary,
+	    rootBoundary = options.rootBoundary,
+	    altBoundary = options.altBoundary,
+	    _options$flipVariatio = options.flipVariations,
+	    flipVariations = _options$flipVariatio === void 0 ? true : _options$flipVariatio,
+	    allowedAutoPlacements = options.allowedAutoPlacements;
+	  var preferredPlacement = state.options.placement;
+	  var basePlacement = getBasePlacement(preferredPlacement);
+	  var isBasePlacement = basePlacement === preferredPlacement;
+	  var fallbackPlacements = specifiedFallbackPlacements || (isBasePlacement || !flipVariations ? [getOppositePlacement(preferredPlacement)] : getExpandedFallbackPlacements(preferredPlacement));
+	  var placements = [preferredPlacement].concat(fallbackPlacements).reduce(function (acc, placement) {
+	    return acc.concat(getBasePlacement(placement) === auto ? computeAutoPlacement(state, {
+	      placement: placement,
+	      boundary: boundary,
+	      rootBoundary: rootBoundary,
+	      padding: padding,
+	      flipVariations: flipVariations,
+	      allowedAutoPlacements: allowedAutoPlacements
+	    }) : placement);
+	  }, []);
+	  var referenceRect = state.rects.reference;
+	  var popperRect = state.rects.popper;
+	  var checksMap = new Map();
+	  var makeFallbackChecks = true;
+	  var firstFittingPlacement = placements[0];
+	  for (var i = 0; i < placements.length; i++) {
+	    var placement = placements[i];
+	    var _basePlacement = getBasePlacement(placement);
+	    var isStartVariation = getVariation(placement) === start;
+	    var isVertical = [top, bottom].indexOf(_basePlacement) >= 0;
+	    var len = isVertical ? 'width' : 'height';
+	    var overflow = detectOverflow(state, {
+	      placement: placement,
+	      boundary: boundary,
+	      rootBoundary: rootBoundary,
+	      altBoundary: altBoundary,
+	      padding: padding
+	    });
+	    var mainVariationSide = isVertical ? isStartVariation ? right : left : isStartVariation ? bottom : top;
+	    if (referenceRect[len] > popperRect[len]) {
+	      mainVariationSide = getOppositePlacement(mainVariationSide);
+	    }
+	    var altVariationSide = getOppositePlacement(mainVariationSide);
+	    var checks = [];
+	    if (checkMainAxis) {
+	      checks.push(overflow[_basePlacement] <= 0);
+	    }
+	    if (checkAltAxis) {
+	      checks.push(overflow[mainVariationSide] <= 0, overflow[altVariationSide] <= 0);
+	    }
+	    if (checks.every(function (check) {
+	      return check;
+	    })) {
+	      firstFittingPlacement = placement;
+	      makeFallbackChecks = false;
+	      break;
+	    }
+	    checksMap.set(placement, checks);
+	  }
+	  if (makeFallbackChecks) {
+	    // `2` may be desired in some cases – research later
+	    var numberOfChecks = flipVariations ? 3 : 1;
+	    var _loop = function _loop(_i) {
+	      var fittingPlacement = placements.find(function (placement) {
+	        var checks = checksMap.get(placement);
+	        if (checks) {
+	          return checks.slice(0, _i).every(function (check) {
+	            return check;
+	          });
+	        }
+	      });
+	      if (fittingPlacement) {
+	        firstFittingPlacement = fittingPlacement;
+	        return "break";
+	      }
+	    };
+	    for (var _i = numberOfChecks; _i > 0; _i--) {
+	      var _ret = _loop(_i);
+	      if (_ret === "break") break;
+	    }
+	  }
+	  if (state.placement !== firstFittingPlacement) {
+	    state.modifiersData[name]._skip = true;
+	    state.placement = firstFittingPlacement;
+	    state.reset = true;
+	  }
+	} // eslint-disable-next-line import/no-unused-modules
+
+	var flip$1 = {
+	  name: 'flip',
+	  enabled: true,
+	  phase: 'main',
+	  fn: flip,
+	  requiresIfExists: ['offset'],
+	  data: {
+	    _skip: false
+	  }
+	};
+
+	function getSideOffsets(overflow, rect, preventedOffsets) {
+	  if (preventedOffsets === void 0) {
+	    preventedOffsets = {
+	      x: 0,
+	      y: 0
+	    };
+	  }
+	  return {
+	    top: overflow.top - rect.height - preventedOffsets.y,
+	    right: overflow.right - rect.width + preventedOffsets.x,
+	    bottom: overflow.bottom - rect.height + preventedOffsets.y,
+	    left: overflow.left - rect.width - preventedOffsets.x
+	  };
+	}
+	function isAnySideFullyClipped(overflow) {
+	  return [top, right, bottom, left].some(function (side) {
+	    return overflow[side] >= 0;
+	  });
+	}
+	function hide(_ref) {
+	  var state = _ref.state,
+	    name = _ref.name;
+	  var referenceRect = state.rects.reference;
+	  var popperRect = state.rects.popper;
+	  var preventedOffsets = state.modifiersData.preventOverflow;
+	  var referenceOverflow = detectOverflow(state, {
+	    elementContext: 'reference'
+	  });
+	  var popperAltOverflow = detectOverflow(state, {
+	    altBoundary: true
+	  });
+	  var referenceClippingOffsets = getSideOffsets(referenceOverflow, referenceRect);
+	  var popperEscapeOffsets = getSideOffsets(popperAltOverflow, popperRect, preventedOffsets);
+	  var isReferenceHidden = isAnySideFullyClipped(referenceClippingOffsets);
+	  var hasPopperEscaped = isAnySideFullyClipped(popperEscapeOffsets);
+	  state.modifiersData[name] = {
+	    referenceClippingOffsets: referenceClippingOffsets,
+	    popperEscapeOffsets: popperEscapeOffsets,
+	    isReferenceHidden: isReferenceHidden,
+	    hasPopperEscaped: hasPopperEscaped
+	  };
+	  state.attributes.popper = Object.assign({}, state.attributes.popper, {
+	    'data-popper-reference-hidden': isReferenceHidden,
+	    'data-popper-escaped': hasPopperEscaped
+	  });
+	} // eslint-disable-next-line import/no-unused-modules
+
+	var hide$1 = {
+	  name: 'hide',
+	  enabled: true,
+	  phase: 'main',
+	  requiresIfExists: ['preventOverflow'],
+	  fn: hide
+	};
+
+	function distanceAndSkiddingToXY(placement, rects, offset) {
+	  var basePlacement = getBasePlacement(placement);
+	  var invertDistance = [left, top].indexOf(basePlacement) >= 0 ? -1 : 1;
+	  var _ref = typeof offset === 'function' ? offset(Object.assign({}, rects, {
+	      placement: placement
+	    })) : offset,
+	    skidding = _ref[0],
+	    distance = _ref[1];
+	  skidding = skidding || 0;
+	  distance = (distance || 0) * invertDistance;
+	  return [left, right].indexOf(basePlacement) >= 0 ? {
+	    x: distance,
+	    y: skidding
+	  } : {
+	    x: skidding,
+	    y: distance
+	  };
+	}
+	function offset(_ref2) {
+	  var state = _ref2.state,
+	    options = _ref2.options,
+	    name = _ref2.name;
+	  var _options$offset = options.offset,
+	    offset = _options$offset === void 0 ? [0, 0] : _options$offset;
+	  var data = placements.reduce(function (acc, placement) {
+	    acc[placement] = distanceAndSkiddingToXY(placement, state.rects, offset);
+	    return acc;
+	  }, {});
+	  var _data$state$placement = data[state.placement],
+	    x = _data$state$placement.x,
+	    y = _data$state$placement.y;
+	  if (state.modifiersData.popperOffsets != null) {
+	    state.modifiersData.popperOffsets.x += x;
+	    state.modifiersData.popperOffsets.y += y;
+	  }
+	  state.modifiersData[name] = data;
+	} // eslint-disable-next-line import/no-unused-modules
+
+	var offset$1 = {
+	  name: 'offset',
+	  enabled: true,
+	  phase: 'main',
+	  requires: ['popperOffsets'],
+	  fn: offset
+	};
+
+	function popperOffsets(_ref) {
+	  var state = _ref.state,
+	    name = _ref.name;
+	  // Offsets are the actual position the popper needs to have to be
+	  // properly positioned near its reference element
+	  // This is the most basic placement, and will be adjusted by
+	  // the modifiers in the next step
+	  state.modifiersData[name] = computeOffsets({
+	    reference: state.rects.reference,
+	    element: state.rects.popper,
+	    strategy: 'absolute',
+	    placement: state.placement
+	  });
+	} // eslint-disable-next-line import/no-unused-modules
+
+	var popperOffsets$1 = {
+	  name: 'popperOffsets',
+	  enabled: true,
+	  phase: 'read',
+	  fn: popperOffsets,
+	  data: {}
+	};
+
+	function getAltAxis(axis) {
+	  return axis === 'x' ? 'y' : 'x';
+	}
+
+	function preventOverflow(_ref) {
+	  var state = _ref.state,
+	    options = _ref.options,
+	    name = _ref.name;
+	  var _options$mainAxis = options.mainAxis,
+	    checkMainAxis = _options$mainAxis === void 0 ? true : _options$mainAxis,
+	    _options$altAxis = options.altAxis,
+	    checkAltAxis = _options$altAxis === void 0 ? false : _options$altAxis,
+	    boundary = options.boundary,
+	    rootBoundary = options.rootBoundary,
+	    altBoundary = options.altBoundary,
+	    padding = options.padding,
+	    _options$tether = options.tether,
+	    tether = _options$tether === void 0 ? true : _options$tether,
+	    _options$tetherOffset = options.tetherOffset,
+	    tetherOffset = _options$tetherOffset === void 0 ? 0 : _options$tetherOffset;
+	  var overflow = detectOverflow(state, {
+	    boundary: boundary,
+	    rootBoundary: rootBoundary,
+	    padding: padding,
+	    altBoundary: altBoundary
+	  });
+	  var basePlacement = getBasePlacement(state.placement);
+	  var variation = getVariation(state.placement);
+	  var isBasePlacement = !variation;
+	  var mainAxis = getMainAxisFromPlacement(basePlacement);
+	  var altAxis = getAltAxis(mainAxis);
+	  var popperOffsets = state.modifiersData.popperOffsets;
+	  var referenceRect = state.rects.reference;
+	  var popperRect = state.rects.popper;
+	  var tetherOffsetValue = typeof tetherOffset === 'function' ? tetherOffset(Object.assign({}, state.rects, {
+	    placement: state.placement
+	  })) : tetherOffset;
+	  var normalizedTetherOffsetValue = typeof tetherOffsetValue === 'number' ? {
+	    mainAxis: tetherOffsetValue,
+	    altAxis: tetherOffsetValue
+	  } : Object.assign({
+	    mainAxis: 0,
+	    altAxis: 0
+	  }, tetherOffsetValue);
+	  var offsetModifierState = state.modifiersData.offset ? state.modifiersData.offset[state.placement] : null;
+	  var data = {
+	    x: 0,
+	    y: 0
+	  };
+	  if (!popperOffsets) {
+	    return;
+	  }
+	  if (checkMainAxis) {
+	    var _offsetModifierState$;
+	    var mainSide = mainAxis === 'y' ? top : left;
+	    var altSide = mainAxis === 'y' ? bottom : right;
+	    var len = mainAxis === 'y' ? 'height' : 'width';
+	    var offset = popperOffsets[mainAxis];
+	    var min$1 = offset + overflow[mainSide];
+	    var max$1 = offset - overflow[altSide];
+	    var additive = tether ? -popperRect[len] / 2 : 0;
+	    var minLen = variation === start ? referenceRect[len] : popperRect[len];
+	    var maxLen = variation === start ? -popperRect[len] : -referenceRect[len]; // We need to include the arrow in the calculation so the arrow doesn't go
+	    // outside the reference bounds
+
+	    var arrowElement = state.elements.arrow;
+	    var arrowRect = tether && arrowElement ? getLayoutRect(arrowElement) : {
+	      width: 0,
+	      height: 0
+	    };
+	    var arrowPaddingObject = state.modifiersData['arrow#persistent'] ? state.modifiersData['arrow#persistent'].padding : getFreshSideObject();
+	    var arrowPaddingMin = arrowPaddingObject[mainSide];
+	    var arrowPaddingMax = arrowPaddingObject[altSide]; // If the reference length is smaller than the arrow length, we don't want
+	    // to include its full size in the calculation. If the reference is small
+	    // and near the edge of a boundary, the popper can overflow even if the
+	    // reference is not overflowing as well (e.g. virtual elements with no
+	    // width or height)
+
+	    var arrowLen = within(0, referenceRect[len], arrowRect[len]);
+	    var minOffset = isBasePlacement ? referenceRect[len] / 2 - additive - arrowLen - arrowPaddingMin - normalizedTetherOffsetValue.mainAxis : minLen - arrowLen - arrowPaddingMin - normalizedTetherOffsetValue.mainAxis;
+	    var maxOffset = isBasePlacement ? -referenceRect[len] / 2 + additive + arrowLen + arrowPaddingMax + normalizedTetherOffsetValue.mainAxis : maxLen + arrowLen + arrowPaddingMax + normalizedTetherOffsetValue.mainAxis;
+	    var arrowOffsetParent = state.elements.arrow && getOffsetParent(state.elements.arrow);
+	    var clientOffset = arrowOffsetParent ? mainAxis === 'y' ? arrowOffsetParent.clientTop || 0 : arrowOffsetParent.clientLeft || 0 : 0;
+	    var offsetModifierValue = (_offsetModifierState$ = offsetModifierState == null ? void 0 : offsetModifierState[mainAxis]) != null ? _offsetModifierState$ : 0;
+	    var tetherMin = offset + minOffset - offsetModifierValue - clientOffset;
+	    var tetherMax = offset + maxOffset - offsetModifierValue;
+	    var preventedOffset = within(tether ? min(min$1, tetherMin) : min$1, offset, tether ? max(max$1, tetherMax) : max$1);
+	    popperOffsets[mainAxis] = preventedOffset;
+	    data[mainAxis] = preventedOffset - offset;
+	  }
+	  if (checkAltAxis) {
+	    var _offsetModifierState$2;
+	    var _mainSide = mainAxis === 'x' ? top : left;
+	    var _altSide = mainAxis === 'x' ? bottom : right;
+	    var _offset = popperOffsets[altAxis];
+	    var _len = altAxis === 'y' ? 'height' : 'width';
+	    var _min = _offset + overflow[_mainSide];
+	    var _max = _offset - overflow[_altSide];
+	    var isOriginSide = [top, left].indexOf(basePlacement) !== -1;
+	    var _offsetModifierValue = (_offsetModifierState$2 = offsetModifierState == null ? void 0 : offsetModifierState[altAxis]) != null ? _offsetModifierState$2 : 0;
+	    var _tetherMin = isOriginSide ? _min : _offset - referenceRect[_len] - popperRect[_len] - _offsetModifierValue + normalizedTetherOffsetValue.altAxis;
+	    var _tetherMax = isOriginSide ? _offset + referenceRect[_len] + popperRect[_len] - _offsetModifierValue - normalizedTetherOffsetValue.altAxis : _max;
+	    var _preventedOffset = tether && isOriginSide ? withinMaxClamp(_tetherMin, _offset, _tetherMax) : within(tether ? _tetherMin : _min, _offset, tether ? _tetherMax : _max);
+	    popperOffsets[altAxis] = _preventedOffset;
+	    data[altAxis] = _preventedOffset - _offset;
+	  }
+	  state.modifiersData[name] = data;
+	} // eslint-disable-next-line import/no-unused-modules
+
+	var preventOverflow$1 = {
+	  name: 'preventOverflow',
+	  enabled: true,
+	  phase: 'main',
+	  fn: preventOverflow,
+	  requiresIfExists: ['offset']
+	};
+
+	function getHTMLElementScroll(element) {
+	  return {
+	    scrollLeft: element.scrollLeft,
+	    scrollTop: element.scrollTop
+	  };
+	}
+
+	function getNodeScroll(node) {
+	  if (node === getWindow(node) || !isHTMLElement(node)) {
+	    return getWindowScroll(node);
+	  } else {
+	    return getHTMLElementScroll(node);
+	  }
+	}
+
+	function isElementScaled(element) {
+	  var rect = element.getBoundingClientRect();
+	  var scaleX = round(rect.width) / element.offsetWidth || 1;
+	  var scaleY = round(rect.height) / element.offsetHeight || 1;
+	  return scaleX !== 1 || scaleY !== 1;
+	} // Returns the composite rect of an element relative to its offsetParent.
+	// Composite means it takes into account transforms as well as layout.
+
+	function getCompositeRect(elementOrVirtualElement, offsetParent, isFixed) {
+	  if (isFixed === void 0) {
+	    isFixed = false;
+	  }
+	  var isOffsetParentAnElement = isHTMLElement(offsetParent);
+	  var offsetParentIsScaled = isHTMLElement(offsetParent) && isElementScaled(offsetParent);
+	  var documentElement = getDocumentElement(offsetParent);
+	  var rect = getBoundingClientRect(elementOrVirtualElement, offsetParentIsScaled, isFixed);
+	  var scroll = {
+	    scrollLeft: 0,
+	    scrollTop: 0
+	  };
+	  var offsets = {
+	    x: 0,
+	    y: 0
+	  };
+	  if (isOffsetParentAnElement || !isOffsetParentAnElement && !isFixed) {
+	    if (getNodeName(offsetParent) !== 'body' ||
+	    // https://github.com/popperjs/popper-core/issues/1078
+	    isScrollParent(documentElement)) {
+	      scroll = getNodeScroll(offsetParent);
+	    }
+	    if (isHTMLElement(offsetParent)) {
+	      offsets = getBoundingClientRect(offsetParent, true);
+	      offsets.x += offsetParent.clientLeft;
+	      offsets.y += offsetParent.clientTop;
+	    } else if (documentElement) {
+	      offsets.x = getWindowScrollBarX(documentElement);
+	    }
+	  }
+	  return {
+	    x: rect.left + scroll.scrollLeft - offsets.x,
+	    y: rect.top + scroll.scrollTop - offsets.y,
+	    width: rect.width,
+	    height: rect.height
+	  };
+	}
+
+	function order(modifiers) {
+	  var map = new Map();
+	  var visited = new Set();
+	  var result = [];
+	  modifiers.forEach(function (modifier) {
+	    map.set(modifier.name, modifier);
+	  }); // On visiting object, check for its dependencies and visit them recursively
+
+	  function sort(modifier) {
+	    visited.add(modifier.name);
+	    var requires = [].concat(modifier.requires || [], modifier.requiresIfExists || []);
+	    requires.forEach(function (dep) {
+	      if (!visited.has(dep)) {
+	        var depModifier = map.get(dep);
+	        if (depModifier) {
+	          sort(depModifier);
+	        }
+	      }
+	    });
+	    result.push(modifier);
+	  }
+	  modifiers.forEach(function (modifier) {
+	    if (!visited.has(modifier.name)) {
+	      // check for visited object
+	      sort(modifier);
+	    }
+	  });
+	  return result;
+	}
+	function orderModifiers(modifiers) {
+	  // order based on dependencies
+	  var orderedModifiers = order(modifiers); // order based on phase
+
+	  return modifierPhases.reduce(function (acc, phase) {
+	    return acc.concat(orderedModifiers.filter(function (modifier) {
+	      return modifier.phase === phase;
+	    }));
+	  }, []);
+	}
+
+	function debounce(fn) {
+	  var pending;
+	  return function () {
+	    if (!pending) {
+	      pending = new Promise(function (resolve) {
+	        Promise.resolve().then(function () {
+	          pending = undefined;
+	          resolve(fn());
+	        });
+	      });
+	    }
+	    return pending;
+	  };
+	}
+
+	function format(str) {
+	  for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+	    args[_key - 1] = arguments[_key];
+	  }
+	  return [].concat(args).reduce(function (p, c) {
+	    return p.replace(/%s/, c);
+	  }, str);
+	}
+
+	var INVALID_MODIFIER_ERROR = 'Popper: modifier "%s" provided an invalid %s property, expected %s but got %s';
+	var MISSING_DEPENDENCY_ERROR = 'Popper: modifier "%s" requires "%s", but "%s" modifier is not available';
+	var VALID_PROPERTIES = ['name', 'enabled', 'phase', 'fn', 'effect', 'requires', 'options'];
+	function validateModifiers(modifiers) {
+	  modifiers.forEach(function (modifier) {
+	    [].concat(Object.keys(modifier), VALID_PROPERTIES) // IE11-compatible replacement for `new Set(iterable)`
+	    .filter(function (value, index, self) {
+	      return self.indexOf(value) === index;
+	    }).forEach(function (key) {
+	      switch (key) {
+	        case 'name':
+	          if (typeof modifier.name !== 'string') {
+	            console.error(format(INVALID_MODIFIER_ERROR, String(modifier.name), '"name"', '"string"', "\"" + String(modifier.name) + "\""));
+	          }
+	          break;
+	        case 'enabled':
+	          if (typeof modifier.enabled !== 'boolean') {
+	            console.error(format(INVALID_MODIFIER_ERROR, modifier.name, '"enabled"', '"boolean"', "\"" + String(modifier.enabled) + "\""));
+	          }
+	          break;
+	        case 'phase':
+	          if (modifierPhases.indexOf(modifier.phase) < 0) {
+	            console.error(format(INVALID_MODIFIER_ERROR, modifier.name, '"phase"', "either " + modifierPhases.join(', '), "\"" + String(modifier.phase) + "\""));
+	          }
+	          break;
+	        case 'fn':
+	          if (typeof modifier.fn !== 'function') {
+	            console.error(format(INVALID_MODIFIER_ERROR, modifier.name, '"fn"', '"function"', "\"" + String(modifier.fn) + "\""));
+	          }
+	          break;
+	        case 'effect':
+	          if (modifier.effect != null && typeof modifier.effect !== 'function') {
+	            console.error(format(INVALID_MODIFIER_ERROR, modifier.name, '"effect"', '"function"', "\"" + String(modifier.fn) + "\""));
+	          }
+	          break;
+	        case 'requires':
+	          if (modifier.requires != null && !Array.isArray(modifier.requires)) {
+	            console.error(format(INVALID_MODIFIER_ERROR, modifier.name, '"requires"', '"array"', "\"" + String(modifier.requires) + "\""));
+	          }
+	          break;
+	        case 'requiresIfExists':
+	          if (!Array.isArray(modifier.requiresIfExists)) {
+	            console.error(format(INVALID_MODIFIER_ERROR, modifier.name, '"requiresIfExists"', '"array"', "\"" + String(modifier.requiresIfExists) + "\""));
+	          }
+	          break;
+	        case 'options':
+	        case 'data':
+	          break;
+	        default:
+	          console.error("PopperJS: an invalid property has been provided to the \"" + modifier.name + "\" modifier, valid properties are " + VALID_PROPERTIES.map(function (s) {
+	            return "\"" + s + "\"";
+	          }).join(', ') + "; but \"" + key + "\" was provided.");
+	      }
+	      modifier.requires && modifier.requires.forEach(function (requirement) {
+	        if (modifiers.find(function (mod) {
+	          return mod.name === requirement;
+	        }) == null) {
+	          console.error(format(MISSING_DEPENDENCY_ERROR, String(modifier.name), requirement, requirement));
+	        }
+	      });
+	    });
+	  });
+	}
+
+	function uniqueBy(arr, fn) {
+	  var identifiers = new Set();
+	  return arr.filter(function (item) {
+	    var identifier = fn(item);
+	    if (!identifiers.has(identifier)) {
+	      identifiers.add(identifier);
+	      return true;
+	    }
+	  });
+	}
+
+	function mergeByName(modifiers) {
+	  var merged = modifiers.reduce(function (merged, current) {
+	    var existing = merged[current.name];
+	    merged[current.name] = existing ? Object.assign({}, existing, current, {
+	      options: Object.assign({}, existing.options, current.options),
+	      data: Object.assign({}, existing.data, current.data)
+	    }) : current;
+	    return merged;
+	  }, {}); // IE11 does not support Object.values
+
+	  return Object.keys(merged).map(function (key) {
+	    return merged[key];
+	  });
+	}
+
+	var INVALID_ELEMENT_ERROR = 'Popper: Invalid reference or popper argument provided. They must be either a DOM element or virtual element.';
+	var INFINITE_LOOP_ERROR = 'Popper: An infinite loop in the modifiers cycle has been detected! The cycle has been interrupted to prevent a browser crash.';
+	var DEFAULT_OPTIONS = {
+	  placement: 'bottom',
+	  modifiers: [],
+	  strategy: 'absolute'
+	};
+	function areValidElements() {
+	  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+	    args[_key] = arguments[_key];
+	  }
+	  return !args.some(function (element) {
+	    return !(element && typeof element.getBoundingClientRect === 'function');
+	  });
+	}
+	function popperGenerator(generatorOptions) {
+	  if (generatorOptions === void 0) {
+	    generatorOptions = {};
+	  }
+	  var _generatorOptions = generatorOptions,
+	    _generatorOptions$def = _generatorOptions.defaultModifiers,
+	    defaultModifiers = _generatorOptions$def === void 0 ? [] : _generatorOptions$def,
+	    _generatorOptions$def2 = _generatorOptions.defaultOptions,
+	    defaultOptions = _generatorOptions$def2 === void 0 ? DEFAULT_OPTIONS : _generatorOptions$def2;
+	  return function createPopper(reference, popper, options) {
+	    if (options === void 0) {
+	      options = defaultOptions;
+	    }
+	    var state = {
+	      placement: 'bottom',
+	      orderedModifiers: [],
+	      options: Object.assign({}, DEFAULT_OPTIONS, defaultOptions),
+	      modifiersData: {},
+	      elements: {
+	        reference: reference,
+	        popper: popper
+	      },
+	      attributes: {},
+	      styles: {}
+	    };
+	    var effectCleanupFns = [];
+	    var isDestroyed = false;
+	    var instance = {
+	      state: state,
+	      setOptions: function setOptions(setOptionsAction) {
+	        var options = typeof setOptionsAction === 'function' ? setOptionsAction(state.options) : setOptionsAction;
+	        cleanupModifierEffects();
+	        state.options = Object.assign({}, defaultOptions, state.options, options);
+	        state.scrollParents = {
+	          reference: isElement(reference) ? listScrollParents(reference) : reference.contextElement ? listScrollParents(reference.contextElement) : [],
+	          popper: listScrollParents(popper)
+	        }; // Orders the modifiers based on their dependencies and `phase`
+	        // properties
+
+	        var orderedModifiers = orderModifiers(mergeByName([].concat(defaultModifiers, state.options.modifiers))); // Strip out disabled modifiers
+
+	        state.orderedModifiers = orderedModifiers.filter(function (m) {
+	          return m.enabled;
+	        }); // Validate the provided modifiers so that the consumer will get warned
+	        // if one of the modifiers is invalid for any reason
+
+	        {
+	          var modifiers = uniqueBy([].concat(orderedModifiers, state.options.modifiers), function (_ref) {
+	            var name = _ref.name;
+	            return name;
+	          });
+	          validateModifiers(modifiers);
+	          if (getBasePlacement(state.options.placement) === auto) {
+	            var flipModifier = state.orderedModifiers.find(function (_ref2) {
+	              var name = _ref2.name;
+	              return name === 'flip';
+	            });
+	            if (!flipModifier) {
+	              console.error(['Popper: "auto" placements require the "flip" modifier be', 'present and enabled to work.'].join(' '));
+	            }
+	          }
+	          var _getComputedStyle = getComputedStyle$1(popper),
+	            marginTop = _getComputedStyle.marginTop,
+	            marginRight = _getComputedStyle.marginRight,
+	            marginBottom = _getComputedStyle.marginBottom,
+	            marginLeft = _getComputedStyle.marginLeft; // We no longer take into account `margins` on the popper, and it can
+	          // cause bugs with positioning, so we'll warn the consumer
+
+	          if ([marginTop, marginRight, marginBottom, marginLeft].some(function (margin) {
+	            return parseFloat(margin);
+	          })) {
+	            console.warn(['Popper: CSS "margin" styles cannot be used to apply padding', 'between the popper and its reference element or boundary.', 'To replicate margin, use the `offset` modifier, as well as', 'the `padding` option in the `preventOverflow` and `flip`', 'modifiers.'].join(' '));
+	          }
+	        }
+	        runModifierEffects();
+	        return instance.update();
+	      },
+	      // Sync update – it will always be executed, even if not necessary. This
+	      // is useful for low frequency updates where sync behavior simplifies the
+	      // logic.
+	      // For high frequency updates (e.g. `resize` and `scroll` events), always
+	      // prefer the async Popper#update method
+	      forceUpdate: function forceUpdate() {
+	        if (isDestroyed) {
+	          return;
+	        }
+	        var _state$elements = state.elements,
+	          reference = _state$elements.reference,
+	          popper = _state$elements.popper; // Don't proceed if `reference` or `popper` are not valid elements
+	        // anymore
+
+	        if (!areValidElements(reference, popper)) {
+	          {
+	            console.error(INVALID_ELEMENT_ERROR);
+	          }
+	          return;
+	        } // Store the reference and popper rects to be read by modifiers
+
+	        state.rects = {
+	          reference: getCompositeRect(reference, getOffsetParent(popper), state.options.strategy === 'fixed'),
+	          popper: getLayoutRect(popper)
+	        }; // Modifiers have the ability to reset the current update cycle. The
+	        // most common use case for this is the `flip` modifier changing the
+	        // placement, which then needs to re-run all the modifiers, because the
+	        // logic was previously ran for the previous placement and is therefore
+	        // stale/incorrect
+
+	        state.reset = false;
+	        state.placement = state.options.placement; // On each update cycle, the `modifiersData` property for each modifier
+	        // is filled with the initial data specified by the modifier. This means
+	        // it doesn't persist and is fresh on each update.
+	        // To ensure persistent data, use `${name}#persistent`
+
+	        state.orderedModifiers.forEach(function (modifier) {
+	          return state.modifiersData[modifier.name] = Object.assign({}, modifier.data);
+	        });
+	        var __debug_loops__ = 0;
+	        for (var index = 0; index < state.orderedModifiers.length; index++) {
+	          {
+	            __debug_loops__ += 1;
+	            if (__debug_loops__ > 100) {
+	              console.error(INFINITE_LOOP_ERROR);
+	              break;
+	            }
+	          }
+	          if (state.reset === true) {
+	            state.reset = false;
+	            index = -1;
+	            continue;
+	          }
+	          var _state$orderedModifie = state.orderedModifiers[index],
+	            fn = _state$orderedModifie.fn,
+	            _state$orderedModifie2 = _state$orderedModifie.options,
+	            _options = _state$orderedModifie2 === void 0 ? {} : _state$orderedModifie2,
+	            name = _state$orderedModifie.name;
+	          if (typeof fn === 'function') {
+	            state = fn({
+	              state: state,
+	              options: _options,
+	              name: name,
+	              instance: instance
+	            }) || state;
+	          }
+	        }
+	      },
+	      // Async and optimistically optimized update – it will not be executed if
+	      // not necessary (debounced to run at most once-per-tick)
+	      update: debounce(function () {
+	        return new Promise(function (resolve) {
+	          instance.forceUpdate();
+	          resolve(state);
+	        });
+	      }),
+	      destroy: function destroy() {
+	        cleanupModifierEffects();
+	        isDestroyed = true;
+	      }
+	    };
+	    if (!areValidElements(reference, popper)) {
+	      {
+	        console.error(INVALID_ELEMENT_ERROR);
+	      }
+	      return instance;
+	    }
+	    instance.setOptions(options).then(function (state) {
+	      if (!isDestroyed && options.onFirstUpdate) {
+	        options.onFirstUpdate(state);
+	      }
+	    }); // Modifiers have the ability to execute arbitrary code before the first
+	    // update cycle runs. They will be executed in the same order as the update
+	    // cycle. This is useful when a modifier adds some persistent data that
+	    // other modifiers need to use, but the modifier is run after the dependent
+	    // one.
+
+	    function runModifierEffects() {
+	      state.orderedModifiers.forEach(function (_ref3) {
+	        var name = _ref3.name,
+	          _ref3$options = _ref3.options,
+	          options = _ref3$options === void 0 ? {} : _ref3$options,
+	          effect = _ref3.effect;
+	        if (typeof effect === 'function') {
+	          var cleanupFn = effect({
+	            state: state,
+	            name: name,
+	            instance: instance,
+	            options: options
+	          });
+	          var noopFn = function noopFn() {};
+	          effectCleanupFns.push(cleanupFn || noopFn);
+	        }
+	      });
+	    }
+	    function cleanupModifierEffects() {
+	      effectCleanupFns.forEach(function (fn) {
+	        return fn();
+	      });
+	      effectCleanupFns = [];
+	    }
+	    return instance;
+	  };
+	}
+
+	// For the common JS build we will turn this file into a bundle with no imports.
+	// This is b/c the Popper lib is all esm files, and would break in a common js only environment
+	const createPopper = popperGenerator({
+	  defaultModifiers: [hide$1, popperOffsets$1, computeStyles$1, eventListeners, offset$1, flip$1, preventOverflow$1, arrow$1]
+	});
+
+	const _excluded$8 = ["enabled", "placement", "strategy", "modifiers"];
+	function _objectWithoutPropertiesLoose$8(source, excluded) {
+	  if (source == null) return {};
+	  var target = {};
+	  var sourceKeys = Object.keys(source);
+	  var key, i;
+	  for (i = 0; i < sourceKeys.length; i++) {
+	    key = sourceKeys[i];
+	    if (excluded.indexOf(key) >= 0) continue;
+	    target[key] = source[key];
+	  }
+	  return target;
+	}
+	const disabledApplyStylesModifier = {
+	  name: 'applyStyles',
+	  enabled: false,
+	  phase: 'afterWrite',
+	  fn: () => undefined
+	};
+
+	// until docjs supports type exports...
+
+	const ariaDescribedByModifier = {
+	  name: 'ariaDescribedBy',
+	  enabled: true,
+	  phase: 'afterWrite',
+	  effect: ({
+	    state
+	  }) => () => {
+	    const {
+	      reference,
+	      popper
+	    } = state.elements;
+	    if ('removeAttribute' in reference) {
+	      const ids = (reference.getAttribute('aria-describedby') || '').split(',').filter(id => id.trim() !== popper.id);
+	      if (!ids.length) reference.removeAttribute('aria-describedby');else reference.setAttribute('aria-describedby', ids.join(','));
+	    }
+	  },
+	  fn: ({
+	    state
+	  }) => {
+	    var _popper$getAttribute;
+	    const {
+	      popper,
+	      reference
+	    } = state.elements;
+	    const role = (_popper$getAttribute = popper.getAttribute('role')) == null ? void 0 : _popper$getAttribute.toLowerCase();
+	    if (popper.id && role === 'tooltip' && 'setAttribute' in reference) {
+	      const ids = reference.getAttribute('aria-describedby');
+	      if (ids && ids.split(',').indexOf(popper.id) !== -1) {
+	        return;
+	      }
+	      reference.setAttribute('aria-describedby', ids ? `${ids},${popper.id}` : popper.id);
+	    }
+	  }
+	};
+	const EMPTY_MODIFIERS = [];
+	/**
+	 * Position an element relative some reference element using Popper.js
+	 *
+	 * @param referenceElement
+	 * @param popperElement
+	 * @param {object}      options
+	 * @param {object=}     options.modifiers Popper.js modifiers
+	 * @param {boolean=}    options.enabled toggle the popper functionality on/off
+	 * @param {string=}     options.placement The popper element placement relative to the reference element
+	 * @param {string=}     options.strategy the positioning strategy
+	 * @param {function=}   options.onCreate called when the popper is created
+	 * @param {function=}   options.onUpdate called when the popper is updated
+	 *
+	 * @returns {UsePopperState} The popper state
+	 */
+	function usePopper(referenceElement, popperElement, _ref = {}) {
+	  let {
+	      enabled = true,
+	      placement = 'bottom',
+	      strategy = 'absolute',
+	      modifiers = EMPTY_MODIFIERS
+	    } = _ref,
+	    config = _objectWithoutPropertiesLoose$8(_ref, _excluded$8);
+	  const prevModifiers = reactExports.useRef(modifiers);
+	  const popperInstanceRef = reactExports.useRef();
+	  const update = reactExports.useCallback(() => {
+	    var _popperInstanceRef$cu;
+	    (_popperInstanceRef$cu = popperInstanceRef.current) == null ? void 0 : _popperInstanceRef$cu.update();
+	  }, []);
+	  const forceUpdate = reactExports.useCallback(() => {
+	    var _popperInstanceRef$cu2;
+	    (_popperInstanceRef$cu2 = popperInstanceRef.current) == null ? void 0 : _popperInstanceRef$cu2.forceUpdate();
+	  }, []);
+	  const [popperState, setState] = useSafeState(reactExports.useState({
+	    placement,
+	    update,
+	    forceUpdate,
+	    attributes: {},
+	    styles: {
+	      popper: {},
+	      arrow: {}
+	    }
+	  }));
+	  const updateModifier = reactExports.useMemo(() => ({
+	    name: 'updateStateModifier',
+	    enabled: true,
+	    phase: 'write',
+	    requires: ['computeStyles'],
+	    fn: ({
+	      state
+	    }) => {
+	      const styles = {};
+	      const attributes = {};
+	      Object.keys(state.elements).forEach(element => {
+	        styles[element] = state.styles[element];
+	        attributes[element] = state.attributes[element];
+	      });
+	      setState({
+	        state,
+	        styles,
+	        attributes,
+	        update,
+	        forceUpdate,
+	        placement: state.placement
+	      });
+	    }
+	  }), [update, forceUpdate, setState]);
+	  const nextModifiers = reactExports.useMemo(() => {
+	    if (!dequal(prevModifiers.current, modifiers)) {
+	      prevModifiers.current = modifiers;
+	    }
+	    return prevModifiers.current;
+	  }, [modifiers]);
+	  reactExports.useEffect(() => {
+	    if (!popperInstanceRef.current || !enabled) return;
+	    popperInstanceRef.current.setOptions({
+	      placement,
+	      strategy,
+	      modifiers: [...nextModifiers, updateModifier, disabledApplyStylesModifier]
+	    });
+	  }, [strategy, placement, updateModifier, enabled, nextModifiers]);
+	  reactExports.useEffect(() => {
+	    if (!enabled || referenceElement == null || popperElement == null) {
+	      return undefined;
+	    }
+	    popperInstanceRef.current = createPopper(referenceElement, popperElement, Object.assign({}, config, {
+	      placement,
+	      strategy,
+	      modifiers: [...nextModifiers, ariaDescribedByModifier, updateModifier]
+	    }));
+	    return () => {
+	      if (popperInstanceRef.current != null) {
+	        popperInstanceRef.current.destroy();
+	        popperInstanceRef.current = undefined;
+	        setState(s => Object.assign({}, s, {
+	          attributes: {},
+	          styles: {
+	            popper: {}
+	          }
+	        }));
+	      }
+	    };
+	    // This is only run once to _create_ the popper
+	    // eslint-disable-next-line react-hooks/exhaustive-deps
+	  }, [enabled, referenceElement, popperElement]);
+	  return popperState;
+	}
+
 	/* eslint-disable no-bitwise, no-cond-assign */
 
 	/**
@@ -11777,16 +14764,415 @@
 	  if (context.compareDocumentPosition) return context === node || !!(context.compareDocumentPosition(node) & 16);
 	}
 
+	/**
+	 * Copyright (c) 2014-present, Facebook, Inc.
+	 *
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
+	 */
+	var warning$1 = function () {};
+	{
+	  var printWarning = function printWarning(format, args) {
+	    var len = arguments.length;
+	    args = new Array(len > 1 ? len - 1 : 0);
+	    for (var key = 1; key < len; key++) {
+	      args[key - 1] = arguments[key];
+	    }
+	    var argIndex = 0;
+	    var message = 'Warning: ' + format.replace(/%s/g, function () {
+	      return args[argIndex++];
+	    });
+	    if (typeof console !== 'undefined') {
+	      console.error(message);
+	    }
+	    try {
+	      // --- Welcome to debugging React ---
+	      // This error was thrown as a convenience so that you can use this stack
+	      // to find the callsite that caused this warning to fire.
+	      throw new Error(message);
+	    } catch (x) {}
+	  };
+	  warning$1 = function (condition, format, args) {
+	    var len = arguments.length;
+	    args = new Array(len > 2 ? len - 2 : 0);
+	    for (var key = 2; key < len; key++) {
+	      args[key - 2] = arguments[key];
+	    }
+	    if (format === undefined) {
+	      throw new Error('`warning(condition, format, ...args)` requires a warning ' + 'message argument');
+	    }
+	    if (!condition) {
+	      printWarning.apply(null, [format].concat(args));
+	    }
+	  };
+	}
+	var warning_1 = warning$1;
+
+	const noop$8 = () => {};
+	function isLeftClickEvent(event) {
+	  return event.button === 0;
+	}
+	function isModifiedEvent$1(event) {
+	  return !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
+	}
+	const getRefTarget = ref => ref && ('current' in ref ? ref.current : ref);
+	const InitialTriggerEvents = {
+	  click: 'mousedown',
+	  mouseup: 'mousedown',
+	  pointerup: 'pointerdown'
+	};
+
+	/**
+	 * The `useClickOutside` hook registers your callback on the document that fires
+	 * when a pointer event is registered outside of the provided ref or element.
+	 *
+	 * @param {Ref<HTMLElement>| HTMLElement} ref  The element boundary
+	 * @param {function} onClickOutside
+	 * @param {object=}  options
+	 * @param {boolean=} options.disabled
+	 * @param {string=}  options.clickTrigger The DOM event name (click, mousedown, etc) to attach listeners on
+	 */
+	function useClickOutside(ref, onClickOutside = noop$8, {
+	  disabled,
+	  clickTrigger = 'click'
+	} = {}) {
+	  const preventMouseClickOutsideRef = reactExports.useRef(false);
+	  const waitingForTrigger = reactExports.useRef(false);
+	  const handleMouseCapture = reactExports.useCallback(e => {
+	    const currentTarget = getRefTarget(ref);
+	    warning_1(!!currentTarget, 'ClickOutside captured a close event but does not have a ref to compare it to. ' + 'useClickOutside(), should be passed a ref that resolves to a DOM node');
+	    preventMouseClickOutsideRef.current = !currentTarget || isModifiedEvent$1(e) || !isLeftClickEvent(e) || !!contains(currentTarget, e.target) || waitingForTrigger.current;
+	    waitingForTrigger.current = false;
+	  }, [ref]);
+	  const handleInitialMouse = useEventCallback(e => {
+	    const currentTarget = getRefTarget(ref);
+	    if (currentTarget && contains(currentTarget, e.target)) {
+	      waitingForTrigger.current = true;
+	    }
+	  });
+	  const handleMouse = useEventCallback(e => {
+	    if (!preventMouseClickOutsideRef.current) {
+	      onClickOutside(e);
+	    }
+	  });
+	  reactExports.useEffect(() => {
+	    if (disabled || ref == null) return undefined;
+	    const doc = ownerDocument(getRefTarget(ref));
+
+	    // Store the current event to avoid triggering handlers immediately
+	    // https://github.com/facebook/react/issues/20074
+	    let currentEvent = (doc.defaultView || window).event;
+	    let removeInitialTriggerListener = null;
+	    if (InitialTriggerEvents[clickTrigger]) {
+	      removeInitialTriggerListener = listen(doc, InitialTriggerEvents[clickTrigger], handleInitialMouse, true);
+	    }
+
+	    // Use capture for this listener so it fires before React's listener, to
+	    // avoid false positives in the contains() check below if the target DOM
+	    // element is removed in the React mouse callback.
+	    const removeMouseCaptureListener = listen(doc, clickTrigger, handleMouseCapture, true);
+	    const removeMouseListener = listen(doc, clickTrigger, e => {
+	      // skip if this event is the same as the one running when we added the handlers
+	      if (e === currentEvent) {
+	        currentEvent = undefined;
+	        return;
+	      }
+	      handleMouse(e);
+	    });
+	    let mobileSafariHackListeners = [];
+	    if ('ontouchstart' in doc.documentElement) {
+	      mobileSafariHackListeners = [].slice.call(doc.body.children).map(el => listen(el, 'mousemove', noop$8));
+	    }
+	    return () => {
+	      removeInitialTriggerListener == null ? void 0 : removeInitialTriggerListener();
+	      removeMouseCaptureListener();
+	      removeMouseListener();
+	      mobileSafariHackListeners.forEach(remove => remove());
+	    };
+	  }, [ref, disabled, clickTrigger, handleMouseCapture, handleInitialMouse, handleMouse]);
+	}
+
+	function toModifierMap(modifiers) {
+	  const result = {};
+	  if (!Array.isArray(modifiers)) {
+	    return modifiers || result;
+	  }
+
+	  // eslint-disable-next-line no-unused-expressions
+	  modifiers == null ? void 0 : modifiers.forEach(m => {
+	    result[m.name] = m;
+	  });
+	  return result;
+	}
+	function toModifierArray(map = {}) {
+	  if (Array.isArray(map)) return map;
+	  return Object.keys(map).map(k => {
+	    map[k].name = k;
+	    return map[k];
+	  });
+	}
+	function mergeOptionsWithPopperConfig({
+	  enabled,
+	  enableEvents,
+	  placement,
+	  flip,
+	  offset,
+	  fixed,
+	  containerPadding,
+	  arrowElement,
+	  popperConfig = {}
+	}) {
+	  var _modifiers$eventListe, _modifiers$preventOve, _modifiers$preventOve2, _modifiers$offset, _modifiers$arrow;
+	  const modifiers = toModifierMap(popperConfig.modifiers);
+	  return Object.assign({}, popperConfig, {
+	    placement,
+	    enabled,
+	    strategy: fixed ? 'fixed' : popperConfig.strategy,
+	    modifiers: toModifierArray(Object.assign({}, modifiers, {
+	      eventListeners: {
+	        enabled: enableEvents,
+	        options: (_modifiers$eventListe = modifiers.eventListeners) == null ? void 0 : _modifiers$eventListe.options
+	      },
+	      preventOverflow: Object.assign({}, modifiers.preventOverflow, {
+	        options: containerPadding ? Object.assign({
+	          padding: containerPadding
+	        }, (_modifiers$preventOve = modifiers.preventOverflow) == null ? void 0 : _modifiers$preventOve.options) : (_modifiers$preventOve2 = modifiers.preventOverflow) == null ? void 0 : _modifiers$preventOve2.options
+	      }),
+	      offset: {
+	        options: Object.assign({
+	          offset
+	        }, (_modifiers$offset = modifiers.offset) == null ? void 0 : _modifiers$offset.options)
+	      },
+	      arrow: Object.assign({}, modifiers.arrow, {
+	        enabled: !!arrowElement,
+	        options: Object.assign({}, (_modifiers$arrow = modifiers.arrow) == null ? void 0 : _modifiers$arrow.options, {
+	          element: arrowElement
+	        })
+	      }),
+	      flip: Object.assign({
+	        enabled: !!flip
+	      }, modifiers.flip)
+	    }))
+	  });
+	}
+
+	const _excluded$7 = ["children"];
+	function _objectWithoutPropertiesLoose$7(source, excluded) {
+	  if (source == null) return {};
+	  var target = {};
+	  var sourceKeys = Object.keys(source);
+	  var key, i;
+	  for (i = 0; i < sourceKeys.length; i++) {
+	    key = sourceKeys[i];
+	    if (excluded.indexOf(key) >= 0) continue;
+	    target[key] = source[key];
+	  }
+	  return target;
+	}
+	const noop$7 = () => {};
+
+	/**
+	 * @memberOf Dropdown
+	 * @param {object}  options
+	 * @param {boolean} options.flip Automatically adjust the menu `drop` position based on viewport edge detection
+	 * @param {[number, number]} options.offset Define an offset distance between the Menu and the Toggle
+	 * @param {boolean} options.show Display the menu manually, ignored in the context of a `Dropdown`
+	 * @param {boolean} options.usePopper opt in/out of using PopperJS to position menus. When disabled you must position it yourself.
+	 * @param {string}  options.rootCloseEvent The pointer event to listen for when determining "clicks outside" the menu for triggering a close.
+	 * @param {object}  options.popperConfig Options passed to the [`usePopper`](/api/usePopper) hook.
+	 */
+	function useDropdownMenu(options = {}) {
+	  const context = reactExports.useContext(DropdownContext$1);
+	  const [arrowElement, attachArrowRef] = useCallbackRef();
+	  const hasShownRef = reactExports.useRef(false);
+	  const {
+	    flip,
+	    offset,
+	    rootCloseEvent,
+	    fixed = false,
+	    placement: placementOverride,
+	    popperConfig = {},
+	    enableEventListeners = true,
+	    usePopper: shouldUsePopper = !!context
+	  } = options;
+	  const show = (context == null ? void 0 : context.show) == null ? !!options.show : context.show;
+	  if (show && !hasShownRef.current) {
+	    hasShownRef.current = true;
+	  }
+	  const handleClose = e => {
+	    context == null ? void 0 : context.toggle(false, e);
+	  };
+	  const {
+	    placement,
+	    setMenu,
+	    menuElement,
+	    toggleElement
+	  } = context || {};
+	  const popper = usePopper(toggleElement, menuElement, mergeOptionsWithPopperConfig({
+	    placement: placementOverride || placement || 'bottom-start',
+	    enabled: shouldUsePopper,
+	    enableEvents: enableEventListeners == null ? show : enableEventListeners,
+	    offset,
+	    flip,
+	    fixed,
+	    arrowElement,
+	    popperConfig
+	  }));
+	  const menuProps = Object.assign({
+	    ref: setMenu || noop$7,
+	    'aria-labelledby': toggleElement == null ? void 0 : toggleElement.id
+	  }, popper.attributes.popper, {
+	    style: popper.styles.popper
+	  });
+	  const metadata = {
+	    show,
+	    placement,
+	    hasShown: hasShownRef.current,
+	    toggle: context == null ? void 0 : context.toggle,
+	    popper: shouldUsePopper ? popper : null,
+	    arrowProps: shouldUsePopper ? Object.assign({
+	      ref: attachArrowRef
+	    }, popper.attributes.arrow, {
+	      style: popper.styles.arrow
+	    }) : {}
+	  };
+	  useClickOutside(menuElement, handleClose, {
+	    clickTrigger: rootCloseEvent,
+	    disabled: !show
+	  });
+	  return [menuProps, metadata];
+	}
+	const defaultProps$p = {
+	  usePopper: true
+	};
+	/**
+	 * Also exported as `<Dropdown.Menu>` from `Dropdown`.
+	 *
+	 * @displayName DropdownMenu
+	 * @memberOf Dropdown
+	 */
+	function DropdownMenu$1(_ref) {
+	  let {
+	      children
+	    } = _ref,
+	    options = _objectWithoutPropertiesLoose$7(_ref, _excluded$7);
+	  const [props, meta] = useDropdownMenu(options);
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, {
+	    children: children(props, meta)
+	  });
+	}
+	DropdownMenu$1.displayName = 'DropdownMenu';
+	DropdownMenu$1.defaultProps = defaultProps$p;
+
+	/*
+	 * Copyright 2020 Adobe. All rights reserved.
+	 * This file is licensed to you under the Apache License, Version 2.0 (the "License");
+	 * you may not use this file except in compliance with the License. You may obtain a copy
+	 * of the License at http://www.apache.org/licenses/LICENSE-2.0
+	 *
+	 * Unless required by applicable law or agreed to in writing, software distributed under
+	 * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+	 * OF ANY KIND, either express or implied. See the License for the specific language
+	 * governing permissions and limitations under the License.
+	 */ /*
+	    * Copyright 2020 Adobe. All rights reserved.
+	    * This file is licensed to you under the Apache License, Version 2.0 (the "License");
+	    * you may not use this file except in compliance with the License. You may obtain a copy
+	    * of the License at http://www.apache.org/licenses/LICENSE-2.0
+	    *
+	    * Unless required by applicable law or agreed to in writing, software distributed under
+	    * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+	    * OF ANY KIND, either express or implied. See the License for the specific language
+	    * governing permissions and limitations under the License.
+	    */ // We must avoid a circular dependency with @react-aria/utils, and this useLayoutEffect is
+	// guarded by a check that it only runs on the client side.
+	// eslint-disable-next-line rulesdir/useLayoutEffectRule
+
+	// Default context value to use in case there is no SSRProvider. This is fine for
+	// client-only apps. In order to support multiple copies of React Aria potentially
+	// being on the page at once, the prefix is set to a random number. SSRProvider
+	// will reset this to zero for consistency between server and client, so in the
+	// SSR case multiple copies of React Aria is not supported.
+	const $704cf1d3b684cc5c$var$defaultContext = {
+	  prefix: String(Math.round(Math.random() * 10000000000)),
+	  current: 0
+	};
+	const $704cf1d3b684cc5c$var$SSRContext = /*#__PURE__*/(React).createContext($704cf1d3b684cc5c$var$defaultContext);
+	let $704cf1d3b684cc5c$var$canUseDOM = Boolean(typeof window !== "undefined" && window.document && window.document.createElement);
+	function $704cf1d3b684cc5c$export$619500959fc48b26(defaultId) {
+	  let ctx = (reactExports.useContext)($704cf1d3b684cc5c$var$SSRContext);
+	  // If we are rendering in a non-DOM environment, and there's no SSRProvider,
+	  // provide a warning to hint to the developer to add one.
+	  if (ctx === $704cf1d3b684cc5c$var$defaultContext && !$704cf1d3b684cc5c$var$canUseDOM) console.warn("When server rendering, you must wrap your application in an <SSRProvider> to ensure consistent ids are generated between the client and server.");
+	  // eslint-disable-next-line react-hooks/exhaustive-deps
+	  return (reactExports.useMemo)(() => defaultId || `react-aria${ctx.prefix}-${++ctx.current}`, [defaultId]);
+	}
+
+	const isRoleMenu = el => {
+	  var _el$getAttribute;
+	  return ((_el$getAttribute = el.getAttribute('role')) == null ? void 0 : _el$getAttribute.toLowerCase()) === 'menu';
+	};
+	const noop$6 = () => {};
+
+	/**
+	 * Wires up Dropdown toggle functionality, returning a set a props to attach
+	 * to the element that functions as the dropdown toggle (generally a button).
+	 *
+	 * @memberOf Dropdown
+	 */
+	function useDropdownToggle() {
+	  const id = $704cf1d3b684cc5c$export$619500959fc48b26();
+	  const {
+	    show = false,
+	    toggle = noop$6,
+	    setToggle,
+	    menuElement
+	  } = reactExports.useContext(DropdownContext$1) || {};
+	  const handleClick = reactExports.useCallback(e => {
+	    toggle(!show, e);
+	  }, [show, toggle]);
+	  const props = {
+	    id,
+	    ref: setToggle || noop$6,
+	    onClick: handleClick,
+	    'aria-expanded': !!show
+	  };
+
+	  // This is maybe better down in an effect, but
+	  // the component is going to update anyway when the menu element
+	  // is set so might return new props.
+	  if (menuElement && isRoleMenu(menuElement)) {
+	    props['aria-haspopup'] = true;
+	  }
+	  return [props, {
+	    show,
+	    toggle
+	  }];
+	}
+	/**
+	 * Also exported as `<Dropdown.Toggle>` from `Dropdown`.
+	 *
+	 * @displayName DropdownToggle
+	 * @memberOf Dropdown
+	 */
+	function DropdownToggle$1({
+	  children
+	}) {
+	  const [props, meta] = useDropdownToggle();
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, {
+	    children: children(props, meta)
+	  });
+	}
+	DropdownToggle$1.displayName = 'DropdownToggle';
+
 	const SelectableContext = /*#__PURE__*/reactExports.createContext(null);
 	const makeEventKey = (eventKey, href = null) => {
 	  if (eventKey != null) return String(eventKey);
 	  return href || null;
 	};
-	var SelectableContext$1 = SelectableContext;
 
 	const NavContext = /*#__PURE__*/reactExports.createContext(null);
 	NavContext.displayName = 'NavContext';
-	var NavContext$1 = NavContext;
 
 	const ATTRIBUTE_PREFIX = `data-rr-ui-`;
 	const PROPERTY_PREFIX = `rrUi`;
@@ -11797,7 +15183,76 @@
 	  return `${PROPERTY_PREFIX}${property}`;
 	}
 
-	const Context = /*#__PURE__*/reactExports.createContext(canUseDOM$1 ? window : undefined);
+	const _excluded$6 = ["eventKey", "disabled", "onClick", "active", "as"];
+	function _objectWithoutPropertiesLoose$6(source, excluded) {
+	  if (source == null) return {};
+	  var target = {};
+	  var sourceKeys = Object.keys(source);
+	  var key, i;
+	  for (i = 0; i < sourceKeys.length; i++) {
+	    key = sourceKeys[i];
+	    if (excluded.indexOf(key) >= 0) continue;
+	    target[key] = source[key];
+	  }
+	  return target;
+	}
+	/**
+	 * Create a dropdown item. Returns a set of props for the dropdown item component
+	 * including an `onClick` handler that prevents selection when the item is disabled
+	 */
+	function useDropdownItem({
+	  key,
+	  href,
+	  active,
+	  disabled,
+	  onClick
+	}) {
+	  const onSelectCtx = reactExports.useContext(SelectableContext);
+	  const navContext = reactExports.useContext(NavContext);
+	  const {
+	    activeKey
+	  } = navContext || {};
+	  const eventKey = makeEventKey(key, href);
+	  const isActive = active == null && key != null ? makeEventKey(activeKey) === eventKey : active;
+	  const handleClick = useEventCallback(event => {
+	    if (disabled) return;
+	    onClick == null ? void 0 : onClick(event);
+	    if (onSelectCtx && !event.isPropagationStopped()) {
+	      onSelectCtx(eventKey, event);
+	    }
+	  });
+	  return [{
+	    onClick: handleClick,
+	    'aria-disabled': disabled || undefined,
+	    'aria-selected': isActive,
+	    [dataAttr('dropdown-item')]: ''
+	  }, {
+	    isActive
+	  }];
+	}
+	const DropdownItem$1 = /*#__PURE__*/reactExports.forwardRef((_ref, ref) => {
+	  let {
+	      eventKey,
+	      disabled,
+	      onClick,
+	      active,
+	      as: Component = Button$1
+	    } = _ref,
+	    props = _objectWithoutPropertiesLoose$6(_ref, _excluded$6);
+	  const [dropdownItemProps] = useDropdownItem({
+	    key: eventKey,
+	    href: props.href,
+	    disabled,
+	    onClick,
+	    active
+	  });
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(Component, Object.assign({}, props, {
+	    ref: ref
+	  }, dropdownItemProps));
+	});
+	DropdownItem$1.displayName = 'DropdownItem';
+
+	const Context = /*#__PURE__*/reactExports.createContext(canUseDOM ? window : undefined);
 	Context.Provider;
 
 	/**
@@ -11810,13 +15265,970 @@
 	  return reactExports.useContext(Context);
 	}
 
+	function useRefWithUpdate() {
+	  const forceUpdate = useForceUpdate();
+	  const ref = reactExports.useRef(null);
+	  const attachRef = reactExports.useCallback(element => {
+	    ref.current = element;
+	    // ensure that a menu set triggers an update for consumers
+	    forceUpdate();
+	  }, [forceUpdate]);
+	  return [ref, attachRef];
+	}
+
+	/**
+	 * @displayName Dropdown
+	 * @public
+	 */
+	function Dropdown$2({
+	  defaultShow,
+	  show: rawShow,
+	  onSelect,
+	  onToggle: rawOnToggle,
+	  itemSelector = `* [${dataAttr('dropdown-item')}]`,
+	  focusFirstItemOnShow,
+	  placement = 'bottom-start',
+	  children
+	}) {
+	  const window = useWindow();
+	  const [show, onToggle] = useUncontrolledProp(rawShow, defaultShow, rawOnToggle);
+
+	  // We use normal refs instead of useCallbackRef in order to populate the
+	  // the value as quickly as possible, otherwise the effect to focus the element
+	  // may run before the state value is set
+	  const [menuRef, setMenu] = useRefWithUpdate();
+	  const menuElement = menuRef.current;
+	  const [toggleRef, setToggle] = useRefWithUpdate();
+	  const toggleElement = toggleRef.current;
+	  const lastShow = usePrevious(show);
+	  const lastSourceEvent = reactExports.useRef(null);
+	  const focusInDropdown = reactExports.useRef(false);
+	  const onSelectCtx = reactExports.useContext(SelectableContext);
+	  const toggle = reactExports.useCallback((nextShow, event, source = event == null ? void 0 : event.type) => {
+	    onToggle(nextShow, {
+	      originalEvent: event,
+	      source
+	    });
+	  }, [onToggle]);
+	  const handleSelect = useEventCallback((key, event) => {
+	    onSelect == null ? void 0 : onSelect(key, event);
+	    toggle(false, event, 'select');
+	    if (!event.isPropagationStopped()) {
+	      onSelectCtx == null ? void 0 : onSelectCtx(key, event);
+	    }
+	  });
+	  const context = reactExports.useMemo(() => ({
+	    toggle,
+	    placement,
+	    show,
+	    menuElement,
+	    toggleElement,
+	    setMenu,
+	    setToggle
+	  }), [toggle, placement, show, menuElement, toggleElement, setMenu, setToggle]);
+	  if (menuElement && lastShow && !show) {
+	    focusInDropdown.current = menuElement.contains(menuElement.ownerDocument.activeElement);
+	  }
+	  const focusToggle = useEventCallback(() => {
+	    if (toggleElement && toggleElement.focus) {
+	      toggleElement.focus();
+	    }
+	  });
+	  const maybeFocusFirst = useEventCallback(() => {
+	    const type = lastSourceEvent.current;
+	    let focusType = focusFirstItemOnShow;
+	    if (focusType == null) {
+	      focusType = menuRef.current && isRoleMenu(menuRef.current) ? 'keyboard' : false;
+	    }
+	    if (focusType === false || focusType === 'keyboard' && !/^key.+$/.test(type)) {
+	      return;
+	    }
+	    const first = qsa(menuRef.current, itemSelector)[0];
+	    if (first && first.focus) first.focus();
+	  });
+	  reactExports.useEffect(() => {
+	    if (show) maybeFocusFirst();else if (focusInDropdown.current) {
+	      focusInDropdown.current = false;
+	      focusToggle();
+	    }
+	    // only `show` should be changing
+	  }, [show, focusInDropdown, focusToggle, maybeFocusFirst]);
+	  reactExports.useEffect(() => {
+	    lastSourceEvent.current = null;
+	  });
+	  const getNextFocusedChild = (current, offset) => {
+	    if (!menuRef.current) return null;
+	    const items = qsa(menuRef.current, itemSelector);
+	    let index = items.indexOf(current) + offset;
+	    index = Math.max(0, Math.min(index, items.length));
+	    return items[index];
+	  };
+	  useEventListener(reactExports.useCallback(() => window.document, [window]), 'keydown', event => {
+	    var _menuRef$current, _toggleRef$current;
+	    const {
+	      key
+	    } = event;
+	    const target = event.target;
+	    const fromMenu = (_menuRef$current = menuRef.current) == null ? void 0 : _menuRef$current.contains(target);
+	    const fromToggle = (_toggleRef$current = toggleRef.current) == null ? void 0 : _toggleRef$current.contains(target);
+
+	    // Second only to https://github.com/twbs/bootstrap/blob/8cfbf6933b8a0146ac3fbc369f19e520bd1ebdac/js/src/dropdown.js#L400
+	    // in inscrutability
+	    const isInput = /input|textarea/i.test(target.tagName);
+	    if (isInput && (key === ' ' || key !== 'Escape' && fromMenu || key === 'Escape' && target.type === 'search')) {
+	      return;
+	    }
+	    if (!fromMenu && !fromToggle) {
+	      return;
+	    }
+	    if (key === 'Tab' && (!menuRef.current || !show)) {
+	      return;
+	    }
+	    lastSourceEvent.current = event.type;
+	    const meta = {
+	      originalEvent: event,
+	      source: event.type
+	    };
+	    switch (key) {
+	      case 'ArrowUp':
+	        {
+	          const next = getNextFocusedChild(target, -1);
+	          if (next && next.focus) next.focus();
+	          event.preventDefault();
+	          return;
+	        }
+	      case 'ArrowDown':
+	        event.preventDefault();
+	        if (!show) {
+	          onToggle(true, meta);
+	        } else {
+	          const next = getNextFocusedChild(target, 1);
+	          if (next && next.focus) next.focus();
+	        }
+	        return;
+	      case 'Tab':
+	        // on keydown the target is the element being tabbed FROM, we need that
+	        // to know if this event is relevant to this dropdown (e.g. in this menu).
+	        // On `keyup` the target is the element being tagged TO which we use to check
+	        // if focus has left the menu
+	        addEventListener(target.ownerDocument, 'keyup', e => {
+	          var _menuRef$current2;
+	          if (e.key === 'Tab' && !e.target || !((_menuRef$current2 = menuRef.current) != null && _menuRef$current2.contains(e.target))) {
+	            onToggle(false, meta);
+	          }
+	        }, {
+	          once: true
+	        });
+	        break;
+	      case 'Escape':
+	        if (key === 'Escape') {
+	          event.preventDefault();
+	          event.stopPropagation();
+	        }
+	        onToggle(false, meta);
+	        break;
+	    }
+	  });
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(SelectableContext.Provider, {
+	    value: handleSelect,
+	    children: /*#__PURE__*/jsxRuntimeExports.jsx(DropdownContext$1.Provider, {
+	      value: context,
+	      children: children
+	    })
+	  });
+	}
+	Dropdown$2.displayName = 'Dropdown';
+	Dropdown$2.Menu = DropdownMenu$1;
+	Dropdown$2.Toggle = DropdownToggle$1;
+	Dropdown$2.Item = DropdownItem$1;
+
+	const DropdownContext = /*#__PURE__*/reactExports.createContext({});
+	DropdownContext.displayName = 'DropdownContext';
+
+	const DropdownItem = /*#__PURE__*/reactExports.forwardRef(({
+	  bsPrefix,
+	  className,
+	  eventKey,
+	  disabled = false,
+	  onClick,
+	  active,
+	  as: Component = Anchor,
+	  ...props
+	}, ref) => {
+	  const prefix = useBootstrapPrefix(bsPrefix, 'dropdown-item');
+	  const [dropdownItemProps, meta] = useDropdownItem({
+	    key: eventKey,
+	    href: props.href,
+	    disabled,
+	    onClick,
+	    active
+	  });
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(Component, {
+	    ...props,
+	    ...dropdownItemProps,
+	    ref: ref,
+	    className: classNames(className, prefix, meta.isActive && 'active', disabled && 'disabled')
+	  });
+	});
+	DropdownItem.displayName = 'DropdownItem';
+
+	const context$1 = /*#__PURE__*/reactExports.createContext(null);
+	context$1.displayName = 'InputGroupContext';
+
 	// TODO: check
 
 	const context = /*#__PURE__*/reactExports.createContext(null);
 	context.displayName = 'NavbarContext';
-	var NavbarContext = context;
 
-	const defaultProps$8 = {
+	function useWrappedRefWithWarning(ref, componentName) {
+
+	  // eslint-disable-next-line react-hooks/rules-of-hooks
+	  const warningRef = reactExports.useCallback(refValue => {
+	    !(refValue == null || !refValue.isReactComponent) ? invariant_1(false, `${componentName} injected a ref to a provided \`as\` component that resolved to a component instance instead of a DOM element. ` + 'Use `React.forwardRef` to provide the injected ref to the class component as a prop in order to pass it directly to a DOM element')  : void 0;
+	  }, [componentName]);
+	  // eslint-disable-next-line react-hooks/rules-of-hooks
+	  return useMergedRefs(warningRef, ref);
+	}
+
+	const alignDirection = propTypesExports.oneOf(['start', 'end']);
+	const alignPropType = propTypesExports.oneOfType([alignDirection, propTypesExports.shape({
+	  sm: alignDirection
+	}), propTypesExports.shape({
+	  md: alignDirection
+	}), propTypesExports.shape({
+	  lg: alignDirection
+	}), propTypesExports.shape({
+	  xl: alignDirection
+	}), propTypesExports.shape({
+	  xxl: alignDirection
+	}), propTypesExports.object]);
+
+	const defaultProps$o = {
+	  flip: true
+	};
+	function getDropdownMenuPlacement(alignEnd, dropDirection, isRTL) {
+	  const topStart = isRTL ? 'top-end' : 'top-start';
+	  const topEnd = isRTL ? 'top-start' : 'top-end';
+	  const bottomStart = isRTL ? 'bottom-end' : 'bottom-start';
+	  const bottomEnd = isRTL ? 'bottom-start' : 'bottom-end';
+	  const leftStart = isRTL ? 'right-start' : 'left-start';
+	  const leftEnd = isRTL ? 'right-end' : 'left-end';
+	  const rightStart = isRTL ? 'left-start' : 'right-start';
+	  const rightEnd = isRTL ? 'left-end' : 'right-end';
+	  let placement = alignEnd ? bottomEnd : bottomStart;
+	  if (dropDirection === 'up') placement = alignEnd ? topEnd : topStart;else if (dropDirection === 'end') placement = alignEnd ? rightEnd : rightStart;else if (dropDirection === 'start') placement = alignEnd ? leftEnd : leftStart;else if (dropDirection === 'down-centered') placement = 'bottom';else if (dropDirection === 'up-centered') placement = 'top';
+	  return placement;
+	}
+	const DropdownMenu = /*#__PURE__*/reactExports.forwardRef(({
+	  bsPrefix,
+	  className,
+	  align,
+	  rootCloseEvent,
+	  flip,
+	  show: showProps,
+	  renderOnMount,
+	  // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
+	  as: Component = 'div',
+	  popperConfig,
+	  variant,
+	  ...props
+	}, ref) => {
+	  let alignEnd = false;
+	  const isNavbar = reactExports.useContext(context);
+	  const prefix = useBootstrapPrefix(bsPrefix, 'dropdown-menu');
+	  const {
+	    align: contextAlign,
+	    drop,
+	    isRTL
+	  } = reactExports.useContext(DropdownContext);
+	  align = align || contextAlign;
+	  const isInputGroup = reactExports.useContext(context$1);
+	  const alignClasses = [];
+	  if (align) {
+	    if (typeof align === 'object') {
+	      const keys = Object.keys(align);
+	      warning_1(keys.length === 1, 'There should only be 1 breakpoint when passing an object to `align`') ;
+	      if (keys.length) {
+	        const brkPoint = keys[0];
+	        const direction = align[brkPoint];
+
+	        // .dropdown-menu-end is required for responsively aligning
+	        // left in addition to align left classes.
+	        alignEnd = direction === 'start';
+	        alignClasses.push(`${prefix}-${brkPoint}-${direction}`);
+	      }
+	    } else if (align === 'end') {
+	      alignEnd = true;
+	    }
+	  }
+	  const placement = getDropdownMenuPlacement(alignEnd, drop, isRTL);
+	  const [menuProps, {
+	    hasShown,
+	    popper,
+	    show,
+	    toggle
+	  }] = useDropdownMenu({
+	    flip,
+	    rootCloseEvent,
+	    show: showProps,
+	    usePopper: !isNavbar && alignClasses.length === 0,
+	    offset: [0, 2],
+	    popperConfig,
+	    placement
+	  });
+	  menuProps.ref = useMergedRefs(useWrappedRefWithWarning(ref, 'DropdownMenu'), menuProps.ref);
+	  useIsomorphicEffect(() => {
+	    // Popper's initial position for the menu is incorrect when
+	    // renderOnMount=true. Need to call update() to correct it.
+	    if (show) popper == null ? void 0 : popper.update();
+	  }, [show]);
+	  if (!hasShown && !renderOnMount && !isInputGroup) return null;
+
+	  // For custom components provide additional, non-DOM, props;
+	  if (typeof Component !== 'string') {
+	    menuProps.show = show;
+	    menuProps.close = () => toggle == null ? void 0 : toggle(false);
+	    menuProps.align = align;
+	  }
+	  let style = props.style;
+	  if (popper != null && popper.placement) {
+	    // we don't need the default popper style,
+	    // menus are display: none when not shown.
+	    style = {
+	      ...props.style,
+	      ...menuProps.style
+	    };
+	    props['x-placement'] = popper.placement;
+	  }
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(Component, {
+	    ...props,
+	    ...menuProps,
+	    style: style
+	    // Bootstrap css requires this data attrib to style responsive menus.
+	    ,
+
+	    ...((alignClasses.length || isNavbar) && {
+	      'data-bs-popper': 'static'
+	    }),
+	    className: classNames(className, prefix, show && 'show', alignEnd && `${prefix}-end`, variant && `${prefix}-${variant}`, ...alignClasses)
+	  });
+	});
+	DropdownMenu.displayName = 'DropdownMenu';
+	DropdownMenu.defaultProps = defaultProps$o;
+
+	const DropdownToggle = /*#__PURE__*/reactExports.forwardRef(({
+	  bsPrefix,
+	  split,
+	  className,
+	  childBsPrefix,
+	  // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
+	  as: Component = Button,
+	  ...props
+	}, ref) => {
+	  const prefix = useBootstrapPrefix(bsPrefix, 'dropdown-toggle');
+	  const dropdownContext = reactExports.useContext(DropdownContext$1);
+	  if (childBsPrefix !== undefined) {
+	    props.bsPrefix = childBsPrefix;
+	  }
+	  const [toggleProps] = useDropdownToggle();
+	  toggleProps.ref = useMergedRefs(toggleProps.ref, useWrappedRefWithWarning(ref, 'DropdownToggle'));
+
+	  // This intentionally forwards size and variant (if set) to the
+	  // underlying component, to allow it to render size and style variants.
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(Component, {
+	    className: classNames(className, prefix, split && `${prefix}-split`, (dropdownContext == null ? void 0 : dropdownContext.show) && 'show'),
+	    ...toggleProps,
+	    ...props
+	  });
+	});
+	DropdownToggle.displayName = 'DropdownToggle';
+
+	const DropdownHeader = createWithBsPrefix('dropdown-header', {
+	  defaultProps: {
+	    role: 'heading'
+	  }
+	});
+	const DropdownDivider = createWithBsPrefix('dropdown-divider', {
+	  Component: 'hr',
+	  defaultProps: {
+	    role: 'separator'
+	  }
+	});
+	const DropdownItemText = createWithBsPrefix('dropdown-item-text', {
+	  Component: 'span'
+	});
+	const defaultProps$n = {
+	  navbar: false,
+	  align: 'start',
+	  autoClose: true,
+	  drop: 'down'
+	};
+	const Dropdown = /*#__PURE__*/reactExports.forwardRef((pProps, ref) => {
+	  const {
+	    bsPrefix,
+	    drop,
+	    show,
+	    className,
+	    align,
+	    onSelect,
+	    onToggle,
+	    focusFirstItemOnShow,
+	    // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
+	    as: Component = 'div',
+	    navbar: _4,
+	    autoClose,
+	    ...props
+	  } = useUncontrolled(pProps, {
+	    show: 'onToggle'
+	  });
+	  const isInputGroup = reactExports.useContext(context$1);
+	  const prefix = useBootstrapPrefix(bsPrefix, 'dropdown');
+	  const isRTL = useIsRTL();
+	  const isClosingPermitted = source => {
+	    // autoClose=false only permits close on button click
+	    if (autoClose === false) return source === 'click';
+
+	    // autoClose=inside doesn't permit close on rootClose
+	    if (autoClose === 'inside') return source !== 'rootClose';
+
+	    // autoClose=outside doesn't permit close on select
+	    if (autoClose === 'outside') return source !== 'select';
+	    return true;
+	  };
+	  const handleToggle = useEventCallback((nextShow, meta) => {
+	    if (meta.originalEvent.currentTarget === document && (meta.source !== 'keydown' || meta.originalEvent.key === 'Escape')) meta.source = 'rootClose';
+	    if (isClosingPermitted(meta.source)) onToggle == null ? void 0 : onToggle(nextShow, meta);
+	  });
+	  const alignEnd = align === 'end';
+	  const placement = getDropdownMenuPlacement(alignEnd, drop, isRTL);
+	  const contextValue = reactExports.useMemo(() => ({
+	    align,
+	    drop,
+	    isRTL
+	  }), [align, drop, isRTL]);
+	  const directionClasses = {
+	    down: prefix,
+	    'down-centered': `${prefix}-center`,
+	    up: 'dropup',
+	    'up-centered': 'dropup-center dropup',
+	    end: 'dropend',
+	    start: 'dropstart'
+	  };
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(DropdownContext.Provider, {
+	    value: contextValue,
+	    children: /*#__PURE__*/jsxRuntimeExports.jsx(Dropdown$2, {
+	      placement: placement,
+	      show: show,
+	      onSelect: onSelect,
+	      onToggle: handleToggle,
+	      focusFirstItemOnShow: focusFirstItemOnShow,
+	      itemSelector: `.${prefix}-item:not(.disabled):not(:disabled)`,
+	      children: isInputGroup ? props.children : /*#__PURE__*/jsxRuntimeExports.jsx(Component, {
+	        ...props,
+	        ref: ref,
+	        className: classNames(className, show && 'show', directionClasses[drop])
+	      })
+	    })
+	  });
+	});
+	Dropdown.displayName = 'Dropdown';
+	Dropdown.defaultProps = defaultProps$n;
+	var Dropdown$1 = Object.assign(Dropdown, {
+	  Toggle: DropdownToggle,
+	  Menu: DropdownMenu,
+	  Item: DropdownItem,
+	  ItemText: DropdownItemText,
+	  Divider: DropdownDivider,
+	  Header: DropdownHeader
+	});
+
+	const propTypes$5 = {
+	  /**
+	   * An html id attribute for the Toggle button, necessary for assistive technologies, such as screen readers.
+	   * @type {string}
+	   */
+	  id: propTypesExports.string,
+	  /** An `href` passed to the Toggle component */
+	  href: propTypesExports.string,
+	  /** An `onClick` handler passed to the Toggle component */
+	  onClick: propTypesExports.func,
+	  /** The content of the non-toggle Button.  */
+	  title: propTypesExports.node.isRequired,
+	  /** Disables both Buttons  */
+	  disabled: propTypesExports.bool,
+	  /**
+	   * Aligns the dropdown menu.
+	   *
+	   * _see [DropdownMenu](#dropdown-menu-props) for more details_
+	   *
+	   * @type {"start"|"end"|{ sm: "start"|"end" }|{ md: "start"|"end" }|{ lg: "start"|"end" }|{ xl: "start"|"end"}|{ xxl: "start"|"end"} }
+	   */
+	  align: alignPropType,
+	  /** An ARIA accessible role applied to the Menu component. When set to 'menu', The dropdown */
+	  menuRole: propTypesExports.string,
+	  /** Whether to render the dropdown menu in the DOM before the first time it is shown */
+	  renderMenuOnMount: propTypesExports.bool,
+	  /**
+	   *  Which event when fired outside the component will cause it to be closed.
+	   *
+	   * _see [DropdownMenu](#dropdown-menu-props) for more details_
+	   */
+	  rootCloseEvent: propTypesExports.string,
+	  /**
+	   * Menu color variant.
+	   *
+	   * Omitting this will use the default light color.
+	   */
+	  menuVariant: propTypesExports.oneOf(['dark']),
+	  /**
+	   * Allow Dropdown to flip in case of an overlapping on the reference element. For more information refer to
+	   * Popper.js's flip [docs](https://popper.js.org/docs/v2/modifiers/flip/).
+	   *
+	   */
+	  flip: propTypesExports.bool,
+	  /** @ignore */
+	  bsPrefix: propTypesExports.string,
+	  /** @ignore */
+	  variant: propTypesExports.string,
+	  /** @ignore */
+	  size: propTypesExports.string
+	};
+
+	/**
+	 * A convenience component for simple or general use dropdowns. Renders a `Button` toggle and all `children`
+	 * are passed directly to the default `Dropdown.Menu`. This component accepts all of
+	 * [`Dropdown`'s props](#dropdown-props).
+	 *
+	 * _All unknown props are passed through to the `Dropdown` component._ Only
+	 * the Button `variant`, `size` and `bsPrefix` props are passed to the toggle,
+	 * along with menu-related props are passed to the `Dropdown.Menu`
+	 */
+	const DropdownButton = /*#__PURE__*/reactExports.forwardRef(({
+	  title,
+	  children,
+	  bsPrefix,
+	  rootCloseEvent,
+	  variant,
+	  size,
+	  menuRole,
+	  renderMenuOnMount,
+	  disabled,
+	  href,
+	  id,
+	  menuVariant,
+	  flip,
+	  ...props
+	}, ref) => /*#__PURE__*/jsxRuntimeExports.jsxs(Dropdown$1, {
+	  ref: ref,
+	  ...props,
+	  children: [/*#__PURE__*/jsxRuntimeExports.jsx(DropdownToggle, {
+	    id: id,
+	    href: href,
+	    size: size,
+	    variant: variant,
+	    disabled: disabled,
+	    childBsPrefix: bsPrefix,
+	    children: title
+	  }), /*#__PURE__*/jsxRuntimeExports.jsx(DropdownMenu, {
+	    role: menuRole,
+	    renderOnMount: renderMenuOnMount,
+	    rootCloseEvent: rootCloseEvent,
+	    variant: menuVariant,
+	    flip: flip,
+	    children: children
+	  })]
+	}));
+	DropdownButton.displayName = 'DropdownButton';
+	DropdownButton.propTypes = propTypes$5;
+
+	const propTypes$4 = {
+	  /**
+	   * Specify whether the feedback is for valid or invalid fields
+	   *
+	   * @type {('valid'|'invalid')}
+	   */
+	  type: propTypesExports.string,
+	  /** Display feedback as a tooltip. */
+	  tooltip: propTypesExports.bool,
+	  as: propTypesExports.elementType
+	};
+	const Feedback = /*#__PURE__*/reactExports.forwardRef(
+	// Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
+	({
+	  as: Component = 'div',
+	  className,
+	  type = 'valid',
+	  tooltip = false,
+	  ...props
+	}, ref) => /*#__PURE__*/jsxRuntimeExports.jsx(Component, {
+	  ...props,
+	  ref: ref,
+	  className: classNames(className, `${type}-${tooltip ? 'tooltip' : 'feedback'}`)
+	}));
+	Feedback.displayName = 'Feedback';
+	Feedback.propTypes = propTypes$4;
+
+	// TODO
+
+	const FormContext = /*#__PURE__*/reactExports.createContext({});
+
+	const FormCheckInput = /*#__PURE__*/reactExports.forwardRef(({
+	  id,
+	  bsPrefix,
+	  className,
+	  type = 'checkbox',
+	  isValid = false,
+	  isInvalid = false,
+	  // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
+	  as: Component = 'input',
+	  ...props
+	}, ref) => {
+	  const {
+	    controlId
+	  } = reactExports.useContext(FormContext);
+	  bsPrefix = useBootstrapPrefix(bsPrefix, 'form-check-input');
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(Component, {
+	    ...props,
+	    ref: ref,
+	    type: type,
+	    id: id || controlId,
+	    className: classNames(className, bsPrefix, isValid && 'is-valid', isInvalid && 'is-invalid')
+	  });
+	});
+	FormCheckInput.displayName = 'FormCheckInput';
+
+	const FormCheckLabel = /*#__PURE__*/reactExports.forwardRef(({
+	  bsPrefix,
+	  className,
+	  htmlFor,
+	  ...props
+	}, ref) => {
+	  const {
+	    controlId
+	  } = reactExports.useContext(FormContext);
+	  bsPrefix = useBootstrapPrefix(bsPrefix, 'form-check-label');
+	  return /*#__PURE__*/jsxRuntimeExports.jsx("label", {
+	    ...props,
+	    ref: ref,
+	    htmlFor: htmlFor || controlId,
+	    className: classNames(className, bsPrefix)
+	  });
+	});
+	FormCheckLabel.displayName = 'FormCheckLabel';
+
+	const FormCheck = /*#__PURE__*/reactExports.forwardRef(({
+	  id,
+	  bsPrefix,
+	  bsSwitchPrefix,
+	  inline = false,
+	  reverse = false,
+	  disabled = false,
+	  isValid = false,
+	  isInvalid = false,
+	  feedbackTooltip = false,
+	  feedback,
+	  feedbackType,
+	  className,
+	  style,
+	  title = '',
+	  type = 'checkbox',
+	  label,
+	  children,
+	  // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
+	  as = 'input',
+	  ...props
+	}, ref) => {
+	  bsPrefix = useBootstrapPrefix(bsPrefix, 'form-check');
+	  bsSwitchPrefix = useBootstrapPrefix(bsSwitchPrefix, 'form-switch');
+	  const {
+	    controlId
+	  } = reactExports.useContext(FormContext);
+	  const innerFormContext = reactExports.useMemo(() => ({
+	    controlId: id || controlId
+	  }), [controlId, id]);
+	  const hasLabel = !children && label != null && label !== false || hasChildOfType(children, FormCheckLabel);
+	  const input = /*#__PURE__*/jsxRuntimeExports.jsx(FormCheckInput, {
+	    ...props,
+	    type: type === 'switch' ? 'checkbox' : type,
+	    ref: ref,
+	    isValid: isValid,
+	    isInvalid: isInvalid,
+	    disabled: disabled,
+	    as: as
+	  });
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(FormContext.Provider, {
+	    value: innerFormContext,
+	    children: /*#__PURE__*/jsxRuntimeExports.jsx("div", {
+	      style: style,
+	      className: classNames(className, hasLabel && bsPrefix, inline && `${bsPrefix}-inline`, reverse && `${bsPrefix}-reverse`, type === 'switch' && bsSwitchPrefix),
+	      children: children || /*#__PURE__*/jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
+	        children: [input, hasLabel && /*#__PURE__*/jsxRuntimeExports.jsx(FormCheckLabel, {
+	          title: title,
+	          children: label
+	        }), feedback && /*#__PURE__*/jsxRuntimeExports.jsx(Feedback, {
+	          type: feedbackType,
+	          tooltip: feedbackTooltip,
+	          children: feedback
+	        })]
+	      })
+	    })
+	  });
+	});
+	FormCheck.displayName = 'FormCheck';
+	var FormCheck$1 = Object.assign(FormCheck, {
+	  Input: FormCheckInput,
+	  Label: FormCheckLabel
+	});
+
+	const FormControl = /*#__PURE__*/reactExports.forwardRef(({
+	  bsPrefix,
+	  type,
+	  size,
+	  htmlSize,
+	  id,
+	  className,
+	  isValid = false,
+	  isInvalid = false,
+	  plaintext,
+	  readOnly,
+	  // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
+	  as: Component = 'input',
+	  ...props
+	}, ref) => {
+	  const {
+	    controlId
+	  } = reactExports.useContext(FormContext);
+	  bsPrefix = useBootstrapPrefix(bsPrefix, 'form-control');
+	  let classes;
+	  if (plaintext) {
+	    classes = {
+	      [`${bsPrefix}-plaintext`]: true
+	    };
+	  } else {
+	    classes = {
+	      [bsPrefix]: true,
+	      [`${bsPrefix}-${size}`]: size
+	    };
+	  }
+	  warning_1(controlId == null || !id, '`controlId` is ignored on `<FormControl>` when `id` is specified.') ;
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(Component, {
+	    ...props,
+	    type: type,
+	    size: htmlSize,
+	    ref: ref,
+	    readOnly: readOnly,
+	    id: id || controlId,
+	    className: classNames(className, classes, isValid && `is-valid`, isInvalid && `is-invalid`, type === 'color' && `${bsPrefix}-color`)
+	  });
+	});
+	FormControl.displayName = 'FormControl';
+	var FormControl$1 = Object.assign(FormControl, {
+	  Feedback
+	});
+
+	var FormFloating = createWithBsPrefix('form-floating');
+
+	const FormGroup = /*#__PURE__*/reactExports.forwardRef(({
+	  controlId,
+	  // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
+	  as: Component = 'div',
+	  ...props
+	}, ref) => {
+	  const context = reactExports.useMemo(() => ({
+	    controlId
+	  }), [controlId]);
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(FormContext.Provider, {
+	    value: context,
+	    children: /*#__PURE__*/jsxRuntimeExports.jsx(Component, {
+	      ...props,
+	      ref: ref
+	    })
+	  });
+	});
+	FormGroup.displayName = 'FormGroup';
+
+	const defaultProps$m = {
+	  column: false,
+	  visuallyHidden: false
+	};
+	const FormLabel = /*#__PURE__*/reactExports.forwardRef(({
+	  // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
+	  as: Component = 'label',
+	  bsPrefix,
+	  column,
+	  visuallyHidden,
+	  className,
+	  htmlFor,
+	  ...props
+	}, ref) => {
+	  const {
+	    controlId
+	  } = reactExports.useContext(FormContext);
+	  bsPrefix = useBootstrapPrefix(bsPrefix, 'form-label');
+	  let columnClass = 'col-form-label';
+	  if (typeof column === 'string') columnClass = `${columnClass} ${columnClass}-${column}`;
+	  const classes = classNames(className, bsPrefix, visuallyHidden && 'visually-hidden', column && columnClass);
+	  warning_1(controlId == null || !htmlFor, '`controlId` is ignored on `<FormLabel>` when `htmlFor` is specified.') ;
+	  htmlFor = htmlFor || controlId;
+	  if (column) return /*#__PURE__*/jsxRuntimeExports.jsx(Col, {
+	    ref: ref,
+	    as: "label",
+	    className: classes,
+	    htmlFor: htmlFor,
+	    ...props
+	  });
+	  return /*#__PURE__*/(
+	    // eslint-disable-next-line jsx-a11y/label-has-for, jsx-a11y/label-has-associated-control
+	    jsxRuntimeExports.jsx(Component, {
+	      ref: ref,
+	      className: classes,
+	      htmlFor: htmlFor,
+	      ...props
+	    })
+	  );
+	});
+	FormLabel.displayName = 'FormLabel';
+	FormLabel.defaultProps = defaultProps$m;
+
+	const FormRange = /*#__PURE__*/reactExports.forwardRef(({
+	  bsPrefix,
+	  className,
+	  id,
+	  ...props
+	}, ref) => {
+	  const {
+	    controlId
+	  } = reactExports.useContext(FormContext);
+	  bsPrefix = useBootstrapPrefix(bsPrefix, 'form-range');
+	  return /*#__PURE__*/jsxRuntimeExports.jsx("input", {
+	    ...props,
+	    type: "range",
+	    ref: ref,
+	    className: classNames(className, bsPrefix),
+	    id: id || controlId
+	  });
+	});
+	FormRange.displayName = 'FormRange';
+
+	const FormSelect = /*#__PURE__*/reactExports.forwardRef(({
+	  bsPrefix,
+	  size,
+	  htmlSize,
+	  className,
+	  isValid = false,
+	  isInvalid = false,
+	  id,
+	  ...props
+	}, ref) => {
+	  const {
+	    controlId
+	  } = reactExports.useContext(FormContext);
+	  bsPrefix = useBootstrapPrefix(bsPrefix, 'form-select');
+	  return /*#__PURE__*/jsxRuntimeExports.jsx("select", {
+	    ...props,
+	    size: htmlSize,
+	    ref: ref,
+	    className: classNames(className, bsPrefix, size && `${bsPrefix}-${size}`, isValid && `is-valid`, isInvalid && `is-invalid`),
+	    id: id || controlId
+	  });
+	});
+	FormSelect.displayName = 'FormSelect';
+
+	const FormText = /*#__PURE__*/reactExports.forwardRef(
+	// Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
+	({
+	  bsPrefix,
+	  className,
+	  as: Component = 'small',
+	  muted,
+	  ...props
+	}, ref) => {
+	  bsPrefix = useBootstrapPrefix(bsPrefix, 'form-text');
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(Component, {
+	    ...props,
+	    ref: ref,
+	    className: classNames(className, bsPrefix, muted && 'text-muted')
+	  });
+	});
+	FormText.displayName = 'FormText';
+
+	const Switch = /*#__PURE__*/reactExports.forwardRef((props, ref) => /*#__PURE__*/jsxRuntimeExports.jsx(FormCheck$1, {
+	  ...props,
+	  ref: ref,
+	  type: "switch"
+	}));
+	Switch.displayName = 'Switch';
+	var Switch$1 = Object.assign(Switch, {
+	  Input: FormCheck$1.Input,
+	  Label: FormCheck$1.Label
+	});
+
+	const FloatingLabel = /*#__PURE__*/reactExports.forwardRef(({
+	  bsPrefix,
+	  className,
+	  children,
+	  controlId,
+	  label,
+	  ...props
+	}, ref) => {
+	  bsPrefix = useBootstrapPrefix(bsPrefix, 'form-floating');
+	  return /*#__PURE__*/jsxRuntimeExports.jsxs(FormGroup, {
+	    ref: ref,
+	    className: classNames(className, bsPrefix),
+	    controlId: controlId,
+	    ...props,
+	    children: [children, /*#__PURE__*/jsxRuntimeExports.jsx("label", {
+	      htmlFor: controlId,
+	      children: label
+	    })]
+	  });
+	});
+	FloatingLabel.displayName = 'FloatingLabel';
+
+	const propTypes$3 = {
+	  /**
+	   * The Form `ref` will be forwarded to the underlying element,
+	   * which means, unless it's rendered `as` a composite component,
+	   * it will be a DOM node, when resolved.
+	   *
+	   * @type {ReactRef}
+	   * @alias ref
+	   */
+	  _ref: propTypesExports.any,
+	  /**
+	   * Mark a form as having been validated. Setting it to `true` will
+	   * toggle any validation styles on the forms elements.
+	   */
+	  validated: propTypesExports.bool,
+	  as: propTypesExports.elementType
+	};
+	const Form$1 = /*#__PURE__*/reactExports.forwardRef(({
+	  className,
+	  validated,
+	  // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
+	  as: Component = 'form',
+	  ...props
+	}, ref) => /*#__PURE__*/jsxRuntimeExports.jsx(Component, {
+	  ...props,
+	  ref: ref,
+	  className: classNames(className, validated && 'was-validated')
+	}));
+	Form$1.displayName = 'Form';
+	Form$1.propTypes = propTypes$3;
+	Object.assign(Form$1, {
+	  Group: FormGroup,
+	  Control: FormControl$1,
+	  Floating: FormFloating,
+	  Check: FormCheck$1,
+	  Switch: Switch$1,
+	  Label: FormLabel,
+	  Text: FormText,
+	  Range: FormRange,
+	  Select: FormSelect,
+	  FloatingLabel
+	});
+
+	const defaultProps$l = {
 	  fluid: false
 	};
 	const Container = /*#__PURE__*/reactExports.forwardRef(({
@@ -11836,14 +16248,138 @@
 	  });
 	});
 	Container.displayName = 'Container';
-	Container.defaultProps = defaultProps$8;
-	var Container$1 = Container;
+	Container.defaultProps = defaultProps$l;
+
+	const propTypes$2 = {
+	  /**
+	   * @default 'img'
+	   */
+	  bsPrefix: propTypesExports.string,
+	  /**
+	   * Sets image as fluid image.
+	   */
+	  fluid: propTypesExports.bool,
+	  /**
+	   * Sets image shape as rounded.
+	   */
+	  rounded: propTypesExports.bool,
+	  /**
+	   * Sets image shape as circle.
+	   */
+	  roundedCircle: propTypesExports.bool,
+	  /**
+	   * Sets image shape as thumbnail.
+	   */
+	  thumbnail: propTypesExports.bool
+	};
+	const defaultProps$k = {
+	  fluid: false,
+	  rounded: false,
+	  roundedCircle: false,
+	  thumbnail: false
+	};
+	const Image = /*#__PURE__*/reactExports.forwardRef(({
+	  bsPrefix,
+	  className,
+	  fluid,
+	  rounded,
+	  roundedCircle,
+	  thumbnail,
+	  ...props
+	}, ref) => {
+	  bsPrefix = useBootstrapPrefix(bsPrefix, 'img');
+	  return /*#__PURE__*/jsxRuntimeExports.jsx("img", {
+	    // eslint-disable-line jsx-a11y/alt-text
+	    ref: ref,
+	    ...props,
+	    className: classNames(className, fluid && `${bsPrefix}-fluid`, rounded && `rounded`, roundedCircle && `rounded-circle`, thumbnail && `${bsPrefix}-thumbnail`)
+	  });
+	});
+	Image.displayName = 'Image';
+	Image.defaultProps = defaultProps$k;
+
+	const defaultProps$j = {
+	  fluid: true
+	};
+	const FigureImage = /*#__PURE__*/reactExports.forwardRef(({
+	  className,
+	  ...props
+	}, ref) => /*#__PURE__*/jsxRuntimeExports.jsx(Image, {
+	  ref: ref,
+	  ...props,
+	  className: classNames(className, 'figure-img')
+	}));
+	FigureImage.displayName = 'FigureImage';
+	FigureImage.propTypes = propTypes$2;
+	FigureImage.defaultProps = defaultProps$j;
+
+	const FigureCaption = createWithBsPrefix('figure-caption', {
+	  Component: 'figcaption'
+	});
+
+	const Figure = createWithBsPrefix('figure', {
+	  Component: 'figure'
+	});
+	Object.assign(Figure, {
+	  Image: FigureImage,
+	  Caption: FigureCaption
+	});
+
+	const InputGroupText = createWithBsPrefix('input-group-text', {
+	  Component: 'span'
+	});
+	const InputGroupCheckbox = props => /*#__PURE__*/jsxRuntimeExports.jsx(InputGroupText, {
+	  children: /*#__PURE__*/jsxRuntimeExports.jsx(FormCheckInput, {
+	    type: "checkbox",
+	    ...props
+	  })
+	});
+	const InputGroupRadio = props => /*#__PURE__*/jsxRuntimeExports.jsx(InputGroupText, {
+	  children: /*#__PURE__*/jsxRuntimeExports.jsx(FormCheckInput, {
+	    type: "radio",
+	    ...props
+	  })
+	});
+	/**
+	 *
+	 * @property {InputGroupText} Text
+	 * @property {InputGroupRadio} Radio
+	 * @property {InputGroupCheckbox} Checkbox
+	 */
+	const InputGroup = /*#__PURE__*/reactExports.forwardRef(({
+	  bsPrefix,
+	  size,
+	  hasValidation,
+	  className,
+	  // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
+	  as: Component = 'div',
+	  ...props
+	}, ref) => {
+	  bsPrefix = useBootstrapPrefix(bsPrefix, 'input-group');
+
+	  // Intentionally an empty object. Used in detecting if a dropdown
+	  // exists under an input group.
+	  const contextValue = reactExports.useMemo(() => ({}), []);
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(context$1.Provider, {
+	    value: contextValue,
+	    children: /*#__PURE__*/jsxRuntimeExports.jsx(Component, {
+	      ref: ref,
+	      ...props,
+	      className: classNames(className, bsPrefix, size && `${bsPrefix}-${size}`, hasValidation && 'has-validation')
+	    })
+	  });
+	});
+	InputGroup.displayName = 'InputGroup';
+	Object.assign(InputGroup, {
+	  Text: InputGroupText,
+	  Radio: InputGroupRadio,
+	  Checkbox: InputGroupCheckbox
+	});
 
 	const TabContext = /*#__PURE__*/reactExports.createContext(null);
-	var TabContext$1 = TabContext;
 
-	const _excluded$3 = ["as", "active", "eventKey"];
-	function _objectWithoutPropertiesLoose$3(source, excluded) {
+	const _excluded$5 = ["as", "active", "eventKey"];
+	function _objectWithoutPropertiesLoose$5(source, excluded) {
 	  if (source == null) return {};
 	  var target = {};
 	  var sourceKeys = Object.keys(source);
@@ -11863,9 +16399,9 @@
 	  role,
 	  disabled
 	}) {
-	  const parentOnSelect = reactExports.useContext(SelectableContext$1);
-	  const navContext = reactExports.useContext(NavContext$1);
-	  const tabContext = reactExports.useContext(TabContext$1);
+	  const parentOnSelect = reactExports.useContext(SelectableContext);
+	  const navContext = reactExports.useContext(NavContext);
+	  const tabContext = reactExports.useContext(TabContext);
 	  let isActive = active;
 	  const props = {
 	    role
@@ -11917,11 +16453,11 @@
 	}
 	const NavItem$1 = /*#__PURE__*/reactExports.forwardRef((_ref, ref) => {
 	  let {
-	      as: Component = Button,
+	      as: Component = Button$1,
 	      active,
 	      eventKey
 	    } = _ref,
-	    options = _objectWithoutPropertiesLoose$3(_ref, _excluded$3);
+	    options = _objectWithoutPropertiesLoose$5(_ref, _excluded$5);
 	  const [props, meta] = useNavItem(Object.assign({
 	    key: makeEventKey(eventKey, options.href),
 	    active
@@ -11934,10 +16470,9 @@
 	  }));
 	});
 	NavItem$1.displayName = 'NavItem';
-	var NavItem$2 = NavItem$1;
 
-	const _excluded$2 = ["as", "onSelect", "activeKey", "role", "onKeyDown"];
-	function _objectWithoutPropertiesLoose$2(source, excluded) {
+	const _excluded$4 = ["as", "onSelect", "activeKey", "role", "onKeyDown"];
+	function _objectWithoutPropertiesLoose$4(source, excluded) {
 	  if (source == null) return {};
 	  var target = {};
 	  var sourceKeys = Object.keys(source);
@@ -11950,7 +16485,7 @@
 	  return target;
 	}
 	// eslint-disable-next-line @typescript-eslint/no-empty-function
-	const noop = () => {};
+	const noop$5 = () => {};
 	const EVENT_KEY_ATTR = dataAttr('event-key');
 	const Nav$2 = /*#__PURE__*/reactExports.forwardRef((_ref, ref) => {
 	  let {
@@ -11961,13 +16496,13 @@
 	      role,
 	      onKeyDown
 	    } = _ref,
-	    props = _objectWithoutPropertiesLoose$2(_ref, _excluded$2);
+	    props = _objectWithoutPropertiesLoose$4(_ref, _excluded$4);
 	  // A ref and forceUpdate for refocus, b/c we only want to trigger when needed
 	  // and don't want to reset the set in the effect
 	  const forceUpdate = useForceUpdate();
 	  const needsRefocusRef = reactExports.useRef(false);
-	  const parentOnSelect = reactExports.useContext(SelectableContext$1);
-	  const tabContext = reactExports.useContext(TabContext$1);
+	  const parentOnSelect = reactExports.useContext(SelectableContext);
+	  const tabContext = reactExports.useContext(TabContext);
 	  let getControlledId, getControllerId;
 	  if (tabContext) {
 	    role = role || 'tablist';
@@ -12027,15 +16562,15 @@
 	    needsRefocusRef.current = false;
 	  });
 	  const mergedRef = useMergedRefs(ref, listNode);
-	  return /*#__PURE__*/jsxRuntimeExports.jsx(SelectableContext$1.Provider, {
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(SelectableContext.Provider, {
 	    value: handleSelect,
-	    children: /*#__PURE__*/jsxRuntimeExports.jsx(NavContext$1.Provider, {
+	    children: /*#__PURE__*/jsxRuntimeExports.jsx(NavContext.Provider, {
 	      value: {
 	        role,
 	        // used by NavLink to determine it's role
 	        activeKey: makeEventKey(activeKey),
-	        getControlledId: getControlledId || noop,
-	        getControllerId: getControllerId || noop
+	        getControlledId: getControlledId || noop$5,
+	        getControllerId: getControllerId || noop$5
 	      },
 	      children: /*#__PURE__*/jsxRuntimeExports.jsx(Component, Object.assign({}, props, {
 	        onKeyDown: handleKeyDown,
@@ -12047,8 +16582,100 @@
 	});
 	Nav$2.displayName = 'Nav';
 	var BaseNav = Object.assign(Nav$2, {
-	  Item: NavItem$2
+	  Item: NavItem$1
 	});
+
+	const ListGroupItem = /*#__PURE__*/reactExports.forwardRef(({
+	  bsPrefix,
+	  active,
+	  disabled,
+	  eventKey,
+	  className,
+	  variant,
+	  action,
+	  as,
+	  ...props
+	}, ref) => {
+	  bsPrefix = useBootstrapPrefix(bsPrefix, 'list-group-item');
+	  const [navItemProps, meta] = useNavItem({
+	    key: makeEventKey(eventKey, props.href),
+	    active,
+	    ...props
+	  });
+	  const handleClick = useEventCallback(event => {
+	    if (disabled) {
+	      event.preventDefault();
+	      event.stopPropagation();
+	      return;
+	    }
+	    navItemProps.onClick(event);
+	  });
+	  if (disabled && props.tabIndex === undefined) {
+	    props.tabIndex = -1;
+	    props['aria-disabled'] = true;
+	  }
+
+	  // eslint-disable-next-line no-nested-ternary
+	  const Component = as || (action ? props.href ? 'a' : 'button' : 'div');
+	  warning_1(as || !(!action && props.href), '`action=false` and `href` should not be used together.') ;
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(Component, {
+	    ref: ref,
+	    ...props,
+	    ...navItemProps,
+	    onClick: handleClick,
+	    className: classNames(className, bsPrefix, meta.isActive && 'active', disabled && 'disabled', variant && `${bsPrefix}-${variant}`, action && `${bsPrefix}-action`)
+	  });
+	});
+	ListGroupItem.displayName = 'ListGroupItem';
+
+	const ListGroup = /*#__PURE__*/reactExports.forwardRef((props, ref) => {
+	  const {
+	    className,
+	    bsPrefix: initialBsPrefix,
+	    variant,
+	    horizontal,
+	    numbered,
+	    // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
+	    as = 'div',
+	    ...controlledProps
+	  } = useUncontrolled(props, {
+	    activeKey: 'onSelect'
+	  });
+	  const bsPrefix = useBootstrapPrefix(initialBsPrefix, 'list-group');
+	  let horizontalVariant;
+	  if (horizontal) {
+	    horizontalVariant = horizontal === true ? 'horizontal' : `horizontal-${horizontal}`;
+	  }
+	  warning_1(!(horizontal && variant === 'flush'), '`variant="flush"` and `horizontal` should not be used together.') ;
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(BaseNav, {
+	    ref: ref,
+	    ...controlledProps,
+	    as: as,
+	    className: classNames(className, bsPrefix, variant && `${bsPrefix}-${variant}`, horizontalVariant && `${bsPrefix}-${horizontalVariant}`, numbered && `${bsPrefix}-numbered`)
+	  });
+	});
+	ListGroup.displayName = 'ListGroup';
+	Object.assign(ListGroup, {
+	  Item: ListGroupItem
+	});
+
+	var size;
+	function scrollbarSize(recalc) {
+	  if (!size && size !== 0 || recalc) {
+	    if (canUseDOM) {
+	      var scrollDiv = document.createElement('div');
+	      scrollDiv.style.position = 'absolute';
+	      scrollDiv.style.top = '-9999px';
+	      scrollDiv.style.width = '50px';
+	      scrollDiv.style.height = '50px';
+	      scrollDiv.style.overflow = 'scroll';
+	      document.body.appendChild(scrollDiv);
+	      size = scrollDiv.offsetWidth - scrollDiv.clientWidth;
+	      document.body.removeChild(scrollDiv);
+	    }
+	  }
+	  return size;
+	}
 
 	/**
 	 * Returns the actively focused element safely.
@@ -12179,10 +16806,9 @@
 	    return !!this.modals.length && this.modals[this.modals.length - 1] === modal;
 	  }
 	}
-	var ModalManager$1 = ModalManager;
 
 	const resolveContainerRef = (ref, document) => {
-	  if (!canUseDOM$1) return null;
+	  if (!canUseDOM) return null;
 	  if (ref == null) return (document || ownerDocument()).body;
 	  if (typeof ref === 'function') ref = ref();
 	  if (ref && 'current' in ref) ref = ref.current;
@@ -12197,9 +16823,6 @@
 	    if (earlyRef) setRef(earlyRef);
 	  }
 	  reactExports.useEffect(() => {
-	    if (onResolved && resolvedRef) {
-	      onResolved(resolvedRef);
-	    }
 	  }, [onResolved, resolvedRef]);
 	  reactExports.useEffect(() => {
 	    const nextRef = resolveContainerRef(ref);
@@ -12324,8 +16947,8 @@
 	  return /*#__PURE__*/jsxRuntimeExports.jsx(NoopTransition, Object.assign({}, props));
 	}
 
-	const _excluded$1 = ["show", "role", "className", "style", "children", "backdrop", "keyboard", "onBackdropClick", "onEscapeKeyDown", "transition", "runTransition", "backdropTransition", "runBackdropTransition", "autoFocus", "enforceFocus", "restoreFocus", "restoreFocusOptions", "renderDialog", "renderBackdrop", "manager", "container", "onShow", "onHide", "onExit", "onExited", "onExiting", "onEnter", "onEntering", "onEntered"];
-	function _objectWithoutPropertiesLoose$1(source, excluded) {
+	const _excluded$3 = ["show", "role", "className", "style", "children", "backdrop", "keyboard", "onBackdropClick", "onEscapeKeyDown", "transition", "runTransition", "backdropTransition", "runBackdropTransition", "autoFocus", "enforceFocus", "restoreFocus", "restoreFocusOptions", "renderDialog", "renderBackdrop", "manager", "container", "onShow", "onHide", "onExit", "onExited", "onExiting", "onEnter", "onEntering", "onEntered"];
+	function _objectWithoutPropertiesLoose$3(source, excluded) {
 	  if (source == null) return {};
 	  var target = {};
 	  var sourceKeys = Object.keys(source);
@@ -12339,7 +16962,7 @@
 	}
 	let manager;
 	function getManager(window) {
-	  if (!manager) manager = new ModalManager$1({
+	  if (!manager) manager = new ModalManager({
 	    ownerDocument: window == null ? void 0 : window.document
 	  });
 	  return manager;
@@ -12363,7 +16986,7 @@
 	    }, [])
 	  });
 	}
-	const Modal = /*#__PURE__*/reactExports.forwardRef((_ref, ref) => {
+	const Modal$1 = /*#__PURE__*/reactExports.forwardRef((_ref, ref) => {
 	  let {
 	      show = false,
 	      role = 'dialog',
@@ -12395,7 +17018,7 @@
 	      onEntering,
 	      onEntered
 	    } = _ref,
-	    rest = _objectWithoutPropertiesLoose$1(_ref, _excluded$1);
+	    rest = _objectWithoutPropertiesLoose$3(_ref, _excluded$3);
 	  const container = useWaitForDOMRef(containerRef);
 	  const modal = useModalManager(providedManager);
 	  const isMounted = useMounted();
@@ -12403,7 +17026,7 @@
 	  const [exited, setExited] = reactExports.useState(!show);
 	  const lastFocusRef = reactExports.useRef(null);
 	  reactExports.useImperativeHandle(ref, () => modal, [modal]);
-	  if (canUseDOM$1 && !prevShow && show) {
+	  if (canUseDOM && !prevShow && show) {
 	    lastFocusRef.current = activeElement();
 	  }
 
@@ -12549,9 +17172,9 @@
 	    }), container)
 	  });
 	});
-	Modal.displayName = 'Modal';
-	var BaseModal = Object.assign(Modal, {
-	  Manager: ModalManager$1
+	Modal$1.displayName = 'Modal';
+	var BaseModal = Object.assign(Modal$1, {
+	  Manager: ModalManager
 	});
 
 	/**
@@ -12601,7 +17224,7 @@
 	  STICKY_CONTENT: '.sticky-top',
 	  NAVBAR_TOGGLER: '.navbar-toggler'
 	};
-	class BootstrapModalManager extends ModalManager$1 {
+	class BootstrapModalManager extends ModalManager {
 	  adjustAndStore(prop, element, adjust) {
 	    const actual = element.style[prop];
 	    // TODO: DOMStringMap and CSSStyleDeclaration aren't strictly compatible
@@ -12647,15 +17270,43 @@
 	  if (!sharedManager) sharedManager = new BootstrapModalManager(options);
 	  return sharedManager;
 	}
-	var BootstrapModalManager$1 = BootstrapModalManager;
+
+	var ModalBody = createWithBsPrefix('modal-body');
 
 	const ModalContext = /*#__PURE__*/reactExports.createContext({
 	  // eslint-disable-next-line @typescript-eslint/no-empty-function
 	  onHide() {}
 	});
-	var ModalContext$1 = ModalContext;
 
-	const defaultProps$7 = {
+	const ModalDialog = /*#__PURE__*/reactExports.forwardRef(({
+	  bsPrefix,
+	  className,
+	  contentClassName,
+	  centered,
+	  size,
+	  fullscreen,
+	  children,
+	  scrollable,
+	  ...props
+	}, ref) => {
+	  bsPrefix = useBootstrapPrefix(bsPrefix, 'modal');
+	  const dialogClass = `${bsPrefix}-dialog`;
+	  const fullScreenClass = typeof fullscreen === 'string' ? `${bsPrefix}-fullscreen-${fullscreen}` : `${bsPrefix}-fullscreen`;
+	  return /*#__PURE__*/jsxRuntimeExports.jsx("div", {
+	    ...props,
+	    ref: ref,
+	    className: classNames(dialogClass, className, size && `${bsPrefix}-${size}`, centered && `${dialogClass}-centered`, scrollable && `${dialogClass}-scrollable`, fullscreen && fullScreenClass),
+	    children: /*#__PURE__*/jsxRuntimeExports.jsx("div", {
+	      className: classNames(`${bsPrefix}-content`, contentClassName),
+	      children: children
+	    })
+	  });
+	});
+	ModalDialog.displayName = 'ModalDialog';
+
+	var ModalFooter = createWithBsPrefix('modal-footer');
+
+	const defaultProps$i = {
 	  closeLabel: 'Close',
 	  closeButton: false
 	};
@@ -12667,7 +17318,7 @@
 	  children,
 	  ...props
 	}, ref) => {
-	  const context = reactExports.useContext(ModalContext$1);
+	  const context = reactExports.useContext(ModalContext);
 	  const handleClick = useEventCallback(() => {
 	    context == null ? void 0 : context.onHide();
 	    onHide == null ? void 0 : onHide();
@@ -12675,15 +17326,280 @@
 	  return /*#__PURE__*/jsxRuntimeExports.jsxs("div", {
 	    ref: ref,
 	    ...props,
-	    children: [children, closeButton && /*#__PURE__*/jsxRuntimeExports.jsx(CloseButton$1, {
+	    children: [children, closeButton && /*#__PURE__*/jsxRuntimeExports.jsx(CloseButton, {
 	      "aria-label": closeLabel,
 	      variant: closeVariant,
 	      onClick: handleClick
 	    })]
 	  });
 	});
-	AbstractModalHeader.defaultProps = defaultProps$7;
-	var AbstractModalHeader$1 = AbstractModalHeader;
+	AbstractModalHeader.defaultProps = defaultProps$i;
+
+	const defaultProps$h = {
+	  closeLabel: 'Close',
+	  closeButton: false
+	};
+	const ModalHeader = /*#__PURE__*/reactExports.forwardRef(({
+	  bsPrefix,
+	  className,
+	  ...props
+	}, ref) => {
+	  bsPrefix = useBootstrapPrefix(bsPrefix, 'modal-header');
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(AbstractModalHeader, {
+	    ref: ref,
+	    ...props,
+	    className: classNames(className, bsPrefix)
+	  });
+	});
+	ModalHeader.displayName = 'ModalHeader';
+	ModalHeader.defaultProps = defaultProps$h;
+
+	const DivStyledAsH4 = divWithClassName('h4');
+	var ModalTitle = createWithBsPrefix('modal-title', {
+	  Component: DivStyledAsH4
+	});
+
+	const defaultProps$g = {
+	  show: false,
+	  backdrop: true,
+	  keyboard: true,
+	  autoFocus: true,
+	  enforceFocus: true,
+	  restoreFocus: true,
+	  animation: true,
+	  dialogAs: ModalDialog
+	};
+
+	/* eslint-disable no-use-before-define, react/no-multi-comp */
+	function DialogTransition$1(props) {
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(Fade, {
+	    ...props,
+	    timeout: null
+	  });
+	}
+	function BackdropTransition$1(props) {
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(Fade, {
+	    ...props,
+	    timeout: null
+	  });
+	}
+
+	/* eslint-enable no-use-before-define */
+	const Modal = /*#__PURE__*/reactExports.forwardRef(({
+	  bsPrefix,
+	  className,
+	  style,
+	  dialogClassName,
+	  contentClassName,
+	  children,
+	  dialogAs: Dialog,
+	  'aria-labelledby': ariaLabelledby,
+	  'aria-describedby': ariaDescribedby,
+	  'aria-label': ariaLabel,
+	  /* BaseModal props */
+
+	  show,
+	  animation,
+	  backdrop,
+	  keyboard,
+	  onEscapeKeyDown,
+	  onShow,
+	  onHide,
+	  container,
+	  autoFocus,
+	  enforceFocus,
+	  restoreFocus,
+	  restoreFocusOptions,
+	  onEntered,
+	  onExit,
+	  onExiting,
+	  onEnter,
+	  onEntering,
+	  onExited,
+	  backdropClassName,
+	  manager: propsManager,
+	  ...props
+	}, ref) => {
+	  const [modalStyle, setStyle] = reactExports.useState({});
+	  const [animateStaticModal, setAnimateStaticModal] = reactExports.useState(false);
+	  const waitingForMouseUpRef = reactExports.useRef(false);
+	  const ignoreBackdropClickRef = reactExports.useRef(false);
+	  const removeStaticModalAnimationRef = reactExports.useRef(null);
+	  const [modal, setModalRef] = useCallbackRef();
+	  const mergedRef = useMergedRefs(ref, setModalRef);
+	  const handleHide = useEventCallback(onHide);
+	  const isRTL = useIsRTL();
+	  bsPrefix = useBootstrapPrefix(bsPrefix, 'modal');
+	  const modalContext = reactExports.useMemo(() => ({
+	    onHide: handleHide
+	  }), [handleHide]);
+	  function getModalManager() {
+	    if (propsManager) return propsManager;
+	    return getSharedManager({
+	      isRTL
+	    });
+	  }
+	  function updateDialogStyle(node) {
+	    if (!canUseDOM) return;
+	    const containerIsOverflowing = getModalManager().getScrollbarWidth() > 0;
+	    const modalIsOverflowing = node.scrollHeight > ownerDocument(node).documentElement.clientHeight;
+	    setStyle({
+	      paddingRight: containerIsOverflowing && !modalIsOverflowing ? scrollbarSize() : undefined,
+	      paddingLeft: !containerIsOverflowing && modalIsOverflowing ? scrollbarSize() : undefined
+	    });
+	  }
+	  const handleWindowResize = useEventCallback(() => {
+	    if (modal) {
+	      updateDialogStyle(modal.dialog);
+	    }
+	  });
+	  useWillUnmount(() => {
+	    removeEventListener(window, 'resize', handleWindowResize);
+	    removeStaticModalAnimationRef.current == null ? void 0 : removeStaticModalAnimationRef.current();
+	  });
+
+	  // We prevent the modal from closing during a drag by detecting where the
+	  // click originates from. If it starts in the modal and then ends outside
+	  // don't close.
+	  const handleDialogMouseDown = () => {
+	    waitingForMouseUpRef.current = true;
+	  };
+	  const handleMouseUp = e => {
+	    if (waitingForMouseUpRef.current && modal && e.target === modal.dialog) {
+	      ignoreBackdropClickRef.current = true;
+	    }
+	    waitingForMouseUpRef.current = false;
+	  };
+	  const handleStaticModalAnimation = () => {
+	    setAnimateStaticModal(true);
+	    removeStaticModalAnimationRef.current = transitionEnd(modal.dialog, () => {
+	      setAnimateStaticModal(false);
+	    });
+	  };
+	  const handleStaticBackdropClick = e => {
+	    if (e.target !== e.currentTarget) {
+	      return;
+	    }
+	    handleStaticModalAnimation();
+	  };
+	  const handleClick = e => {
+	    if (backdrop === 'static') {
+	      handleStaticBackdropClick(e);
+	      return;
+	    }
+	    if (ignoreBackdropClickRef.current || e.target !== e.currentTarget) {
+	      ignoreBackdropClickRef.current = false;
+	      return;
+	    }
+	    onHide == null ? void 0 : onHide();
+	  };
+	  const handleEscapeKeyDown = e => {
+	    if (keyboard) {
+	      onEscapeKeyDown == null ? void 0 : onEscapeKeyDown(e);
+	    } else {
+	      // Call preventDefault to stop modal from closing in @restart/ui.
+	      e.preventDefault();
+	      if (backdrop === 'static') {
+	        // Play static modal animation.
+	        handleStaticModalAnimation();
+	      }
+	    }
+	  };
+	  const handleEnter = (node, isAppearing) => {
+	    if (node) {
+	      updateDialogStyle(node);
+	    }
+	    onEnter == null ? void 0 : onEnter(node, isAppearing);
+	  };
+	  const handleExit = node => {
+	    removeStaticModalAnimationRef.current == null ? void 0 : removeStaticModalAnimationRef.current();
+	    onExit == null ? void 0 : onExit(node);
+	  };
+	  const handleEntering = (node, isAppearing) => {
+	    onEntering == null ? void 0 : onEntering(node, isAppearing);
+
+	    // FIXME: This should work even when animation is disabled.
+	    addEventListener(window, 'resize', handleWindowResize);
+	  };
+	  const handleExited = node => {
+	    if (node) node.style.display = ''; // RHL removes it sometimes
+	    onExited == null ? void 0 : onExited(node);
+
+	    // FIXME: This should work even when animation is disabled.
+	    removeEventListener(window, 'resize', handleWindowResize);
+	  };
+	  const renderBackdrop = reactExports.useCallback(backdropProps => /*#__PURE__*/jsxRuntimeExports.jsx("div", {
+	    ...backdropProps,
+	    className: classNames(`${bsPrefix}-backdrop`, backdropClassName, !animation && 'show')
+	  }), [animation, backdropClassName, bsPrefix]);
+	  const baseModalStyle = {
+	    ...style,
+	    ...modalStyle
+	  };
+
+	  // If `display` is not set to block, autoFocus inside the modal fails
+	  // https://github.com/react-bootstrap/react-bootstrap/issues/5102
+	  baseModalStyle.display = 'block';
+	  const renderDialog = dialogProps => /*#__PURE__*/jsxRuntimeExports.jsx("div", {
+	    role: "dialog",
+	    ...dialogProps,
+	    style: baseModalStyle,
+	    className: classNames(className, bsPrefix, animateStaticModal && `${bsPrefix}-static`, !animation && 'show'),
+	    onClick: backdrop ? handleClick : undefined,
+	    onMouseUp: handleMouseUp,
+	    "aria-label": ariaLabel,
+	    "aria-labelledby": ariaLabelledby,
+	    "aria-describedby": ariaDescribedby,
+	    children: /*#__PURE__*/jsxRuntimeExports.jsx(Dialog, {
+	      ...props,
+	      onMouseDown: handleDialogMouseDown,
+	      className: dialogClassName,
+	      contentClassName: contentClassName,
+	      children: children
+	    })
+	  });
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(ModalContext.Provider, {
+	    value: modalContext,
+	    children: /*#__PURE__*/jsxRuntimeExports.jsx(BaseModal, {
+	      show: show,
+	      ref: mergedRef,
+	      backdrop: backdrop,
+	      container: container,
+	      keyboard: true // Always set true - see handleEscapeKeyDown
+	      ,
+
+	      autoFocus: autoFocus,
+	      enforceFocus: enforceFocus,
+	      restoreFocus: restoreFocus,
+	      restoreFocusOptions: restoreFocusOptions,
+	      onEscapeKeyDown: handleEscapeKeyDown,
+	      onShow: onShow,
+	      onHide: onHide,
+	      onEnter: handleEnter,
+	      onEntering: handleEntering,
+	      onEntered: onEntered,
+	      onExit: handleExit,
+	      onExiting: onExiting,
+	      onExited: handleExited,
+	      manager: getModalManager(),
+	      transition: animation ? DialogTransition$1 : undefined,
+	      backdropTransition: animation ? BackdropTransition$1 : undefined,
+	      renderBackdrop: renderBackdrop,
+	      renderDialog: renderDialog
+	    })
+	  });
+	});
+	Modal.displayName = 'Modal';
+	Modal.defaultProps = defaultProps$g;
+	Object.assign(Modal, {
+	  Body: ModalBody,
+	  Header: ModalHeader,
+	  Title: ModalTitle,
+	  Footer: ModalFooter,
+	  Dialog: ModalDialog,
+	  TRANSITION_DURATION: 300,
+	  BACKDROP_TRANSITION_DURATION: 150
+	});
 
 	var allExports = {};
 	var all = {
@@ -12776,13 +17692,13 @@
 
 	var NavItem = createWithBsPrefix('nav-item');
 
-	const defaultProps$6 = {
+	const defaultProps$f = {
 	  disabled: false
 	};
 	const NavLink$1 = /*#__PURE__*/reactExports.forwardRef(({
 	  bsPrefix,
 	  className,
-	  as: Component = Anchor$1,
+	  as: Component = Anchor,
 	  active,
 	  eventKey,
 	  ...props
@@ -12801,10 +17717,9 @@
 	  });
 	});
 	NavLink$1.displayName = 'NavLink';
-	NavLink$1.defaultProps = defaultProps$6;
-	var NavLink$2 = NavLink$1;
+	NavLink$1.defaultProps = defaultProps$f;
 
-	const defaultProps$5 = {
+	const defaultProps$e = {
 	  justify: false,
 	  fill: false
 	};
@@ -12827,8 +17742,8 @@
 	  let navbarBsPrefix;
 	  let cardHeaderBsPrefix;
 	  let isNavbar = false;
-	  const navbarContext = reactExports.useContext(NavbarContext);
-	  const cardHeaderContext = reactExports.useContext(CardHeaderContext);
+	  const navbarContext = reactExports.useContext(context);
+	  const cardHeaderContext = reactExports.useContext(context$2);
 	  if (navbarContext) {
 	    navbarBsPrefix = navbarContext.bsPrefix;
 	    isNavbar = navbar == null ? true : navbar;
@@ -12854,10 +17769,10 @@
 	  });
 	});
 	Nav.displayName = 'Nav';
-	Nav.defaultProps = defaultProps$5;
+	Nav.defaultProps = defaultProps$e;
 	var Nav$1 = Object.assign(Nav, {
 	  Item: NavItem,
-	  Link: NavLink$2
+	  Link: NavLink$1
 	});
 
 	const NavbarBrand = /*#__PURE__*/reactExports.forwardRef(({
@@ -12875,7 +17790,6 @@
 	  });
 	});
 	NavbarBrand.displayName = 'NavbarBrand';
-	var NavbarBrand$1 = NavbarBrand;
 
 	const NavbarCollapse = /*#__PURE__*/reactExports.forwardRef(({
 	  children,
@@ -12883,9 +17797,9 @@
 	  ...props
 	}, ref) => {
 	  bsPrefix = useBootstrapPrefix(bsPrefix, 'navbar-collapse');
-	  const context = reactExports.useContext(NavbarContext);
-	  return /*#__PURE__*/jsxRuntimeExports.jsx(Collapse$1, {
-	    in: !!(context && context.expanded),
+	  const context$1 = reactExports.useContext(context);
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(Collapse, {
+	    in: !!(context$1 && context$1.expanded),
 	    ...props,
 	    children: /*#__PURE__*/jsxRuntimeExports.jsx("div", {
 	      ref: ref,
@@ -12895,9 +17809,8 @@
 	  });
 	});
 	NavbarCollapse.displayName = 'NavbarCollapse';
-	var NavbarCollapse$1 = NavbarCollapse;
 
-	const defaultProps$4 = {
+	const defaultProps$d = {
 	  label: 'Toggle navigation'
 	};
 	const NavbarToggle = /*#__PURE__*/reactExports.forwardRef(({
@@ -12914,7 +17827,7 @@
 	  const {
 	    onToggle,
 	    expanded
-	  } = reactExports.useContext(NavbarContext) || {};
+	  } = reactExports.useContext(context) || {};
 	  const handleClick = useEventCallback(e => {
 	    if (onClick) onClick(e);
 	    if (onToggle) onToggle();
@@ -12934,8 +17847,7 @@
 	  });
 	});
 	NavbarToggle.displayName = 'NavbarToggle';
-	NavbarToggle.defaultProps = defaultProps$4;
-	var NavbarToggle$1 = NavbarToggle;
+	NavbarToggle.defaultProps = defaultProps$d;
 
 	var matchersByWindow = new WeakMap();
 	var getMatcher = function getMatcher(query, targetWindow) {
@@ -13105,7 +18017,7 @@
 
 	var OffcanvasBody = createWithBsPrefix('offcanvas-body');
 
-	const defaultProps$3 = {
+	const defaultProps$c = {
 	  in: false,
 	  mountOnEnter: false,
 	  unmountOnExit: false,
@@ -13122,7 +18034,7 @@
 	  ...props
 	}, ref) => {
 	  bsPrefix = useBootstrapPrefix(bsPrefix, 'offcanvas');
-	  return /*#__PURE__*/jsxRuntimeExports.jsx(TransitionWrapper$1, {
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(TransitionWrapper, {
 	    ref: ref,
 	    addEndListener: transitionEndListener,
 	    ...props,
@@ -13133,11 +18045,10 @@
 	    })
 	  });
 	});
-	OffcanvasToggling.defaultProps = defaultProps$3;
+	OffcanvasToggling.defaultProps = defaultProps$c;
 	OffcanvasToggling.displayName = 'OffcanvasToggling';
-	var OffcanvasToggling$1 = OffcanvasToggling;
 
-	const defaultProps$2 = {
+	const defaultProps$b = {
 	  closeLabel: 'Close',
 	  closeButton: false
 	};
@@ -13147,22 +18058,21 @@
 	  ...props
 	}, ref) => {
 	  bsPrefix = useBootstrapPrefix(bsPrefix, 'offcanvas-header');
-	  return /*#__PURE__*/jsxRuntimeExports.jsx(AbstractModalHeader$1, {
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(AbstractModalHeader, {
 	    ref: ref,
 	    ...props,
 	    className: classNames(className, bsPrefix)
 	  });
 	});
 	OffcanvasHeader.displayName = 'OffcanvasHeader';
-	OffcanvasHeader.defaultProps = defaultProps$2;
-	var OffcanvasHeader$1 = OffcanvasHeader;
+	OffcanvasHeader.defaultProps = defaultProps$b;
 
 	const DivStyledAsH5 = divWithClassName('h5');
 	var OffcanvasTitle = createWithBsPrefix('offcanvas-title', {
 	  Component: DivStyledAsH5
 	});
 
-	const defaultProps$1 = {
+	const defaultProps$a = {
 	  show: false,
 	  backdrop: true,
 	  keyboard: true,
@@ -13174,12 +18084,12 @@
 	  renderStaticNode: false
 	};
 	function DialogTransition(props) {
-	  return /*#__PURE__*/jsxRuntimeExports.jsx(OffcanvasToggling$1, {
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(OffcanvasToggling, {
 	    ...props
 	  });
 	}
 	function BackdropTransition(props) {
-	  return /*#__PURE__*/jsxRuntimeExports.jsx(Fade$1, {
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(Fade, {
 	    ...props
 	  });
 	}
@@ -13219,7 +18129,7 @@
 	  bsPrefix = useBootstrapPrefix(bsPrefix, 'offcanvas');
 	  const {
 	    onToggle
-	  } = reactExports.useContext(NavbarContext) || {};
+	  } = reactExports.useContext(context) || {};
 	  const [showOffcanvas, setShowOffcanvas] = reactExports.useState(false);
 	  const hideResponsiveOffcanvas = useBreakpoint(responsive || 'xs', 'up');
 	  reactExports.useEffect(() => {
@@ -13239,7 +18149,7 @@
 	    if (scroll) {
 	      // Have to use a different modal manager since the shared
 	      // one handles overflow.
-	      if (!modalManager.current) modalManager.current = new BootstrapModalManager$1({
+	      if (!modalManager.current) modalManager.current = new BootstrapModalManager({
 	        handleContainerOverflow: false
 	      });
 	      return modalManager.current;
@@ -13266,7 +18176,7 @@
 	    children: children
 	  });
 	  return /*#__PURE__*/jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
-	    children: [!showOffcanvas && (responsive || renderStaticNode) && renderDialog({}), /*#__PURE__*/jsxRuntimeExports.jsx(ModalContext$1.Provider, {
+	    children: [!showOffcanvas && (responsive || renderStaticNode) && renderDialog({}), /*#__PURE__*/jsxRuntimeExports.jsx(ModalContext.Provider, {
 	      value: modalContext,
 	      children: /*#__PURE__*/jsxRuntimeExports.jsx(BaseModal, {
 	        show: showOffcanvas,
@@ -13297,29 +18207,28 @@
 	  });
 	});
 	Offcanvas.displayName = 'Offcanvas';
-	Offcanvas.defaultProps = defaultProps$1;
+	Offcanvas.defaultProps = defaultProps$a;
 	var Offcanvas$1 = Object.assign(Offcanvas, {
 	  Body: OffcanvasBody,
-	  Header: OffcanvasHeader$1,
+	  Header: OffcanvasHeader,
 	  Title: OffcanvasTitle
 	});
 
 	const NavbarOffcanvas = /*#__PURE__*/reactExports.forwardRef((props, ref) => {
-	  const context = reactExports.useContext(NavbarContext);
+	  const context$1 = reactExports.useContext(context);
 	  return /*#__PURE__*/jsxRuntimeExports.jsx(Offcanvas$1, {
 	    ref: ref,
-	    show: !!(context != null && context.expanded),
+	    show: !!(context$1 != null && context$1.expanded),
 	    ...props,
 	    renderStaticNode: true
 	  });
 	});
 	NavbarOffcanvas.displayName = 'NavbarOffcanvas';
-	var NavbarOffcanvas$1 = NavbarOffcanvas;
 
 	const NavbarText = createWithBsPrefix('navbar-text', {
 	  Component: 'span'
 	});
-	const defaultProps = {
+	const defaultProps$9 = {
 	  expand: true,
 	  variant: 'light',
 	  collapseOnSelect: false
@@ -13365,9 +18274,9 @@
 	    expanded: !!expanded,
 	    expand
 	  }), [bsPrefix, expanded, expand, onToggle]);
-	  return /*#__PURE__*/jsxRuntimeExports.jsx(NavbarContext.Provider, {
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(context.Provider, {
 	    value: navbarContext,
-	    children: /*#__PURE__*/jsxRuntimeExports.jsx(SelectableContext$1.Provider, {
+	    children: /*#__PURE__*/jsxRuntimeExports.jsx(SelectableContext.Provider, {
 	      value: handleCollapse,
 	      children: /*#__PURE__*/jsxRuntimeExports.jsx(Component, {
 	        ref: ref,
@@ -13377,15 +18286,1402 @@
 	    })
 	  });
 	});
-	Navbar.defaultProps = defaultProps;
+	Navbar.defaultProps = defaultProps$9;
 	Navbar.displayName = 'Navbar';
 	var Navbar$1 = Object.assign(Navbar, {
-	  Brand: NavbarBrand$1,
-	  Collapse: NavbarCollapse$1,
-	  Offcanvas: NavbarOffcanvas$1,
+	  Brand: NavbarBrand,
+	  Collapse: NavbarCollapse,
+	  Offcanvas: NavbarOffcanvas,
 	  Text: NavbarText,
-	  Toggle: NavbarToggle$1
+	  Toggle: NavbarToggle
 	});
+
+	const NavDropdown = /*#__PURE__*/reactExports.forwardRef(({
+	  id,
+	  title,
+	  children,
+	  bsPrefix,
+	  className,
+	  rootCloseEvent,
+	  menuRole,
+	  disabled,
+	  active,
+	  renderMenuOnMount,
+	  menuVariant,
+	  ...props
+	}, ref) => {
+	  /* NavItem has no additional logic, it's purely presentational. Can set nav item class here to support "as" */
+	  const navItemPrefix = useBootstrapPrefix(undefined, 'nav-item');
+	  return /*#__PURE__*/jsxRuntimeExports.jsxs(Dropdown$1, {
+	    ref: ref,
+	    ...props,
+	    className: classNames(className, navItemPrefix),
+	    children: [/*#__PURE__*/jsxRuntimeExports.jsx(Dropdown$1.Toggle, {
+	      id: id,
+	      eventKey: null,
+	      active: active,
+	      disabled: disabled,
+	      childBsPrefix: bsPrefix,
+	      as: NavLink$1,
+	      children: title
+	    }), /*#__PURE__*/jsxRuntimeExports.jsx(Dropdown$1.Menu, {
+	      role: menuRole,
+	      renderOnMount: renderMenuOnMount,
+	      rootCloseEvent: rootCloseEvent,
+	      variant: menuVariant,
+	      children: children
+	    })]
+	  });
+	});
+	NavDropdown.displayName = 'NavDropdown';
+	Object.assign(NavDropdown, {
+	  Item: Dropdown$1.Item,
+	  ItemText: Dropdown$1.ItemText,
+	  Divider: Dropdown$1.Divider,
+	  Header: Dropdown$1.Header
+	});
+
+	const escapeKeyCode = 27;
+	const noop$4 = () => {};
+	/**
+	 * The `useRootClose` hook registers your callback on the document
+	 * when rendered. Powers the `<Overlay/>` component. This is used achieve modal
+	 * style behavior where your callback is triggered when the user tries to
+	 * interact with the rest of the document or hits the `esc` key.
+	 *
+	 * @param {Ref<HTMLElement>| HTMLElement} ref  The element boundary
+	 * @param {function} onRootClose
+	 * @param {object=}  options
+	 * @param {boolean=} options.disabled
+	 * @param {string=}  options.clickTrigger The DOM event name (click, mousedown, etc) to attach listeners on
+	 */
+	function useRootClose(ref, onRootClose, {
+	  disabled,
+	  clickTrigger
+	} = {}) {
+	  const onClose = onRootClose || noop$4;
+	  useClickOutside(ref, onClose, {
+	    disabled,
+	    clickTrigger
+	  });
+	  const handleKeyUp = useEventCallback(e => {
+	    if (e.keyCode === escapeKeyCode) {
+	      onClose(e);
+	    }
+	  });
+	  reactExports.useEffect(() => {
+	    if (disabled || ref == null) return undefined;
+	    const doc = ownerDocument(getRefTarget(ref));
+
+	    // Store the current event to avoid triggering handlers immediately
+	    // https://github.com/facebook/react/issues/20074
+	    let currentEvent = (doc.defaultView || window).event;
+	    const removeKeyupListener = listen(doc, 'keyup', e => {
+	      // skip if this event is the same as the one running when we added the handlers
+	      if (e === currentEvent) {
+	        currentEvent = undefined;
+	        return;
+	      }
+	      handleKeyUp(e);
+	    });
+	    return () => {
+	      removeKeyupListener();
+	    };
+	  }, [ref, disabled, handleKeyUp]);
+	}
+
+	/**
+	 * Built on top of `Popper.js`, the overlay component is
+	 * great for custom tooltip overlays.
+	 */
+	const Overlay$1 = /*#__PURE__*/reactExports.forwardRef((props, outerRef) => {
+	  const {
+	    flip,
+	    offset,
+	    placement,
+	    containerPadding,
+	    popperConfig = {},
+	    transition: Transition,
+	    runTransition
+	  } = props;
+	  const [rootElement, attachRef] = useCallbackRef();
+	  const [arrowElement, attachArrowRef] = useCallbackRef();
+	  const mergedRef = useMergedRefs(attachRef, outerRef);
+	  const container = useWaitForDOMRef(props.container);
+	  const target = useWaitForDOMRef(props.target);
+	  const [exited, setExited] = reactExports.useState(!props.show);
+	  const popper = usePopper(target, rootElement, mergeOptionsWithPopperConfig({
+	    placement,
+	    enableEvents: !!props.show,
+	    containerPadding: containerPadding || 5,
+	    flip,
+	    offset,
+	    arrowElement,
+	    popperConfig
+	  }));
+
+	  // TODO: I think this needs to be in an effect
+	  if (props.show && exited) {
+	    setExited(false);
+	  }
+	  const handleHidden = (...args) => {
+	    setExited(true);
+	    if (props.onExited) {
+	      props.onExited(...args);
+	    }
+	  };
+
+	  // Don't un-render the overlay while it's transitioning out.
+	  const mountOverlay = props.show || !exited;
+	  useRootClose(rootElement, props.onHide, {
+	    disabled: !props.rootClose || props.rootCloseDisabled,
+	    clickTrigger: props.rootCloseEvent
+	  });
+	  if (!mountOverlay) {
+	    // Don't bother showing anything if we don't have to.
+	    return null;
+	  }
+	  const {
+	    onExit,
+	    onExiting,
+	    onEnter,
+	    onEntering,
+	    onEntered
+	  } = props;
+	  let child = props.children(Object.assign({}, popper.attributes.popper, {
+	    style: popper.styles.popper,
+	    ref: mergedRef
+	  }), {
+	    popper,
+	    placement,
+	    show: !!props.show,
+	    arrowProps: Object.assign({}, popper.attributes.arrow, {
+	      style: popper.styles.arrow,
+	      ref: attachArrowRef
+	    })
+	  });
+	  child = renderTransition(Transition, runTransition, {
+	    in: !!props.show,
+	    appear: true,
+	    mountOnEnter: true,
+	    unmountOnExit: true,
+	    children: child,
+	    onExit,
+	    onExiting,
+	    onExited: handleHidden,
+	    onEnter,
+	    onEntering,
+	    onEntered
+	  });
+	  return container ? /*#__PURE__*/ReactDOM.createPortal(child, container) : null;
+	});
+	Overlay$1.displayName = 'Overlay';
+
+	var PopoverHeader = createWithBsPrefix('popover-header');
+
+	var PopoverBody = createWithBsPrefix('popover-body');
+
+	// Need to use this instead of typeof Component to get proper type checking.
+
+	function getOverlayDirection(placement, isRTL) {
+	  let bsDirection = placement;
+	  if (placement === 'left') {
+	    bsDirection = isRTL ? 'end' : 'start';
+	  } else if (placement === 'right') {
+	    bsDirection = isRTL ? 'start' : 'end';
+	  }
+	  return bsDirection;
+	}
+
+	function getInitialPopperStyles(position = 'absolute') {
+	  return {
+	    position,
+	    top: '0',
+	    left: '0',
+	    opacity: '0',
+	    pointerEvents: 'none'
+	  };
+	}
+
+	const defaultProps$8 = {
+	  placement: 'right'
+	};
+	const Popover = /*#__PURE__*/reactExports.forwardRef(({
+	  bsPrefix,
+	  placement,
+	  className,
+	  style,
+	  children,
+	  body,
+	  arrowProps,
+	  hasDoneInitialMeasure,
+	  popper,
+	  show,
+	  ...props
+	}, ref) => {
+	  const decoratedBsPrefix = useBootstrapPrefix(bsPrefix, 'popover');
+	  const isRTL = useIsRTL();
+	  const [primaryPlacement] = (placement == null ? void 0 : placement.split('-')) || [];
+	  const bsDirection = getOverlayDirection(primaryPlacement, isRTL);
+	  let computedStyle = style;
+	  if (show && !hasDoneInitialMeasure) {
+	    computedStyle = {
+	      ...style,
+	      ...getInitialPopperStyles(popper == null ? void 0 : popper.strategy)
+	    };
+	  }
+	  return /*#__PURE__*/jsxRuntimeExports.jsxs("div", {
+	    ref: ref,
+	    role: "tooltip",
+	    style: computedStyle,
+	    "x-placement": primaryPlacement,
+	    className: classNames(className, decoratedBsPrefix, primaryPlacement && `bs-popover-${bsDirection}`),
+	    ...props,
+	    children: [/*#__PURE__*/jsxRuntimeExports.jsx("div", {
+	      className: "popover-arrow",
+	      ...arrowProps
+	    }), body ? /*#__PURE__*/jsxRuntimeExports.jsx(PopoverBody, {
+	      children: children
+	    }) : children]
+	  });
+	});
+	Popover.defaultProps = defaultProps$8;
+	var Popover$1 = Object.assign(Popover, {
+	  Header: PopoverHeader,
+	  Body: PopoverBody,
+	  // Default popover offset.
+	  // https://github.com/twbs/bootstrap/blob/5c32767e0e0dbac2d934bcdee03719a65d3f1187/js/src/popover.js#L28
+	  POPPER_OFFSET: [0, 8]
+	});
+
+	// This is meant for internal use.
+	// This applies a custom offset to the overlay if it's a popover.
+	function useOverlayOffset(customOffset) {
+	  const overlayRef = reactExports.useRef(null);
+	  const popoverClass = useBootstrapPrefix(undefined, 'popover');
+	  const offset = reactExports.useMemo(() => ({
+	    name: 'offset',
+	    options: {
+	      offset: () => {
+	        if (overlayRef.current && hasClass(overlayRef.current, popoverClass)) {
+	          return customOffset || Popover$1.POPPER_OFFSET;
+	        }
+	        return customOffset || [0, 0];
+	      }
+	    }
+	  }), [customOffset, popoverClass]);
+	  return [overlayRef, [offset]];
+	}
+
+	const defaultProps$7 = {
+	  transition: Fade,
+	  rootClose: false,
+	  show: false,
+	  placement: 'top'
+	};
+	function wrapRefs(props, arrowProps) {
+	  const {
+	    ref
+	  } = props;
+	  const {
+	    ref: aRef
+	  } = arrowProps;
+	  props.ref = ref.__wrapped || (ref.__wrapped = r => ref(safeFindDOMNode(r)));
+	  arrowProps.ref = aRef.__wrapped || (aRef.__wrapped = r => aRef(safeFindDOMNode(r)));
+	}
+	const Overlay = /*#__PURE__*/reactExports.forwardRef(({
+	  children: overlay,
+	  transition,
+	  popperConfig = {},
+	  ...outerProps
+	}, outerRef) => {
+	  const popperRef = reactExports.useRef({});
+	  const [firstRenderedState, setFirstRenderedState] = reactExports.useState(null);
+	  const [ref, modifiers] = useOverlayOffset(outerProps.offset);
+	  const mergedRef = useMergedRefs(outerRef, ref);
+	  const actualTransition = transition === true ? Fade : transition || undefined;
+	  const handleFirstUpdate = useEventCallback(state => {
+	    setFirstRenderedState(state);
+	    popperConfig == null ? void 0 : popperConfig.onFirstUpdate == null ? void 0 : popperConfig.onFirstUpdate(state);
+	  });
+	  useIsomorphicEffect(() => {
+	    if (firstRenderedState) {
+	      popperRef.current.scheduleUpdate == null ? void 0 : popperRef.current.scheduleUpdate();
+	    }
+	  }, [firstRenderedState]);
+	  reactExports.useEffect(() => {
+	    if (!outerProps.show) {
+	      setFirstRenderedState(null);
+	    }
+	  }, [outerProps.show]);
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(Overlay$1, {
+	    ...outerProps,
+	    ref: mergedRef,
+	    popperConfig: {
+	      ...popperConfig,
+	      modifiers: modifiers.concat(popperConfig.modifiers || []),
+	      onFirstUpdate: handleFirstUpdate
+	    },
+	    transition: actualTransition,
+	    children: (overlayProps, {
+	      arrowProps,
+	      popper: popperObj,
+	      show
+	    }) => {
+	      var _popperObj$state, _popperObj$state$modi;
+	      wrapRefs(overlayProps, arrowProps);
+	      // Need to get placement from popper object, handling case when overlay is flipped using 'flip' prop
+	      const updatedPlacement = popperObj == null ? void 0 : popperObj.placement;
+	      const popper = Object.assign(popperRef.current, {
+	        state: popperObj == null ? void 0 : popperObj.state,
+	        scheduleUpdate: popperObj == null ? void 0 : popperObj.update,
+	        placement: updatedPlacement,
+	        outOfBoundaries: (popperObj == null ? void 0 : (_popperObj$state = popperObj.state) == null ? void 0 : (_popperObj$state$modi = _popperObj$state.modifiersData.hide) == null ? void 0 : _popperObj$state$modi.isReferenceHidden) || false,
+	        strategy: popperConfig.strategy
+	      });
+	      const hasDoneInitialMeasure = !!firstRenderedState;
+	      if (typeof overlay === 'function') return overlay({
+	        ...overlayProps,
+	        placement: updatedPlacement,
+	        show,
+	        ...(!transition && show && {
+	          className: 'show'
+	        }),
+	        popper,
+	        arrowProps,
+	        hasDoneInitialMeasure
+	      });
+	      return /*#__PURE__*/reactExports.cloneElement(overlay, {
+	        ...overlayProps,
+	        placement: updatedPlacement,
+	        arrowProps,
+	        popper,
+	        hasDoneInitialMeasure,
+	        className: classNames(overlay.props.className, !transition && show && 'show'),
+	        style: {
+	          ...overlay.props.style,
+	          ...overlayProps.style
+	        }
+	      });
+	    }
+	  });
+	});
+	Overlay.displayName = 'Overlay';
+	Overlay.defaultProps = defaultProps$7;
+
+	/* eslint-disable react/no-multi-comp */
+	const defaultProps$6 = {
+	  active: false,
+	  disabled: false,
+	  activeLabel: '(current)'
+	};
+	const PageItem = /*#__PURE__*/reactExports.forwardRef(({
+	  active,
+	  disabled,
+	  className,
+	  style,
+	  activeLabel,
+	  children,
+	  ...props
+	}, ref) => {
+	  const Component = active || disabled ? 'span' : Anchor;
+	  return /*#__PURE__*/jsxRuntimeExports.jsx("li", {
+	    ref: ref,
+	    style: style,
+	    className: classNames(className, 'page-item', {
+	      active,
+	      disabled
+	    }),
+	    children: /*#__PURE__*/jsxRuntimeExports.jsxs(Component, {
+	      className: "page-link",
+	      ...props,
+	      children: [children, active && activeLabel && /*#__PURE__*/jsxRuntimeExports.jsx("span", {
+	        className: "visually-hidden",
+	        children: activeLabel
+	      })]
+	    })
+	  });
+	});
+	PageItem.defaultProps = defaultProps$6;
+	PageItem.displayName = 'PageItem';
+	function createButton(name, defaultValue, label = name) {
+	  const Button = /*#__PURE__*/reactExports.forwardRef(({
+	    children,
+	    ...props
+	  }, ref) => /*#__PURE__*/jsxRuntimeExports.jsxs(PageItem, {
+	    ...props,
+	    ref: ref,
+	    children: [/*#__PURE__*/jsxRuntimeExports.jsx("span", {
+	      "aria-hidden": "true",
+	      children: children || defaultValue
+	    }), /*#__PURE__*/jsxRuntimeExports.jsx("span", {
+	      className: "visually-hidden",
+	      children: label
+	    })]
+	  }));
+	  Button.displayName = name;
+	  return Button;
+	}
+	const First = createButton('First', '«');
+	const Prev = createButton('Prev', '‹', 'Previous');
+	const Ellipsis = createButton('Ellipsis', '…', 'More');
+	const Next = createButton('Next', '›');
+	const Last = createButton('Last', '»');
+
+	/**
+	 * @property {PageItem} Item
+	 * @property {PageItem} First
+	 * @property {PageItem} Prev
+	 * @property {PageItem} Ellipsis
+	 * @property {PageItem} Next
+	 * @property {PageItem} Last
+	 */
+	const Pagination = /*#__PURE__*/reactExports.forwardRef(({
+	  bsPrefix,
+	  className,
+	  size,
+	  ...props
+	}, ref) => {
+	  const decoratedBsPrefix = useBootstrapPrefix(bsPrefix, 'pagination');
+	  return /*#__PURE__*/jsxRuntimeExports.jsx("ul", {
+	    ref: ref,
+	    ...props,
+	    className: classNames(className, decoratedBsPrefix, size && `${decoratedBsPrefix}-${size}`)
+	  });
+	});
+	Pagination.displayName = 'Pagination';
+	Object.assign(Pagination, {
+	  First,
+	  Prev,
+	  Ellipsis,
+	  Item: PageItem,
+	  Next,
+	  Last
+	});
+
+	function usePlaceholder({
+	  animation,
+	  bg,
+	  bsPrefix,
+	  size,
+	  ...props
+	}) {
+	  bsPrefix = useBootstrapPrefix(bsPrefix, 'placeholder');
+	  const [{
+	    className,
+	    ...colProps
+	  }] = useCol(props);
+	  return {
+	    ...colProps,
+	    className: classNames(className, animation ? `${bsPrefix}-${animation}` : bsPrefix, size && `${bsPrefix}-${size}`, bg && `bg-${bg}`)
+	  };
+	}
+
+	const PlaceholderButton = /*#__PURE__*/reactExports.forwardRef((props, ref) => {
+	  const placeholderProps = usePlaceholder(props);
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(Button, {
+	    ...placeholderProps,
+	    ref: ref,
+	    disabled: true,
+	    tabIndex: -1
+	  });
+	});
+	PlaceholderButton.displayName = 'PlaceholderButton';
+
+	const Placeholder = /*#__PURE__*/reactExports.forwardRef(({
+	  as: Component = 'span',
+	  ...props
+	}, ref) => {
+	  const placeholderProps = usePlaceholder(props);
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(Component, {
+	    ...placeholderProps,
+	    ref: ref
+	  });
+	});
+	Placeholder.displayName = 'Placeholder';
+	Object.assign(Placeholder, {
+	  Button: PlaceholderButton
+	});
+
+	const ROUND_PRECISION = 1000;
+	const defaultProps$5 = {
+	  min: 0,
+	  max: 100,
+	  animated: false,
+	  isChild: false,
+	  visuallyHidden: false,
+	  striped: false
+	};
+	function getPercentage(now, min, max) {
+	  const percentage = (now - min) / (max - min) * 100;
+	  return Math.round(percentage * ROUND_PRECISION) / ROUND_PRECISION;
+	}
+	function renderProgressBar({
+	  min,
+	  now,
+	  max,
+	  label,
+	  visuallyHidden,
+	  striped,
+	  animated,
+	  className,
+	  style,
+	  variant,
+	  bsPrefix,
+	  ...props
+	}, ref) {
+	  return /*#__PURE__*/jsxRuntimeExports.jsx("div", {
+	    ref: ref,
+	    ...props,
+	    role: "progressbar",
+	    className: classNames(className, `${bsPrefix}-bar`, {
+	      [`bg-${variant}`]: variant,
+	      [`${bsPrefix}-bar-animated`]: animated,
+	      [`${bsPrefix}-bar-striped`]: animated || striped
+	    }),
+	    style: {
+	      width: `${getPercentage(now, min, max)}%`,
+	      ...style
+	    },
+	    "aria-valuenow": now,
+	    "aria-valuemin": min,
+	    "aria-valuemax": max,
+	    children: visuallyHidden ? /*#__PURE__*/jsxRuntimeExports.jsx("span", {
+	      className: "visually-hidden",
+	      children: label
+	    }) : label
+	  });
+	}
+	const ProgressBar = /*#__PURE__*/reactExports.forwardRef(({
+	  isChild,
+	  ...props
+	}, ref) => {
+	  props.bsPrefix = useBootstrapPrefix(props.bsPrefix, 'progress');
+	  if (isChild) {
+	    return renderProgressBar(props, ref);
+	  }
+	  const {
+	    min,
+	    now,
+	    max,
+	    label,
+	    visuallyHidden,
+	    striped,
+	    animated,
+	    bsPrefix,
+	    variant,
+	    className,
+	    children,
+	    ...wrapperProps
+	  } = props;
+	  return /*#__PURE__*/jsxRuntimeExports.jsx("div", {
+	    ref: ref,
+	    ...wrapperProps,
+	    className: classNames(className, bsPrefix),
+	    children: children ? map(children, child => /*#__PURE__*/reactExports.cloneElement(child, {
+	      isChild: true
+	    })) : renderProgressBar({
+	      min,
+	      now,
+	      max,
+	      label,
+	      visuallyHidden,
+	      striped,
+	      animated,
+	      bsPrefix,
+	      variant
+	    }, ref)
+	  });
+	});
+	ProgressBar.displayName = 'ProgressBar';
+	ProgressBar.defaultProps = defaultProps$5;
+
+	const defaultProps$4 = {
+	  aspectRatio: '1x1'
+	};
+	function toPercent(num) {
+	  if (num <= 0) return '100%';
+	  if (num < 1) return `${num * 100}%`;
+	  return `${num}%`;
+	}
+	const Ratio = /*#__PURE__*/reactExports.forwardRef(({
+	  bsPrefix,
+	  className,
+	  children,
+	  aspectRatio,
+	  style,
+	  ...props
+	}, ref) => {
+	  bsPrefix = useBootstrapPrefix(bsPrefix, 'ratio');
+	  const isCustomRatio = typeof aspectRatio === 'number';
+	  return /*#__PURE__*/jsxRuntimeExports.jsx("div", {
+	    ref: ref,
+	    ...props,
+	    style: {
+	      ...style,
+	      ...(isCustomRatio && {
+	        '--bs-aspect-ratio': toPercent(aspectRatio)
+	      })
+	    },
+	    className: classNames(bsPrefix, className, !isCustomRatio && `${bsPrefix}-${aspectRatio}`),
+	    children: reactExports.Children.only(children)
+	  });
+	});
+	Ratio.defaultProps = defaultProps$4;
+
+	const Row = /*#__PURE__*/reactExports.forwardRef(({
+	  bsPrefix,
+	  className,
+	  // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
+	  as: Component = 'div',
+	  ...props
+	}, ref) => {
+	  const decoratedBsPrefix = useBootstrapPrefix(bsPrefix, 'row');
+	  const breakpoints = useBootstrapBreakpoints();
+	  const minBreakpoint = useBootstrapMinBreakpoint();
+	  const sizePrefix = `${decoratedBsPrefix}-cols`;
+	  const classes = [];
+	  breakpoints.forEach(brkPoint => {
+	    const propValue = props[brkPoint];
+	    delete props[brkPoint];
+	    let cols;
+	    if (propValue != null && typeof propValue === 'object') {
+	      ({
+	        cols
+	      } = propValue);
+	    } else {
+	      cols = propValue;
+	    }
+	    const infix = brkPoint !== minBreakpoint ? `-${brkPoint}` : '';
+	    if (cols != null) classes.push(`${sizePrefix}${infix}-${cols}`);
+	  });
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(Component, {
+	    ref: ref,
+	    ...props,
+	    className: classNames(className, decoratedBsPrefix, ...classes)
+	  });
+	});
+	Row.displayName = 'Row';
+
+	const Spinner = /*#__PURE__*/reactExports.forwardRef(({
+	  bsPrefix,
+	  variant,
+	  animation = 'border',
+	  size,
+	  // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
+	  as: Component = 'div',
+	  className,
+	  ...props
+	}, ref) => {
+	  bsPrefix = useBootstrapPrefix(bsPrefix, 'spinner');
+	  const bsSpinnerPrefix = `${bsPrefix}-${animation}`;
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(Component, {
+	    ref: ref,
+	    ...props,
+	    className: classNames(className, bsSpinnerPrefix, size && `${bsSpinnerPrefix}-${size}`, variant && `text-${variant}`)
+	  });
+	});
+	Spinner.displayName = 'Spinner';
+
+	const propTypes$1 = {
+	  /**
+	   * An html id attribute for the Toggle button, necessary for assistive technologies, such as screen readers.
+	   * @type {string}
+	   * @required
+	   */
+	  id: propTypesExports.string,
+	  /**
+	   * Accessible label for the toggle; the value of `title` if not specified.
+	   */
+	  toggleLabel: propTypesExports.string,
+	  /** An `href` passed to the non-toggle Button */
+	  href: propTypesExports.string,
+	  /** An anchor `target` passed to the non-toggle Button */
+	  target: propTypesExports.string,
+	  /** An `onClick` handler passed to the non-toggle Button */
+	  onClick: propTypesExports.func,
+	  /** The content of the non-toggle Button.  */
+	  title: propTypesExports.node.isRequired,
+	  /** A `type` passed to the non-toggle Button */
+	  type: propTypesExports.string,
+	  /** Disables both Buttons  */
+	  disabled: propTypesExports.bool,
+	  /**
+	   * Aligns the dropdown menu.
+	   *
+	   * _see [DropdownMenu](#dropdown-menu-props) for more details_
+	   *
+	   * @type {"start"|"end"|{ sm: "start"|"end" }|{ md: "start"|"end" }|{ lg: "start"|"end" }|{ xl: "start"|"end"}|{ xxl: "start"|"end"} }
+	   */
+	  align: alignPropType,
+	  /** An ARIA accessible role applied to the Menu component. When set to 'menu', The dropdown */
+	  menuRole: propTypesExports.string,
+	  /** Whether to render the dropdown menu in the DOM before the first time it is shown */
+	  renderMenuOnMount: propTypesExports.bool,
+	  /**
+	   *  Which event when fired outside the component will cause it to be closed.
+	   *
+	   * _see [DropdownMenu](#dropdown-menu-props) for more details_
+	   */
+	  rootCloseEvent: propTypesExports.string,
+	  /**
+	   * Allow Dropdown to flip in case of an overlapping on the reference element. For more information refer to
+	   * Popper.js's flip [docs](https://popper.js.org/docs/v2/modifiers/flip/).
+	   *
+	   */
+	  flip: propTypesExports.bool,
+	  /** @ignore */
+	  bsPrefix: propTypesExports.string,
+	  /** @ignore */
+	  variant: propTypesExports.string,
+	  /** @ignore */
+	  size: propTypesExports.string
+	};
+	const defaultProps$3 = {
+	  toggleLabel: 'Toggle dropdown',
+	  type: 'button'
+	};
+
+	/**
+	 * A convenience component for simple or general use split button dropdowns. Renders a
+	 * `ButtonGroup` containing a `Button` and a `Button` toggle for the `Dropdown`. All `children`
+	 * are passed directly to the default `Dropdown.Menu`. This component accepts all of [`Dropdown`'s
+	 * props](#dropdown-props).
+	 *
+	 * _All unknown props are passed through to the `Dropdown` component._
+	 * The Button `variant`, `size` and `bsPrefix` props are passed to the button and toggle,
+	 * and menu-related props are passed to the `Dropdown.Menu`
+	 */
+	const SplitButton = /*#__PURE__*/reactExports.forwardRef(({
+	  id,
+	  bsPrefix,
+	  size,
+	  variant,
+	  title,
+	  type,
+	  toggleLabel,
+	  children,
+	  onClick,
+	  href,
+	  target,
+	  menuRole,
+	  renderMenuOnMount,
+	  rootCloseEvent,
+	  flip,
+	  ...props
+	}, ref) => /*#__PURE__*/jsxRuntimeExports.jsxs(Dropdown$1, {
+	  ref: ref,
+	  ...props,
+	  as: ButtonGroup,
+	  children: [/*#__PURE__*/jsxRuntimeExports.jsx(Button, {
+	    size: size,
+	    variant: variant,
+	    disabled: props.disabled,
+	    bsPrefix: bsPrefix,
+	    href: href,
+	    target: target,
+	    onClick: onClick,
+	    type: type,
+	    children: title
+	  }), /*#__PURE__*/jsxRuntimeExports.jsx(Dropdown$1.Toggle, {
+	    split: true,
+	    id: id,
+	    size: size,
+	    variant: variant,
+	    disabled: props.disabled,
+	    childBsPrefix: bsPrefix,
+	    children: /*#__PURE__*/jsxRuntimeExports.jsx("span", {
+	      className: "visually-hidden",
+	      children: toggleLabel
+	    })
+	  }), /*#__PURE__*/jsxRuntimeExports.jsx(Dropdown$1.Menu, {
+	    role: menuRole,
+	    renderOnMount: renderMenuOnMount,
+	    rootCloseEvent: rootCloseEvent,
+	    flip: flip,
+	    children: children
+	  })]
+	}));
+	SplitButton.propTypes = propTypes$1;
+	SplitButton.defaultProps = defaultProps$3;
+	SplitButton.displayName = 'SplitButton';
+
+	function createUtilityClassName(utilityValues, breakpoints = DEFAULT_BREAKPOINTS, minBreakpoint = DEFAULT_MIN_BREAKPOINT) {
+	  const classes = [];
+	  Object.entries(utilityValues).forEach(([utilName, utilValue]) => {
+	    if (utilValue != null) {
+	      if (typeof utilValue === 'object') {
+	        breakpoints.forEach(brkPoint => {
+	          const bpValue = utilValue[brkPoint];
+	          if (bpValue != null) {
+	            const infix = brkPoint !== minBreakpoint ? `-${brkPoint}` : '';
+	            classes.push(`${utilName}${infix}-${bpValue}`);
+	          }
+	        });
+	      } else {
+	        classes.push(`${utilName}-${utilValue}`);
+	      }
+	    }
+	  });
+	  return classes;
+	}
+
+	const Stack = /*#__PURE__*/reactExports.forwardRef(({
+	  as: Component = 'div',
+	  bsPrefix,
+	  className,
+	  direction,
+	  gap,
+	  ...props
+	}, ref) => {
+	  bsPrefix = useBootstrapPrefix(bsPrefix, direction === 'horizontal' ? 'hstack' : 'vstack');
+	  const breakpoints = useBootstrapBreakpoints();
+	  const minBreakpoint = useBootstrapMinBreakpoint();
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(Component, {
+	    ...props,
+	    ref: ref,
+	    className: classNames(className, bsPrefix, ...createUtilityClassName({
+	      gap
+	    }, breakpoints, minBreakpoint))
+	  });
+	});
+	Stack.displayName = 'Stack';
+
+	const _excluded$2 = ["active", "eventKey", "mountOnEnter", "transition", "unmountOnExit", "role", "onEnter", "onEntering", "onEntered", "onExit", "onExiting", "onExited"],
+	  _excluded2$1 = ["activeKey", "getControlledId", "getControllerId"],
+	  _excluded3$1 = ["as"];
+	function _objectWithoutPropertiesLoose$2(source, excluded) {
+	  if (source == null) return {};
+	  var target = {};
+	  var sourceKeys = Object.keys(source);
+	  var key, i;
+	  for (i = 0; i < sourceKeys.length; i++) {
+	    key = sourceKeys[i];
+	    if (excluded.indexOf(key) >= 0) continue;
+	    target[key] = source[key];
+	  }
+	  return target;
+	}
+	function useTabPanel(_ref) {
+	  let {
+	      active,
+	      eventKey,
+	      mountOnEnter,
+	      transition,
+	      unmountOnExit,
+	      role = 'tabpanel',
+	      onEnter,
+	      onEntering,
+	      onEntered,
+	      onExit,
+	      onExiting,
+	      onExited
+	    } = _ref,
+	    props = _objectWithoutPropertiesLoose$2(_ref, _excluded$2);
+	  const context = reactExports.useContext(TabContext);
+	  if (!context) return [Object.assign({}, props, {
+	    role
+	  }), {
+	    eventKey,
+	    isActive: active,
+	    mountOnEnter,
+	    transition,
+	    unmountOnExit,
+	    onEnter,
+	    onEntering,
+	    onEntered,
+	    onExit,
+	    onExiting,
+	    onExited
+	  }];
+	  const {
+	      activeKey,
+	      getControlledId,
+	      getControllerId
+	    } = context,
+	    rest = _objectWithoutPropertiesLoose$2(context, _excluded2$1);
+	  const key = makeEventKey(eventKey);
+	  return [Object.assign({}, props, {
+	    role,
+	    id: getControlledId(eventKey),
+	    'aria-labelledby': getControllerId(eventKey)
+	  }), {
+	    eventKey,
+	    isActive: active == null && key != null ? makeEventKey(activeKey) === key : active,
+	    transition: transition || rest.transition,
+	    mountOnEnter: mountOnEnter != null ? mountOnEnter : rest.mountOnEnter,
+	    unmountOnExit: unmountOnExit != null ? unmountOnExit : rest.unmountOnExit,
+	    onEnter,
+	    onEntering,
+	    onEntered,
+	    onExit,
+	    onExiting,
+	    onExited
+	  }];
+	}
+	const TabPanel = /*#__PURE__*/reactExports.forwardRef(
+	// Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
+	(_ref2, ref) => {
+	  let {
+	      as: Component = 'div'
+	    } = _ref2,
+	    props = _objectWithoutPropertiesLoose$2(_ref2, _excluded3$1);
+	  const [tabPanelProps, {
+	    isActive,
+	    onEnter,
+	    onEntering,
+	    onEntered,
+	    onExit,
+	    onExiting,
+	    onExited,
+	    mountOnEnter,
+	    unmountOnExit,
+	    transition: Transition = NoopTransition
+	  }] = useTabPanel(props);
+	  // We provide an empty the TabContext so `<Nav>`s in `<TabPanel>`s don't
+	  // conflict with the top level one.
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(TabContext.Provider, {
+	    value: null,
+	    children: /*#__PURE__*/jsxRuntimeExports.jsx(SelectableContext.Provider, {
+	      value: null,
+	      children: /*#__PURE__*/jsxRuntimeExports.jsx(Transition, {
+	        in: isActive,
+	        onEnter: onEnter,
+	        onEntering: onEntering,
+	        onEntered: onEntered,
+	        onExit: onExit,
+	        onExiting: onExiting,
+	        onExited: onExited,
+	        mountOnEnter: mountOnEnter,
+	        unmountOnExit: unmountOnExit,
+	        children: /*#__PURE__*/jsxRuntimeExports.jsx(Component, Object.assign({}, tabPanelProps, {
+	          ref: ref,
+	          hidden: !isActive,
+	          "aria-hidden": !isActive
+	        }))
+	      })
+	    })
+	  });
+	});
+	TabPanel.displayName = 'TabPanel';
+
+	const Tabs = props => {
+	  const {
+	    id: userId,
+	    generateChildId: generateCustomChildId,
+	    onSelect: propsOnSelect,
+	    activeKey: propsActiveKey,
+	    defaultActiveKey,
+	    transition,
+	    mountOnEnter,
+	    unmountOnExit,
+	    children
+	  } = props;
+	  const [activeKey, onSelect] = useUncontrolledProp(propsActiveKey, defaultActiveKey, propsOnSelect);
+	  const id = $704cf1d3b684cc5c$export$619500959fc48b26(userId);
+	  const generateChildId = reactExports.useMemo(() => generateCustomChildId || ((key, type) => id ? `${id}-${type}-${key}` : null), [id, generateCustomChildId]);
+	  const tabContext = reactExports.useMemo(() => ({
+	    onSelect,
+	    activeKey,
+	    transition,
+	    mountOnEnter: mountOnEnter || false,
+	    unmountOnExit: unmountOnExit || false,
+	    getControlledId: key => generateChildId(key, 'tabpane'),
+	    getControllerId: key => generateChildId(key, 'tab')
+	  }), [onSelect, activeKey, transition, mountOnEnter, unmountOnExit, generateChildId]);
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(TabContext.Provider, {
+	    value: tabContext,
+	    children: /*#__PURE__*/jsxRuntimeExports.jsx(SelectableContext.Provider, {
+	      value: onSelect || null,
+	      children: children
+	    })
+	  });
+	};
+	Tabs.Panel = TabPanel;
+
+	function getTabTransitionComponent(transition) {
+	  if (typeof transition === 'boolean') {
+	    return transition ? Fade : NoopTransition;
+	  }
+	  return transition;
+	}
+
+	const TabContainer = ({
+	  transition,
+	  ...props
+	}) => /*#__PURE__*/jsxRuntimeExports.jsx(Tabs, {
+	  ...props,
+	  transition: getTabTransitionComponent(transition)
+	});
+	TabContainer.displayName = 'TabContainer';
+
+	var TabContent = createWithBsPrefix('tab-content');
+
+	const TabPane = /*#__PURE__*/reactExports.forwardRef(({
+	  bsPrefix,
+	  transition,
+	  ...props
+	}, ref) => {
+	  const [{
+	    className,
+	    // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
+	    as: Component = 'div',
+	    ...rest
+	  }, {
+	    isActive,
+	    onEnter,
+	    onEntering,
+	    onEntered,
+	    onExit,
+	    onExiting,
+	    onExited,
+	    mountOnEnter,
+	    unmountOnExit,
+	    transition: Transition = Fade
+	  }] = useTabPanel({
+	    ...props,
+	    transition: getTabTransitionComponent(transition)
+	  });
+	  const prefix = useBootstrapPrefix(bsPrefix, 'tab-pane');
+
+	  // We provide an empty the TabContext so `<Nav>`s in `<TabPanel>`s don't
+	  // conflict with the top level one.
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(TabContext.Provider, {
+	    value: null,
+	    children: /*#__PURE__*/jsxRuntimeExports.jsx(SelectableContext.Provider, {
+	      value: null,
+	      children: /*#__PURE__*/jsxRuntimeExports.jsx(Transition, {
+	        in: isActive,
+	        onEnter: onEnter,
+	        onEntering: onEntering,
+	        onEntered: onEntered,
+	        onExit: onExit,
+	        onExiting: onExiting,
+	        onExited: onExited,
+	        mountOnEnter: mountOnEnter,
+	        unmountOnExit: unmountOnExit,
+	        children: /*#__PURE__*/jsxRuntimeExports.jsx(Component, {
+	          ...rest,
+	          ref: ref,
+	          className: classNames(className, prefix, isActive && 'active')
+	        })
+	      })
+	    })
+	  });
+	});
+	TabPane.displayName = 'TabPane';
+
+	/* eslint-disable react/no-unused-prop-types */
+	const propTypes = {
+	  eventKey: propTypesExports.oneOfType([propTypesExports.string, propTypesExports.number]),
+	  /**
+	   * Content for the tab title.
+	   */
+	  title: propTypesExports.node.isRequired,
+	  /**
+	   * The disabled state of the tab.
+	   */
+	  disabled: propTypesExports.bool,
+	  /**
+	   * Class to pass to the underlying nav link.
+	   */
+	  tabClassName: propTypesExports.string,
+	  /**
+	   * Object containing attributes to pass to underlying nav link.
+	   */
+	  tabAttrs: propTypesExports.object
+	};
+	const Tab = () => {
+	  throw new Error('ReactBootstrap: The `Tab` component is not meant to be rendered! ' + "It's an abstract component that is only valid as a direct Child of the `Tabs` Component. " + 'For custom tabs components use TabPane and TabsContainer directly');
+	};
+	Tab.propTypes = propTypes;
+	Object.assign(Tab, {
+	  Container: TabContainer,
+	  Content: TabContent,
+	  Pane: TabPane
+	});
+
+	const fadeStyles = {
+	  [ENTERING]: 'showing',
+	  [EXITING]: 'showing show'
+	};
+	const ToastFade = /*#__PURE__*/reactExports.forwardRef((props, ref) => /*#__PURE__*/jsxRuntimeExports.jsx(Fade, {
+	  ...props,
+	  ref: ref,
+	  transitionClasses: fadeStyles
+	}));
+	ToastFade.displayName = 'ToastFade';
+
+	const ToastContext = /*#__PURE__*/reactExports.createContext({
+	  // eslint-disable-next-line @typescript-eslint/no-empty-function
+	  onClose() {}
+	});
+
+	const defaultProps$2 = {
+	  closeLabel: 'Close',
+	  closeButton: true
+	};
+	const ToastHeader = /*#__PURE__*/reactExports.forwardRef(({
+	  bsPrefix,
+	  closeLabel,
+	  closeVariant,
+	  closeButton,
+	  className,
+	  children,
+	  ...props
+	}, ref) => {
+	  bsPrefix = useBootstrapPrefix(bsPrefix, 'toast-header');
+	  const context = reactExports.useContext(ToastContext);
+	  const handleClick = useEventCallback(e => {
+	    context == null ? void 0 : context.onClose == null ? void 0 : context.onClose(e);
+	  });
+	  return /*#__PURE__*/jsxRuntimeExports.jsxs("div", {
+	    ref: ref,
+	    ...props,
+	    className: classNames(bsPrefix, className),
+	    children: [children, closeButton && /*#__PURE__*/jsxRuntimeExports.jsx(CloseButton, {
+	      "aria-label": closeLabel,
+	      variant: closeVariant,
+	      onClick: handleClick,
+	      "data-dismiss": "toast"
+	    })]
+	  });
+	});
+	ToastHeader.displayName = 'ToastHeader';
+	ToastHeader.defaultProps = defaultProps$2;
+
+	var ToastBody = createWithBsPrefix('toast-body');
+
+	const Toast = /*#__PURE__*/reactExports.forwardRef(({
+	  bsPrefix,
+	  className,
+	  transition: Transition = ToastFade,
+	  show = true,
+	  animation = true,
+	  delay = 5000,
+	  autohide = false,
+	  onClose,
+	  bg,
+	  ...props
+	}, ref) => {
+	  bsPrefix = useBootstrapPrefix(bsPrefix, 'toast');
+
+	  // We use refs for these, because we don't want to restart the autohide
+	  // timer in case these values change.
+	  const delayRef = reactExports.useRef(delay);
+	  const onCloseRef = reactExports.useRef(onClose);
+	  reactExports.useEffect(() => {
+	    delayRef.current = delay;
+	    onCloseRef.current = onClose;
+	  }, [delay, onClose]);
+	  const autohideTimeout = useTimeout();
+	  const autohideToast = !!(autohide && show);
+	  const autohideFunc = reactExports.useCallback(() => {
+	    if (autohideToast) {
+	      onCloseRef.current == null ? void 0 : onCloseRef.current();
+	    }
+	  }, [autohideToast]);
+	  reactExports.useEffect(() => {
+	    // Only reset timer if show or autohide changes.
+	    autohideTimeout.set(autohideFunc, delayRef.current);
+	  }, [autohideTimeout, autohideFunc]);
+	  const toastContext = reactExports.useMemo(() => ({
+	    onClose
+	  }), [onClose]);
+	  const hasAnimation = !!(Transition && animation);
+	  const toast = /*#__PURE__*/jsxRuntimeExports.jsx("div", {
+	    ...props,
+	    ref: ref,
+	    className: classNames(bsPrefix, className, bg && `bg-${bg}`, !hasAnimation && (show ? 'show' : 'hide')),
+	    role: "alert",
+	    "aria-live": "assertive",
+	    "aria-atomic": "true"
+	  });
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(ToastContext.Provider, {
+	    value: toastContext,
+	    children: hasAnimation && Transition ? /*#__PURE__*/jsxRuntimeExports.jsx(Transition, {
+	      in: show,
+	      unmountOnExit: true,
+	      children: toast
+	    }) : toast
+	  });
+	});
+	Toast.displayName = 'Toast';
+	Object.assign(Toast, {
+	  Body: ToastBody,
+	  Header: ToastHeader
+	});
+
+	const positionClasses = {
+	  'top-start': 'top-0 start-0',
+	  'top-center': 'top-0 start-50 translate-middle-x',
+	  'top-end': 'top-0 end-0',
+	  'middle-start': 'top-50 start-0 translate-middle-y',
+	  'middle-center': 'top-50 start-50 translate-middle',
+	  'middle-end': 'top-50 end-0 translate-middle-y',
+	  'bottom-start': 'bottom-0 start-0',
+	  'bottom-center': 'bottom-0 start-50 translate-middle-x',
+	  'bottom-end': 'bottom-0 end-0'
+	};
+	const ToastContainer = /*#__PURE__*/reactExports.forwardRef(({
+	  bsPrefix,
+	  position,
+	  containerPosition = 'absolute',
+	  className,
+	  // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
+	  as: Component = 'div',
+	  ...props
+	}, ref) => {
+	  bsPrefix = useBootstrapPrefix(bsPrefix, 'toast-container');
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(Component, {
+	    ref: ref,
+	    ...props,
+	    className: classNames(bsPrefix, position && [containerPosition ? `position-${containerPosition}` : null, positionClasses[position]], className)
+	  });
+	});
+	ToastContainer.displayName = 'ToastContainer';
+
+	const noop$3 = () => undefined;
+	const ToggleButton = /*#__PURE__*/reactExports.forwardRef(({
+	  bsPrefix,
+	  name,
+	  className,
+	  checked,
+	  type,
+	  onChange,
+	  value,
+	  disabled,
+	  id,
+	  inputRef,
+	  ...props
+	}, ref) => {
+	  bsPrefix = useBootstrapPrefix(bsPrefix, 'btn-check');
+	  return /*#__PURE__*/jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, {
+	    children: [/*#__PURE__*/jsxRuntimeExports.jsx("input", {
+	      className: bsPrefix,
+	      name: name,
+	      type: type,
+	      value: value,
+	      ref: inputRef,
+	      autoComplete: "off",
+	      checked: !!checked,
+	      disabled: !!disabled,
+	      onChange: onChange || noop$3,
+	      id: id
+	    }), /*#__PURE__*/jsxRuntimeExports.jsx(Button, {
+	      ...props,
+	      ref: ref,
+	      className: classNames(className, disabled && 'disabled'),
+	      type: undefined,
+	      role: undefined,
+	      as: "label",
+	      htmlFor: id
+	    })]
+	  });
+	});
+	ToggleButton.displayName = 'ToggleButton';
+
+	const defaultProps$1 = {
+	  type: 'radio',
+	  vertical: false
+	};
+	const ToggleButtonGroup = /*#__PURE__*/reactExports.forwardRef((props, ref) => {
+	  const {
+	    children,
+	    type,
+	    name,
+	    value,
+	    onChange,
+	    ...controlledProps
+	  } = useUncontrolled(props, {
+	    value: 'onChange'
+	  });
+	  const getValues = () => value == null ? [] : [].concat(value);
+	  const handleToggle = (inputVal, event) => {
+	    if (!onChange) {
+	      return;
+	    }
+	    const values = getValues();
+	    const isActive = values.indexOf(inputVal) !== -1;
+	    if (type === 'radio') {
+	      if (!isActive) onChange(inputVal, event);
+	      return;
+	    }
+	    if (isActive) {
+	      onChange(values.filter(n => n !== inputVal), event);
+	    } else {
+	      onChange([...values, inputVal], event);
+	    }
+	  };
+	  !(type !== 'radio' || !!name) ? invariant_1(false, 'A `name` is required to group the toggle buttons when the `type` ' + 'is set to "radio"')  : void 0;
+	  return /*#__PURE__*/jsxRuntimeExports.jsx(ButtonGroup, {
+	    ...controlledProps,
+	    ref: ref,
+	    children: map(children, child => {
+	      const values = getValues();
+	      const {
+	        value: childVal,
+	        onChange: childOnChange
+	      } = child.props;
+	      const handler = e => handleToggle(childVal, e);
+	      return /*#__PURE__*/reactExports.cloneElement(child, {
+	        type,
+	        name: child.name || name,
+	        checked: values.indexOf(childVal) !== -1,
+	        onChange: createChainedFunction(childOnChange, handler)
+	      });
+	    })
+	  });
+	});
+	ToggleButtonGroup.defaultProps = defaultProps$1;
+	Object.assign(ToggleButtonGroup, {
+	  Button: ToggleButton
+	});
+
+	const defaultProps = {
+	  placement: 'right'
+	};
+	const Tooltip = /*#__PURE__*/reactExports.forwardRef(({
+	  bsPrefix,
+	  placement,
+	  className,
+	  style,
+	  children,
+	  arrowProps,
+	  hasDoneInitialMeasure,
+	  popper,
+	  show,
+	  ...props
+	}, ref) => {
+	  bsPrefix = useBootstrapPrefix(bsPrefix, 'tooltip');
+	  const isRTL = useIsRTL();
+	  const [primaryPlacement] = (placement == null ? void 0 : placement.split('-')) || [];
+	  const bsDirection = getOverlayDirection(primaryPlacement, isRTL);
+	  let computedStyle = style;
+	  if (show && !hasDoneInitialMeasure) {
+	    computedStyle = {
+	      ...style,
+	      ...getInitialPopperStyles(popper == null ? void 0 : popper.strategy)
+	    };
+	  }
+	  return /*#__PURE__*/jsxRuntimeExports.jsxs("div", {
+	    ref: ref,
+	    style: computedStyle,
+	    role: "tooltip",
+	    "x-placement": primaryPlacement,
+	    className: classNames(className, bsPrefix, `bs-tooltip-${bsDirection}`),
+	    ...props,
+	    children: [/*#__PURE__*/jsxRuntimeExports.jsx("div", {
+	      className: "tooltip-arrow",
+	      ...arrowProps
+	    }), /*#__PURE__*/jsxRuntimeExports.jsx("div", {
+	      className: `${bsPrefix}-inner`,
+	      children: children
+	    })]
+	  });
+	});
+	Tooltip.defaultProps = defaultProps;
+	Tooltip.displayName = 'Tooltip';
 
 	function _extends$3() {
 	  _extends$3 = Object.assign || function (target) {
@@ -13718,6 +20014,3068 @@
 	    }
 	}
 
+	function ownKeys$1(object, enumerableOnly) {
+	  var keys = Object.keys(object);
+	  if (Object.getOwnPropertySymbols) {
+	    var symbols = Object.getOwnPropertySymbols(object);
+	    enumerableOnly && (symbols = symbols.filter(function (sym) {
+	      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+	    })), keys.push.apply(keys, symbols);
+	  }
+	  return keys;
+	}
+	function _objectSpread2$1(target) {
+	  for (var i = 1; i < arguments.length; i++) {
+	    var source = null != arguments[i] ? arguments[i] : {};
+	    i % 2 ? ownKeys$1(Object(source), !0).forEach(function (key) {
+	      _defineProperty$1(target, key, source[key]);
+	    }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys$1(Object(source)).forEach(function (key) {
+	      Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+	    });
+	  }
+	  return target;
+	}
+	function _typeof$1(obj) {
+	  "@babel/helpers - typeof";
+
+	  return _typeof$1 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) {
+	    return typeof obj;
+	  } : function (obj) {
+	    return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+	  }, _typeof$1(obj);
+	}
+	function _classCallCheck(instance, Constructor) {
+	  if (!(instance instanceof Constructor)) {
+	    throw new TypeError("Cannot call a class as a function");
+	  }
+	}
+	function _defineProperties(target, props) {
+	  for (var i = 0; i < props.length; i++) {
+	    var descriptor = props[i];
+	    descriptor.enumerable = descriptor.enumerable || false;
+	    descriptor.configurable = true;
+	    if ("value" in descriptor) descriptor.writable = true;
+	    Object.defineProperty(target, descriptor.key, descriptor);
+	  }
+	}
+	function _createClass(Constructor, protoProps, staticProps) {
+	  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+	  Object.defineProperty(Constructor, "prototype", {
+	    writable: false
+	  });
+	  return Constructor;
+	}
+	function _defineProperty$1(obj, key, value) {
+	  if (key in obj) {
+	    Object.defineProperty(obj, key, {
+	      value: value,
+	      enumerable: true,
+	      configurable: true,
+	      writable: true
+	    });
+	  } else {
+	    obj[key] = value;
+	  }
+	  return obj;
+	}
+	function _slicedToArray(arr, i) {
+	  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray$1(arr, i) || _nonIterableRest();
+	}
+	function _toConsumableArray$1(arr) {
+	  return _arrayWithoutHoles$1(arr) || _iterableToArray$1(arr) || _unsupportedIterableToArray$1(arr) || _nonIterableSpread$1();
+	}
+	function _arrayWithoutHoles$1(arr) {
+	  if (Array.isArray(arr)) return _arrayLikeToArray$1(arr);
+	}
+	function _arrayWithHoles(arr) {
+	  if (Array.isArray(arr)) return arr;
+	}
+	function _iterableToArray$1(iter) {
+	  if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter);
+	}
+	function _iterableToArrayLimit(arr, i) {
+	  var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"];
+	  if (_i == null) return;
+	  var _arr = [];
+	  var _n = true;
+	  var _d = false;
+	  var _s, _e;
+	  try {
+	    for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) {
+	      _arr.push(_s.value);
+	      if (i && _arr.length === i) break;
+	    }
+	  } catch (err) {
+	    _d = true;
+	    _e = err;
+	  } finally {
+	    try {
+	      if (!_n && _i["return"] != null) _i["return"]();
+	    } finally {
+	      if (_d) throw _e;
+	    }
+	  }
+	  return _arr;
+	}
+	function _unsupportedIterableToArray$1(o, minLen) {
+	  if (!o) return;
+	  if (typeof o === "string") return _arrayLikeToArray$1(o, minLen);
+	  var n = Object.prototype.toString.call(o).slice(8, -1);
+	  if (n === "Object" && o.constructor) n = o.constructor.name;
+	  if (n === "Map" || n === "Set") return Array.from(o);
+	  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray$1(o, minLen);
+	}
+	function _arrayLikeToArray$1(arr, len) {
+	  if (len == null || len > arr.length) len = arr.length;
+	  for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
+	  return arr2;
+	}
+	function _nonIterableSpread$1() {
+	  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+	}
+	function _nonIterableRest() {
+	  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+	}
+	var noop = function noop() {};
+	var _WINDOW = {};
+	var _DOCUMENT = {};
+	var _MUTATION_OBSERVER = null;
+	var _PERFORMANCE = {
+	  mark: noop,
+	  measure: noop
+	};
+	try {
+	  if (typeof window !== 'undefined') _WINDOW = window;
+	  if (typeof document !== 'undefined') _DOCUMENT = document;
+	  if (typeof MutationObserver !== 'undefined') _MUTATION_OBSERVER = MutationObserver;
+	  if (typeof performance !== 'undefined') _PERFORMANCE = performance;
+	} catch (e) {}
+	var _ref = _WINDOW.navigator || {},
+	  _ref$userAgent = _ref.userAgent,
+	  userAgent = _ref$userAgent === void 0 ? '' : _ref$userAgent;
+	var WINDOW = _WINDOW;
+	var DOCUMENT = _DOCUMENT;
+	var MUTATION_OBSERVER = _MUTATION_OBSERVER;
+	var PERFORMANCE = _PERFORMANCE;
+	!!WINDOW.document;
+	var IS_DOM = !!DOCUMENT.documentElement && !!DOCUMENT.head && typeof DOCUMENT.addEventListener === 'function' && typeof DOCUMENT.createElement === 'function';
+	var IS_IE = ~userAgent.indexOf('MSIE') || ~userAgent.indexOf('Trident/');
+	var _familyProxy, _familyProxy2, _familyProxy3, _familyProxy4, _familyProxy5;
+	var NAMESPACE_IDENTIFIER = '___FONT_AWESOME___';
+	var UNITS_IN_GRID = 16;
+	var DEFAULT_CSS_PREFIX = 'fa';
+	var DEFAULT_REPLACEMENT_CLASS = 'svg-inline--fa';
+	var DATA_FA_I2SVG = 'data-fa-i2svg';
+	var DATA_FA_PSEUDO_ELEMENT = 'data-fa-pseudo-element';
+	var DATA_FA_PSEUDO_ELEMENT_PENDING = 'data-fa-pseudo-element-pending';
+	var DATA_PREFIX = 'data-prefix';
+	var DATA_ICON = 'data-icon';
+	var HTML_CLASS_I2SVG_BASE_CLASS = 'fontawesome-i2svg';
+	var MUTATION_APPROACH_ASYNC = 'async';
+	var TAGNAMES_TO_SKIP_FOR_PSEUDOELEMENTS = ['HTML', 'HEAD', 'STYLE', 'SCRIPT'];
+	var PRODUCTION$1 = function () {
+	  try {
+	    return "development" === 'production';
+	  } catch (e) {
+	    return false;
+	  }
+	}();
+	var FAMILY_CLASSIC = 'classic';
+	var FAMILY_SHARP = 'sharp';
+	var FAMILIES = [FAMILY_CLASSIC, FAMILY_SHARP];
+	function familyProxy(obj) {
+	  // Defaults to the classic family if family is not available
+	  return new Proxy(obj, {
+	    get: function get(target, prop) {
+	      return prop in target ? target[prop] : target[FAMILY_CLASSIC];
+	    }
+	  });
+	}
+	var PREFIX_TO_STYLE = familyProxy((_familyProxy = {}, _defineProperty$1(_familyProxy, FAMILY_CLASSIC, {
+	  'fa': 'solid',
+	  'fas': 'solid',
+	  'fa-solid': 'solid',
+	  'far': 'regular',
+	  'fa-regular': 'regular',
+	  'fal': 'light',
+	  'fa-light': 'light',
+	  'fat': 'thin',
+	  'fa-thin': 'thin',
+	  'fad': 'duotone',
+	  'fa-duotone': 'duotone',
+	  'fab': 'brands',
+	  'fa-brands': 'brands',
+	  'fak': 'kit',
+	  'fakd': 'kit',
+	  'fa-kit': 'kit',
+	  'fa-kit-duotone': 'kit'
+	}), _defineProperty$1(_familyProxy, FAMILY_SHARP, {
+	  'fa': 'solid',
+	  'fass': 'solid',
+	  'fa-solid': 'solid',
+	  'fasr': 'regular',
+	  'fa-regular': 'regular',
+	  'fasl': 'light',
+	  'fa-light': 'light',
+	  'fast': 'thin',
+	  'fa-thin': 'thin'
+	}), _familyProxy));
+	var STYLE_TO_PREFIX = familyProxy((_familyProxy2 = {}, _defineProperty$1(_familyProxy2, FAMILY_CLASSIC, {
+	  solid: 'fas',
+	  regular: 'far',
+	  light: 'fal',
+	  thin: 'fat',
+	  duotone: 'fad',
+	  brands: 'fab',
+	  kit: 'fak'
+	}), _defineProperty$1(_familyProxy2, FAMILY_SHARP, {
+	  solid: 'fass',
+	  regular: 'fasr',
+	  light: 'fasl',
+	  thin: 'fast'
+	}), _familyProxy2));
+	var PREFIX_TO_LONG_STYLE = familyProxy((_familyProxy3 = {}, _defineProperty$1(_familyProxy3, FAMILY_CLASSIC, {
+	  fab: 'fa-brands',
+	  fad: 'fa-duotone',
+	  fak: 'fa-kit',
+	  fal: 'fa-light',
+	  far: 'fa-regular',
+	  fas: 'fa-solid',
+	  fat: 'fa-thin'
+	}), _defineProperty$1(_familyProxy3, FAMILY_SHARP, {
+	  fass: 'fa-solid',
+	  fasr: 'fa-regular',
+	  fasl: 'fa-light',
+	  fast: 'fa-thin'
+	}), _familyProxy3));
+	var LONG_STYLE_TO_PREFIX = familyProxy((_familyProxy4 = {}, _defineProperty$1(_familyProxy4, FAMILY_CLASSIC, {
+	  'fa-brands': 'fab',
+	  'fa-duotone': 'fad',
+	  'fa-kit': 'fak',
+	  'fa-light': 'fal',
+	  'fa-regular': 'far',
+	  'fa-solid': 'fas',
+	  'fa-thin': 'fat'
+	}), _defineProperty$1(_familyProxy4, FAMILY_SHARP, {
+	  'fa-solid': 'fass',
+	  'fa-regular': 'fasr',
+	  'fa-light': 'fasl',
+	  'fa-thin': 'fast'
+	}), _familyProxy4));
+	var ICON_SELECTION_SYNTAX_PATTERN = /fa(s|r|l|t|d|b|k|ss|sr|sl|st)?[\-\ ]/; // eslint-disable-line no-useless-escape
+
+	var LAYERS_TEXT_CLASSNAME = 'fa-layers-text';
+	var FONT_FAMILY_PATTERN = /Font ?Awesome ?([56 ]*)(Solid|Regular|Light|Thin|Duotone|Brands|Free|Pro|Sharp|Kit)?.*/i;
+	var FONT_WEIGHT_TO_PREFIX = familyProxy((_familyProxy5 = {}, _defineProperty$1(_familyProxy5, FAMILY_CLASSIC, {
+	  900: 'fas',
+	  400: 'far',
+	  normal: 'far',
+	  300: 'fal',
+	  100: 'fat'
+	}), _defineProperty$1(_familyProxy5, FAMILY_SHARP, {
+	  900: 'fass',
+	  400: 'fasr',
+	  300: 'fasl',
+	  100: 'fast'
+	}), _familyProxy5));
+	var oneToTen = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+	var oneToTwenty = oneToTen.concat([11, 12, 13, 14, 15, 16, 17, 18, 19, 20]);
+	var ATTRIBUTES_WATCHED_FOR_MUTATION = ['class', 'data-prefix', 'data-icon', 'data-fa-transform', 'data-fa-mask'];
+	var DUOTONE_CLASSES = {
+	  GROUP: 'duotone-group',
+	  SWAP_OPACITY: 'swap-opacity',
+	  PRIMARY: 'primary',
+	  SECONDARY: 'secondary'
+	};
+	var prefixes = new Set();
+	Object.keys(STYLE_TO_PREFIX[FAMILY_CLASSIC]).map(prefixes.add.bind(prefixes));
+	Object.keys(STYLE_TO_PREFIX[FAMILY_SHARP]).map(prefixes.add.bind(prefixes));
+	var RESERVED_CLASSES = [].concat(FAMILIES, _toConsumableArray$1(prefixes), ['2xs', 'xs', 'sm', 'lg', 'xl', '2xl', 'beat', 'border', 'fade', 'beat-fade', 'bounce', 'flip-both', 'flip-horizontal', 'flip-vertical', 'flip', 'fw', 'inverse', 'layers-counter', 'layers-text', 'layers', 'li', 'pull-left', 'pull-right', 'pulse', 'rotate-180', 'rotate-270', 'rotate-90', 'rotate-by', 'shake', 'spin-pulse', 'spin-reverse', 'spin', 'stack-1x', 'stack-2x', 'stack', 'ul', DUOTONE_CLASSES.GROUP, DUOTONE_CLASSES.SWAP_OPACITY, DUOTONE_CLASSES.PRIMARY, DUOTONE_CLASSES.SECONDARY]).concat(oneToTen.map(function (n) {
+	  return "".concat(n, "x");
+	})).concat(oneToTwenty.map(function (n) {
+	  return "w-".concat(n);
+	}));
+	var initial = WINDOW.FontAwesomeConfig || {};
+	function getAttrConfig(attr) {
+	  var element = DOCUMENT.querySelector('script[' + attr + ']');
+	  if (element) {
+	    return element.getAttribute(attr);
+	  }
+	}
+	function coerce(val) {
+	  // Getting an empty string will occur if the attribute is set on the HTML tag but without a value
+	  // We'll assume that this is an indication that it should be toggled to true
+	  if (val === '') return true;
+	  if (val === 'false') return false;
+	  if (val === 'true') return true;
+	  return val;
+	}
+	if (DOCUMENT && typeof DOCUMENT.querySelector === 'function') {
+	  var attrs = [['data-family-prefix', 'familyPrefix'], ['data-css-prefix', 'cssPrefix'], ['data-family-default', 'familyDefault'], ['data-style-default', 'styleDefault'], ['data-replacement-class', 'replacementClass'], ['data-auto-replace-svg', 'autoReplaceSvg'], ['data-auto-add-css', 'autoAddCss'], ['data-auto-a11y', 'autoA11y'], ['data-search-pseudo-elements', 'searchPseudoElements'], ['data-observe-mutations', 'observeMutations'], ['data-mutate-approach', 'mutateApproach'], ['data-keep-original-source', 'keepOriginalSource'], ['data-measure-performance', 'measurePerformance'], ['data-show-missing-icons', 'showMissingIcons']];
+	  attrs.forEach(function (_ref) {
+	    var _ref2 = _slicedToArray(_ref, 2),
+	      attr = _ref2[0],
+	      key = _ref2[1];
+	    var val = coerce(getAttrConfig(attr));
+	    if (val !== undefined && val !== null) {
+	      initial[key] = val;
+	    }
+	  });
+	}
+	var _default = {
+	  styleDefault: 'solid',
+	  familyDefault: 'classic',
+	  cssPrefix: DEFAULT_CSS_PREFIX,
+	  replacementClass: DEFAULT_REPLACEMENT_CLASS,
+	  autoReplaceSvg: true,
+	  autoAddCss: true,
+	  autoA11y: true,
+	  searchPseudoElements: false,
+	  observeMutations: true,
+	  mutateApproach: 'async',
+	  keepOriginalSource: true,
+	  measurePerformance: false,
+	  showMissingIcons: true
+	}; // familyPrefix is deprecated but we must still support it if present
+
+	if (initial.familyPrefix) {
+	  initial.cssPrefix = initial.familyPrefix;
+	}
+	var _config = _objectSpread2$1(_objectSpread2$1({}, _default), initial);
+	if (!_config.autoReplaceSvg) _config.observeMutations = false;
+	var config = {};
+	Object.keys(_default).forEach(function (key) {
+	  Object.defineProperty(config, key, {
+	    enumerable: true,
+	    set: function set(val) {
+	      _config[key] = val;
+	      _onChangeCb.forEach(function (cb) {
+	        return cb(config);
+	      });
+	    },
+	    get: function get() {
+	      return _config[key];
+	    }
+	  });
+	}); // familyPrefix is deprecated as of 6.2.0 and should be removed in 7.0.0
+
+	Object.defineProperty(config, 'familyPrefix', {
+	  enumerable: true,
+	  set: function set(val) {
+	    _config.cssPrefix = val;
+	    _onChangeCb.forEach(function (cb) {
+	      return cb(config);
+	    });
+	  },
+	  get: function get() {
+	    return _config.cssPrefix;
+	  }
+	});
+	WINDOW.FontAwesomeConfig = config;
+	var _onChangeCb = [];
+	function onChange(cb) {
+	  _onChangeCb.push(cb);
+	  return function () {
+	    _onChangeCb.splice(_onChangeCb.indexOf(cb), 1);
+	  };
+	}
+	var d = UNITS_IN_GRID;
+	var meaninglessTransform = {
+	  size: 16,
+	  x: 0,
+	  y: 0,
+	  rotate: 0,
+	  flipX: false,
+	  flipY: false
+	};
+	function insertCss(css) {
+	  if (!css || !IS_DOM) {
+	    return;
+	  }
+	  var style = DOCUMENT.createElement('style');
+	  style.setAttribute('type', 'text/css');
+	  style.innerHTML = css;
+	  var headChildren = DOCUMENT.head.childNodes;
+	  var beforeChild = null;
+	  for (var i = headChildren.length - 1; i > -1; i--) {
+	    var child = headChildren[i];
+	    var tagName = (child.tagName || '').toUpperCase();
+	    if (['STYLE', 'LINK'].indexOf(tagName) > -1) {
+	      beforeChild = child;
+	    }
+	  }
+	  DOCUMENT.head.insertBefore(style, beforeChild);
+	  return css;
+	}
+	var idPool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	function nextUniqueId() {
+	  var size = 12;
+	  var id = '';
+	  while (size-- > 0) {
+	    id += idPool[Math.random() * 62 | 0];
+	  }
+	  return id;
+	}
+	function toArray(obj) {
+	  var array = [];
+	  for (var i = (obj || []).length >>> 0; i--;) {
+	    array[i] = obj[i];
+	  }
+	  return array;
+	}
+	function classArray(node) {
+	  if (node.classList) {
+	    return toArray(node.classList);
+	  } else {
+	    return (node.getAttribute('class') || '').split(' ').filter(function (i) {
+	      return i;
+	    });
+	  }
+	}
+	function htmlEscape(str) {
+	  return "".concat(str).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+	}
+	function joinAttributes(attributes) {
+	  return Object.keys(attributes || {}).reduce(function (acc, attributeName) {
+	    return acc + "".concat(attributeName, "=\"").concat(htmlEscape(attributes[attributeName]), "\" ");
+	  }, '').trim();
+	}
+	function joinStyles(styles) {
+	  return Object.keys(styles || {}).reduce(function (acc, styleName) {
+	    return acc + "".concat(styleName, ": ").concat(styles[styleName].trim(), ";");
+	  }, '');
+	}
+	function transformIsMeaningful(transform) {
+	  return transform.size !== meaninglessTransform.size || transform.x !== meaninglessTransform.x || transform.y !== meaninglessTransform.y || transform.rotate !== meaninglessTransform.rotate || transform.flipX || transform.flipY;
+	}
+	function transformForSvg(_ref) {
+	  var transform = _ref.transform,
+	    containerWidth = _ref.containerWidth,
+	    iconWidth = _ref.iconWidth;
+	  var outer = {
+	    transform: "translate(".concat(containerWidth / 2, " 256)")
+	  };
+	  var innerTranslate = "translate(".concat(transform.x * 32, ", ").concat(transform.y * 32, ") ");
+	  var innerScale = "scale(".concat(transform.size / 16 * (transform.flipX ? -1 : 1), ", ").concat(transform.size / 16 * (transform.flipY ? -1 : 1), ") ");
+	  var innerRotate = "rotate(".concat(transform.rotate, " 0 0)");
+	  var inner = {
+	    transform: "".concat(innerTranslate, " ").concat(innerScale, " ").concat(innerRotate)
+	  };
+	  var path = {
+	    transform: "translate(".concat(iconWidth / 2 * -1, " -256)")
+	  };
+	  return {
+	    outer: outer,
+	    inner: inner,
+	    path: path
+	  };
+	}
+	function transformForCss(_ref2) {
+	  var transform = _ref2.transform,
+	    _ref2$width = _ref2.width,
+	    width = _ref2$width === void 0 ? UNITS_IN_GRID : _ref2$width,
+	    _ref2$height = _ref2.height,
+	    height = _ref2$height === void 0 ? UNITS_IN_GRID : _ref2$height,
+	    _ref2$startCentered = _ref2.startCentered,
+	    startCentered = _ref2$startCentered === void 0 ? false : _ref2$startCentered;
+	  var val = '';
+	  if (startCentered && IS_IE) {
+	    val += "translate(".concat(transform.x / d - width / 2, "em, ").concat(transform.y / d - height / 2, "em) ");
+	  } else if (startCentered) {
+	    val += "translate(calc(-50% + ".concat(transform.x / d, "em), calc(-50% + ").concat(transform.y / d, "em)) ");
+	  } else {
+	    val += "translate(".concat(transform.x / d, "em, ").concat(transform.y / d, "em) ");
+	  }
+	  val += "scale(".concat(transform.size / d * (transform.flipX ? -1 : 1), ", ").concat(transform.size / d * (transform.flipY ? -1 : 1), ") ");
+	  val += "rotate(".concat(transform.rotate, "deg) ");
+	  return val;
+	}
+	var baseStyles = ":root, :host {\n  --fa-font-solid: normal 900 1em/1 \"Font Awesome 6 Solid\";\n  --fa-font-regular: normal 400 1em/1 \"Font Awesome 6 Regular\";\n  --fa-font-light: normal 300 1em/1 \"Font Awesome 6 Light\";\n  --fa-font-thin: normal 100 1em/1 \"Font Awesome 6 Thin\";\n  --fa-font-duotone: normal 900 1em/1 \"Font Awesome 6 Duotone\";\n  --fa-font-sharp-solid: normal 900 1em/1 \"Font Awesome 6 Sharp\";\n  --fa-font-sharp-regular: normal 400 1em/1 \"Font Awesome 6 Sharp\";\n  --fa-font-sharp-light: normal 300 1em/1 \"Font Awesome 6 Sharp\";\n  --fa-font-sharp-thin: normal 100 1em/1 \"Font Awesome 6 Sharp\";\n  --fa-font-brands: normal 400 1em/1 \"Font Awesome 6 Brands\";\n}\n\nsvg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {\n  overflow: visible;\n  box-sizing: content-box;\n}\n\n.svg-inline--fa {\n  display: var(--fa-display, inline-block);\n  height: 1em;\n  overflow: visible;\n  vertical-align: -0.125em;\n}\n.svg-inline--fa.fa-2xs {\n  vertical-align: 0.1em;\n}\n.svg-inline--fa.fa-xs {\n  vertical-align: 0em;\n}\n.svg-inline--fa.fa-sm {\n  vertical-align: -0.0714285705em;\n}\n.svg-inline--fa.fa-lg {\n  vertical-align: -0.2em;\n}\n.svg-inline--fa.fa-xl {\n  vertical-align: -0.25em;\n}\n.svg-inline--fa.fa-2xl {\n  vertical-align: -0.3125em;\n}\n.svg-inline--fa.fa-pull-left {\n  margin-right: var(--fa-pull-margin, 0.3em);\n  width: auto;\n}\n.svg-inline--fa.fa-pull-right {\n  margin-left: var(--fa-pull-margin, 0.3em);\n  width: auto;\n}\n.svg-inline--fa.fa-li {\n  width: var(--fa-li-width, 2em);\n  top: 0.25em;\n}\n.svg-inline--fa.fa-fw {\n  width: var(--fa-fw-width, 1.25em);\n}\n\n.fa-layers svg.svg-inline--fa {\n  bottom: 0;\n  left: 0;\n  margin: auto;\n  position: absolute;\n  right: 0;\n  top: 0;\n}\n\n.fa-layers-counter, .fa-layers-text {\n  display: inline-block;\n  position: absolute;\n  text-align: center;\n}\n\n.fa-layers {\n  display: inline-block;\n  height: 1em;\n  position: relative;\n  text-align: center;\n  vertical-align: -0.125em;\n  width: 1em;\n}\n.fa-layers svg.svg-inline--fa {\n  -webkit-transform-origin: center center;\n          transform-origin: center center;\n}\n\n.fa-layers-text {\n  left: 50%;\n  top: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  -webkit-transform-origin: center center;\n          transform-origin: center center;\n}\n\n.fa-layers-counter {\n  background-color: var(--fa-counter-background-color, #ff253a);\n  border-radius: var(--fa-counter-border-radius, 1em);\n  box-sizing: border-box;\n  color: var(--fa-inverse, #fff);\n  line-height: var(--fa-counter-line-height, 1);\n  max-width: var(--fa-counter-max-width, 5em);\n  min-width: var(--fa-counter-min-width, 1.5em);\n  overflow: hidden;\n  padding: var(--fa-counter-padding, 0.25em 0.5em);\n  right: var(--fa-right, 0);\n  text-overflow: ellipsis;\n  top: var(--fa-top, 0);\n  -webkit-transform: scale(var(--fa-counter-scale, 0.25));\n          transform: scale(var(--fa-counter-scale, 0.25));\n  -webkit-transform-origin: top right;\n          transform-origin: top right;\n}\n\n.fa-layers-bottom-right {\n  bottom: var(--fa-bottom, 0);\n  right: var(--fa-right, 0);\n  top: auto;\n  -webkit-transform: scale(var(--fa-layers-scale, 0.25));\n          transform: scale(var(--fa-layers-scale, 0.25));\n  -webkit-transform-origin: bottom right;\n          transform-origin: bottom right;\n}\n\n.fa-layers-bottom-left {\n  bottom: var(--fa-bottom, 0);\n  left: var(--fa-left, 0);\n  right: auto;\n  top: auto;\n  -webkit-transform: scale(var(--fa-layers-scale, 0.25));\n          transform: scale(var(--fa-layers-scale, 0.25));\n  -webkit-transform-origin: bottom left;\n          transform-origin: bottom left;\n}\n\n.fa-layers-top-right {\n  top: var(--fa-top, 0);\n  right: var(--fa-right, 0);\n  -webkit-transform: scale(var(--fa-layers-scale, 0.25));\n          transform: scale(var(--fa-layers-scale, 0.25));\n  -webkit-transform-origin: top right;\n          transform-origin: top right;\n}\n\n.fa-layers-top-left {\n  left: var(--fa-left, 0);\n  right: auto;\n  top: var(--fa-top, 0);\n  -webkit-transform: scale(var(--fa-layers-scale, 0.25));\n          transform: scale(var(--fa-layers-scale, 0.25));\n  -webkit-transform-origin: top left;\n          transform-origin: top left;\n}\n\n.fa-1x {\n  font-size: 1em;\n}\n\n.fa-2x {\n  font-size: 2em;\n}\n\n.fa-3x {\n  font-size: 3em;\n}\n\n.fa-4x {\n  font-size: 4em;\n}\n\n.fa-5x {\n  font-size: 5em;\n}\n\n.fa-6x {\n  font-size: 6em;\n}\n\n.fa-7x {\n  font-size: 7em;\n}\n\n.fa-8x {\n  font-size: 8em;\n}\n\n.fa-9x {\n  font-size: 9em;\n}\n\n.fa-10x {\n  font-size: 10em;\n}\n\n.fa-2xs {\n  font-size: 0.625em;\n  line-height: 0.1em;\n  vertical-align: 0.225em;\n}\n\n.fa-xs {\n  font-size: 0.75em;\n  line-height: 0.0833333337em;\n  vertical-align: 0.125em;\n}\n\n.fa-sm {\n  font-size: 0.875em;\n  line-height: 0.0714285718em;\n  vertical-align: 0.0535714295em;\n}\n\n.fa-lg {\n  font-size: 1.25em;\n  line-height: 0.05em;\n  vertical-align: -0.075em;\n}\n\n.fa-xl {\n  font-size: 1.5em;\n  line-height: 0.0416666682em;\n  vertical-align: -0.125em;\n}\n\n.fa-2xl {\n  font-size: 2em;\n  line-height: 0.03125em;\n  vertical-align: -0.1875em;\n}\n\n.fa-fw {\n  text-align: center;\n  width: 1.25em;\n}\n\n.fa-ul {\n  list-style-type: none;\n  margin-left: var(--fa-li-margin, 2.5em);\n  padding-left: 0;\n}\n.fa-ul > li {\n  position: relative;\n}\n\n.fa-li {\n  left: calc(var(--fa-li-width, 2em) * -1);\n  position: absolute;\n  text-align: center;\n  width: var(--fa-li-width, 2em);\n  line-height: inherit;\n}\n\n.fa-border {\n  border-color: var(--fa-border-color, #eee);\n  border-radius: var(--fa-border-radius, 0.1em);\n  border-style: var(--fa-border-style, solid);\n  border-width: var(--fa-border-width, 0.08em);\n  padding: var(--fa-border-padding, 0.2em 0.25em 0.15em);\n}\n\n.fa-pull-left {\n  float: left;\n  margin-right: var(--fa-pull-margin, 0.3em);\n}\n\n.fa-pull-right {\n  float: right;\n  margin-left: var(--fa-pull-margin, 0.3em);\n}\n\n.fa-beat {\n  -webkit-animation-name: fa-beat;\n          animation-name: fa-beat;\n  -webkit-animation-delay: var(--fa-animation-delay, 0s);\n          animation-delay: var(--fa-animation-delay, 0s);\n  -webkit-animation-direction: var(--fa-animation-direction, normal);\n          animation-direction: var(--fa-animation-direction, normal);\n  -webkit-animation-duration: var(--fa-animation-duration, 1s);\n          animation-duration: var(--fa-animation-duration, 1s);\n  -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);\n          animation-iteration-count: var(--fa-animation-iteration-count, infinite);\n  -webkit-animation-timing-function: var(--fa-animation-timing, ease-in-out);\n          animation-timing-function: var(--fa-animation-timing, ease-in-out);\n}\n\n.fa-bounce {\n  -webkit-animation-name: fa-bounce;\n          animation-name: fa-bounce;\n  -webkit-animation-delay: var(--fa-animation-delay, 0s);\n          animation-delay: var(--fa-animation-delay, 0s);\n  -webkit-animation-direction: var(--fa-animation-direction, normal);\n          animation-direction: var(--fa-animation-direction, normal);\n  -webkit-animation-duration: var(--fa-animation-duration, 1s);\n          animation-duration: var(--fa-animation-duration, 1s);\n  -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);\n          animation-iteration-count: var(--fa-animation-iteration-count, infinite);\n  -webkit-animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.28, 0.84, 0.42, 1));\n          animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.28, 0.84, 0.42, 1));\n}\n\n.fa-fade {\n  -webkit-animation-name: fa-fade;\n          animation-name: fa-fade;\n  -webkit-animation-delay: var(--fa-animation-delay, 0s);\n          animation-delay: var(--fa-animation-delay, 0s);\n  -webkit-animation-direction: var(--fa-animation-direction, normal);\n          animation-direction: var(--fa-animation-direction, normal);\n  -webkit-animation-duration: var(--fa-animation-duration, 1s);\n          animation-duration: var(--fa-animation-duration, 1s);\n  -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);\n          animation-iteration-count: var(--fa-animation-iteration-count, infinite);\n  -webkit-animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));\n          animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));\n}\n\n.fa-beat-fade {\n  -webkit-animation-name: fa-beat-fade;\n          animation-name: fa-beat-fade;\n  -webkit-animation-delay: var(--fa-animation-delay, 0s);\n          animation-delay: var(--fa-animation-delay, 0s);\n  -webkit-animation-direction: var(--fa-animation-direction, normal);\n          animation-direction: var(--fa-animation-direction, normal);\n  -webkit-animation-duration: var(--fa-animation-duration, 1s);\n          animation-duration: var(--fa-animation-duration, 1s);\n  -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);\n          animation-iteration-count: var(--fa-animation-iteration-count, infinite);\n  -webkit-animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));\n          animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));\n}\n\n.fa-flip {\n  -webkit-animation-name: fa-flip;\n          animation-name: fa-flip;\n  -webkit-animation-delay: var(--fa-animation-delay, 0s);\n          animation-delay: var(--fa-animation-delay, 0s);\n  -webkit-animation-direction: var(--fa-animation-direction, normal);\n          animation-direction: var(--fa-animation-direction, normal);\n  -webkit-animation-duration: var(--fa-animation-duration, 1s);\n          animation-duration: var(--fa-animation-duration, 1s);\n  -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);\n          animation-iteration-count: var(--fa-animation-iteration-count, infinite);\n  -webkit-animation-timing-function: var(--fa-animation-timing, ease-in-out);\n          animation-timing-function: var(--fa-animation-timing, ease-in-out);\n}\n\n.fa-shake {\n  -webkit-animation-name: fa-shake;\n          animation-name: fa-shake;\n  -webkit-animation-delay: var(--fa-animation-delay, 0s);\n          animation-delay: var(--fa-animation-delay, 0s);\n  -webkit-animation-direction: var(--fa-animation-direction, normal);\n          animation-direction: var(--fa-animation-direction, normal);\n  -webkit-animation-duration: var(--fa-animation-duration, 1s);\n          animation-duration: var(--fa-animation-duration, 1s);\n  -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);\n          animation-iteration-count: var(--fa-animation-iteration-count, infinite);\n  -webkit-animation-timing-function: var(--fa-animation-timing, linear);\n          animation-timing-function: var(--fa-animation-timing, linear);\n}\n\n.fa-spin {\n  -webkit-animation-name: fa-spin;\n          animation-name: fa-spin;\n  -webkit-animation-delay: var(--fa-animation-delay, 0s);\n          animation-delay: var(--fa-animation-delay, 0s);\n  -webkit-animation-direction: var(--fa-animation-direction, normal);\n          animation-direction: var(--fa-animation-direction, normal);\n  -webkit-animation-duration: var(--fa-animation-duration, 2s);\n          animation-duration: var(--fa-animation-duration, 2s);\n  -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);\n          animation-iteration-count: var(--fa-animation-iteration-count, infinite);\n  -webkit-animation-timing-function: var(--fa-animation-timing, linear);\n          animation-timing-function: var(--fa-animation-timing, linear);\n}\n\n.fa-spin-reverse {\n  --fa-animation-direction: reverse;\n}\n\n.fa-pulse,\n.fa-spin-pulse {\n  -webkit-animation-name: fa-spin;\n          animation-name: fa-spin;\n  -webkit-animation-direction: var(--fa-animation-direction, normal);\n          animation-direction: var(--fa-animation-direction, normal);\n  -webkit-animation-duration: var(--fa-animation-duration, 1s);\n          animation-duration: var(--fa-animation-duration, 1s);\n  -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);\n          animation-iteration-count: var(--fa-animation-iteration-count, infinite);\n  -webkit-animation-timing-function: var(--fa-animation-timing, steps(8));\n          animation-timing-function: var(--fa-animation-timing, steps(8));\n}\n\n@media (prefers-reduced-motion: reduce) {\n  .fa-beat,\n.fa-bounce,\n.fa-fade,\n.fa-beat-fade,\n.fa-flip,\n.fa-pulse,\n.fa-shake,\n.fa-spin,\n.fa-spin-pulse {\n    -webkit-animation-delay: -1ms;\n            animation-delay: -1ms;\n    -webkit-animation-duration: 1ms;\n            animation-duration: 1ms;\n    -webkit-animation-iteration-count: 1;\n            animation-iteration-count: 1;\n    -webkit-transition-delay: 0s;\n            transition-delay: 0s;\n    -webkit-transition-duration: 0s;\n            transition-duration: 0s;\n  }\n}\n@-webkit-keyframes fa-beat {\n  0%, 90% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n  }\n  45% {\n    -webkit-transform: scale(var(--fa-beat-scale, 1.25));\n            transform: scale(var(--fa-beat-scale, 1.25));\n  }\n}\n@keyframes fa-beat {\n  0%, 90% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n  }\n  45% {\n    -webkit-transform: scale(var(--fa-beat-scale, 1.25));\n            transform: scale(var(--fa-beat-scale, 1.25));\n  }\n}\n@-webkit-keyframes fa-bounce {\n  0% {\n    -webkit-transform: scale(1, 1) translateY(0);\n            transform: scale(1, 1) translateY(0);\n  }\n  10% {\n    -webkit-transform: scale(var(--fa-bounce-start-scale-x, 1.1), var(--fa-bounce-start-scale-y, 0.9)) translateY(0);\n            transform: scale(var(--fa-bounce-start-scale-x, 1.1), var(--fa-bounce-start-scale-y, 0.9)) translateY(0);\n  }\n  30% {\n    -webkit-transform: scale(var(--fa-bounce-jump-scale-x, 0.9), var(--fa-bounce-jump-scale-y, 1.1)) translateY(var(--fa-bounce-height, -0.5em));\n            transform: scale(var(--fa-bounce-jump-scale-x, 0.9), var(--fa-bounce-jump-scale-y, 1.1)) translateY(var(--fa-bounce-height, -0.5em));\n  }\n  50% {\n    -webkit-transform: scale(var(--fa-bounce-land-scale-x, 1.05), var(--fa-bounce-land-scale-y, 0.95)) translateY(0);\n            transform: scale(var(--fa-bounce-land-scale-x, 1.05), var(--fa-bounce-land-scale-y, 0.95)) translateY(0);\n  }\n  57% {\n    -webkit-transform: scale(1, 1) translateY(var(--fa-bounce-rebound, -0.125em));\n            transform: scale(1, 1) translateY(var(--fa-bounce-rebound, -0.125em));\n  }\n  64% {\n    -webkit-transform: scale(1, 1) translateY(0);\n            transform: scale(1, 1) translateY(0);\n  }\n  100% {\n    -webkit-transform: scale(1, 1) translateY(0);\n            transform: scale(1, 1) translateY(0);\n  }\n}\n@keyframes fa-bounce {\n  0% {\n    -webkit-transform: scale(1, 1) translateY(0);\n            transform: scale(1, 1) translateY(0);\n  }\n  10% {\n    -webkit-transform: scale(var(--fa-bounce-start-scale-x, 1.1), var(--fa-bounce-start-scale-y, 0.9)) translateY(0);\n            transform: scale(var(--fa-bounce-start-scale-x, 1.1), var(--fa-bounce-start-scale-y, 0.9)) translateY(0);\n  }\n  30% {\n    -webkit-transform: scale(var(--fa-bounce-jump-scale-x, 0.9), var(--fa-bounce-jump-scale-y, 1.1)) translateY(var(--fa-bounce-height, -0.5em));\n            transform: scale(var(--fa-bounce-jump-scale-x, 0.9), var(--fa-bounce-jump-scale-y, 1.1)) translateY(var(--fa-bounce-height, -0.5em));\n  }\n  50% {\n    -webkit-transform: scale(var(--fa-bounce-land-scale-x, 1.05), var(--fa-bounce-land-scale-y, 0.95)) translateY(0);\n            transform: scale(var(--fa-bounce-land-scale-x, 1.05), var(--fa-bounce-land-scale-y, 0.95)) translateY(0);\n  }\n  57% {\n    -webkit-transform: scale(1, 1) translateY(var(--fa-bounce-rebound, -0.125em));\n            transform: scale(1, 1) translateY(var(--fa-bounce-rebound, -0.125em));\n  }\n  64% {\n    -webkit-transform: scale(1, 1) translateY(0);\n            transform: scale(1, 1) translateY(0);\n  }\n  100% {\n    -webkit-transform: scale(1, 1) translateY(0);\n            transform: scale(1, 1) translateY(0);\n  }\n}\n@-webkit-keyframes fa-fade {\n  50% {\n    opacity: var(--fa-fade-opacity, 0.4);\n  }\n}\n@keyframes fa-fade {\n  50% {\n    opacity: var(--fa-fade-opacity, 0.4);\n  }\n}\n@-webkit-keyframes fa-beat-fade {\n  0%, 100% {\n    opacity: var(--fa-beat-fade-opacity, 0.4);\n    -webkit-transform: scale(1);\n            transform: scale(1);\n  }\n  50% {\n    opacity: 1;\n    -webkit-transform: scale(var(--fa-beat-fade-scale, 1.125));\n            transform: scale(var(--fa-beat-fade-scale, 1.125));\n  }\n}\n@keyframes fa-beat-fade {\n  0%, 100% {\n    opacity: var(--fa-beat-fade-opacity, 0.4);\n    -webkit-transform: scale(1);\n            transform: scale(1);\n  }\n  50% {\n    opacity: 1;\n    -webkit-transform: scale(var(--fa-beat-fade-scale, 1.125));\n            transform: scale(var(--fa-beat-fade-scale, 1.125));\n  }\n}\n@-webkit-keyframes fa-flip {\n  50% {\n    -webkit-transform: rotate3d(var(--fa-flip-x, 0), var(--fa-flip-y, 1), var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));\n            transform: rotate3d(var(--fa-flip-x, 0), var(--fa-flip-y, 1), var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));\n  }\n}\n@keyframes fa-flip {\n  50% {\n    -webkit-transform: rotate3d(var(--fa-flip-x, 0), var(--fa-flip-y, 1), var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));\n            transform: rotate3d(var(--fa-flip-x, 0), var(--fa-flip-y, 1), var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));\n  }\n}\n@-webkit-keyframes fa-shake {\n  0% {\n    -webkit-transform: rotate(-15deg);\n            transform: rotate(-15deg);\n  }\n  4% {\n    -webkit-transform: rotate(15deg);\n            transform: rotate(15deg);\n  }\n  8%, 24% {\n    -webkit-transform: rotate(-18deg);\n            transform: rotate(-18deg);\n  }\n  12%, 28% {\n    -webkit-transform: rotate(18deg);\n            transform: rotate(18deg);\n  }\n  16% {\n    -webkit-transform: rotate(-22deg);\n            transform: rotate(-22deg);\n  }\n  20% {\n    -webkit-transform: rotate(22deg);\n            transform: rotate(22deg);\n  }\n  32% {\n    -webkit-transform: rotate(-12deg);\n            transform: rotate(-12deg);\n  }\n  36% {\n    -webkit-transform: rotate(12deg);\n            transform: rotate(12deg);\n  }\n  40%, 100% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n  }\n}\n@keyframes fa-shake {\n  0% {\n    -webkit-transform: rotate(-15deg);\n            transform: rotate(-15deg);\n  }\n  4% {\n    -webkit-transform: rotate(15deg);\n            transform: rotate(15deg);\n  }\n  8%, 24% {\n    -webkit-transform: rotate(-18deg);\n            transform: rotate(-18deg);\n  }\n  12%, 28% {\n    -webkit-transform: rotate(18deg);\n            transform: rotate(18deg);\n  }\n  16% {\n    -webkit-transform: rotate(-22deg);\n            transform: rotate(-22deg);\n  }\n  20% {\n    -webkit-transform: rotate(22deg);\n            transform: rotate(22deg);\n  }\n  32% {\n    -webkit-transform: rotate(-12deg);\n            transform: rotate(-12deg);\n  }\n  36% {\n    -webkit-transform: rotate(12deg);\n            transform: rotate(12deg);\n  }\n  40%, 100% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n  }\n}\n@-webkit-keyframes fa-spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n  }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n  }\n}\n@keyframes fa-spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n  }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n  }\n}\n.fa-rotate-90 {\n  -webkit-transform: rotate(90deg);\n          transform: rotate(90deg);\n}\n\n.fa-rotate-180 {\n  -webkit-transform: rotate(180deg);\n          transform: rotate(180deg);\n}\n\n.fa-rotate-270 {\n  -webkit-transform: rotate(270deg);\n          transform: rotate(270deg);\n}\n\n.fa-flip-horizontal {\n  -webkit-transform: scale(-1, 1);\n          transform: scale(-1, 1);\n}\n\n.fa-flip-vertical {\n  -webkit-transform: scale(1, -1);\n          transform: scale(1, -1);\n}\n\n.fa-flip-both,\n.fa-flip-horizontal.fa-flip-vertical {\n  -webkit-transform: scale(-1, -1);\n          transform: scale(-1, -1);\n}\n\n.fa-rotate-by {\n  -webkit-transform: rotate(var(--fa-rotate-angle, none));\n          transform: rotate(var(--fa-rotate-angle, none));\n}\n\n.fa-stack {\n  display: inline-block;\n  vertical-align: middle;\n  height: 2em;\n  position: relative;\n  width: 2.5em;\n}\n\n.fa-stack-1x,\n.fa-stack-2x {\n  bottom: 0;\n  left: 0;\n  margin: auto;\n  position: absolute;\n  right: 0;\n  top: 0;\n  z-index: var(--fa-stack-z-index, auto);\n}\n\n.svg-inline--fa.fa-stack-1x {\n  height: 1em;\n  width: 1.25em;\n}\n.svg-inline--fa.fa-stack-2x {\n  height: 2em;\n  width: 2.5em;\n}\n\n.fa-inverse {\n  color: var(--fa-inverse, #fff);\n}\n\n.sr-only,\n.fa-sr-only {\n  position: absolute;\n  width: 1px;\n  height: 1px;\n  padding: 0;\n  margin: -1px;\n  overflow: hidden;\n  clip: rect(0, 0, 0, 0);\n  white-space: nowrap;\n  border-width: 0;\n}\n\n.sr-only-focusable:not(:focus),\n.fa-sr-only-focusable:not(:focus) {\n  position: absolute;\n  width: 1px;\n  height: 1px;\n  padding: 0;\n  margin: -1px;\n  overflow: hidden;\n  clip: rect(0, 0, 0, 0);\n  white-space: nowrap;\n  border-width: 0;\n}\n\n.svg-inline--fa .fa-primary {\n  fill: var(--fa-primary-color, currentColor);\n  opacity: var(--fa-primary-opacity, 1);\n}\n\n.svg-inline--fa .fa-secondary {\n  fill: var(--fa-secondary-color, currentColor);\n  opacity: var(--fa-secondary-opacity, 0.4);\n}\n\n.svg-inline--fa.fa-swap-opacity .fa-primary {\n  opacity: var(--fa-secondary-opacity, 0.4);\n}\n\n.svg-inline--fa.fa-swap-opacity .fa-secondary {\n  opacity: var(--fa-primary-opacity, 1);\n}\n\n.svg-inline--fa mask .fa-primary,\n.svg-inline--fa mask .fa-secondary {\n  fill: black;\n}\n\n.fad.fa-inverse,\n.fa-duotone.fa-inverse {\n  color: var(--fa-inverse, #fff);\n}";
+	function css() {
+	  var dcp = DEFAULT_CSS_PREFIX;
+	  var drc = DEFAULT_REPLACEMENT_CLASS;
+	  var fp = config.cssPrefix;
+	  var rc = config.replacementClass;
+	  var s = baseStyles;
+	  if (fp !== dcp || rc !== drc) {
+	    var dPatt = new RegExp("\\.".concat(dcp, "\\-"), 'g');
+	    var customPropPatt = new RegExp("\\--".concat(dcp, "\\-"), 'g');
+	    var rPatt = new RegExp("\\.".concat(drc), 'g');
+	    s = s.replace(dPatt, ".".concat(fp, "-")).replace(customPropPatt, "--".concat(fp, "-")).replace(rPatt, ".".concat(rc));
+	  }
+	  return s;
+	}
+	var _cssInserted = false;
+	function ensureCss() {
+	  if (config.autoAddCss && !_cssInserted) {
+	    insertCss(css());
+	    _cssInserted = true;
+	  }
+	}
+	var InjectCSS = {
+	  mixout: function mixout() {
+	    return {
+	      dom: {
+	        css: css,
+	        insertCss: ensureCss
+	      }
+	    };
+	  },
+	  hooks: function hooks() {
+	    return {
+	      beforeDOMElementCreation: function beforeDOMElementCreation() {
+	        ensureCss();
+	      },
+	      beforeI2svg: function beforeI2svg() {
+	        ensureCss();
+	      }
+	    };
+	  }
+	};
+	var w = WINDOW || {};
+	if (!w[NAMESPACE_IDENTIFIER]) w[NAMESPACE_IDENTIFIER] = {};
+	if (!w[NAMESPACE_IDENTIFIER].styles) w[NAMESPACE_IDENTIFIER].styles = {};
+	if (!w[NAMESPACE_IDENTIFIER].hooks) w[NAMESPACE_IDENTIFIER].hooks = {};
+	if (!w[NAMESPACE_IDENTIFIER].shims) w[NAMESPACE_IDENTIFIER].shims = [];
+	var namespace = w[NAMESPACE_IDENTIFIER];
+	var functions = [];
+	var listener = function listener() {
+	  DOCUMENT.removeEventListener('DOMContentLoaded', listener);
+	  loaded = 1;
+	  functions.map(function (fn) {
+	    return fn();
+	  });
+	};
+	var loaded = false;
+	if (IS_DOM) {
+	  loaded = (DOCUMENT.documentElement.doScroll ? /^loaded|^c/ : /^loaded|^i|^c/).test(DOCUMENT.readyState);
+	  if (!loaded) DOCUMENT.addEventListener('DOMContentLoaded', listener);
+	}
+	function domready(fn) {
+	  if (!IS_DOM) return;
+	  loaded ? setTimeout(fn, 0) : functions.push(fn);
+	}
+	function toHtml(abstractNodes) {
+	  var tag = abstractNodes.tag,
+	    _abstractNodes$attrib = abstractNodes.attributes,
+	    attributes = _abstractNodes$attrib === void 0 ? {} : _abstractNodes$attrib,
+	    _abstractNodes$childr = abstractNodes.children,
+	    children = _abstractNodes$childr === void 0 ? [] : _abstractNodes$childr;
+	  if (typeof abstractNodes === 'string') {
+	    return htmlEscape(abstractNodes);
+	  } else {
+	    return "<".concat(tag, " ").concat(joinAttributes(attributes), ">").concat(children.map(toHtml).join(''), "</").concat(tag, ">");
+	  }
+	}
+	function iconFromMapping(mapping, prefix, iconName) {
+	  if (mapping && mapping[prefix] && mapping[prefix][iconName]) {
+	    return {
+	      prefix: prefix,
+	      iconName: iconName,
+	      icon: mapping[prefix][iconName]
+	    };
+	  }
+	}
+
+	/**
+	 * # Reduce
+	 *
+	 * A fast object `.reduce()` implementation.
+	 *
+	 * @param  {Object}   subject      The object to reduce over.
+	 * @param  {Function} fn           The reducer function.
+	 * @param  {mixed}    initialValue The initial value for the reducer, defaults to subject[0].
+	 * @param  {Object}   thisContext  The context for the reducer.
+	 * @return {mixed}                 The final result.
+	 */
+
+	var reduce = function fastReduceObject(subject, fn, initialValue, thisContext) {
+	  var keys = Object.keys(subject),
+	    length = keys.length,
+	    iterator = fn,
+	    i,
+	    key,
+	    result;
+	  if (initialValue === undefined) {
+	    i = 1;
+	    result = subject[keys[0]];
+	  } else {
+	    i = 0;
+	    result = initialValue;
+	  }
+	  for (; i < length; i++) {
+	    key = keys[i];
+	    result = iterator(result, subject[key], key, subject);
+	  }
+	  return result;
+	};
+
+	/**
+	 * ucs2decode() and codePointAt() are both works of Mathias Bynens and licensed under MIT
+	 *
+	 * Copyright Mathias Bynens <https://mathiasbynens.be/>
+
+	 * Permission is hereby granted, free of charge, to any person obtaining
+	 * a copy of this software and associated documentation files (the
+	 * "Software"), to deal in the Software without restriction, including
+	 * without limitation the rights to use, copy, modify, merge, publish,
+	 * distribute, sublicense, and/or sell copies of the Software, and to
+	 * permit persons to whom the Software is furnished to do so, subject to
+	 * the following conditions:
+
+	 * The above copyright notice and this permission notice shall be
+	 * included in all copies or substantial portions of the Software.
+
+	 * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+	 * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+	 * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+	 * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+	 * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+	 * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+	 * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+	 */
+	function ucs2decode(string) {
+	  var output = [];
+	  var counter = 0;
+	  var length = string.length;
+	  while (counter < length) {
+	    var value = string.charCodeAt(counter++);
+	    if (value >= 0xD800 && value <= 0xDBFF && counter < length) {
+	      var extra = string.charCodeAt(counter++);
+	      if ((extra & 0xFC00) == 0xDC00) {
+	        // eslint-disable-line eqeqeq
+	        output.push(((value & 0x3FF) << 10) + (extra & 0x3FF) + 0x10000);
+	      } else {
+	        output.push(value);
+	        counter--;
+	      }
+	    } else {
+	      output.push(value);
+	    }
+	  }
+	  return output;
+	}
+	function toHex(unicode) {
+	  var decoded = ucs2decode(unicode);
+	  return decoded.length === 1 ? decoded[0].toString(16) : null;
+	}
+	function codePointAt(string, index) {
+	  var size = string.length;
+	  var first = string.charCodeAt(index);
+	  var second;
+	  if (first >= 0xD800 && first <= 0xDBFF && size > index + 1) {
+	    second = string.charCodeAt(index + 1);
+	    if (second >= 0xDC00 && second <= 0xDFFF) {
+	      return (first - 0xD800) * 0x400 + second - 0xDC00 + 0x10000;
+	    }
+	  }
+	  return first;
+	}
+	function normalizeIcons(icons) {
+	  return Object.keys(icons).reduce(function (acc, iconName) {
+	    var icon = icons[iconName];
+	    var expanded = !!icon.icon;
+	    if (expanded) {
+	      acc[icon.iconName] = icon.icon;
+	    } else {
+	      acc[iconName] = icon;
+	    }
+	    return acc;
+	  }, {});
+	}
+	function defineIcons(prefix, icons) {
+	  var params = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+	  var _params$skipHooks = params.skipHooks,
+	    skipHooks = _params$skipHooks === void 0 ? false : _params$skipHooks;
+	  var normalized = normalizeIcons(icons);
+	  if (typeof namespace.hooks.addPack === 'function' && !skipHooks) {
+	    namespace.hooks.addPack(prefix, normalizeIcons(icons));
+	  } else {
+	    namespace.styles[prefix] = _objectSpread2$1(_objectSpread2$1({}, namespace.styles[prefix] || {}), normalized);
+	  }
+	  /**
+	   * Font Awesome 4 used the prefix of `fa` for all icons. With the introduction
+	   * of new styles we needed to differentiate between them. Prefix `fa` is now an alias
+	   * for `fas` so we'll ease the upgrade process for our users by automatically defining
+	   * this as well.
+	   */
+
+	  if (prefix === 'fas') {
+	    defineIcons('fa', icons);
+	  }
+	}
+	var _LONG_STYLE, _PREFIXES, _PREFIXES_FOR_FAMILY;
+	var styles = namespace.styles,
+	  shims = namespace.shims;
+	var LONG_STYLE = (_LONG_STYLE = {}, _defineProperty$1(_LONG_STYLE, FAMILY_CLASSIC, Object.values(PREFIX_TO_LONG_STYLE[FAMILY_CLASSIC])), _defineProperty$1(_LONG_STYLE, FAMILY_SHARP, Object.values(PREFIX_TO_LONG_STYLE[FAMILY_SHARP])), _LONG_STYLE);
+	var _defaultUsablePrefix = null;
+	var _byUnicode = {};
+	var _byLigature = {};
+	var _byOldName = {};
+	var _byOldUnicode = {};
+	var _byAlias = {};
+	var PREFIXES = (_PREFIXES = {}, _defineProperty$1(_PREFIXES, FAMILY_CLASSIC, Object.keys(PREFIX_TO_STYLE[FAMILY_CLASSIC])), _defineProperty$1(_PREFIXES, FAMILY_SHARP, Object.keys(PREFIX_TO_STYLE[FAMILY_SHARP])), _PREFIXES);
+	function isReserved(name) {
+	  return ~RESERVED_CLASSES.indexOf(name);
+	}
+	function getIconName(cssPrefix, cls) {
+	  var parts = cls.split('-');
+	  var prefix = parts[0];
+	  var iconName = parts.slice(1).join('-');
+	  if (prefix === cssPrefix && iconName !== '' && !isReserved(iconName)) {
+	    return iconName;
+	  } else {
+	    return null;
+	  }
+	}
+	var build = function build() {
+	  var lookup = function lookup(reducer) {
+	    return reduce(styles, function (o, style, prefix) {
+	      o[prefix] = reduce(style, reducer, {});
+	      return o;
+	    }, {});
+	  };
+	  _byUnicode = lookup(function (acc, icon, iconName) {
+	    if (icon[3]) {
+	      acc[icon[3]] = iconName;
+	    }
+	    if (icon[2]) {
+	      var aliases = icon[2].filter(function (a) {
+	        return typeof a === 'number';
+	      });
+	      aliases.forEach(function (alias) {
+	        acc[alias.toString(16)] = iconName;
+	      });
+	    }
+	    return acc;
+	  });
+	  _byLigature = lookup(function (acc, icon, iconName) {
+	    acc[iconName] = iconName;
+	    if (icon[2]) {
+	      var aliases = icon[2].filter(function (a) {
+	        return typeof a === 'string';
+	      });
+	      aliases.forEach(function (alias) {
+	        acc[alias] = iconName;
+	      });
+	    }
+	    return acc;
+	  });
+	  _byAlias = lookup(function (acc, icon, iconName) {
+	    var aliases = icon[2];
+	    acc[iconName] = iconName;
+	    aliases.forEach(function (alias) {
+	      acc[alias] = iconName;
+	    });
+	    return acc;
+	  }); // If we have a Kit, we can't determine if regular is available since we
+	  // could be auto-fetching it. We'll have to assume that it is available.
+
+	  var hasRegular = 'far' in styles || config.autoFetchSvg;
+	  var shimLookups = reduce(shims, function (acc, shim) {
+	    var maybeNameMaybeUnicode = shim[0];
+	    var prefix = shim[1];
+	    var iconName = shim[2];
+	    if (prefix === 'far' && !hasRegular) {
+	      prefix = 'fas';
+	    }
+	    if (typeof maybeNameMaybeUnicode === 'string') {
+	      acc.names[maybeNameMaybeUnicode] = {
+	        prefix: prefix,
+	        iconName: iconName
+	      };
+	    }
+	    if (typeof maybeNameMaybeUnicode === 'number') {
+	      acc.unicodes[maybeNameMaybeUnicode.toString(16)] = {
+	        prefix: prefix,
+	        iconName: iconName
+	      };
+	    }
+	    return acc;
+	  }, {
+	    names: {},
+	    unicodes: {}
+	  });
+	  _byOldName = shimLookups.names;
+	  _byOldUnicode = shimLookups.unicodes;
+	  _defaultUsablePrefix = getCanonicalPrefix(config.styleDefault, {
+	    family: config.familyDefault
+	  });
+	};
+	onChange(function (c) {
+	  _defaultUsablePrefix = getCanonicalPrefix(c.styleDefault, {
+	    family: config.familyDefault
+	  });
+	});
+	build();
+	function byUnicode(prefix, unicode) {
+	  return (_byUnicode[prefix] || {})[unicode];
+	}
+	function byLigature(prefix, ligature) {
+	  return (_byLigature[prefix] || {})[ligature];
+	}
+	function byAlias(prefix, alias) {
+	  return (_byAlias[prefix] || {})[alias];
+	}
+	function byOldName(name) {
+	  return _byOldName[name] || {
+	    prefix: null,
+	    iconName: null
+	  };
+	}
+	function byOldUnicode(unicode) {
+	  var oldUnicode = _byOldUnicode[unicode];
+	  var newUnicode = byUnicode('fas', unicode);
+	  return oldUnicode || (newUnicode ? {
+	    prefix: 'fas',
+	    iconName: newUnicode
+	  } : null) || {
+	    prefix: null,
+	    iconName: null
+	  };
+	}
+	function getDefaultUsablePrefix() {
+	  return _defaultUsablePrefix;
+	}
+	var emptyCanonicalIcon = function emptyCanonicalIcon() {
+	  return {
+	    prefix: null,
+	    iconName: null,
+	    rest: []
+	  };
+	};
+	function getCanonicalPrefix(styleOrPrefix) {
+	  var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+	  var _params$family = params.family,
+	    family = _params$family === void 0 ? FAMILY_CLASSIC : _params$family;
+	  var style = PREFIX_TO_STYLE[family][styleOrPrefix];
+	  var prefix = STYLE_TO_PREFIX[family][styleOrPrefix] || STYLE_TO_PREFIX[family][style];
+	  var defined = styleOrPrefix in namespace.styles ? styleOrPrefix : null;
+	  return prefix || defined || null;
+	}
+	var PREFIXES_FOR_FAMILY = (_PREFIXES_FOR_FAMILY = {}, _defineProperty$1(_PREFIXES_FOR_FAMILY, FAMILY_CLASSIC, Object.keys(PREFIX_TO_LONG_STYLE[FAMILY_CLASSIC])), _defineProperty$1(_PREFIXES_FOR_FAMILY, FAMILY_SHARP, Object.keys(PREFIX_TO_LONG_STYLE[FAMILY_SHARP])), _PREFIXES_FOR_FAMILY);
+	function getCanonicalIcon(values) {
+	  var _famProps;
+	  var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+	  var _params$skipLookups = params.skipLookups,
+	    skipLookups = _params$skipLookups === void 0 ? false : _params$skipLookups;
+	  var famProps = (_famProps = {}, _defineProperty$1(_famProps, FAMILY_CLASSIC, "".concat(config.cssPrefix, "-").concat(FAMILY_CLASSIC)), _defineProperty$1(_famProps, FAMILY_SHARP, "".concat(config.cssPrefix, "-").concat(FAMILY_SHARP)), _famProps);
+	  var givenPrefix = null;
+	  var family = FAMILY_CLASSIC;
+	  if (values.includes(famProps[FAMILY_CLASSIC]) || values.some(function (v) {
+	    return PREFIXES_FOR_FAMILY[FAMILY_CLASSIC].includes(v);
+	  })) {
+	    family = FAMILY_CLASSIC;
+	  }
+	  if (values.includes(famProps[FAMILY_SHARP]) || values.some(function (v) {
+	    return PREFIXES_FOR_FAMILY[FAMILY_SHARP].includes(v);
+	  })) {
+	    family = FAMILY_SHARP;
+	  }
+	  var canonical = values.reduce(function (acc, cls) {
+	    var iconName = getIconName(config.cssPrefix, cls);
+	    if (styles[cls]) {
+	      cls = LONG_STYLE[family].includes(cls) ? LONG_STYLE_TO_PREFIX[family][cls] : cls;
+	      givenPrefix = cls;
+	      acc.prefix = cls;
+	    } else if (PREFIXES[family].indexOf(cls) > -1) {
+	      givenPrefix = cls;
+	      acc.prefix = getCanonicalPrefix(cls, {
+	        family: family
+	      });
+	    } else if (iconName) {
+	      acc.iconName = iconName;
+	    } else if (cls !== config.replacementClass && cls !== famProps[FAMILY_CLASSIC] && cls !== famProps[FAMILY_SHARP]) {
+	      acc.rest.push(cls);
+	    }
+	    if (!skipLookups && acc.prefix && acc.iconName) {
+	      var shim = givenPrefix === 'fa' ? byOldName(acc.iconName) : {};
+	      var aliasIconName = byAlias(acc.prefix, acc.iconName);
+	      if (shim.prefix) {
+	        givenPrefix = null;
+	      }
+	      acc.iconName = shim.iconName || aliasIconName || acc.iconName;
+	      acc.prefix = shim.prefix || acc.prefix;
+	      if (acc.prefix === 'far' && !styles['far'] && styles['fas'] && !config.autoFetchSvg) {
+	        // Allow a fallback from the regular style to solid if regular is not available
+	        // but only if we aren't auto-fetching SVGs
+	        acc.prefix = 'fas';
+	      }
+	    }
+	    return acc;
+	  }, emptyCanonicalIcon());
+	  if (values.includes('fa-brands') || values.includes('fab')) {
+	    canonical.prefix = 'fab';
+	  }
+	  if (values.includes('fa-duotone') || values.includes('fad')) {
+	    canonical.prefix = 'fad';
+	  }
+	  if (!canonical.prefix && family === FAMILY_SHARP && (styles['fass'] || config.autoFetchSvg)) {
+	    canonical.prefix = 'fass';
+	    canonical.iconName = byAlias(canonical.prefix, canonical.iconName) || canonical.iconName;
+	  }
+	  if (canonical.prefix === 'fa' || givenPrefix === 'fa') {
+	    // The fa prefix is not canonical. So if it has made it through until this point
+	    // we will shift it to the correct prefix.
+	    canonical.prefix = getDefaultUsablePrefix() || 'fas';
+	  }
+	  return canonical;
+	}
+	var Library = /*#__PURE__*/function () {
+	  function Library() {
+	    _classCallCheck(this, Library);
+	    this.definitions = {};
+	  }
+	  _createClass(Library, [{
+	    key: "add",
+	    value: function add() {
+	      var _this = this;
+	      for (var _len = arguments.length, definitions = new Array(_len), _key = 0; _key < _len; _key++) {
+	        definitions[_key] = arguments[_key];
+	      }
+	      var additions = definitions.reduce(this._pullDefinitions, {});
+	      Object.keys(additions).forEach(function (key) {
+	        _this.definitions[key] = _objectSpread2$1(_objectSpread2$1({}, _this.definitions[key] || {}), additions[key]);
+	        defineIcons(key, additions[key]); // TODO can we stop doing this? We can't get the icons by 'fa-solid' any longer so this probably needs to change
+
+	        var longPrefix = PREFIX_TO_LONG_STYLE[FAMILY_CLASSIC][key];
+	        if (longPrefix) defineIcons(longPrefix, additions[key]);
+	        build();
+	      });
+	    }
+	  }, {
+	    key: "reset",
+	    value: function reset() {
+	      this.definitions = {};
+	    }
+	  }, {
+	    key: "_pullDefinitions",
+	    value: function _pullDefinitions(additions, definition) {
+	      var normalized = definition.prefix && definition.iconName && definition.icon ? {
+	        0: definition
+	      } : definition;
+	      Object.keys(normalized).map(function (key) {
+	        var _normalized$key = normalized[key],
+	          prefix = _normalized$key.prefix,
+	          iconName = _normalized$key.iconName,
+	          icon = _normalized$key.icon;
+	        var aliases = icon[2];
+	        if (!additions[prefix]) additions[prefix] = {};
+	        if (aliases.length > 0) {
+	          aliases.forEach(function (alias) {
+	            if (typeof alias === 'string') {
+	              additions[prefix][alias] = icon;
+	            }
+	          });
+	        }
+	        additions[prefix][iconName] = icon;
+	      });
+	      return additions;
+	    }
+	  }]);
+	  return Library;
+	}();
+	var _plugins = [];
+	var _hooks = {};
+	var providers = {};
+	var defaultProviderKeys = Object.keys(providers);
+	function registerPlugins(nextPlugins, _ref) {
+	  var obj = _ref.mixoutsTo;
+	  _plugins = nextPlugins;
+	  _hooks = {};
+	  Object.keys(providers).forEach(function (k) {
+	    if (defaultProviderKeys.indexOf(k) === -1) {
+	      delete providers[k];
+	    }
+	  });
+	  _plugins.forEach(function (plugin) {
+	    var mixout = plugin.mixout ? plugin.mixout() : {};
+	    Object.keys(mixout).forEach(function (tk) {
+	      if (typeof mixout[tk] === 'function') {
+	        obj[tk] = mixout[tk];
+	      }
+	      if (_typeof$1(mixout[tk]) === 'object') {
+	        Object.keys(mixout[tk]).forEach(function (sk) {
+	          if (!obj[tk]) {
+	            obj[tk] = {};
+	          }
+	          obj[tk][sk] = mixout[tk][sk];
+	        });
+	      }
+	    });
+	    if (plugin.hooks) {
+	      var hooks = plugin.hooks();
+	      Object.keys(hooks).forEach(function (hook) {
+	        if (!_hooks[hook]) {
+	          _hooks[hook] = [];
+	        }
+	        _hooks[hook].push(hooks[hook]);
+	      });
+	    }
+	    if (plugin.provides) {
+	      plugin.provides(providers);
+	    }
+	  });
+	  return obj;
+	}
+	function chainHooks(hook, accumulator) {
+	  for (var _len = arguments.length, args = new Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+	    args[_key - 2] = arguments[_key];
+	  }
+	  var hookFns = _hooks[hook] || [];
+	  hookFns.forEach(function (hookFn) {
+	    accumulator = hookFn.apply(null, [accumulator].concat(args)); // eslint-disable-line no-useless-call
+	  });
+
+	  return accumulator;
+	}
+	function callHooks(hook) {
+	  for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+	    args[_key2 - 1] = arguments[_key2];
+	  }
+	  var hookFns = _hooks[hook] || [];
+	  hookFns.forEach(function (hookFn) {
+	    hookFn.apply(null, args);
+	  });
+	  return undefined;
+	}
+	function callProvided() {
+	  var hook = arguments[0];
+	  var args = Array.prototype.slice.call(arguments, 1);
+	  return providers[hook] ? providers[hook].apply(null, args) : undefined;
+	}
+	function findIconDefinition(iconLookup) {
+	  if (iconLookup.prefix === 'fa') {
+	    iconLookup.prefix = 'fas';
+	  }
+	  var iconName = iconLookup.iconName;
+	  var prefix = iconLookup.prefix || getDefaultUsablePrefix();
+	  if (!iconName) return;
+	  iconName = byAlias(prefix, iconName) || iconName;
+	  return iconFromMapping(library.definitions, prefix, iconName) || iconFromMapping(namespace.styles, prefix, iconName);
+	}
+	var library = new Library();
+	var noAuto = function noAuto() {
+	  config.autoReplaceSvg = false;
+	  config.observeMutations = false;
+	  callHooks('noAuto');
+	};
+	var dom = {
+	  i2svg: function i2svg() {
+	    var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+	    if (IS_DOM) {
+	      callHooks('beforeI2svg', params);
+	      callProvided('pseudoElements2svg', params);
+	      return callProvided('i2svg', params);
+	    } else {
+	      return Promise.reject('Operation requires a DOM of some kind.');
+	    }
+	  },
+	  watch: function watch() {
+	    var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+	    var autoReplaceSvgRoot = params.autoReplaceSvgRoot;
+	    if (config.autoReplaceSvg === false) {
+	      config.autoReplaceSvg = true;
+	    }
+	    config.observeMutations = true;
+	    domready(function () {
+	      autoReplace({
+	        autoReplaceSvgRoot: autoReplaceSvgRoot
+	      });
+	      callHooks('watch', params);
+	    });
+	  }
+	};
+	var parse = {
+	  icon: function icon(_icon) {
+	    if (_icon === null) {
+	      return null;
+	    }
+	    if (_typeof$1(_icon) === 'object' && _icon.prefix && _icon.iconName) {
+	      return {
+	        prefix: _icon.prefix,
+	        iconName: byAlias(_icon.prefix, _icon.iconName) || _icon.iconName
+	      };
+	    }
+	    if (Array.isArray(_icon) && _icon.length === 2) {
+	      var iconName = _icon[1].indexOf('fa-') === 0 ? _icon[1].slice(3) : _icon[1];
+	      var prefix = getCanonicalPrefix(_icon[0]);
+	      return {
+	        prefix: prefix,
+	        iconName: byAlias(prefix, iconName) || iconName
+	      };
+	    }
+	    if (typeof _icon === 'string' && (_icon.indexOf("".concat(config.cssPrefix, "-")) > -1 || _icon.match(ICON_SELECTION_SYNTAX_PATTERN))) {
+	      var canonicalIcon = getCanonicalIcon(_icon.split(' '), {
+	        skipLookups: true
+	      });
+	      return {
+	        prefix: canonicalIcon.prefix || getDefaultUsablePrefix(),
+	        iconName: byAlias(canonicalIcon.prefix, canonicalIcon.iconName) || canonicalIcon.iconName
+	      };
+	    }
+	    if (typeof _icon === 'string') {
+	      var _prefix = getDefaultUsablePrefix();
+	      return {
+	        prefix: _prefix,
+	        iconName: byAlias(_prefix, _icon) || _icon
+	      };
+	    }
+	  }
+	};
+	var api = {
+	  noAuto: noAuto,
+	  config: config,
+	  dom: dom,
+	  parse: parse,
+	  library: library,
+	  findIconDefinition: findIconDefinition,
+	  toHtml: toHtml
+	};
+	var autoReplace = function autoReplace() {
+	  var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+	  var _params$autoReplaceSv = params.autoReplaceSvgRoot,
+	    autoReplaceSvgRoot = _params$autoReplaceSv === void 0 ? DOCUMENT : _params$autoReplaceSv;
+	  if ((Object.keys(namespace.styles).length > 0 || config.autoFetchSvg) && IS_DOM && config.autoReplaceSvg) api.dom.i2svg({
+	    node: autoReplaceSvgRoot
+	  });
+	};
+	function domVariants(val, abstractCreator) {
+	  Object.defineProperty(val, 'abstract', {
+	    get: abstractCreator
+	  });
+	  Object.defineProperty(val, 'html', {
+	    get: function get() {
+	      return val.abstract.map(function (a) {
+	        return toHtml(a);
+	      });
+	    }
+	  });
+	  Object.defineProperty(val, 'node', {
+	    get: function get() {
+	      if (!IS_DOM) return;
+	      var container = DOCUMENT.createElement('div');
+	      container.innerHTML = val.html;
+	      return container.children;
+	    }
+	  });
+	  return val;
+	}
+	function asIcon(_ref) {
+	  var children = _ref.children,
+	    main = _ref.main,
+	    mask = _ref.mask,
+	    attributes = _ref.attributes,
+	    styles = _ref.styles,
+	    transform = _ref.transform;
+	  if (transformIsMeaningful(transform) && main.found && !mask.found) {
+	    var width = main.width,
+	      height = main.height;
+	    var offset = {
+	      x: width / height / 2,
+	      y: 0.5
+	    };
+	    attributes['style'] = joinStyles(_objectSpread2$1(_objectSpread2$1({}, styles), {}, {
+	      'transform-origin': "".concat(offset.x + transform.x / 16, "em ").concat(offset.y + transform.y / 16, "em")
+	    }));
+	  }
+	  return [{
+	    tag: 'svg',
+	    attributes: attributes,
+	    children: children
+	  }];
+	}
+	function asSymbol(_ref) {
+	  var prefix = _ref.prefix,
+	    iconName = _ref.iconName,
+	    children = _ref.children,
+	    attributes = _ref.attributes,
+	    symbol = _ref.symbol;
+	  var id = symbol === true ? "".concat(prefix, "-").concat(config.cssPrefix, "-").concat(iconName) : symbol;
+	  return [{
+	    tag: 'svg',
+	    attributes: {
+	      style: 'display: none;'
+	    },
+	    children: [{
+	      tag: 'symbol',
+	      attributes: _objectSpread2$1(_objectSpread2$1({}, attributes), {}, {
+	        id: id
+	      }),
+	      children: children
+	    }]
+	  }];
+	}
+	function makeInlineSvgAbstract(params) {
+	  var _params$icons = params.icons,
+	    main = _params$icons.main,
+	    mask = _params$icons.mask,
+	    prefix = params.prefix,
+	    iconName = params.iconName,
+	    transform = params.transform,
+	    symbol = params.symbol,
+	    title = params.title,
+	    maskId = params.maskId,
+	    titleId = params.titleId,
+	    extra = params.extra,
+	    _params$watchable = params.watchable,
+	    watchable = _params$watchable === void 0 ? false : _params$watchable;
+	  var _ref = mask.found ? mask : main,
+	    width = _ref.width,
+	    height = _ref.height;
+	  var isUploadedIcon = prefix === 'fak';
+	  var attrClass = [config.replacementClass, iconName ? "".concat(config.cssPrefix, "-").concat(iconName) : ''].filter(function (c) {
+	    return extra.classes.indexOf(c) === -1;
+	  }).filter(function (c) {
+	    return c !== '' || !!c;
+	  }).concat(extra.classes).join(' ');
+	  var content = {
+	    children: [],
+	    attributes: _objectSpread2$1(_objectSpread2$1({}, extra.attributes), {}, {
+	      'data-prefix': prefix,
+	      'data-icon': iconName,
+	      'class': attrClass,
+	      'role': extra.attributes.role || 'img',
+	      'xmlns': 'http://www.w3.org/2000/svg',
+	      'viewBox': "0 0 ".concat(width, " ").concat(height)
+	    })
+	  };
+	  var uploadedIconWidthStyle = isUploadedIcon && !~extra.classes.indexOf('fa-fw') ? {
+	    width: "".concat(width / height * 16 * 0.0625, "em")
+	  } : {};
+	  if (watchable) {
+	    content.attributes[DATA_FA_I2SVG] = '';
+	  }
+	  if (title) {
+	    content.children.push({
+	      tag: 'title',
+	      attributes: {
+	        id: content.attributes['aria-labelledby'] || "title-".concat(titleId || nextUniqueId())
+	      },
+	      children: [title]
+	    });
+	    delete content.attributes.title;
+	  }
+	  var args = _objectSpread2$1(_objectSpread2$1({}, content), {}, {
+	    prefix: prefix,
+	    iconName: iconName,
+	    main: main,
+	    mask: mask,
+	    maskId: maskId,
+	    transform: transform,
+	    symbol: symbol,
+	    styles: _objectSpread2$1(_objectSpread2$1({}, uploadedIconWidthStyle), extra.styles)
+	  });
+	  var _ref2 = mask.found && main.found ? callProvided('generateAbstractMask', args) || {
+	      children: [],
+	      attributes: {}
+	    } : callProvided('generateAbstractIcon', args) || {
+	      children: [],
+	      attributes: {}
+	    },
+	    children = _ref2.children,
+	    attributes = _ref2.attributes;
+	  args.children = children;
+	  args.attributes = attributes;
+	  if (symbol) {
+	    return asSymbol(args);
+	  } else {
+	    return asIcon(args);
+	  }
+	}
+	function makeLayersTextAbstract(params) {
+	  var content = params.content,
+	    width = params.width,
+	    height = params.height,
+	    transform = params.transform,
+	    title = params.title,
+	    extra = params.extra,
+	    _params$watchable2 = params.watchable,
+	    watchable = _params$watchable2 === void 0 ? false : _params$watchable2;
+	  var attributes = _objectSpread2$1(_objectSpread2$1(_objectSpread2$1({}, extra.attributes), title ? {
+	    'title': title
+	  } : {}), {}, {
+	    'class': extra.classes.join(' ')
+	  });
+	  if (watchable) {
+	    attributes[DATA_FA_I2SVG] = '';
+	  }
+	  var styles = _objectSpread2$1({}, extra.styles);
+	  if (transformIsMeaningful(transform)) {
+	    styles['transform'] = transformForCss({
+	      transform: transform,
+	      startCentered: true,
+	      width: width,
+	      height: height
+	    });
+	    styles['-webkit-transform'] = styles['transform'];
+	  }
+	  var styleString = joinStyles(styles);
+	  if (styleString.length > 0) {
+	    attributes['style'] = styleString;
+	  }
+	  var val = [];
+	  val.push({
+	    tag: 'span',
+	    attributes: attributes,
+	    children: [content]
+	  });
+	  if (title) {
+	    val.push({
+	      tag: 'span',
+	      attributes: {
+	        class: 'sr-only'
+	      },
+	      children: [title]
+	    });
+	  }
+	  return val;
+	}
+	function makeLayersCounterAbstract(params) {
+	  var content = params.content,
+	    title = params.title,
+	    extra = params.extra;
+	  var attributes = _objectSpread2$1(_objectSpread2$1(_objectSpread2$1({}, extra.attributes), title ? {
+	    'title': title
+	  } : {}), {}, {
+	    'class': extra.classes.join(' ')
+	  });
+	  var styleString = joinStyles(extra.styles);
+	  if (styleString.length > 0) {
+	    attributes['style'] = styleString;
+	  }
+	  var val = [];
+	  val.push({
+	    tag: 'span',
+	    attributes: attributes,
+	    children: [content]
+	  });
+	  if (title) {
+	    val.push({
+	      tag: 'span',
+	      attributes: {
+	        class: 'sr-only'
+	      },
+	      children: [title]
+	    });
+	  }
+	  return val;
+	}
+	var styles$1 = namespace.styles;
+	function asFoundIcon(icon) {
+	  var width = icon[0];
+	  var height = icon[1];
+	  var _icon$slice = icon.slice(4),
+	    _icon$slice2 = _slicedToArray(_icon$slice, 1),
+	    vectorData = _icon$slice2[0];
+	  var element = null;
+	  if (Array.isArray(vectorData)) {
+	    element = {
+	      tag: 'g',
+	      attributes: {
+	        class: "".concat(config.cssPrefix, "-").concat(DUOTONE_CLASSES.GROUP)
+	      },
+	      children: [{
+	        tag: 'path',
+	        attributes: {
+	          class: "".concat(config.cssPrefix, "-").concat(DUOTONE_CLASSES.SECONDARY),
+	          fill: 'currentColor',
+	          d: vectorData[0]
+	        }
+	      }, {
+	        tag: 'path',
+	        attributes: {
+	          class: "".concat(config.cssPrefix, "-").concat(DUOTONE_CLASSES.PRIMARY),
+	          fill: 'currentColor',
+	          d: vectorData[1]
+	        }
+	      }]
+	    };
+	  } else {
+	    element = {
+	      tag: 'path',
+	      attributes: {
+	        fill: 'currentColor',
+	        d: vectorData
+	      }
+	    };
+	  }
+	  return {
+	    found: true,
+	    width: width,
+	    height: height,
+	    icon: element
+	  };
+	}
+	var missingIconResolutionMixin = {
+	  found: false,
+	  width: 512,
+	  height: 512
+	};
+	function maybeNotifyMissing(iconName, prefix) {
+	  if (!PRODUCTION$1 && !config.showMissingIcons && iconName) {
+	    console.error("Icon with name \"".concat(iconName, "\" and prefix \"").concat(prefix, "\" is missing."));
+	  }
+	}
+	function findIcon(iconName, prefix) {
+	  var givenPrefix = prefix;
+	  if (prefix === 'fa' && config.styleDefault !== null) {
+	    prefix = getDefaultUsablePrefix();
+	  }
+	  return new Promise(function (resolve, reject) {
+	    ({
+	      found: false,
+	      width: 512,
+	      height: 512,
+	      icon: callProvided('missingIconAbstract') || {}
+	    });
+	    if (givenPrefix === 'fa') {
+	      var shim = byOldName(iconName) || {};
+	      iconName = shim.iconName || iconName;
+	      prefix = shim.prefix || prefix;
+	    }
+	    if (iconName && prefix && styles$1[prefix] && styles$1[prefix][iconName]) {
+	      var icon = styles$1[prefix][iconName];
+	      return resolve(asFoundIcon(icon));
+	    }
+	    maybeNotifyMissing(iconName, prefix);
+	    resolve(_objectSpread2$1(_objectSpread2$1({}, missingIconResolutionMixin), {}, {
+	      icon: config.showMissingIcons && iconName ? callProvided('missingIconAbstract') || {} : {}
+	    }));
+	  });
+	}
+	var noop$1 = function noop() {};
+	var p = config.measurePerformance && PERFORMANCE && PERFORMANCE.mark && PERFORMANCE.measure ? PERFORMANCE : {
+	  mark: noop$1,
+	  measure: noop$1
+	};
+	var preamble = "FA \"6.5.1\"";
+	var begin = function begin(name) {
+	  p.mark("".concat(preamble, " ").concat(name, " begins"));
+	  return function () {
+	    return end(name);
+	  };
+	};
+	var end = function end(name) {
+	  p.mark("".concat(preamble, " ").concat(name, " ends"));
+	  p.measure("".concat(preamble, " ").concat(name), "".concat(preamble, " ").concat(name, " begins"), "".concat(preamble, " ").concat(name, " ends"));
+	};
+	var perf = {
+	  begin: begin,
+	  end: end
+	};
+	var noop$2 = function noop() {};
+	function isWatched(node) {
+	  var i2svg = node.getAttribute ? node.getAttribute(DATA_FA_I2SVG) : null;
+	  return typeof i2svg === 'string';
+	}
+	function hasPrefixAndIcon(node) {
+	  var prefix = node.getAttribute ? node.getAttribute(DATA_PREFIX) : null;
+	  var icon = node.getAttribute ? node.getAttribute(DATA_ICON) : null;
+	  return prefix && icon;
+	}
+	function hasBeenReplaced(node) {
+	  return node && node.classList && node.classList.contains && node.classList.contains(config.replacementClass);
+	}
+	function getMutator() {
+	  if (config.autoReplaceSvg === true) {
+	    return mutators.replace;
+	  }
+	  var mutator = mutators[config.autoReplaceSvg];
+	  return mutator || mutators.replace;
+	}
+	function createElementNS(tag) {
+	  return DOCUMENT.createElementNS('http://www.w3.org/2000/svg', tag);
+	}
+	function createElement(tag) {
+	  return DOCUMENT.createElement(tag);
+	}
+	function convertSVG(abstractObj) {
+	  var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+	  var _params$ceFn = params.ceFn,
+	    ceFn = _params$ceFn === void 0 ? abstractObj.tag === 'svg' ? createElementNS : createElement : _params$ceFn;
+	  if (typeof abstractObj === 'string') {
+	    return DOCUMENT.createTextNode(abstractObj);
+	  }
+	  var tag = ceFn(abstractObj.tag);
+	  Object.keys(abstractObj.attributes || []).forEach(function (key) {
+	    tag.setAttribute(key, abstractObj.attributes[key]);
+	  });
+	  var children = abstractObj.children || [];
+	  children.forEach(function (child) {
+	    tag.appendChild(convertSVG(child, {
+	      ceFn: ceFn
+	    }));
+	  });
+	  return tag;
+	}
+	function nodeAsComment(node) {
+	  var comment = " ".concat(node.outerHTML, " ");
+	  /* BEGIN.ATTRIBUTION */
+
+	  comment = "".concat(comment, "Font Awesome fontawesome.com ");
+	  /* END.ATTRIBUTION */
+
+	  return comment;
+	}
+	var mutators = {
+	  replace: function replace(mutation) {
+	    var node = mutation[0];
+	    if (node.parentNode) {
+	      mutation[1].forEach(function (_abstract) {
+	        node.parentNode.insertBefore(convertSVG(_abstract), node);
+	      });
+	      if (node.getAttribute(DATA_FA_I2SVG) === null && config.keepOriginalSource) {
+	        var comment = DOCUMENT.createComment(nodeAsComment(node));
+	        node.parentNode.replaceChild(comment, node);
+	      } else {
+	        node.remove();
+	      }
+	    }
+	  },
+	  nest: function nest(mutation) {
+	    var node = mutation[0];
+	    var _abstract2 = mutation[1]; // If we already have a replaced node we do not want to continue nesting within it.
+	    // Short-circuit to the standard replacement
+
+	    if (~classArray(node).indexOf(config.replacementClass)) {
+	      return mutators.replace(mutation);
+	    }
+	    var forSvg = new RegExp("".concat(config.cssPrefix, "-.*"));
+	    delete _abstract2[0].attributes.id;
+	    if (_abstract2[0].attributes.class) {
+	      var splitClasses = _abstract2[0].attributes.class.split(' ').reduce(function (acc, cls) {
+	        if (cls === config.replacementClass || cls.match(forSvg)) {
+	          acc.toSvg.push(cls);
+	        } else {
+	          acc.toNode.push(cls);
+	        }
+	        return acc;
+	      }, {
+	        toNode: [],
+	        toSvg: []
+	      });
+	      _abstract2[0].attributes.class = splitClasses.toSvg.join(' ');
+	      if (splitClasses.toNode.length === 0) {
+	        node.removeAttribute('class');
+	      } else {
+	        node.setAttribute('class', splitClasses.toNode.join(' '));
+	      }
+	    }
+	    var newInnerHTML = _abstract2.map(function (a) {
+	      return toHtml(a);
+	    }).join('\n');
+	    node.setAttribute(DATA_FA_I2SVG, '');
+	    node.innerHTML = newInnerHTML;
+	  }
+	};
+	function performOperationSync(op) {
+	  op();
+	}
+	function perform(mutations, callback) {
+	  var callbackFunction = typeof callback === 'function' ? callback : noop$2;
+	  if (mutations.length === 0) {
+	    callbackFunction();
+	  } else {
+	    var frame = performOperationSync;
+	    if (config.mutateApproach === MUTATION_APPROACH_ASYNC) {
+	      frame = WINDOW.requestAnimationFrame || performOperationSync;
+	    }
+	    frame(function () {
+	      var mutator = getMutator();
+	      var mark = perf.begin('mutate');
+	      mutations.map(mutator);
+	      mark();
+	      callbackFunction();
+	    });
+	  }
+	}
+	var disabled = false;
+	function disableObservation() {
+	  disabled = true;
+	}
+	function enableObservation() {
+	  disabled = false;
+	}
+	var mo = null;
+	function observe(options) {
+	  if (!MUTATION_OBSERVER) {
+	    return;
+	  }
+	  if (!config.observeMutations) {
+	    return;
+	  }
+	  var _options$treeCallback = options.treeCallback,
+	    treeCallback = _options$treeCallback === void 0 ? noop$2 : _options$treeCallback,
+	    _options$nodeCallback = options.nodeCallback,
+	    nodeCallback = _options$nodeCallback === void 0 ? noop$2 : _options$nodeCallback,
+	    _options$pseudoElemen = options.pseudoElementsCallback,
+	    pseudoElementsCallback = _options$pseudoElemen === void 0 ? noop$2 : _options$pseudoElemen,
+	    _options$observeMutat = options.observeMutationsRoot,
+	    observeMutationsRoot = _options$observeMutat === void 0 ? DOCUMENT : _options$observeMutat;
+	  mo = new MUTATION_OBSERVER(function (objects) {
+	    if (disabled) return;
+	    var defaultPrefix = getDefaultUsablePrefix();
+	    toArray(objects).forEach(function (mutationRecord) {
+	      if (mutationRecord.type === 'childList' && mutationRecord.addedNodes.length > 0 && !isWatched(mutationRecord.addedNodes[0])) {
+	        if (config.searchPseudoElements) {
+	          pseudoElementsCallback(mutationRecord.target);
+	        }
+	        treeCallback(mutationRecord.target);
+	      }
+	      if (mutationRecord.type === 'attributes' && mutationRecord.target.parentNode && config.searchPseudoElements) {
+	        pseudoElementsCallback(mutationRecord.target.parentNode);
+	      }
+	      if (mutationRecord.type === 'attributes' && isWatched(mutationRecord.target) && ~ATTRIBUTES_WATCHED_FOR_MUTATION.indexOf(mutationRecord.attributeName)) {
+	        if (mutationRecord.attributeName === 'class' && hasPrefixAndIcon(mutationRecord.target)) {
+	          var _getCanonicalIcon = getCanonicalIcon(classArray(mutationRecord.target)),
+	            prefix = _getCanonicalIcon.prefix,
+	            iconName = _getCanonicalIcon.iconName;
+	          mutationRecord.target.setAttribute(DATA_PREFIX, prefix || defaultPrefix);
+	          if (iconName) mutationRecord.target.setAttribute(DATA_ICON, iconName);
+	        } else if (hasBeenReplaced(mutationRecord.target)) {
+	          nodeCallback(mutationRecord.target);
+	        }
+	      }
+	    });
+	  });
+	  if (!IS_DOM) return;
+	  mo.observe(observeMutationsRoot, {
+	    childList: true,
+	    attributes: true,
+	    characterData: true,
+	    subtree: true
+	  });
+	}
+	function disconnect() {
+	  if (!mo) return;
+	  mo.disconnect();
+	}
+	function styleParser(node) {
+	  var style = node.getAttribute('style');
+	  var val = [];
+	  if (style) {
+	    val = style.split(';').reduce(function (acc, style) {
+	      var styles = style.split(':');
+	      var prop = styles[0];
+	      var value = styles.slice(1);
+	      if (prop && value.length > 0) {
+	        acc[prop] = value.join(':').trim();
+	      }
+	      return acc;
+	    }, {});
+	  }
+	  return val;
+	}
+	function classParser(node) {
+	  var existingPrefix = node.getAttribute('data-prefix');
+	  var existingIconName = node.getAttribute('data-icon');
+	  var innerText = node.innerText !== undefined ? node.innerText.trim() : '';
+	  var val = getCanonicalIcon(classArray(node));
+	  if (!val.prefix) {
+	    val.prefix = getDefaultUsablePrefix();
+	  }
+	  if (existingPrefix && existingIconName) {
+	    val.prefix = existingPrefix;
+	    val.iconName = existingIconName;
+	  }
+	  if (val.iconName && val.prefix) {
+	    return val;
+	  }
+	  if (val.prefix && innerText.length > 0) {
+	    val.iconName = byLigature(val.prefix, node.innerText) || byUnicode(val.prefix, toHex(node.innerText));
+	  }
+	  if (!val.iconName && config.autoFetchSvg && node.firstChild && node.firstChild.nodeType === Node.TEXT_NODE) {
+	    val.iconName = node.firstChild.data;
+	  }
+	  return val;
+	}
+	function attributesParser(node) {
+	  var extraAttributes = toArray(node.attributes).reduce(function (acc, attr) {
+	    if (acc.name !== 'class' && acc.name !== 'style') {
+	      acc[attr.name] = attr.value;
+	    }
+	    return acc;
+	  }, {});
+	  var title = node.getAttribute('title');
+	  var titleId = node.getAttribute('data-fa-title-id');
+	  if (config.autoA11y) {
+	    if (title) {
+	      extraAttributes['aria-labelledby'] = "".concat(config.replacementClass, "-title-").concat(titleId || nextUniqueId());
+	    } else {
+	      extraAttributes['aria-hidden'] = 'true';
+	      extraAttributes['focusable'] = 'false';
+	    }
+	  }
+	  return extraAttributes;
+	}
+	function blankMeta() {
+	  return {
+	    iconName: null,
+	    title: null,
+	    titleId: null,
+	    prefix: null,
+	    transform: meaninglessTransform,
+	    symbol: false,
+	    mask: {
+	      iconName: null,
+	      prefix: null,
+	      rest: []
+	    },
+	    maskId: null,
+	    extra: {
+	      classes: [],
+	      styles: {},
+	      attributes: {}
+	    }
+	  };
+	}
+	function parseMeta(node) {
+	  var parser = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {
+	    styleParser: true
+	  };
+	  var _classParser = classParser(node),
+	    iconName = _classParser.iconName,
+	    prefix = _classParser.prefix,
+	    extraClasses = _classParser.rest;
+	  var extraAttributes = attributesParser(node);
+	  var pluginMeta = chainHooks('parseNodeAttributes', {}, node);
+	  var extraStyles = parser.styleParser ? styleParser(node) : [];
+	  return _objectSpread2$1({
+	    iconName: iconName,
+	    title: node.getAttribute('title'),
+	    titleId: node.getAttribute('data-fa-title-id'),
+	    prefix: prefix,
+	    transform: meaninglessTransform,
+	    mask: {
+	      iconName: null,
+	      prefix: null,
+	      rest: []
+	    },
+	    maskId: null,
+	    symbol: false,
+	    extra: {
+	      classes: extraClasses,
+	      styles: extraStyles,
+	      attributes: extraAttributes
+	    }
+	  }, pluginMeta);
+	}
+	var styles$2 = namespace.styles;
+	function generateMutation(node) {
+	  var nodeMeta = config.autoReplaceSvg === 'nest' ? parseMeta(node, {
+	    styleParser: false
+	  }) : parseMeta(node);
+	  if (~nodeMeta.extra.classes.indexOf(LAYERS_TEXT_CLASSNAME)) {
+	    return callProvided('generateLayersText', node, nodeMeta);
+	  } else {
+	    return callProvided('generateSvgReplacementMutation', node, nodeMeta);
+	  }
+	}
+	var knownPrefixes = new Set();
+	FAMILIES.map(function (family) {
+	  knownPrefixes.add("fa-".concat(family));
+	});
+	Object.keys(PREFIX_TO_STYLE[FAMILY_CLASSIC]).map(knownPrefixes.add.bind(knownPrefixes));
+	Object.keys(PREFIX_TO_STYLE[FAMILY_SHARP]).map(knownPrefixes.add.bind(knownPrefixes));
+	knownPrefixes = _toConsumableArray$1(knownPrefixes);
+	function onTree(root) {
+	  var callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+	  if (!IS_DOM) return Promise.resolve();
+	  var htmlClassList = DOCUMENT.documentElement.classList;
+	  var hclAdd = function hclAdd(suffix) {
+	    return htmlClassList.add("".concat(HTML_CLASS_I2SVG_BASE_CLASS, "-").concat(suffix));
+	  };
+	  var hclRemove = function hclRemove(suffix) {
+	    return htmlClassList.remove("".concat(HTML_CLASS_I2SVG_BASE_CLASS, "-").concat(suffix));
+	  };
+	  var prefixes = config.autoFetchSvg ? knownPrefixes : FAMILIES.map(function (f) {
+	    return "fa-".concat(f);
+	  }).concat(Object.keys(styles$2));
+	  if (!prefixes.includes('fa')) {
+	    prefixes.push('fa');
+	  }
+	  var prefixesDomQuery = [".".concat(LAYERS_TEXT_CLASSNAME, ":not([").concat(DATA_FA_I2SVG, "])")].concat(prefixes.map(function (p) {
+	    return ".".concat(p, ":not([").concat(DATA_FA_I2SVG, "])");
+	  })).join(', ');
+	  if (prefixesDomQuery.length === 0) {
+	    return Promise.resolve();
+	  }
+	  var candidates = [];
+	  try {
+	    candidates = toArray(root.querySelectorAll(prefixesDomQuery));
+	  } catch (e) {// noop
+	  }
+	  if (candidates.length > 0) {
+	    hclAdd('pending');
+	    hclRemove('complete');
+	  } else {
+	    return Promise.resolve();
+	  }
+	  var mark = perf.begin('onTree');
+	  var mutations = candidates.reduce(function (acc, node) {
+	    try {
+	      var mutation = generateMutation(node);
+	      if (mutation) {
+	        acc.push(mutation);
+	      }
+	    } catch (e) {
+	      if (!PRODUCTION$1) {
+	        if (e.name === 'MissingIcon') {
+	          console.error(e);
+	        }
+	      }
+	    }
+	    return acc;
+	  }, []);
+	  return new Promise(function (resolve, reject) {
+	    Promise.all(mutations).then(function (resolvedMutations) {
+	      perform(resolvedMutations, function () {
+	        hclAdd('active');
+	        hclAdd('complete');
+	        hclRemove('pending');
+	        if (typeof callback === 'function') callback();
+	        mark();
+	        resolve();
+	      });
+	    }).catch(function (e) {
+	      mark();
+	      reject(e);
+	    });
+	  });
+	}
+	function onNode(node) {
+	  var callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+	  generateMutation(node).then(function (mutation) {
+	    if (mutation) {
+	      perform([mutation], callback);
+	    }
+	  });
+	}
+	function resolveIcons(next) {
+	  return function (maybeIconDefinition) {
+	    var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+	    var iconDefinition = (maybeIconDefinition || {}).icon ? maybeIconDefinition : findIconDefinition(maybeIconDefinition || {});
+	    var mask = params.mask;
+	    if (mask) {
+	      mask = (mask || {}).icon ? mask : findIconDefinition(mask || {});
+	    }
+	    return next(iconDefinition, _objectSpread2$1(_objectSpread2$1({}, params), {}, {
+	      mask: mask
+	    }));
+	  };
+	}
+	var render = function render(iconDefinition) {
+	  var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+	  var _params$transform = params.transform,
+	    transform = _params$transform === void 0 ? meaninglessTransform : _params$transform,
+	    _params$symbol = params.symbol,
+	    symbol = _params$symbol === void 0 ? false : _params$symbol,
+	    _params$mask = params.mask,
+	    mask = _params$mask === void 0 ? null : _params$mask,
+	    _params$maskId = params.maskId,
+	    maskId = _params$maskId === void 0 ? null : _params$maskId,
+	    _params$title = params.title,
+	    title = _params$title === void 0 ? null : _params$title,
+	    _params$titleId = params.titleId,
+	    titleId = _params$titleId === void 0 ? null : _params$titleId,
+	    _params$classes = params.classes,
+	    classes = _params$classes === void 0 ? [] : _params$classes,
+	    _params$attributes = params.attributes,
+	    attributes = _params$attributes === void 0 ? {} : _params$attributes,
+	    _params$styles = params.styles,
+	    styles = _params$styles === void 0 ? {} : _params$styles;
+	  if (!iconDefinition) return;
+	  var prefix = iconDefinition.prefix,
+	    iconName = iconDefinition.iconName,
+	    icon = iconDefinition.icon;
+	  return domVariants(_objectSpread2$1({
+	    type: 'icon'
+	  }, iconDefinition), function () {
+	    callHooks('beforeDOMElementCreation', {
+	      iconDefinition: iconDefinition,
+	      params: params
+	    });
+	    if (config.autoA11y) {
+	      if (title) {
+	        attributes['aria-labelledby'] = "".concat(config.replacementClass, "-title-").concat(titleId || nextUniqueId());
+	      } else {
+	        attributes['aria-hidden'] = 'true';
+	        attributes['focusable'] = 'false';
+	      }
+	    }
+	    return makeInlineSvgAbstract({
+	      icons: {
+	        main: asFoundIcon(icon),
+	        mask: mask ? asFoundIcon(mask.icon) : {
+	          found: false,
+	          width: null,
+	          height: null,
+	          icon: {}
+	        }
+	      },
+	      prefix: prefix,
+	      iconName: iconName,
+	      transform: _objectSpread2$1(_objectSpread2$1({}, meaninglessTransform), transform),
+	      symbol: symbol,
+	      title: title,
+	      maskId: maskId,
+	      titleId: titleId,
+	      extra: {
+	        attributes: attributes,
+	        styles: styles,
+	        classes: classes
+	      }
+	    });
+	  });
+	};
+	var ReplaceElements = {
+	  mixout: function mixout() {
+	    return {
+	      icon: resolveIcons(render)
+	    };
+	  },
+	  hooks: function hooks() {
+	    return {
+	      mutationObserverCallbacks: function mutationObserverCallbacks(accumulator) {
+	        accumulator.treeCallback = onTree;
+	        accumulator.nodeCallback = onNode;
+	        return accumulator;
+	      }
+	    };
+	  },
+	  provides: function provides(providers$$1) {
+	    providers$$1.i2svg = function (params) {
+	      var _params$node = params.node,
+	        node = _params$node === void 0 ? DOCUMENT : _params$node,
+	        _params$callback = params.callback,
+	        callback = _params$callback === void 0 ? function () {} : _params$callback;
+	      return onTree(node, callback);
+	    };
+	    providers$$1.generateSvgReplacementMutation = function (node, nodeMeta) {
+	      var iconName = nodeMeta.iconName,
+	        title = nodeMeta.title,
+	        titleId = nodeMeta.titleId,
+	        prefix = nodeMeta.prefix,
+	        transform = nodeMeta.transform,
+	        symbol = nodeMeta.symbol,
+	        mask = nodeMeta.mask,
+	        maskId = nodeMeta.maskId,
+	        extra = nodeMeta.extra;
+	      return new Promise(function (resolve, reject) {
+	        Promise.all([findIcon(iconName, prefix), mask.iconName ? findIcon(mask.iconName, mask.prefix) : Promise.resolve({
+	          found: false,
+	          width: 512,
+	          height: 512,
+	          icon: {}
+	        })]).then(function (_ref) {
+	          var _ref2 = _slicedToArray(_ref, 2),
+	            main = _ref2[0],
+	            mask = _ref2[1];
+	          resolve([node, makeInlineSvgAbstract({
+	            icons: {
+	              main: main,
+	              mask: mask
+	            },
+	            prefix: prefix,
+	            iconName: iconName,
+	            transform: transform,
+	            symbol: symbol,
+	            maskId: maskId,
+	            title: title,
+	            titleId: titleId,
+	            extra: extra,
+	            watchable: true
+	          })]);
+	        }).catch(reject);
+	      });
+	    };
+	    providers$$1.generateAbstractIcon = function (_ref3) {
+	      var children = _ref3.children,
+	        attributes = _ref3.attributes,
+	        main = _ref3.main,
+	        transform = _ref3.transform,
+	        styles = _ref3.styles;
+	      var styleString = joinStyles(styles);
+	      if (styleString.length > 0) {
+	        attributes['style'] = styleString;
+	      }
+	      var nextChild;
+	      if (transformIsMeaningful(transform)) {
+	        nextChild = callProvided('generateAbstractTransformGrouping', {
+	          main: main,
+	          transform: transform,
+	          containerWidth: main.width,
+	          iconWidth: main.width
+	        });
+	      }
+	      children.push(nextChild || main.icon);
+	      return {
+	        children: children,
+	        attributes: attributes
+	      };
+	    };
+	  }
+	};
+	var Layers = {
+	  mixout: function mixout() {
+	    return {
+	      layer: function layer(assembler) {
+	        var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+	        var _params$classes = params.classes,
+	          classes = _params$classes === void 0 ? [] : _params$classes;
+	        return domVariants({
+	          type: 'layer'
+	        }, function () {
+	          callHooks('beforeDOMElementCreation', {
+	            assembler: assembler,
+	            params: params
+	          });
+	          var children = [];
+	          assembler(function (args) {
+	            Array.isArray(args) ? args.map(function (a) {
+	              children = children.concat(a.abstract);
+	            }) : children = children.concat(args.abstract);
+	          });
+	          return [{
+	            tag: 'span',
+	            attributes: {
+	              class: ["".concat(config.cssPrefix, "-layers")].concat(_toConsumableArray$1(classes)).join(' ')
+	            },
+	            children: children
+	          }];
+	        });
+	      }
+	    };
+	  }
+	};
+	var LayersCounter = {
+	  mixout: function mixout() {
+	    return {
+	      counter: function counter(content) {
+	        var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+	        var _params$title = params.title,
+	          title = _params$title === void 0 ? null : _params$title,
+	          _params$classes = params.classes,
+	          classes = _params$classes === void 0 ? [] : _params$classes,
+	          _params$attributes = params.attributes,
+	          attributes = _params$attributes === void 0 ? {} : _params$attributes,
+	          _params$styles = params.styles,
+	          styles = _params$styles === void 0 ? {} : _params$styles;
+	        return domVariants({
+	          type: 'counter',
+	          content: content
+	        }, function () {
+	          callHooks('beforeDOMElementCreation', {
+	            content: content,
+	            params: params
+	          });
+	          return makeLayersCounterAbstract({
+	            content: content.toString(),
+	            title: title,
+	            extra: {
+	              attributes: attributes,
+	              styles: styles,
+	              classes: ["".concat(config.cssPrefix, "-layers-counter")].concat(_toConsumableArray$1(classes))
+	            }
+	          });
+	        });
+	      }
+	    };
+	  }
+	};
+	var LayersText = {
+	  mixout: function mixout() {
+	    return {
+	      text: function text(content) {
+	        var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+	        var _params$transform = params.transform,
+	          transform = _params$transform === void 0 ? meaninglessTransform : _params$transform,
+	          _params$title = params.title,
+	          title = _params$title === void 0 ? null : _params$title,
+	          _params$classes = params.classes,
+	          classes = _params$classes === void 0 ? [] : _params$classes,
+	          _params$attributes = params.attributes,
+	          attributes = _params$attributes === void 0 ? {} : _params$attributes,
+	          _params$styles = params.styles,
+	          styles = _params$styles === void 0 ? {} : _params$styles;
+	        return domVariants({
+	          type: 'text',
+	          content: content
+	        }, function () {
+	          callHooks('beforeDOMElementCreation', {
+	            content: content,
+	            params: params
+	          });
+	          return makeLayersTextAbstract({
+	            content: content,
+	            transform: _objectSpread2$1(_objectSpread2$1({}, meaninglessTransform), transform),
+	            title: title,
+	            extra: {
+	              attributes: attributes,
+	              styles: styles,
+	              classes: ["".concat(config.cssPrefix, "-layers-text")].concat(_toConsumableArray$1(classes))
+	            }
+	          });
+	        });
+	      }
+	    };
+	  },
+	  provides: function provides(providers$$1) {
+	    providers$$1.generateLayersText = function (node, nodeMeta) {
+	      var title = nodeMeta.title,
+	        transform = nodeMeta.transform,
+	        extra = nodeMeta.extra;
+	      var width = null;
+	      var height = null;
+	      if (IS_IE) {
+	        var computedFontSize = parseInt(getComputedStyle(node).fontSize, 10);
+	        var boundingClientRect = node.getBoundingClientRect();
+	        width = boundingClientRect.width / computedFontSize;
+	        height = boundingClientRect.height / computedFontSize;
+	      }
+	      if (config.autoA11y && !title) {
+	        extra.attributes['aria-hidden'] = 'true';
+	      }
+	      return Promise.resolve([node, makeLayersTextAbstract({
+	        content: node.innerHTML,
+	        width: width,
+	        height: height,
+	        transform: transform,
+	        title: title,
+	        extra: extra,
+	        watchable: true
+	      })]);
+	    };
+	  }
+	};
+	var CLEAN_CONTENT_PATTERN = new RegExp("\"", 'ug');
+	var SECONDARY_UNICODE_RANGE = [1105920, 1112319];
+	function hexValueFromContent(content) {
+	  var cleaned = content.replace(CLEAN_CONTENT_PATTERN, '');
+	  var codePoint = codePointAt(cleaned, 0);
+	  var isPrependTen = codePoint >= SECONDARY_UNICODE_RANGE[0] && codePoint <= SECONDARY_UNICODE_RANGE[1];
+	  var isDoubled = cleaned.length === 2 ? cleaned[0] === cleaned[1] : false;
+	  return {
+	    value: isDoubled ? toHex(cleaned[0]) : toHex(cleaned),
+	    isSecondary: isPrependTen || isDoubled
+	  };
+	}
+	function replaceForPosition(node, position) {
+	  var pendingAttribute = "".concat(DATA_FA_PSEUDO_ELEMENT_PENDING).concat(position.replace(':', '-'));
+	  return new Promise(function (resolve, reject) {
+	    if (node.getAttribute(pendingAttribute) !== null) {
+	      // This node is already being processed
+	      return resolve();
+	    }
+	    var children = toArray(node.children);
+	    var alreadyProcessedPseudoElement = children.filter(function (c) {
+	      return c.getAttribute(DATA_FA_PSEUDO_ELEMENT) === position;
+	    })[0];
+	    var styles = WINDOW.getComputedStyle(node, position);
+	    var fontFamily = styles.getPropertyValue('font-family').match(FONT_FAMILY_PATTERN);
+	    var fontWeight = styles.getPropertyValue('font-weight');
+	    var content = styles.getPropertyValue('content');
+	    if (alreadyProcessedPseudoElement && !fontFamily) {
+	      // If we've already processed it but the current computed style does not result in a font-family,
+	      // that probably means that a class name that was previously present to make the icon has been
+	      // removed. So we now should delete the icon.
+	      node.removeChild(alreadyProcessedPseudoElement);
+	      return resolve();
+	    } else if (fontFamily && content !== 'none' && content !== '') {
+	      var _content = styles.getPropertyValue('content');
+	      var family = ~['Sharp'].indexOf(fontFamily[2]) ? FAMILY_SHARP : FAMILY_CLASSIC;
+	      var prefix = ~['Solid', 'Regular', 'Light', 'Thin', 'Duotone', 'Brands', 'Kit'].indexOf(fontFamily[2]) ? STYLE_TO_PREFIX[family][fontFamily[2].toLowerCase()] : FONT_WEIGHT_TO_PREFIX[family][fontWeight];
+	      var _hexValueFromContent = hexValueFromContent(_content),
+	        hexValue = _hexValueFromContent.value,
+	        isSecondary = _hexValueFromContent.isSecondary;
+	      var isV4 = fontFamily[0].startsWith('FontAwesome');
+	      var iconName = byUnicode(prefix, hexValue);
+	      var iconIdentifier = iconName;
+	      if (isV4) {
+	        var iconName4 = byOldUnicode(hexValue);
+	        if (iconName4.iconName && iconName4.prefix) {
+	          iconName = iconName4.iconName;
+	          prefix = iconName4.prefix;
+	        }
+	      } // Only convert the pseudo element in this ::before/::after position into an icon if we haven't
+	      // already done so with the same prefix and iconName
+
+	      if (iconName && !isSecondary && (!alreadyProcessedPseudoElement || alreadyProcessedPseudoElement.getAttribute(DATA_PREFIX) !== prefix || alreadyProcessedPseudoElement.getAttribute(DATA_ICON) !== iconIdentifier)) {
+	        node.setAttribute(pendingAttribute, iconIdentifier);
+	        if (alreadyProcessedPseudoElement) {
+	          // Delete the old one, since we're replacing it with a new one
+	          node.removeChild(alreadyProcessedPseudoElement);
+	        }
+	        var meta = blankMeta();
+	        var extra = meta.extra;
+	        extra.attributes[DATA_FA_PSEUDO_ELEMENT] = position;
+	        findIcon(iconName, prefix).then(function (main) {
+	          var _abstract = makeInlineSvgAbstract(_objectSpread2$1(_objectSpread2$1({}, meta), {}, {
+	            icons: {
+	              main: main,
+	              mask: emptyCanonicalIcon()
+	            },
+	            prefix: prefix,
+	            iconName: iconIdentifier,
+	            extra: extra,
+	            watchable: true
+	          }));
+	          var element = DOCUMENT.createElementNS('http://www.w3.org/2000/svg', 'svg');
+	          if (position === '::before') {
+	            node.insertBefore(element, node.firstChild);
+	          } else {
+	            node.appendChild(element);
+	          }
+	          element.outerHTML = _abstract.map(function (a) {
+	            return toHtml(a);
+	          }).join('\n');
+	          node.removeAttribute(pendingAttribute);
+	          resolve();
+	        }).catch(reject);
+	      } else {
+	        resolve();
+	      }
+	    } else {
+	      resolve();
+	    }
+	  });
+	}
+	function replace(node) {
+	  return Promise.all([replaceForPosition(node, '::before'), replaceForPosition(node, '::after')]);
+	}
+	function processable(node) {
+	  return node.parentNode !== document.head && !~TAGNAMES_TO_SKIP_FOR_PSEUDOELEMENTS.indexOf(node.tagName.toUpperCase()) && !node.getAttribute(DATA_FA_PSEUDO_ELEMENT) && (!node.parentNode || node.parentNode.tagName !== 'svg');
+	}
+	function searchPseudoElements(root) {
+	  if (!IS_DOM) return;
+	  return new Promise(function (resolve, reject) {
+	    var operations = toArray(root.querySelectorAll('*')).filter(processable).map(replace);
+	    var end = perf.begin('searchPseudoElements');
+	    disableObservation();
+	    Promise.all(operations).then(function () {
+	      end();
+	      enableObservation();
+	      resolve();
+	    }).catch(function () {
+	      end();
+	      enableObservation();
+	      reject();
+	    });
+	  });
+	}
+	var PseudoElements = {
+	  hooks: function hooks() {
+	    return {
+	      mutationObserverCallbacks: function mutationObserverCallbacks(accumulator) {
+	        accumulator.pseudoElementsCallback = searchPseudoElements;
+	        return accumulator;
+	      }
+	    };
+	  },
+	  provides: function provides(providers$$1) {
+	    providers$$1.pseudoElements2svg = function (params) {
+	      var _params$node = params.node,
+	        node = _params$node === void 0 ? DOCUMENT : _params$node;
+	      if (config.searchPseudoElements) {
+	        searchPseudoElements(node);
+	      }
+	    };
+	  }
+	};
+	var _unwatched = false;
+	var MutationObserver$1 = {
+	  mixout: function mixout() {
+	    return {
+	      dom: {
+	        unwatch: function unwatch() {
+	          disableObservation();
+	          _unwatched = true;
+	        }
+	      }
+	    };
+	  },
+	  hooks: function hooks() {
+	    return {
+	      bootstrap: function bootstrap() {
+	        observe(chainHooks('mutationObserverCallbacks', {}));
+	      },
+	      noAuto: function noAuto() {
+	        disconnect();
+	      },
+	      watch: function watch(params) {
+	        var observeMutationsRoot = params.observeMutationsRoot;
+	        if (_unwatched) {
+	          enableObservation();
+	        } else {
+	          observe(chainHooks('mutationObserverCallbacks', {
+	            observeMutationsRoot: observeMutationsRoot
+	          }));
+	        }
+	      }
+	    };
+	  }
+	};
+	var parseTransformString = function parseTransformString(transformString) {
+	  var transform = {
+	    size: 16,
+	    x: 0,
+	    y: 0,
+	    flipX: false,
+	    flipY: false,
+	    rotate: 0
+	  };
+	  return transformString.toLowerCase().split(' ').reduce(function (acc, n) {
+	    var parts = n.toLowerCase().split('-');
+	    var first = parts[0];
+	    var rest = parts.slice(1).join('-');
+	    if (first && rest === 'h') {
+	      acc.flipX = true;
+	      return acc;
+	    }
+	    if (first && rest === 'v') {
+	      acc.flipY = true;
+	      return acc;
+	    }
+	    rest = parseFloat(rest);
+	    if (isNaN(rest)) {
+	      return acc;
+	    }
+	    switch (first) {
+	      case 'grow':
+	        acc.size = acc.size + rest;
+	        break;
+	      case 'shrink':
+	        acc.size = acc.size - rest;
+	        break;
+	      case 'left':
+	        acc.x = acc.x - rest;
+	        break;
+	      case 'right':
+	        acc.x = acc.x + rest;
+	        break;
+	      case 'up':
+	        acc.y = acc.y - rest;
+	        break;
+	      case 'down':
+	        acc.y = acc.y + rest;
+	        break;
+	      case 'rotate':
+	        acc.rotate = acc.rotate + rest;
+	        break;
+	    }
+	    return acc;
+	  }, transform);
+	};
+	var PowerTransforms = {
+	  mixout: function mixout() {
+	    return {
+	      parse: {
+	        transform: function transform(transformString) {
+	          return parseTransformString(transformString);
+	        }
+	      }
+	    };
+	  },
+	  hooks: function hooks() {
+	    return {
+	      parseNodeAttributes: function parseNodeAttributes(accumulator, node) {
+	        var transformString = node.getAttribute('data-fa-transform');
+	        if (transformString) {
+	          accumulator.transform = parseTransformString(transformString);
+	        }
+	        return accumulator;
+	      }
+	    };
+	  },
+	  provides: function provides(providers) {
+	    providers.generateAbstractTransformGrouping = function (_ref) {
+	      var main = _ref.main,
+	        transform = _ref.transform,
+	        containerWidth = _ref.containerWidth,
+	        iconWidth = _ref.iconWidth;
+	      var outer = {
+	        transform: "translate(".concat(containerWidth / 2, " 256)")
+	      };
+	      var innerTranslate = "translate(".concat(transform.x * 32, ", ").concat(transform.y * 32, ") ");
+	      var innerScale = "scale(".concat(transform.size / 16 * (transform.flipX ? -1 : 1), ", ").concat(transform.size / 16 * (transform.flipY ? -1 : 1), ") ");
+	      var innerRotate = "rotate(".concat(transform.rotate, " 0 0)");
+	      var inner = {
+	        transform: "".concat(innerTranslate, " ").concat(innerScale, " ").concat(innerRotate)
+	      };
+	      var path = {
+	        transform: "translate(".concat(iconWidth / 2 * -1, " -256)")
+	      };
+	      var operations = {
+	        outer: outer,
+	        inner: inner,
+	        path: path
+	      };
+	      return {
+	        tag: 'g',
+	        attributes: _objectSpread2$1({}, operations.outer),
+	        children: [{
+	          tag: 'g',
+	          attributes: _objectSpread2$1({}, operations.inner),
+	          children: [{
+	            tag: main.icon.tag,
+	            children: main.icon.children,
+	            attributes: _objectSpread2$1(_objectSpread2$1({}, main.icon.attributes), operations.path)
+	          }]
+	        }]
+	      };
+	    };
+	  }
+	};
+	var ALL_SPACE = {
+	  x: 0,
+	  y: 0,
+	  width: '100%',
+	  height: '100%'
+	};
+	function fillBlack(_abstract) {
+	  var force = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+	  if (_abstract.attributes && (_abstract.attributes.fill || force)) {
+	    _abstract.attributes.fill = 'black';
+	  }
+	  return _abstract;
+	}
+	function deGroup(_abstract2) {
+	  if (_abstract2.tag === 'g') {
+	    return _abstract2.children;
+	  } else {
+	    return [_abstract2];
+	  }
+	}
+	var Masks = {
+	  hooks: function hooks() {
+	    return {
+	      parseNodeAttributes: function parseNodeAttributes(accumulator, node) {
+	        var maskData = node.getAttribute('data-fa-mask');
+	        var mask = !maskData ? emptyCanonicalIcon() : getCanonicalIcon(maskData.split(' ').map(function (i) {
+	          return i.trim();
+	        }));
+	        if (!mask.prefix) {
+	          mask.prefix = getDefaultUsablePrefix();
+	        }
+	        accumulator.mask = mask;
+	        accumulator.maskId = node.getAttribute('data-fa-mask-id');
+	        return accumulator;
+	      }
+	    };
+	  },
+	  provides: function provides(providers) {
+	    providers.generateAbstractMask = function (_ref) {
+	      var children = _ref.children,
+	        attributes = _ref.attributes,
+	        main = _ref.main,
+	        mask = _ref.mask,
+	        explicitMaskId = _ref.maskId,
+	        transform = _ref.transform;
+	      var mainWidth = main.width,
+	        mainPath = main.icon;
+	      var maskWidth = mask.width,
+	        maskPath = mask.icon;
+	      var trans = transformForSvg({
+	        transform: transform,
+	        containerWidth: maskWidth,
+	        iconWidth: mainWidth
+	      });
+	      var maskRect = {
+	        tag: 'rect',
+	        attributes: _objectSpread2$1(_objectSpread2$1({}, ALL_SPACE), {}, {
+	          fill: 'white'
+	        })
+	      };
+	      var maskInnerGroupChildrenMixin = mainPath.children ? {
+	        children: mainPath.children.map(fillBlack)
+	      } : {};
+	      var maskInnerGroup = {
+	        tag: 'g',
+	        attributes: _objectSpread2$1({}, trans.inner),
+	        children: [fillBlack(_objectSpread2$1({
+	          tag: mainPath.tag,
+	          attributes: _objectSpread2$1(_objectSpread2$1({}, mainPath.attributes), trans.path)
+	        }, maskInnerGroupChildrenMixin))]
+	      };
+	      var maskOuterGroup = {
+	        tag: 'g',
+	        attributes: _objectSpread2$1({}, trans.outer),
+	        children: [maskInnerGroup]
+	      };
+	      var maskId = "mask-".concat(explicitMaskId || nextUniqueId());
+	      var clipId = "clip-".concat(explicitMaskId || nextUniqueId());
+	      var maskTag = {
+	        tag: 'mask',
+	        attributes: _objectSpread2$1(_objectSpread2$1({}, ALL_SPACE), {}, {
+	          id: maskId,
+	          maskUnits: 'userSpaceOnUse',
+	          maskContentUnits: 'userSpaceOnUse'
+	        }),
+	        children: [maskRect, maskOuterGroup]
+	      };
+	      var defs = {
+	        tag: 'defs',
+	        children: [{
+	          tag: 'clipPath',
+	          attributes: {
+	            id: clipId
+	          },
+	          children: deGroup(maskPath)
+	        }, maskTag]
+	      };
+	      children.push(defs, {
+	        tag: 'rect',
+	        attributes: _objectSpread2$1({
+	          fill: 'currentColor',
+	          'clip-path': "url(#".concat(clipId, ")"),
+	          mask: "url(#".concat(maskId, ")")
+	        }, ALL_SPACE)
+	      });
+	      return {
+	        children: children,
+	        attributes: attributes
+	      };
+	    };
+	  }
+	};
+	var MissingIconIndicator = {
+	  provides: function provides(providers) {
+	    var reduceMotion = false;
+	    if (WINDOW.matchMedia) {
+	      reduceMotion = WINDOW.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	    }
+	    providers.missingIconAbstract = function () {
+	      var gChildren = [];
+	      var FILL = {
+	        fill: 'currentColor'
+	      };
+	      var ANIMATION_BASE = {
+	        attributeType: 'XML',
+	        repeatCount: 'indefinite',
+	        dur: '2s'
+	      }; // Ring
+
+	      gChildren.push({
+	        tag: 'path',
+	        attributes: _objectSpread2$1(_objectSpread2$1({}, FILL), {}, {
+	          d: 'M156.5,447.7l-12.6,29.5c-18.7-9.5-35.9-21.2-51.5-34.9l22.7-22.7C127.6,430.5,141.5,440,156.5,447.7z M40.6,272H8.5 c1.4,21.2,5.4,41.7,11.7,61.1L50,321.2C45.1,305.5,41.8,289,40.6,272z M40.6,240c1.4-18.8,5.2-37,11.1-54.1l-29.5-12.6 C14.7,194.3,10,216.7,8.5,240H40.6z M64.3,156.5c7.8-14.9,17.2-28.8,28.1-41.5L69.7,92.3c-13.7,15.6-25.5,32.8-34.9,51.5 L64.3,156.5z M397,419.6c-13.9,12-29.4,22.3-46.1,30.4l11.9,29.8c20.7-9.9,39.8-22.6,56.9-37.6L397,419.6z M115,92.4 c13.9-12,29.4-22.3,46.1-30.4l-11.9-29.8c-20.7,9.9-39.8,22.6-56.8,37.6L115,92.4z M447.7,355.5c-7.8,14.9-17.2,28.8-28.1,41.5 l22.7,22.7c13.7-15.6,25.5-32.9,34.9-51.5L447.7,355.5z M471.4,272c-1.4,18.8-5.2,37-11.1,54.1l29.5,12.6 c7.5-21.1,12.2-43.5,13.6-66.8H471.4z M321.2,462c-15.7,5-32.2,8.2-49.2,9.4v32.1c21.2-1.4,41.7-5.4,61.1-11.7L321.2,462z M240,471.4c-18.8-1.4-37-5.2-54.1-11.1l-12.6,29.5c21.1,7.5,43.5,12.2,66.8,13.6V471.4z M462,190.8c5,15.7,8.2,32.2,9.4,49.2h32.1 c-1.4-21.2-5.4-41.7-11.7-61.1L462,190.8z M92.4,397c-12-13.9-22.3-29.4-30.4-46.1l-29.8,11.9c9.9,20.7,22.6,39.8,37.6,56.9 L92.4,397z M272,40.6c18.8,1.4,36.9,5.2,54.1,11.1l12.6-29.5C317.7,14.7,295.3,10,272,8.5V40.6z M190.8,50 c15.7-5,32.2-8.2,49.2-9.4V8.5c-21.2,1.4-41.7,5.4-61.1,11.7L190.8,50z M442.3,92.3L419.6,115c12,13.9,22.3,29.4,30.5,46.1 l29.8-11.9C470,128.5,457.3,109.4,442.3,92.3z M397,92.4l22.7-22.7c-15.6-13.7-32.8-25.5-51.5-34.9l-12.6,29.5 C370.4,72.1,384.4,81.5,397,92.4z'
+	        })
+	      });
+	      var OPACITY_ANIMATE = _objectSpread2$1(_objectSpread2$1({}, ANIMATION_BASE), {}, {
+	        attributeName: 'opacity'
+	      });
+	      var dot = {
+	        tag: 'circle',
+	        attributes: _objectSpread2$1(_objectSpread2$1({}, FILL), {}, {
+	          cx: '256',
+	          cy: '364',
+	          r: '28'
+	        }),
+	        children: []
+	      };
+	      if (!reduceMotion) {
+	        dot.children.push({
+	          tag: 'animate',
+	          attributes: _objectSpread2$1(_objectSpread2$1({}, ANIMATION_BASE), {}, {
+	            attributeName: 'r',
+	            values: '28;14;28;28;14;28;'
+	          })
+	        }, {
+	          tag: 'animate',
+	          attributes: _objectSpread2$1(_objectSpread2$1({}, OPACITY_ANIMATE), {}, {
+	            values: '1;0;1;1;0;1;'
+	          })
+	        });
+	      }
+	      gChildren.push(dot);
+	      gChildren.push({
+	        tag: 'path',
+	        attributes: _objectSpread2$1(_objectSpread2$1({}, FILL), {}, {
+	          opacity: '1',
+	          d: 'M263.7,312h-16c-6.6,0-12-5.4-12-12c0-71,77.4-63.9,77.4-107.8c0-20-17.8-40.2-57.4-40.2c-29.1,0-44.3,9.6-59.2,28.7 c-3.9,5-11.1,6-16.2,2.4l-13.1-9.2c-5.6-3.9-6.9-11.8-2.6-17.2c21.2-27.2,46.4-44.7,91.2-44.7c52.3,0,97.4,29.8,97.4,80.2 c0,67.6-77.4,63.5-77.4,107.8C275.7,306.6,270.3,312,263.7,312z'
+	        }),
+	        children: reduceMotion ? [] : [{
+	          tag: 'animate',
+	          attributes: _objectSpread2$1(_objectSpread2$1({}, OPACITY_ANIMATE), {}, {
+	            values: '1;0;0;0;0;1;'
+	          })
+	        }]
+	      });
+	      if (!reduceMotion) {
+	        // Exclamation
+	        gChildren.push({
+	          tag: 'path',
+	          attributes: _objectSpread2$1(_objectSpread2$1({}, FILL), {}, {
+	            opacity: '0',
+	            d: 'M232.5,134.5l7,168c0.3,6.4,5.6,11.5,12,11.5h9c6.4,0,11.7-5.1,12-11.5l7-168c0.3-6.8-5.2-12.5-12-12.5h-23 C237.7,122,232.2,127.7,232.5,134.5z'
+	          }),
+	          children: [{
+	            tag: 'animate',
+	            attributes: _objectSpread2$1(_objectSpread2$1({}, OPACITY_ANIMATE), {}, {
+	              values: '0;0;1;1;0;0;'
+	            })
+	          }]
+	        });
+	      }
+	      return {
+	        tag: 'g',
+	        attributes: {
+	          'class': 'missing'
+	        },
+	        children: gChildren
+	      };
+	    };
+	  }
+	};
+	var SvgSymbols = {
+	  hooks: function hooks() {
+	    return {
+	      parseNodeAttributes: function parseNodeAttributes(accumulator, node) {
+	        var symbolData = node.getAttribute('data-fa-symbol');
+	        var symbol = symbolData === null ? false : symbolData === '' ? true : symbolData;
+	        accumulator['symbol'] = symbol;
+	        return accumulator;
+	      }
+	    };
+	  }
+	};
+	var plugins = [InjectCSS, ReplaceElements, Layers, LayersCounter, LayersText, PseudoElements, MutationObserver$1, PowerTransforms, Masks, MissingIconIndicator, SvgSymbols];
+	registerPlugins(plugins, {
+	  mixoutsTo: api
+	});
+	api.noAuto;
+	api.config;
+	api.library;
+	api.dom;
+	var parse$1 = api.parse;
+	api.findIconDefinition;
+	api.toHtml;
+	var icon = api.icon;
+	api.layer;
+	api.text;
+	api.counter;
+
+	function ownKeys(object, enumerableOnly) {
+	  var keys = Object.keys(object);
+	  if (Object.getOwnPropertySymbols) {
+	    var symbols = Object.getOwnPropertySymbols(object);
+	    enumerableOnly && (symbols = symbols.filter(function (sym) {
+	      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+	    })), keys.push.apply(keys, symbols);
+	  }
+	  return keys;
+	}
+	function _objectSpread2(target) {
+	  for (var i = 1; i < arguments.length; i++) {
+	    var source = null != arguments[i] ? arguments[i] : {};
+	    i % 2 ? ownKeys(Object(source), !0).forEach(function (key) {
+	      _defineProperty(target, key, source[key]);
+	    }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) {
+	      Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+	    });
+	  }
+	  return target;
+	}
+	function _typeof(obj) {
+	  "@babel/helpers - typeof";
+
+	  return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) {
+	    return typeof obj;
+	  } : function (obj) {
+	    return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+	  }, _typeof(obj);
+	}
+	function _defineProperty(obj, key, value) {
+	  if (key in obj) {
+	    Object.defineProperty(obj, key, {
+	      value: value,
+	      enumerable: true,
+	      configurable: true,
+	      writable: true
+	    });
+	  } else {
+	    obj[key] = value;
+	  }
+	  return obj;
+	}
+	function _objectWithoutPropertiesLoose$1(source, excluded) {
+	  if (source == null) return {};
+	  var target = {};
+	  var sourceKeys = Object.keys(source);
+	  var key, i;
+	  for (i = 0; i < sourceKeys.length; i++) {
+	    key = sourceKeys[i];
+	    if (excluded.indexOf(key) >= 0) continue;
+	    target[key] = source[key];
+	  }
+	  return target;
+	}
+	function _objectWithoutProperties(source, excluded) {
+	  if (source == null) return {};
+	  var target = _objectWithoutPropertiesLoose$1(source, excluded);
+	  var key, i;
+	  if (Object.getOwnPropertySymbols) {
+	    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
+	    for (i = 0; i < sourceSymbolKeys.length; i++) {
+	      key = sourceSymbolKeys[i];
+	      if (excluded.indexOf(key) >= 0) continue;
+	      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
+	      target[key] = source[key];
+	    }
+	  }
+	  return target;
+	}
+	function _toConsumableArray(arr) {
+	  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
+	}
+	function _arrayWithoutHoles(arr) {
+	  if (Array.isArray(arr)) return _arrayLikeToArray(arr);
+	}
+	function _iterableToArray(iter) {
+	  if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter);
+	}
+	function _unsupportedIterableToArray(o, minLen) {
+	  if (!o) return;
+	  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+	  var n = Object.prototype.toString.call(o).slice(8, -1);
+	  if (n === "Object" && o.constructor) n = o.constructor.name;
+	  if (n === "Map" || n === "Set") return Array.from(o);
+	  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+	}
+	function _arrayLikeToArray(arr, len) {
+	  if (len == null || len > arr.length) len = arr.length;
+	  for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
+	  return arr2;
+	}
+	function _nonIterableSpread() {
+	  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+	}
+
+	// Get CSS class list from a props object
+	function classList(props) {
+	  var _classes;
+	  var beat = props.beat,
+	    fade = props.fade,
+	    beatFade = props.beatFade,
+	    bounce = props.bounce,
+	    shake = props.shake,
+	    flash = props.flash,
+	    spin = props.spin,
+	    spinPulse = props.spinPulse,
+	    spinReverse = props.spinReverse,
+	    pulse = props.pulse,
+	    fixedWidth = props.fixedWidth,
+	    inverse = props.inverse,
+	    border = props.border,
+	    listItem = props.listItem,
+	    flip = props.flip,
+	    size = props.size,
+	    rotation = props.rotation,
+	    pull = props.pull; // map of CSS class names to properties
+
+	  var classes = (_classes = {
+	    'fa-beat': beat,
+	    'fa-fade': fade,
+	    'fa-beat-fade': beatFade,
+	    'fa-bounce': bounce,
+	    'fa-shake': shake,
+	    'fa-flash': flash,
+	    'fa-spin': spin,
+	    'fa-spin-reverse': spinReverse,
+	    'fa-spin-pulse': spinPulse,
+	    'fa-pulse': pulse,
+	    'fa-fw': fixedWidth,
+	    'fa-inverse': inverse,
+	    'fa-border': border,
+	    'fa-li': listItem,
+	    'fa-flip': flip === true,
+	    'fa-flip-horizontal': flip === 'horizontal' || flip === 'both',
+	    'fa-flip-vertical': flip === 'vertical' || flip === 'both'
+	  }, _defineProperty(_classes, "fa-".concat(size), typeof size !== 'undefined' && size !== null), _defineProperty(_classes, "fa-rotate-".concat(rotation), typeof rotation !== 'undefined' && rotation !== null && rotation !== 0), _defineProperty(_classes, "fa-pull-".concat(pull), typeof pull !== 'undefined' && pull !== null), _defineProperty(_classes, 'fa-swap-opacity', props.swapOpacity), _classes); // map over all the keys in the classes object
+	  // return an array of the keys where the value for the key is not null
+
+	  return Object.keys(classes).map(function (key) {
+	    return classes[key] ? key : null;
+	  }).filter(function (key) {
+	    return key;
+	  });
+	}
+
+	// Camelize taken from humps
+	// humps is copyright © 2012+ Dom Christie
+	// Released under the MIT license.
+	// Performant way to determine if object coerces to a number
+	function _isNumerical(obj) {
+	  obj = obj - 0; // eslint-disable-next-line no-self-compare
+
+	  return obj === obj;
+	}
+	function camelize(string) {
+	  if (_isNumerical(string)) {
+	    return string;
+	  } // eslint-disable-next-line no-useless-escape
+
+	  string = string.replace(/[\-_\s]+(.)?/g, function (match, chr) {
+	    return chr ? chr.toUpperCase() : '';
+	  }); // Ensure 1st char is always lowercase
+
+	  return string.substr(0, 1).toLowerCase() + string.substr(1);
+	}
+	var _excluded$1 = ["style"];
+	function capitalize(val) {
+	  return val.charAt(0).toUpperCase() + val.slice(1);
+	}
+	function styleToObject(style) {
+	  return style.split(';').map(function (s) {
+	    return s.trim();
+	  }).filter(function (s) {
+	    return s;
+	  }).reduce(function (acc, pair) {
+	    var i = pair.indexOf(':');
+	    var prop = camelize(pair.slice(0, i));
+	    var value = pair.slice(i + 1).trim();
+	    prop.startsWith('webkit') ? acc[capitalize(prop)] = value : acc[prop] = value;
+	    return acc;
+	  }, {});
+	}
+	function convert(createElement, element) {
+	  var extraProps = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+	  if (typeof element === 'string') {
+	    return element;
+	  }
+	  var children = (element.children || []).map(function (child) {
+	    return convert(createElement, child);
+	  });
+	  /* eslint-disable dot-notation */
+
+	  var mixins = Object.keys(element.attributes || {}).reduce(function (acc, key) {
+	    var val = element.attributes[key];
+	    switch (key) {
+	      case 'class':
+	        acc.attrs['className'] = val;
+	        delete element.attributes['class'];
+	        break;
+	      case 'style':
+	        acc.attrs['style'] = styleToObject(val);
+	        break;
+	      default:
+	        if (key.indexOf('aria-') === 0 || key.indexOf('data-') === 0) {
+	          acc.attrs[key.toLowerCase()] = val;
+	        } else {
+	          acc.attrs[camelize(key)] = val;
+	        }
+	    }
+	    return acc;
+	  }, {
+	    attrs: {}
+	  });
+	  var _extraProps$style = extraProps.style,
+	    existingStyle = _extraProps$style === void 0 ? {} : _extraProps$style,
+	    remaining = _objectWithoutProperties(extraProps, _excluded$1);
+	  mixins.attrs['style'] = _objectSpread2(_objectSpread2({}, mixins.attrs['style']), existingStyle);
+	  /* eslint-enable */
+
+	  return createElement.apply(void 0, [element.tag, _objectSpread2(_objectSpread2({}, mixins.attrs), remaining)].concat(_toConsumableArray(children)));
+	}
+	var PRODUCTION = false;
+	try {
+	  PRODUCTION = "development" === 'production';
+	} catch (e) {}
+	function log() {
+	  if (!PRODUCTION && console && typeof console.error === 'function') {
+	    var _console;
+	    (_console = console).error.apply(_console, arguments);
+	  }
+	}
+	function normalizeIconArgs(icon) {
+	  // this has everything that it needs to be rendered which means it was probably imported
+	  // directly from an icon svg package
+	  if (icon && _typeof(icon) === 'object' && icon.prefix && icon.iconName && icon.icon) {
+	    return icon;
+	  }
+	  if (parse$1.icon) {
+	    return parse$1.icon(icon);
+	  } // if the icon is null, there's nothing to do
+
+	  if (icon === null) {
+	    return null;
+	  } // if the icon is an object and has a prefix and an icon name, return it
+
+	  if (icon && _typeof(icon) === 'object' && icon.prefix && icon.iconName) {
+	    return icon;
+	  } // if it's an array with length of two
+
+	  if (Array.isArray(icon) && icon.length === 2) {
+	    // use the first item as prefix, second as icon name
+	    return {
+	      prefix: icon[0],
+	      iconName: icon[1]
+	    };
+	  } // if it's a string, use it as the icon name
+
+	  if (typeof icon === 'string') {
+	    return {
+	      prefix: 'fas',
+	      iconName: icon
+	    };
+	  }
+	}
+
+	// creates an object with a key of key
+	// and a value of value
+	// if certain conditions are met
+	function objectWithKey(key, value) {
+	  // if the value is a non-empty array
+	  // or it's not an array but it is truthy
+	  // then create the object with the key and the value
+	  // if not, return an empty array
+	  return Array.isArray(value) && value.length > 0 || !Array.isArray(value) && value ? _defineProperty({}, key, value) : {};
+	}
+	var FontAwesomeIcon = /*#__PURE__*/React.forwardRef(function (props, ref) {
+	  var iconArgs = props.icon,
+	    maskArgs = props.mask,
+	    symbol = props.symbol,
+	    className = props.className,
+	    title = props.title,
+	    titleId = props.titleId,
+	    maskId = props.maskId;
+	  var iconLookup = normalizeIconArgs(iconArgs);
+	  var classes = objectWithKey('classes', [].concat(_toConsumableArray(classList(props)), _toConsumableArray(className.split(' '))));
+	  var transform = objectWithKey('transform', typeof props.transform === 'string' ? parse$1.transform(props.transform) : props.transform);
+	  var mask = objectWithKey('mask', normalizeIconArgs(maskArgs));
+	  var renderedIcon = icon(iconLookup, _objectSpread2(_objectSpread2(_objectSpread2(_objectSpread2({}, classes), transform), mask), {}, {
+	    symbol: symbol,
+	    title: title,
+	    titleId: titleId,
+	    maskId: maskId
+	  }));
+	  if (!renderedIcon) {
+	    log('Could not find icon', iconLookup);
+	    return null;
+	  }
+	  var abstract = renderedIcon.abstract;
+	  var extraProps = {
+	    ref: ref
+	  };
+	  Object.keys(props).forEach(function (key) {
+	    // eslint-disable-next-line no-prototype-builtins
+	    if (!FontAwesomeIcon.defaultProps.hasOwnProperty(key)) {
+	      extraProps[key] = props[key];
+	    }
+	  });
+	  return convertCurry(abstract[0], extraProps);
+	});
+	FontAwesomeIcon.displayName = 'FontAwesomeIcon';
+	FontAwesomeIcon.propTypes = {
+	  beat: propTypesExports.bool,
+	  border: propTypesExports.bool,
+	  beatFade: propTypesExports.bool,
+	  bounce: propTypesExports.bool,
+	  className: propTypesExports.string,
+	  fade: propTypesExports.bool,
+	  flash: propTypesExports.bool,
+	  mask: propTypesExports.oneOfType([propTypesExports.object, propTypesExports.array, propTypesExports.string]),
+	  maskId: propTypesExports.string,
+	  fixedWidth: propTypesExports.bool,
+	  inverse: propTypesExports.bool,
+	  flip: propTypesExports.oneOf([true, false, 'horizontal', 'vertical', 'both']),
+	  icon: propTypesExports.oneOfType([propTypesExports.object, propTypesExports.array, propTypesExports.string]),
+	  listItem: propTypesExports.bool,
+	  pull: propTypesExports.oneOf(['right', 'left']),
+	  pulse: propTypesExports.bool,
+	  rotation: propTypesExports.oneOf([0, 90, 180, 270]),
+	  shake: propTypesExports.bool,
+	  size: propTypesExports.oneOf(['2xs', 'xs', 'sm', 'lg', 'xl', '2xl', '1x', '2x', '3x', '4x', '5x', '6x', '7x', '8x', '9x', '10x']),
+	  spin: propTypesExports.bool,
+	  spinPulse: propTypesExports.bool,
+	  spinReverse: propTypesExports.bool,
+	  symbol: propTypesExports.oneOfType([propTypesExports.bool, propTypesExports.string]),
+	  title: propTypesExports.string,
+	  titleId: propTypesExports.string,
+	  transform: propTypesExports.oneOfType([propTypesExports.string, propTypesExports.object]),
+	  swapOpacity: propTypesExports.bool
+	};
+	FontAwesomeIcon.defaultProps = {
+	  border: false,
+	  className: '',
+	  mask: null,
+	  maskId: null,
+	  fixedWidth: false,
+	  inverse: false,
+	  flip: false,
+	  icon: null,
+	  listItem: false,
+	  pull: null,
+	  pulse: false,
+	  rotation: null,
+	  size: null,
+	  spin: false,
+	  spinPulse: false,
+	  spinReverse: false,
+	  beat: false,
+	  fade: false,
+	  beatFade: false,
+	  bounce: false,
+	  shake: false,
+	  symbol: false,
+	  title: '',
+	  titleId: null,
+	  transform: null,
+	  swapOpacity: false
+	};
+	var convertCurry = convert.bind(null, React.createElement);
+
+	var faToggleOff={prefix:'fas',iconName:'toggle-off',icon:[576,512,[],"f204","M384 128c70.7 0 128 57.3 128 128s-57.3 128-128 128H192c-70.7 0-128-57.3-128-128s57.3-128 128-128H384zM576 256c0-106-86-192-192-192H192C86 64 0 150 0 256S86 448 192 448H384c106 0 192-86 192-192zM192 352a96 96 0 1 0 0-192 96 96 0 1 0 0 192z"]};var faToggleOn={prefix:'fas',iconName:'toggle-on',icon:[576,512,[],"f205","M192 64C86 64 0 150 0 256S86 448 192 448H384c106 0 192-86 192-192s-86-192-192-192H192zm192 96a96 96 0 1 1 0 192 96 96 0 1 1 0-192z"]};var faPowerOff={prefix:'fas',iconName:'power-off',icon:[512,512,[9211],"f011","M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V256c0 17.7 14.3 32 32 32s32-14.3 32-32V32zM143.5 120.6c13.6-11.3 15.4-31.5 4.1-45.1s-31.5-15.4-45.1-4.1C49.7 115.4 16 181.8 16 256c0 132.5 107.5 240 240 240s240-107.5 240-240c0-74.2-33.8-140.6-86.6-184.6c-13.6-11.3-33.8-9.4-45.1 4.1s-9.4 33.8 4.1 45.1c38.9 32.3 63.5 81 63.5 135.4c0 97.2-78.8 176-176 176s-176-78.8-176-176c0-54.4 24.7-103.1 63.5-135.4z"]};
+
+	class ShellyBlockPanel extends reactExports.Component {
+	    render() {
+	        const { instance } = this.props;
+	        return (React.createElement("div", { className: "devicepanel" },
+	            React.createElement("h2", null, "Devices"),
+	            React.createElement(YamlInfo, { instance: instance }),
+	            instance.blocks.map(block => (React.createElement(Card$1, { key: block.id },
+	                React.createElement(Card$1.Title, null,
+	                    block.name,
+	                    React.createElement(Card$1.Img, { src: "https://control.shelly.cloud/images/device_images/" + block.img + ".png", className: "img" })),
+	                React.createElement(Card$1.Subtitle, null, block.id),
+	                React.createElement("div", null,
+	                    "Room: ",
+	                    block.room),
+	                React.createElement("div", null,
+	                    "Type: ",
+	                    block.type,
+	                    " ",
+	                    block.img),
+	                React.createElement("div", null, block.devices.map(device => {
+	                    var cls = "device " + device.name.toLowerCase();
+	                    if (device.name == "RELAY") {
+	                        cls += " " + (device.state ? "on" : "off");
+	                        return React.createElement("div", { className: cls },
+	                            React.createElement(FontAwesomeIcon, { icon: faPowerOff }));
+	                    }
+	                    else if (device.name == "SWITCH") {
+	                        cls += " " + (device.state ? "on" : "off");
+	                        return React.createElement("div", { className: cls },
+	                            React.createElement(FontAwesomeIcon, { icon: device.state ? faToggleOn : faToggleOff }));
+	                    }
+	                    else if (device.name == "POWERMETER") {
+	                        cls += " " + (device.state != "0" ? "on" : "off");
+	                        return React.createElement("div", { className: cls },
+	                            device.state,
+	                            "W");
+	                    }
+	                    else if (device.name == "SENSOR") {
+	                        cls += " " + (device.state != "0" ? "on" : "off");
+	                        return React.createElement("div", { className: cls }, device.state);
+	                    }
+	                    else {
+	                        return React.createElement("div", { className: "device", title: device.name }, device.state);
+	                    }
+	                })))))));
+	    }
+	}
+
 	/**
 	 * @remix-run/router v1.3.2
 	 *
@@ -13927,7 +23285,6 @@
 	  function push(to, state) {
 	    action = Action.Push;
 	    let location = createLocation(history.location, to, state);
-	    if (validateLocation) validateLocation(location, to);
 	    index = getIndex() + 1;
 	    let historyState = getHistoryState(location, index);
 	    let url = history.createHref(location); // try...catch because iOS limits us to 100 pushState calls :/
@@ -13950,7 +23307,6 @@
 	  function replace(to, state) {
 	    action = Action.Replace;
 	    let location = createLocation(history.location, to, state);
-	    if (validateLocation) validateLocation(location, to);
 	    index = getIndex();
 	    let historyState = getHistoryState(location, index);
 	    let url = history.createHref(location);
@@ -14496,6 +23852,10 @@
 	function isRouteErrorResponse(error) {
 	  return error != null && typeof error.status === "number" && typeof error.statusText === "string" && typeof error.internal === "boolean" && "data" in error;
 	}
+	const validMutationMethodsArr = ["post", "put", "patch", "delete"];
+	new Set(validMutationMethodsArr);
+	const validRequestMethodsArr = ["get", ...validMutationMethodsArr];
+	new Set(validRequestMethodsArr);
 
 	/**
 	 * React Router v6.8.1
@@ -14521,176 +23881,6 @@
 	  };
 	  return _extends$1.apply(this, arguments);
 	}
-
-	/**
-	 * Copyright (c) Facebook, Inc. and its affiliates.
-	 *
-	 * This source code is licensed under the MIT license found in the
-	 * LICENSE file in the root directory of this source tree.
-	 */
-	/**
-	 * inlined Object.is polyfill to avoid requiring consumers ship their own
-	 * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is
-	 */
-
-	function isPolyfill(x, y) {
-	  return x === y && (x !== 0 || 1 / x === 1 / y) || x !== x && y !== y // eslint-disable-line no-self-compare
-	  ;
-	}
-
-	const is = typeof Object.is === "function" ? Object.is : isPolyfill; // Intentionally not using named imports because Rollup uses dynamic
-	// dispatch for CommonJS interop named imports.
-
-	const {
-	  useState,
-	  useEffect,
-	  useLayoutEffect,
-	  useDebugValue
-	} = React$1;
-	let didWarnOld18Alpha = false;
-	let didWarnUncachedGetSnapshot = false; // Disclaimer: This shim breaks many of the rules of React, and only works
-	// because of a very particular set of implementation details and assumptions
-	// -- change any one of them and it will break. The most important assumption
-	// is that updates are always synchronous, because concurrent rendering is
-	// only available in versions of React that also have a built-in
-	// useSyncExternalStore API. And we only use this shim when the built-in API
-	// does not exist.
-	//
-	// Do not assume that the clever hacks used by this hook also work in general.
-	// The point of this shim is to replace the need for hacks by other libraries.
-
-	function useSyncExternalStore$2(subscribe, getSnapshot,
-	// Note: The shim does not use getServerSnapshot, because pre-18 versions of
-	// React do not expose a way to check if we're hydrating. So users of the shim
-	// will need to track that themselves and return the correct value
-	// from `getSnapshot`.
-	getServerSnapshot) {
-	  {
-	    if (!didWarnOld18Alpha) {
-	      if ("startTransition" in React$1) {
-	        didWarnOld18Alpha = true;
-	        console.error("You are using an outdated, pre-release alpha of React 18 that " + "does not support useSyncExternalStore. The " + "use-sync-external-store shim will not work correctly. Upgrade " + "to a newer pre-release.");
-	      }
-	    }
-	  } // Read the current snapshot from the store on every render. Again, this
-	  // breaks the rules of React, and only works here because of specific
-	  // implementation details, most importantly that updates are
-	  // always synchronous.
-
-	  const value = getSnapshot();
-	  {
-	    if (!didWarnUncachedGetSnapshot) {
-	      const cachedValue = getSnapshot();
-	      if (!is(value, cachedValue)) {
-	        console.error("The result of getSnapshot should be cached to avoid an infinite loop");
-	        didWarnUncachedGetSnapshot = true;
-	      }
-	    }
-	  } // Because updates are synchronous, we don't queue them. Instead we force a
-	  // re-render whenever the subscribed state changes by updating an some
-	  // arbitrary useState hook. Then, during render, we call getSnapshot to read
-	  // the current value.
-	  //
-	  // Because we don't actually use the state returned by the useState hook, we
-	  // can save a bit of memory by storing other stuff in that slot.
-	  //
-	  // To implement the early bailout, we need to track some things on a mutable
-	  // object. Usually, we would put that in a useRef hook, but we can stash it in
-	  // our useState hook instead.
-	  //
-	  // To force a re-render, we call forceUpdate({inst}). That works because the
-	  // new object always fails an equality check.
-
-	  const [{
-	    inst
-	  }, forceUpdate] = useState({
-	    inst: {
-	      value,
-	      getSnapshot
-	    }
-	  }); // Track the latest getSnapshot function with a ref. This needs to be updated
-	  // in the layout phase so we can access it during the tearing check that
-	  // happens on subscribe.
-
-	  useLayoutEffect(() => {
-	    inst.value = value;
-	    inst.getSnapshot = getSnapshot; // Whenever getSnapshot or subscribe changes, we need to check in the
-	    // commit phase if there was an interleaved mutation. In concurrent mode
-	    // this can happen all the time, but even in synchronous mode, an earlier
-	    // effect may have mutated the store.
-
-	    if (checkIfSnapshotChanged(inst)) {
-	      // Force a re-render.
-	      forceUpdate({
-	        inst
-	      });
-	    } // eslint-disable-next-line react-hooks/exhaustive-deps
-	  }, [subscribe, value, getSnapshot]);
-	  useEffect(() => {
-	    // Check for changes right before subscribing. Subsequent changes will be
-	    // detected in the subscription handler.
-	    if (checkIfSnapshotChanged(inst)) {
-	      // Force a re-render.
-	      forceUpdate({
-	        inst
-	      });
-	    }
-	    const handleStoreChange = () => {
-	      // TODO: Because there is no cross-renderer API for batching updates, it's
-	      // up to the consumer of this library to wrap their subscription event
-	      // with unstable_batchedUpdates. Should we try to detect when this isn't
-	      // the case and print a warning in development?
-	      // The store changed. Check if the snapshot changed since the last time we
-	      // read from the store.
-	      if (checkIfSnapshotChanged(inst)) {
-	        // Force a re-render.
-	        forceUpdate({
-	          inst
-	        });
-	      }
-	    }; // Subscribe to the store and return a clean-up function.
-
-	    return subscribe(handleStoreChange); // eslint-disable-next-line react-hooks/exhaustive-deps
-	  }, [subscribe]);
-	  useDebugValue(value);
-	  return value;
-	}
-	function checkIfSnapshotChanged(inst) {
-	  const latestGetSnapshot = inst.getSnapshot;
-	  const prevValue = inst.value;
-	  try {
-	    const nextValue = latestGetSnapshot();
-	    return !is(prevValue, nextValue);
-	  } catch (error) {
-	    return true;
-	  }
-	}
-
-	/**
-	 * Copyright (c) Facebook, Inc. and its affiliates.
-	 *
-	 * This source code is licensed under the MIT license found in the
-	 * LICENSE file in the root directory of this source tree.
-	 *
-	 * @flow
-	 */
-	function useSyncExternalStore$1(subscribe, getSnapshot, getServerSnapshot) {
-	  // Note: The shim does not use getServerSnapshot, because pre-18 versions of
-	  // React do not expose a way to check if we're hydrating. So users of the shim
-	  // will need to track that themselves and return the correct value
-	  // from `getSnapshot`.
-	  return getSnapshot();
-	}
-
-	/**
-	 * Inlined into the react-router repo since use-sync-external-store does not
-	 * provide a UMD-compatible package, so we need this to be able to distribute
-	 * UMD react-router bundles
-	 */
-	const canUseDOM = !!(typeof window !== "undefined" && typeof window.document !== "undefined" && typeof window.document.createElement !== "undefined");
-	const isServerEnvironment = !canUseDOM;
-	const shim = isServerEnvironment ? useSyncExternalStore$1 : useSyncExternalStore$2;
-	"useSyncExternalStore" in React$1 ? (module => module.useSyncExternalStore)(React$1) : shim;
 	const DataRouterContext = /*#__PURE__*/reactExports.createContext(null);
 	{
 	  DataRouterContext.displayName = "DataRouter";
@@ -15842,15 +25032,16 @@
 	    };
 	    return React.createElement(React.Fragment, null,
 	        React.createElement(Navbar$1, { collapseOnSelect: true, bg: "primary", variant: "dark" },
-	            React.createElement(Container$1, null,
+	            React.createElement(Container, null,
 	                narrow ?
 	                    React.createElement(NavItem, { onClick: ToggleSidebar, className: "ha-sidebar" },
 	                        React.createElement("p", { className: "navbar-toggler-icon" }))
 	                    : null,
-	                React.createElement(Navbar$1.Brand, { as: Link, to: "/" }, "ShellyForHass"),
+	                React.createElement(Navbar$1.Brand, { as: Link, to: "/" }, "ShellyForHass!"),
 	                React.createElement(Navbar$1.Toggle, { "aria-controls": "basic-navbar-nav" }),
 	                React.createElement(Navbar$1.Collapse, { id: "basic-navbar-nav" },
 	                    React.createElement(Nav$1, { className: "me-auto", activeKey: loc.pathname },
+	                        React.createElement(Nav$1.Link, { as: Link, to: "/devices", eventKey: "/devices" }, "Devices"),
 	                        React.createElement(Nav$1.Link, { as: Link, to: "/config", eventKey: "/config" }, "Config"),
 	                        React.createElement(Nav$1.Link, { as: Link, to: "/settings", eventKey: "/settings" }, "Settings"))))));
 	}
@@ -15864,7 +25055,7 @@
 	    return response;
 	};
 
-	var css_248z = ":root {\n  --bs-blue: #0d6efd;\n  --bs-indigo: #6610f2;\n  --bs-purple: #6f42c1;\n  --bs-pink: #d63384;\n  --bs-red: #dc3545;\n  --bs-orange: #fd7e14;\n  --bs-yellow: #ffc107;\n  --bs-green: #198754;\n  --bs-teal: #20c997;\n  --bs-cyan: #0dcaf0;\n  --bs-black: #000;\n  --bs-white: #fff;\n  --bs-gray: #6c757d;\n  --bs-gray-dark: #343a40;\n  --bs-gray-100: #f8f9fa;\n  --bs-gray-200: #e9ecef;\n  --bs-gray-300: #dee2e6;\n  --bs-gray-400: #ced4da;\n  --bs-gray-500: #adb5bd;\n  --bs-gray-600: #6c757d;\n  --bs-gray-700: #495057;\n  --bs-gray-800: #343a40;\n  --bs-gray-900: #212529;\n  --bs-primary: #0d6efd;\n  --bs-secondary: #6c757d;\n  --bs-success: #198754;\n  --bs-info: #0dcaf0;\n  --bs-warning: #ffc107;\n  --bs-danger: #dc3545;\n  --bs-light: #f8f9fa;\n  --bs-dark: #212529;\n  --bs-primary-rgb: 13, 110, 253;\n  --bs-secondary-rgb: 108, 117, 125;\n  --bs-success-rgb: 25, 135, 84;\n  --bs-info-rgb: 13, 202, 240;\n  --bs-warning-rgb: 255, 193, 7;\n  --bs-danger-rgb: 220, 53, 69;\n  --bs-light-rgb: 248, 249, 250;\n  --bs-dark-rgb: 33, 37, 41;\n  --bs-white-rgb: 255, 255, 255;\n  --bs-black-rgb: 0, 0, 0;\n  --bs-body-color-rgb: 33, 37, 41;\n  --bs-body-bg-rgb: 255, 255, 255;\n  --bs-font-sans-serif: system-ui, -apple-system, \"Segoe UI\", Roboto, \"Helvetica Neue\", \"Noto Sans\", \"Liberation Sans\", Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\";\n  --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace;\n  --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));\n  --bs-body-font-family: var(--bs-font-sans-serif);\n  --bs-body-font-size: 1rem;\n  --bs-body-font-weight: 400;\n  --bs-body-line-height: 1.5;\n  --bs-body-color: #212529;\n  --bs-body-bg: #fff;\n  --bs-border-width: 1px;\n  --bs-border-style: solid;\n  --bs-border-color: #dee2e6;\n  --bs-border-color-translucent: rgba(0, 0, 0, 0.175);\n  --bs-border-radius: 0.375rem;\n  --bs-border-radius-sm: 0.25rem;\n  --bs-border-radius-lg: 0.5rem;\n  --bs-border-radius-xl: 1rem;\n  --bs-border-radius-2xl: 2rem;\n  --bs-border-radius-pill: 50rem;\n  --bs-link-color: #0d6efd;\n  --bs-link-hover-color: #0a58ca;\n  --bs-code-color: #d63384;\n  --bs-highlight-bg: #fff3cd;\n}\n\n*,\n*::before,\n*::after {\n  box-sizing: border-box;\n}\n\n@media (prefers-reduced-motion: no-preference) {\n  :root {\n    scroll-behavior: smooth;\n  }\n}\n\nbody {\n  margin: 0;\n  font-family: var(--bs-body-font-family);\n  font-size: var(--bs-body-font-size);\n  font-weight: var(--bs-body-font-weight);\n  line-height: var(--bs-body-line-height);\n  color: var(--bs-body-color);\n  text-align: var(--bs-body-text-align);\n  background-color: var(--bs-body-bg);\n  -webkit-text-size-adjust: 100%;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\n\nhr {\n  margin: 1rem 0;\n  color: inherit;\n  border: 0;\n  border-top: 1px solid;\n  opacity: 0.25;\n}\n\nh6, h5, h4, h3, h2, h1 {\n  margin-top: 0;\n  margin-bottom: 0.5rem;\n  font-weight: 500;\n  line-height: 1.2;\n}\n\nh1 {\n  font-size: calc(1.375rem + 1.5vw);\n}\n@media (min-width: 1200px) {\n  h1 {\n    font-size: 2.5rem;\n  }\n}\n\nh2 {\n  font-size: calc(1.325rem + 0.9vw);\n}\n@media (min-width: 1200px) {\n  h2 {\n    font-size: 2rem;\n  }\n}\n\nh3 {\n  font-size: calc(1.3rem + 0.6vw);\n}\n@media (min-width: 1200px) {\n  h3 {\n    font-size: 1.75rem;\n  }\n}\n\nh4 {\n  font-size: calc(1.275rem + 0.3vw);\n}\n@media (min-width: 1200px) {\n  h4 {\n    font-size: 1.5rem;\n  }\n}\n\nh5 {\n  font-size: 1.25rem;\n}\n\nh6 {\n  font-size: 1rem;\n}\n\np {\n  margin-top: 0;\n  margin-bottom: 1rem;\n}\n\nabbr[title] {\n  text-decoration: underline dotted;\n  cursor: help;\n  text-decoration-skip-ink: none;\n}\n\naddress {\n  margin-bottom: 1rem;\n  font-style: normal;\n  line-height: inherit;\n}\n\nol,\nul {\n  padding-left: 2rem;\n}\n\nol,\nul,\ndl {\n  margin-top: 0;\n  margin-bottom: 1rem;\n}\n\nol ol,\nul ul,\nol ul,\nul ol {\n  margin-bottom: 0;\n}\n\ndt {\n  font-weight: 700;\n}\n\ndd {\n  margin-bottom: 0.5rem;\n  margin-left: 0;\n}\n\nblockquote {\n  margin: 0 0 1rem;\n}\n\nb,\nstrong {\n  font-weight: bolder;\n}\n\nsmall {\n  font-size: 0.875em;\n}\n\nmark {\n  padding: 0.1875em;\n  background-color: var(--bs-highlight-bg);\n}\n\nsub,\nsup {\n  position: relative;\n  font-size: 0.75em;\n  line-height: 0;\n  vertical-align: baseline;\n}\n\nsub {\n  bottom: -0.25em;\n}\n\nsup {\n  top: -0.5em;\n}\n\na {\n  color: var(--bs-link-color);\n  text-decoration: underline;\n}\na:hover {\n  color: var(--bs-link-hover-color);\n}\n\na:not([href]):not([class]), a:not([href]):not([class]):hover {\n  color: inherit;\n  text-decoration: none;\n}\n\npre,\ncode,\nkbd,\nsamp {\n  font-family: var(--bs-font-monospace);\n  font-size: 1em;\n}\n\npre {\n  display: block;\n  margin-top: 0;\n  margin-bottom: 1rem;\n  overflow: auto;\n  font-size: 0.875em;\n}\npre code {\n  font-size: inherit;\n  color: inherit;\n  word-break: normal;\n}\n\ncode {\n  font-size: 0.875em;\n  color: var(--bs-code-color);\n  word-wrap: break-word;\n}\na > code {\n  color: inherit;\n}\n\nkbd {\n  padding: 0.1875rem 0.375rem;\n  font-size: 0.875em;\n  color: var(--bs-body-bg);\n  background-color: var(--bs-body-color);\n  border-radius: 0.25rem;\n}\nkbd kbd {\n  padding: 0;\n  font-size: 1em;\n}\n\nfigure {\n  margin: 0 0 1rem;\n}\n\nimg,\nsvg {\n  vertical-align: middle;\n}\n\ntable {\n  caption-side: bottom;\n  border-collapse: collapse;\n}\n\ncaption {\n  padding-top: 0.5rem;\n  padding-bottom: 0.5rem;\n  color: #6c757d;\n  text-align: left;\n}\n\nth {\n  text-align: inherit;\n  text-align: -webkit-match-parent;\n}\n\nthead,\ntbody,\ntfoot,\ntr,\ntd,\nth {\n  border-color: inherit;\n  border-style: solid;\n  border-width: 0;\n}\n\nlabel {\n  display: inline-block;\n}\n\nbutton {\n  border-radius: 0;\n}\n\nbutton:focus:not(:focus-visible) {\n  outline: 0;\n}\n\ninput,\nbutton,\nselect,\noptgroup,\ntextarea {\n  margin: 0;\n  font-family: inherit;\n  font-size: inherit;\n  line-height: inherit;\n}\n\nbutton,\nselect {\n  text-transform: none;\n}\n\n[role=button] {\n  cursor: pointer;\n}\n\nselect {\n  word-wrap: normal;\n}\nselect:disabled {\n  opacity: 1;\n}\n\n[list]:not([type=date]):not([type=datetime-local]):not([type=month]):not([type=week]):not([type=time])::-webkit-calendar-picker-indicator {\n  display: none !important;\n}\n\nbutton,\n[type=button],\n[type=reset],\n[type=submit] {\n  -webkit-appearance: button;\n}\nbutton:not(:disabled),\n[type=button]:not(:disabled),\n[type=reset]:not(:disabled),\n[type=submit]:not(:disabled) {\n  cursor: pointer;\n}\n\n::-moz-focus-inner {\n  padding: 0;\n  border-style: none;\n}\n\ntextarea {\n  resize: vertical;\n}\n\nfieldset {\n  min-width: 0;\n  padding: 0;\n  margin: 0;\n  border: 0;\n}\n\nlegend {\n  float: left;\n  width: 100%;\n  padding: 0;\n  margin-bottom: 0.5rem;\n  font-size: calc(1.275rem + 0.3vw);\n  line-height: inherit;\n}\n@media (min-width: 1200px) {\n  legend {\n    font-size: 1.5rem;\n  }\n}\nlegend + * {\n  clear: left;\n}\n\n::-webkit-datetime-edit-fields-wrapper,\n::-webkit-datetime-edit-text,\n::-webkit-datetime-edit-minute,\n::-webkit-datetime-edit-hour-field,\n::-webkit-datetime-edit-day-field,\n::-webkit-datetime-edit-month-field,\n::-webkit-datetime-edit-year-field {\n  padding: 0;\n}\n\n::-webkit-inner-spin-button {\n  height: auto;\n}\n\n[type=search] {\n  outline-offset: -2px;\n  -webkit-appearance: textfield;\n}\n\n/* rtl:raw:\n[type=\"tel\"],\n[type=\"url\"],\n[type=\"email\"],\n[type=\"number\"] {\n  direction: ltr;\n}\n*/\n::-webkit-search-decoration {\n  -webkit-appearance: none;\n}\n\n::-webkit-color-swatch-wrapper {\n  padding: 0;\n}\n\n::file-selector-button {\n  font: inherit;\n  -webkit-appearance: button;\n}\n\noutput {\n  display: inline-block;\n}\n\niframe {\n  border: 0;\n}\n\nsummary {\n  display: list-item;\n  cursor: pointer;\n}\n\nprogress {\n  vertical-align: baseline;\n}\n\n[hidden] {\n  display: none !important;\n}\n\n.nav {\n  --bs-nav-link-padding-x: 1rem;\n  --bs-nav-link-padding-y: 0.5rem;\n  --bs-nav-link-font-weight: ;\n  --bs-nav-link-color: var(--bs-link-color);\n  --bs-nav-link-hover-color: var(--bs-link-hover-color);\n  --bs-nav-link-disabled-color: #6c757d;\n  display: flex;\n  flex-wrap: wrap;\n  padding-left: 0;\n  margin-bottom: 0;\n  list-style: none;\n}\n\n.nav-link {\n  display: block;\n  padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);\n  font-size: var(--bs-nav-link-font-size);\n  font-weight: var(--bs-nav-link-font-weight);\n  color: var(--bs-nav-link-color);\n  text-decoration: none;\n  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;\n}\n@media (prefers-reduced-motion: reduce) {\n  .nav-link {\n    transition: none;\n  }\n}\n.nav-link:hover, .nav-link:focus {\n  color: var(--bs-nav-link-hover-color);\n}\n.nav-link.disabled {\n  color: var(--bs-nav-link-disabled-color);\n  pointer-events: none;\n  cursor: default;\n}\n\n.nav-tabs {\n  --bs-nav-tabs-border-width: 1px;\n  --bs-nav-tabs-border-color: #dee2e6;\n  --bs-nav-tabs-border-radius: 0.375rem;\n  --bs-nav-tabs-link-hover-border-color: #e9ecef #e9ecef #dee2e6;\n  --bs-nav-tabs-link-active-color: #495057;\n  --bs-nav-tabs-link-active-bg: #fff;\n  --bs-nav-tabs-link-active-border-color: #dee2e6 #dee2e6 #fff;\n  border-bottom: var(--bs-nav-tabs-border-width) solid var(--bs-nav-tabs-border-color);\n}\n.nav-tabs .nav-link {\n  margin-bottom: calc(-1 * var(--bs-nav-tabs-border-width));\n  background: none;\n  border: var(--bs-nav-tabs-border-width) solid transparent;\n  border-top-left-radius: var(--bs-nav-tabs-border-radius);\n  border-top-right-radius: var(--bs-nav-tabs-border-radius);\n}\n.nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {\n  isolation: isolate;\n  border-color: var(--bs-nav-tabs-link-hover-border-color);\n}\n.nav-tabs .nav-link.disabled, .nav-tabs .nav-link:disabled {\n  color: var(--bs-nav-link-disabled-color);\n  background-color: transparent;\n  border-color: transparent;\n}\n.nav-tabs .nav-link.active,\n.nav-tabs .nav-item.show .nav-link {\n  color: var(--bs-nav-tabs-link-active-color);\n  background-color: var(--bs-nav-tabs-link-active-bg);\n  border-color: var(--bs-nav-tabs-link-active-border-color);\n}\n.nav-tabs .dropdown-menu {\n  margin-top: calc(-1 * var(--bs-nav-tabs-border-width));\n  border-top-left-radius: 0;\n  border-top-right-radius: 0;\n}\n\n.nav-pills {\n  --bs-nav-pills-border-radius: 0.375rem;\n  --bs-nav-pills-link-active-color: #fff;\n  --bs-nav-pills-link-active-bg: #0d6efd;\n}\n.nav-pills .nav-link {\n  background: none;\n  border: 0;\n  border-radius: var(--bs-nav-pills-border-radius);\n}\n.nav-pills .nav-link:disabled {\n  color: var(--bs-nav-link-disabled-color);\n  background-color: transparent;\n  border-color: transparent;\n}\n.nav-pills .nav-link.active,\n.nav-pills .show > .nav-link {\n  color: var(--bs-nav-pills-link-active-color);\n  background-color: var(--bs-nav-pills-link-active-bg);\n}\n\n.nav-fill > .nav-link,\n.nav-fill .nav-item {\n  flex: 1 1 auto;\n  text-align: center;\n}\n\n.nav-justified > .nav-link,\n.nav-justified .nav-item {\n  flex-basis: 0;\n  flex-grow: 1;\n  text-align: center;\n}\n\n.nav-fill .nav-item .nav-link,\n.nav-justified .nav-item .nav-link {\n  width: 100%;\n}\n\n.tab-content > .tab-pane {\n  display: none;\n}\n.tab-content > .active {\n  display: block;\n}\n\n.navbar {\n  --bs-navbar-padding-x: 0;\n  --bs-navbar-padding-y: 0.5rem;\n  --bs-navbar-color: rgba(0, 0, 0, 0.55);\n  --bs-navbar-hover-color: rgba(0, 0, 0, 0.7);\n  --bs-navbar-disabled-color: rgba(0, 0, 0, 0.3);\n  --bs-navbar-active-color: rgba(0, 0, 0, 0.9);\n  --bs-navbar-brand-padding-y: 0.3125rem;\n  --bs-navbar-brand-margin-end: 1rem;\n  --bs-navbar-brand-font-size: 1.25rem;\n  --bs-navbar-brand-color: rgba(0, 0, 0, 0.9);\n  --bs-navbar-brand-hover-color: rgba(0, 0, 0, 0.9);\n  --bs-navbar-nav-link-padding-x: 0.5rem;\n  --bs-navbar-toggler-padding-y: 0.25rem;\n  --bs-navbar-toggler-padding-x: 0.75rem;\n  --bs-navbar-toggler-font-size: 1.25rem;\n  --bs-navbar-toggler-icon-bg: url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e\");\n  --bs-navbar-toggler-border-color: rgba(0, 0, 0, 0.1);\n  --bs-navbar-toggler-border-radius: 0.375rem;\n  --bs-navbar-toggler-focus-width: 0.25rem;\n  --bs-navbar-toggler-transition: box-shadow 0.15s ease-in-out;\n  position: relative;\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  justify-content: space-between;\n  padding: var(--bs-navbar-padding-y) var(--bs-navbar-padding-x);\n}\n.navbar > .container-xxl, .navbar > .container-xl, .navbar > .container-lg, .navbar > .container-md, .navbar > .container-sm, .navbar > .container,\n.navbar > .container-fluid {\n  display: flex;\n  flex-wrap: inherit;\n  align-items: center;\n  justify-content: space-between;\n}\n.navbar-brand {\n  padding-top: var(--bs-navbar-brand-padding-y);\n  padding-bottom: var(--bs-navbar-brand-padding-y);\n  margin-right: var(--bs-navbar-brand-margin-end);\n  font-size: var(--bs-navbar-brand-font-size);\n  color: var(--bs-navbar-brand-color);\n  text-decoration: none;\n  white-space: nowrap;\n}\n.navbar-brand:hover, .navbar-brand:focus {\n  color: var(--bs-navbar-brand-hover-color);\n}\n\n.navbar-nav {\n  --bs-nav-link-padding-x: 0;\n  --bs-nav-link-padding-y: 0.5rem;\n  --bs-nav-link-font-weight: ;\n  --bs-nav-link-color: var(--bs-navbar-color);\n  --bs-nav-link-hover-color: var(--bs-navbar-hover-color);\n  --bs-nav-link-disabled-color: var(--bs-navbar-disabled-color);\n  display: flex;\n  flex-direction: column;\n  padding-left: 0;\n  margin-bottom: 0;\n  list-style: none;\n}\n.navbar-nav .show > .nav-link,\n.navbar-nav .nav-link.active {\n  color: var(--bs-navbar-active-color);\n}\n.navbar-nav .dropdown-menu {\n  position: static;\n}\n\n.navbar-text {\n  padding-top: 0.5rem;\n  padding-bottom: 0.5rem;\n  color: var(--bs-navbar-color);\n}\n.navbar-text a,\n.navbar-text a:hover,\n.navbar-text a:focus {\n  color: var(--bs-navbar-active-color);\n}\n\n.navbar-collapse {\n  flex-basis: 100%;\n  flex-grow: 1;\n  align-items: center;\n}\n\n.navbar-toggler {\n  padding: var(--bs-navbar-toggler-padding-y) var(--bs-navbar-toggler-padding-x);\n  font-size: var(--bs-navbar-toggler-font-size);\n  line-height: 1;\n  color: var(--bs-navbar-color);\n  background-color: transparent;\n  border: var(--bs-border-width) solid var(--bs-navbar-toggler-border-color);\n  border-radius: var(--bs-navbar-toggler-border-radius);\n  transition: var(--bs-navbar-toggler-transition);\n}\n@media (prefers-reduced-motion: reduce) {\n  .navbar-toggler {\n    transition: none;\n  }\n}\n.navbar-toggler:hover {\n  text-decoration: none;\n}\n.navbar-toggler:focus {\n  text-decoration: none;\n  outline: 0;\n  box-shadow: 0 0 0 var(--bs-navbar-toggler-focus-width);\n}\n\n.navbar-toggler-icon {\n  display: inline-block;\n  width: 1.5em;\n  height: 1.5em;\n  vertical-align: middle;\n  background-image: var(--bs-navbar-toggler-icon-bg);\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: 100%;\n}\n\n.navbar-nav-scroll {\n  max-height: var(--bs-scroll-height, 75vh);\n  overflow-y: auto;\n}\n\n@media (min-width: 576px) {\n  .navbar-expand-sm {\n    flex-wrap: nowrap;\n    justify-content: flex-start;\n  }\n  .navbar-expand-sm .navbar-nav {\n    flex-direction: row;\n  }\n  .navbar-expand-sm .navbar-nav .dropdown-menu {\n    position: absolute;\n  }\n  .navbar-expand-sm .navbar-nav .nav-link {\n    padding-right: var(--bs-navbar-nav-link-padding-x);\n    padding-left: var(--bs-navbar-nav-link-padding-x);\n  }\n  .navbar-expand-sm .navbar-nav-scroll {\n    overflow: visible;\n  }\n  .navbar-expand-sm .navbar-collapse {\n    display: flex !important;\n    flex-basis: auto;\n  }\n  .navbar-expand-sm .navbar-toggler {\n    display: none;\n  }\n  .navbar-expand-sm .offcanvas {\n    position: static;\n    z-index: auto;\n    flex-grow: 1;\n    width: auto !important;\n    height: auto !important;\n    visibility: visible !important;\n    background-color: transparent !important;\n    border: 0 !important;\n    transform: none !important;\n    transition: none;\n  }\n  .navbar-expand-sm .offcanvas .offcanvas-header {\n    display: none;\n  }\n  .navbar-expand-sm .offcanvas .offcanvas-body {\n    display: flex;\n    flex-grow: 0;\n    padding: 0;\n    overflow-y: visible;\n  }\n}\n@media (min-width: 768px) {\n  .navbar-expand-md {\n    flex-wrap: nowrap;\n    justify-content: flex-start;\n  }\n  .navbar-expand-md .navbar-nav {\n    flex-direction: row;\n  }\n  .navbar-expand-md .navbar-nav .dropdown-menu {\n    position: absolute;\n  }\n  .navbar-expand-md .navbar-nav .nav-link {\n    padding-right: var(--bs-navbar-nav-link-padding-x);\n    padding-left: var(--bs-navbar-nav-link-padding-x);\n  }\n  .navbar-expand-md .navbar-nav-scroll {\n    overflow: visible;\n  }\n  .navbar-expand-md .navbar-collapse {\n    display: flex !important;\n    flex-basis: auto;\n  }\n  .navbar-expand-md .navbar-toggler {\n    display: none;\n  }\n  .navbar-expand-md .offcanvas {\n    position: static;\n    z-index: auto;\n    flex-grow: 1;\n    width: auto !important;\n    height: auto !important;\n    visibility: visible !important;\n    background-color: transparent !important;\n    border: 0 !important;\n    transform: none !important;\n    transition: none;\n  }\n  .navbar-expand-md .offcanvas .offcanvas-header {\n    display: none;\n  }\n  .navbar-expand-md .offcanvas .offcanvas-body {\n    display: flex;\n    flex-grow: 0;\n    padding: 0;\n    overflow-y: visible;\n  }\n}\n@media (min-width: 992px) {\n  .navbar-expand-lg {\n    flex-wrap: nowrap;\n    justify-content: flex-start;\n  }\n  .navbar-expand-lg .navbar-nav {\n    flex-direction: row;\n  }\n  .navbar-expand-lg .navbar-nav .dropdown-menu {\n    position: absolute;\n  }\n  .navbar-expand-lg .navbar-nav .nav-link {\n    padding-right: var(--bs-navbar-nav-link-padding-x);\n    padding-left: var(--bs-navbar-nav-link-padding-x);\n  }\n  .navbar-expand-lg .navbar-nav-scroll {\n    overflow: visible;\n  }\n  .navbar-expand-lg .navbar-collapse {\n    display: flex !important;\n    flex-basis: auto;\n  }\n  .navbar-expand-lg .navbar-toggler {\n    display: none;\n  }\n  .navbar-expand-lg .offcanvas {\n    position: static;\n    z-index: auto;\n    flex-grow: 1;\n    width: auto !important;\n    height: auto !important;\n    visibility: visible !important;\n    background-color: transparent !important;\n    border: 0 !important;\n    transform: none !important;\n    transition: none;\n  }\n  .navbar-expand-lg .offcanvas .offcanvas-header {\n    display: none;\n  }\n  .navbar-expand-lg .offcanvas .offcanvas-body {\n    display: flex;\n    flex-grow: 0;\n    padding: 0;\n    overflow-y: visible;\n  }\n}\n@media (min-width: 1200px) {\n  .navbar-expand-xl {\n    flex-wrap: nowrap;\n    justify-content: flex-start;\n  }\n  .navbar-expand-xl .navbar-nav {\n    flex-direction: row;\n  }\n  .navbar-expand-xl .navbar-nav .dropdown-menu {\n    position: absolute;\n  }\n  .navbar-expand-xl .navbar-nav .nav-link {\n    padding-right: var(--bs-navbar-nav-link-padding-x);\n    padding-left: var(--bs-navbar-nav-link-padding-x);\n  }\n  .navbar-expand-xl .navbar-nav-scroll {\n    overflow: visible;\n  }\n  .navbar-expand-xl .navbar-collapse {\n    display: flex !important;\n    flex-basis: auto;\n  }\n  .navbar-expand-xl .navbar-toggler {\n    display: none;\n  }\n  .navbar-expand-xl .offcanvas {\n    position: static;\n    z-index: auto;\n    flex-grow: 1;\n    width: auto !important;\n    height: auto !important;\n    visibility: visible !important;\n    background-color: transparent !important;\n    border: 0 !important;\n    transform: none !important;\n    transition: none;\n  }\n  .navbar-expand-xl .offcanvas .offcanvas-header {\n    display: none;\n  }\n  .navbar-expand-xl .offcanvas .offcanvas-body {\n    display: flex;\n    flex-grow: 0;\n    padding: 0;\n    overflow-y: visible;\n  }\n}\n@media (min-width: 1400px) {\n  .navbar-expand-xxl {\n    flex-wrap: nowrap;\n    justify-content: flex-start;\n  }\n  .navbar-expand-xxl .navbar-nav {\n    flex-direction: row;\n  }\n  .navbar-expand-xxl .navbar-nav .dropdown-menu {\n    position: absolute;\n  }\n  .navbar-expand-xxl .navbar-nav .nav-link {\n    padding-right: var(--bs-navbar-nav-link-padding-x);\n    padding-left: var(--bs-navbar-nav-link-padding-x);\n  }\n  .navbar-expand-xxl .navbar-nav-scroll {\n    overflow: visible;\n  }\n  .navbar-expand-xxl .navbar-collapse {\n    display: flex !important;\n    flex-basis: auto;\n  }\n  .navbar-expand-xxl .navbar-toggler {\n    display: none;\n  }\n  .navbar-expand-xxl .offcanvas {\n    position: static;\n    z-index: auto;\n    flex-grow: 1;\n    width: auto !important;\n    height: auto !important;\n    visibility: visible !important;\n    background-color: transparent !important;\n    border: 0 !important;\n    transform: none !important;\n    transition: none;\n  }\n  .navbar-expand-xxl .offcanvas .offcanvas-header {\n    display: none;\n  }\n  .navbar-expand-xxl .offcanvas .offcanvas-body {\n    display: flex;\n    flex-grow: 0;\n    padding: 0;\n    overflow-y: visible;\n  }\n}\n.navbar-expand {\n  flex-wrap: nowrap;\n  justify-content: flex-start;\n}\n.navbar-expand .navbar-nav {\n  flex-direction: row;\n}\n.navbar-expand .navbar-nav .dropdown-menu {\n  position: absolute;\n}\n.navbar-expand .navbar-nav .nav-link {\n  padding-right: var(--bs-navbar-nav-link-padding-x);\n  padding-left: var(--bs-navbar-nav-link-padding-x);\n}\n.navbar-expand .navbar-nav-scroll {\n  overflow: visible;\n}\n.navbar-expand .navbar-collapse {\n  display: flex !important;\n  flex-basis: auto;\n}\n.navbar-expand .navbar-toggler {\n  display: none;\n}\n.navbar-expand .offcanvas {\n  position: static;\n  z-index: auto;\n  flex-grow: 1;\n  width: auto !important;\n  height: auto !important;\n  visibility: visible !important;\n  background-color: transparent !important;\n  border: 0 !important;\n  transform: none !important;\n  transition: none;\n}\n.navbar-expand .offcanvas .offcanvas-header {\n  display: none;\n}\n.navbar-expand .offcanvas .offcanvas-body {\n  display: flex;\n  flex-grow: 0;\n  padding: 0;\n  overflow-y: visible;\n}\n\n.navbar-dark {\n  --bs-navbar-color: rgba(255, 255, 255, 0.55);\n  --bs-navbar-hover-color: rgba(255, 255, 255, 0.75);\n  --bs-navbar-disabled-color: rgba(255, 255, 255, 0.25);\n  --bs-navbar-active-color: #fff;\n  --bs-navbar-brand-color: #fff;\n  --bs-navbar-brand-hover-color: #fff;\n  --bs-navbar-toggler-border-color: rgba(255, 255, 255, 0.1);\n  --bs-navbar-toggler-icon-bg: url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e\");\n}\n\n.row {\n  --bs-gutter-x: 1.5rem;\n  --bs-gutter-y: 0;\n  display: flex;\n  flex-wrap: wrap;\n  margin-top: calc(-1 * var(--bs-gutter-y));\n  margin-right: calc(-0.5 * var(--bs-gutter-x));\n  margin-left: calc(-0.5 * var(--bs-gutter-x));\n}\n.row > * {\n  flex-shrink: 0;\n  width: 100%;\n  max-width: 100%;\n  padding-right: calc(var(--bs-gutter-x) * 0.5);\n  padding-left: calc(var(--bs-gutter-x) * 0.5);\n  margin-top: var(--bs-gutter-y);\n}\n\n.col {\n  flex: 1 0 0%;\n}\n\n.row-cols-auto > * {\n  flex: 0 0 auto;\n  width: auto;\n}\n\n.row-cols-1 > * {\n  flex: 0 0 auto;\n  width: 100%;\n}\n\n.row-cols-2 > * {\n  flex: 0 0 auto;\n  width: 50%;\n}\n\n.row-cols-3 > * {\n  flex: 0 0 auto;\n  width: 33.3333333333%;\n}\n\n.row-cols-4 > * {\n  flex: 0 0 auto;\n  width: 25%;\n}\n\n.row-cols-5 > * {\n  flex: 0 0 auto;\n  width: 20%;\n}\n\n.row-cols-6 > * {\n  flex: 0 0 auto;\n  width: 16.6666666667%;\n}\n\n.col-auto {\n  flex: 0 0 auto;\n  width: auto;\n}\n\n.col-1 {\n  flex: 0 0 auto;\n  width: 8.33333333%;\n}\n\n.col-2 {\n  flex: 0 0 auto;\n  width: 16.66666667%;\n}\n\n.col-3 {\n  flex: 0 0 auto;\n  width: 25%;\n}\n\n.col-4 {\n  flex: 0 0 auto;\n  width: 33.33333333%;\n}\n\n.col-5 {\n  flex: 0 0 auto;\n  width: 41.66666667%;\n}\n\n.col-6 {\n  flex: 0 0 auto;\n  width: 50%;\n}\n\n.col-7 {\n  flex: 0 0 auto;\n  width: 58.33333333%;\n}\n\n.col-8 {\n  flex: 0 0 auto;\n  width: 66.66666667%;\n}\n\n.col-9 {\n  flex: 0 0 auto;\n  width: 75%;\n}\n\n.col-10 {\n  flex: 0 0 auto;\n  width: 83.33333333%;\n}\n\n.col-11 {\n  flex: 0 0 auto;\n  width: 91.66666667%;\n}\n\n.col-12 {\n  flex: 0 0 auto;\n  width: 100%;\n}\n\n.offset-1 {\n  margin-left: 8.33333333%;\n}\n\n.offset-2 {\n  margin-left: 16.66666667%;\n}\n\n.offset-3 {\n  margin-left: 25%;\n}\n\n.offset-4 {\n  margin-left: 33.33333333%;\n}\n\n.offset-5 {\n  margin-left: 41.66666667%;\n}\n\n.offset-6 {\n  margin-left: 50%;\n}\n\n.offset-7 {\n  margin-left: 58.33333333%;\n}\n\n.offset-8 {\n  margin-left: 66.66666667%;\n}\n\n.offset-9 {\n  margin-left: 75%;\n}\n\n.offset-10 {\n  margin-left: 83.33333333%;\n}\n\n.offset-11 {\n  margin-left: 91.66666667%;\n}\n\n.g-0,\n.gx-0 {\n  --bs-gutter-x: 0;\n}\n\n.g-0,\n.gy-0 {\n  --bs-gutter-y: 0;\n}\n\n.g-1,\n.gx-1 {\n  --bs-gutter-x: 0.25rem;\n}\n\n.g-1,\n.gy-1 {\n  --bs-gutter-y: 0.25rem;\n}\n\n.g-2,\n.gx-2 {\n  --bs-gutter-x: 0.5rem;\n}\n\n.g-2,\n.gy-2 {\n  --bs-gutter-y: 0.5rem;\n}\n\n.g-3,\n.gx-3 {\n  --bs-gutter-x: 1rem;\n}\n\n.g-3,\n.gy-3 {\n  --bs-gutter-y: 1rem;\n}\n\n.g-4,\n.gx-4 {\n  --bs-gutter-x: 1.5rem;\n}\n\n.g-4,\n.gy-4 {\n  --bs-gutter-y: 1.5rem;\n}\n\n.g-5,\n.gx-5 {\n  --bs-gutter-x: 3rem;\n}\n\n.g-5,\n.gy-5 {\n  --bs-gutter-y: 3rem;\n}\n\n@media (min-width: 576px) {\n  .col-sm {\n    flex: 1 0 0%;\n  }\n  .row-cols-sm-auto > * {\n    flex: 0 0 auto;\n    width: auto;\n  }\n  .row-cols-sm-1 > * {\n    flex: 0 0 auto;\n    width: 100%;\n  }\n  .row-cols-sm-2 > * {\n    flex: 0 0 auto;\n    width: 50%;\n  }\n  .row-cols-sm-3 > * {\n    flex: 0 0 auto;\n    width: 33.3333333333%;\n  }\n  .row-cols-sm-4 > * {\n    flex: 0 0 auto;\n    width: 25%;\n  }\n  .row-cols-sm-5 > * {\n    flex: 0 0 auto;\n    width: 20%;\n  }\n  .row-cols-sm-6 > * {\n    flex: 0 0 auto;\n    width: 16.6666666667%;\n  }\n  .col-sm-auto {\n    flex: 0 0 auto;\n    width: auto;\n  }\n  .col-sm-1 {\n    flex: 0 0 auto;\n    width: 8.33333333%;\n  }\n  .col-sm-2 {\n    flex: 0 0 auto;\n    width: 16.66666667%;\n  }\n  .col-sm-3 {\n    flex: 0 0 auto;\n    width: 25%;\n  }\n  .col-sm-4 {\n    flex: 0 0 auto;\n    width: 33.33333333%;\n  }\n  .col-sm-5 {\n    flex: 0 0 auto;\n    width: 41.66666667%;\n  }\n  .col-sm-6 {\n    flex: 0 0 auto;\n    width: 50%;\n  }\n  .col-sm-7 {\n    flex: 0 0 auto;\n    width: 58.33333333%;\n  }\n  .col-sm-8 {\n    flex: 0 0 auto;\n    width: 66.66666667%;\n  }\n  .col-sm-9 {\n    flex: 0 0 auto;\n    width: 75%;\n  }\n  .col-sm-10 {\n    flex: 0 0 auto;\n    width: 83.33333333%;\n  }\n  .col-sm-11 {\n    flex: 0 0 auto;\n    width: 91.66666667%;\n  }\n  .col-sm-12 {\n    flex: 0 0 auto;\n    width: 100%;\n  }\n  .offset-sm-0 {\n    margin-left: 0;\n  }\n  .offset-sm-1 {\n    margin-left: 8.33333333%;\n  }\n  .offset-sm-2 {\n    margin-left: 16.66666667%;\n  }\n  .offset-sm-3 {\n    margin-left: 25%;\n  }\n  .offset-sm-4 {\n    margin-left: 33.33333333%;\n  }\n  .offset-sm-5 {\n    margin-left: 41.66666667%;\n  }\n  .offset-sm-6 {\n    margin-left: 50%;\n  }\n  .offset-sm-7 {\n    margin-left: 58.33333333%;\n  }\n  .offset-sm-8 {\n    margin-left: 66.66666667%;\n  }\n  .offset-sm-9 {\n    margin-left: 75%;\n  }\n  .offset-sm-10 {\n    margin-left: 83.33333333%;\n  }\n  .offset-sm-11 {\n    margin-left: 91.66666667%;\n  }\n  .g-sm-0,\n  .gx-sm-0 {\n    --bs-gutter-x: 0;\n  }\n  .g-sm-0,\n  .gy-sm-0 {\n    --bs-gutter-y: 0;\n  }\n  .g-sm-1,\n  .gx-sm-1 {\n    --bs-gutter-x: 0.25rem;\n  }\n  .g-sm-1,\n  .gy-sm-1 {\n    --bs-gutter-y: 0.25rem;\n  }\n  .g-sm-2,\n  .gx-sm-2 {\n    --bs-gutter-x: 0.5rem;\n  }\n  .g-sm-2,\n  .gy-sm-2 {\n    --bs-gutter-y: 0.5rem;\n  }\n  .g-sm-3,\n  .gx-sm-3 {\n    --bs-gutter-x: 1rem;\n  }\n  .g-sm-3,\n  .gy-sm-3 {\n    --bs-gutter-y: 1rem;\n  }\n  .g-sm-4,\n  .gx-sm-4 {\n    --bs-gutter-x: 1.5rem;\n  }\n  .g-sm-4,\n  .gy-sm-4 {\n    --bs-gutter-y: 1.5rem;\n  }\n  .g-sm-5,\n  .gx-sm-5 {\n    --bs-gutter-x: 3rem;\n  }\n  .g-sm-5,\n  .gy-sm-5 {\n    --bs-gutter-y: 3rem;\n  }\n}\n@media (min-width: 768px) {\n  .col-md {\n    flex: 1 0 0%;\n  }\n  .row-cols-md-auto > * {\n    flex: 0 0 auto;\n    width: auto;\n  }\n  .row-cols-md-1 > * {\n    flex: 0 0 auto;\n    width: 100%;\n  }\n  .row-cols-md-2 > * {\n    flex: 0 0 auto;\n    width: 50%;\n  }\n  .row-cols-md-3 > * {\n    flex: 0 0 auto;\n    width: 33.3333333333%;\n  }\n  .row-cols-md-4 > * {\n    flex: 0 0 auto;\n    width: 25%;\n  }\n  .row-cols-md-5 > * {\n    flex: 0 0 auto;\n    width: 20%;\n  }\n  .row-cols-md-6 > * {\n    flex: 0 0 auto;\n    width: 16.6666666667%;\n  }\n  .col-md-auto {\n    flex: 0 0 auto;\n    width: auto;\n  }\n  .col-md-1 {\n    flex: 0 0 auto;\n    width: 8.33333333%;\n  }\n  .col-md-2 {\n    flex: 0 0 auto;\n    width: 16.66666667%;\n  }\n  .col-md-3 {\n    flex: 0 0 auto;\n    width: 25%;\n  }\n  .col-md-4 {\n    flex: 0 0 auto;\n    width: 33.33333333%;\n  }\n  .col-md-5 {\n    flex: 0 0 auto;\n    width: 41.66666667%;\n  }\n  .col-md-6 {\n    flex: 0 0 auto;\n    width: 50%;\n  }\n  .col-md-7 {\n    flex: 0 0 auto;\n    width: 58.33333333%;\n  }\n  .col-md-8 {\n    flex: 0 0 auto;\n    width: 66.66666667%;\n  }\n  .col-md-9 {\n    flex: 0 0 auto;\n    width: 75%;\n  }\n  .col-md-10 {\n    flex: 0 0 auto;\n    width: 83.33333333%;\n  }\n  .col-md-11 {\n    flex: 0 0 auto;\n    width: 91.66666667%;\n  }\n  .col-md-12 {\n    flex: 0 0 auto;\n    width: 100%;\n  }\n  .offset-md-0 {\n    margin-left: 0;\n  }\n  .offset-md-1 {\n    margin-left: 8.33333333%;\n  }\n  .offset-md-2 {\n    margin-left: 16.66666667%;\n  }\n  .offset-md-3 {\n    margin-left: 25%;\n  }\n  .offset-md-4 {\n    margin-left: 33.33333333%;\n  }\n  .offset-md-5 {\n    margin-left: 41.66666667%;\n  }\n  .offset-md-6 {\n    margin-left: 50%;\n  }\n  .offset-md-7 {\n    margin-left: 58.33333333%;\n  }\n  .offset-md-8 {\n    margin-left: 66.66666667%;\n  }\n  .offset-md-9 {\n    margin-left: 75%;\n  }\n  .offset-md-10 {\n    margin-left: 83.33333333%;\n  }\n  .offset-md-11 {\n    margin-left: 91.66666667%;\n  }\n  .g-md-0,\n  .gx-md-0 {\n    --bs-gutter-x: 0;\n  }\n  .g-md-0,\n  .gy-md-0 {\n    --bs-gutter-y: 0;\n  }\n  .g-md-1,\n  .gx-md-1 {\n    --bs-gutter-x: 0.25rem;\n  }\n  .g-md-1,\n  .gy-md-1 {\n    --bs-gutter-y: 0.25rem;\n  }\n  .g-md-2,\n  .gx-md-2 {\n    --bs-gutter-x: 0.5rem;\n  }\n  .g-md-2,\n  .gy-md-2 {\n    --bs-gutter-y: 0.5rem;\n  }\n  .g-md-3,\n  .gx-md-3 {\n    --bs-gutter-x: 1rem;\n  }\n  .g-md-3,\n  .gy-md-3 {\n    --bs-gutter-y: 1rem;\n  }\n  .g-md-4,\n  .gx-md-4 {\n    --bs-gutter-x: 1.5rem;\n  }\n  .g-md-4,\n  .gy-md-4 {\n    --bs-gutter-y: 1.5rem;\n  }\n  .g-md-5,\n  .gx-md-5 {\n    --bs-gutter-x: 3rem;\n  }\n  .g-md-5,\n  .gy-md-5 {\n    --bs-gutter-y: 3rem;\n  }\n}\n@media (min-width: 992px) {\n  .col-lg {\n    flex: 1 0 0%;\n  }\n  .row-cols-lg-auto > * {\n    flex: 0 0 auto;\n    width: auto;\n  }\n  .row-cols-lg-1 > * {\n    flex: 0 0 auto;\n    width: 100%;\n  }\n  .row-cols-lg-2 > * {\n    flex: 0 0 auto;\n    width: 50%;\n  }\n  .row-cols-lg-3 > * {\n    flex: 0 0 auto;\n    width: 33.3333333333%;\n  }\n  .row-cols-lg-4 > * {\n    flex: 0 0 auto;\n    width: 25%;\n  }\n  .row-cols-lg-5 > * {\n    flex: 0 0 auto;\n    width: 20%;\n  }\n  .row-cols-lg-6 > * {\n    flex: 0 0 auto;\n    width: 16.6666666667%;\n  }\n  .col-lg-auto {\n    flex: 0 0 auto;\n    width: auto;\n  }\n  .col-lg-1 {\n    flex: 0 0 auto;\n    width: 8.33333333%;\n  }\n  .col-lg-2 {\n    flex: 0 0 auto;\n    width: 16.66666667%;\n  }\n  .col-lg-3 {\n    flex: 0 0 auto;\n    width: 25%;\n  }\n  .col-lg-4 {\n    flex: 0 0 auto;\n    width: 33.33333333%;\n  }\n  .col-lg-5 {\n    flex: 0 0 auto;\n    width: 41.66666667%;\n  }\n  .col-lg-6 {\n    flex: 0 0 auto;\n    width: 50%;\n  }\n  .col-lg-7 {\n    flex: 0 0 auto;\n    width: 58.33333333%;\n  }\n  .col-lg-8 {\n    flex: 0 0 auto;\n    width: 66.66666667%;\n  }\n  .col-lg-9 {\n    flex: 0 0 auto;\n    width: 75%;\n  }\n  .col-lg-10 {\n    flex: 0 0 auto;\n    width: 83.33333333%;\n  }\n  .col-lg-11 {\n    flex: 0 0 auto;\n    width: 91.66666667%;\n  }\n  .col-lg-12 {\n    flex: 0 0 auto;\n    width: 100%;\n  }\n  .offset-lg-0 {\n    margin-left: 0;\n  }\n  .offset-lg-1 {\n    margin-left: 8.33333333%;\n  }\n  .offset-lg-2 {\n    margin-left: 16.66666667%;\n  }\n  .offset-lg-3 {\n    margin-left: 25%;\n  }\n  .offset-lg-4 {\n    margin-left: 33.33333333%;\n  }\n  .offset-lg-5 {\n    margin-left: 41.66666667%;\n  }\n  .offset-lg-6 {\n    margin-left: 50%;\n  }\n  .offset-lg-7 {\n    margin-left: 58.33333333%;\n  }\n  .offset-lg-8 {\n    margin-left: 66.66666667%;\n  }\n  .offset-lg-9 {\n    margin-left: 75%;\n  }\n  .offset-lg-10 {\n    margin-left: 83.33333333%;\n  }\n  .offset-lg-11 {\n    margin-left: 91.66666667%;\n  }\n  .g-lg-0,\n  .gx-lg-0 {\n    --bs-gutter-x: 0;\n  }\n  .g-lg-0,\n  .gy-lg-0 {\n    --bs-gutter-y: 0;\n  }\n  .g-lg-1,\n  .gx-lg-1 {\n    --bs-gutter-x: 0.25rem;\n  }\n  .g-lg-1,\n  .gy-lg-1 {\n    --bs-gutter-y: 0.25rem;\n  }\n  .g-lg-2,\n  .gx-lg-2 {\n    --bs-gutter-x: 0.5rem;\n  }\n  .g-lg-2,\n  .gy-lg-2 {\n    --bs-gutter-y: 0.5rem;\n  }\n  .g-lg-3,\n  .gx-lg-3 {\n    --bs-gutter-x: 1rem;\n  }\n  .g-lg-3,\n  .gy-lg-3 {\n    --bs-gutter-y: 1rem;\n  }\n  .g-lg-4,\n  .gx-lg-4 {\n    --bs-gutter-x: 1.5rem;\n  }\n  .g-lg-4,\n  .gy-lg-4 {\n    --bs-gutter-y: 1.5rem;\n  }\n  .g-lg-5,\n  .gx-lg-5 {\n    --bs-gutter-x: 3rem;\n  }\n  .g-lg-5,\n  .gy-lg-5 {\n    --bs-gutter-y: 3rem;\n  }\n}\n@media (min-width: 1200px) {\n  .col-xl {\n    flex: 1 0 0%;\n  }\n  .row-cols-xl-auto > * {\n    flex: 0 0 auto;\n    width: auto;\n  }\n  .row-cols-xl-1 > * {\n    flex: 0 0 auto;\n    width: 100%;\n  }\n  .row-cols-xl-2 > * {\n    flex: 0 0 auto;\n    width: 50%;\n  }\n  .row-cols-xl-3 > * {\n    flex: 0 0 auto;\n    width: 33.3333333333%;\n  }\n  .row-cols-xl-4 > * {\n    flex: 0 0 auto;\n    width: 25%;\n  }\n  .row-cols-xl-5 > * {\n    flex: 0 0 auto;\n    width: 20%;\n  }\n  .row-cols-xl-6 > * {\n    flex: 0 0 auto;\n    width: 16.6666666667%;\n  }\n  .col-xl-auto {\n    flex: 0 0 auto;\n    width: auto;\n  }\n  .col-xl-1 {\n    flex: 0 0 auto;\n    width: 8.33333333%;\n  }\n  .col-xl-2 {\n    flex: 0 0 auto;\n    width: 16.66666667%;\n  }\n  .col-xl-3 {\n    flex: 0 0 auto;\n    width: 25%;\n  }\n  .col-xl-4 {\n    flex: 0 0 auto;\n    width: 33.33333333%;\n  }\n  .col-xl-5 {\n    flex: 0 0 auto;\n    width: 41.66666667%;\n  }\n  .col-xl-6 {\n    flex: 0 0 auto;\n    width: 50%;\n  }\n  .col-xl-7 {\n    flex: 0 0 auto;\n    width: 58.33333333%;\n  }\n  .col-xl-8 {\n    flex: 0 0 auto;\n    width: 66.66666667%;\n  }\n  .col-xl-9 {\n    flex: 0 0 auto;\n    width: 75%;\n  }\n  .col-xl-10 {\n    flex: 0 0 auto;\n    width: 83.33333333%;\n  }\n  .col-xl-11 {\n    flex: 0 0 auto;\n    width: 91.66666667%;\n  }\n  .col-xl-12 {\n    flex: 0 0 auto;\n    width: 100%;\n  }\n  .offset-xl-0 {\n    margin-left: 0;\n  }\n  .offset-xl-1 {\n    margin-left: 8.33333333%;\n  }\n  .offset-xl-2 {\n    margin-left: 16.66666667%;\n  }\n  .offset-xl-3 {\n    margin-left: 25%;\n  }\n  .offset-xl-4 {\n    margin-left: 33.33333333%;\n  }\n  .offset-xl-5 {\n    margin-left: 41.66666667%;\n  }\n  .offset-xl-6 {\n    margin-left: 50%;\n  }\n  .offset-xl-7 {\n    margin-left: 58.33333333%;\n  }\n  .offset-xl-8 {\n    margin-left: 66.66666667%;\n  }\n  .offset-xl-9 {\n    margin-left: 75%;\n  }\n  .offset-xl-10 {\n    margin-left: 83.33333333%;\n  }\n  .offset-xl-11 {\n    margin-left: 91.66666667%;\n  }\n  .g-xl-0,\n  .gx-xl-0 {\n    --bs-gutter-x: 0;\n  }\n  .g-xl-0,\n  .gy-xl-0 {\n    --bs-gutter-y: 0;\n  }\n  .g-xl-1,\n  .gx-xl-1 {\n    --bs-gutter-x: 0.25rem;\n  }\n  .g-xl-1,\n  .gy-xl-1 {\n    --bs-gutter-y: 0.25rem;\n  }\n  .g-xl-2,\n  .gx-xl-2 {\n    --bs-gutter-x: 0.5rem;\n  }\n  .g-xl-2,\n  .gy-xl-2 {\n    --bs-gutter-y: 0.5rem;\n  }\n  .g-xl-3,\n  .gx-xl-3 {\n    --bs-gutter-x: 1rem;\n  }\n  .g-xl-3,\n  .gy-xl-3 {\n    --bs-gutter-y: 1rem;\n  }\n  .g-xl-4,\n  .gx-xl-4 {\n    --bs-gutter-x: 1.5rem;\n  }\n  .g-xl-4,\n  .gy-xl-4 {\n    --bs-gutter-y: 1.5rem;\n  }\n  .g-xl-5,\n  .gx-xl-5 {\n    --bs-gutter-x: 3rem;\n  }\n  .g-xl-5,\n  .gy-xl-5 {\n    --bs-gutter-y: 3rem;\n  }\n}\n@media (min-width: 1400px) {\n  .col-xxl {\n    flex: 1 0 0%;\n  }\n  .row-cols-xxl-auto > * {\n    flex: 0 0 auto;\n    width: auto;\n  }\n  .row-cols-xxl-1 > * {\n    flex: 0 0 auto;\n    width: 100%;\n  }\n  .row-cols-xxl-2 > * {\n    flex: 0 0 auto;\n    width: 50%;\n  }\n  .row-cols-xxl-3 > * {\n    flex: 0 0 auto;\n    width: 33.3333333333%;\n  }\n  .row-cols-xxl-4 > * {\n    flex: 0 0 auto;\n    width: 25%;\n  }\n  .row-cols-xxl-5 > * {\n    flex: 0 0 auto;\n    width: 20%;\n  }\n  .row-cols-xxl-6 > * {\n    flex: 0 0 auto;\n    width: 16.6666666667%;\n  }\n  .col-xxl-auto {\n    flex: 0 0 auto;\n    width: auto;\n  }\n  .col-xxl-1 {\n    flex: 0 0 auto;\n    width: 8.33333333%;\n  }\n  .col-xxl-2 {\n    flex: 0 0 auto;\n    width: 16.66666667%;\n  }\n  .col-xxl-3 {\n    flex: 0 0 auto;\n    width: 25%;\n  }\n  .col-xxl-4 {\n    flex: 0 0 auto;\n    width: 33.33333333%;\n  }\n  .col-xxl-5 {\n    flex: 0 0 auto;\n    width: 41.66666667%;\n  }\n  .col-xxl-6 {\n    flex: 0 0 auto;\n    width: 50%;\n  }\n  .col-xxl-7 {\n    flex: 0 0 auto;\n    width: 58.33333333%;\n  }\n  .col-xxl-8 {\n    flex: 0 0 auto;\n    width: 66.66666667%;\n  }\n  .col-xxl-9 {\n    flex: 0 0 auto;\n    width: 75%;\n  }\n  .col-xxl-10 {\n    flex: 0 0 auto;\n    width: 83.33333333%;\n  }\n  .col-xxl-11 {\n    flex: 0 0 auto;\n    width: 91.66666667%;\n  }\n  .col-xxl-12 {\n    flex: 0 0 auto;\n    width: 100%;\n  }\n  .offset-xxl-0 {\n    margin-left: 0;\n  }\n  .offset-xxl-1 {\n    margin-left: 8.33333333%;\n  }\n  .offset-xxl-2 {\n    margin-left: 16.66666667%;\n  }\n  .offset-xxl-3 {\n    margin-left: 25%;\n  }\n  .offset-xxl-4 {\n    margin-left: 33.33333333%;\n  }\n  .offset-xxl-5 {\n    margin-left: 41.66666667%;\n  }\n  .offset-xxl-6 {\n    margin-left: 50%;\n  }\n  .offset-xxl-7 {\n    margin-left: 58.33333333%;\n  }\n  .offset-xxl-8 {\n    margin-left: 66.66666667%;\n  }\n  .offset-xxl-9 {\n    margin-left: 75%;\n  }\n  .offset-xxl-10 {\n    margin-left: 83.33333333%;\n  }\n  .offset-xxl-11 {\n    margin-left: 91.66666667%;\n  }\n  .g-xxl-0,\n  .gx-xxl-0 {\n    --bs-gutter-x: 0;\n  }\n  .g-xxl-0,\n  .gy-xxl-0 {\n    --bs-gutter-y: 0;\n  }\n  .g-xxl-1,\n  .gx-xxl-1 {\n    --bs-gutter-x: 0.25rem;\n  }\n  .g-xxl-1,\n  .gy-xxl-1 {\n    --bs-gutter-y: 0.25rem;\n  }\n  .g-xxl-2,\n  .gx-xxl-2 {\n    --bs-gutter-x: 0.5rem;\n  }\n  .g-xxl-2,\n  .gy-xxl-2 {\n    --bs-gutter-y: 0.5rem;\n  }\n  .g-xxl-3,\n  .gx-xxl-3 {\n    --bs-gutter-x: 1rem;\n  }\n  .g-xxl-3,\n  .gy-xxl-3 {\n    --bs-gutter-y: 1rem;\n  }\n  .g-xxl-4,\n  .gx-xxl-4 {\n    --bs-gutter-x: 1.5rem;\n  }\n  .g-xxl-4,\n  .gy-xxl-4 {\n    --bs-gutter-y: 1.5rem;\n  }\n  .g-xxl-5,\n  .gx-xxl-5 {\n    --bs-gutter-x: 3rem;\n  }\n  .g-xxl-5,\n  .gy-xxl-5 {\n    --bs-gutter-y: 3rem;\n  }\n}\n.card {\n  --bs-card-spacer-y: 1rem;\n  --bs-card-spacer-x: 1rem;\n  --bs-card-title-spacer-y: 0.5rem;\n  --bs-card-border-width: 1px;\n  --bs-card-border-color: var(--bs-border-color-translucent);\n  --bs-card-border-radius: 0.375rem;\n  --bs-card-box-shadow: ;\n  --bs-card-inner-border-radius: calc(0.375rem - 1px);\n  --bs-card-cap-padding-y: 0.5rem;\n  --bs-card-cap-padding-x: 1rem;\n  --bs-card-cap-bg: rgba(0, 0, 0, 0.03);\n  --bs-card-cap-color: ;\n  --bs-card-height: ;\n  --bs-card-color: ;\n  --bs-card-bg: var(--secondary-background-color);\n  --bs-card-img-overlay-padding: 1rem;\n  --bs-card-group-margin: 0.75rem;\n  position: relative;\n  display: flex;\n  flex-direction: column;\n  min-width: 0;\n  height: var(--bs-card-height);\n  word-wrap: break-word;\n  background-color: var(--bs-card-bg);\n  background-clip: border-box;\n  border: var(--bs-card-border-width) solid var(--bs-card-border-color);\n  border-radius: var(--bs-card-border-radius);\n}\n.card > hr {\n  margin-right: 0;\n  margin-left: 0;\n}\n.card > .list-group {\n  border-top: inherit;\n  border-bottom: inherit;\n}\n.card > .list-group:first-child {\n  border-top-width: 0;\n  border-top-left-radius: var(--bs-card-inner-border-radius);\n  border-top-right-radius: var(--bs-card-inner-border-radius);\n}\n.card > .list-group:last-child {\n  border-bottom-width: 0;\n  border-bottom-right-radius: var(--bs-card-inner-border-radius);\n  border-bottom-left-radius: var(--bs-card-inner-border-radius);\n}\n.card > .card-header + .list-group,\n.card > .list-group + .card-footer {\n  border-top: 0;\n}\n\n.card-body {\n  flex: 1 1 auto;\n  padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);\n  color: var(--bs-card-color);\n}\n\n.card-title {\n  margin-bottom: var(--bs-card-title-spacer-y);\n}\n\n.card-subtitle {\n  margin-top: calc(-0.5 * var(--bs-card-title-spacer-y));\n  margin-bottom: 0;\n}\n\n.card-text:last-child {\n  margin-bottom: 0;\n}\n\n.card-link + .card-link {\n  margin-left: var(--bs-card-spacer-x);\n}\n\n.card-header {\n  padding: var(--bs-card-cap-padding-y) var(--bs-card-cap-padding-x);\n  margin-bottom: 0;\n  color: var(--bs-card-cap-color);\n  background-color: var(--bs-card-cap-bg);\n  border-bottom: var(--bs-card-border-width) solid var(--bs-card-border-color);\n}\n.card-header:first-child {\n  border-radius: var(--bs-card-inner-border-radius) var(--bs-card-inner-border-radius) 0 0;\n}\n\n.card-footer {\n  padding: var(--bs-card-cap-padding-y) var(--bs-card-cap-padding-x);\n  color: var(--bs-card-cap-color);\n  background-color: var(--bs-card-cap-bg);\n  border-top: var(--bs-card-border-width) solid var(--bs-card-border-color);\n}\n.card-footer:last-child {\n  border-radius: 0 0 var(--bs-card-inner-border-radius) var(--bs-card-inner-border-radius);\n}\n\n.card-header-tabs {\n  margin-right: calc(-0.5 * var(--bs-card-cap-padding-x));\n  margin-bottom: calc(-1 * var(--bs-card-cap-padding-y));\n  margin-left: calc(-0.5 * var(--bs-card-cap-padding-x));\n  border-bottom: 0;\n}\n.card-header-tabs .nav-link.active {\n  background-color: var(--bs-card-bg);\n  border-bottom-color: var(--bs-card-bg);\n}\n\n.card-header-pills {\n  margin-right: calc(-0.5 * var(--bs-card-cap-padding-x));\n  margin-left: calc(-0.5 * var(--bs-card-cap-padding-x));\n}\n\n.card-img-overlay {\n  position: absolute;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  padding: var(--bs-card-img-overlay-padding);\n  border-radius: var(--bs-card-inner-border-radius);\n}\n\n.card-img,\n.card-img-top,\n.card-img-bottom {\n  width: 100%;\n}\n\n.card-img,\n.card-img-top {\n  border-top-left-radius: var(--bs-card-inner-border-radius);\n  border-top-right-radius: var(--bs-card-inner-border-radius);\n}\n\n.card-img,\n.card-img-bottom {\n  border-bottom-right-radius: var(--bs-card-inner-border-radius);\n  border-bottom-left-radius: var(--bs-card-inner-border-radius);\n}\n\n.card-group > .card {\n  margin-bottom: var(--bs-card-group-margin);\n}\n@media (min-width: 576px) {\n  .card-group {\n    display: flex;\n    flex-flow: row wrap;\n  }\n  .card-group > .card {\n    flex: 1 0 0%;\n    margin-bottom: 0;\n  }\n  .card-group > .card + .card {\n    margin-left: 0;\n    border-left: 0;\n  }\n  .card-group > .card:not(:last-child) {\n    border-top-right-radius: 0;\n    border-bottom-right-radius: 0;\n  }\n  .card-group > .card:not(:last-child) .card-img-top,\n  .card-group > .card:not(:last-child) .card-header {\n    border-top-right-radius: 0;\n  }\n  .card-group > .card:not(:last-child) .card-img-bottom,\n  .card-group > .card:not(:last-child) .card-footer {\n    border-bottom-right-radius: 0;\n  }\n  .card-group > .card:not(:first-child) {\n    border-top-left-radius: 0;\n    border-bottom-left-radius: 0;\n  }\n  .card-group > .card:not(:first-child) .card-img-top,\n  .card-group > .card:not(:first-child) .card-header {\n    border-top-left-radius: 0;\n  }\n  .card-group > .card:not(:first-child) .card-img-bottom,\n  .card-group > .card:not(:first-child) .card-footer {\n    border-bottom-left-radius: 0;\n  }\n}\n\n.dropup,\n.dropend,\n.dropdown,\n.dropstart,\n.dropup-center,\n.dropdown-center {\n  position: relative;\n}\n\n.dropdown-toggle {\n  white-space: nowrap;\n}\n.dropdown-toggle::after {\n  display: inline-block;\n  margin-left: 0.255em;\n  vertical-align: 0.255em;\n  content: \"\";\n  border-top: 0.3em solid;\n  border-right: 0.3em solid transparent;\n  border-bottom: 0;\n  border-left: 0.3em solid transparent;\n}\n.dropdown-toggle:empty::after {\n  margin-left: 0;\n}\n\n.dropdown-menu {\n  --bs-dropdown-zindex: 1000;\n  --bs-dropdown-min-width: 10rem;\n  --bs-dropdown-padding-x: 0;\n  --bs-dropdown-padding-y: 0.5rem;\n  --bs-dropdown-spacer: 0.125rem;\n  --bs-dropdown-font-size: 1rem;\n  --bs-dropdown-color: #212529;\n  --bs-dropdown-bg: #fff;\n  --bs-dropdown-border-color: var(--bs-border-color-translucent);\n  --bs-dropdown-border-radius: 0.375rem;\n  --bs-dropdown-border-width: 1px;\n  --bs-dropdown-inner-border-radius: calc(0.375rem - 1px);\n  --bs-dropdown-divider-bg: var(--bs-border-color-translucent);\n  --bs-dropdown-divider-margin-y: 0.5rem;\n  --bs-dropdown-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);\n  --bs-dropdown-link-color: #212529;\n  --bs-dropdown-link-hover-color: #1e2125;\n  --bs-dropdown-link-hover-bg: #e9ecef;\n  --bs-dropdown-link-active-color: #fff;\n  --bs-dropdown-link-active-bg: #0d6efd;\n  --bs-dropdown-link-disabled-color: #adb5bd;\n  --bs-dropdown-item-padding-x: 1rem;\n  --bs-dropdown-item-padding-y: 0.25rem;\n  --bs-dropdown-header-color: #6c757d;\n  --bs-dropdown-header-padding-x: 1rem;\n  --bs-dropdown-header-padding-y: 0.5rem;\n  position: absolute;\n  z-index: var(--bs-dropdown-zindex);\n  display: none;\n  min-width: var(--bs-dropdown-min-width);\n  padding: var(--bs-dropdown-padding-y) var(--bs-dropdown-padding-x);\n  margin: 0;\n  font-size: var(--bs-dropdown-font-size);\n  color: var(--bs-dropdown-color);\n  text-align: left;\n  list-style: none;\n  background-color: var(--bs-dropdown-bg);\n  background-clip: padding-box;\n  border: var(--bs-dropdown-border-width) solid var(--bs-dropdown-border-color);\n  border-radius: var(--bs-dropdown-border-radius);\n}\n.dropdown-menu[data-bs-popper] {\n  top: 100%;\n  left: 0;\n  margin-top: var(--bs-dropdown-spacer);\n}\n\n.dropdown-menu-start {\n  --bs-position: start;\n}\n.dropdown-menu-start[data-bs-popper] {\n  right: auto;\n  left: 0;\n}\n\n.dropdown-menu-end {\n  --bs-position: end;\n}\n.dropdown-menu-end[data-bs-popper] {\n  right: 0;\n  left: auto;\n}\n\n@media (min-width: 576px) {\n  .dropdown-menu-sm-start {\n    --bs-position: start;\n  }\n  .dropdown-menu-sm-start[data-bs-popper] {\n    right: auto;\n    left: 0;\n  }\n  .dropdown-menu-sm-end {\n    --bs-position: end;\n  }\n  .dropdown-menu-sm-end[data-bs-popper] {\n    right: 0;\n    left: auto;\n  }\n}\n@media (min-width: 768px) {\n  .dropdown-menu-md-start {\n    --bs-position: start;\n  }\n  .dropdown-menu-md-start[data-bs-popper] {\n    right: auto;\n    left: 0;\n  }\n  .dropdown-menu-md-end {\n    --bs-position: end;\n  }\n  .dropdown-menu-md-end[data-bs-popper] {\n    right: 0;\n    left: auto;\n  }\n}\n@media (min-width: 992px) {\n  .dropdown-menu-lg-start {\n    --bs-position: start;\n  }\n  .dropdown-menu-lg-start[data-bs-popper] {\n    right: auto;\n    left: 0;\n  }\n  .dropdown-menu-lg-end {\n    --bs-position: end;\n  }\n  .dropdown-menu-lg-end[data-bs-popper] {\n    right: 0;\n    left: auto;\n  }\n}\n@media (min-width: 1200px) {\n  .dropdown-menu-xl-start {\n    --bs-position: start;\n  }\n  .dropdown-menu-xl-start[data-bs-popper] {\n    right: auto;\n    left: 0;\n  }\n  .dropdown-menu-xl-end {\n    --bs-position: end;\n  }\n  .dropdown-menu-xl-end[data-bs-popper] {\n    right: 0;\n    left: auto;\n  }\n}\n@media (min-width: 1400px) {\n  .dropdown-menu-xxl-start {\n    --bs-position: start;\n  }\n  .dropdown-menu-xxl-start[data-bs-popper] {\n    right: auto;\n    left: 0;\n  }\n  .dropdown-menu-xxl-end {\n    --bs-position: end;\n  }\n  .dropdown-menu-xxl-end[data-bs-popper] {\n    right: 0;\n    left: auto;\n  }\n}\n.dropup .dropdown-menu[data-bs-popper] {\n  top: auto;\n  bottom: 100%;\n  margin-top: 0;\n  margin-bottom: var(--bs-dropdown-spacer);\n}\n.dropup .dropdown-toggle::after {\n  display: inline-block;\n  margin-left: 0.255em;\n  vertical-align: 0.255em;\n  content: \"\";\n  border-top: 0;\n  border-right: 0.3em solid transparent;\n  border-bottom: 0.3em solid;\n  border-left: 0.3em solid transparent;\n}\n.dropup .dropdown-toggle:empty::after {\n  margin-left: 0;\n}\n\n.dropend .dropdown-menu[data-bs-popper] {\n  top: 0;\n  right: auto;\n  left: 100%;\n  margin-top: 0;\n  margin-left: var(--bs-dropdown-spacer);\n}\n.dropend .dropdown-toggle::after {\n  display: inline-block;\n  margin-left: 0.255em;\n  vertical-align: 0.255em;\n  content: \"\";\n  border-top: 0.3em solid transparent;\n  border-right: 0;\n  border-bottom: 0.3em solid transparent;\n  border-left: 0.3em solid;\n}\n.dropend .dropdown-toggle:empty::after {\n  margin-left: 0;\n}\n.dropend .dropdown-toggle::after {\n  vertical-align: 0;\n}\n\n.dropstart .dropdown-menu[data-bs-popper] {\n  top: 0;\n  right: 100%;\n  left: auto;\n  margin-top: 0;\n  margin-right: var(--bs-dropdown-spacer);\n}\n.dropstart .dropdown-toggle::after {\n  display: inline-block;\n  margin-left: 0.255em;\n  vertical-align: 0.255em;\n  content: \"\";\n}\n.dropstart .dropdown-toggle::after {\n  display: none;\n}\n.dropstart .dropdown-toggle::before {\n  display: inline-block;\n  margin-right: 0.255em;\n  vertical-align: 0.255em;\n  content: \"\";\n  border-top: 0.3em solid transparent;\n  border-right: 0.3em solid;\n  border-bottom: 0.3em solid transparent;\n}\n.dropstart .dropdown-toggle:empty::after {\n  margin-left: 0;\n}\n.dropstart .dropdown-toggle::before {\n  vertical-align: 0;\n}\n\n.dropdown-divider {\n  height: 0;\n  margin: var(--bs-dropdown-divider-margin-y) 0;\n  overflow: hidden;\n  border-top: 1px solid var(--bs-dropdown-divider-bg);\n  opacity: 1;\n}\n\n.dropdown-item {\n  display: block;\n  width: 100%;\n  padding: var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x);\n  clear: both;\n  font-weight: 400;\n  color: var(--bs-dropdown-link-color);\n  text-align: inherit;\n  text-decoration: none;\n  white-space: nowrap;\n  background-color: transparent;\n  border: 0;\n}\n.dropdown-item:hover, .dropdown-item:focus {\n  color: var(--bs-dropdown-link-hover-color);\n  background-color: var(--bs-dropdown-link-hover-bg);\n}\n.dropdown-item.active, .dropdown-item:active {\n  color: var(--bs-dropdown-link-active-color);\n  text-decoration: none;\n  background-color: var(--bs-dropdown-link-active-bg);\n}\n.dropdown-item.disabled, .dropdown-item:disabled {\n  color: var(--bs-dropdown-link-disabled-color);\n  pointer-events: none;\n  background-color: transparent;\n}\n\n.dropdown-menu.show {\n  display: block;\n}\n\n.dropdown-header {\n  display: block;\n  padding: var(--bs-dropdown-header-padding-y) var(--bs-dropdown-header-padding-x);\n  margin-bottom: 0;\n  font-size: 0.875rem;\n  color: var(--bs-dropdown-header-color);\n  white-space: nowrap;\n}\n\n.dropdown-item-text {\n  display: block;\n  padding: var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x);\n  color: var(--bs-dropdown-link-color);\n}\n\n.dropdown-menu-dark {\n  --bs-dropdown-color: #dee2e6;\n  --bs-dropdown-bg: #343a40;\n  --bs-dropdown-border-color: var(--bs-border-color-translucent);\n  --bs-dropdown-box-shadow: ;\n  --bs-dropdown-link-color: #dee2e6;\n  --bs-dropdown-link-hover-color: #fff;\n  --bs-dropdown-divider-bg: var(--bs-border-color-translucent);\n  --bs-dropdown-link-hover-bg: rgba(255, 255, 255, 0.15);\n  --bs-dropdown-link-active-color: #fff;\n  --bs-dropdown-link-active-bg: #0d6efd;\n  --bs-dropdown-link-disabled-color: #adb5bd;\n  --bs-dropdown-header-color: #adb5bd;\n}\n\n.Panel {\n  font-size: var(--paper-font-body1_-_font-size);\n}\n.Panel .info {\n  margin: 1rem;\n  padding: 1rem;\n  border: 0.1rem solid var(--secondary-text-color);\n}\n.Panel .navbar {\n  height: var(--header-height);\n  padding-left: 30px !important;\n  background-color: var(--app-header-background-color);\n}\n.Panel .navbar .ha-sidebar {\n  padding-right: 1rem;\n}\n.Panel .Container {\n  padding: 1rem;\n}\n.Panel .Container .card {\n  width: 17rem;\n  display: inline-block;\n  padding: 0.8rem;\n  margin: 0.1rem;\n  position: relative;\n  vertical-align: top;\n  border-radius: 0.4rem;\n}\n.Panel .Container .configpanel .group {\n  width: 19rem;\n  padding: 10px;\n  margin: 5px;\n  border: 1px solid var(--secondary-text-color);\n  border-radius: 10px;\n}\n.Panel .Container .configpanel .group .title {\n  font-size: 18px;\n  font-weight: bold;\n  margin-bottom: 10px;\n}\n.Panel .Container .configpanel .card-title {\n  font-size: var(--ha-card-header-font-size);\n  font-weight: var(--ha-card-header-font-weight);\n}\n.Panel .Container .configpanel .desc {\n  color: var(--secondary-text-color);\n  margin-bottom: 10px;\n}\n.Panel .Container .configpanel .value .bool {\n  position: absolute;\n  top: 1rem;\n  right: 1rem;\n}\n.Panel .Container .configpanel .value textarea {\n  width: 95%;\n}\n.Panel .Container .settingpanel .card {\n  height: 11rem;\n  margin: 0.2rem;\n}\n.Panel .Container .settingpanel .card-title {\n  font-size: var(--ha-card-header-font-size);\n  font-weight: var(--ha-card-header-font-weight);\n}\n.Panel .Container .settingpanel .label {\n  padding-left: 0.5rem;\n  width: 5.5rem;\n  display: inline-block;\n  color: var(--secondary-text-color);\n}\n.Panel .Container .settingpanel input[type=text], .Panel .Container .settingpanel input[type=number] {\n  width: 8rem;\n  margin-top: 0.5rem;\n}\n.Panel .Container .settingpanel .decimals {\n  margin-top: 0.2rem;\n}\n.Panel .Container .settingpanel .attrib {\n  display: inline-block;\n  vertical-align: top;\n}\n.Panel .Container .settingpanel .sensor {\n  margin-right: 1rem;\n  display: inline-block;\n  vertical-align: top;\n}";
+	var css_248z = ":root {\n  --bs-blue: #0d6efd;\n  --bs-indigo: #6610f2;\n  --bs-purple: #6f42c1;\n  --bs-pink: #d63384;\n  --bs-red: #dc3545;\n  --bs-orange: #fd7e14;\n  --bs-yellow: #ffc107;\n  --bs-green: #198754;\n  --bs-teal: #20c997;\n  --bs-cyan: #0dcaf0;\n  --bs-black: #000;\n  --bs-white: #fff;\n  --bs-gray: #6c757d;\n  --bs-gray-dark: #343a40;\n  --bs-gray-100: #f8f9fa;\n  --bs-gray-200: #e9ecef;\n  --bs-gray-300: #dee2e6;\n  --bs-gray-400: #ced4da;\n  --bs-gray-500: #adb5bd;\n  --bs-gray-600: #6c757d;\n  --bs-gray-700: #495057;\n  --bs-gray-800: #343a40;\n  --bs-gray-900: #212529;\n  --bs-primary: #0d6efd;\n  --bs-secondary: #6c757d;\n  --bs-success: #198754;\n  --bs-info: #0dcaf0;\n  --bs-warning: #ffc107;\n  --bs-danger: #dc3545;\n  --bs-light: #f8f9fa;\n  --bs-dark: #212529;\n  --bs-primary-rgb: 13, 110, 253;\n  --bs-secondary-rgb: 108, 117, 125;\n  --bs-success-rgb: 25, 135, 84;\n  --bs-info-rgb: 13, 202, 240;\n  --bs-warning-rgb: 255, 193, 7;\n  --bs-danger-rgb: 220, 53, 69;\n  --bs-light-rgb: 248, 249, 250;\n  --bs-dark-rgb: 33, 37, 41;\n  --bs-white-rgb: 255, 255, 255;\n  --bs-black-rgb: 0, 0, 0;\n  --bs-body-color-rgb: 33, 37, 41;\n  --bs-body-bg-rgb: 255, 255, 255;\n  --bs-font-sans-serif: system-ui, -apple-system, \"Segoe UI\", Roboto, \"Helvetica Neue\", \"Noto Sans\", \"Liberation Sans\", Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\";\n  --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace;\n  --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));\n  --bs-body-font-family: var(--bs-font-sans-serif);\n  --bs-body-font-size: 1rem;\n  --bs-body-font-weight: 400;\n  --bs-body-line-height: 1.5;\n  --bs-body-color: #212529;\n  --bs-body-bg: #fff;\n  --bs-border-width: 1px;\n  --bs-border-style: solid;\n  --bs-border-color: #dee2e6;\n  --bs-border-color-translucent: rgba(0, 0, 0, 0.175);\n  --bs-border-radius: 0.375rem;\n  --bs-border-radius-sm: 0.25rem;\n  --bs-border-radius-lg: 0.5rem;\n  --bs-border-radius-xl: 1rem;\n  --bs-border-radius-2xl: 2rem;\n  --bs-border-radius-pill: 50rem;\n  --bs-link-color: #0d6efd;\n  --bs-link-hover-color: #0a58ca;\n  --bs-code-color: #d63384;\n  --bs-highlight-bg: #fff3cd;\n}\n\n*,\n*::before,\n*::after {\n  box-sizing: border-box;\n}\n\n@media (prefers-reduced-motion: no-preference) {\n  :root {\n    scroll-behavior: smooth;\n  }\n}\n\nbody {\n  margin: 0;\n  font-family: var(--bs-body-font-family);\n  font-size: var(--bs-body-font-size);\n  font-weight: var(--bs-body-font-weight);\n  line-height: var(--bs-body-line-height);\n  color: var(--bs-body-color);\n  text-align: var(--bs-body-text-align);\n  background-color: var(--bs-body-bg);\n  -webkit-text-size-adjust: 100%;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\n\nhr {\n  margin: 1rem 0;\n  color: inherit;\n  border: 0;\n  border-top: 1px solid;\n  opacity: 0.25;\n}\n\nh6, h5, h4, h3, h2, h1 {\n  margin-top: 0;\n  margin-bottom: 0.5rem;\n  font-weight: 500;\n  line-height: 1.2;\n}\n\nh1 {\n  font-size: calc(1.375rem + 1.5vw);\n}\n@media (min-width: 1200px) {\n  h1 {\n    font-size: 2.5rem;\n  }\n}\n\nh2 {\n  font-size: calc(1.325rem + 0.9vw);\n}\n@media (min-width: 1200px) {\n  h2 {\n    font-size: 2rem;\n  }\n}\n\nh3 {\n  font-size: calc(1.3rem + 0.6vw);\n}\n@media (min-width: 1200px) {\n  h3 {\n    font-size: 1.75rem;\n  }\n}\n\nh4 {\n  font-size: calc(1.275rem + 0.3vw);\n}\n@media (min-width: 1200px) {\n  h4 {\n    font-size: 1.5rem;\n  }\n}\n\nh5 {\n  font-size: 1.25rem;\n}\n\nh6 {\n  font-size: 1rem;\n}\n\np {\n  margin-top: 0;\n  margin-bottom: 1rem;\n}\n\nabbr[title] {\n  text-decoration: underline dotted;\n  cursor: help;\n  text-decoration-skip-ink: none;\n}\n\naddress {\n  margin-bottom: 1rem;\n  font-style: normal;\n  line-height: inherit;\n}\n\nol,\nul {\n  padding-left: 2rem;\n}\n\nol,\nul,\ndl {\n  margin-top: 0;\n  margin-bottom: 1rem;\n}\n\nol ol,\nul ul,\nol ul,\nul ol {\n  margin-bottom: 0;\n}\n\ndt {\n  font-weight: 700;\n}\n\ndd {\n  margin-bottom: 0.5rem;\n  margin-left: 0;\n}\n\nblockquote {\n  margin: 0 0 1rem;\n}\n\nb,\nstrong {\n  font-weight: bolder;\n}\n\nsmall {\n  font-size: 0.875em;\n}\n\nmark {\n  padding: 0.1875em;\n  background-color: var(--bs-highlight-bg);\n}\n\nsub,\nsup {\n  position: relative;\n  font-size: 0.75em;\n  line-height: 0;\n  vertical-align: baseline;\n}\n\nsub {\n  bottom: -0.25em;\n}\n\nsup {\n  top: -0.5em;\n}\n\na {\n  color: var(--bs-link-color);\n  text-decoration: underline;\n}\na:hover {\n  color: var(--bs-link-hover-color);\n}\n\na:not([href]):not([class]), a:not([href]):not([class]):hover {\n  color: inherit;\n  text-decoration: none;\n}\n\npre,\ncode,\nkbd,\nsamp {\n  font-family: var(--bs-font-monospace);\n  font-size: 1em;\n}\n\npre {\n  display: block;\n  margin-top: 0;\n  margin-bottom: 1rem;\n  overflow: auto;\n  font-size: 0.875em;\n}\npre code {\n  font-size: inherit;\n  color: inherit;\n  word-break: normal;\n}\n\ncode {\n  font-size: 0.875em;\n  color: var(--bs-code-color);\n  word-wrap: break-word;\n}\na > code {\n  color: inherit;\n}\n\nkbd {\n  padding: 0.1875rem 0.375rem;\n  font-size: 0.875em;\n  color: var(--bs-body-bg);\n  background-color: var(--bs-body-color);\n  border-radius: 0.25rem;\n}\nkbd kbd {\n  padding: 0;\n  font-size: 1em;\n}\n\nfigure {\n  margin: 0 0 1rem;\n}\n\nimg,\nsvg {\n  vertical-align: middle;\n}\n\ntable {\n  caption-side: bottom;\n  border-collapse: collapse;\n}\n\ncaption {\n  padding-top: 0.5rem;\n  padding-bottom: 0.5rem;\n  color: #6c757d;\n  text-align: left;\n}\n\nth {\n  text-align: inherit;\n  text-align: -webkit-match-parent;\n}\n\nthead,\ntbody,\ntfoot,\ntr,\ntd,\nth {\n  border-color: inherit;\n  border-style: solid;\n  border-width: 0;\n}\n\nlabel {\n  display: inline-block;\n}\n\nbutton {\n  border-radius: 0;\n}\n\nbutton:focus:not(:focus-visible) {\n  outline: 0;\n}\n\ninput,\nbutton,\nselect,\noptgroup,\ntextarea {\n  margin: 0;\n  font-family: inherit;\n  font-size: inherit;\n  line-height: inherit;\n}\n\nbutton,\nselect {\n  text-transform: none;\n}\n\n[role=button] {\n  cursor: pointer;\n}\n\nselect {\n  word-wrap: normal;\n}\nselect:disabled {\n  opacity: 1;\n}\n\n[list]:not([type=date]):not([type=datetime-local]):not([type=month]):not([type=week]):not([type=time])::-webkit-calendar-picker-indicator {\n  display: none !important;\n}\n\nbutton,\n[type=button],\n[type=reset],\n[type=submit] {\n  -webkit-appearance: button;\n}\nbutton:not(:disabled),\n[type=button]:not(:disabled),\n[type=reset]:not(:disabled),\n[type=submit]:not(:disabled) {\n  cursor: pointer;\n}\n\n::-moz-focus-inner {\n  padding: 0;\n  border-style: none;\n}\n\ntextarea {\n  resize: vertical;\n}\n\nfieldset {\n  min-width: 0;\n  padding: 0;\n  margin: 0;\n  border: 0;\n}\n\nlegend {\n  float: left;\n  width: 100%;\n  padding: 0;\n  margin-bottom: 0.5rem;\n  font-size: calc(1.275rem + 0.3vw);\n  line-height: inherit;\n}\n@media (min-width: 1200px) {\n  legend {\n    font-size: 1.5rem;\n  }\n}\nlegend + * {\n  clear: left;\n}\n\n::-webkit-datetime-edit-fields-wrapper,\n::-webkit-datetime-edit-text,\n::-webkit-datetime-edit-minute,\n::-webkit-datetime-edit-hour-field,\n::-webkit-datetime-edit-day-field,\n::-webkit-datetime-edit-month-field,\n::-webkit-datetime-edit-year-field {\n  padding: 0;\n}\n\n::-webkit-inner-spin-button {\n  height: auto;\n}\n\n[type=search] {\n  outline-offset: -2px;\n  -webkit-appearance: textfield;\n}\n\n/* rtl:raw:\n[type=\"tel\"],\n[type=\"url\"],\n[type=\"email\"],\n[type=\"number\"] {\n  direction: ltr;\n}\n*/\n::-webkit-search-decoration {\n  -webkit-appearance: none;\n}\n\n::-webkit-color-swatch-wrapper {\n  padding: 0;\n}\n\n::file-selector-button {\n  font: inherit;\n  -webkit-appearance: button;\n}\n\noutput {\n  display: inline-block;\n}\n\niframe {\n  border: 0;\n}\n\nsummary {\n  display: list-item;\n  cursor: pointer;\n}\n\nprogress {\n  vertical-align: baseline;\n}\n\n[hidden] {\n  display: none !important;\n}\n\n.nav {\n  --bs-nav-link-padding-x: 1rem;\n  --bs-nav-link-padding-y: 0.5rem;\n  --bs-nav-link-font-weight: ;\n  --bs-nav-link-color: var(--bs-link-color);\n  --bs-nav-link-hover-color: var(--bs-link-hover-color);\n  --bs-nav-link-disabled-color: #6c757d;\n  display: flex;\n  flex-wrap: wrap;\n  padding-left: 0;\n  margin-bottom: 0;\n  list-style: none;\n}\n\n.nav-link {\n  display: block;\n  padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);\n  font-size: var(--bs-nav-link-font-size);\n  font-weight: var(--bs-nav-link-font-weight);\n  color: var(--bs-nav-link-color);\n  text-decoration: none;\n  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;\n}\n@media (prefers-reduced-motion: reduce) {\n  .nav-link {\n    transition: none;\n  }\n}\n.nav-link:hover, .nav-link:focus {\n  color: var(--bs-nav-link-hover-color);\n}\n.nav-link.disabled {\n  color: var(--bs-nav-link-disabled-color);\n  pointer-events: none;\n  cursor: default;\n}\n\n.nav-tabs {\n  --bs-nav-tabs-border-width: 1px;\n  --bs-nav-tabs-border-color: #dee2e6;\n  --bs-nav-tabs-border-radius: 0.375rem;\n  --bs-nav-tabs-link-hover-border-color: #e9ecef #e9ecef #dee2e6;\n  --bs-nav-tabs-link-active-color: #495057;\n  --bs-nav-tabs-link-active-bg: #fff;\n  --bs-nav-tabs-link-active-border-color: #dee2e6 #dee2e6 #fff;\n  border-bottom: var(--bs-nav-tabs-border-width) solid var(--bs-nav-tabs-border-color);\n}\n.nav-tabs .nav-link {\n  margin-bottom: calc(-1 * var(--bs-nav-tabs-border-width));\n  background: none;\n  border: var(--bs-nav-tabs-border-width) solid transparent;\n  border-top-left-radius: var(--bs-nav-tabs-border-radius);\n  border-top-right-radius: var(--bs-nav-tabs-border-radius);\n}\n.nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {\n  isolation: isolate;\n  border-color: var(--bs-nav-tabs-link-hover-border-color);\n}\n.nav-tabs .nav-link.disabled, .nav-tabs .nav-link:disabled {\n  color: var(--bs-nav-link-disabled-color);\n  background-color: transparent;\n  border-color: transparent;\n}\n.nav-tabs .nav-link.active,\n.nav-tabs .nav-item.show .nav-link {\n  color: var(--bs-nav-tabs-link-active-color);\n  background-color: var(--bs-nav-tabs-link-active-bg);\n  border-color: var(--bs-nav-tabs-link-active-border-color);\n}\n.nav-tabs .dropdown-menu {\n  margin-top: calc(-1 * var(--bs-nav-tabs-border-width));\n  border-top-left-radius: 0;\n  border-top-right-radius: 0;\n}\n\n.nav-pills {\n  --bs-nav-pills-border-radius: 0.375rem;\n  --bs-nav-pills-link-active-color: #fff;\n  --bs-nav-pills-link-active-bg: #0d6efd;\n}\n.nav-pills .nav-link {\n  background: none;\n  border: 0;\n  border-radius: var(--bs-nav-pills-border-radius);\n}\n.nav-pills .nav-link:disabled {\n  color: var(--bs-nav-link-disabled-color);\n  background-color: transparent;\n  border-color: transparent;\n}\n.nav-pills .nav-link.active,\n.nav-pills .show > .nav-link {\n  color: var(--bs-nav-pills-link-active-color);\n  background-color: var(--bs-nav-pills-link-active-bg);\n}\n\n.nav-fill > .nav-link,\n.nav-fill .nav-item {\n  flex: 1 1 auto;\n  text-align: center;\n}\n\n.nav-justified > .nav-link,\n.nav-justified .nav-item {\n  flex-basis: 0;\n  flex-grow: 1;\n  text-align: center;\n}\n\n.nav-fill .nav-item .nav-link,\n.nav-justified .nav-item .nav-link {\n  width: 100%;\n}\n\n.tab-content > .tab-pane {\n  display: none;\n}\n.tab-content > .active {\n  display: block;\n}\n\n.navbar {\n  --bs-navbar-padding-x: 0;\n  --bs-navbar-padding-y: 0.5rem;\n  --bs-navbar-color: rgba(0, 0, 0, 0.55);\n  --bs-navbar-hover-color: rgba(0, 0, 0, 0.7);\n  --bs-navbar-disabled-color: rgba(0, 0, 0, 0.3);\n  --bs-navbar-active-color: rgba(0, 0, 0, 0.9);\n  --bs-navbar-brand-padding-y: 0.3125rem;\n  --bs-navbar-brand-margin-end: 1rem;\n  --bs-navbar-brand-font-size: 1.25rem;\n  --bs-navbar-brand-color: rgba(0, 0, 0, 0.9);\n  --bs-navbar-brand-hover-color: rgba(0, 0, 0, 0.9);\n  --bs-navbar-nav-link-padding-x: 0.5rem;\n  --bs-navbar-toggler-padding-y: 0.25rem;\n  --bs-navbar-toggler-padding-x: 0.75rem;\n  --bs-navbar-toggler-font-size: 1.25rem;\n  --bs-navbar-toggler-icon-bg: url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e\");\n  --bs-navbar-toggler-border-color: rgba(0, 0, 0, 0.1);\n  --bs-navbar-toggler-border-radius: 0.375rem;\n  --bs-navbar-toggler-focus-width: 0.25rem;\n  --bs-navbar-toggler-transition: box-shadow 0.15s ease-in-out;\n  position: relative;\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  justify-content: space-between;\n  padding: var(--bs-navbar-padding-y) var(--bs-navbar-padding-x);\n}\n.navbar > .container-xxl, .navbar > .container-xl, .navbar > .container-lg, .navbar > .container-md, .navbar > .container-sm, .navbar > .container,\n.navbar > .container-fluid {\n  display: flex;\n  flex-wrap: inherit;\n  align-items: center;\n  justify-content: space-between;\n}\n.navbar-brand {\n  padding-top: var(--bs-navbar-brand-padding-y);\n  padding-bottom: var(--bs-navbar-brand-padding-y);\n  margin-right: var(--bs-navbar-brand-margin-end);\n  font-size: var(--bs-navbar-brand-font-size);\n  color: var(--bs-navbar-brand-color);\n  text-decoration: none;\n  white-space: nowrap;\n}\n.navbar-brand:hover, .navbar-brand:focus {\n  color: var(--bs-navbar-brand-hover-color);\n}\n\n.navbar-nav {\n  --bs-nav-link-padding-x: 0;\n  --bs-nav-link-padding-y: 0.5rem;\n  --bs-nav-link-font-weight: ;\n  --bs-nav-link-color: var(--bs-navbar-color);\n  --bs-nav-link-hover-color: var(--bs-navbar-hover-color);\n  --bs-nav-link-disabled-color: var(--bs-navbar-disabled-color);\n  display: flex;\n  flex-direction: column;\n  padding-left: 0;\n  margin-bottom: 0;\n  list-style: none;\n}\n.navbar-nav .show > .nav-link,\n.navbar-nav .nav-link.active {\n  color: var(--bs-navbar-active-color);\n}\n.navbar-nav .dropdown-menu {\n  position: static;\n}\n\n.navbar-text {\n  padding-top: 0.5rem;\n  padding-bottom: 0.5rem;\n  color: var(--bs-navbar-color);\n}\n.navbar-text a,\n.navbar-text a:hover,\n.navbar-text a:focus {\n  color: var(--bs-navbar-active-color);\n}\n\n.navbar-collapse {\n  flex-basis: 100%;\n  flex-grow: 1;\n  align-items: center;\n}\n\n.navbar-toggler {\n  padding: var(--bs-navbar-toggler-padding-y) var(--bs-navbar-toggler-padding-x);\n  font-size: var(--bs-navbar-toggler-font-size);\n  line-height: 1;\n  color: var(--bs-navbar-color);\n  background-color: transparent;\n  border: var(--bs-border-width) solid var(--bs-navbar-toggler-border-color);\n  border-radius: var(--bs-navbar-toggler-border-radius);\n  transition: var(--bs-navbar-toggler-transition);\n}\n@media (prefers-reduced-motion: reduce) {\n  .navbar-toggler {\n    transition: none;\n  }\n}\n.navbar-toggler:hover {\n  text-decoration: none;\n}\n.navbar-toggler:focus {\n  text-decoration: none;\n  outline: 0;\n  box-shadow: 0 0 0 var(--bs-navbar-toggler-focus-width);\n}\n\n.navbar-toggler-icon {\n  display: inline-block;\n  width: 1.5em;\n  height: 1.5em;\n  vertical-align: middle;\n  background-image: var(--bs-navbar-toggler-icon-bg);\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: 100%;\n}\n\n.navbar-nav-scroll {\n  max-height: var(--bs-scroll-height, 75vh);\n  overflow-y: auto;\n}\n\n@media (min-width: 576px) {\n  .navbar-expand-sm {\n    flex-wrap: nowrap;\n    justify-content: flex-start;\n  }\n  .navbar-expand-sm .navbar-nav {\n    flex-direction: row;\n  }\n  .navbar-expand-sm .navbar-nav .dropdown-menu {\n    position: absolute;\n  }\n  .navbar-expand-sm .navbar-nav .nav-link {\n    padding-right: var(--bs-navbar-nav-link-padding-x);\n    padding-left: var(--bs-navbar-nav-link-padding-x);\n  }\n  .navbar-expand-sm .navbar-nav-scroll {\n    overflow: visible;\n  }\n  .navbar-expand-sm .navbar-collapse {\n    display: flex !important;\n    flex-basis: auto;\n  }\n  .navbar-expand-sm .navbar-toggler {\n    display: none;\n  }\n  .navbar-expand-sm .offcanvas {\n    position: static;\n    z-index: auto;\n    flex-grow: 1;\n    width: auto !important;\n    height: auto !important;\n    visibility: visible !important;\n    background-color: transparent !important;\n    border: 0 !important;\n    transform: none !important;\n    transition: none;\n  }\n  .navbar-expand-sm .offcanvas .offcanvas-header {\n    display: none;\n  }\n  .navbar-expand-sm .offcanvas .offcanvas-body {\n    display: flex;\n    flex-grow: 0;\n    padding: 0;\n    overflow-y: visible;\n  }\n}\n@media (min-width: 768px) {\n  .navbar-expand-md {\n    flex-wrap: nowrap;\n    justify-content: flex-start;\n  }\n  .navbar-expand-md .navbar-nav {\n    flex-direction: row;\n  }\n  .navbar-expand-md .navbar-nav .dropdown-menu {\n    position: absolute;\n  }\n  .navbar-expand-md .navbar-nav .nav-link {\n    padding-right: var(--bs-navbar-nav-link-padding-x);\n    padding-left: var(--bs-navbar-nav-link-padding-x);\n  }\n  .navbar-expand-md .navbar-nav-scroll {\n    overflow: visible;\n  }\n  .navbar-expand-md .navbar-collapse {\n    display: flex !important;\n    flex-basis: auto;\n  }\n  .navbar-expand-md .navbar-toggler {\n    display: none;\n  }\n  .navbar-expand-md .offcanvas {\n    position: static;\n    z-index: auto;\n    flex-grow: 1;\n    width: auto !important;\n    height: auto !important;\n    visibility: visible !important;\n    background-color: transparent !important;\n    border: 0 !important;\n    transform: none !important;\n    transition: none;\n  }\n  .navbar-expand-md .offcanvas .offcanvas-header {\n    display: none;\n  }\n  .navbar-expand-md .offcanvas .offcanvas-body {\n    display: flex;\n    flex-grow: 0;\n    padding: 0;\n    overflow-y: visible;\n  }\n}\n@media (min-width: 992px) {\n  .navbar-expand-lg {\n    flex-wrap: nowrap;\n    justify-content: flex-start;\n  }\n  .navbar-expand-lg .navbar-nav {\n    flex-direction: row;\n  }\n  .navbar-expand-lg .navbar-nav .dropdown-menu {\n    position: absolute;\n  }\n  .navbar-expand-lg .navbar-nav .nav-link {\n    padding-right: var(--bs-navbar-nav-link-padding-x);\n    padding-left: var(--bs-navbar-nav-link-padding-x);\n  }\n  .navbar-expand-lg .navbar-nav-scroll {\n    overflow: visible;\n  }\n  .navbar-expand-lg .navbar-collapse {\n    display: flex !important;\n    flex-basis: auto;\n  }\n  .navbar-expand-lg .navbar-toggler {\n    display: none;\n  }\n  .navbar-expand-lg .offcanvas {\n    position: static;\n    z-index: auto;\n    flex-grow: 1;\n    width: auto !important;\n    height: auto !important;\n    visibility: visible !important;\n    background-color: transparent !important;\n    border: 0 !important;\n    transform: none !important;\n    transition: none;\n  }\n  .navbar-expand-lg .offcanvas .offcanvas-header {\n    display: none;\n  }\n  .navbar-expand-lg .offcanvas .offcanvas-body {\n    display: flex;\n    flex-grow: 0;\n    padding: 0;\n    overflow-y: visible;\n  }\n}\n@media (min-width: 1200px) {\n  .navbar-expand-xl {\n    flex-wrap: nowrap;\n    justify-content: flex-start;\n  }\n  .navbar-expand-xl .navbar-nav {\n    flex-direction: row;\n  }\n  .navbar-expand-xl .navbar-nav .dropdown-menu {\n    position: absolute;\n  }\n  .navbar-expand-xl .navbar-nav .nav-link {\n    padding-right: var(--bs-navbar-nav-link-padding-x);\n    padding-left: var(--bs-navbar-nav-link-padding-x);\n  }\n  .navbar-expand-xl .navbar-nav-scroll {\n    overflow: visible;\n  }\n  .navbar-expand-xl .navbar-collapse {\n    display: flex !important;\n    flex-basis: auto;\n  }\n  .navbar-expand-xl .navbar-toggler {\n    display: none;\n  }\n  .navbar-expand-xl .offcanvas {\n    position: static;\n    z-index: auto;\n    flex-grow: 1;\n    width: auto !important;\n    height: auto !important;\n    visibility: visible !important;\n    background-color: transparent !important;\n    border: 0 !important;\n    transform: none !important;\n    transition: none;\n  }\n  .navbar-expand-xl .offcanvas .offcanvas-header {\n    display: none;\n  }\n  .navbar-expand-xl .offcanvas .offcanvas-body {\n    display: flex;\n    flex-grow: 0;\n    padding: 0;\n    overflow-y: visible;\n  }\n}\n@media (min-width: 1400px) {\n  .navbar-expand-xxl {\n    flex-wrap: nowrap;\n    justify-content: flex-start;\n  }\n  .navbar-expand-xxl .navbar-nav {\n    flex-direction: row;\n  }\n  .navbar-expand-xxl .navbar-nav .dropdown-menu {\n    position: absolute;\n  }\n  .navbar-expand-xxl .navbar-nav .nav-link {\n    padding-right: var(--bs-navbar-nav-link-padding-x);\n    padding-left: var(--bs-navbar-nav-link-padding-x);\n  }\n  .navbar-expand-xxl .navbar-nav-scroll {\n    overflow: visible;\n  }\n  .navbar-expand-xxl .navbar-collapse {\n    display: flex !important;\n    flex-basis: auto;\n  }\n  .navbar-expand-xxl .navbar-toggler {\n    display: none;\n  }\n  .navbar-expand-xxl .offcanvas {\n    position: static;\n    z-index: auto;\n    flex-grow: 1;\n    width: auto !important;\n    height: auto !important;\n    visibility: visible !important;\n    background-color: transparent !important;\n    border: 0 !important;\n    transform: none !important;\n    transition: none;\n  }\n  .navbar-expand-xxl .offcanvas .offcanvas-header {\n    display: none;\n  }\n  .navbar-expand-xxl .offcanvas .offcanvas-body {\n    display: flex;\n    flex-grow: 0;\n    padding: 0;\n    overflow-y: visible;\n  }\n}\n.navbar-expand {\n  flex-wrap: nowrap;\n  justify-content: flex-start;\n}\n.navbar-expand .navbar-nav {\n  flex-direction: row;\n}\n.navbar-expand .navbar-nav .dropdown-menu {\n  position: absolute;\n}\n.navbar-expand .navbar-nav .nav-link {\n  padding-right: var(--bs-navbar-nav-link-padding-x);\n  padding-left: var(--bs-navbar-nav-link-padding-x);\n}\n.navbar-expand .navbar-nav-scroll {\n  overflow: visible;\n}\n.navbar-expand .navbar-collapse {\n  display: flex !important;\n  flex-basis: auto;\n}\n.navbar-expand .navbar-toggler {\n  display: none;\n}\n.navbar-expand .offcanvas {\n  position: static;\n  z-index: auto;\n  flex-grow: 1;\n  width: auto !important;\n  height: auto !important;\n  visibility: visible !important;\n  background-color: transparent !important;\n  border: 0 !important;\n  transform: none !important;\n  transition: none;\n}\n.navbar-expand .offcanvas .offcanvas-header {\n  display: none;\n}\n.navbar-expand .offcanvas .offcanvas-body {\n  display: flex;\n  flex-grow: 0;\n  padding: 0;\n  overflow-y: visible;\n}\n\n.navbar-dark {\n  --bs-navbar-color: rgba(255, 255, 255, 0.55);\n  --bs-navbar-hover-color: rgba(255, 255, 255, 0.75);\n  --bs-navbar-disabled-color: rgba(255, 255, 255, 0.25);\n  --bs-navbar-active-color: #fff;\n  --bs-navbar-brand-color: #fff;\n  --bs-navbar-brand-hover-color: #fff;\n  --bs-navbar-toggler-border-color: rgba(255, 255, 255, 0.1);\n  --bs-navbar-toggler-icon-bg: url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e\");\n}\n\n.row {\n  --bs-gutter-x: 1.5rem;\n  --bs-gutter-y: 0;\n  display: flex;\n  flex-wrap: wrap;\n  margin-top: calc(-1 * var(--bs-gutter-y));\n  margin-right: calc(-0.5 * var(--bs-gutter-x));\n  margin-left: calc(-0.5 * var(--bs-gutter-x));\n}\n.row > * {\n  flex-shrink: 0;\n  width: 100%;\n  max-width: 100%;\n  padding-right: calc(var(--bs-gutter-x) * 0.5);\n  padding-left: calc(var(--bs-gutter-x) * 0.5);\n  margin-top: var(--bs-gutter-y);\n}\n\n.col {\n  flex: 1 0 0%;\n}\n\n.row-cols-auto > * {\n  flex: 0 0 auto;\n  width: auto;\n}\n\n.row-cols-1 > * {\n  flex: 0 0 auto;\n  width: 100%;\n}\n\n.row-cols-2 > * {\n  flex: 0 0 auto;\n  width: 50%;\n}\n\n.row-cols-3 > * {\n  flex: 0 0 auto;\n  width: 33.3333333333%;\n}\n\n.row-cols-4 > * {\n  flex: 0 0 auto;\n  width: 25%;\n}\n\n.row-cols-5 > * {\n  flex: 0 0 auto;\n  width: 20%;\n}\n\n.row-cols-6 > * {\n  flex: 0 0 auto;\n  width: 16.6666666667%;\n}\n\n.col-auto {\n  flex: 0 0 auto;\n  width: auto;\n}\n\n.col-1 {\n  flex: 0 0 auto;\n  width: 8.33333333%;\n}\n\n.col-2 {\n  flex: 0 0 auto;\n  width: 16.66666667%;\n}\n\n.col-3 {\n  flex: 0 0 auto;\n  width: 25%;\n}\n\n.col-4 {\n  flex: 0 0 auto;\n  width: 33.33333333%;\n}\n\n.col-5 {\n  flex: 0 0 auto;\n  width: 41.66666667%;\n}\n\n.col-6 {\n  flex: 0 0 auto;\n  width: 50%;\n}\n\n.col-7 {\n  flex: 0 0 auto;\n  width: 58.33333333%;\n}\n\n.col-8 {\n  flex: 0 0 auto;\n  width: 66.66666667%;\n}\n\n.col-9 {\n  flex: 0 0 auto;\n  width: 75%;\n}\n\n.col-10 {\n  flex: 0 0 auto;\n  width: 83.33333333%;\n}\n\n.col-11 {\n  flex: 0 0 auto;\n  width: 91.66666667%;\n}\n\n.col-12 {\n  flex: 0 0 auto;\n  width: 100%;\n}\n\n.offset-1 {\n  margin-left: 8.33333333%;\n}\n\n.offset-2 {\n  margin-left: 16.66666667%;\n}\n\n.offset-3 {\n  margin-left: 25%;\n}\n\n.offset-4 {\n  margin-left: 33.33333333%;\n}\n\n.offset-5 {\n  margin-left: 41.66666667%;\n}\n\n.offset-6 {\n  margin-left: 50%;\n}\n\n.offset-7 {\n  margin-left: 58.33333333%;\n}\n\n.offset-8 {\n  margin-left: 66.66666667%;\n}\n\n.offset-9 {\n  margin-left: 75%;\n}\n\n.offset-10 {\n  margin-left: 83.33333333%;\n}\n\n.offset-11 {\n  margin-left: 91.66666667%;\n}\n\n.g-0,\n.gx-0 {\n  --bs-gutter-x: 0;\n}\n\n.g-0,\n.gy-0 {\n  --bs-gutter-y: 0;\n}\n\n.g-1,\n.gx-1 {\n  --bs-gutter-x: 0.25rem;\n}\n\n.g-1,\n.gy-1 {\n  --bs-gutter-y: 0.25rem;\n}\n\n.g-2,\n.gx-2 {\n  --bs-gutter-x: 0.5rem;\n}\n\n.g-2,\n.gy-2 {\n  --bs-gutter-y: 0.5rem;\n}\n\n.g-3,\n.gx-3 {\n  --bs-gutter-x: 1rem;\n}\n\n.g-3,\n.gy-3 {\n  --bs-gutter-y: 1rem;\n}\n\n.g-4,\n.gx-4 {\n  --bs-gutter-x: 1.5rem;\n}\n\n.g-4,\n.gy-4 {\n  --bs-gutter-y: 1.5rem;\n}\n\n.g-5,\n.gx-5 {\n  --bs-gutter-x: 3rem;\n}\n\n.g-5,\n.gy-5 {\n  --bs-gutter-y: 3rem;\n}\n\n@media (min-width: 576px) {\n  .col-sm {\n    flex: 1 0 0%;\n  }\n  .row-cols-sm-auto > * {\n    flex: 0 0 auto;\n    width: auto;\n  }\n  .row-cols-sm-1 > * {\n    flex: 0 0 auto;\n    width: 100%;\n  }\n  .row-cols-sm-2 > * {\n    flex: 0 0 auto;\n    width: 50%;\n  }\n  .row-cols-sm-3 > * {\n    flex: 0 0 auto;\n    width: 33.3333333333%;\n  }\n  .row-cols-sm-4 > * {\n    flex: 0 0 auto;\n    width: 25%;\n  }\n  .row-cols-sm-5 > * {\n    flex: 0 0 auto;\n    width: 20%;\n  }\n  .row-cols-sm-6 > * {\n    flex: 0 0 auto;\n    width: 16.6666666667%;\n  }\n  .col-sm-auto {\n    flex: 0 0 auto;\n    width: auto;\n  }\n  .col-sm-1 {\n    flex: 0 0 auto;\n    width: 8.33333333%;\n  }\n  .col-sm-2 {\n    flex: 0 0 auto;\n    width: 16.66666667%;\n  }\n  .col-sm-3 {\n    flex: 0 0 auto;\n    width: 25%;\n  }\n  .col-sm-4 {\n    flex: 0 0 auto;\n    width: 33.33333333%;\n  }\n  .col-sm-5 {\n    flex: 0 0 auto;\n    width: 41.66666667%;\n  }\n  .col-sm-6 {\n    flex: 0 0 auto;\n    width: 50%;\n  }\n  .col-sm-7 {\n    flex: 0 0 auto;\n    width: 58.33333333%;\n  }\n  .col-sm-8 {\n    flex: 0 0 auto;\n    width: 66.66666667%;\n  }\n  .col-sm-9 {\n    flex: 0 0 auto;\n    width: 75%;\n  }\n  .col-sm-10 {\n    flex: 0 0 auto;\n    width: 83.33333333%;\n  }\n  .col-sm-11 {\n    flex: 0 0 auto;\n    width: 91.66666667%;\n  }\n  .col-sm-12 {\n    flex: 0 0 auto;\n    width: 100%;\n  }\n  .offset-sm-0 {\n    margin-left: 0;\n  }\n  .offset-sm-1 {\n    margin-left: 8.33333333%;\n  }\n  .offset-sm-2 {\n    margin-left: 16.66666667%;\n  }\n  .offset-sm-3 {\n    margin-left: 25%;\n  }\n  .offset-sm-4 {\n    margin-left: 33.33333333%;\n  }\n  .offset-sm-5 {\n    margin-left: 41.66666667%;\n  }\n  .offset-sm-6 {\n    margin-left: 50%;\n  }\n  .offset-sm-7 {\n    margin-left: 58.33333333%;\n  }\n  .offset-sm-8 {\n    margin-left: 66.66666667%;\n  }\n  .offset-sm-9 {\n    margin-left: 75%;\n  }\n  .offset-sm-10 {\n    margin-left: 83.33333333%;\n  }\n  .offset-sm-11 {\n    margin-left: 91.66666667%;\n  }\n  .g-sm-0,\n  .gx-sm-0 {\n    --bs-gutter-x: 0;\n  }\n  .g-sm-0,\n  .gy-sm-0 {\n    --bs-gutter-y: 0;\n  }\n  .g-sm-1,\n  .gx-sm-1 {\n    --bs-gutter-x: 0.25rem;\n  }\n  .g-sm-1,\n  .gy-sm-1 {\n    --bs-gutter-y: 0.25rem;\n  }\n  .g-sm-2,\n  .gx-sm-2 {\n    --bs-gutter-x: 0.5rem;\n  }\n  .g-sm-2,\n  .gy-sm-2 {\n    --bs-gutter-y: 0.5rem;\n  }\n  .g-sm-3,\n  .gx-sm-3 {\n    --bs-gutter-x: 1rem;\n  }\n  .g-sm-3,\n  .gy-sm-3 {\n    --bs-gutter-y: 1rem;\n  }\n  .g-sm-4,\n  .gx-sm-4 {\n    --bs-gutter-x: 1.5rem;\n  }\n  .g-sm-4,\n  .gy-sm-4 {\n    --bs-gutter-y: 1.5rem;\n  }\n  .g-sm-5,\n  .gx-sm-5 {\n    --bs-gutter-x: 3rem;\n  }\n  .g-sm-5,\n  .gy-sm-5 {\n    --bs-gutter-y: 3rem;\n  }\n}\n@media (min-width: 768px) {\n  .col-md {\n    flex: 1 0 0%;\n  }\n  .row-cols-md-auto > * {\n    flex: 0 0 auto;\n    width: auto;\n  }\n  .row-cols-md-1 > * {\n    flex: 0 0 auto;\n    width: 100%;\n  }\n  .row-cols-md-2 > * {\n    flex: 0 0 auto;\n    width: 50%;\n  }\n  .row-cols-md-3 > * {\n    flex: 0 0 auto;\n    width: 33.3333333333%;\n  }\n  .row-cols-md-4 > * {\n    flex: 0 0 auto;\n    width: 25%;\n  }\n  .row-cols-md-5 > * {\n    flex: 0 0 auto;\n    width: 20%;\n  }\n  .row-cols-md-6 > * {\n    flex: 0 0 auto;\n    width: 16.6666666667%;\n  }\n  .col-md-auto {\n    flex: 0 0 auto;\n    width: auto;\n  }\n  .col-md-1 {\n    flex: 0 0 auto;\n    width: 8.33333333%;\n  }\n  .col-md-2 {\n    flex: 0 0 auto;\n    width: 16.66666667%;\n  }\n  .col-md-3 {\n    flex: 0 0 auto;\n    width: 25%;\n  }\n  .col-md-4 {\n    flex: 0 0 auto;\n    width: 33.33333333%;\n  }\n  .col-md-5 {\n    flex: 0 0 auto;\n    width: 41.66666667%;\n  }\n  .col-md-6 {\n    flex: 0 0 auto;\n    width: 50%;\n  }\n  .col-md-7 {\n    flex: 0 0 auto;\n    width: 58.33333333%;\n  }\n  .col-md-8 {\n    flex: 0 0 auto;\n    width: 66.66666667%;\n  }\n  .col-md-9 {\n    flex: 0 0 auto;\n    width: 75%;\n  }\n  .col-md-10 {\n    flex: 0 0 auto;\n    width: 83.33333333%;\n  }\n  .col-md-11 {\n    flex: 0 0 auto;\n    width: 91.66666667%;\n  }\n  .col-md-12 {\n    flex: 0 0 auto;\n    width: 100%;\n  }\n  .offset-md-0 {\n    margin-left: 0;\n  }\n  .offset-md-1 {\n    margin-left: 8.33333333%;\n  }\n  .offset-md-2 {\n    margin-left: 16.66666667%;\n  }\n  .offset-md-3 {\n    margin-left: 25%;\n  }\n  .offset-md-4 {\n    margin-left: 33.33333333%;\n  }\n  .offset-md-5 {\n    margin-left: 41.66666667%;\n  }\n  .offset-md-6 {\n    margin-left: 50%;\n  }\n  .offset-md-7 {\n    margin-left: 58.33333333%;\n  }\n  .offset-md-8 {\n    margin-left: 66.66666667%;\n  }\n  .offset-md-9 {\n    margin-left: 75%;\n  }\n  .offset-md-10 {\n    margin-left: 83.33333333%;\n  }\n  .offset-md-11 {\n    margin-left: 91.66666667%;\n  }\n  .g-md-0,\n  .gx-md-0 {\n    --bs-gutter-x: 0;\n  }\n  .g-md-0,\n  .gy-md-0 {\n    --bs-gutter-y: 0;\n  }\n  .g-md-1,\n  .gx-md-1 {\n    --bs-gutter-x: 0.25rem;\n  }\n  .g-md-1,\n  .gy-md-1 {\n    --bs-gutter-y: 0.25rem;\n  }\n  .g-md-2,\n  .gx-md-2 {\n    --bs-gutter-x: 0.5rem;\n  }\n  .g-md-2,\n  .gy-md-2 {\n    --bs-gutter-y: 0.5rem;\n  }\n  .g-md-3,\n  .gx-md-3 {\n    --bs-gutter-x: 1rem;\n  }\n  .g-md-3,\n  .gy-md-3 {\n    --bs-gutter-y: 1rem;\n  }\n  .g-md-4,\n  .gx-md-4 {\n    --bs-gutter-x: 1.5rem;\n  }\n  .g-md-4,\n  .gy-md-4 {\n    --bs-gutter-y: 1.5rem;\n  }\n  .g-md-5,\n  .gx-md-5 {\n    --bs-gutter-x: 3rem;\n  }\n  .g-md-5,\n  .gy-md-5 {\n    --bs-gutter-y: 3rem;\n  }\n}\n@media (min-width: 992px) {\n  .col-lg {\n    flex: 1 0 0%;\n  }\n  .row-cols-lg-auto > * {\n    flex: 0 0 auto;\n    width: auto;\n  }\n  .row-cols-lg-1 > * {\n    flex: 0 0 auto;\n    width: 100%;\n  }\n  .row-cols-lg-2 > * {\n    flex: 0 0 auto;\n    width: 50%;\n  }\n  .row-cols-lg-3 > * {\n    flex: 0 0 auto;\n    width: 33.3333333333%;\n  }\n  .row-cols-lg-4 > * {\n    flex: 0 0 auto;\n    width: 25%;\n  }\n  .row-cols-lg-5 > * {\n    flex: 0 0 auto;\n    width: 20%;\n  }\n  .row-cols-lg-6 > * {\n    flex: 0 0 auto;\n    width: 16.6666666667%;\n  }\n  .col-lg-auto {\n    flex: 0 0 auto;\n    width: auto;\n  }\n  .col-lg-1 {\n    flex: 0 0 auto;\n    width: 8.33333333%;\n  }\n  .col-lg-2 {\n    flex: 0 0 auto;\n    width: 16.66666667%;\n  }\n  .col-lg-3 {\n    flex: 0 0 auto;\n    width: 25%;\n  }\n  .col-lg-4 {\n    flex: 0 0 auto;\n    width: 33.33333333%;\n  }\n  .col-lg-5 {\n    flex: 0 0 auto;\n    width: 41.66666667%;\n  }\n  .col-lg-6 {\n    flex: 0 0 auto;\n    width: 50%;\n  }\n  .col-lg-7 {\n    flex: 0 0 auto;\n    width: 58.33333333%;\n  }\n  .col-lg-8 {\n    flex: 0 0 auto;\n    width: 66.66666667%;\n  }\n  .col-lg-9 {\n    flex: 0 0 auto;\n    width: 75%;\n  }\n  .col-lg-10 {\n    flex: 0 0 auto;\n    width: 83.33333333%;\n  }\n  .col-lg-11 {\n    flex: 0 0 auto;\n    width: 91.66666667%;\n  }\n  .col-lg-12 {\n    flex: 0 0 auto;\n    width: 100%;\n  }\n  .offset-lg-0 {\n    margin-left: 0;\n  }\n  .offset-lg-1 {\n    margin-left: 8.33333333%;\n  }\n  .offset-lg-2 {\n    margin-left: 16.66666667%;\n  }\n  .offset-lg-3 {\n    margin-left: 25%;\n  }\n  .offset-lg-4 {\n    margin-left: 33.33333333%;\n  }\n  .offset-lg-5 {\n    margin-left: 41.66666667%;\n  }\n  .offset-lg-6 {\n    margin-left: 50%;\n  }\n  .offset-lg-7 {\n    margin-left: 58.33333333%;\n  }\n  .offset-lg-8 {\n    margin-left: 66.66666667%;\n  }\n  .offset-lg-9 {\n    margin-left: 75%;\n  }\n  .offset-lg-10 {\n    margin-left: 83.33333333%;\n  }\n  .offset-lg-11 {\n    margin-left: 91.66666667%;\n  }\n  .g-lg-0,\n  .gx-lg-0 {\n    --bs-gutter-x: 0;\n  }\n  .g-lg-0,\n  .gy-lg-0 {\n    --bs-gutter-y: 0;\n  }\n  .g-lg-1,\n  .gx-lg-1 {\n    --bs-gutter-x: 0.25rem;\n  }\n  .g-lg-1,\n  .gy-lg-1 {\n    --bs-gutter-y: 0.25rem;\n  }\n  .g-lg-2,\n  .gx-lg-2 {\n    --bs-gutter-x: 0.5rem;\n  }\n  .g-lg-2,\n  .gy-lg-2 {\n    --bs-gutter-y: 0.5rem;\n  }\n  .g-lg-3,\n  .gx-lg-3 {\n    --bs-gutter-x: 1rem;\n  }\n  .g-lg-3,\n  .gy-lg-3 {\n    --bs-gutter-y: 1rem;\n  }\n  .g-lg-4,\n  .gx-lg-4 {\n    --bs-gutter-x: 1.5rem;\n  }\n  .g-lg-4,\n  .gy-lg-4 {\n    --bs-gutter-y: 1.5rem;\n  }\n  .g-lg-5,\n  .gx-lg-5 {\n    --bs-gutter-x: 3rem;\n  }\n  .g-lg-5,\n  .gy-lg-5 {\n    --bs-gutter-y: 3rem;\n  }\n}\n@media (min-width: 1200px) {\n  .col-xl {\n    flex: 1 0 0%;\n  }\n  .row-cols-xl-auto > * {\n    flex: 0 0 auto;\n    width: auto;\n  }\n  .row-cols-xl-1 > * {\n    flex: 0 0 auto;\n    width: 100%;\n  }\n  .row-cols-xl-2 > * {\n    flex: 0 0 auto;\n    width: 50%;\n  }\n  .row-cols-xl-3 > * {\n    flex: 0 0 auto;\n    width: 33.3333333333%;\n  }\n  .row-cols-xl-4 > * {\n    flex: 0 0 auto;\n    width: 25%;\n  }\n  .row-cols-xl-5 > * {\n    flex: 0 0 auto;\n    width: 20%;\n  }\n  .row-cols-xl-6 > * {\n    flex: 0 0 auto;\n    width: 16.6666666667%;\n  }\n  .col-xl-auto {\n    flex: 0 0 auto;\n    width: auto;\n  }\n  .col-xl-1 {\n    flex: 0 0 auto;\n    width: 8.33333333%;\n  }\n  .col-xl-2 {\n    flex: 0 0 auto;\n    width: 16.66666667%;\n  }\n  .col-xl-3 {\n    flex: 0 0 auto;\n    width: 25%;\n  }\n  .col-xl-4 {\n    flex: 0 0 auto;\n    width: 33.33333333%;\n  }\n  .col-xl-5 {\n    flex: 0 0 auto;\n    width: 41.66666667%;\n  }\n  .col-xl-6 {\n    flex: 0 0 auto;\n    width: 50%;\n  }\n  .col-xl-7 {\n    flex: 0 0 auto;\n    width: 58.33333333%;\n  }\n  .col-xl-8 {\n    flex: 0 0 auto;\n    width: 66.66666667%;\n  }\n  .col-xl-9 {\n    flex: 0 0 auto;\n    width: 75%;\n  }\n  .col-xl-10 {\n    flex: 0 0 auto;\n    width: 83.33333333%;\n  }\n  .col-xl-11 {\n    flex: 0 0 auto;\n    width: 91.66666667%;\n  }\n  .col-xl-12 {\n    flex: 0 0 auto;\n    width: 100%;\n  }\n  .offset-xl-0 {\n    margin-left: 0;\n  }\n  .offset-xl-1 {\n    margin-left: 8.33333333%;\n  }\n  .offset-xl-2 {\n    margin-left: 16.66666667%;\n  }\n  .offset-xl-3 {\n    margin-left: 25%;\n  }\n  .offset-xl-4 {\n    margin-left: 33.33333333%;\n  }\n  .offset-xl-5 {\n    margin-left: 41.66666667%;\n  }\n  .offset-xl-6 {\n    margin-left: 50%;\n  }\n  .offset-xl-7 {\n    margin-left: 58.33333333%;\n  }\n  .offset-xl-8 {\n    margin-left: 66.66666667%;\n  }\n  .offset-xl-9 {\n    margin-left: 75%;\n  }\n  .offset-xl-10 {\n    margin-left: 83.33333333%;\n  }\n  .offset-xl-11 {\n    margin-left: 91.66666667%;\n  }\n  .g-xl-0,\n  .gx-xl-0 {\n    --bs-gutter-x: 0;\n  }\n  .g-xl-0,\n  .gy-xl-0 {\n    --bs-gutter-y: 0;\n  }\n  .g-xl-1,\n  .gx-xl-1 {\n    --bs-gutter-x: 0.25rem;\n  }\n  .g-xl-1,\n  .gy-xl-1 {\n    --bs-gutter-y: 0.25rem;\n  }\n  .g-xl-2,\n  .gx-xl-2 {\n    --bs-gutter-x: 0.5rem;\n  }\n  .g-xl-2,\n  .gy-xl-2 {\n    --bs-gutter-y: 0.5rem;\n  }\n  .g-xl-3,\n  .gx-xl-3 {\n    --bs-gutter-x: 1rem;\n  }\n  .g-xl-3,\n  .gy-xl-3 {\n    --bs-gutter-y: 1rem;\n  }\n  .g-xl-4,\n  .gx-xl-4 {\n    --bs-gutter-x: 1.5rem;\n  }\n  .g-xl-4,\n  .gy-xl-4 {\n    --bs-gutter-y: 1.5rem;\n  }\n  .g-xl-5,\n  .gx-xl-5 {\n    --bs-gutter-x: 3rem;\n  }\n  .g-xl-5,\n  .gy-xl-5 {\n    --bs-gutter-y: 3rem;\n  }\n}\n@media (min-width: 1400px) {\n  .col-xxl {\n    flex: 1 0 0%;\n  }\n  .row-cols-xxl-auto > * {\n    flex: 0 0 auto;\n    width: auto;\n  }\n  .row-cols-xxl-1 > * {\n    flex: 0 0 auto;\n    width: 100%;\n  }\n  .row-cols-xxl-2 > * {\n    flex: 0 0 auto;\n    width: 50%;\n  }\n  .row-cols-xxl-3 > * {\n    flex: 0 0 auto;\n    width: 33.3333333333%;\n  }\n  .row-cols-xxl-4 > * {\n    flex: 0 0 auto;\n    width: 25%;\n  }\n  .row-cols-xxl-5 > * {\n    flex: 0 0 auto;\n    width: 20%;\n  }\n  .row-cols-xxl-6 > * {\n    flex: 0 0 auto;\n    width: 16.6666666667%;\n  }\n  .col-xxl-auto {\n    flex: 0 0 auto;\n    width: auto;\n  }\n  .col-xxl-1 {\n    flex: 0 0 auto;\n    width: 8.33333333%;\n  }\n  .col-xxl-2 {\n    flex: 0 0 auto;\n    width: 16.66666667%;\n  }\n  .col-xxl-3 {\n    flex: 0 0 auto;\n    width: 25%;\n  }\n  .col-xxl-4 {\n    flex: 0 0 auto;\n    width: 33.33333333%;\n  }\n  .col-xxl-5 {\n    flex: 0 0 auto;\n    width: 41.66666667%;\n  }\n  .col-xxl-6 {\n    flex: 0 0 auto;\n    width: 50%;\n  }\n  .col-xxl-7 {\n    flex: 0 0 auto;\n    width: 58.33333333%;\n  }\n  .col-xxl-8 {\n    flex: 0 0 auto;\n    width: 66.66666667%;\n  }\n  .col-xxl-9 {\n    flex: 0 0 auto;\n    width: 75%;\n  }\n  .col-xxl-10 {\n    flex: 0 0 auto;\n    width: 83.33333333%;\n  }\n  .col-xxl-11 {\n    flex: 0 0 auto;\n    width: 91.66666667%;\n  }\n  .col-xxl-12 {\n    flex: 0 0 auto;\n    width: 100%;\n  }\n  .offset-xxl-0 {\n    margin-left: 0;\n  }\n  .offset-xxl-1 {\n    margin-left: 8.33333333%;\n  }\n  .offset-xxl-2 {\n    margin-left: 16.66666667%;\n  }\n  .offset-xxl-3 {\n    margin-left: 25%;\n  }\n  .offset-xxl-4 {\n    margin-left: 33.33333333%;\n  }\n  .offset-xxl-5 {\n    margin-left: 41.66666667%;\n  }\n  .offset-xxl-6 {\n    margin-left: 50%;\n  }\n  .offset-xxl-7 {\n    margin-left: 58.33333333%;\n  }\n  .offset-xxl-8 {\n    margin-left: 66.66666667%;\n  }\n  .offset-xxl-9 {\n    margin-left: 75%;\n  }\n  .offset-xxl-10 {\n    margin-left: 83.33333333%;\n  }\n  .offset-xxl-11 {\n    margin-left: 91.66666667%;\n  }\n  .g-xxl-0,\n  .gx-xxl-0 {\n    --bs-gutter-x: 0;\n  }\n  .g-xxl-0,\n  .gy-xxl-0 {\n    --bs-gutter-y: 0;\n  }\n  .g-xxl-1,\n  .gx-xxl-1 {\n    --bs-gutter-x: 0.25rem;\n  }\n  .g-xxl-1,\n  .gy-xxl-1 {\n    --bs-gutter-y: 0.25rem;\n  }\n  .g-xxl-2,\n  .gx-xxl-2 {\n    --bs-gutter-x: 0.5rem;\n  }\n  .g-xxl-2,\n  .gy-xxl-2 {\n    --bs-gutter-y: 0.5rem;\n  }\n  .g-xxl-3,\n  .gx-xxl-3 {\n    --bs-gutter-x: 1rem;\n  }\n  .g-xxl-3,\n  .gy-xxl-3 {\n    --bs-gutter-y: 1rem;\n  }\n  .g-xxl-4,\n  .gx-xxl-4 {\n    --bs-gutter-x: 1.5rem;\n  }\n  .g-xxl-4,\n  .gy-xxl-4 {\n    --bs-gutter-y: 1.5rem;\n  }\n  .g-xxl-5,\n  .gx-xxl-5 {\n    --bs-gutter-x: 3rem;\n  }\n  .g-xxl-5,\n  .gy-xxl-5 {\n    --bs-gutter-y: 3rem;\n  }\n}\n.card {\n  --bs-card-spacer-y: 1rem;\n  --bs-card-spacer-x: 1rem;\n  --bs-card-title-spacer-y: 0.5rem;\n  --bs-card-border-width: 1px;\n  --bs-card-border-color: var(--bs-border-color-translucent);\n  --bs-card-border-radius: 0.375rem;\n  --bs-card-box-shadow: ;\n  --bs-card-inner-border-radius: calc(0.375rem - 1px);\n  --bs-card-cap-padding-y: 0.5rem;\n  --bs-card-cap-padding-x: 1rem;\n  --bs-card-cap-bg: rgba(0, 0, 0, 0.03);\n  --bs-card-cap-color: ;\n  --bs-card-height: ;\n  --bs-card-color: ;\n  --bs-card-bg: var(--secondary-background-color);\n  --bs-card-img-overlay-padding: 1rem;\n  --bs-card-group-margin: 0.75rem;\n  position: relative;\n  display: flex;\n  flex-direction: column;\n  min-width: 0;\n  height: var(--bs-card-height);\n  word-wrap: break-word;\n  background-color: var(--bs-card-bg);\n  background-clip: border-box;\n  border: var(--bs-card-border-width) solid var(--bs-card-border-color);\n  border-radius: var(--bs-card-border-radius);\n}\n.card > hr {\n  margin-right: 0;\n  margin-left: 0;\n}\n.card > .list-group {\n  border-top: inherit;\n  border-bottom: inherit;\n}\n.card > .list-group:first-child {\n  border-top-width: 0;\n  border-top-left-radius: var(--bs-card-inner-border-radius);\n  border-top-right-radius: var(--bs-card-inner-border-radius);\n}\n.card > .list-group:last-child {\n  border-bottom-width: 0;\n  border-bottom-right-radius: var(--bs-card-inner-border-radius);\n  border-bottom-left-radius: var(--bs-card-inner-border-radius);\n}\n.card > .card-header + .list-group,\n.card > .list-group + .card-footer {\n  border-top: 0;\n}\n\n.card-body {\n  flex: 1 1 auto;\n  padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);\n  color: var(--bs-card-color);\n}\n\n.card-title {\n  margin-bottom: var(--bs-card-title-spacer-y);\n}\n\n.card-subtitle {\n  margin-top: calc(-0.5 * var(--bs-card-title-spacer-y));\n  margin-bottom: 0;\n}\n\n.card-text:last-child {\n  margin-bottom: 0;\n}\n\n.card-link + .card-link {\n  margin-left: var(--bs-card-spacer-x);\n}\n\n.card-header {\n  padding: var(--bs-card-cap-padding-y) var(--bs-card-cap-padding-x);\n  margin-bottom: 0;\n  color: var(--bs-card-cap-color);\n  background-color: var(--bs-card-cap-bg);\n  border-bottom: var(--bs-card-border-width) solid var(--bs-card-border-color);\n}\n.card-header:first-child {\n  border-radius: var(--bs-card-inner-border-radius) var(--bs-card-inner-border-radius) 0 0;\n}\n\n.card-footer {\n  padding: var(--bs-card-cap-padding-y) var(--bs-card-cap-padding-x);\n  color: var(--bs-card-cap-color);\n  background-color: var(--bs-card-cap-bg);\n  border-top: var(--bs-card-border-width) solid var(--bs-card-border-color);\n}\n.card-footer:last-child {\n  border-radius: 0 0 var(--bs-card-inner-border-radius) var(--bs-card-inner-border-radius);\n}\n\n.card-header-tabs {\n  margin-right: calc(-0.5 * var(--bs-card-cap-padding-x));\n  margin-bottom: calc(-1 * var(--bs-card-cap-padding-y));\n  margin-left: calc(-0.5 * var(--bs-card-cap-padding-x));\n  border-bottom: 0;\n}\n.card-header-tabs .nav-link.active {\n  background-color: var(--bs-card-bg);\n  border-bottom-color: var(--bs-card-bg);\n}\n\n.card-header-pills {\n  margin-right: calc(-0.5 * var(--bs-card-cap-padding-x));\n  margin-left: calc(-0.5 * var(--bs-card-cap-padding-x));\n}\n\n.card-img-overlay {\n  position: absolute;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  padding: var(--bs-card-img-overlay-padding);\n  border-radius: var(--bs-card-inner-border-radius);\n}\n\n.card-img,\n.card-img-top,\n.card-img-bottom {\n  width: 100%;\n}\n\n.card-img,\n.card-img-top {\n  border-top-left-radius: var(--bs-card-inner-border-radius);\n  border-top-right-radius: var(--bs-card-inner-border-radius);\n}\n\n.card-img,\n.card-img-bottom {\n  border-bottom-right-radius: var(--bs-card-inner-border-radius);\n  border-bottom-left-radius: var(--bs-card-inner-border-radius);\n}\n\n.card-group > .card {\n  margin-bottom: var(--bs-card-group-margin);\n}\n@media (min-width: 576px) {\n  .card-group {\n    display: flex;\n    flex-flow: row wrap;\n  }\n  .card-group > .card {\n    flex: 1 0 0%;\n    margin-bottom: 0;\n  }\n  .card-group > .card + .card {\n    margin-left: 0;\n    border-left: 0;\n  }\n  .card-group > .card:not(:last-child) {\n    border-top-right-radius: 0;\n    border-bottom-right-radius: 0;\n  }\n  .card-group > .card:not(:last-child) .card-img-top,\n  .card-group > .card:not(:last-child) .card-header {\n    border-top-right-radius: 0;\n  }\n  .card-group > .card:not(:last-child) .card-img-bottom,\n  .card-group > .card:not(:last-child) .card-footer {\n    border-bottom-right-radius: 0;\n  }\n  .card-group > .card:not(:first-child) {\n    border-top-left-radius: 0;\n    border-bottom-left-radius: 0;\n  }\n  .card-group > .card:not(:first-child) .card-img-top,\n  .card-group > .card:not(:first-child) .card-header {\n    border-top-left-radius: 0;\n  }\n  .card-group > .card:not(:first-child) .card-img-bottom,\n  .card-group > .card:not(:first-child) .card-footer {\n    border-bottom-left-radius: 0;\n  }\n}\n\n.dropup,\n.dropend,\n.dropdown,\n.dropstart,\n.dropup-center,\n.dropdown-center {\n  position: relative;\n}\n\n.dropdown-toggle {\n  white-space: nowrap;\n}\n.dropdown-toggle::after {\n  display: inline-block;\n  margin-left: 0.255em;\n  vertical-align: 0.255em;\n  content: \"\";\n  border-top: 0.3em solid;\n  border-right: 0.3em solid transparent;\n  border-bottom: 0;\n  border-left: 0.3em solid transparent;\n}\n.dropdown-toggle:empty::after {\n  margin-left: 0;\n}\n\n.dropdown-menu {\n  --bs-dropdown-zindex: 1000;\n  --bs-dropdown-min-width: 10rem;\n  --bs-dropdown-padding-x: 0;\n  --bs-dropdown-padding-y: 0.5rem;\n  --bs-dropdown-spacer: 0.125rem;\n  --bs-dropdown-font-size: 1rem;\n  --bs-dropdown-color: #212529;\n  --bs-dropdown-bg: #fff;\n  --bs-dropdown-border-color: var(--bs-border-color-translucent);\n  --bs-dropdown-border-radius: 0.375rem;\n  --bs-dropdown-border-width: 1px;\n  --bs-dropdown-inner-border-radius: calc(0.375rem - 1px);\n  --bs-dropdown-divider-bg: var(--bs-border-color-translucent);\n  --bs-dropdown-divider-margin-y: 0.5rem;\n  --bs-dropdown-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);\n  --bs-dropdown-link-color: #212529;\n  --bs-dropdown-link-hover-color: #1e2125;\n  --bs-dropdown-link-hover-bg: #e9ecef;\n  --bs-dropdown-link-active-color: #fff;\n  --bs-dropdown-link-active-bg: #0d6efd;\n  --bs-dropdown-link-disabled-color: #adb5bd;\n  --bs-dropdown-item-padding-x: 1rem;\n  --bs-dropdown-item-padding-y: 0.25rem;\n  --bs-dropdown-header-color: #6c757d;\n  --bs-dropdown-header-padding-x: 1rem;\n  --bs-dropdown-header-padding-y: 0.5rem;\n  position: absolute;\n  z-index: var(--bs-dropdown-zindex);\n  display: none;\n  min-width: var(--bs-dropdown-min-width);\n  padding: var(--bs-dropdown-padding-y) var(--bs-dropdown-padding-x);\n  margin: 0;\n  font-size: var(--bs-dropdown-font-size);\n  color: var(--bs-dropdown-color);\n  text-align: left;\n  list-style: none;\n  background-color: var(--bs-dropdown-bg);\n  background-clip: padding-box;\n  border: var(--bs-dropdown-border-width) solid var(--bs-dropdown-border-color);\n  border-radius: var(--bs-dropdown-border-radius);\n}\n.dropdown-menu[data-bs-popper] {\n  top: 100%;\n  left: 0;\n  margin-top: var(--bs-dropdown-spacer);\n}\n\n.dropdown-menu-start {\n  --bs-position: start;\n}\n.dropdown-menu-start[data-bs-popper] {\n  right: auto;\n  left: 0;\n}\n\n.dropdown-menu-end {\n  --bs-position: end;\n}\n.dropdown-menu-end[data-bs-popper] {\n  right: 0;\n  left: auto;\n}\n\n@media (min-width: 576px) {\n  .dropdown-menu-sm-start {\n    --bs-position: start;\n  }\n  .dropdown-menu-sm-start[data-bs-popper] {\n    right: auto;\n    left: 0;\n  }\n  .dropdown-menu-sm-end {\n    --bs-position: end;\n  }\n  .dropdown-menu-sm-end[data-bs-popper] {\n    right: 0;\n    left: auto;\n  }\n}\n@media (min-width: 768px) {\n  .dropdown-menu-md-start {\n    --bs-position: start;\n  }\n  .dropdown-menu-md-start[data-bs-popper] {\n    right: auto;\n    left: 0;\n  }\n  .dropdown-menu-md-end {\n    --bs-position: end;\n  }\n  .dropdown-menu-md-end[data-bs-popper] {\n    right: 0;\n    left: auto;\n  }\n}\n@media (min-width: 992px) {\n  .dropdown-menu-lg-start {\n    --bs-position: start;\n  }\n  .dropdown-menu-lg-start[data-bs-popper] {\n    right: auto;\n    left: 0;\n  }\n  .dropdown-menu-lg-end {\n    --bs-position: end;\n  }\n  .dropdown-menu-lg-end[data-bs-popper] {\n    right: 0;\n    left: auto;\n  }\n}\n@media (min-width: 1200px) {\n  .dropdown-menu-xl-start {\n    --bs-position: start;\n  }\n  .dropdown-menu-xl-start[data-bs-popper] {\n    right: auto;\n    left: 0;\n  }\n  .dropdown-menu-xl-end {\n    --bs-position: end;\n  }\n  .dropdown-menu-xl-end[data-bs-popper] {\n    right: 0;\n    left: auto;\n  }\n}\n@media (min-width: 1400px) {\n  .dropdown-menu-xxl-start {\n    --bs-position: start;\n  }\n  .dropdown-menu-xxl-start[data-bs-popper] {\n    right: auto;\n    left: 0;\n  }\n  .dropdown-menu-xxl-end {\n    --bs-position: end;\n  }\n  .dropdown-menu-xxl-end[data-bs-popper] {\n    right: 0;\n    left: auto;\n  }\n}\n.dropup .dropdown-menu[data-bs-popper] {\n  top: auto;\n  bottom: 100%;\n  margin-top: 0;\n  margin-bottom: var(--bs-dropdown-spacer);\n}\n.dropup .dropdown-toggle::after {\n  display: inline-block;\n  margin-left: 0.255em;\n  vertical-align: 0.255em;\n  content: \"\";\n  border-top: 0;\n  border-right: 0.3em solid transparent;\n  border-bottom: 0.3em solid;\n  border-left: 0.3em solid transparent;\n}\n.dropup .dropdown-toggle:empty::after {\n  margin-left: 0;\n}\n\n.dropend .dropdown-menu[data-bs-popper] {\n  top: 0;\n  right: auto;\n  left: 100%;\n  margin-top: 0;\n  margin-left: var(--bs-dropdown-spacer);\n}\n.dropend .dropdown-toggle::after {\n  display: inline-block;\n  margin-left: 0.255em;\n  vertical-align: 0.255em;\n  content: \"\";\n  border-top: 0.3em solid transparent;\n  border-right: 0;\n  border-bottom: 0.3em solid transparent;\n  border-left: 0.3em solid;\n}\n.dropend .dropdown-toggle:empty::after {\n  margin-left: 0;\n}\n.dropend .dropdown-toggle::after {\n  vertical-align: 0;\n}\n\n.dropstart .dropdown-menu[data-bs-popper] {\n  top: 0;\n  right: 100%;\n  left: auto;\n  margin-top: 0;\n  margin-right: var(--bs-dropdown-spacer);\n}\n.dropstart .dropdown-toggle::after {\n  display: inline-block;\n  margin-left: 0.255em;\n  vertical-align: 0.255em;\n  content: \"\";\n}\n.dropstart .dropdown-toggle::after {\n  display: none;\n}\n.dropstart .dropdown-toggle::before {\n  display: inline-block;\n  margin-right: 0.255em;\n  vertical-align: 0.255em;\n  content: \"\";\n  border-top: 0.3em solid transparent;\n  border-right: 0.3em solid;\n  border-bottom: 0.3em solid transparent;\n}\n.dropstart .dropdown-toggle:empty::after {\n  margin-left: 0;\n}\n.dropstart .dropdown-toggle::before {\n  vertical-align: 0;\n}\n\n.dropdown-divider {\n  height: 0;\n  margin: var(--bs-dropdown-divider-margin-y) 0;\n  overflow: hidden;\n  border-top: 1px solid var(--bs-dropdown-divider-bg);\n  opacity: 1;\n}\n\n.dropdown-item {\n  display: block;\n  width: 100%;\n  padding: var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x);\n  clear: both;\n  font-weight: 400;\n  color: var(--bs-dropdown-link-color);\n  text-align: inherit;\n  text-decoration: none;\n  white-space: nowrap;\n  background-color: transparent;\n  border: 0;\n}\n.dropdown-item:hover, .dropdown-item:focus {\n  color: var(--bs-dropdown-link-hover-color);\n  background-color: var(--bs-dropdown-link-hover-bg);\n}\n.dropdown-item.active, .dropdown-item:active {\n  color: var(--bs-dropdown-link-active-color);\n  text-decoration: none;\n  background-color: var(--bs-dropdown-link-active-bg);\n}\n.dropdown-item.disabled, .dropdown-item:disabled {\n  color: var(--bs-dropdown-link-disabled-color);\n  pointer-events: none;\n  background-color: transparent;\n}\n\n.dropdown-menu.show {\n  display: block;\n}\n\n.dropdown-header {\n  display: block;\n  padding: var(--bs-dropdown-header-padding-y) var(--bs-dropdown-header-padding-x);\n  margin-bottom: 0;\n  font-size: 0.875rem;\n  color: var(--bs-dropdown-header-color);\n  white-space: nowrap;\n}\n\n.dropdown-item-text {\n  display: block;\n  padding: var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x);\n  color: var(--bs-dropdown-link-color);\n}\n\n.dropdown-menu-dark {\n  --bs-dropdown-color: #dee2e6;\n  --bs-dropdown-bg: #343a40;\n  --bs-dropdown-border-color: var(--bs-border-color-translucent);\n  --bs-dropdown-box-shadow: ;\n  --bs-dropdown-link-color: #dee2e6;\n  --bs-dropdown-link-hover-color: #fff;\n  --bs-dropdown-divider-bg: var(--bs-border-color-translucent);\n  --bs-dropdown-link-hover-bg: rgba(255, 255, 255, 0.15);\n  --bs-dropdown-link-active-color: #fff;\n  --bs-dropdown-link-active-bg: #0d6efd;\n  --bs-dropdown-link-disabled-color: #adb5bd;\n  --bs-dropdown-header-color: #adb5bd;\n}\n\n.Panel {\n  font-size: var(--paper-font-body1_-_font-size);\n}\n.Panel .info {\n  margin: 1rem;\n  padding: 1rem;\n  border: 0.1rem solid var(--secondary-text-color);\n}\n.Panel .navbar {\n  height: var(--header-height);\n  padding-left: 30px !important;\n  background-color: var(--app-header-background-color);\n}\n.Panel .navbar .ha-sidebar {\n  padding-right: 1rem;\n}\n.Panel .Container {\n  padding: 1rem;\n}\n.Panel .Container .card {\n  width: 17rem;\n  display: inline-block;\n  padding: 0.8rem;\n  margin: 0.1rem;\n  position: relative;\n  vertical-align: top;\n  border-radius: 0.4rem;\n}\n.Panel .Container .devicepanel .card {\n  padding: 5px;\n  height: 150px;\n}\n.Panel .Container .devicepanel .img {\n  width: 50px;\n  float: right;\n}\n.Panel .Container .devicepanel .card-title {\n  padding: 5px;\n  border-radius: 3px;\n  background-color: rgb(43, 43, 43);\n  color: white;\n}\n.Panel .Container .devicepanel .device {\n  display: inline-block;\n  width: 40px;\n  height: 40px;\n  background-color: gray;\n  overflow: hidden;\n}\n.Panel .Container .devicepanel .device.relay {\n  border: 1px solid gray;\n  padding: 7px;\n  border-radius: 20px;\n  background-color: white;\n}\n.Panel .Container .devicepanel .device.relay.on {\n  color: green;\n  background-color: lightgreen;\n}\n.Panel .Container .devicepanel .device.switch {\n  border: 1px solid gray;\n  padding: 7px;\n  border-radius: 20px;\n  background-color: white;\n}\n.Panel .Container .devicepanel .device.switch.on {\n  color: green;\n}\n.Panel .Container .devicepanel .device.powermeter {\n  border: 1px solid gray;\n  width: auto;\n  padding: 10px;\n  border-radius: 5px;\n  background-color: white;\n  text-align: center;\n}\n.Panel .Container .devicepanel .device.sensor {\n  border: 1px solid gray;\n  width: 60px;\n  padding: 7px;\n  border-radius: 20px;\n  background-color: white;\n  text-align: center;\n}\n.Panel .Container .configpanel .group {\n  width: 19rem;\n  padding: 10px;\n  margin: 5px;\n  border: 1px solid var(--secondary-text-color);\n  border-radius: 10px;\n}\n.Panel .Container .configpanel .group .title {\n  font-size: 18px;\n  font-weight: bold;\n  margin-bottom: 10px;\n}\n.Panel .Container .configpanel .card-title {\n  font-size: var(--ha-card-header-font-size);\n  font-weight: var(--ha-card-header-font-weight);\n}\n.Panel .Container .configpanel .desc {\n  color: var(--secondary-text-color);\n  margin-bottom: 10px;\n}\n.Panel .Container .configpanel .value .bool {\n  position: absolute;\n  top: 1rem;\n  right: 1rem;\n}\n.Panel .Container .configpanel .value textarea {\n  width: 95%;\n}\n.Panel .Container .settingpanel .card {\n  height: 11rem;\n  margin: 0.2rem;\n}\n.Panel .Container .settingpanel .card-title {\n  font-size: var(--ha-card-header-font-size);\n  font-weight: var(--ha-card-header-font-weight);\n}\n.Panel .Container .settingpanel .label {\n  padding-left: 0.5rem;\n  width: 5.5rem;\n  display: inline-block;\n  color: var(--secondary-text-color);\n}\n.Panel .Container .settingpanel input[type=text], .Panel .Container .settingpanel input[type=number] {\n  width: 8rem;\n  margin-top: 0.5rem;\n}\n.Panel .Container .settingpanel .decimals {\n  margin-top: 0.2rem;\n}\n.Panel .Container .settingpanel .attrib {\n  display: inline-block;\n  vertical-align: top;\n}\n.Panel .Container .settingpanel .sensor {\n  margin-right: 1rem;\n  display: inline-block;\n  vertical-align: top;\n}";
 	          var e = document.createElement("style");
 	          e.setAttribute("type", "text/css");
 	          e.appendChild(document.createTextNode(css_248z));
@@ -15899,9 +25090,10 @@
 	                React.createElement(ShellyNavbar, { narrow: narrow }),
 	                React.createElement("div", { className: "Container" },
 	                    React.createElement(Routes, null,
-	                        React.createElement(Route, { path: "*", element: React.createElement(Navigate, { to: "/config" }) }),
+	                        React.createElement(Route, { path: "*", element: React.createElement(Navigate, { to: "/devices" }) }),
 	                        React.createElement(Route, { path: "/config", element: React.createElement(ShellyConfigPanel, { app: this.state.app, instance: instance }) }),
-	                        React.createElement(Route, { path: "/settings", element: React.createElement(ShellySettingPanel, { app: this.state.app, instance: instance }) }))))));
+	                        React.createElement(Route, { path: "/settings", element: React.createElement(ShellySettingPanel, { app: this.state.app, instance: instance }) }),
+	                        React.createElement(Route, { path: "/devices", element: React.createElement(ShellyBlockPanel, { app: this.state.app, instance: instance }) }))))));
 	    }
 	}
 
