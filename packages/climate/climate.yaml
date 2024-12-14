@@ -173,6 +173,12 @@ automation:
         target:
           device_id:
             - 59dc73e6760d124ca96a4101045b4bcd
+      - service: climate.set_temperature
+        data:
+          hvac_mode: heat
+          temperature: 20
+        target:
+          device_id:
             - e42629fa9b96f7cde4df1555664810b8
     id: 5b9d4568a9c449jks5gv95hj81fh5f1
 
