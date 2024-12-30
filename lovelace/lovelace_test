@@ -1841,17 +1841,7 @@
         {
           "title": "Test3",
           "path": "test3",
-          "cards": [
-            {
-              "show_name": true,
-              "show_icon": true,
-              "type": "button",
-              "tap_action": {
-                "action": "toggle"
-              },
-              "entity": "button.roborock_s6_reset_sensor_consumable"
-            }
-          ]
+          "cards": []
         }
       ]
     }
