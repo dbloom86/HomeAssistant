@@ -715,7 +715,7 @@
               "cards": [
                 {
                   "type": "custom:button-card",
-                  "entity": "light.lamp_bank_hoek_lamp_bank_hoek",
+                  "entity": "light.lamp_bank_hoek",
                   "tap_action": {
                     "action": "call-service",
                     "service": "light.toggle",
@@ -816,7 +816,7 @@
                     }
                   ],
                   "custom_fields": {
-                    "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['light.lamp_bank_hoek_lamp_bank_hoek'].state}</span></span>`\n]]]\n"
+                    "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['light.lamp_bank_hoek'].state}</span></span>`\n]]]\n"
                   },
                   "card_mod": {
                     "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
@@ -824,7 +824,7 @@
                 },
                 {
                   "type": "custom:button-card",
-                  "entity": "light.lamp_trap_lamp_trap",
+                  "entity": "light.lamp_trap",
                   "tap_action": {
                     "action": "call-service",
                     "service": "light.toggle",
@@ -925,7 +925,7 @@
                     }
                   ],
                   "custom_fields": {
-                    "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['light.lamp_trap_lamp_trap'].state}</span></span>`\n]]]\n"
+                    "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['light.lamp_trap'].state}</span></span>`\n]]]\n"
                   },
                   "card_mod": {
                     "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
@@ -933,7 +933,7 @@
                 },
                 {
                   "type": "custom:button-card",
-                  "entity": "light.lamp_haard_lamp_haard",
+                  "entity": "light.lamp_haard",
                   "tap_action": {
                     "action": "call-service",
                     "service": "light.toggle",
@@ -1034,7 +1034,7 @@
                     }
                   ],
                   "custom_fields": {
-                    "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['light.lamp_haard_lamp_haard'].state}</span></span>`\n]]]\n"
+                    "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['light.lamp_haard'].state}</span></span>`\n]]]\n"
                   },
                   "card_mod": {
                     "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
@@ -1047,7 +1047,7 @@
               "cards": [
                 {
                   "type": "custom:button-card",
-                  "entity": "light.lamp_achterdeur_lamp_achterdeur",
+                  "entity": "light.lamp_achterdeur",
                   "tap_action": {
                     "action": "call-service",
                     "service": "light.toggle",
@@ -1148,7 +1148,7 @@
                     }
                   ],
                   "custom_fields": {
-                    "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['light.lamp_achterdeur_lamp_achterdeur'].state}</span></span>`\n]]]\n"
+                    "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['light.lamp_achterdeur'].state}</span></span>`\n]]]\n"
                   },
                   "card_mod": {
                     "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
@@ -1267,7 +1267,7 @@
                 "cards": [
                   {
                     "type": "custom:simple-thermostat",
-                    "entity": "climate.verwarming_woonkamer_verwarming_woonkamer",
+                    "entity": "climate.verwarming_woonkamer",
                     "header": {
                       "name": "Verwarming",
                       "icon": false
@@ -1278,7 +1278,7 @@
                     },
                     "sensors": [
                       {
-                        "entity": "climate.verwarming_woonkamer_verwarming_woonkamer",
+                        "entity": "climate.verwarming_woonkamer",
                         "attribute": "system_mode",
                         "name": "Mode",
                         "icon": "mdi:radiator"
@@ -1306,7 +1306,7 @@
                     "cards": [
                       {
                         "type": "custom:button-card",
-                        "entity": "lock.verwarming_woonkamer_verwarming_woonkamer_child_lock",
+                        "entity": "lock.verwarming_woonkamer_child_lock",
                         "name": "Kinderslot",
                         "aspect_ratio": "2/1",
                         "tap_action": {
@@ -1337,7 +1337,7 @@
                       },
                       {
                         "type": "custom:button-card",
-                        "entity": "switch.verwarming_woonkamer_verwarming_woonkamer_window_detection",
+                        "entity": "switch.verwarming_woonkamer_window_detection",
                         "name": "Open Raam Detectie",
                         "aspect_ratio": "2/1",
                         "tap_action": {
@@ -1368,7 +1368,7 @@
                       },
                       {
                         "type": "custom:button-card",
-                        "entity": "switch.verwarming_woonkamer_verwarming_woonkamer_away_mode",
+                        "entity": "switch.verwarming_woonkamer_away_mode",
                         "name": "Afwezigheidsdetectie",
                         "aspect_ratio": "2/1",
                         "tap_action": {
@@ -1410,7 +1410,7 @@
                         "show_fill": true
                       },
                       {
-                        "entity": "climate.verwarming_woonkamer_verwarming_woonkamer",
+                        "entity": "climate.verwarming_woonkamer",
                         "attribute": "current_heating_setpoint",
                         "name": "Ingesteld",
                         "smoothing": false,
@@ -1796,7 +1796,7 @@
                 "cards": [
                   {
                     "type": "custom:simple-thermostat",
-                    "entity": "climate.verwarming_keuken_verwarming_keuken",
+                    "entity": "climate.verwarming_keuken",
                     "header": {
                       "name": "Verwarming",
                       "icon": false
@@ -1807,7 +1807,7 @@
                     },
                     "sensors": [
                       {
-                        "entity": "climate.verwarming_keuken_verwarming_keuken",
+                        "entity": "climate.verwarming_keuken",
                         "attribute": "system_mode",
                         "name": "Mode",
                         "icon": "mdi:radiator"
@@ -1835,7 +1835,7 @@
                     "cards": [
                       {
                         "type": "custom:button-card",
-                        "entity": "lock.verwarming_keuken_verwarming_keuken_child_lock",
+                        "entity": "lock.verwarming_keuken_child_lock",
                         "name": "Kinderslot",
                         "aspect_ratio": "2/1",
                         "tap_action": {
@@ -1866,7 +1866,7 @@
                       },
                       {
                         "type": "custom:button-card",
-                        "entity": "switch.verwarming_keuken_verwarming_keuken_window_detection",
+                        "entity": "switch.verwarming_keuken_window_detection",
                         "name": "Open Raam Detectie",
                         "aspect_ratio": "2/1",
                         "tap_action": {
@@ -1897,7 +1897,7 @@
                       },
                       {
                         "type": "custom:button-card",
-                        "entity": "switch.verwarming_keuken_verwarming_keuken_away_mode",
+                        "entity": "switch.verwarming_keuken_away_mode",
                         "name": "Afwezigheidsdetectie",
                         "aspect_ratio": "2/1",
                         "tap_action": {
@@ -1932,14 +1932,14 @@
                     "type": "custom:mini-graph-card",
                     "entities": [
                       {
-                        "entity": "climate.verwarming_keuken_verwarming_keuken",
+                        "entity": "climate.verwarming_keuken",
                         "attribute": "current_temperature",
                         "name": "Temperatuur",
                         "smoothing": true,
                         "show_fill": true
                       },
                       {
-                        "entity": "climate.verwarming_keuken_verwarming_keuken",
+                        "entity": "climate.verwarming_keuken",
                         "attribute": "current_heating_setpoint",
                         "name": "Ingesteld",
                         "smoothing": false,
@@ -2007,7 +2007,7 @@
                   "entity": "light.lampen_toilet"
                 },
                 {
-                  "entity": "climate.verwarming_toilet_verwarming_toilet",
+                  "entity": "climate.verwarming_toilet",
                   "attribute": "current_temperature",
                   "name": "Temperatuur"
                 }
@@ -2026,7 +2026,7 @@
                 "cards": [
                   {
                     "type": "custom:simple-thermostat",
-                    "entity": "climate.verwarming_toilet_verwarming_toilet",
+                    "entity": "climate.verwarming_toilet",
                     "header": {
                       "name": "Verwarming",
                       "icon": false
@@ -2037,7 +2037,7 @@
                     },
                     "sensors": [
                       {
-                        "entity": "climate.verwarming_toilet_verwarming_toilet",
+                        "entity": "climate.verwarming_toilet",
                         "attribute": "system_mode",
                         "name": "Mode",
                         "icon": "mdi:radiator"
@@ -2065,7 +2065,7 @@
                     "cards": [
                       {
                         "type": "custom:button-card",
-                        "entity": "lock.verwarming_toilet_verwarming_toilet_child_lock",
+                        "entity": "lock.verwarming_toilet_child_lock",
                         "name": "Kinderslot",
                         "aspect_ratio": "2/1",
                         "tap_action": {
@@ -2096,7 +2096,7 @@
                       },
                       {
                         "type": "custom:button-card",
-                        "entity": "switch.verwarming_toilet_verwarming_toilet_window_detection",
+                        "entity": "switch.verwarming_toilet_window_detection",
                         "name": "Open Raam Detectie",
                         "aspect_ratio": "2/1",
                         "tap_action": {
@@ -2127,7 +2127,7 @@
                       },
                       {
                         "type": "custom:button-card",
-                        "entity": "switch.verwarming_toilet_verwarming_toilet_away_mode",
+                        "entity": "switch.verwarming_toilet_away_mode",
                         "name": "Afwezigheidsdetectie",
                         "aspect_ratio": "2/1",
                         "tap_action": {
@@ -2162,14 +2162,14 @@
                     "type": "custom:mini-graph-card",
                     "entities": [
                       {
-                        "entity": "climate.verwarming_toilet_verwarming_toilet",
+                        "entity": "climate.verwarming_toilet",
                         "attribute": "current_temperature",
                         "name": "Temperatuur",
                         "smoothing": true,
                         "show_fill": true
                       },
                       {
-                        "entity": "climate.verwarming_toilet_verwarming_toilet",
+                        "entity": "climate.verwarming_toilet",
                         "attribute": "current_heating_setpoint",
                         "name": "Ingesteld",
                         "smoothing": false,
@@ -2237,7 +2237,7 @@
                   "entity": "light.lampen_hal"
                 },
                 {
-                  "entity": "climate.verwarming_hal_verwarming_hal",
+                  "entity": "climate.verwarming_hal",
                   "attribute": "current_temperature",
                   "name": "Temperatuur"
                 }
@@ -2256,7 +2256,7 @@
                 "cards": [
                   {
                     "type": "custom:simple-thermostat",
-                    "entity": "climate.verwarming_hal_verwarming_hal",
+                    "entity": "climate.verwarming_hal",
                     "header": {
                       "name": "Verwarming",
                       "icon": false
@@ -2267,7 +2267,7 @@
                     },
                     "sensors": [
                       {
-                        "entity": "climate.verwarming_hal_verwarming_hal",
+                        "entity": "climate.verwarming_hal",
                         "attribute": "system_mode",
                         "name": "Mode",
                         "icon": "mdi:radiator"
@@ -2295,7 +2295,7 @@
                     "cards": [
                       {
                         "type": "custom:button-card",
-                        "entity": "lock.verwarming_hal_verwarming_hal_child_lock",
+                        "entity": "lock.verwarming_hal_child_lock",
                         "name": "Kinderslot",
                         "aspect_ratio": "2/1",
                         "tap_action": {
@@ -2326,7 +2326,7 @@
                       },
                       {
                         "type": "custom:button-card",
-                        "entity": "switch.verwarming_hal_verwarming_hal_window_detection",
+                        "entity": "switch.verwarming_hal_window_detection",
                         "name": "Open Raam Detectie",
                         "aspect_ratio": "2/1",
                         "tap_action": {
@@ -2357,7 +2357,7 @@
                       },
                       {
                         "type": "custom:button-card",
-                        "entity": "switch.verwarming_hal_verwarming_hal_away_mode",
+                        "entity": "switch.verwarming_hal_away_mode",
                         "name": "Afwezigheidsdetectie",
                         "aspect_ratio": "2/1",
                         "tap_action": {
@@ -2392,14 +2392,14 @@
                     "type": "custom:mini-graph-card",
                     "entities": [
                       {
-                        "entity": "climate.verwarming_hal_verwarming_hal",
+                        "entity": "climate.verwarming_hal",
                         "attribute": "current_temperature",
                         "name": "Temperatuur",
                         "smoothing": true,
                         "show_fill": true
                       },
                       {
-                        "entity": "climate.verwarming_hal_verwarming_hal",
+                        "entity": "climate.verwarming_hal",
                         "attribute": "current_heating_setpoint",
                         "name": "Ingesteld",
                         "smoothing": false,
@@ -2509,7 +2509,7 @@
                   "entity": "light.lampen_kamer_S_D"
                 },
                 {
-                  "entity": "climate.verwarming_slaapkamer_verwarming_slaapkamer",
+                  "entity": "climate.verwarming_slaapkamer",
                   "attribute": "current_temperature",
                   "name": "Temperatuur"
                 }
@@ -2936,7 +2936,7 @@
                 "cards": [
                   {
                     "type": "custom:simple-thermostat",
-                    "entity": "climate.verwarming_slaapkamer_verwarming_slaapkamer",
+                    "entity": "climate.verwarming_slaapkamer",
                     "header": {
                       "name": "Verwarming",
                       "icon": false
@@ -2947,7 +2947,7 @@
                     },
                     "sensors": [
                       {
-                        "entity": "climate.verwarming_slaapkamer_verwarming_slaapkamer",
+                        "entity": "climate.verwarming_slaapkamer",
                         "attribute": "system_mode",
                         "name": "Mode",
                         "icon": "mdi:radiator"
@@ -2975,7 +2975,7 @@
                     "cards": [
                       {
                         "type": "custom:button-card",
-                        "entity": "lock.verwarming_slaapkamer_verwarming_slaapkamer_child_lock",
+                        "entity": "lock.verwarming_slaapkamer_child_lock",
                         "name": "Kinderslot",
                         "aspect_ratio": "2/1",
                         "tap_action": {
@@ -3006,7 +3006,7 @@
                       },
                       {
                         "type": "custom:button-card",
-                        "entity": "switch.verwarming_slaapkamer_verwarming_slaapkamer_window_detection",
+                        "entity": "switch.verwarming_slaapkamer_window_detection",
                         "name": "Open Raam Detectie",
                         "aspect_ratio": "2/1",
                         "tap_action": {
@@ -3037,7 +3037,7 @@
                       },
                       {
                         "type": "custom:button-card",
-                        "entity": "switch.verwarming_slaapkamer_verwarming_slaapkamer_away_mode",
+                        "entity": "switch.verwarming_slaapkamer_away_mode",
                         "name": "Afwezigheidsdetectie",
                         "aspect_ratio": "2/1",
                         "tap_action": {
@@ -3072,14 +3072,14 @@
                     "type": "custom:mini-graph-card",
                     "entities": [
                       {
-                        "entity": "climate.verwarming_slaapkamer_verwarming_slaapkamer",
+                        "entity": "climate.verwarming_slaapkamer",
                         "attribute": "current_temperature",
                         "name": "Temperatuur",
                         "smoothing": true,
                         "show_fill": true
                       },
                       {
-                        "entity": "climate.verwarming_slaapkamer_verwarming_slaapkamer",
+                        "entity": "climate.verwarming_slaapkamer",
                         "attribute": "current_heating_setpoint",
                         "name": "Ingesteld",
                         "smoothing": false,
@@ -3150,7 +3150,7 @@
                   "entity": "light.lampen_kamer_luca"
                 },
                 {
-                  "entity": "climate.verwarming_luca_verwarming_luca",
+                  "entity": "climate.verwarming_luca",
                   "attribute": "current_temperature",
                   "name": "Temperatuur"
                 },
@@ -3173,7 +3173,7 @@
                 "cards": [
                   {
                     "type": "custom:simple-thermostat",
-                    "entity": "climate.verwarming_luca_verwarming_luca",
+                    "entity": "climate.verwarming_luca",
                     "header": {
                       "name": "Verwarming",
                       "icon": false
@@ -3184,7 +3184,7 @@
                     },
                     "sensors": [
                       {
-                        "entity": "climate.verwarming_luca_verwarming_luca",
+                        "entity": "climate.verwarming_luca",
                         "attribute": "system_mode",
                         "name": "Mode",
                         "icon": "mdi:radiator"
@@ -3212,7 +3212,7 @@
                     "cards": [
                       {
                         "type": "custom:button-card",
-                        "entity": "lock.verwarming_luca_verwarming_luca_child_lock",
+                        "entity": "lock.verwarming_luca_child_lock",
                         "name": "Kinderslot",
                         "aspect_ratio": "2/1",
                         "tap_action": {
@@ -3243,7 +3243,7 @@
                       },
                       {
                         "type": "custom:button-card",
-                        "entity": "switch.verwarming_luca_verwarming_luca_window_detection",
+                        "entity": "switch.verwarming_luca_window_detection",
                         "name": "Open Raam Detectie",
                         "aspect_ratio": "2/1",
                         "tap_action": {
@@ -3274,7 +3274,7 @@
                       },
                       {
                         "type": "custom:button-card",
-                        "entity": "switch.verwarming_luca_verwarming_luca_away_mode",
+                        "entity": "switch.verwarming_luca_away_mode",
                         "name": "Afwezigheidsdetectie",
                         "aspect_ratio": "2/1",
                         "tap_action": {
@@ -3309,14 +3309,14 @@
                     "type": "custom:mini-graph-card",
                     "entities": [
                       {
-                        "entity": "climate.verwarming_luca_verwarming_luca",
+                        "entity": "climate.verwarming_luca",
                         "attribute": "current_temperature",
                         "name": "Temperatuur",
                         "smoothing": true,
                         "show_fill": true
                       },
                       {
-                        "entity": "climate.verwarming_luca_verwarming_luca",
+                        "entity": "climate.verwarming_luca",
                         "attribute": "current_heating_setpoint",
                         "name": "Ingesteld",
                         "smoothing": false,
@@ -3388,7 +3388,7 @@
                   "name": "Lampen"
                 },
                 {
-                  "entity": "climate.verwarming_fynn_verwarming_fynn",
+                  "entity": "climate.verwarming_fynn",
                   "attribute": "current_temperature",
                   "name": "Temperatuur"
                 }
@@ -3407,7 +3407,7 @@
                 "cards": [
                   {
                     "type": "custom:simple-thermostat",
-                    "entity": "climate.verwarming_fynn_verwarming_fynn",
+                    "entity": "climate.verwarming_fynn",
                     "header": {
                       "name": "Verwarming",
                       "icon": false
@@ -3418,7 +3418,7 @@
                     },
                     "sensors": [
                       {
-                        "entity": "climate.verwarming_fynn_verwarming_fynn",
+                        "entity": "climate.verwarming_fynn",
                         "attribute": "system_mode",
                         "name": "Mode",
                         "icon": "mdi:radiator"
@@ -3446,7 +3446,7 @@
                     "cards": [
                       {
                         "type": "custom:button-card",
-                        "entity": "lock.verwarming_fynn_verwarming_fynn_child_lock",
+                        "entity": "lock.verwarming_fynn_child_lock",
                         "name": "Kinderslot",
                         "aspect_ratio": "2/1",
                         "tap_action": {
@@ -3477,7 +3477,7 @@
                       },
                       {
                         "type": "custom:button-card",
-                        "entity": "switch.verwarming_fynn_verwarming_fynn_window_detection",
+                        "entity": "switch.verwarming_fynn_window_detection",
                         "name": "Open Raam Detectie",
                         "aspect_ratio": "2/1",
                         "tap_action": {
@@ -3508,7 +3508,7 @@
                       },
                       {
                         "type": "custom:button-card",
-                        "entity": "switch.verwarming_fynn_verwarming_fynn_away_mode",
+                        "entity": "switch.verwarming_fynn_away_mode",
                         "name": "Afwezigheidsdetectie",
                         "aspect_ratio": "2/1",
                         "tap_action": {
@@ -3543,14 +3543,14 @@
                     "type": "custom:mini-graph-card",
                     "entities": [
                       {
-                        "entity": "climate.verwarming_fynn_verwarming_fynn",
+                        "entity": "climate.verwarming_fynn",
                         "attribute": "current_temperature",
                         "name": "Temperatuur",
                         "smoothing": true,
                         "show_fill": true
                       },
                       {
-                        "entity": "climate.verwarming_fynn_verwarming_fynn",
+                        "entity": "climate.verwarming_fynn",
                         "attribute": "current_heating_setpoint",
                         "name": "Ingesteld",
                         "smoothing": false,
@@ -3619,7 +3619,7 @@
                   "name": "Lampen"
                 },
                 {
-                  "entity": "climate.verwarming_badkamer_verwarming_badkamer",
+                  "entity": "climate.verwarming_badkamer",
                   "attribute": "current_temperature",
                   "name": "Temperatuur"
                 }
@@ -3633,7 +3633,7 @@
               "cards": [
                 {
                   "type": "custom:button-card",
-                  "entity": "light.verlichting_douche_verlichting_douche",
+                  "entity": "light.verlichting_douche",
                   "tap_action": {
                     "action": "call-service",
                     "service": "light.toggle",
@@ -3734,7 +3734,7 @@
                     }
                   ],
                   "custom_fields": {
-                    "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['light.verlichting_douche_verlichting_douche'].state}</span></span>`\n]]]\n"
+                    "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['light.verlichting_douche'].state}</span></span>`\n]]]\n"
                   },
                   "card_mod": {
                     "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
@@ -3758,7 +3758,7 @@
                 "cards": [
                   {
                     "type": "custom:simple-thermostat",
-                    "entity": "climate.verwarming_badkamer_verwarming_badkamer",
+                    "entity": "climate.verwarming_badkamer",
                     "header": {
                       "name": "Verwarming",
                       "icon": false
@@ -3769,7 +3769,7 @@
                     },
                     "sensors": [
                       {
-                        "entity": "climate.verwarming_badkamer_verwarming_badkamer",
+                        "entity": "climate.verwarming_badkamer",
                         "attribute": "system_mode",
                         "name": "Mode",
                         "icon": "mdi:radiator"
@@ -3797,7 +3797,7 @@
                     "cards": [
                       {
                         "type": "custom:button-card",
-                        "entity": "lock.verwarming_badkamer_verwarming_badkamer_child_lock",
+                        "entity": "lock.verwarming_badkamer_child_lock",
                         "name": "Kinderslot",
                         "aspect_ratio": "2/1",
                         "tap_action": {
@@ -3828,7 +3828,7 @@
                       },
                       {
                         "type": "custom:button-card",
-                        "entity": "switch.verwarming_badkamer_verwarming_badkamer_window_detection",
+                        "entity": "switch.verwarming_badkamer_window_detection",
                         "name": "Open Raam Detectie",
                         "aspect_ratio": "2/1",
                         "tap_action": {
@@ -3859,7 +3859,7 @@
                       },
                       {
                         "type": "custom:button-card",
-                        "entity": "switch.verwarming_badkamer_verwarming_badkamer_away_mode",
+                        "entity": "switch.verwarming_badkamer_away_mode",
                         "name": "Afwezigheidsdetectie",
                         "aspect_ratio": "2/1",
                         "tap_action": {
@@ -3894,14 +3894,14 @@
                     "type": "custom:mini-graph-card",
                     "entities": [
                       {
-                        "entity": "climate.verwarming_badkamer_verwarming_badkamer",
+                        "entity": "climate.verwarming_badkamer",
                         "attribute": "current_temperature",
                         "name": "Temperatuur",
                         "smoothing": true,
                         "show_fill": true
                       },
                       {
-                        "entity": "climate.verwarming_badkamer_verwarming_badkamer",
+                        "entity": "climate.verwarming_badkamer",
                         "attribute": "current_heating_setpoint",
                         "name": "Ingesteld",
                         "smoothing": false,
@@ -3971,7 +3971,7 @@
                   "name": "Lampen"
                 },
                 {
-                  "entity": "climate.verwarming_kantoor_verwarming_kantoor",
+                  "entity": "climate.verwarming_kantoor",
                   "attribute": "current_temperature",
                   "name": "Temperatuur"
                 }
@@ -3985,7 +3985,7 @@
               "cards": [
                 {
                   "type": "custom:button-card",
-                  "entity": "light.lamp_hoekje_lamp_hoekje",
+                  "entity": "light.lamp_hoekje",
                   "aspect_ratio": "1/1",
                   "name": "Lamp Hoekje",
                   "entity_picture": "/local/Custom_Icons/lamp_hoekje-ico.png",
@@ -4077,7 +4077,7 @@
                     }
                   ],
                   "custom_fields": {
-                    "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['light.lamp_hoekje_lamp_hoekje'].state}</span></span>`\n]]]\n"
+                    "verbruik": "[[[\n  return `<span><span style=\"color: var(--text-color-sensor);\">${states['light.lamp_hoekje'].state}</span></span>`\n]]]\n"
                   },
                   "card_mod": {
                     "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
@@ -4085,7 +4085,7 @@
                 },
                 {
                   "type": "custom:button-card",
-                  "entity": "sensor.switch_lamp_hoekje_switch_lamp_hoekje_battery",
+                  "entity": "sensor.switch_lamp_hoekje_battery",
                   "aspect_ratio": "1/1",
                   "name": "Schakelaar Lamp Hoekje",
                   "entity_picture": "/local/Custom_Icons/schakelaar_lamp_hoekje-ico.png",
@@ -4154,7 +4154,7 @@
                     }
                   },
                   "custom_fields": {
-                    "verbruik": "[[[\n  return `<span>Battery <span style=\"color: var(--text-color-sensor);\">${states['sensor.switch_lamp_hoekje_switch_lamp_hoekje_battery'].state}%</span></span>`\n]]]\n"
+                    "verbruik": "[[[\n  return `<span>Battery <span style=\"color: var(--text-color-sensor);\">${states['sensor.switch_lamp_hoekje_battery'].state}%</span></span>`\n]]]\n"
                   },
                   "card_mod": {
                     "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
@@ -4175,7 +4175,7 @@
                 "cards": [
                   {
                     "type": "custom:simple-thermostat",
-                    "entity": "climate.verwarming_kantoor_verwarming_kantoor",
+                    "entity": "climate.verwarming_kantoor",
                     "header": {
                       "name": "Verwarming",
                       "icon": false
@@ -4186,7 +4186,7 @@
                     },
                     "sensors": [
                       {
-                        "entity": "climate.verwarming_kantoor_verwarming_kantoor",
+                        "entity": "climate.verwarming_kantoor",
                         "attribute": "system_mode",
                         "name": "Mode",
                         "icon": "mdi:radiator"
@@ -4214,7 +4214,7 @@
                     "cards": [
                       {
                         "type": "custom:button-card",
-                        "entity": "lock.verwarming_kantoor_verwarming_kantoor_child_lock",
+                        "entity": "lock.verwarming_kantoor_child_lock",
                         "name": "Kinderslot",
                         "aspect_ratio": "2/1",
                         "tap_action": {
@@ -4245,7 +4245,7 @@
                       },
                       {
                         "type": "custom:button-card",
-                        "entity": "switch.verwarming_kantoor_verwarming_kantoor_window_detection",
+                        "entity": "switch.verwarming_kantoor_window_detection",
                         "name": "Open Raam Detectie",
                         "aspect_ratio": "2/1",
                         "tap_action": {
@@ -4276,7 +4276,7 @@
                       },
                       {
                         "type": "custom:button-card",
-                        "entity": "switch.verwarming_kantoor_verwarming_kantoor_away_mode",
+                        "entity": "switch.verwarming_kantoor_away_mode",
                         "name": "Afwezigheidsdetectie",
                         "aspect_ratio": "2/1",
                         "tap_action": {
@@ -4311,14 +4311,14 @@
                     "type": "custom:mini-graph-card",
                     "entities": [
                       {
-                        "entity": "climate.verwarming_kantoor_verwarming_kantoor",
+                        "entity": "climate.verwarming_kantoor",
                         "attribute": "current_temperature",
                         "name": "Temperatuur",
                         "smoothing": true,
                         "show_fill": true
                       },
                       {
-                        "entity": "climate.verwarming_kantoor_verwarming_kantoor",
+                        "entity": "climate.verwarming_kantoor",
                         "attribute": "current_heating_setpoint",
                         "name": "Ingesteld",
                         "smoothing": false,
