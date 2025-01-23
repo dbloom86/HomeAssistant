@@ -1823,7 +1823,7 @@
 		        var has = Function.call.bind(hasOwnProperty);
 		        for (var typeSpecName in typeSpecs) {
 		          if (has(typeSpecs, typeSpecName)) {
-		            var error$1 = void 0; // Prop type validation may throw. In case they do, we don't want to
+		            var error$1 = undefined; // Prop type validation may throw. In case they do, we don't want to
 		            // fail the render phase where it didn't fail before. So we log it.
 		            // After these have been cleaned up, we'll let them throw.
 
@@ -2444,8 +2444,8 @@
 	    }
 	    update_config(e) {
 	        const { config, instance } = this.props;
-	        let value = (e === null || e === void 0 ? void 0 : e.target.type) == "checkbox" ?
-	            e === null || e === void 0 ? void 0 : e.target.checked : e === null || e === void 0 ? void 0 : e.target.value;
+	        let value = (e === null || e === undefined ? undefined : e.target.type) == "checkbox" ?
+	            e === null || e === undefined ? undefined : e.target.checked : e === null || e === undefined ? undefined : e.target.value;
 	        SendWebSocketAction(instance.hass, "s4h/config", {
 	            id: config.id,
 	            instanceid: instance.instance_id,
@@ -2626,7 +2626,7 @@
 	    for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
 	      args[_key - 1] = arguments[_key];
 	    }
-	    if (handler) handler.apply(void 0, [value].concat(args));
+	    if (handler) handler.apply(undefined, [value].concat(args));
 	    setState(value);
 	  }, [handler])];
 	}
@@ -3179,7 +3179,7 @@
 	        var has = Function.call.bind(hasOwnProperty);
 	        for (var typeSpecName in typeSpecs) {
 	          if (has(typeSpecs, typeSpecName)) {
-	            var error$1 = void 0; // Prop type validation may throw. In case they do, we don't want to
+	            var error$1 = undefined; // Prop type validation may throw. In case they do, we don't want to
 	            // fail the render phase where it didn't fail before. So we log it.
 	            // After these have been cleaned up, we'll let them throw.
 
@@ -3292,10 +3292,6 @@
 	    };
 	    var specialPropKeyWarningShown;
 	    var specialPropRefWarningShown;
-	    var didWarnAboutStringRefs;
-	    {
-	      didWarnAboutStringRefs = {};
-	    }
 	    function hasValidRef(config) {
 	      {
 	        if (hasOwnProperty.call(config, 'ref')) {
@@ -3320,13 +3316,7 @@
 	    }
 	    function warnIfStringRefCannotBeAutoConverted(config, self) {
 	      {
-	        if (typeof config.ref === 'string' && ReactCurrentOwner.current && self && ReactCurrentOwner.current.stateNode !== self) {
-	          var componentName = getComponentNameFromType(ReactCurrentOwner.current.type);
-	          if (!didWarnAboutStringRefs[componentName]) {
-	            error('Component "%s" contains the string ref "%s". ' + 'Support for string refs will be removed in a future major release. ' + 'This case cannot be automatically converted to an arrow function. ' + 'We ask you to manually fix this case by using useRef() or createRef() instead. ' + 'Learn more about using refs safely here: ' + 'https://reactjs.org/link/strict-mode-string-ref', getComponentNameFromType(ReactCurrentOwner.current.type), config.ref);
-	            didWarnAboutStringRefs[componentName] = true;
-	          }
-	        }
+	        if (typeof config.ref === 'string' && ReactCurrentOwner.current && self) ;
 	      }
 	    }
 	    function defineKeyPropWarningGetter(props, displayName) {
@@ -4866,7 +4856,6 @@
 		    if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== 'undefined' && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === 'function') {
 		      __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
 		    }
-		    var enableSchedulerDebugging = false;
 		    var enableProfiling = false;
 		    var frameYieldMs = 5;
 		    function push(heap, node) {
@@ -5051,7 +5040,7 @@
 		      var currentTime = initialTime;
 		      advanceTimers(currentTime);
 		      currentTask = peek(taskQueue);
-		      while (currentTask !== null && !enableSchedulerDebugging) {
+		      while (currentTask !== null && true) {
 		        if (currentTask.expirationTime > currentTime && (!hasTimeRemaining || shouldYieldToHost())) {
 		          // This currentTask hasn't expired, and we've reached the deadline.
 		          break;
@@ -5404,15 +5393,6 @@
 	var enableNewReconciler=false;// Support legacy Primer support on internal FB www
 	var enableLazyContextPropagation=false;// FB-only usage. The new API has different semantics.
 	var enableLegacyHidden=false;// Enables unstable_avoidThisFallback feature in Fiber
-	var enableSuspenseAvoidThisFallback=false;// Enables unstable_avoidThisFallback feature in Fizz
-	// React DOM Chopping Block
-	//
-	// Similar to main Chopping Block but only flags related to React DOM. These are
-	// grouped because we will likely batch all of them into a single major release.
-	// -----------------------------------------------------------------------------
-	// Disable support for comment nodes as React DOM containers. Already disabled
-	// in open source, but www codebase still relies on it. Need to remove.
-	var disableCommentsAsDOMContainers=true;// Disable javascript: URL strings in href for XSS protection.
 	// and client rendering, mostly to allow JSX attributes to apply to the custom
 	// element's object properties instead of only HTML attributes.
 	// https://github.com/facebook/react/issues/11347
@@ -5492,9 +5472,9 @@
 	// When falsy, it should be removed.
 	var NUMERIC=5;// An attribute that must be positive numeric or parse as a positive numeric.
 	// When falsy, it should be removed.
-	var POSITIVE_NUMERIC=6;/* eslint-disable max-len */var ATTRIBUTE_NAME_START_CHAR=":A-Z_a-z\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD";/* eslint-enable max-len */var ATTRIBUTE_NAME_CHAR=ATTRIBUTE_NAME_START_CHAR+"\\-.0-9\\u00B7\\u0300-\\u036F\\u203F-\\u2040";var VALID_ATTRIBUTE_NAME_REGEX=new RegExp('^['+ATTRIBUTE_NAME_START_CHAR+']['+ATTRIBUTE_NAME_CHAR+']*$');var illegalAttributeNameCache={};var validatedAttributeNameCache={};function isAttributeNameSafe(attributeName){if(hasOwnProperty.call(validatedAttributeNameCache,attributeName)){return true;}if(hasOwnProperty.call(illegalAttributeNameCache,attributeName)){return false;}if(VALID_ATTRIBUTE_NAME_REGEX.test(attributeName)){validatedAttributeNameCache[attributeName]=true;return true;}illegalAttributeNameCache[attributeName]=true;{error('Invalid attribute name: `%s`',attributeName);}return false;}function shouldIgnoreAttribute(name,propertyInfo,isCustomComponentTag){if(propertyInfo!==null){return propertyInfo.type===RESERVED;}if(isCustomComponentTag){return false;}if(name.length>2&&(name[0]==='o'||name[0]==='O')&&(name[1]==='n'||name[1]==='N')){return true;}return false;}function shouldRemoveAttributeWithWarning(name,value,propertyInfo,isCustomComponentTag){if(propertyInfo!==null&&propertyInfo.type===RESERVED){return false;}switch(typeof value){case'function':// $FlowIssue symbol is perfectly valid here
-	case'symbol':// eslint-disable-line
-	return true;case'boolean':{if(isCustomComponentTag){return false;}if(propertyInfo!==null){return !propertyInfo.acceptsBooleans;}else {var prefix=name.toLowerCase().slice(0,5);return prefix!=='data-'&&prefix!=='aria-';}}default:return false;}}function shouldRemoveAttribute(name,value,propertyInfo,isCustomComponentTag){if(value===null||typeof value==='undefined'){return true;}if(shouldRemoveAttributeWithWarning(name,value,propertyInfo,isCustomComponentTag)){return true;}if(isCustomComponentTag){return false;}if(propertyInfo!==null){switch(propertyInfo.type){case BOOLEAN:return !value;case OVERLOADED_BOOLEAN:return value===false;case NUMERIC:return isNaN(value);case POSITIVE_NUMERIC:return isNaN(value)||value<1;}}return false;}function getPropertyInfo(name){return properties.hasOwnProperty(name)?properties[name]:null;}function PropertyInfoRecord(name,type,mustUseProperty,attributeName,attributeNamespace,sanitizeURL,removeEmptyString){this.acceptsBooleans=type===BOOLEANISH_STRING||type===BOOLEAN||type===OVERLOADED_BOOLEAN;this.attributeName=attributeName;this.attributeNamespace=attributeNamespace;this.mustUseProperty=mustUseProperty;this.propertyName=name;this.type=type;this.sanitizeURL=sanitizeURL;this.removeEmptyString=removeEmptyString;}// When adding attributes to this list, be sure to also add them to
+	var POSITIVE_NUMERIC=6;/* eslint-disable max-len */var ATTRIBUTE_NAME_START_CHAR=":A-Z_a-z\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD";/* eslint-enable max-len */var ATTRIBUTE_NAME_CHAR=ATTRIBUTE_NAME_START_CHAR+"\\-.0-9\\u00B7\\u0300-\\u036F\\u203F-\\u2040";var VALID_ATTRIBUTE_NAME_REGEX=new RegExp('^['+ATTRIBUTE_NAME_START_CHAR+']['+ATTRIBUTE_NAME_CHAR+']*$');var illegalAttributeNameCache={};var validatedAttributeNameCache={};function isAttributeNameSafe(attributeName){if(hasOwnProperty.call(validatedAttributeNameCache,attributeName)){return true;}if(hasOwnProperty.call(illegalAttributeNameCache,attributeName)){return false;}if(VALID_ATTRIBUTE_NAME_REGEX.test(attributeName)){validatedAttributeNameCache[attributeName]=true;return true;}illegalAttributeNameCache[attributeName]=true;{error('Invalid attribute name: `%s`',attributeName);}return false;}function shouldIgnoreAttribute(name,propertyInfo,isCustomComponentTag){if(propertyInfo!==null){return propertyInfo.type===RESERVED;}if(isCustomComponentTag){return false;}if(name.length>2&&(name[0]==='o'||name[0]==='O')&&(name[1]==='n'||name[1]==='N')){return true;}return false;}function shouldRemoveAttributeWithWarning(name,value,propertyInfo,isCustomComponentTag){if(propertyInfo!==null&&propertyInfo.type===RESERVED){return false;}switch(typeof value){case 'function':// $FlowIssue symbol is perfectly valid here
+	case 'symbol':// eslint-disable-line
+	return true;case 'boolean':{if(isCustomComponentTag){return false;}if(propertyInfo!==null){return !propertyInfo.acceptsBooleans;}else {var prefix=name.toLowerCase().slice(0,5);return prefix!=='data-'&&prefix!=='aria-';}}default:return false;}}function shouldRemoveAttribute(name,value,propertyInfo,isCustomComponentTag){if(value===null||typeof value==='undefined'){return true;}if(shouldRemoveAttributeWithWarning(name,value,propertyInfo,isCustomComponentTag)){return true;}if(isCustomComponentTag){return false;}if(propertyInfo!==null){switch(propertyInfo.type){case BOOLEAN:return !value;case OVERLOADED_BOOLEAN:return value===false;case NUMERIC:return isNaN(value);case POSITIVE_NUMERIC:return isNaN(value)||value<1;}}return false;}function getPropertyInfo(name){return properties.hasOwnProperty(name)?properties[name]:null;}function PropertyInfoRecord(name,type,mustUseProperty,attributeName,attributeNamespace,sanitizeURL,removeEmptyString){this.acceptsBooleans=type===BOOLEANISH_STRING||type===BOOLEAN||type===OVERLOADED_BOOLEAN;this.attributeName=attributeName;this.attributeNamespace=attributeNamespace;this.mustUseProperty=mustUseProperty;this.propertyName=name;this.type=type;this.sanitizeURL=sanitizeURL;this.removeEmptyString=removeEmptyString;}// When adding attributes to this list, be sure to also add them to
 	// the `possibleStandardNames` module to ensure casing and incorrect
 	// name warnings.
 	var properties={};// These props are reserved by React. They shouldn't be written to the DOM.
@@ -5716,7 +5696,7 @@
 	// passing the value through getToStringValue first.
 	function toString(value){// The coercion safety check is performed in getToStringValue().
 	// eslint-disable-next-line react-internal/safe-string-coercion
-	return ''+value;}function getToStringValue(value){switch(typeof value){case'boolean':case'number':case'string':case'undefined':return value;case'object':{checkFormFieldValueStringCoercion(value);}return value;default:// function, symbol are assigned as empty strings
+	return ''+value;}function getToStringValue(value){switch(typeof value){case 'boolean':case 'number':case 'string':case 'undefined':return value;case 'object':{checkFormFieldValueStringCoercion(value);}return value;default:// function, symbol are assigned as empty strings
 	return '';}}var hasReadOnlyValue={button:true,checkbox:true,image:true,hidden:true,radio:true,reset:true,submit:true};function checkControlledValueProps(tagName,props){{if(!(hasReadOnlyValue[props.type]||props.onChange||props.onInput||props.readOnly||props.disabled||props.value==null)){error('You provided a `value` prop to a form field without an '+'`onChange` handler. This will render a read-only field. If '+'the field should be mutable use `defaultValue`. Otherwise, '+'set either `onChange` or `readOnly`.');}if(!(props.onChange||props.readOnly||props.disabled||props.checked==null)){error('You provided a `checked` prop to a form field without an '+'`onChange` handler. This will render a read-only field. If '+'the field should be mutable use `defaultChecked`. Otherwise, '+'set either `onChange` or `readOnly`.');}}}function isCheckable(elem){var type=elem.type;var nodeName=elem.nodeName;return nodeName&&nodeName.toLowerCase()==='input'&&(type==='checkbox'||type==='radio');}function getTracker(node){return node._valueTracker;}function detachTracker(node){node._valueTracker=null;}function getValueFromNode(node){var value='';if(!node){return value;}if(isCheckable(node)){value=node.checked?'true':'false';}else {value=node.value;}return value;}function trackValueOnNode(node){var valueField=isCheckable(node)?'checked':'value';var descriptor=Object.getOwnPropertyDescriptor(node.constructor.prototype,valueField);{checkFormFieldValueStringCoercion(node[valueField]);}var currentValue=''+node[valueField];// if someone has already defined a value or Safari, then bail
 	// and don't track value will cause over reporting of changes,
 	// but it's better then a hard failure
@@ -5864,7 +5844,7 @@
 	// https://developer.microsoft.com/microsoft-edge/platform/issues/101525/
 	if(textContent===node._wrapperState.initialValue){if(textContent!==''&&textContent!==null){node.value=textContent;}}}function restoreControlledState$2(element,props){// DOM component is still mounted; update
 	updateWrapper$1(element,props);}var HTML_NAMESPACE='http://www.w3.org/1999/xhtml';var MATH_NAMESPACE='http://www.w3.org/1998/Math/MathML';var SVG_NAMESPACE='http://www.w3.org/2000/svg';// Assumes there is no parent namespace.
-	function getIntrinsicNamespace(type){switch(type){case'svg':return SVG_NAMESPACE;case'math':return MATH_NAMESPACE;default:return HTML_NAMESPACE;}}function getChildNamespace(parentNamespace,type){if(parentNamespace==null||parentNamespace===HTML_NAMESPACE){// No (or default) parent namespace: potential entry point.
+	function getIntrinsicNamespace(type){switch(type){case 'svg':return SVG_NAMESPACE;case 'math':return MATH_NAMESPACE;default:return HTML_NAMESPACE;}}function getChildNamespace(parentNamespace,type){if(parentNamespace==null||parentNamespace===HTML_NAMESPACE){// No (or default) parent namespace: potential entry point.
 	return getIntrinsicNamespace(type);}if(parentNamespace===SVG_NAMESPACE&&type==='foreignObject'){// We're leaving SVG.
 	return HTML_NAMESPACE;}// By default, pass namespace below.
 	return parentNamespace;}/* globals MSApp */ /**
@@ -5980,7 +5960,7 @@
 	// We don't mind this list too much because we expect it to never grow.
 	// The alternative is to track the namespace in a few places which is convoluted.
 	// https://w3c.github.io/webcomponents/spec/custom/#custom-elements-core-concepts
-	case'annotation-xml':case'color-profile':case'font-face':case'font-face-src':case'font-face-uri':case'font-face-format':case'font-face-name':case'missing-glyph':return false;default:return true;}}// When adding attributes to the HTML or SVG allowed attribute list, be sure to
+	case 'annotation-xml':case 'color-profile':case 'font-face':case 'font-face-src':case 'font-face-uri':case 'font-face-format':case 'font-face-name':case 'missing-glyph':return false;default:return true;}}// When adding attributes to the HTML or SVG allowed attribute list, be sure to
 	// also add them to this module to ensure casing and incorrect name
 	// warnings.
 	var possibleStandardNames={// HTML
@@ -6049,7 +6029,7 @@
 	flushSyncImpl();restoreStateIfNeeded();}}function batchedUpdates(fn,a,b){if(isInsideEventHandler){// If we are currently inside another batch, we need to wait until it
 	// fully completes before restoring state.
 	return fn(a,b);}isInsideEventHandler=true;try{return batchedUpdatesImpl(fn,a,b);}finally{isInsideEventHandler=false;finishEventHandler();}}// TODO: Replace with flushSync
-	function setBatchingImplementation(_batchedUpdatesImpl,_discreteUpdatesImpl,_flushSyncImpl){batchedUpdatesImpl=_batchedUpdatesImpl;flushSyncImpl=_flushSyncImpl;}function isInteractive(tag){return tag==='button'||tag==='input'||tag==='select'||tag==='textarea';}function shouldPreventMouseEvent(name,type,props){switch(name){case'onClick':case'onClickCapture':case'onDoubleClick':case'onDoubleClickCapture':case'onMouseDown':case'onMouseDownCapture':case'onMouseMove':case'onMouseMoveCapture':case'onMouseUp':case'onMouseUpCapture':case'onMouseEnter':return !!(props.disabled&&isInteractive(type));default:return false;}}/**
+	function setBatchingImplementation(_batchedUpdatesImpl,_discreteUpdatesImpl,_flushSyncImpl){batchedUpdatesImpl=_batchedUpdatesImpl;flushSyncImpl=_flushSyncImpl;}function isInteractive(tag){return tag==='button'||tag==='input'||tag==='select'||tag==='textarea';}function shouldPreventMouseEvent(name,type,props){switch(name){case 'onClick':case 'onClickCapture':case 'onDoubleClick':case 'onDoubleClickCapture':case 'onMouseDown':case 'onMouseDownCapture':case 'onMouseMove':case 'onMouseMoveCapture':case 'onMouseUp':case 'onMouseUpCapture':case 'onMouseEnter':return !!(props.disabled&&isInteractive(type));default:return false;}}/**
 	 * @param {object} inst The instance, which is the source of events.
 	 * @param {string} registrationName Name of listener (e.g. `onClick`).
 	 * @return {?function} The stored callback.
@@ -6167,8 +6147,7 @@
 	 * If this becomes an actual Map, that will break.
 	 */function get(key){return key._reactInternals;}function has(key){return key._reactInternals!==undefined;}function set(key,value){key._reactInternals=value;}// Don't change these two values. They're used by React Dev Tools.
 	var NoFlags=/*                      */0;var PerformedWork=/*                */1;// You can change the rest (and add more).
-	var Placement=/*                    */2;var Update=/*                       */4;var ChildDeletion=/*                */16;var ContentReset=/*                 */32;var Callback=/*                     */64;var DidCapture=/*                   */128;var ForceClientRender=/*            */256;var Ref=/*                          */512;var Snapshot=/*                     */1024;var Passive=/*                      */2048;var Hydrating=/*                    */4096;var Visibility=/*                   */8192;var StoreConsistency=/*             */16384;var LifecycleEffectMask=Passive|Update|Callback|Ref|Snapshot|StoreConsistency;// Union of all commit flags (flags with the lifetime of a particular commit)
-	var HostEffectMask=/*               */32767;// These are not really side effects, but we still reuse this field.
+	var Placement=/*                    */2;var Update=/*                       */4;var ChildDeletion=/*                */16;var ContentReset=/*                 */32;var Callback=/*                     */64;var DidCapture=/*                   */128;var ForceClientRender=/*            */256;var Ref=/*                          */512;var Snapshot=/*                     */1024;var Passive=/*                      */2048;var Hydrating=/*                    */4096;var Visibility=/*                   */8192;var StoreConsistency=/*             */16384;var HostEffectMask=/*               */32767;// These are not really side effects, but we still reuse this field.
 	var Incomplete=/*                   */32768;var ShouldCapture=/*                */65536;var ForceUpdateForLegacySuspense=/* */131072;var Forked=/*                       */1048576;// Static tags describe aspects of a fiber that are not specific to a render,
 	// e.g. a fiber uses a passive effect (even if there are no updates on this particular render).
 	// This enables us to defer more work in the unmount case,
@@ -6326,7 +6305,7 @@
 	expirationTimes[index]=computeExpirationTime(lane,currentTime);}}else if(expirationTime<=currentTime){// This lane expired
 	root.expiredLanes|=lane;}lanes&=~lane;}}// This returns the highest priority pending lanes regardless of whether they
 	// are suspended.
-	function getHighestPriorityPendingLanes(root){return getHighestPriorityLanes(root.pendingLanes);}function getLanesToRetrySynchronouslyOnError(root){var everythingButOffscreen=root.pendingLanes&~OffscreenLane;if(everythingButOffscreen!==NoLanes){return everythingButOffscreen;}if(everythingButOffscreen&OffscreenLane){return OffscreenLane;}return NoLanes;}function includesSyncLane(lanes){return (lanes&SyncLane)!==NoLanes;}function includesNonIdleWork(lanes){return (lanes&NonIdleLanes)!==NoLanes;}function includesOnlyRetries(lanes){return (lanes&RetryLanes)===lanes;}function includesOnlyNonUrgentLanes(lanes){var UrgentLanes=SyncLane|InputContinuousLane|DefaultLane;return (lanes&UrgentLanes)===NoLanes;}function includesOnlyTransitions(lanes){return (lanes&TransitionLanes)===lanes;}function includesBlockingLane(root,lanes){var SyncDefaultLanes=InputContinuousHydrationLane|InputContinuousLane|DefaultHydrationLane|DefaultLane;return (lanes&SyncDefaultLanes)!==NoLanes;}function includesExpiredLane(root,lanes){// This is a separate check from includesBlockingLane because a lane can
+	function getHighestPriorityPendingLanes(root){return getHighestPriorityLanes(root.pendingLanes);}function getLanesToRetrySynchronouslyOnError(root){var everythingButOffscreen=root.pendingLanes&-1073741825;if(everythingButOffscreen!==NoLanes){return everythingButOffscreen;}if(everythingButOffscreen&OffscreenLane){return OffscreenLane;}return NoLanes;}function includesSyncLane(lanes){return (lanes&SyncLane)!==NoLanes;}function includesNonIdleWork(lanes){return (lanes&NonIdleLanes)!==NoLanes;}function includesOnlyRetries(lanes){return (lanes&RetryLanes)===lanes;}function includesOnlyNonUrgentLanes(lanes){var UrgentLanes=SyncLane|InputContinuousLane|DefaultLane;return (lanes&UrgentLanes)===NoLanes;}function includesOnlyTransitions(lanes){return (lanes&TransitionLanes)===lanes;}function includesBlockingLane(root,lanes){var SyncDefaultLanes=InputContinuousHydrationLane|InputContinuousLane|DefaultHydrationLane|DefaultLane;return (lanes&SyncDefaultLanes)!==NoLanes;}function includesExpiredLane(root,lanes){// This is a separate check from includesBlockingLane because a lane can
 	// expire after a render has already started.
 	return (lanes&root.expiredLanes)!==NoLanes;}function isTransitionLane(lane){return (lane&TransitionLanes)!==NoLanes;}function claimNextTransitionLane(){// Cycle through the lanes, assigning each new transition to the next lane.
 	// In most cases, this means every transition gets its own lane, until we
@@ -6387,7 +6366,7 @@
 	var queuedFocus=null;var queuedDrag=null;var queuedMouse=null;// For pointer events there can be one latest event per pointerId.
 	var queuedPointers=new Map();var queuedPointerCaptures=new Map();// We could consider replaying selectionchange and touchmoves too.
 	var queuedExplicitHydrationTargets=[];var discreteReplayableEvents=['mousedown','mouseup','touchcancel','touchend','touchstart','auxclick','dblclick','pointercancel','pointerdown','pointerup','dragend','dragstart','drop','compositionend','compositionstart','keydown','keypress','keyup','input','textInput',// Intentionally camelCase
-	'copy','cut','paste','click','change','contextmenu','reset','submit'];function isDiscreteEventThatRequiresHydration(eventType){return discreteReplayableEvents.indexOf(eventType)>-1;}function createQueuedReplayableEvent(blockedOn,domEventName,eventSystemFlags,targetContainer,nativeEvent){return {blockedOn:blockedOn,domEventName:domEventName,eventSystemFlags:eventSystemFlags,nativeEvent:nativeEvent,targetContainers:[targetContainer]};}function clearIfContinuousEvent(domEventName,nativeEvent){switch(domEventName){case'focusin':case'focusout':queuedFocus=null;break;case'dragenter':case'dragleave':queuedDrag=null;break;case'mouseover':case'mouseout':queuedMouse=null;break;case'pointerover':case'pointerout':{var pointerId=nativeEvent.pointerId;queuedPointers.delete(pointerId);break;}case'gotpointercapture':case'lostpointercapture':{var _pointerId=nativeEvent.pointerId;queuedPointerCaptures.delete(_pointerId);break;}}}function accumulateOrCreateContinuousQueuedReplayableEvent(existingQueuedEvent,blockedOn,domEventName,eventSystemFlags,targetContainer,nativeEvent){if(existingQueuedEvent===null||existingQueuedEvent.nativeEvent!==nativeEvent){var queuedEvent=createQueuedReplayableEvent(blockedOn,domEventName,eventSystemFlags,targetContainer,nativeEvent);if(blockedOn!==null){var _fiber2=getInstanceFromNode(blockedOn);if(_fiber2!==null){// Attempt to increase the priority of this target.
+	'copy','cut','paste','click','change','contextmenu','reset','submit'];function isDiscreteEventThatRequiresHydration(eventType){return discreteReplayableEvents.indexOf(eventType)>-1;}function createQueuedReplayableEvent(blockedOn,domEventName,eventSystemFlags,targetContainer,nativeEvent){return {blockedOn:blockedOn,domEventName:domEventName,eventSystemFlags:eventSystemFlags,nativeEvent:nativeEvent,targetContainers:[targetContainer]};}function clearIfContinuousEvent(domEventName,nativeEvent){switch(domEventName){case 'focusin':case 'focusout':queuedFocus=null;break;case 'dragenter':case 'dragleave':queuedDrag=null;break;case 'mouseover':case 'mouseout':queuedMouse=null;break;case 'pointerover':case 'pointerout':{var pointerId=nativeEvent.pointerId;queuedPointers.delete(pointerId);break;}case 'gotpointercapture':case 'lostpointercapture':{var _pointerId=nativeEvent.pointerId;queuedPointerCaptures.delete(_pointerId);break;}}}function accumulateOrCreateContinuousQueuedReplayableEvent(existingQueuedEvent,blockedOn,domEventName,eventSystemFlags,targetContainer,nativeEvent){if(existingQueuedEvent===null||existingQueuedEvent.nativeEvent!==nativeEvent){var queuedEvent=createQueuedReplayableEvent(blockedOn,domEventName,eventSystemFlags,targetContainer,nativeEvent);if(blockedOn!==null){var _fiber2=getInstanceFromNode(blockedOn);if(_fiber2!==null){// Attempt to increase the priority of this target.
 	attemptContinuousHydration(_fiber2);}}return queuedEvent;}// If we have already queued this exact event, then it's because
 	// the different event systems have different DOM event listeners.
 	// We can accumulate the flags, and the targetContainers, and
@@ -6395,7 +6374,7 @@
 	existingQueuedEvent.eventSystemFlags|=eventSystemFlags;var targetContainers=existingQueuedEvent.targetContainers;if(targetContainer!==null&&targetContainers.indexOf(targetContainer)===-1){targetContainers.push(targetContainer);}return existingQueuedEvent;}function queueIfContinuousEvent(blockedOn,domEventName,eventSystemFlags,targetContainer,nativeEvent){// These set relatedTarget to null because the replayed event will be treated as if we
 	// moved from outside the window (no target) onto the target once it hydrates.
 	// Instead of mutating we could clone the event.
-	switch(domEventName){case'focusin':{var focusEvent=nativeEvent;queuedFocus=accumulateOrCreateContinuousQueuedReplayableEvent(queuedFocus,blockedOn,domEventName,eventSystemFlags,targetContainer,focusEvent);return true;}case'dragenter':{var dragEvent=nativeEvent;queuedDrag=accumulateOrCreateContinuousQueuedReplayableEvent(queuedDrag,blockedOn,domEventName,eventSystemFlags,targetContainer,dragEvent);return true;}case'mouseover':{var mouseEvent=nativeEvent;queuedMouse=accumulateOrCreateContinuousQueuedReplayableEvent(queuedMouse,blockedOn,domEventName,eventSystemFlags,targetContainer,mouseEvent);return true;}case'pointerover':{var pointerEvent=nativeEvent;var pointerId=pointerEvent.pointerId;queuedPointers.set(pointerId,accumulateOrCreateContinuousQueuedReplayableEvent(queuedPointers.get(pointerId)||null,blockedOn,domEventName,eventSystemFlags,targetContainer,pointerEvent));return true;}case'gotpointercapture':{var _pointerEvent=nativeEvent;var _pointerId2=_pointerEvent.pointerId;queuedPointerCaptures.set(_pointerId2,accumulateOrCreateContinuousQueuedReplayableEvent(queuedPointerCaptures.get(_pointerId2)||null,blockedOn,domEventName,eventSystemFlags,targetContainer,_pointerEvent));return true;}}return false;}// Check if this target is unblocked. Returns true if it's unblocked.
+	switch(domEventName){case 'focusin':{var focusEvent=nativeEvent;queuedFocus=accumulateOrCreateContinuousQueuedReplayableEvent(queuedFocus,blockedOn,domEventName,eventSystemFlags,targetContainer,focusEvent);return true;}case 'dragenter':{var dragEvent=nativeEvent;queuedDrag=accumulateOrCreateContinuousQueuedReplayableEvent(queuedDrag,blockedOn,domEventName,eventSystemFlags,targetContainer,dragEvent);return true;}case 'mouseover':{var mouseEvent=nativeEvent;queuedMouse=accumulateOrCreateContinuousQueuedReplayableEvent(queuedMouse,blockedOn,domEventName,eventSystemFlags,targetContainer,mouseEvent);return true;}case 'pointerover':{var pointerEvent=nativeEvent;var pointerId=pointerEvent.pointerId;queuedPointers.set(pointerId,accumulateOrCreateContinuousQueuedReplayableEvent(queuedPointers.get(pointerId)||null,blockedOn,domEventName,eventSystemFlags,targetContainer,pointerEvent));return true;}case 'gotpointercapture':{var _pointerEvent=nativeEvent;var _pointerId2=_pointerEvent.pointerId;queuedPointerCaptures.set(_pointerId2,accumulateOrCreateContinuousQueuedReplayableEvent(queuedPointerCaptures.get(_pointerId2)||null,blockedOn,domEventName,eventSystemFlags,targetContainer,_pointerEvent));return true;}}return false;}// Check if this target is unblocked. Returns true if it's unblocked.
 	function attemptExplicitHydrationTarget(queuedTarget){// TODO: This function shares a lot of logic with findInstanceBlockingEvent.
 	// Try to unify them. It's a bit tricky since it would require two return
 	// values.
@@ -6445,15 +6424,15 @@
 	// dispatching them after the mount.
 	targetInst=null;}}}return_targetInst=targetInst;// We're not blocked on anything.
 	return null;}function getEventPriority(domEventName){switch(domEventName){// Used by SimpleEventPlugin:
-	case'cancel':case'click':case'close':case'contextmenu':case'copy':case'cut':case'auxclick':case'dblclick':case'dragend':case'dragstart':case'drop':case'focusin':case'focusout':case'input':case'invalid':case'keydown':case'keypress':case'keyup':case'mousedown':case'mouseup':case'paste':case'pause':case'play':case'pointercancel':case'pointerdown':case'pointerup':case'ratechange':case'reset':case'resize':case'seeked':case'submit':case'touchcancel':case'touchend':case'touchstart':case'volumechange':// Used by polyfills:
+	case 'cancel':case 'click':case 'close':case 'contextmenu':case 'copy':case 'cut':case 'auxclick':case 'dblclick':case 'dragend':case 'dragstart':case 'drop':case 'focusin':case 'focusout':case 'input':case 'invalid':case 'keydown':case 'keypress':case 'keyup':case 'mousedown':case 'mouseup':case 'paste':case 'pause':case 'play':case 'pointercancel':case 'pointerdown':case 'pointerup':case 'ratechange':case 'reset':case 'resize':case 'seeked':case 'submit':case 'touchcancel':case 'touchend':case 'touchstart':case 'volumechange':// Used by polyfills:
 	// eslint-disable-next-line no-fallthrough
-	case'change':case'selectionchange':case'textInput':case'compositionstart':case'compositionend':case'compositionupdate':// Only enableCreateEventHandleAPI:
+	case 'change':case 'selectionchange':case 'textInput':case 'compositionstart':case 'compositionend':case 'compositionupdate':// Only enableCreateEventHandleAPI:
 	// eslint-disable-next-line no-fallthrough
-	case'beforeblur':case'afterblur':// Not used by React but could be by user code:
+	case 'beforeblur':case 'afterblur':// Not used by React but could be by user code:
 	// eslint-disable-next-line no-fallthrough
-	case'beforeinput':case'blur':case'fullscreenchange':case'focus':case'hashchange':case'popstate':case'select':case'selectstart':return DiscreteEventPriority;case'drag':case'dragenter':case'dragexit':case'dragleave':case'dragover':case'mousemove':case'mouseout':case'mouseover':case'pointermove':case'pointerout':case'pointerover':case'scroll':case'toggle':case'touchmove':case'wheel':// Not used by React but could be by user code:
+	case 'beforeinput':case 'blur':case 'fullscreenchange':case 'focus':case 'hashchange':case 'popstate':case 'select':case 'selectstart':return DiscreteEventPriority;case 'drag':case 'dragenter':case 'dragexit':case 'dragleave':case 'dragover':case 'mousemove':case 'mouseout':case 'mouseover':case 'pointermove':case 'pointerout':case 'pointerover':case 'scroll':case 'toggle':case 'touchmove':case 'wheel':// Not used by React but could be by user code:
 	// eslint-disable-next-line no-fallthrough
-	case'mouseenter':case'mouseleave':case'pointerenter':case'pointerleave':return ContinuousEventPriority;case'message':{// We might be in the Scheduler callback.
+	case 'mouseenter':case 'mouseleave':case 'pointerenter':case 'pointerleave':return ContinuousEventPriority;case 'message':{// We might be in the Scheduler callback.
 	// Eventually this mechanism will be replaced by a check
 	// of the current priority on the native scheduler.
 	var schedulerPriority=getCurrentPriorityLevel();switch(schedulerPriority){case ImmediatePriority:return DiscreteEventPriority;case UserBlockingPriority:return ContinuousEventPriority;case NormalPriority:case LowPriority:// TODO: Handle LowSchedulerPriority, somehow. Maybe the same lane as hydration.
@@ -6618,15 +6597,15 @@
 	 */function isKeypressCommand(nativeEvent){return (nativeEvent.ctrlKey||nativeEvent.altKey||nativeEvent.metaKey)&&// ctrlKey && altKey is equivalent to AltGr, and is not a command.
 	!(nativeEvent.ctrlKey&&nativeEvent.altKey);}/**
 	 * Translate native top level events into event types.
-	 */function getCompositionEventType(domEventName){switch(domEventName){case'compositionstart':return 'onCompositionStart';case'compositionend':return 'onCompositionEnd';case'compositionupdate':return 'onCompositionUpdate';}}/**
+	 */function getCompositionEventType(domEventName){switch(domEventName){case 'compositionstart':return 'onCompositionStart';case 'compositionend':return 'onCompositionEnd';case 'compositionupdate':return 'onCompositionUpdate';}}/**
 	 * Does our fallback best-guess model think this event signifies that
 	 * composition has begun?
 	 */function isFallbackCompositionStart(domEventName,nativeEvent){return domEventName==='keydown'&&nativeEvent.keyCode===START_KEYCODE;}/**
 	 * Does our fallback mode think that this event is the end of composition?
-	 */function isFallbackCompositionEnd(domEventName,nativeEvent){switch(domEventName){case'keyup':// Command keys insert or clear IME input.
-	return END_KEYCODES.indexOf(nativeEvent.keyCode)!==-1;case'keydown':// Expect IME keyCode on each keydown. If we get any other
+	 */function isFallbackCompositionEnd(domEventName,nativeEvent){switch(domEventName){case 'keyup':// Command keys insert or clear IME input.
+	return END_KEYCODES.indexOf(nativeEvent.keyCode)!==-1;case 'keydown':// Expect IME keyCode on each keydown. If we get any other
 	// code we must have exited earlier.
-	return nativeEvent.keyCode!==START_KEYCODE;case'keypress':case'mousedown':case'focusout':// Events are not possible without cancelling IME.
+	return nativeEvent.keyCode!==START_KEYCODE;case 'keypress':case 'mousedown':case 'focusout':// Events are not possible without cancelling IME.
 	return true;default:return false;}}/**
 	 * Google Input Tools provides composition data via a CustomEvent,
 	 * with the `data` property populated in the `detail` object. If this
@@ -6651,7 +6630,7 @@
 	// overwritten while composition continues.
 	if(!isComposing&&eventType==='onCompositionStart'){isComposing=initialize(nativeEventTarget);}else if(eventType==='onCompositionEnd'){if(isComposing){fallbackData=getData();}}}var listeners=accumulateTwoPhaseListeners(targetInst,eventType);if(listeners.length>0){var event=new SyntheticCompositionEvent(eventType,domEventName,null,nativeEvent,nativeEventTarget);dispatchQueue.push({event:event,listeners:listeners});if(fallbackData){// Inject data generated from fallback path into the synthetic event.
 	// This matches the property of native CompositionEventInterface.
-	event.data=fallbackData;}else {var customData=getDataFromCustomEvent(nativeEvent);if(customData!==null){event.data=customData;}}}}function getNativeBeforeInputChars(domEventName,nativeEvent){switch(domEventName){case'compositionend':return getDataFromCustomEvent(nativeEvent);case'keypress':/**
+	event.data=fallbackData;}else {var customData=getDataFromCustomEvent(nativeEvent);if(customData!==null){event.data=customData;}}}}function getNativeBeforeInputChars(domEventName,nativeEvent){switch(domEventName){case 'compositionend':return getDataFromCustomEvent(nativeEvent);case 'keypress':/**
 	       * If native `textInput` events are available, our goal is to make
 	       * use of them. However, there is a special case: the spacebar key.
 	       * In Webkit, preventing default on a spacebar `textInput` event
@@ -6664,7 +6643,7 @@
 	       *
 	       * To avoid this issue, use the keypress event as if no `textInput`
 	       * event is available.
-	       */var which=nativeEvent.which;if(which!==SPACEBAR_CODE){return null;}hasSpaceKeypress=true;return SPACEBAR_CHAR;case'textInput':// Record the characters to be added to the DOM.
+	       */var which=nativeEvent.which;if(which!==SPACEBAR_CODE){return null;}hasSpaceKeypress=true;return SPACEBAR_CHAR;case 'textInput':// Record the characters to be added to the DOM.
 	var chars=nativeEvent.data;// If it's a spacebar character, assume that we have already handled
 	// it at the keypress level and bail immediately. Android Chrome
 	// doesn't give us keycodes, so we need to ignore it.
@@ -6676,9 +6655,9 @@
 	// try to extract the composed characters from the fallback object.
 	// If composition event is available, we extract a string only at
 	// compositionevent, otherwise extract it at fallback events.
-	if(isComposing){if(domEventName==='compositionend'||!canUseCompositionEvent&&isFallbackCompositionEnd(domEventName,nativeEvent)){var chars=getData();reset();isComposing=false;return chars;}return null;}switch(domEventName){case'paste':// If a paste event occurs after a keypress, throw out the input
+	if(isComposing){if(domEventName==='compositionend'||!canUseCompositionEvent&&isFallbackCompositionEnd(domEventName,nativeEvent)){var chars=getData();reset();isComposing=false;return chars;}return null;}switch(domEventName){case 'paste':// If a paste event occurs after a keypress, throw out the input
 	// chars. Paste events should not lead to BeforeInput events.
-	return null;case'keypress':/**
+	return null;case 'keypress':/**
 	       * As of v27, Firefox may fire keypress events even when no character
 	       * will be inserted. A few possibilities:
 	       *
@@ -6699,7 +6678,7 @@
 	// is 2, the property `which` does not represent an emoji correctly.
 	// In such a case, we directly return the `char` property instead of
 	// using `which`.
-	if(nativeEvent.char&&nativeEvent.char.length>1){return nativeEvent.char;}else if(nativeEvent.which){return String.fromCharCode(nativeEvent.which);}}return null;case'compositionend':return useFallbackCompositionData&&!isUsingKoreanIME(nativeEvent)?null:nativeEvent.data;default:return null;}}/**
+	if(nativeEvent.char&&nativeEvent.char.length>1){return nativeEvent.char;}else if(nativeEvent.which){return String.fromCharCode(nativeEvent.which);}}return null;case 'compositionend':return useFallbackCompositionData&&!isUsingKoreanIME(nativeEvent)?null:nativeEvent.data;default:return null;}}/**
 	 * Extract a SyntheticInputEvent for `beforeInput`, based on either native
 	 * `textInput` or fallback behavior.
 	 *
@@ -6957,9 +6936,9 @@
 	 * - Fires for collapsed selection.
 	 * - Fires after user input.
 	 */function extractEvents$3(dispatchQueue,domEventName,targetInst,nativeEvent,nativeEventTarget,eventSystemFlags,targetContainer){var targetNode=targetInst?getNodeFromInstance(targetInst):window;switch(domEventName){// Track the input node that has focus.
-	case'focusin':if(isTextInputElement(targetNode)||targetNode.contentEditable==='true'){activeElement$1=targetNode;activeElementInst$1=targetInst;lastSelection=null;}break;case'focusout':activeElement$1=null;activeElementInst$1=null;lastSelection=null;break;// Don't fire the event while the user is dragging. This matches the
+	case 'focusin':if(isTextInputElement(targetNode)||targetNode.contentEditable==='true'){activeElement$1=targetNode;activeElementInst$1=targetInst;lastSelection=null;}break;case 'focusout':activeElement$1=null;activeElementInst$1=null;lastSelection=null;break;// Don't fire the event while the user is dragging. This matches the
 	// semantics of the native select event.
-	case'mousedown':mouseDown=true;break;case'contextmenu':case'mouseup':case'dragend':mouseDown=false;constructSelectEvent(dispatchQueue,nativeEvent,nativeEventTarget);break;// Chrome and IE fire non-standard event when selection is changed (and
+	case 'mousedown':mouseDown=true;break;case 'contextmenu':case 'mouseup':case 'dragend':mouseDown=false;constructSelectEvent(dispatchQueue,nativeEvent,nativeEventTarget);break;// Chrome and IE fire non-standard event when selection is changed (and
 	// sometimes when it hasn't). IE's event fires out of order with respect
 	// to key and input events on deletion, so we discard it.
 	//
@@ -6968,8 +6947,8 @@
 	// keyup, but we check on keydown as well in the case of holding down a
 	// key, when multiple keydown events are fired but only one keyup is.
 	// This is also our approach for IE handling, for the reason above.
-	case'selectionchange':if(skipSelectionChangeEvent){break;}// falls through
-	case'keydown':case'keyup':constructSelectEvent(dispatchQueue,nativeEvent,nativeEventTarget);}}/**
+	case 'selectionchange':if(skipSelectionChangeEvent){break;}// falls through
+	case 'keydown':case 'keyup':constructSelectEvent(dispatchQueue,nativeEvent,nativeEventTarget);}}/**
 	 * Generate a mapping of standard vendor prefixes using the defined style property and event name.
 	 *
 	 * @param {string} styleProp
@@ -7003,13 +6982,13 @@
 	//
 	// prettier-ignore
 	var simpleEventPluginEvents=['abort','auxClick','cancel','canPlay','canPlayThrough','click','close','contextMenu','copy','cut','drag','dragEnd','dragEnter','dragExit','dragLeave','dragOver','dragStart','drop','durationChange','emptied','encrypted','ended','error','gotPointerCapture','input','invalid','keyDown','keyPress','keyUp','load','loadedData','loadedMetadata','loadStart','lostPointerCapture','mouseDown','mouseMove','mouseOut','mouseOver','mouseUp','paste','pause','play','playing','pointerCancel','pointerDown','pointerMove','pointerOut','pointerOver','pointerUp','progress','rateChange','reset','resize','seeked','seeking','stalled','submit','suspend','timeUpdate','touchCancel','touchEnd','touchStart','volumeChange','scroll','toggle','touchMove','waiting','wheel'];function registerSimpleEvent(domEventName,reactName){topLevelEventsToReactNames.set(domEventName,reactName);registerTwoPhaseEvent(reactName,[domEventName]);}function registerSimpleEvents(){for(var i=0;i<simpleEventPluginEvents.length;i++){var eventName=simpleEventPluginEvents[i];var domEventName=eventName.toLowerCase();var capitalizedEvent=eventName[0].toUpperCase()+eventName.slice(1);registerSimpleEvent(domEventName,'on'+capitalizedEvent);}// Special cases where event names don't match.
-	registerSimpleEvent(ANIMATION_END,'onAnimationEnd');registerSimpleEvent(ANIMATION_ITERATION,'onAnimationIteration');registerSimpleEvent(ANIMATION_START,'onAnimationStart');registerSimpleEvent('dblclick','onDoubleClick');registerSimpleEvent('focusin','onFocus');registerSimpleEvent('focusout','onBlur');registerSimpleEvent(TRANSITION_END,'onTransitionEnd');}function extractEvents$4(dispatchQueue,domEventName,targetInst,nativeEvent,nativeEventTarget,eventSystemFlags,targetContainer){var reactName=topLevelEventsToReactNames.get(domEventName);if(reactName===undefined){return;}var SyntheticEventCtor=SyntheticEvent;var reactEventType=domEventName;switch(domEventName){case'keypress':// Firefox creates a keypress event for function keys too. This removes
+	registerSimpleEvent(ANIMATION_END,'onAnimationEnd');registerSimpleEvent(ANIMATION_ITERATION,'onAnimationIteration');registerSimpleEvent(ANIMATION_START,'onAnimationStart');registerSimpleEvent('dblclick','onDoubleClick');registerSimpleEvent('focusin','onFocus');registerSimpleEvent('focusout','onBlur');registerSimpleEvent(TRANSITION_END,'onTransitionEnd');}function extractEvents$4(dispatchQueue,domEventName,targetInst,nativeEvent,nativeEventTarget,eventSystemFlags,targetContainer){var reactName=topLevelEventsToReactNames.get(domEventName);if(reactName===undefined){return;}var SyntheticEventCtor=SyntheticEvent;var reactEventType=domEventName;switch(domEventName){case 'keypress':// Firefox creates a keypress event for function keys too. This removes
 	// the unwanted keypress events. Enter is however both printable and
 	// non-printable. One would expect Tab to be as well (but it isn't).
-	if(getEventCharCode(nativeEvent)===0){return;}/* falls through */case'keydown':case'keyup':SyntheticEventCtor=SyntheticKeyboardEvent;break;case'focusin':reactEventType='focus';SyntheticEventCtor=SyntheticFocusEvent;break;case'focusout':reactEventType='blur';SyntheticEventCtor=SyntheticFocusEvent;break;case'beforeblur':case'afterblur':SyntheticEventCtor=SyntheticFocusEvent;break;case'click':// Firefox creates a click event on right mouse clicks. This removes the
+	if(getEventCharCode(nativeEvent)===0){return;}/* falls through */case 'keydown':case 'keyup':SyntheticEventCtor=SyntheticKeyboardEvent;break;case 'focusin':reactEventType='focus';SyntheticEventCtor=SyntheticFocusEvent;break;case 'focusout':reactEventType='blur';SyntheticEventCtor=SyntheticFocusEvent;break;case 'beforeblur':case 'afterblur':SyntheticEventCtor=SyntheticFocusEvent;break;case 'click':// Firefox creates a click event on right mouse clicks. This removes the
 	// unwanted click events.
-	if(nativeEvent.button===2){return;}/* falls through */case'auxclick':case'dblclick':case'mousedown':case'mousemove':case'mouseup':// TODO: Disabled elements should not respond to mouse events
-	/* falls through */case'mouseout':case'mouseover':case'contextmenu':SyntheticEventCtor=SyntheticMouseEvent;break;case'drag':case'dragend':case'dragenter':case'dragexit':case'dragleave':case'dragover':case'dragstart':case'drop':SyntheticEventCtor=SyntheticDragEvent;break;case'touchcancel':case'touchend':case'touchmove':case'touchstart':SyntheticEventCtor=SyntheticTouchEvent;break;case ANIMATION_END:case ANIMATION_ITERATION:case ANIMATION_START:SyntheticEventCtor=SyntheticAnimationEvent;break;case TRANSITION_END:SyntheticEventCtor=SyntheticTransitionEvent;break;case'scroll':SyntheticEventCtor=SyntheticUIEvent;break;case'wheel':SyntheticEventCtor=SyntheticWheelEvent;break;case'copy':case'cut':case'paste':SyntheticEventCtor=SyntheticClipboardEvent;break;case'gotpointercapture':case'lostpointercapture':case'pointercancel':case'pointerdown':case'pointermove':case'pointerout':case'pointerover':case'pointerup':SyntheticEventCtor=SyntheticPointerEvent;break;}var inCapturePhase=(eventSystemFlags&IS_CAPTURE_PHASE)!==0;{// Some events don't bubble in the browser.
+	if(nativeEvent.button===2){return;}/* falls through */case 'auxclick':case 'dblclick':case 'mousedown':case 'mousemove':case 'mouseup':// TODO: Disabled elements should not respond to mouse events
+	/* falls through */case 'mouseout':case 'mouseover':case 'contextmenu':SyntheticEventCtor=SyntheticMouseEvent;break;case 'drag':case 'dragend':case 'dragenter':case 'dragexit':case 'dragleave':case 'dragover':case 'dragstart':case 'drop':SyntheticEventCtor=SyntheticDragEvent;break;case 'touchcancel':case 'touchend':case 'touchmove':case 'touchstart':SyntheticEventCtor=SyntheticTouchEvent;break;case ANIMATION_END:case ANIMATION_ITERATION:case ANIMATION_START:SyntheticEventCtor=SyntheticAnimationEvent;break;case TRANSITION_END:SyntheticEventCtor=SyntheticTransitionEvent;break;case 'scroll':SyntheticEventCtor=SyntheticUIEvent;break;case 'wheel':SyntheticEventCtor=SyntheticWheelEvent;break;case 'copy':case 'cut':case 'paste':SyntheticEventCtor=SyntheticClipboardEvent;break;case 'gotpointercapture':case 'lostpointercapture':case 'pointercancel':case 'pointerdown':case 'pointermove':case 'pointerout':case 'pointerover':case 'pointerup':SyntheticEventCtor=SyntheticPointerEvent;break;}var inCapturePhase=(eventSystemFlags&IS_CAPTURE_PHASE)!==0;{// Some events don't bubble in the browser.
 	// In the past, React has always bubbled them, but this can be surprising.
 	// We're going to try aligning closer to the browser behavior by not bubbling
 	// them in React either. We'll start by not bubbling onScroll, and then expand.
@@ -7186,29 +7165,29 @@
 	//
 	// This is only necessary when a select in "single selection mode".
 	node.size=props.size;}}}}else {domElement=ownerDocument.createElementNS(namespaceURI,type);}{if(namespaceURI===HTML_NAMESPACE){if(!isCustomComponentTag&&Object.prototype.toString.call(domElement)==='[object HTMLUnknownElement]'&&!hasOwnProperty.call(warnedUnknownTags,type)){warnedUnknownTags[type]=true;error('The tag <%s> is unrecognized in this browser. '+'If you meant to render a React component, start its name with '+'an uppercase letter.',type);}}}return domElement;}function createTextNode(text,rootContainerElement){return getOwnerDocumentFromRootContainer(rootContainerElement).createTextNode(text);}function setInitialProperties(domElement,tag,rawProps,rootContainerElement){var isCustomComponentTag=isCustomComponent(tag,rawProps);{validatePropertiesInDevelopment(tag,rawProps);}// TODO: Make sure that we check isMounted before firing any of these events.
-	var props;switch(tag){case'dialog':listenToNonDelegatedEvent('cancel',domElement);listenToNonDelegatedEvent('close',domElement);props=rawProps;break;case'iframe':case'object':case'embed':// We listen to this event in case to ensure emulated bubble
+	var props;switch(tag){case 'dialog':listenToNonDelegatedEvent('cancel',domElement);listenToNonDelegatedEvent('close',domElement);props=rawProps;break;case 'iframe':case 'object':case 'embed':// We listen to this event in case to ensure emulated bubble
 	// listeners still fire for the load event.
-	listenToNonDelegatedEvent('load',domElement);props=rawProps;break;case'video':case'audio':// We listen to these events in case to ensure emulated bubble
+	listenToNonDelegatedEvent('load',domElement);props=rawProps;break;case 'video':case 'audio':// We listen to these events in case to ensure emulated bubble
 	// listeners still fire for all the media events.
-	for(var i=0;i<mediaEventTypes.length;i++){listenToNonDelegatedEvent(mediaEventTypes[i],domElement);}props=rawProps;break;case'source':// We listen to this event in case to ensure emulated bubble
+	for(var i=0;i<mediaEventTypes.length;i++){listenToNonDelegatedEvent(mediaEventTypes[i],domElement);}props=rawProps;break;case 'source':// We listen to this event in case to ensure emulated bubble
 	// listeners still fire for the error event.
-	listenToNonDelegatedEvent('error',domElement);props=rawProps;break;case'img':case'image':case'link':// We listen to these events in case to ensure emulated bubble
+	listenToNonDelegatedEvent('error',domElement);props=rawProps;break;case 'img':case 'image':case 'link':// We listen to these events in case to ensure emulated bubble
 	// listeners still fire for error and load events.
-	listenToNonDelegatedEvent('error',domElement);listenToNonDelegatedEvent('load',domElement);props=rawProps;break;case'details':// We listen to this event in case to ensure emulated bubble
+	listenToNonDelegatedEvent('error',domElement);listenToNonDelegatedEvent('load',domElement);props=rawProps;break;case 'details':// We listen to this event in case to ensure emulated bubble
 	// listeners still fire for the toggle event.
-	listenToNonDelegatedEvent('toggle',domElement);props=rawProps;break;case'input':initWrapperState(domElement,rawProps);props=getHostProps(domElement,rawProps);// We listen to this event in case to ensure emulated bubble
+	listenToNonDelegatedEvent('toggle',domElement);props=rawProps;break;case 'input':initWrapperState(domElement,rawProps);props=getHostProps(domElement,rawProps);// We listen to this event in case to ensure emulated bubble
 	// listeners still fire for the invalid event.
-	listenToNonDelegatedEvent('invalid',domElement);break;case'option':validateProps(domElement,rawProps);props=rawProps;break;case'select':initWrapperState$1(domElement,rawProps);props=getHostProps$1(domElement,rawProps);// We listen to this event in case to ensure emulated bubble
+	listenToNonDelegatedEvent('invalid',domElement);break;case 'option':validateProps(domElement,rawProps);props=rawProps;break;case 'select':initWrapperState$1(domElement,rawProps);props=getHostProps$1(domElement,rawProps);// We listen to this event in case to ensure emulated bubble
 	// listeners still fire for the invalid event.
-	listenToNonDelegatedEvent('invalid',domElement);break;case'textarea':initWrapperState$2(domElement,rawProps);props=getHostProps$2(domElement,rawProps);// We listen to this event in case to ensure emulated bubble
+	listenToNonDelegatedEvent('invalid',domElement);break;case 'textarea':initWrapperState$2(domElement,rawProps);props=getHostProps$2(domElement,rawProps);// We listen to this event in case to ensure emulated bubble
 	// listeners still fire for the invalid event.
-	listenToNonDelegatedEvent('invalid',domElement);break;default:props=rawProps;}assertValidProps(tag,props);setInitialDOMProperties(tag,domElement,rootContainerElement,props,isCustomComponentTag);switch(tag){case'input':// TODO: Make sure we check if this is still unmounted or do any clean
+	listenToNonDelegatedEvent('invalid',domElement);break;default:props=rawProps;}assertValidProps(tag,props);setInitialDOMProperties(tag,domElement,rootContainerElement,props,isCustomComponentTag);switch(tag){case 'input':// TODO: Make sure we check if this is still unmounted or do any clean
 	// up necessary since we never stop tracking anymore.
-	track(domElement);postMountWrapper(domElement,rawProps,false);break;case'textarea':// TODO: Make sure we check if this is still unmounted or do any clean
+	track(domElement);postMountWrapper(domElement,rawProps,false);break;case 'textarea':// TODO: Make sure we check if this is still unmounted or do any clean
 	// up necessary since we never stop tracking anymore.
-	track(domElement);postMountWrapper$3(domElement);break;case'option':postMountWrapper$1(domElement,rawProps);break;case'select':postMountWrapper$2(domElement,rawProps);break;default:if(typeof props.onClick==='function'){// TODO: This cast may not be sound for SVG, MathML or custom elements.
+	track(domElement);postMountWrapper$3(domElement);break;case 'option':postMountWrapper$1(domElement,rawProps);break;case 'select':postMountWrapper$2(domElement,rawProps);break;default:if(typeof props.onClick==='function'){// TODO: This cast may not be sound for SVG, MathML or custom elements.
 	trapClickOnNonInteractiveElement(domElement);}break;}}// Calculate the diff between the two objects.
-	function diffProperties(domElement,tag,lastRawProps,nextRawProps,rootContainerElement){{validatePropertiesInDevelopment(tag,nextRawProps);}var updatePayload=null;var lastProps;var nextProps;switch(tag){case'input':lastProps=getHostProps(domElement,lastRawProps);nextProps=getHostProps(domElement,nextRawProps);updatePayload=[];break;case'select':lastProps=getHostProps$1(domElement,lastRawProps);nextProps=getHostProps$1(domElement,nextRawProps);updatePayload=[];break;case'textarea':lastProps=getHostProps$2(domElement,lastRawProps);nextProps=getHostProps$2(domElement,nextRawProps);updatePayload=[];break;default:lastProps=lastRawProps;nextProps=nextRawProps;if(typeof lastProps.onClick!=='function'&&typeof nextProps.onClick==='function'){// TODO: This cast may not be sound for SVG, MathML or custom elements.
+	function diffProperties(domElement,tag,lastRawProps,nextRawProps,rootContainerElement){{validatePropertiesInDevelopment(tag,nextRawProps);}var updatePayload=null;var lastProps;var nextProps;switch(tag){case 'input':lastProps=getHostProps(domElement,lastRawProps);nextProps=getHostProps(domElement,nextRawProps);updatePayload=[];break;case 'select':lastProps=getHostProps$1(domElement,lastRawProps);nextProps=getHostProps$1(domElement,nextRawProps);updatePayload=[];break;case 'textarea':lastProps=getHostProps$2(domElement,lastRawProps);nextProps=getHostProps$2(domElement,nextRawProps);updatePayload=[];break;default:lastProps=lastRawProps;nextProps=nextRawProps;if(typeof lastProps.onClick!=='function'&&typeof nextProps.onClick==='function'){// TODO: This cast may not be sound for SVG, MathML or custom elements.
 	trapClickOnNonInteractiveElement(domElement);}break;}assertValidProps(tag,nextProps);var propKey;var styleName;var styleUpdates=null;for(propKey in lastProps){if(nextProps.hasOwnProperty(propKey)||!lastProps.hasOwnProperty(propKey)||lastProps[propKey]==null){continue;}if(propKey===STYLE){var lastStyle=lastProps[propKey];for(styleName in lastStyle){if(lastStyle.hasOwnProperty(styleName)){if(!styleUpdates){styleUpdates={};}styleUpdates[styleName]='';}}}else if(propKey===DANGEROUSLY_SET_INNER_HTML||propKey===CHILDREN);else if(propKey===SUPPRESS_CONTENT_EDITABLE_WARNING||propKey===SUPPRESS_HYDRATION_WARNING);else if(propKey===AUTOFOCUS);else if(registrationNameDependencies.hasOwnProperty(propKey)){// This is a special case. If any listener updates we need to ensure
 	// that the "current" fiber pointer gets updated so we need a commit
 	// to update this element.
@@ -7232,31 +7211,31 @@
 	if(tag==='input'&&nextRawProps.type==='radio'&&nextRawProps.name!=null){updateChecked(domElement,nextRawProps);}var wasCustomComponentTag=isCustomComponent(tag,lastRawProps);var isCustomComponentTag=isCustomComponent(tag,nextRawProps);// Apply the diff.
 	updateDOMProperties(domElement,updatePayload,wasCustomComponentTag,isCustomComponentTag);// TODO: Ensure that an update gets scheduled if any of the special props
 	// changed.
-	switch(tag){case'input':// Update the wrapper around inputs *after* updating props. This has to
+	switch(tag){case 'input':// Update the wrapper around inputs *after* updating props. This has to
 	// happen after `updateDOMProperties`. Otherwise HTML5 input validations
 	// raise warnings and prevent the new value from being assigned.
-	updateWrapper(domElement,nextRawProps);break;case'textarea':updateWrapper$1(domElement,nextRawProps);break;case'select':// <select> value update needs to occur after <option> children
+	updateWrapper(domElement,nextRawProps);break;case 'textarea':updateWrapper$1(domElement,nextRawProps);break;case 'select':// <select> value update needs to occur after <option> children
 	// reconciliation
 	postUpdateWrapper(domElement,nextRawProps);break;}}function getPossibleStandardName(propName){{var lowerCasedName=propName.toLowerCase();if(!possibleStandardNames.hasOwnProperty(lowerCasedName)){return null;}return possibleStandardNames[lowerCasedName]||null;}}function diffHydratedProperties(domElement,tag,rawProps,parentNamespace,rootContainerElement,isConcurrentMode,shouldWarnDev){var isCustomComponentTag;var extraAttributeNames;{isCustomComponentTag=isCustomComponent(tag,rawProps);validatePropertiesInDevelopment(tag,rawProps);}// TODO: Make sure that we check isMounted before firing any of these events.
-	switch(tag){case'dialog':listenToNonDelegatedEvent('cancel',domElement);listenToNonDelegatedEvent('close',domElement);break;case'iframe':case'object':case'embed':// We listen to this event in case to ensure emulated bubble
+	switch(tag){case 'dialog':listenToNonDelegatedEvent('cancel',domElement);listenToNonDelegatedEvent('close',domElement);break;case 'iframe':case 'object':case 'embed':// We listen to this event in case to ensure emulated bubble
 	// listeners still fire for the load event.
-	listenToNonDelegatedEvent('load',domElement);break;case'video':case'audio':// We listen to these events in case to ensure emulated bubble
+	listenToNonDelegatedEvent('load',domElement);break;case 'video':case 'audio':// We listen to these events in case to ensure emulated bubble
 	// listeners still fire for all the media events.
-	for(var i=0;i<mediaEventTypes.length;i++){listenToNonDelegatedEvent(mediaEventTypes[i],domElement);}break;case'source':// We listen to this event in case to ensure emulated bubble
+	for(var i=0;i<mediaEventTypes.length;i++){listenToNonDelegatedEvent(mediaEventTypes[i],domElement);}break;case 'source':// We listen to this event in case to ensure emulated bubble
 	// listeners still fire for the error event.
-	listenToNonDelegatedEvent('error',domElement);break;case'img':case'image':case'link':// We listen to these events in case to ensure emulated bubble
+	listenToNonDelegatedEvent('error',domElement);break;case 'img':case 'image':case 'link':// We listen to these events in case to ensure emulated bubble
 	// listeners still fire for error and load events.
-	listenToNonDelegatedEvent('error',domElement);listenToNonDelegatedEvent('load',domElement);break;case'details':// We listen to this event in case to ensure emulated bubble
+	listenToNonDelegatedEvent('error',domElement);listenToNonDelegatedEvent('load',domElement);break;case 'details':// We listen to this event in case to ensure emulated bubble
 	// listeners still fire for the toggle event.
-	listenToNonDelegatedEvent('toggle',domElement);break;case'input':initWrapperState(domElement,rawProps);// We listen to this event in case to ensure emulated bubble
+	listenToNonDelegatedEvent('toggle',domElement);break;case 'input':initWrapperState(domElement,rawProps);// We listen to this event in case to ensure emulated bubble
 	// listeners still fire for the invalid event.
-	listenToNonDelegatedEvent('invalid',domElement);break;case'option':validateProps(domElement,rawProps);break;case'select':initWrapperState$1(domElement,rawProps);// We listen to this event in case to ensure emulated bubble
+	listenToNonDelegatedEvent('invalid',domElement);break;case 'option':validateProps(domElement,rawProps);break;case 'select':initWrapperState$1(domElement,rawProps);// We listen to this event in case to ensure emulated bubble
 	// listeners still fire for the invalid event.
-	listenToNonDelegatedEvent('invalid',domElement);break;case'textarea':initWrapperState$2(domElement,rawProps);// We listen to this event in case to ensure emulated bubble
+	listenToNonDelegatedEvent('invalid',domElement);break;case 'textarea':initWrapperState$2(domElement,rawProps);// We listen to this event in case to ensure emulated bubble
 	// listeners still fire for the invalid event.
 	listenToNonDelegatedEvent('invalid',domElement);break;}assertValidProps(tag,rawProps);{extraAttributeNames=new Set();var attributes=domElement.attributes;for(var _i=0;_i<attributes.length;_i++){var name=attributes[_i].name.toLowerCase();switch(name){// Controlled attributes are not validated
 	// TODO: Only ignore them on controlled tags.
-	case'value':break;case'checked':break;case'selected':break;default:// Intentionally use the original name.
+	case 'value':break;case 'checked':break;case 'selected':break;default:// Intentionally use the original name.
 	// See discussion in https://github.com/facebook/react/pull/10676.
 	extraAttributeNames.add(attributes[_i].name);}}}var updatePayload=null;for(var propKey in rawProps){if(!rawProps.hasOwnProperty(propKey)){continue;}var nextProp=rawProps[propKey];if(propKey===CHILDREN){// For text content children we compare against textContent. This
 	// might match additional HTML that is hidden when we read it using
@@ -7269,10 +7248,10 @@
 	// TODO: Should we use domElement.firstChild.nodeValue to compare?
 	if(typeof nextProp==='string'){if(domElement.textContent!==nextProp){if(rawProps[SUPPRESS_HYDRATION_WARNING]!==true){checkForUnmatchedText(domElement.textContent,nextProp,isConcurrentMode,shouldWarnDev);}updatePayload=[CHILDREN,nextProp];}}else if(typeof nextProp==='number'){if(domElement.textContent!==''+nextProp){if(rawProps[SUPPRESS_HYDRATION_WARNING]!==true){checkForUnmatchedText(domElement.textContent,nextProp,isConcurrentMode,shouldWarnDev);}updatePayload=[CHILDREN,''+nextProp];}}}else if(registrationNameDependencies.hasOwnProperty(propKey)){if(nextProp!=null){if(typeof nextProp!=='function'){warnForInvalidEventListener(propKey,nextProp);}if(propKey==='onScroll'){listenToNonDelegatedEvent('scroll',domElement);}}}else if(shouldWarnDev&&true&&// Convince Flow we've calculated it (it's DEV-only in this method.)
 	typeof isCustomComponentTag==='boolean'){// Validate that the properties correspond to their expected values.
-	var serverValue=void 0;var propertyInfo=isCustomComponentTag&&enableCustomElementPropertySupport?null:getPropertyInfo(propKey);if(rawProps[SUPPRESS_HYDRATION_WARNING]===true);else if(propKey===SUPPRESS_CONTENT_EDITABLE_WARNING||propKey===SUPPRESS_HYDRATION_WARNING||// Controlled attributes are not validated
+	var serverValue=undefined;var propertyInfo=getPropertyInfo(propKey);if(rawProps[SUPPRESS_HYDRATION_WARNING]===true);else if(propKey===SUPPRESS_CONTENT_EDITABLE_WARNING||propKey===SUPPRESS_HYDRATION_WARNING||// Controlled attributes are not validated
 	// TODO: Only ignore them on controlled tags.
 	propKey==='value'||propKey==='checked'||propKey==='selected');else if(propKey===DANGEROUSLY_SET_INNER_HTML){var serverHTML=domElement.innerHTML;var nextHtml=nextProp?nextProp[HTML$1]:undefined;if(nextHtml!=null){var expectedHTML=normalizeHTML(domElement,nextHtml);if(expectedHTML!==serverHTML){warnForPropDifference(propKey,serverHTML,expectedHTML);}}}else if(propKey===STYLE){// $FlowFixMe - Should be inferred as not undefined.
-	extraAttributeNames.delete(propKey);if(canDiffStyleForHydrationWarning){var expectedStyle=createDangerousStringForStyles(nextProp);serverValue=domElement.getAttribute('style');if(expectedStyle!==serverValue){warnForPropDifference(propKey,serverValue,expectedStyle);}}}else if(isCustomComponentTag&&!enableCustomElementPropertySupport){// $FlowFixMe - Should be inferred as not undefined.
+	extraAttributeNames.delete(propKey);if(canDiffStyleForHydrationWarning){var expectedStyle=createDangerousStringForStyles(nextProp);serverValue=domElement.getAttribute('style');if(expectedStyle!==serverValue){warnForPropDifference(propKey,serverValue,expectedStyle);}}}else if(isCustomComponentTag&&true){// $FlowFixMe - Should be inferred as not undefined.
 	extraAttributeNames.delete(propKey.toLowerCase());serverValue=getValueForAttribute(domElement,propKey,nextProp);if(nextProp!==serverValue){warnForPropDifference(propKey,serverValue,nextProp);}}else if(!shouldIgnoreAttribute(propKey,propertyInfo,isCustomComponentTag)&&!shouldRemoveAttribute(propKey,nextProp,propertyInfo,isCustomComponentTag)){var isMismatchDueToBadCasing=false;if(propertyInfo!==null){// $FlowFixMe - Should be inferred as not undefined.
 	extraAttributeNames.delete(propertyInfo.attributeName);serverValue=getValueForProperty(domElement,propKey,nextProp,propertyInfo);}else {var ownNamespace=parentNamespace;if(ownNamespace===HTML_NAMESPACE){ownNamespace=getIntrinsicNamespace(tag);}if(ownNamespace===HTML_NAMESPACE){// $FlowFixMe - Should be inferred as not undefined.
 	extraAttributeNames.delete(propKey.toLowerCase());}else {var standardName=getPossibleStandardName(propKey);if(standardName!==null&&standardName!==propKey){// If an SVG prop is supplied with bad casing, it will
@@ -7284,11 +7263,11 @@
 	extraAttributeNames.delete(standardName);}// $FlowFixMe - Should be inferred as not undefined.
 	extraAttributeNames.delete(propKey);}serverValue=getValueForAttribute(domElement,propKey,nextProp);}var dontWarnCustomElement=enableCustomElementPropertySupport;if(!dontWarnCustomElement&&nextProp!==serverValue&&!isMismatchDueToBadCasing){warnForPropDifference(propKey,serverValue,nextProp);}}}}{if(shouldWarnDev){if(// $FlowFixMe - Should be inferred as not undefined.
 	extraAttributeNames.size>0&&rawProps[SUPPRESS_HYDRATION_WARNING]!==true){// $FlowFixMe - Should be inferred as not undefined.
-	warnForExtraAttributes(extraAttributeNames);}}}switch(tag){case'input':// TODO: Make sure we check if this is still unmounted or do any clean
+	warnForExtraAttributes(extraAttributeNames);}}}switch(tag){case 'input':// TODO: Make sure we check if this is still unmounted or do any clean
 	// up necessary since we never stop tracking anymore.
-	track(domElement);postMountWrapper(domElement,rawProps,true);break;case'textarea':// TODO: Make sure we check if this is still unmounted or do any clean
+	track(domElement);postMountWrapper(domElement,rawProps,true);break;case 'textarea':// TODO: Make sure we check if this is still unmounted or do any clean
 	// up necessary since we never stop tracking anymore.
-	track(domElement);postMountWrapper$3(domElement);break;case'select':case'option':// For input and textarea we current always set the value property at
+	track(domElement);postMountWrapper$3(domElement);break;case 'select':case 'option':// For input and textarea we current always set the value property at
 	// post mount to force it to diverge from attributes. However, for
 	// option and select we don't quite do the same thing and select
 	// is not resilient to the DOM state changing so we don't do that here.
@@ -7298,7 +7277,7 @@
 	// the HTML.
 	// TODO: Remove this special case if we can just avoid inserting empty
 	// text nodes.
-	return;}if(didWarnInvalidHydration){return;}didWarnInvalidHydration=true;error('Expected server HTML to contain a matching text node for "%s" in <%s>.',text,parentNode.nodeName.toLowerCase());}}function restoreControlledState$3(domElement,tag,props){switch(tag){case'input':restoreControlledState(domElement,props);return;case'textarea':restoreControlledState$2(domElement,props);return;case'select':restoreControlledState$1(domElement,props);return;}}var validateDOMNesting=function(){};var updatedAncestorInfo=function(){};{// This validation code was written based on the HTML5 parsing spec:
+	return;}if(didWarnInvalidHydration){return;}didWarnInvalidHydration=true;error('Expected server HTML to contain a matching text node for "%s" in <%s>.',text,parentNode.nodeName.toLowerCase());}}function restoreControlledState$3(domElement,tag,props){switch(tag){case 'input':restoreControlledState(domElement,props);return;case 'textarea':restoreControlledState$2(domElement,props);return;case 'select':restoreControlledState$1(domElement,props);return;}}var validateDOMNesting=function(){};var updatedAncestorInfo=function(){};{// This validation code was written based on the HTML5 parsing spec:
 	// https://html.spec.whatwg.org/multipage/syntax.html#has-an-element-in-scope
 	//
 	// Note: this does not catch all invalid nesting, nor does it try to (as it's
@@ -7321,31 +7300,31 @@
 	   * Returns whether
 	   */var isTagValidWithParent=function(tag,parentTag){// First, let's check if we're in an unusual parsing mode...
 	switch(parentTag){// https://html.spec.whatwg.org/multipage/syntax.html#parsing-main-inselect
-	case'select':return tag==='option'||tag==='optgroup'||tag==='#text';case'optgroup':return tag==='option'||tag==='#text';// Strictly speaking, seeing an <option> doesn't mean we're in a <select>
+	case 'select':return tag==='option'||tag==='optgroup'||tag==='#text';case 'optgroup':return tag==='option'||tag==='#text';// Strictly speaking, seeing an <option> doesn't mean we're in a <select>
 	// but
-	case'option':return tag==='#text';// https://html.spec.whatwg.org/multipage/syntax.html#parsing-main-intd
+	case 'option':return tag==='#text';// https://html.spec.whatwg.org/multipage/syntax.html#parsing-main-intd
 	// https://html.spec.whatwg.org/multipage/syntax.html#parsing-main-incaption
 	// No special behavior since these rules fall back to "in body" mode for
 	// all except special table nodes which cause bad parsing behavior anyway.
 	// https://html.spec.whatwg.org/multipage/syntax.html#parsing-main-intr
-	case'tr':return tag==='th'||tag==='td'||tag==='style'||tag==='script'||tag==='template';// https://html.spec.whatwg.org/multipage/syntax.html#parsing-main-intbody
-	case'tbody':case'thead':case'tfoot':return tag==='tr'||tag==='style'||tag==='script'||tag==='template';// https://html.spec.whatwg.org/multipage/syntax.html#parsing-main-incolgroup
-	case'colgroup':return tag==='col'||tag==='template';// https://html.spec.whatwg.org/multipage/syntax.html#parsing-main-intable
-	case'table':return tag==='caption'||tag==='colgroup'||tag==='tbody'||tag==='tfoot'||tag==='thead'||tag==='style'||tag==='script'||tag==='template';// https://html.spec.whatwg.org/multipage/syntax.html#parsing-main-inhead
-	case'head':return tag==='base'||tag==='basefont'||tag==='bgsound'||tag==='link'||tag==='meta'||tag==='title'||tag==='noscript'||tag==='noframes'||tag==='style'||tag==='script'||tag==='template';// https://html.spec.whatwg.org/multipage/semantics.html#the-html-element
-	case'html':return tag==='head'||tag==='body'||tag==='frameset';case'frameset':return tag==='frame';case'#document':return tag==='html';}// Probably in the "in body" parsing mode, so we outlaw only tag combos
+	case 'tr':return tag==='th'||tag==='td'||tag==='style'||tag==='script'||tag==='template';// https://html.spec.whatwg.org/multipage/syntax.html#parsing-main-intbody
+	case 'tbody':case 'thead':case 'tfoot':return tag==='tr'||tag==='style'||tag==='script'||tag==='template';// https://html.spec.whatwg.org/multipage/syntax.html#parsing-main-incolgroup
+	case 'colgroup':return tag==='col'||tag==='template';// https://html.spec.whatwg.org/multipage/syntax.html#parsing-main-intable
+	case 'table':return tag==='caption'||tag==='colgroup'||tag==='tbody'||tag==='tfoot'||tag==='thead'||tag==='style'||tag==='script'||tag==='template';// https://html.spec.whatwg.org/multipage/syntax.html#parsing-main-inhead
+	case 'head':return tag==='base'||tag==='basefont'||tag==='bgsound'||tag==='link'||tag==='meta'||tag==='title'||tag==='noscript'||tag==='noframes'||tag==='style'||tag==='script'||tag==='template';// https://html.spec.whatwg.org/multipage/semantics.html#the-html-element
+	case 'html':return tag==='head'||tag==='body'||tag==='frameset';case 'frameset':return tag==='frame';case '#document':return tag==='html';}// Probably in the "in body" parsing mode, so we outlaw only tag combos
 	// where the parsing rules cause implicit opens or closes to be added.
 	// https://html.spec.whatwg.org/multipage/syntax.html#parsing-main-inbody
-	switch(tag){case'h1':case'h2':case'h3':case'h4':case'h5':case'h6':return parentTag!=='h1'&&parentTag!=='h2'&&parentTag!=='h3'&&parentTag!=='h4'&&parentTag!=='h5'&&parentTag!=='h6';case'rp':case'rt':return impliedEndTags.indexOf(parentTag)===-1;case'body':case'caption':case'col':case'colgroup':case'frameset':case'frame':case'head':case'html':case'tbody':case'td':case'tfoot':case'th':case'thead':case'tr':// These tags are only valid with a few parents that have special child
+	switch(tag){case 'h1':case 'h2':case 'h3':case 'h4':case 'h5':case 'h6':return parentTag!=='h1'&&parentTag!=='h2'&&parentTag!=='h3'&&parentTag!=='h4'&&parentTag!=='h5'&&parentTag!=='h6';case 'rp':case 'rt':return impliedEndTags.indexOf(parentTag)===-1;case 'body':case 'caption':case 'col':case 'colgroup':case 'frameset':case 'frame':case 'head':case 'html':case 'tbody':case 'td':case 'tfoot':case 'th':case 'thead':case 'tr':// These tags are only valid with a few parents that have special child
 	// parsing rules -- if we're down here, then none of those matched and
 	// so we allow it only if we don't know what the parent is, as all other
 	// cases are invalid.
 	return parentTag==null;}return true;};/**
 	   * Returns whether
-	   */var findInvalidAncestorForTag=function(tag,ancestorInfo){switch(tag){case'address':case'article':case'aside':case'blockquote':case'center':case'details':case'dialog':case'dir':case'div':case'dl':case'fieldset':case'figcaption':case'figure':case'footer':case'header':case'hgroup':case'main':case'menu':case'nav':case'ol':case'p':case'section':case'summary':case'ul':case'pre':case'listing':case'table':case'hr':case'xmp':case'h1':case'h2':case'h3':case'h4':case'h5':case'h6':return ancestorInfo.pTagInButtonScope;case'form':return ancestorInfo.formTag||ancestorInfo.pTagInButtonScope;case'li':return ancestorInfo.listItemTagAutoclosing;case'dd':case'dt':return ancestorInfo.dlItemTagAutoclosing;case'button':return ancestorInfo.buttonTagInScope;case'a':// Spec says something about storing a list of markers, but it sounds
+	   */var findInvalidAncestorForTag=function(tag,ancestorInfo){switch(tag){case 'address':case 'article':case 'aside':case 'blockquote':case 'center':case 'details':case 'dialog':case 'dir':case 'div':case 'dl':case 'fieldset':case 'figcaption':case 'figure':case 'footer':case 'header':case 'hgroup':case 'main':case 'menu':case 'nav':case 'ol':case 'p':case 'section':case 'summary':case 'ul':case 'pre':case 'listing':case 'table':case 'hr':case 'xmp':case 'h1':case 'h2':case 'h3':case 'h4':case 'h5':case 'h6':return ancestorInfo.pTagInButtonScope;case 'form':return ancestorInfo.formTag||ancestorInfo.pTagInButtonScope;case 'li':return ancestorInfo.listItemTagAutoclosing;case 'dd':case 'dt':return ancestorInfo.dlItemTagAutoclosing;case 'button':return ancestorInfo.buttonTagInScope;case 'a':// Spec says something about storing a list of markers, but it sounds
 	// equivalent to this check.
-	return ancestorInfo.aTagInScope;case'nobr':return ancestorInfo.nobrTagInScope;}return null;};var didWarn$1={};validateDOMNesting=function(childTag,childText,ancestorInfo){ancestorInfo=ancestorInfo||emptyAncestorInfo;var parentInfo=ancestorInfo.current;var parentTag=parentInfo&&parentInfo.tag;if(childText!=null){if(childTag!=null){error('validateDOMNesting: when childText is passed, childTag should be null');}childTag='#text';}var invalidParent=isTagValidWithParent(childTag,parentTag)?null:parentInfo;var invalidAncestor=invalidParent?null:findInvalidAncestorForTag(childTag,ancestorInfo);var invalidParentOrAncestor=invalidParent||invalidAncestor;if(!invalidParentOrAncestor){return;}var ancestorTag=invalidParentOrAncestor.tag;var warnKey=!!invalidParent+'|'+childTag+'|'+ancestorTag;if(didWarn$1[warnKey]){return;}didWarn$1[warnKey]=true;var tagDisplayName=childTag;var whitespaceInfo='';if(childTag==='#text'){if(/\S/.test(childText)){tagDisplayName='Text nodes';}else {tagDisplayName='Whitespace text nodes';whitespaceInfo=" Make sure you don't have any extra whitespace between tags on "+'each line of your source code.';}}else {tagDisplayName='<'+childTag+'>';}if(invalidParent){var info='';if(ancestorTag==='table'&&childTag==='tr'){info+=' Add a <tbody>, <thead> or <tfoot> to your code to match the DOM tree generated by '+'the browser.';}error('validateDOMNesting(...): %s cannot appear as a child of <%s>.%s%s',tagDisplayName,ancestorTag,whitespaceInfo,info);}else {error('validateDOMNesting(...): %s cannot appear as a descendant of '+'<%s>.',tagDisplayName,ancestorTag);}};}var SUPPRESS_HYDRATION_WARNING$1='suppressHydrationWarning';var SUSPENSE_START_DATA='$';var SUSPENSE_END_DATA='/$';var SUSPENSE_PENDING_START_DATA='$?';var SUSPENSE_FALLBACK_START_DATA='$!';var STYLE$1='style';var eventsEnabled=null;var selectionInformation=null;function getRootHostContext(rootContainerInstance){var type;var namespace;var nodeType=rootContainerInstance.nodeType;switch(nodeType){case DOCUMENT_NODE:case DOCUMENT_FRAGMENT_NODE:{type=nodeType===DOCUMENT_NODE?'#document':'#fragment';var root=rootContainerInstance.documentElement;namespace=root?root.namespaceURI:getChildNamespace(null,'');break;}default:{var container=nodeType===COMMENT_NODE?rootContainerInstance.parentNode:rootContainerInstance;var ownNamespace=container.namespaceURI||null;type=container.tagName;namespace=getChildNamespace(ownNamespace,type);break;}}{var validatedTag=type.toLowerCase();var ancestorInfo=updatedAncestorInfo(null,validatedTag);return {namespace:namespace,ancestorInfo:ancestorInfo};}}function getChildHostContext(parentHostContext,type,rootContainerInstance){{var parentHostContextDev=parentHostContext;var namespace=getChildNamespace(parentHostContextDev.namespace,type);var ancestorInfo=updatedAncestorInfo(parentHostContextDev.ancestorInfo,type);return {namespace:namespace,ancestorInfo:ancestorInfo};}}function getPublicInstance(instance){return instance;}function prepareForCommit(containerInfo){eventsEnabled=isEnabled();selectionInformation=getSelectionInformation();var activeInstance=null;setEnabled(false);return activeInstance;}function resetAfterCommit(containerInfo){restoreSelection(selectionInformation);setEnabled(eventsEnabled);eventsEnabled=null;selectionInformation=null;}function createInstance(type,props,rootContainerInstance,hostContext,internalInstanceHandle){var parentNamespace;{// TODO: take namespace into account when validating.
-	var hostContextDev=hostContext;validateDOMNesting(type,null,hostContextDev.ancestorInfo);if(typeof props.children==='string'||typeof props.children==='number'){var string=''+props.children;var ownAncestorInfo=updatedAncestorInfo(hostContextDev.ancestorInfo,type);validateDOMNesting(null,string,ownAncestorInfo);}parentNamespace=hostContextDev.namespace;}var domElement=createElement(type,props,rootContainerInstance,parentNamespace);precacheFiberNode(internalInstanceHandle,domElement);updateFiberProps(domElement,props);return domElement;}function appendInitialChild(parentInstance,child){parentInstance.appendChild(child);}function finalizeInitialChildren(domElement,type,props,rootContainerInstance,hostContext){setInitialProperties(domElement,type,props,rootContainerInstance);switch(type){case'button':case'input':case'select':case'textarea':return !!props.autoFocus;case'img':return true;default:return false;}}function prepareUpdate(domElement,type,oldProps,newProps,rootContainerInstance,hostContext){{var hostContextDev=hostContext;if(typeof newProps.children!==typeof oldProps.children&&(typeof newProps.children==='string'||typeof newProps.children==='number')){var string=''+newProps.children;var ownAncestorInfo=updatedAncestorInfo(hostContextDev.ancestorInfo,type);validateDOMNesting(null,string,ownAncestorInfo);}}return diffProperties(domElement,type,oldProps,newProps);}function shouldSetTextContent(type,props){return type==='textarea'||type==='noscript'||typeof props.children==='string'||typeof props.children==='number'||typeof props.dangerouslySetInnerHTML==='object'&&props.dangerouslySetInnerHTML!==null&&props.dangerouslySetInnerHTML.__html!=null;}function createTextInstance(text,rootContainerInstance,hostContext,internalInstanceHandle){{var hostContextDev=hostContext;validateDOMNesting(null,text,hostContextDev.ancestorInfo);}var textNode=createTextNode(text,rootContainerInstance);precacheFiberNode(internalInstanceHandle,textNode);return textNode;}function getCurrentEventPriority(){var currentEvent=window.event;if(currentEvent===undefined){return DefaultEventPriority;}return getEventPriority(currentEvent.type);}// if a component just imports ReactDOM (e.g. for findDOMNode).
+	return ancestorInfo.aTagInScope;case 'nobr':return ancestorInfo.nobrTagInScope;}return null;};var didWarn$1={};validateDOMNesting=function(childTag,childText,ancestorInfo){ancestorInfo=ancestorInfo||emptyAncestorInfo;var parentInfo=ancestorInfo.current;var parentTag=parentInfo&&parentInfo.tag;if(childText!=null){if(childTag!=null){error('validateDOMNesting: when childText is passed, childTag should be null');}childTag='#text';}var invalidParent=isTagValidWithParent(childTag,parentTag)?null:parentInfo;var invalidAncestor=invalidParent?null:findInvalidAncestorForTag(childTag,ancestorInfo);var invalidParentOrAncestor=invalidParent||invalidAncestor;if(!invalidParentOrAncestor){return;}var ancestorTag=invalidParentOrAncestor.tag;var warnKey=!!invalidParent+'|'+childTag+'|'+ancestorTag;if(didWarn$1[warnKey]){return;}didWarn$1[warnKey]=true;var tagDisplayName=childTag;var whitespaceInfo='';if(childTag==='#text'){if(/\S/.test(childText)){tagDisplayName='Text nodes';}else {tagDisplayName='Whitespace text nodes';whitespaceInfo=" Make sure you don't have any extra whitespace between tags on "+'each line of your source code.';}}else {tagDisplayName='<'+childTag+'>';}if(invalidParent){var info='';if(ancestorTag==='table'&&childTag==='tr'){info+=' Add a <tbody>, <thead> or <tfoot> to your code to match the DOM tree generated by '+'the browser.';}error('validateDOMNesting(...): %s cannot appear as a child of <%s>.%s%s',tagDisplayName,ancestorTag,whitespaceInfo,info);}else {error('validateDOMNesting(...): %s cannot appear as a descendant of '+'<%s>.',tagDisplayName,ancestorTag);}};}var SUPPRESS_HYDRATION_WARNING$1='suppressHydrationWarning';var SUSPENSE_START_DATA='$';var SUSPENSE_END_DATA='/$';var SUSPENSE_PENDING_START_DATA='$?';var SUSPENSE_FALLBACK_START_DATA='$!';var STYLE$1='style';var eventsEnabled=null;var selectionInformation=null;function getRootHostContext(rootContainerInstance){var type;var namespace;var nodeType=rootContainerInstance.nodeType;switch(nodeType){case DOCUMENT_NODE:case DOCUMENT_FRAGMENT_NODE:{type=nodeType===DOCUMENT_NODE?'#document':'#fragment';var root=rootContainerInstance.documentElement;namespace=root?root.namespaceURI:getChildNamespace(null,'');break;}default:{var container=nodeType===COMMENT_NODE?rootContainerInstance.parentNode:rootContainerInstance;var ownNamespace=container.namespaceURI||null;type=container.tagName;namespace=getChildNamespace(ownNamespace,type);break;}}{var validatedTag=type.toLowerCase();var ancestorInfo=updatedAncestorInfo(null,validatedTag);return {namespace:namespace,ancestorInfo:ancestorInfo};}}function getChildHostContext(parentHostContext,type,rootContainerInstance){{var parentHostContextDev=parentHostContext;var namespace=getChildNamespace(parentHostContextDev.namespace,type);var ancestorInfo=updatedAncestorInfo(parentHostContextDev.ancestorInfo,type);return {namespace:namespace,ancestorInfo:ancestorInfo};}}function getPublicInstance(instance){return instance;}function prepareForCommit(containerInfo){eventsEnabled=isEnabled();selectionInformation=getSelectionInformation();var activeInstance=null;setEnabled(false);return activeInstance;}function resetAfterCommit(containerInfo){restoreSelection(selectionInformation);setEnabled(eventsEnabled);eventsEnabled=null;selectionInformation=null;}function createInstance(type,props,rootContainerInstance,hostContext,internalInstanceHandle){var parentNamespace;{// TODO: take namespace into account when validating.
+	var hostContextDev=hostContext;validateDOMNesting(type,null,hostContextDev.ancestorInfo);if(typeof props.children==='string'||typeof props.children==='number'){var string=''+props.children;var ownAncestorInfo=updatedAncestorInfo(hostContextDev.ancestorInfo,type);validateDOMNesting(null,string,ownAncestorInfo);}parentNamespace=hostContextDev.namespace;}var domElement=createElement(type,props,rootContainerInstance,parentNamespace);precacheFiberNode(internalInstanceHandle,domElement);updateFiberProps(domElement,props);return domElement;}function appendInitialChild(parentInstance,child){parentInstance.appendChild(child);}function finalizeInitialChildren(domElement,type,props,rootContainerInstance,hostContext){setInitialProperties(domElement,type,props,rootContainerInstance);switch(type){case 'button':case 'input':case 'select':case 'textarea':return !!props.autoFocus;case 'img':return true;default:return false;}}function prepareUpdate(domElement,type,oldProps,newProps,rootContainerInstance,hostContext){{var hostContextDev=hostContext;if(typeof newProps.children!==typeof oldProps.children&&(typeof newProps.children==='string'||typeof newProps.children==='number')){var string=''+newProps.children;var ownAncestorInfo=updatedAncestorInfo(hostContextDev.ancestorInfo,type);validateDOMNesting(null,string,ownAncestorInfo);}}return diffProperties(domElement,type,oldProps,newProps);}function shouldSetTextContent(type,props){return type==='textarea'||type==='noscript'||typeof props.children==='string'||typeof props.children==='number'||typeof props.dangerouslySetInnerHTML==='object'&&props.dangerouslySetInnerHTML!==null&&props.dangerouslySetInnerHTML.__html!=null;}function createTextInstance(text,rootContainerInstance,hostContext,internalInstanceHandle){{var hostContextDev=hostContext;validateDOMNesting(null,text,hostContextDev.ancestorInfo);}var textNode=createTextNode(text,rootContainerInstance);precacheFiberNode(internalInstanceHandle,textNode);return textNode;}function getCurrentEventPriority(){var currentEvent=window.event;if(currentEvent===undefined){return DefaultEventPriority;}return getEventPriority(currentEvent.type);}// if a component just imports ReactDOM (e.g. for findDOMNode).
 	// Some environments might not have setTimeout or clearTimeout.
 	var scheduleTimeout=typeof setTimeout==='function'?setTimeout:undefined;var cancelTimeout=typeof clearTimeout==='function'?clearTimeout:undefined;var noTimeout=-1;var localPromise=typeof Promise==='function'?Promise:undefined;// -------------------
 	var scheduleMicrotask=typeof queueMicrotask==='function'?queueMicrotask:typeof localPromise!=='undefined'?function(callback){return localPromise.resolve(null).then(callback).catch(handleErrorInNextTick);}:scheduleTimeout;// TODO: Determine the best fallback here.
@@ -7356,7 +7335,7 @@
 	// does to implement the `autoFocus` attribute on the client). But
 	// there are also other cases when this might happen (such as patching
 	// up text content during hydration mismatch). So we'll check this again.
-	switch(type){case'button':case'input':case'select':case'textarea':if(newProps.autoFocus){domElement.focus();}return;case'img':{if(newProps.src){domElement.src=newProps.src;}return;}}}function commitUpdate(domElement,updatePayload,type,oldProps,newProps,internalInstanceHandle){// Apply the diff to the DOM node.
+	switch(type){case 'button':case 'input':case 'select':case 'textarea':if(newProps.autoFocus){domElement.focus();}return;case 'img':{if(newProps.src){domElement.src=newProps.src;}return;}}}function commitUpdate(domElement,updatePayload,type,oldProps,newProps,internalInstanceHandle){// Apply the diff to the DOM node.
 	updateProperties(domElement,updatePayload,type,oldProps,newProps);// Update the props handle so that we know which props are the ones with
 	// with current event handlers.
 	updateFiberProps(domElement,newProps);}function resetTextContent(domElement){setTextContent(domElement,'');}function commitTextUpdate(textInstance,oldText,newText){textInstance.nodeValue=newText;}function appendChild(parentInstance,child){parentInstance.appendChild(child);}function appendChildToContainer(container,child){var parentNode;if(container.nodeType===COMMENT_NODE){parentNode=container.parentNode;parentNode.insertBefore(child,container);}else {parentNode=container;parentNode.appendChild(child);}// This container might be used for a portal.
@@ -7479,7 +7458,7 @@
 	return inst.stateNode;}// Without this first invariant, passing a non-DOM-component triggers the next
 	// invariant for a missing parent, which is super confusing.
 	throw new Error('getNodeFromInstance: Invalid argument.');}function getFiberCurrentPropsFromNode(node){return node[internalPropsKey]||null;}function updateFiberProps(node,props){node[internalPropsKey]=props;}function getEventListenerSet(node){var elementListenerSet=node[internalEventHandlersKey];if(elementListenerSet===undefined){elementListenerSet=node[internalEventHandlersKey]=new Set();}return elementListenerSet;}var loggedTypeFailures={};var ReactDebugCurrentFrame$1=ReactSharedInternals.ReactDebugCurrentFrame;function setCurrentlyValidatingElement(element){{if(element){var owner=element._owner;var stack=describeUnknownElementTypeFrameInDEV(element.type,element._source,owner?owner.type:null);ReactDebugCurrentFrame$1.setExtraStackFrame(stack);}else {ReactDebugCurrentFrame$1.setExtraStackFrame(null);}}}function checkPropTypes(typeSpecs,values,location,componentName,element){{// $FlowFixMe This is okay but Flow doesn't know it.
-	var has=Function.call.bind(hasOwnProperty);for(var typeSpecName in typeSpecs){if(has(typeSpecs,typeSpecName)){var error$1=void 0;// Prop type validation may throw. In case they do, we don't want to
+	var has=Function.call.bind(hasOwnProperty);for(var typeSpecName in typeSpecs){if(has(typeSpecs,typeSpecName)){var error$1=undefined;// Prop type validation may throw. In case they do, we don't want to
 	// fail the render phase where it didn't fail before. So we log it.
 	// After these have been cleaned up, we'll let them throw.
 	try{// This is intentionally an invariant that gets caught. It's the same
@@ -7588,7 +7567,7 @@
 	// data, so it's probably a false positive.
 	return;}switch(returnFiber.tag){case HostRoot:{var parentContainer=returnFiber.stateNode.containerInfo;switch(fiber.tag){case HostComponent:var type=fiber.type;fiber.pendingProps;didNotFindHydratableInstanceWithinContainer(parentContainer,type);break;case HostText:var text=fiber.pendingProps;didNotFindHydratableTextInstanceWithinContainer(parentContainer,text);break;}break;}case HostComponent:{var parentType=returnFiber.type;var parentProps=returnFiber.memoizedProps;var parentInstance=returnFiber.stateNode;switch(fiber.tag){case HostComponent:{var _type=fiber.type;var _props=fiber.pendingProps;var isConcurrentMode=(returnFiber.mode&ConcurrentMode)!==NoMode;didNotFindHydratableInstance(parentType,parentProps,parentInstance,_type,_props,// TODO: Delete this argument when we remove the legacy root API.
 	isConcurrentMode);break;}case HostText:{var _text=fiber.pendingProps;var _isConcurrentMode=(returnFiber.mode&ConcurrentMode)!==NoMode;didNotFindHydratableTextInstance(parentType,parentProps,parentInstance,_text,// TODO: Delete this argument when we remove the legacy root API.
-	_isConcurrentMode);break;}}break;}case SuspenseComponent:{var suspenseState=returnFiber.memoizedState;var _parentInstance=suspenseState.dehydrated;if(_parentInstance!==null)switch(fiber.tag){case HostComponent:var _type2=fiber.type;fiber.pendingProps;didNotFindHydratableInstanceWithinSuspenseInstance(_parentInstance,_type2);break;case HostText:var _text2=fiber.pendingProps;didNotFindHydratableTextInstanceWithinSuspenseInstance(_parentInstance,_text2);break;}break;}default:return;}}}function insertNonHydratedInstance(returnFiber,fiber){fiber.flags=fiber.flags&~Hydrating|Placement;warnNonhydratedInstance(returnFiber,fiber);}function tryHydrate(fiber,nextInstance){switch(fiber.tag){case HostComponent:{var type=fiber.type;fiber.pendingProps;var instance=canHydrateInstance(nextInstance,type);if(instance!==null){fiber.stateNode=instance;hydrationParentFiber=fiber;nextHydratableInstance=getFirstHydratableChild(instance);return true;}return false;}case HostText:{var text=fiber.pendingProps;var textInstance=canHydrateTextInstance(nextInstance,text);if(textInstance!==null){fiber.stateNode=textInstance;hydrationParentFiber=fiber;// Text Instances don't have children so there's nothing to hydrate.
+	_isConcurrentMode);break;}}break;}case SuspenseComponent:{var suspenseState=returnFiber.memoizedState;var _parentInstance=suspenseState.dehydrated;if(_parentInstance!==null)switch(fiber.tag){case HostComponent:var _type2=fiber.type;fiber.pendingProps;didNotFindHydratableInstanceWithinSuspenseInstance(_parentInstance,_type2);break;case HostText:var _text2=fiber.pendingProps;didNotFindHydratableTextInstanceWithinSuspenseInstance(_parentInstance,_text2);break;}break;}default:return;}}}function insertNonHydratedInstance(returnFiber,fiber){fiber.flags=fiber.flags&-4097|Placement;warnNonhydratedInstance(returnFiber,fiber);}function tryHydrate(fiber,nextInstance){switch(fiber.tag){case HostComponent:{var type=fiber.type;fiber.pendingProps;var instance=canHydrateInstance(nextInstance,type);if(instance!==null){fiber.stateNode=instance;hydrationParentFiber=fiber;nextHydratableInstance=getFirstHydratableChild(instance);return true;}return false;}case HostText:{var text=fiber.pendingProps;var textInstance=canHydrateTextInstance(nextInstance,text);if(textInstance!==null){fiber.stateNode=textInstance;hydrationParentFiber=fiber;// Text Instances don't have children so there's nothing to hydrate.
 	nextHydratableInstance=null;return true;}return false;}case SuspenseComponent:{var suspenseInstance=canHydrateSuspenseInstance(nextInstance);if(suspenseInstance!==null){var suspenseState={dehydrated:suspenseInstance,treeContext:getSuspendedTreeContext(),retryLane:OffscreenLane};fiber.memoizedState=suspenseState;// Store the dehydrated fragment as a child fiber.
 	// This simplifies the code for getHostSibling and deleting nodes,
 	// since it doesn't have to consider all Suspense boundaries and
@@ -7637,7 +7616,7 @@
 	// cannot be called outside the render phase.
 	currentlyRenderingFiber=null;lastContextDependency=null;lastFullyObservedContext=null;{isDisallowedContextReadInDEV=false;}}function enterDisallowedContextReadInDEV(){{isDisallowedContextReadInDEV=true;}}function exitDisallowedContextReadInDEV(){{isDisallowedContextReadInDEV=false;}}function pushProvider(providerFiber,context,nextValue){{push(valueCursor,context._currentValue,providerFiber);context._currentValue=nextValue;{if(context._currentRenderer!==undefined&&context._currentRenderer!==null&&context._currentRenderer!==rendererSigil){error('Detected multiple renderers concurrently rendering the '+'same context provider. This is currently unsupported.');}context._currentRenderer=rendererSigil;}}}function popProvider(context,providerFiber){var currentValue=valueCursor.current;pop(valueCursor,providerFiber);{{context._currentValue=currentValue;}}}function scheduleContextWorkOnParentPath(parent,renderLanes,propagationRoot){// Update the child lanes of all the ancestors, including the alternates.
 	var node=parent;while(node!==null){var alternate=node.alternate;if(!isSubsetOfLanes(node.childLanes,renderLanes)){node.childLanes=mergeLanes(node.childLanes,renderLanes);if(alternate!==null){alternate.childLanes=mergeLanes(alternate.childLanes,renderLanes);}}else if(alternate!==null&&!isSubsetOfLanes(alternate.childLanes,renderLanes)){alternate.childLanes=mergeLanes(alternate.childLanes,renderLanes);}if(node===propagationRoot){break;}node=node.return;}{if(node!==propagationRoot){error('Expected to find the propagation root when scheduling context work. '+'This error is likely caused by a bug in React. Please file an issue.');}}}function propagateContextChange(workInProgress,context,renderLanes){{propagateContextChange_eager(workInProgress,context,renderLanes);}}function propagateContextChange_eager(workInProgress,context,renderLanes){var fiber=workInProgress.child;if(fiber!==null){// Set the return pointer of the child to the work-in-progress fiber.
-	fiber.return=workInProgress;}while(fiber!==null){var nextFiber=void 0;// Visit this fiber.
+	fiber.return=workInProgress;}while(fiber!==null){var nextFiber=undefined;// Visit this fiber.
 	var list=fiber.dependencies;if(list!==null){nextFiber=fiber.child;var dependency=list.firstContext;while(dependency!==null){// Check if the context matches.
 	if(dependency.context===context){// Match! Schedule an update on this fiber.
 	if(fiber.tag===ClassComponent){// Schedule a force update on the work-in-progress.
@@ -7729,7 +7708,7 @@
 	newFirst=newLast=capturedUpdate;}queue={baseState:currentQueue.baseState,firstBaseUpdate:newFirst,lastBaseUpdate:newLast,shared:currentQueue.shared,effects:currentQueue.effects};workInProgress.updateQueue=queue;return;}}// Append the update to the end of the list.
 	var lastBaseUpdate=queue.lastBaseUpdate;if(lastBaseUpdate===null){queue.firstBaseUpdate=capturedUpdate;}else {lastBaseUpdate.next=capturedUpdate;}queue.lastBaseUpdate=capturedUpdate;}function getStateFromUpdate(workInProgress,queue,update,prevState,nextProps,instance){switch(update.tag){case ReplaceState:{var payload=update.payload;if(typeof payload==='function'){// Updater function
 	{enterDisallowedContextReadInDEV();}var nextState=payload.call(instance,prevState,nextProps);{if(workInProgress.mode&StrictLegacyMode){setIsStrictModeForDevtools(true);try{payload.call(instance,prevState,nextProps);}finally{setIsStrictModeForDevtools(false);}}exitDisallowedContextReadInDEV();}return nextState;}// State object
-	return payload;}case CaptureUpdate:{workInProgress.flags=workInProgress.flags&~ShouldCapture|DidCapture;}// Intentional fallthrough
+	return payload;}case CaptureUpdate:{workInProgress.flags=workInProgress.flags&-65537|DidCapture;}// Intentional fallthrough
 	case UpdateState:{var _payload=update.payload;var partialState;if(typeof _payload==='function'){// Updater function
 	{enterDisallowedContextReadInDEV();}partialState=_payload.call(instance,prevState,nextProps);{if(workInProgress.mode&StrictLegacyMode){setIsStrictModeForDevtools(true);try{_payload.call(instance,prevState,nextProps);}finally{setIsStrictModeForDevtools(false);}}exitDisallowedContextReadInDEV();}}else {// Partial state object
 	partialState=_payload;}if(partialState===null||partialState===undefined){// Null and undefined are treated as no-ops.
@@ -7827,7 +7806,7 @@
 	// during componentDidUpdate we pass the "current" props.
 	// In order to support react-lifecycles-compat polyfilled components,
 	// Unsafe lifecycles should not be invoked for components using the new APIs.
-	if(!hasNewLifecycles&&(typeof instance.UNSAFE_componentWillReceiveProps==='function'||typeof instance.componentWillReceiveProps==='function')){if(unresolvedOldProps!==unresolvedNewProps||oldContext!==nextContext){callComponentWillReceiveProps(workInProgress,instance,newProps,nextContext);}}resetHasForceUpdateBeforeProcessing();var oldState=workInProgress.memoizedState;var newState=instance.state=oldState;processUpdateQueue(workInProgress,newProps,instance,renderLanes);newState=workInProgress.memoizedState;if(unresolvedOldProps===unresolvedNewProps&&oldState===newState&&!hasContextChanged()&&!checkHasForceUpdateAfterProcessing()&&!enableLazyContextPropagation){// If an update was already in progress, we should schedule an Update
+	if(!hasNewLifecycles&&(typeof instance.UNSAFE_componentWillReceiveProps==='function'||typeof instance.componentWillReceiveProps==='function')){if(unresolvedOldProps!==unresolvedNewProps||oldContext!==nextContext){callComponentWillReceiveProps(workInProgress,instance,newProps,nextContext);}}resetHasForceUpdateBeforeProcessing();var oldState=workInProgress.memoizedState;var newState=instance.state=oldState;processUpdateQueue(workInProgress,newProps,instance,renderLanes);newState=workInProgress.memoizedState;if(unresolvedOldProps===unresolvedNewProps&&oldState===newState&&!hasContextChanged()&&!checkHasForceUpdateAfterProcessing()&&true){// If an update was already in progress, we should schedule an Update
 	// effect even though we're bailing out, so that cWU/cDU are called.
 	if(typeof instance.componentDidUpdate==='function'){if(unresolvedOldProps!==current.memoizedProps||oldState!==current.memoizedState){workInProgress.flags|=Update;}}if(typeof instance.getSnapshotBeforeUpdate==='function'){if(unresolvedOldProps!==current.memoizedProps||oldState!==current.memoizedState){workInProgress.flags|=Snapshot;}}return false;}if(typeof getDerivedStateFromProps==='function'){applyDerivedStateFromProps(workInProgress,ctor,getDerivedStateFromProps,newProps);newState=workInProgress.memoizedState;}var shouldUpdate=checkHasForceUpdateAfterProcessing()||checkShouldComponentUpdate(workInProgress,ctor,oldProps,newProps,oldState,newState,nextContext)||// TODO: In some cases, we'll end up checking if context has changed twice,
 	// both before and after `shouldComponentUpdate` has been called. Not ideal,
@@ -8119,7 +8098,7 @@
 	// separate function to avoid using an array tuple.
 	var didRenderIdHook=localIdCounter!==0;localIdCounter=0;return didRenderIdHook;}function bailoutHooks(current,workInProgress,lanes){workInProgress.updateQueue=current.updateQueue;// TODO: Don't need to reset the flags here, because they're reset in the
 	// complete phase (bubbleProperties).
-	if((workInProgress.mode&StrictEffectsMode)!==NoMode){workInProgress.flags&=~(MountPassiveDev|MountLayoutDev|Passive|Update);}else {workInProgress.flags&=~(Passive|Update);}current.lanes=removeLanes(current.lanes,lanes);}function resetHooksAfterThrow(){// We can assume the previous dispatcher is always this one, since we set it
+	if((workInProgress.mode&StrictEffectsMode)!==NoMode){workInProgress.flags&=-50333701;}else {workInProgress.flags&=-2053;}current.lanes=removeLanes(current.lanes,lanes);}function resetHooksAfterThrow(){// We can assume the previous dispatcher is always this one, since we set it
 	// at the beginning of the render phase and there's no re-entrance.
 	ReactCurrentDispatcher$1.current=ContextOnlyDispatcher;if(didScheduleRenderPhaseUpdate){// There were render phase updates. These are only valid for this render
 	// phase, which we are now aborting. Remove the updates from the queues so
@@ -8405,7 +8384,7 @@
 	suspenseBoundary.flags|=ShouldCapture;}else {suspenseBoundary.flags|=DidCapture;sourceFiber.flags|=ForceUpdateForLegacySuspense;// We're going to commit this fiber even though it didn't complete.
 	// But we shouldn't call any lifecycle methods or callbacks. Remove
 	// all lifecycle effect tags.
-	sourceFiber.flags&=~(LifecycleEffectMask|Incomplete);if(sourceFiber.tag===ClassComponent){var currentSourceFiber=sourceFiber.alternate;if(currentSourceFiber===null){// This is a new mount. Change the tag so it's not mistaken for a
+	sourceFiber.flags&=-52805;if(sourceFiber.tag===ClassComponent){var currentSourceFiber=sourceFiber.alternate;if(currentSourceFiber===null){// This is a new mount. Change the tag so it's not mistaken for a
 	// completed class component. For example, we should not call
 	// componentWillUnmount if it is deleted.
 	sourceFiber.tag=IncompleteClassComponent;}else {// When we try rendering again, we should not reuse the current fiber,
@@ -8458,7 +8437,7 @@
 	suspenseBoundary.lanes=rootRenderLanes;return suspenseBoundary;}function throwException(root,returnFiber,sourceFiber,value,rootRenderLanes){// The source fiber did not complete.
 	sourceFiber.flags|=Incomplete;{if(isDevToolsPresent){// If we have pending work still, restore the original updaters
 	restorePendingUpdaters(root,rootRenderLanes);}}if(value!==null&&typeof value==='object'&&typeof value.then==='function'){// This is a wakeable. The component suspended.
-	var wakeable=value;resetSuspendedComponent(sourceFiber);{if(getIsHydrating()&&sourceFiber.mode&ConcurrentMode){markDidThrowWhileHydratingDEV();}}var suspenseBoundary=getNearestSuspenseBoundaryToCapture(returnFiber);if(suspenseBoundary!==null){suspenseBoundary.flags&=~ForceClientRender;markSuspenseBoundaryShouldCapture(suspenseBoundary,returnFiber,sourceFiber,root,rootRenderLanes);// We only attach ping listeners in concurrent mode. Legacy Suspense always
+	var wakeable=value;resetSuspendedComponent(sourceFiber);{if(getIsHydrating()&&sourceFiber.mode&ConcurrentMode){markDidThrowWhileHydratingDEV();}}var suspenseBoundary=getNearestSuspenseBoundaryToCapture(returnFiber);if(suspenseBoundary!==null){suspenseBoundary.flags&=-257;markSuspenseBoundaryShouldCapture(suspenseBoundary,returnFiber,sourceFiber,root,rootRenderLanes);// We only attach ping listeners in concurrent mode. Legacy Suspense always
 	// commits fallbacks synchronously, so there are no pings.
 	if(suspenseBoundary.mode&ConcurrentMode){attachPingListener(root,wakeable,rootRenderLanes);}attachRetryListener(suspenseBoundary,root,wakeable);return;}else {// No boundary was found. Unless this is a sync update, this is OK.
 	// We can suspend and wait for more data to arrive.
@@ -8644,7 +8623,7 @@
 	// Conceptually this is similar to Placement in that a new subtree is
 	// inserted into the React tree here. It just happens to not need DOM
 	// mutations because it already exists.
-	node.flags=node.flags&~Placement|Hydrating;node=node.sibling;}}}else {// Root is not dehydrated. Either this is a client-only root, or it
+	node.flags=node.flags&-3|Hydrating;node=node.sibling;}}}else {// Root is not dehydrated. Either this is a client-only root, or it
 	// already hydrated.
 	resetHydrationState();if(nextChildren===prevChildren){return bailoutOnAlreadyFinishedWork(current,workInProgress,renderLanes);}reconcileChildren(current,workInProgress,nextChildren,renderLanes);}return workInProgress.child;}function mountHostRootWithoutHydrating(current,workInProgress,nextChildren,renderLanes,recoverableError){// Revert to client rendering.
 	resetHydrationState();queueHydrationError(recoverableError);workInProgress.flags|=ForceClientRender;reconcileChildren(current,workInProgress,nextChildren,renderLanes);return workInProgress.child;}function updateHostComponent(current,workInProgress,renderLanes){pushHostContext(workInProgress);if(current===null){tryToClaimNextHydratableInstance(workInProgress);}var type=workInProgress.type;var nextProps=workInProgress.pendingProps;var prevProps=current!==null?current.memoizedProps:null;var nextChildren=nextProps.children;var isDirectTextChild=shouldSetTextContent(type,nextProps);if(isDirectTextChild){// We special case a direct text child of a host node. This is a common
@@ -8690,7 +8669,7 @@
 	return removeLanes(current.childLanes,renderLanes);}function updateSuspenseComponent(current,workInProgress,renderLanes){var nextProps=workInProgress.pendingProps;// This is used by DevTools to force a boundary to suspend.
 	{if(shouldSuspend(workInProgress)){workInProgress.flags|=DidCapture;}}var suspenseContext=suspenseStackCursor.current;var showFallback=false;var didSuspend=(workInProgress.flags&DidCapture)!==NoFlags;if(didSuspend||shouldRemainOnFallback(suspenseContext,current)){// Something in this boundary's subtree already suspended. Switch to
 	// rendering the fallback children.
-	showFallback=true;workInProgress.flags&=~DidCapture;}else {// Attempting the main content
+	showFallback=true;workInProgress.flags&=-129;}else {// Attempting the main content
 	if(current===null||current.memoizedState!==null){// This is a new mount or this boundary is already showing a fallback state.
 	// Mark this subtree context as having at least one invisible parent that could
 	// handle the fallback state.
@@ -8827,7 +8806,7 @@
 	primaryChildFragment.flags|=Hydrating;return primaryChildFragment;}}else {// This is the second render pass. We already attempted to hydrated, but
 	// something either suspended or errored.
 	if(workInProgress.flags&ForceClientRender){// Something errored during hydration. Try again without hydrating.
-	workInProgress.flags&=~ForceClientRender;var _capturedValue2=createCapturedValue(new Error('There was an error while hydrating this Suspense boundary. '+'Switched to client rendering.'));return retrySuspenseComponentWithoutHydrating(current,workInProgress,renderLanes,_capturedValue2);}else if(workInProgress.memoizedState!==null){// Something suspended and we should still be in dehydrated mode.
+	workInProgress.flags&=-257;var _capturedValue2=createCapturedValue(new Error('There was an error while hydrating this Suspense boundary. '+'Switched to client rendering.'));return retrySuspenseComponentWithoutHydrating(current,workInProgress,renderLanes,_capturedValue2);}else if(workInProgress.memoizedState!==null){// Something suspended and we should still be in dehydrated mode.
 	// Leave the existing child in place.
 	workInProgress.child=current.child;// The dehydrated completion pass expects this flag to be there
 	// but the normal suspense pass doesn't.
@@ -8849,7 +8828,7 @@
 	// will still be current since we haven't rendered them yet. The mounted
 	// order may not be the same as the new order. We use the new order.
 	var row=firstChild;var lastContentRow=null;while(row!==null){var currentRow=row.alternate;// New rows can't be content rows.
-	if(currentRow!==null&&findFirstSuspended(currentRow)===null){lastContentRow=row;}row=row.sibling;}return lastContentRow;}function validateRevealOrder(revealOrder){{if(revealOrder!==undefined&&revealOrder!=='forwards'&&revealOrder!=='backwards'&&revealOrder!=='together'&&!didWarnAboutRevealOrder[revealOrder]){didWarnAboutRevealOrder[revealOrder]=true;if(typeof revealOrder==='string'){switch(revealOrder.toLowerCase()){case'together':case'forwards':case'backwards':{error('"%s" is not a valid value for revealOrder on <SuspenseList />. '+'Use lowercase "%s" instead.',revealOrder,revealOrder.toLowerCase());break;}case'forward':case'backward':{error('"%s" is not a valid value for revealOrder on <SuspenseList />. '+'React uses the -s suffix in the spelling. Use "%ss" instead.',revealOrder,revealOrder.toLowerCase());break;}default:error('"%s" is not a supported revealOrder on <SuspenseList />. '+'Did you mean "together", "forwards" or "backwards"?',revealOrder);break;}}else {error('%s is not a supported value for revealOrder on <SuspenseList />. '+'Did you mean "together", "forwards" or "backwards"?',revealOrder);}}}}function validateTailOptions(tailMode,revealOrder){{if(tailMode!==undefined&&!didWarnAboutTailOptions[tailMode]){if(tailMode!=='collapsed'&&tailMode!=='hidden'){didWarnAboutTailOptions[tailMode]=true;error('"%s" is not a supported value for tail on <SuspenseList />. '+'Did you mean "collapsed" or "hidden"?',tailMode);}else if(revealOrder!=='forwards'&&revealOrder!=='backwards'){didWarnAboutTailOptions[tailMode]=true;error('<SuspenseList tail="%s" /> is only valid if revealOrder is '+'"forwards" or "backwards". '+'Did you mean to specify revealOrder="forwards"?',tailMode);}}}}function validateSuspenseListNestedChild(childSlot,index){{var isAnArray=isArray(childSlot);var isIterable=!isAnArray&&typeof getIteratorFn(childSlot)==='function';if(isAnArray||isIterable){var type=isAnArray?'array':'iterable';error('A nested %s was passed to row #%s in <SuspenseList />. Wrap it in '+'an additional SuspenseList to configure its revealOrder: '+'<SuspenseList revealOrder=...> ... '+'<SuspenseList revealOrder=...>{%s}</SuspenseList> ... '+'</SuspenseList>',type,index,type);return false;}}return true;}function validateSuspenseListChildren(children,revealOrder){{if((revealOrder==='forwards'||revealOrder==='backwards')&&children!==undefined&&children!==null&&children!==false){if(isArray(children)){for(var i=0;i<children.length;i++){if(!validateSuspenseListNestedChild(children[i],i)){return;}}}else {var iteratorFn=getIteratorFn(children);if(typeof iteratorFn==='function'){var childrenIterator=iteratorFn.call(children);if(childrenIterator){var step=childrenIterator.next();var _i=0;for(;!step.done;step=childrenIterator.next()){if(!validateSuspenseListNestedChild(step.value,_i)){return;}_i++;}}}else {error('A single row was passed to a <SuspenseList revealOrder="%s" />. '+'This is not useful since it needs multiple rows. '+'Did you mean to pass multiple children or an array?',revealOrder);}}}}}function initSuspenseListRenderState(workInProgress,isBackwards,tail,lastContentRow,tailMode){var renderState=workInProgress.memoizedState;if(renderState===null){workInProgress.memoizedState={isBackwards:isBackwards,rendering:null,renderingStartTime:0,last:lastContentRow,tail:tail,tailMode:tailMode};}else {// We can reuse the existing object from previous renders.
+	if(currentRow!==null&&findFirstSuspended(currentRow)===null){lastContentRow=row;}row=row.sibling;}return lastContentRow;}function validateRevealOrder(revealOrder){{if(revealOrder!==undefined&&revealOrder!=='forwards'&&revealOrder!=='backwards'&&revealOrder!=='together'&&!didWarnAboutRevealOrder[revealOrder]){didWarnAboutRevealOrder[revealOrder]=true;if(typeof revealOrder==='string'){switch(revealOrder.toLowerCase()){case 'together':case 'forwards':case 'backwards':{error('"%s" is not a valid value for revealOrder on <SuspenseList />. '+'Use lowercase "%s" instead.',revealOrder,revealOrder.toLowerCase());break;}case 'forward':case 'backward':{error('"%s" is not a valid value for revealOrder on <SuspenseList />. '+'React uses the -s suffix in the spelling. Use "%ss" instead.',revealOrder,revealOrder.toLowerCase());break;}default:error('"%s" is not a supported revealOrder on <SuspenseList />. '+'Did you mean "together", "forwards" or "backwards"?',revealOrder);break;}}else {error('%s is not a supported value for revealOrder on <SuspenseList />. '+'Did you mean "together", "forwards" or "backwards"?',revealOrder);}}}}function validateTailOptions(tailMode,revealOrder){{if(tailMode!==undefined&&!didWarnAboutTailOptions[tailMode]){if(tailMode!=='collapsed'&&tailMode!=='hidden'){didWarnAboutTailOptions[tailMode]=true;error('"%s" is not a supported value for tail on <SuspenseList />. '+'Did you mean "collapsed" or "hidden"?',tailMode);}else if(revealOrder!=='forwards'&&revealOrder!=='backwards'){didWarnAboutTailOptions[tailMode]=true;error('<SuspenseList tail="%s" /> is only valid if revealOrder is '+'"forwards" or "backwards". '+'Did you mean to specify revealOrder="forwards"?',tailMode);}}}}function validateSuspenseListNestedChild(childSlot,index){{var isAnArray=isArray(childSlot);var isIterable=!isAnArray&&typeof getIteratorFn(childSlot)==='function';if(isAnArray||isIterable){var type=isAnArray?'array':'iterable';error('A nested %s was passed to row #%s in <SuspenseList />. Wrap it in '+'an additional SuspenseList to configure its revealOrder: '+'<SuspenseList revealOrder=...> ... '+'<SuspenseList revealOrder=...>{%s}</SuspenseList> ... '+'</SuspenseList>',type,index,type);return false;}}return true;}function validateSuspenseListChildren(children,revealOrder){{if((revealOrder==='forwards'||revealOrder==='backwards')&&children!==undefined&&children!==null&&children!==false){if(isArray(children)){for(var i=0;i<children.length;i++){if(!validateSuspenseListNestedChild(children[i],i)){return;}}}else {var iteratorFn=getIteratorFn(children);if(typeof iteratorFn==='function'){var childrenIterator=iteratorFn.call(children);if(childrenIterator){var step=childrenIterator.next();var _i=0;for(;!step.done;step=childrenIterator.next()){if(!validateSuspenseListNestedChild(step.value,_i)){return;}_i++;}}}else {error('A single row was passed to a <SuspenseList revealOrder="%s" />. '+'This is not useful since it needs multiple rows. '+'Did you mean to pass multiple children or an array?',revealOrder);}}}}}function initSuspenseListRenderState(workInProgress,isBackwards,tail,lastContentRow,tailMode){var renderState=workInProgress.memoizedState;if(renderState===null){workInProgress.memoizedState={isBackwards:isBackwards,rendering:null,renderingStartTime:0,last:lastContentRow,tail:tail,tailMode:tailMode};}else {// We can reuse the existing object from previous renders.
 	renderState.isBackwards=isBackwards;renderState.rendering=null;renderState.renderingStartTime=0;renderState.last=lastContentRow;renderState.tail=tail;renderState.tailMode=tailMode;}}// This can end up rendering this component multiple passes.
 	// The first pass splits the children fibers into two sets. A head and tail.
 	// We first render the head. If anything is in fallback state, we do another
@@ -8862,12 +8841,12 @@
 	// again. This is the same as context updating.
 	propagateSuspenseContextChange(workInProgress,workInProgress.child,renderLanes);}suspenseContext=setDefaultShallowSuspenseContext(suspenseContext);}pushSuspenseContext(workInProgress,suspenseContext);if((workInProgress.mode&ConcurrentMode)===NoMode){// In legacy mode, SuspenseList doesn't work so we just
 	// use make it a noop by treating it as the default revealOrder.
-	workInProgress.memoizedState=null;}else {switch(revealOrder){case'forwards':{var lastContentRow=findLastContentRow(workInProgress.child);var tail;if(lastContentRow===null){// The whole list is part of the tail.
+	workInProgress.memoizedState=null;}else {switch(revealOrder){case 'forwards':{var lastContentRow=findLastContentRow(workInProgress.child);var tail;if(lastContentRow===null){// The whole list is part of the tail.
 	// TODO: We could fast path by just rendering the tail now.
 	tail=workInProgress.child;workInProgress.child=null;}else {// Disconnect the tail rows after the content row.
 	// We're going to render them separately later.
 	tail=lastContentRow.sibling;lastContentRow.sibling=null;}initSuspenseListRenderState(workInProgress,false,// isBackwards
-	tail,lastContentRow,tailMode);break;}case'backwards':{// We're going to find the first row that has existing content.
+	tail,lastContentRow,tailMode);break;}case 'backwards':{// We're going to find the first row that has existing content.
 	// At the same time we're going to reverse the list of everything
 	// we pass in the meantime. That's going to be our tail in reverse
 	// order.
@@ -8876,7 +8855,7 @@
 	workInProgress.child=row;break;}var nextRow=row.sibling;row.sibling=_tail;_tail=row;row=nextRow;}// TODO: If workInProgress.child is null, we can continue on the tail immediately.
 	initSuspenseListRenderState(workInProgress,true,// isBackwards
 	_tail,null,// last
-	tailMode);break;}case'together':{initSuspenseListRenderState(workInProgress,false,// isBackwards
+	tailMode);break;}case 'together':{initSuspenseListRenderState(workInProgress,false,// isBackwards
 	null,// tail
 	null,// last
 	undefined);break;}default:{// The default reveal order is the same as not having
@@ -9030,7 +9009,7 @@
 	if(updatePayload){markUpdate(workInProgress);}};updateHostText$1=function(current,workInProgress,oldText,newText){// If the text differs, mark it as an update. All the work in done in commitWork.
 	if(oldText!==newText){markUpdate(workInProgress);}};}function cutOffTailIfNeeded(renderState,hasRenderedATailFallback){if(getIsHydrating()){// If we're hydrating, we should consume as many items as we can
 	// so we don't leave any behind.
-	return;}switch(renderState.tailMode){case'hidden':{// Any insertions at the end of the tail list after this point
+	return;}switch(renderState.tailMode){case 'hidden':{// Any insertions at the end of the tail list after this point
 	// should be invisible. If there are already mounted boundaries
 	// anything before them are not considered for collapsing.
 	// Therefore we need to go through the whole tail to find if
@@ -9040,7 +9019,7 @@
 	if(lastTailNode===null){// All remaining items in the tail are insertions.
 	renderState.tail=null;}else {// Detach the insertion after the last node that was already
 	// inserted.
-	lastTailNode.sibling=null;}break;}case'collapsed':{// Any insertions at the end of the tail list after this point
+	lastTailNode.sibling=null;}break;}case 'collapsed':{// Any insertions at the end of the tail list after this point
 	// should be invisible. If there are already mounted boundaries
 	// anything before them are not considered for collapsing.
 	// Therefore we need to go through the whole tail to find if
@@ -9167,7 +9146,7 @@
 	// If this render already had a ping or lower pri updates,
 	// and this is the first time we know we're going to suspend we
 	// should be able to immediately restart from within throwException.
-	var hasInvisibleChildContext=current===null&&(workInProgress.memoizedProps.unstable_avoidThisFallback!==true||!enableSuspenseAvoidThisFallback);if(hasInvisibleChildContext||hasSuspenseContext(suspenseStackCursor.current,InvisibleParentSuspenseContext)){// If this was in an invisible tree or a new render, then showing
+	var hasInvisibleChildContext=current===null&&(workInProgress.memoizedProps.unstable_avoidThisFallback!==true||true);if(hasInvisibleChildContext||hasSuspenseContext(suspenseStackCursor.current,InvisibleParentSuspenseContext)){// If this was in an invisible tree or a new render, then showing
 	// this boundary is ok.
 	renderDidSuspend();}else {// Otherwise, we're going to have to hide content so we should
 	// suspend for longer if possible.
@@ -9254,7 +9233,7 @@
 	var suspenseContext=suspenseStackCursor.current;if(didSuspendAlready){suspenseContext=setShallowSuspenseContext(suspenseContext,ForceSuspenseFallback);}else {suspenseContext=setDefaultShallowSuspenseContext(suspenseContext);}pushSuspenseContext(workInProgress,suspenseContext);// Do a pass over the next row.
 	// Don't bubble properties in this case.
 	return next;}bubbleProperties(workInProgress);return null;}case ScopeComponent:{break;}case OffscreenComponent:case LegacyHiddenComponent:{popRenderLanes(workInProgress);var _nextState=workInProgress.memoizedState;var nextIsHidden=_nextState!==null;if(current!==null){var _prevState=current.memoizedState;var prevIsHidden=_prevState!==null;if(prevIsHidden!==nextIsHidden&&// LegacyHidden doesn't do any hiding — it only pre-renders.
-	!enableLegacyHidden){workInProgress.flags|=Visibility;}}if(!nextIsHidden||(workInProgress.mode&ConcurrentMode)===NoMode){bubbleProperties(workInProgress);}else {// Don't bubble properties for hidden children unless we're rendering
+	true){workInProgress.flags|=Visibility;}}if(!nextIsHidden||(workInProgress.mode&ConcurrentMode)===NoMode){bubbleProperties(workInProgress);}else {// Don't bubble properties for hidden children unless we're rendering
 	// at offscreen priority.
 	if(includesSomeLane(subtreeRenderLanes,OffscreenLane)){bubbleProperties(workInProgress);{// Check if there was an insertion or update in the hidden subtree.
 	// If so, we need to hide those nodes in the commit phase, so
@@ -9263,11 +9242,11 @@
 	// to the current tree provider fiber is just as fast and less error-prone.
 	// Ideally we would have a special version of the work loop only
 	// for hydration.
-	popTreeContext(workInProgress);switch(workInProgress.tag){case ClassComponent:{var Component=workInProgress.type;if(isContextProvider(Component)){popContext(workInProgress);}var flags=workInProgress.flags;if(flags&ShouldCapture){workInProgress.flags=flags&~ShouldCapture|DidCapture;if((workInProgress.mode&ProfileMode)!==NoMode){transferActualDuration(workInProgress);}return workInProgress;}return null;}case HostRoot:{workInProgress.stateNode;popHostContainer(workInProgress);popTopLevelContextObject(workInProgress);resetWorkInProgressVersions();var _flags=workInProgress.flags;if((_flags&ShouldCapture)!==NoFlags&&(_flags&DidCapture)===NoFlags){// There was an error during render that wasn't captured by a suspense
+	popTreeContext(workInProgress);switch(workInProgress.tag){case ClassComponent:{var Component=workInProgress.type;if(isContextProvider(Component)){popContext(workInProgress);}var flags=workInProgress.flags;if(flags&ShouldCapture){workInProgress.flags=flags&-65537|DidCapture;if((workInProgress.mode&ProfileMode)!==NoMode){transferActualDuration(workInProgress);}return workInProgress;}return null;}case HostRoot:{workInProgress.stateNode;popHostContainer(workInProgress);popTopLevelContextObject(workInProgress);resetWorkInProgressVersions();var _flags=workInProgress.flags;if((_flags&ShouldCapture)!==NoFlags&&(_flags&DidCapture)===NoFlags){// There was an error during render that wasn't captured by a suspense
 	// boundary. Do a second pass on the root to unmount the children.
-	workInProgress.flags=_flags&~ShouldCapture|DidCapture;return workInProgress;}// We unwound to the root without completing it. Exit.
+	workInProgress.flags=_flags&-65537|DidCapture;return workInProgress;}// We unwound to the root without completing it. Exit.
 	return null;}case HostComponent:{// TODO: popHydrationState
-	popHostContext(workInProgress);return null;}case SuspenseComponent:{popSuspenseContext(workInProgress);var suspenseState=workInProgress.memoizedState;if(suspenseState!==null&&suspenseState.dehydrated!==null){if(workInProgress.alternate===null){throw new Error('Threw in newly mounted dehydrated component. This is likely a bug in '+'React. Please file an issue.');}resetHydrationState();}var _flags2=workInProgress.flags;if(_flags2&ShouldCapture){workInProgress.flags=_flags2&~ShouldCapture|DidCapture;// Captured a suspense effect. Re-render the boundary.
+	popHostContext(workInProgress);return null;}case SuspenseComponent:{popSuspenseContext(workInProgress);var suspenseState=workInProgress.memoizedState;if(suspenseState!==null&&suspenseState.dehydrated!==null){if(workInProgress.alternate===null){throw new Error('Threw in newly mounted dehydrated component. This is likely a bug in '+'React. Please file an issue.');}resetHydrationState();}var _flags2=workInProgress.flags;if(_flags2&ShouldCapture){workInProgress.flags=_flags2&-65537|DidCapture;// Captured a suspense effect. Re-render the boundary.
 	if((workInProgress.mode&ProfileMode)!==NoMode){transferActualDuration(workInProgress);}return workInProgress;}return null;}case SuspenseListComponent:{popSuspenseContext(workInProgress);// SuspenseList doesn't actually catch anything. It should've been
 	// caught by a nested boundary. If not, it should bubble through.
 	return null;}case HostPortal:popHostContainer(workInProgress);return null;case ContextProvider:var context=workInProgress.type._context;popProvider(context,workInProgress);return null;case OffscreenComponent:case LegacyHiddenComponent:popRenderLanes(workInProgress);return null;case CacheComponent:return null;default:return null;}}function unwindInterruptedWork(current,interruptedWork,renderLanes){// Note: This intentionally doesn't check if we're hydrating because comparing
@@ -9295,7 +9274,7 @@
 	{if(finishedWork.type===finishedWork.elementType&&!didWarnAboutReassigningProps){if(instance.props!==finishedWork.memoizedProps){error('Expected %s props to match memoized props before '+'getSnapshotBeforeUpdate. '+'This might either be because of a bug in React, or because '+'a component reassigns its own `this.props`. '+'Please file an issue.',getComponentNameFromFiber(finishedWork)||'instance');}if(instance.state!==finishedWork.memoizedState){error('Expected %s state to match memoized state before '+'getSnapshotBeforeUpdate. '+'This might either be because of a bug in React, or because '+'a component reassigns its own `this.state`. '+'Please file an issue.',getComponentNameFromFiber(finishedWork)||'instance');}}}var snapshot=instance.getSnapshotBeforeUpdate(finishedWork.elementType===finishedWork.type?prevProps:resolveDefaultProps(finishedWork.type,prevProps),prevState);{var didWarnSet=didWarnAboutUndefinedSnapshotBeforeUpdate;if(snapshot===undefined&&!didWarnSet.has(finishedWork.type)){didWarnSet.add(finishedWork.type);error('%s.getSnapshotBeforeUpdate(): A snapshot value (or null) '+'must be returned. You have returned undefined.',getComponentNameFromFiber(finishedWork));}}instance.__reactInternalSnapshotBeforeUpdate=snapshot;}break;}case HostRoot:{{var root=finishedWork.stateNode;clearContainer(root.containerInfo);}break;}case HostComponent:case HostText:case HostPortal:case IncompleteClassComponent:// Nothing to do for these component types
 	break;default:{throw new Error('This unit of work tag should not have side-effects. This error is '+'likely caused by a bug in React. Please file an issue.');}}resetCurrentFiber();}}function commitHookEffectListUnmount(flags,finishedWork,nearestMountedAncestor){var updateQueue=finishedWork.updateQueue;var lastEffect=updateQueue!==null?updateQueue.lastEffect:null;if(lastEffect!==null){var firstEffect=lastEffect.next;var effect=firstEffect;do{if((effect.tag&flags)===flags){// Unmount
 	var destroy=effect.destroy;effect.destroy=undefined;if(destroy!==undefined){{if((flags&Passive$1)!==NoFlags$1){markComponentPassiveEffectUnmountStarted(finishedWork);}else if((flags&Layout)!==NoFlags$1){markComponentLayoutEffectUnmountStarted(finishedWork);}}{if((flags&Insertion)!==NoFlags$1){setIsRunningInsertionEffect(true);}}safelyCallDestroy(finishedWork,nearestMountedAncestor,destroy);{if((flags&Insertion)!==NoFlags$1){setIsRunningInsertionEffect(false);}}{if((flags&Passive$1)!==NoFlags$1){markComponentPassiveEffectUnmountStopped();}else if((flags&Layout)!==NoFlags$1){markComponentLayoutEffectUnmountStopped();}}}}effect=effect.next;}while(effect!==firstEffect);}}function commitHookEffectListMount(flags,finishedWork){var updateQueue=finishedWork.updateQueue;var lastEffect=updateQueue!==null?updateQueue.lastEffect:null;if(lastEffect!==null){var firstEffect=lastEffect.next;var effect=firstEffect;do{if((effect.tag&flags)===flags){{if((flags&Passive$1)!==NoFlags$1){markComponentPassiveEffectMountStarted(finishedWork);}else if((flags&Layout)!==NoFlags$1){markComponentLayoutEffectMountStarted(finishedWork);}}// Mount
-	var create=effect.create;{if((flags&Insertion)!==NoFlags$1){setIsRunningInsertionEffect(true);}}effect.destroy=create();{if((flags&Insertion)!==NoFlags$1){setIsRunningInsertionEffect(false);}}{if((flags&Passive$1)!==NoFlags$1){markComponentPassiveEffectMountStopped();}else if((flags&Layout)!==NoFlags$1){markComponentLayoutEffectMountStopped();}}{var destroy=effect.destroy;if(destroy!==undefined&&typeof destroy!=='function'){var hookName=void 0;if((effect.tag&Layout)!==NoFlags){hookName='useLayoutEffect';}else if((effect.tag&Insertion)!==NoFlags){hookName='useInsertionEffect';}else {hookName='useEffect';}var addendum=void 0;if(destroy===null){addendum=' You returned null. If your effect does not require clean '+'up, return undefined (or nothing).';}else if(typeof destroy.then==='function'){addendum='\n\nIt looks like you wrote '+hookName+'(async () => ...) or returned a Promise. '+'Instead, write the async function inside your effect '+'and call it immediately:\n\n'+hookName+'(() => {\n'+'  async function fetchData() {\n'+'    // You can await here\n'+'    const response = await MyAPI.getData(someId);\n'+'    // ...\n'+'  }\n'+'  fetchData();\n'+"}, [someId]); // Or [] if effect doesn't need props or state\n\n"+'Learn more about data fetching with Hooks: https://reactjs.org/link/hooks-data-fetching';}else {addendum=' You returned: '+destroy;}error('%s must not return anything besides a function, '+'which is used for clean-up.%s',hookName,addendum);}}}effect=effect.next;}while(effect!==firstEffect);}}function commitPassiveEffectDurations(finishedRoot,finishedWork){{// Only Profilers with work in their subtree will have an Update effect scheduled.
+	var create=effect.create;{if((flags&Insertion)!==NoFlags$1){setIsRunningInsertionEffect(true);}}effect.destroy=create();{if((flags&Insertion)!==NoFlags$1){setIsRunningInsertionEffect(false);}}{if((flags&Passive$1)!==NoFlags$1){markComponentPassiveEffectMountStopped();}else if((flags&Layout)!==NoFlags$1){markComponentLayoutEffectMountStopped();}}{var destroy=effect.destroy;if(destroy!==undefined&&typeof destroy!=='function'){var hookName=undefined;if((effect.tag&Layout)!==NoFlags){hookName='useLayoutEffect';}else if((effect.tag&Insertion)!==NoFlags){hookName='useInsertionEffect';}else {hookName='useEffect';}var addendum=undefined;if(destroy===null){addendum=' You returned null. If your effect does not require clean '+'up, return undefined (or nothing).';}else if(typeof destroy.then==='function'){addendum='\n\nIt looks like you wrote '+hookName+'(async () => ...) or returned a Promise. '+'Instead, write the async function inside your effect '+'and call it immediately:\n\n'+hookName+'(() => {\n'+'  async function fetchData() {\n'+'    // You can await here\n'+'    const response = await MyAPI.getData(someId);\n'+'    // ...\n'+'  }\n'+'  fetchData();\n'+"}, [someId]); // Or [] if effect doesn't need props or state\n\n"+'Learn more about data fetching with Hooks: https://reactjs.org/link/hooks-data-fetching';}else {addendum=' You returned: '+destroy;}error('%s must not return anything besides a function, '+'which is used for clean-up.%s',hookName,addendum);}}}effect=effect.next;}while(effect!==firstEffect);}}function commitPassiveEffectDurations(finishedRoot,finishedWork){{// Only Profilers with work in their subtree will have an Update effect scheduled.
 	if((finishedWork.flags&Update)!==NoFlags){switch(finishedWork.tag){case Profiler:{var passiveEffectDuration=finishedWork.stateNode.passiveEffectDuration;var _finishedWork$memoize=finishedWork.memoizedProps,id=_finishedWork$memoize.id,onPostCommit=_finishedWork$memoize.onPostCommit;// This value will still reflect the previous commit phase.
 	// It does not get reset until the start of the next commit phase.
 	var commitTime=getCommitTime();var phase=finishedWork.alternate===null?'mount':'update';{if(isCurrentUpdateNested()){phase='nested-update';}}if(typeof onPostCommit==='function'){onPostCommit(id,phase,passiveEffectDuration,commitTime);}// Bubble times to the next nearest ancestor Profiler.
@@ -9392,7 +9371,7 @@
 	return node.stateNode;}}}function commitPlacement(finishedWork){var parentFiber=getHostParentFiber(finishedWork);// Note: these two variables *must* always be updated together.
 	switch(parentFiber.tag){case HostComponent:{var parent=parentFiber.stateNode;if(parentFiber.flags&ContentReset){// Reset the text content of the parent before doing any insertions
 	resetTextContent(parent);// Clear ContentReset from the effect tag
-	parentFiber.flags&=~ContentReset;}var before=getHostSibling(finishedWork);// We only have the top Fiber that was inserted but we need to recurse down its
+	parentFiber.flags&=-33;}var before=getHostSibling(finishedWork);// We only have the top Fiber that was inserted but we need to recurse down its
 	// children to find all the terminal nodes.
 	insertOrAppendPlacementNode(finishedWork,before,parent);break;}case HostRoot:case HostPortal:{var _parent=parentFiber.stateNode.containerInfo;var _before=getHostSibling(finishedWork);insertOrAppendPlacementNodeIntoContainer(finishedWork,_before,_parent);break;}// eslint-disable-next-line-no-fallthrough
 	default:throw new Error('Invalid host parent fiber. This error is likely caused by a bug '+'in React. Please file an issue.');}}function insertOrAppendPlacementNodeIntoContainer(node,before,parent){var tag=node.tag;var isHost=tag===HostComponent||tag===HostText;if(isHost){var stateNode=node.stateNode;if(before){insertInContainerBefore(parent,stateNode,before);}else {appendChildToContainer(parent,stateNode);}}else if(tag===HostPortal);else {var child=node.child;if(child!==null){insertOrAppendPlacementNodeIntoContainer(child,before,parent);var sibling=child.sibling;while(sibling!==null){insertOrAppendPlacementNodeIntoContainer(sibling,before,parent);sibling=sibling.sibling;}}}}function insertOrAppendPlacementNode(node,before,parent){var tag=node.tag;var isHost=tag===HostComponent||tag===HostText;if(isHost){var stateNode=node.stateNode;if(before){insertBefore(parent,stateNode,before);}else {appendChild(parent,stateNode);}}else if(tag===HostPortal);else {var child=node.child;if(child!==null){insertOrAppendPlacementNode(child,before,parent);var sibling=child.sibling;while(sibling!==null){insertOrAppendPlacementNode(sibling,before,parent);sibling=sibling.sibling;}}}}// These are tracked on the stack as we recursively traverse a
@@ -9486,7 +9465,7 @@
 	// inserted, before any life-cycles like componentDidMount gets called.
 	// TODO: findDOMNode doesn't rely on this any more but isMounted does
 	// and isMounted is deprecated anyway so we should be able to kill this.
-	finishedWork.flags&=~Placement;}if(flags&Hydrating){finishedWork.flags&=~Hydrating;}}function commitLayoutEffects(finishedWork,root,committedLanes){inProgressLanes=committedLanes;inProgressRoot=root;nextEffect=finishedWork;commitLayoutEffects_begin(finishedWork,root,committedLanes);inProgressLanes=null;inProgressRoot=null;}function commitLayoutEffects_begin(subtreeRoot,root,committedLanes){// Suspense layout effects semantics don't change for legacy roots.
+	finishedWork.flags&=-3;}if(flags&Hydrating){finishedWork.flags&=-4097;}}function commitLayoutEffects(finishedWork,root,committedLanes){inProgressLanes=committedLanes;inProgressRoot=root;nextEffect=finishedWork;commitLayoutEffects_begin(finishedWork,root,committedLanes);inProgressLanes=null;inProgressRoot=null;}function commitLayoutEffects_begin(subtreeRoot,root,committedLanes){// Suspense layout effects semantics don't change for legacy roots.
 	var isModernRoot=(subtreeRoot.mode&ConcurrentMode)!==NoMode;while(nextEffect!==null){var fiber=nextEffect;var firstChild=fiber.child;if(fiber.tag===OffscreenComponent&&isModernRoot){// Keep track of the current Offscreen stack's state.
 	var isHidden=fiber.memoizedState!==null;var newOffscreenSubtreeIsHidden=isHidden||offscreenSubtreeIsHidden;if(newOffscreenSubtreeIsHidden){// The Offscreen tree is hidden. Skip over its layout effects.
 	commitLayoutMountEffects_complete(subtreeRoot,root,committedLanes);continue;}else {// TODO (Offscreen) Also check: subtreeFlags & LayoutMask
@@ -9890,7 +9869,7 @@
 	// nothing should rely on this, but relying on it here means that we don't
 	// need an additional field on the work in progress.
 	var current=completedWork.alternate;var returnFiber=completedWork.return;// Check if the work completed or if something threw.
-	if((completedWork.flags&Incomplete)===NoFlags){setCurrentFiber(completedWork);var next=void 0;if((completedWork.mode&ProfileMode)===NoMode){next=completeWork(current,completedWork,subtreeRenderLanes);}else {startProfilerTimer(completedWork);next=completeWork(current,completedWork,subtreeRenderLanes);// Update render duration assuming we didn't error.
+	if((completedWork.flags&Incomplete)===NoFlags){setCurrentFiber(completedWork);var next=undefined;if((completedWork.mode&ProfileMode)===NoMode){next=completeWork(current,completedWork,subtreeRenderLanes);}else {startProfilerTimer(completedWork);next=completeWork(current,completedWork,subtreeRenderLanes);// Update render duration assuming we didn't error.
 	stopProfilerTimerIfRunningAndRecordDelta(completedWork,false);}resetCurrentFiber();if(next!==null){// Completing this fiber spawned new work. Work on that next.
 	workInProgress=next;return;}}else {// This fiber did not complete because something threw. Pop values off
 	// the stack without entering the complete phase. If this is a boundary,
@@ -10282,7 +10261,7 @@
 	// the hydration callbacks.
 	var hydrationCallbacks=options!=null?options:null;// TODO: Delete this option
 	var mutableSources=options!=null&&options.hydratedSources||null;var isStrictMode=false;var concurrentUpdatesByDefaultOverride=false;var identifierPrefix='';var onRecoverableError=defaultOnRecoverableError;if(options!==null&&options!==undefined){if(options.unstable_strictMode===true){isStrictMode=true;}if(options.identifierPrefix!==undefined){identifierPrefix=options.identifierPrefix;}if(options.onRecoverableError!==undefined){onRecoverableError=options.onRecoverableError;}}var root=createHydrationContainer(initialChildren,null,container,ConcurrentRoot,hydrationCallbacks,isStrictMode,concurrentUpdatesByDefaultOverride,identifierPrefix,onRecoverableError);markContainerAsRoot(root.current,container);// This can't be a comment node since hydration doesn't work on comment nodes anyway.
-	listenToAllSupportedEvents(container);if(mutableSources){for(var i=0;i<mutableSources.length;i++){var mutableSource=mutableSources[i];registerMutableSourceForHydration(root,mutableSource);}}return new ReactDOMHydrationRoot(root);}function isValidContainer(node){return !!(node&&(node.nodeType===ELEMENT_NODE||node.nodeType===DOCUMENT_NODE||node.nodeType===DOCUMENT_FRAGMENT_NODE||!disableCommentsAsDOMContainers));}// TODO: Remove this function which also includes comment nodes.
+	listenToAllSupportedEvents(container);if(mutableSources){for(var i=0;i<mutableSources.length;i++){var mutableSource=mutableSources[i];registerMutableSourceForHydration(root,mutableSource);}}return new ReactDOMHydrationRoot(root);}function isValidContainer(node){return !!(node&&(node.nodeType===ELEMENT_NODE||node.nodeType===DOCUMENT_NODE||node.nodeType===DOCUMENT_FRAGMENT_NODE||false));}// TODO: Remove this function which also includes comment nodes.
 	// We only use it in places that are currently more relaxed.
 	function isValidContainerLegacy(node){return !!(node&&(node.nodeType===ELEMENT_NODE||node.nodeType===DOCUMENT_NODE||node.nodeType===DOCUMENT_FRAGMENT_NODE||node.nodeType===COMMENT_NODE&&node.nodeValue===' react-mount-point-unstable '));}function warnIfReactDOMContainerInDEV(container){{if(container.nodeType===ELEMENT_NODE&&container.tagName&&container.tagName.toUpperCase()==='BODY'){error('createRoot(): Creating roots directly with document.body is '+'discouraged, since its children are often manipulated by third-party '+'scripts and browser extensions. This may lead to subtle '+'reconciliation issues. Try using a container element created '+'for your app.');}if(isContainerMarkedAsRoot(container)){if(container._reactRootContainer){error('You are calling ReactDOMClient.createRoot() on a container that was previously '+'passed to ReactDOM.render(). This is not supported.');}else {error('You are calling ReactDOMClient.createRoot() on a container that '+'has already been passed to createRoot() before. Instead, call '+'root.render() on the existing root instead if you want to update it.');}}}}var ReactCurrentOwner$3=ReactSharedInternals.ReactCurrentOwner;var topLevelUpdateWarnings;{topLevelUpdateWarnings=function(container){if(container._reactRootContainer&&container.nodeType!==COMMENT_NODE){var hostInstance=findHostInstanceWithNoPortals(container._reactRootContainer.current);if(hostInstance){if(hostInstance.parentNode!==container){error('render(...): It looks like the React-rendered content of this '+'container was removed without using React. This is not '+'supported and will cause errors. Instead, call '+'ReactDOM.unmountComponentAtNode to empty a container.');}}}var isRootRenderedBySomeReact=!!container._reactRootContainer;var rootEl=getReactRootElementInContainer(container);var hasNonRootReactChild=!!(rootEl&&getInstanceFromNode(rootEl));if(hasNonRootReactChild&&!isRootRenderedBySomeReact){error('render(...): Replacing React-rendered children with a new root '+'component. If you intended to update the children of this node, '+'you should instead have the existing children update their state '+'and render the new components instead of calling ReactDOM.render.');}if(container.nodeType===ELEMENT_NODE&&container.tagName&&container.tagName.toUpperCase()==='BODY'){error('render(): Rendering components directly into document.body is '+'discouraged, since its children are often manipulated by third-party '+'scripts and browser extensions. This may lead to subtle '+'reconciliation issues. Try rendering into a container element created '+'for your app.');}};}function getReactRootElementInContainer(container){if(!container){return null;}if(container.nodeType===DOCUMENT_NODE){return container.documentElement;}else {return container.firstChild;}}function noopOnRecoverableError(){// This isn't reachable because onRecoverableError isn't called in the
 	// legacy API.
@@ -10310,7 +10289,7 @@
 	// $FlowFixMe The Flow type is opaque but there's no way to actually create it.
 	return createPortal(children,container,null,key);}function renderSubtreeIntoContainer(parentComponent,element,containerNode,callback){return unstable_renderSubtreeIntoContainer(parentComponent,element,containerNode,callback);}var Internals={usingClientEntryPoint:false,// Keep in sync with ReactTestUtils.js.
 	// This is an array for better minification.
-	Events:[getInstanceFromNode,getNodeFromInstance,getFiberCurrentPropsFromNode,enqueueStateRestore,restoreStateIfNeeded,batchedUpdates$1]};function createRoot$1(container,options){{if(!Internals.usingClientEntryPoint&&!false){error('You are importing createRoot from "react-dom" which is not supported. '+'You should instead import it from "react-dom/client".');}}return createRoot(container,options);}function hydrateRoot$1(container,initialChildren,options){{if(!Internals.usingClientEntryPoint&&!false){error('You are importing hydrateRoot from "react-dom" which is not supported. '+'You should instead import it from "react-dom/client".');}}return hydrateRoot(container,initialChildren,options);}// Overload the definition to the two valid signatures.
+	Events:[getInstanceFromNode,getNodeFromInstance,getFiberCurrentPropsFromNode,enqueueStateRestore,restoreStateIfNeeded,batchedUpdates$1]};function createRoot$1(container,options){{if(!Internals.usingClientEntryPoint&&true){error('You are importing createRoot from "react-dom" which is not supported. '+'You should instead import it from "react-dom/client".');}}return createRoot(container,options);}function hydrateRoot$1(container,initialChildren,options){{if(!Internals.usingClientEntryPoint&&true){error('You are importing hydrateRoot from "react-dom" which is not supported. '+'You should instead import it from "react-dom/client".');}}return hydrateRoot(container,initialChildren,options);}// Overload the definition to the two valid signatures.
 	// Warning, this opts-out of checking the function body.
 	// eslint-disable-next-line no-redeclare
 	function flushSync$1(fn){{if(isAlreadyRendering()){error('flushSync was called from inside a lifecycle method. React cannot '+'flush when React is already rendering. Consider moving this call to '+'a scheduler task or micro task.');}}return flushSync(fn);}var foundDevTools=injectIntoDevTools({findFiberByHostInstance:getClosestInstanceFromNode,bundleType:1,version:ReactVersion,rendererPackageName:'react-dom'});{if(!foundDevTools&&canUseDOM&&window.top===window.self){// If we're in Chrome or Firefox, provide a download link if not installed.
@@ -10547,7 +10526,7 @@
 	    };
 	  };
 	  _proto.updateStatus = function updateStatus(mounting, nextStatus) {
-	    if (mounting === void 0) {
+	    if (mounting === undefined) {
 	      mounting = false;
 	    }
 	    if (nextStatus !== null) {
@@ -10812,7 +10791,7 @@
 	    for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
 	      args[_key - 1] = arguments[_key];
 	    }
-	    return pt.apply(void 0, [props].concat(args));
+	    return pt.apply(undefined, [props].concat(args));
 	  },
 	  /**
 	   * Add a custom transition end trigger. Called with the transitioning
@@ -10983,7 +10962,7 @@
 	 * @param cancelable whether the event should be cancelable
 	 */
 	function triggerEvent(node, eventName, bubbles, cancelable) {
-	  if (cancelable === void 0) {
+	  if (cancelable === undefined) {
 	    cancelable = true;
 	  }
 	  if (node) {
@@ -10999,7 +10978,7 @@
 	  return parseFloat(str) * mult;
 	}
 	function emulateTransitionEnd(element, duration, padding) {
-	  if (padding === void 0) {
+	  if (padding === undefined) {
 	    padding = 5;
 	  }
 	  var called = false;
@@ -11352,8 +11331,8 @@
 	        eventKeyPassed = [eventKey];
 	      }
 	    }
-	    onSelect == null ? void 0 : onSelect(eventKeyPassed, e);
-	    onClick == null ? void 0 : onClick(e);
+	    onSelect == null ? undefined : onSelect(eventKeyPassed, e);
+	    onClick == null ? undefined : onClick(e);
 	  };
 	}
 	const AccordionButton = /*#__PURE__*/reactExports.forwardRef(({
@@ -11532,7 +11511,7 @@
 	 * @param capture Whether or not to listen during the capture event phase
 	 */
 	function useEventListener(eventTarget, event, listener, capture) {
-	  if (capture === void 0) {
+	  if (capture === undefined) {
 	    capture = false;
 	  }
 	  var handler = useEventCallback(listener);
@@ -11674,7 +11653,7 @@
 	      event.stopPropagation();
 	      return;
 	    }
-	    onClick == null ? void 0 : onClick(event);
+	    onClick == null ? undefined : onClick(event);
 	  };
 	  const handleKeyDown = event => {
 	    if (event.key === ' ') {
@@ -11751,7 +11730,7 @@
 	  }, props));
 	  const handleKeyDown = useEventCallback(e => {
 	    buttonProps.onKeyDown(e);
-	    onKeyDown == null ? void 0 : onKeyDown(e);
+	    onKeyDown == null ? undefined : onKeyDown(e);
 	  });
 	  if (isTrivialHref(props.href) || props.role === 'button') {
 	    return /*#__PURE__*/jsxRuntimeExports.jsx("a", Object.assign({
@@ -11787,7 +11766,7 @@
 	}, ref) => {
 	  const handleEnter = reactExports.useCallback((node, isAppearing) => {
 	    triggerBrowserReflow(node);
-	    props.onEnter == null ? void 0 : props.onEnter(node, isAppearing);
+	    props.onEnter == null ? undefined : props.onEnter(node, isAppearing);
 	  }, [props]);
 	  return /*#__PURE__*/jsxRuntimeExports.jsx(TransitionWrapper, {
 	    ref: ref,
@@ -12018,7 +11997,7 @@
 	    ...props,
 	    children: /*#__PURE__*/jsxRuntimeExports.jsx("ol", {
 	      ...listProps,
-	      className: classNames(prefix, listProps == null ? void 0 : listProps.className),
+	      className: classNames(prefix, listProps == null ? undefined : listProps.className),
 	      children: children
 	    })
 	  });
@@ -12313,7 +12292,7 @@
 	      return clearTimeout(handleRef.current);
 	    };
 	    function set(fn, delayMs) {
-	      if (delayMs === void 0) {
+	      if (delayMs === undefined) {
 	        delayMs = 0;
 	      }
 	      if (!isMounted()) return;
@@ -12500,7 +12479,7 @@
 	      nextActiveIndex = numChildren - 1;
 	    }
 	    nextDirectionRef.current = 'prev';
-	    onSelect == null ? void 0 : onSelect(nextActiveIndex, event);
+	    onSelect == null ? undefined : onSelect(nextActiveIndex, event);
 	  }, [isSliding, renderedActiveIndex, onSelect, wrap, numChildren]);
 
 	  // This is used in the setInterval, so it should not invalidate.
@@ -12516,7 +12495,7 @@
 	      nextActiveIndex = 0;
 	    }
 	    nextDirectionRef.current = 'next';
-	    onSelect == null ? void 0 : onSelect(nextActiveIndex, event);
+	    onSelect == null ? undefined : onSelect(nextActiveIndex, event);
 	  });
 	  const elementRef = reactExports.useRef();
 	  reactExports.useImperativeHandle(ref, () => ({
@@ -12541,18 +12520,18 @@
 	      // These callbacks will be handled by the <Transition> callbacks.
 	      return;
 	    }
-	    onSlide == null ? void 0 : onSlide(renderedActiveIndex, slideDirection);
-	    onSlid == null ? void 0 : onSlid(renderedActiveIndex, slideDirection);
+	    onSlide == null ? undefined : onSlide(renderedActiveIndex, slideDirection);
+	    onSlid == null ? undefined : onSlid(renderedActiveIndex, slideDirection);
 	  }, [renderedActiveIndex]);
 	  const orderClassName = `${prefix}-item-${direction}`;
 	  const directionalClassName = `${prefix}-item-${slideDirection}`;
 	  const handleEnter = reactExports.useCallback(node => {
 	    triggerBrowserReflow(node);
-	    onSlide == null ? void 0 : onSlide(renderedActiveIndex, slideDirection);
+	    onSlide == null ? undefined : onSlide(renderedActiveIndex, slideDirection);
 	  }, [onSlide, renderedActiveIndex, slideDirection]);
 	  const handleEntered = reactExports.useCallback(() => {
 	    setIsSliding(false);
-	    onSlid == null ? void 0 : onSlid(renderedActiveIndex, slideDirection);
+	    onSlid == null ? undefined : onSlid(renderedActiveIndex, slideDirection);
 	  }, [onSlid, renderedActiveIndex, slideDirection]);
 	  const handleKeyDown = reactExports.useCallback(event => {
 	    if (keyboard && !/input|textarea/i.test(event.target.tagName)) {
@@ -12575,17 +12554,17 @@
 	          return;
 	      }
 	    }
-	    onKeyDown == null ? void 0 : onKeyDown(event);
+	    onKeyDown == null ? undefined : onKeyDown(event);
 	  }, [keyboard, onKeyDown, prev, next, isRTL]);
 	  const handleMouseOver = reactExports.useCallback(event => {
 	    if (pause === 'hover') {
 	      setPaused(true);
 	    }
-	    onMouseOver == null ? void 0 : onMouseOver(event);
+	    onMouseOver == null ? undefined : onMouseOver(event);
 	  }, [pause, onMouseOver]);
 	  const handleMouseOut = reactExports.useCallback(event => {
 	    setPaused(false);
-	    onMouseOut == null ? void 0 : onMouseOut(event);
+	    onMouseOut == null ? undefined : onMouseOut(event);
 	  }, [onMouseOut]);
 	  const touchStartXRef = reactExports.useRef(0);
 	  const touchDeltaXRef = reactExports.useRef(0);
@@ -12596,7 +12575,7 @@
 	    if (pause === 'hover') {
 	      setPaused(true);
 	    }
-	    onTouchStart == null ? void 0 : onTouchStart(event);
+	    onTouchStart == null ? undefined : onTouchStart(event);
 	  }, [pause, onTouchStart]);
 	  const handleTouchMove = reactExports.useCallback(event => {
 	    if (event.touches && event.touches.length > 1) {
@@ -12604,7 +12583,7 @@
 	    } else {
 	      touchDeltaXRef.current = event.touches[0].clientX - touchStartXRef.current;
 	    }
-	    onTouchMove == null ? void 0 : onTouchMove(event);
+	    onTouchMove == null ? undefined : onTouchMove(event);
 	  }, [onTouchMove]);
 	  const handleTouchEnd = reactExports.useCallback(event => {
 	    if (touch) {
@@ -12622,7 +12601,7 @@
 	        setPaused(false);
 	      }, interval || undefined);
 	    }
-	    onTouchEnd == null ? void 0 : onTouchEnd(event);
+	    onTouchEnd == null ? undefined : onTouchEnd(event);
 	  }, [touch, pause, prev, next, touchUnpauseTimeout, interval, onTouchEnd]);
 	  const shouldPlay = interval != null && !paused && !isSliding;
 	  const intervalHandleRef = reactExports.useRef();
@@ -12642,7 +12621,7 @@
 	  const indicatorOnClicks = reactExports.useMemo(() => indicators && Array.from({
 	    length: numChildren
 	  }, (_, index) => event => {
-	    onSelect == null ? void 0 : onSelect(index, event);
+	    onSelect == null ? undefined : onSelect(index, event);
 	  }), [indicators, numChildren, onSelect]);
 	  return /*#__PURE__*/jsxRuntimeExports.jsxs(Component, {
 	    ref: elementRef,
@@ -12975,10 +12954,10 @@
 	}
 
 	function getBoundingClientRect(element, includeScale, isFixedStrategy) {
-	  if (includeScale === void 0) {
+	  if (includeScale === undefined) {
 	    includeScale = false;
 	  }
-	  if (isFixedStrategy === void 0) {
+	  if (isFixedStrategy === undefined) {
 	    isFixedStrategy = false;
 	  }
 	  var clientRect = element.getBoundingClientRect();
@@ -13213,7 +13192,7 @@
 	  var state = _ref2.state,
 	    options = _ref2.options;
 	  var _options$element = options.element,
-	    arrowElement = _options$element === void 0 ? '[data-popper-arrow]' : _options$element;
+	    arrowElement = _options$element === undefined ? '[data-popper-arrow]' : _options$element;
 	  if (arrowElement == null) {
 	    return;
 	  } // CSS selector
@@ -13284,9 +13263,9 @@
 	    roundOffsets = _ref2.roundOffsets,
 	    isFixed = _ref2.isFixed;
 	  var _offsets$x = offsets.x,
-	    x = _offsets$x === void 0 ? 0 : _offsets$x,
+	    x = _offsets$x === undefined ? 0 : _offsets$x,
 	    _offsets$y = offsets.y,
-	    y = _offsets$y === void 0 ? 0 : _offsets$y;
+	    y = _offsets$y === undefined ? 0 : _offsets$y;
 	  var _ref3 = typeof roundOffsets === 'function' ? roundOffsets({
 	    x: x,
 	    y: y
@@ -13353,11 +13332,11 @@
 	  var state = _ref5.state,
 	    options = _ref5.options;
 	  var _options$gpuAccelerat = options.gpuAcceleration,
-	    gpuAcceleration = _options$gpuAccelerat === void 0 ? true : _options$gpuAccelerat,
+	    gpuAcceleration = _options$gpuAccelerat === undefined ? true : _options$gpuAccelerat,
 	    _options$adaptive = options.adaptive,
-	    adaptive = _options$adaptive === void 0 ? true : _options$adaptive,
+	    adaptive = _options$adaptive === undefined ? true : _options$adaptive,
 	    _options$roundOffsets = options.roundOffsets,
-	    roundOffsets = _options$roundOffsets === void 0 ? true : _options$roundOffsets;
+	    roundOffsets = _options$roundOffsets === undefined ? true : _options$roundOffsets;
 	  {
 	    var transitionProperty = getComputedStyle$1(state.elements.popper).transitionProperty || '';
 	    if (adaptive && ['transform', 'top', 'right', 'bottom', 'left'].some(function (property) {
@@ -13411,9 +13390,9 @@
 	    instance = _ref.instance,
 	    options = _ref.options;
 	  var _options$scroll = options.scroll,
-	    scroll = _options$scroll === void 0 ? true : _options$scroll,
+	    scroll = _options$scroll === undefined ? true : _options$scroll,
 	    _options$resize = options.resize,
-	    resize = _options$resize === void 0 ? true : _options$resize;
+	    resize = _options$resize === undefined ? true : _options$resize;
 	  var window = getWindow(state.elements.popper);
 	  var scrollParents = [].concat(state.scrollParents.reference, state.scrollParents.popper);
 	  if (scroll) {
@@ -13519,7 +13498,7 @@
 	  var _element$ownerDocumen;
 	  var html = getDocumentElement(element);
 	  var winScroll = getWindowScroll(element);
-	  var body = (_element$ownerDocumen = element.ownerDocument) == null ? void 0 : _element$ownerDocumen.body;
+	  var body = (_element$ownerDocumen = element.ownerDocument) == null ? undefined : _element$ownerDocumen.body;
 	  var width = max(html.scrollWidth, html.clientWidth, body ? body.scrollWidth : 0, body ? body.clientWidth : 0);
 	  var height = max(html.scrollHeight, html.clientHeight, body ? body.scrollHeight : 0, body ? body.clientHeight : 0);
 	  var x = -winScroll.scrollLeft + getWindowScrollBarX(element);
@@ -13564,11 +13543,11 @@
 
 	function listScrollParents(element, list) {
 	  var _element$ownerDocumen;
-	  if (list === void 0) {
+	  if (list === undefined) {
 	    list = [];
 	  }
 	  var scrollParent = getScrollParent(element);
-	  var isBody = scrollParent === ((_element$ownerDocumen = element.ownerDocument) == null ? void 0 : _element$ownerDocumen.body);
+	  var isBody = scrollParent === ((_element$ownerDocumen = element.ownerDocument) == null ? undefined : _element$ownerDocumen.body);
 	  var win = getWindow(scrollParent);
 	  var target = isBody ? [win].concat(win.visualViewport || [], isScrollParent(scrollParent) ? scrollParent : []) : scrollParent;
 	  var updatedList = list.concat(target);
@@ -13693,24 +13672,24 @@
 	}
 
 	function detectOverflow(state, options) {
-	  if (options === void 0) {
+	  if (options === undefined) {
 	    options = {};
 	  }
 	  var _options = options,
 	    _options$placement = _options.placement,
-	    placement = _options$placement === void 0 ? state.placement : _options$placement,
+	    placement = _options$placement === undefined ? state.placement : _options$placement,
 	    _options$strategy = _options.strategy,
-	    strategy = _options$strategy === void 0 ? state.strategy : _options$strategy,
+	    strategy = _options$strategy === undefined ? state.strategy : _options$strategy,
 	    _options$boundary = _options.boundary,
-	    boundary = _options$boundary === void 0 ? clippingParents : _options$boundary,
+	    boundary = _options$boundary === undefined ? clippingParents : _options$boundary,
 	    _options$rootBoundary = _options.rootBoundary,
-	    rootBoundary = _options$rootBoundary === void 0 ? viewport : _options$rootBoundary,
+	    rootBoundary = _options$rootBoundary === undefined ? viewport : _options$rootBoundary,
 	    _options$elementConte = _options.elementContext,
-	    elementContext = _options$elementConte === void 0 ? popper : _options$elementConte,
+	    elementContext = _options$elementConte === undefined ? popper : _options$elementConte,
 	    _options$altBoundary = _options.altBoundary,
-	    altBoundary = _options$altBoundary === void 0 ? false : _options$altBoundary,
+	    altBoundary = _options$altBoundary === undefined ? false : _options$altBoundary,
 	    _options$padding = _options.padding,
-	    padding = _options$padding === void 0 ? 0 : _options$padding;
+	    padding = _options$padding === undefined ? 0 : _options$padding;
 	  var paddingObject = mergePaddingObject(typeof padding !== 'number' ? padding : expandToHashMap(padding, basePlacements));
 	  var altContext = elementContext === popper ? reference : popper;
 	  var popperRect = state.rects.popper;
@@ -13747,7 +13726,7 @@
 	}
 
 	function computeAutoPlacement(state, options) {
-	  if (options === void 0) {
+	  if (options === undefined) {
 	    options = {};
 	  }
 	  var _options = options,
@@ -13757,7 +13736,7 @@
 	    padding = _options.padding,
 	    flipVariations = _options.flipVariations,
 	    _options$allowedAutoP = _options.allowedAutoPlacements,
-	    allowedAutoPlacements = _options$allowedAutoP === void 0 ? placements : _options$allowedAutoP;
+	    allowedAutoPlacements = _options$allowedAutoP === undefined ? placements : _options$allowedAutoP;
 	  var variation = getVariation(placement);
 	  var placements$1 = variation ? flipVariations ? variationPlacements : variationPlacements.filter(function (placement) {
 	    return getVariation(placement) === variation;
@@ -13801,16 +13780,16 @@
 	    return;
 	  }
 	  var _options$mainAxis = options.mainAxis,
-	    checkMainAxis = _options$mainAxis === void 0 ? true : _options$mainAxis,
+	    checkMainAxis = _options$mainAxis === undefined ? true : _options$mainAxis,
 	    _options$altAxis = options.altAxis,
-	    checkAltAxis = _options$altAxis === void 0 ? true : _options$altAxis,
+	    checkAltAxis = _options$altAxis === undefined ? true : _options$altAxis,
 	    specifiedFallbackPlacements = options.fallbackPlacements,
 	    padding = options.padding,
 	    boundary = options.boundary,
 	    rootBoundary = options.rootBoundary,
 	    altBoundary = options.altBoundary,
 	    _options$flipVariatio = options.flipVariations,
-	    flipVariations = _options$flipVariatio === void 0 ? true : _options$flipVariatio,
+	    flipVariations = _options$flipVariatio === undefined ? true : _options$flipVariatio,
 	    allowedAutoPlacements = options.allowedAutoPlacements;
 	  var preferredPlacement = state.options.placement;
 	  var basePlacement = getBasePlacement(preferredPlacement);
@@ -13906,7 +13885,7 @@
 	};
 
 	function getSideOffsets(overflow, rect, preventedOffsets) {
-	  if (preventedOffsets === void 0) {
+	  if (preventedOffsets === undefined) {
 	    preventedOffsets = {
 	      x: 0,
 	      y: 0
@@ -13983,7 +13962,7 @@
 	    options = _ref2.options,
 	    name = _ref2.name;
 	  var _options$offset = options.offset,
-	    offset = _options$offset === void 0 ? [0, 0] : _options$offset;
+	    offset = _options$offset === undefined ? [0, 0] : _options$offset;
 	  var data = placements.reduce(function (acc, placement) {
 	    acc[placement] = distanceAndSkiddingToXY(placement, state.rects, offset);
 	    return acc;
@@ -14038,17 +14017,17 @@
 	    options = _ref.options,
 	    name = _ref.name;
 	  var _options$mainAxis = options.mainAxis,
-	    checkMainAxis = _options$mainAxis === void 0 ? true : _options$mainAxis,
+	    checkMainAxis = _options$mainAxis === undefined ? true : _options$mainAxis,
 	    _options$altAxis = options.altAxis,
-	    checkAltAxis = _options$altAxis === void 0 ? false : _options$altAxis,
+	    checkAltAxis = _options$altAxis === undefined ? false : _options$altAxis,
 	    boundary = options.boundary,
 	    rootBoundary = options.rootBoundary,
 	    altBoundary = options.altBoundary,
 	    padding = options.padding,
 	    _options$tether = options.tether,
-	    tether = _options$tether === void 0 ? true : _options$tether,
+	    tether = _options$tether === undefined ? true : _options$tether,
 	    _options$tetherOffset = options.tetherOffset,
-	    tetherOffset = _options$tetherOffset === void 0 ? 0 : _options$tetherOffset;
+	    tetherOffset = _options$tetherOffset === undefined ? 0 : _options$tetherOffset;
 	  var overflow = detectOverflow(state, {
 	    boundary: boundary,
 	    rootBoundary: rootBoundary,
@@ -14112,7 +14091,7 @@
 	    var maxOffset = isBasePlacement ? -referenceRect[len] / 2 + additive + arrowLen + arrowPaddingMax + normalizedTetherOffsetValue.mainAxis : maxLen + arrowLen + arrowPaddingMax + normalizedTetherOffsetValue.mainAxis;
 	    var arrowOffsetParent = state.elements.arrow && getOffsetParent(state.elements.arrow);
 	    var clientOffset = arrowOffsetParent ? mainAxis === 'y' ? arrowOffsetParent.clientTop || 0 : arrowOffsetParent.clientLeft || 0 : 0;
-	    var offsetModifierValue = (_offsetModifierState$ = offsetModifierState == null ? void 0 : offsetModifierState[mainAxis]) != null ? _offsetModifierState$ : 0;
+	    var offsetModifierValue = (_offsetModifierState$ = offsetModifierState == null ? undefined : offsetModifierState[mainAxis]) != null ? _offsetModifierState$ : 0;
 	    var tetherMin = offset + minOffset - offsetModifierValue - clientOffset;
 	    var tetherMax = offset + maxOffset - offsetModifierValue;
 	    var preventedOffset = within(tether ? min(min$1, tetherMin) : min$1, offset, tether ? max(max$1, tetherMax) : max$1);
@@ -14128,7 +14107,7 @@
 	    var _min = _offset + overflow[_mainSide];
 	    var _max = _offset - overflow[_altSide];
 	    var isOriginSide = [top, left].indexOf(basePlacement) !== -1;
-	    var _offsetModifierValue = (_offsetModifierState$2 = offsetModifierState == null ? void 0 : offsetModifierState[altAxis]) != null ? _offsetModifierState$2 : 0;
+	    var _offsetModifierValue = (_offsetModifierState$2 = offsetModifierState == null ? undefined : offsetModifierState[altAxis]) != null ? _offsetModifierState$2 : 0;
 	    var _tetherMin = isOriginSide ? _min : _offset - referenceRect[_len] - popperRect[_len] - _offsetModifierValue + normalizedTetherOffsetValue.altAxis;
 	    var _tetherMax = isOriginSide ? _offset + referenceRect[_len] + popperRect[_len] - _offsetModifierValue - normalizedTetherOffsetValue.altAxis : _max;
 	    var _preventedOffset = tether && isOriginSide ? withinMaxClamp(_tetherMin, _offset, _tetherMax) : within(tether ? _tetherMin : _min, _offset, tether ? _tetherMax : _max);
@@ -14170,7 +14149,7 @@
 	// Composite means it takes into account transforms as well as layout.
 
 	function getCompositeRect(elementOrVirtualElement, offsetParent, isFixed) {
-	  if (isFixed === void 0) {
+	  if (isFixed === undefined) {
 	    isFixed = false;
 	  }
 	  var isOffsetParentAnElement = isHTMLElement(offsetParent);
@@ -14377,16 +14356,16 @@
 	  });
 	}
 	function popperGenerator(generatorOptions) {
-	  if (generatorOptions === void 0) {
+	  if (generatorOptions === undefined) {
 	    generatorOptions = {};
 	  }
 	  var _generatorOptions = generatorOptions,
 	    _generatorOptions$def = _generatorOptions.defaultModifiers,
-	    defaultModifiers = _generatorOptions$def === void 0 ? [] : _generatorOptions$def,
+	    defaultModifiers = _generatorOptions$def === undefined ? [] : _generatorOptions$def,
 	    _generatorOptions$def2 = _generatorOptions.defaultOptions,
-	    defaultOptions = _generatorOptions$def2 === void 0 ? DEFAULT_OPTIONS : _generatorOptions$def2;
+	    defaultOptions = _generatorOptions$def2 === undefined ? DEFAULT_OPTIONS : _generatorOptions$def2;
 	  return function createPopper(reference, popper, options) {
-	    if (options === void 0) {
+	    if (options === undefined) {
 	      options = defaultOptions;
 	    }
 	    var state = {
@@ -14509,7 +14488,7 @@
 	          var _state$orderedModifie = state.orderedModifiers[index],
 	            fn = _state$orderedModifie.fn,
 	            _state$orderedModifie2 = _state$orderedModifie.options,
-	            _options = _state$orderedModifie2 === void 0 ? {} : _state$orderedModifie2,
+	            _options = _state$orderedModifie2 === undefined ? {} : _state$orderedModifie2,
 	            name = _state$orderedModifie.name;
 	          if (typeof fn === 'function') {
 	            state = fn({
@@ -14554,7 +14533,7 @@
 	      state.orderedModifiers.forEach(function (_ref3) {
 	        var name = _ref3.name,
 	          _ref3$options = _ref3.options,
-	          options = _ref3$options === void 0 ? {} : _ref3$options,
+	          options = _ref3$options === undefined ? {} : _ref3$options,
 	          effect = _ref3.effect;
 	        if (typeof effect === 'function') {
 	          var cleanupFn = effect({
@@ -14630,7 +14609,7 @@
 	      popper,
 	      reference
 	    } = state.elements;
-	    const role = (_popper$getAttribute = popper.getAttribute('role')) == null ? void 0 : _popper$getAttribute.toLowerCase();
+	    const role = (_popper$getAttribute = popper.getAttribute('role')) == null ? undefined : _popper$getAttribute.toLowerCase();
 	    if (popper.id && role === 'tooltip' && 'setAttribute' in reference) {
 	      const ids = reference.getAttribute('aria-describedby');
 	      if (ids && ids.split(',').indexOf(popper.id) !== -1) {
@@ -14668,11 +14647,11 @@
 	  const popperInstanceRef = reactExports.useRef();
 	  const update = reactExports.useCallback(() => {
 	    var _popperInstanceRef$cu;
-	    (_popperInstanceRef$cu = popperInstanceRef.current) == null ? void 0 : _popperInstanceRef$cu.update();
+	    (_popperInstanceRef$cu = popperInstanceRef.current) == null ? undefined : _popperInstanceRef$cu.update();
 	  }, []);
 	  const forceUpdate = reactExports.useCallback(() => {
 	    var _popperInstanceRef$cu2;
-	    (_popperInstanceRef$cu2 = popperInstanceRef.current) == null ? void 0 : _popperInstanceRef$cu2.forceUpdate();
+	    (_popperInstanceRef$cu2 = popperInstanceRef.current) == null ? undefined : _popperInstanceRef$cu2.forceUpdate();
 	  }, []);
 	  const [popperState, setState] = useSafeState(reactExports.useState({
 	    placement,
@@ -14884,7 +14863,7 @@
 	      mobileSafariHackListeners = [].slice.call(doc.body.children).map(el => listen(el, 'mousemove', noop$8));
 	    }
 	    return () => {
-	      removeInitialTriggerListener == null ? void 0 : removeInitialTriggerListener();
+	      removeInitialTriggerListener == null ? undefined : removeInitialTriggerListener();
 	      removeMouseCaptureListener();
 	      removeMouseListener();
 	      mobileSafariHackListeners.forEach(remove => remove());
@@ -14899,7 +14878,7 @@
 	  }
 
 	  // eslint-disable-next-line no-unused-expressions
-	  modifiers == null ? void 0 : modifiers.forEach(m => {
+	  modifiers == null ? undefined : modifiers.forEach(m => {
 	    result[m.name] = m;
 	  });
 	  return result;
@@ -14931,21 +14910,21 @@
 	    modifiers: toModifierArray(Object.assign({}, modifiers, {
 	      eventListeners: {
 	        enabled: enableEvents,
-	        options: (_modifiers$eventListe = modifiers.eventListeners) == null ? void 0 : _modifiers$eventListe.options
+	        options: (_modifiers$eventListe = modifiers.eventListeners) == null ? undefined : _modifiers$eventListe.options
 	      },
 	      preventOverflow: Object.assign({}, modifiers.preventOverflow, {
 	        options: containerPadding ? Object.assign({
 	          padding: containerPadding
-	        }, (_modifiers$preventOve = modifiers.preventOverflow) == null ? void 0 : _modifiers$preventOve.options) : (_modifiers$preventOve2 = modifiers.preventOverflow) == null ? void 0 : _modifiers$preventOve2.options
+	        }, (_modifiers$preventOve = modifiers.preventOverflow) == null ? undefined : _modifiers$preventOve.options) : (_modifiers$preventOve2 = modifiers.preventOverflow) == null ? undefined : _modifiers$preventOve2.options
 	      }),
 	      offset: {
 	        options: Object.assign({
 	          offset
-	        }, (_modifiers$offset = modifiers.offset) == null ? void 0 : _modifiers$offset.options)
+	        }, (_modifiers$offset = modifiers.offset) == null ? undefined : _modifiers$offset.options)
 	      },
 	      arrow: Object.assign({}, modifiers.arrow, {
 	        enabled: !!arrowElement,
-	        options: Object.assign({}, (_modifiers$arrow = modifiers.arrow) == null ? void 0 : _modifiers$arrow.options, {
+	        options: Object.assign({}, (_modifiers$arrow = modifiers.arrow) == null ? undefined : _modifiers$arrow.options, {
 	          element: arrowElement
 	        })
 	      }),
@@ -14995,12 +14974,12 @@
 	    enableEventListeners = true,
 	    usePopper: shouldUsePopper = !!context
 	  } = options;
-	  const show = (context == null ? void 0 : context.show) == null ? !!options.show : context.show;
+	  const show = (context == null ? undefined : context.show) == null ? !!options.show : context.show;
 	  if (show && !hasShownRef.current) {
 	    hasShownRef.current = true;
 	  }
 	  const handleClose = e => {
-	    context == null ? void 0 : context.toggle(false, e);
+	    context == null ? undefined : context.toggle(false, e);
 	  };
 	  const {
 	    placement,
@@ -15020,7 +14999,7 @@
 	  }));
 	  const menuProps = Object.assign({
 	    ref: setMenu || noop$7,
-	    'aria-labelledby': toggleElement == null ? void 0 : toggleElement.id
+	    'aria-labelledby': toggleElement == null ? undefined : toggleElement.id
 	  }, popper.attributes.popper, {
 	    style: popper.styles.popper
 	  });
@@ -15028,7 +15007,7 @@
 	    show,
 	    placement,
 	    hasShown: hasShownRef.current,
-	    toggle: context == null ? void 0 : context.toggle,
+	    toggle: context == null ? undefined : context.toggle,
 	    popper: shouldUsePopper ? popper : null,
 	    arrowProps: shouldUsePopper ? Object.assign({
 	      ref: attachArrowRef
@@ -15110,7 +15089,7 @@
 
 	const isRoleMenu = el => {
 	  var _el$getAttribute;
-	  return ((_el$getAttribute = el.getAttribute('role')) == null ? void 0 : _el$getAttribute.toLowerCase()) === 'menu';
+	  return ((_el$getAttribute = el.getAttribute('role')) == null ? undefined : _el$getAttribute.toLowerCase()) === 'menu';
 	};
 	const noop$6 = () => {};
 
@@ -15216,7 +15195,7 @@
 	  const isActive = active == null && key != null ? makeEventKey(activeKey) === eventKey : active;
 	  const handleClick = useEventCallback(event => {
 	    if (disabled) return;
-	    onClick == null ? void 0 : onClick(event);
+	    onClick == null ? undefined : onClick(event);
 	    if (onSelectCtx && !event.isPropagationStopped()) {
 	      onSelectCtx(eventKey, event);
 	    }
@@ -15304,17 +15283,17 @@
 	  const lastSourceEvent = reactExports.useRef(null);
 	  const focusInDropdown = reactExports.useRef(false);
 	  const onSelectCtx = reactExports.useContext(SelectableContext);
-	  const toggle = reactExports.useCallback((nextShow, event, source = event == null ? void 0 : event.type) => {
+	  const toggle = reactExports.useCallback((nextShow, event, source = event == null ? undefined : event.type) => {
 	    onToggle(nextShow, {
 	      originalEvent: event,
 	      source
 	    });
 	  }, [onToggle]);
 	  const handleSelect = useEventCallback((key, event) => {
-	    onSelect == null ? void 0 : onSelect(key, event);
+	    onSelect == null ? undefined : onSelect(key, event);
 	    toggle(false, event, 'select');
 	    if (!event.isPropagationStopped()) {
-	      onSelectCtx == null ? void 0 : onSelectCtx(key, event);
+	      onSelectCtx == null ? undefined : onSelectCtx(key, event);
 	    }
 	  });
 	  const context = reactExports.useMemo(() => ({
@@ -15369,8 +15348,8 @@
 	      key
 	    } = event;
 	    const target = event.target;
-	    const fromMenu = (_menuRef$current = menuRef.current) == null ? void 0 : _menuRef$current.contains(target);
-	    const fromToggle = (_toggleRef$current = toggleRef.current) == null ? void 0 : _toggleRef$current.contains(target);
+	    const fromMenu = (_menuRef$current = menuRef.current) == null ? undefined : _menuRef$current.contains(target);
+	    const fromToggle = (_toggleRef$current = toggleRef.current) == null ? undefined : _toggleRef$current.contains(target);
 
 	    // Second only to https://github.com/twbs/bootstrap/blob/8cfbf6933b8a0146ac3fbc369f19e520bd1ebdac/js/src/dropdown.js#L400
 	    // in inscrutability
@@ -15484,7 +15463,7 @@
 
 	  // eslint-disable-next-line react-hooks/rules-of-hooks
 	  const warningRef = reactExports.useCallback(refValue => {
-	    !(refValue == null || !refValue.isReactComponent) ? invariant_1(false, `${componentName} injected a ref to a provided \`as\` component that resolved to a component instance instead of a DOM element. ` + 'Use `React.forwardRef` to provide the injected ref to the class component as a prop in order to pass it directly to a DOM element')  : void 0;
+	    !(refValue == null || !refValue.isReactComponent) ? invariant_1(false, `${componentName} injected a ref to a provided \`as\` component that resolved to a component instance instead of a DOM element. ` + 'Use `React.forwardRef` to provide the injected ref to the class component as a prop in order to pass it directly to a DOM element')  : undefined;
 	  }, [componentName]);
 	  // eslint-disable-next-line react-hooks/rules-of-hooks
 	  return useMergedRefs(warningRef, ref);
@@ -15580,14 +15559,14 @@
 	  useIsomorphicEffect(() => {
 	    // Popper's initial position for the menu is incorrect when
 	    // renderOnMount=true. Need to call update() to correct it.
-	    if (show) popper == null ? void 0 : popper.update();
+	    if (show) popper == null ? undefined : popper.update();
 	  }, [show]);
 	  if (!hasShown && !renderOnMount && !isInputGroup) return null;
 
 	  // For custom components provide additional, non-DOM, props;
 	  if (typeof Component !== 'string') {
 	    menuProps.show = show;
-	    menuProps.close = () => toggle == null ? void 0 : toggle(false);
+	    menuProps.close = () => toggle == null ? undefined : toggle(false);
 	    menuProps.align = align;
 	  }
 	  let style = props.style;
@@ -15636,7 +15615,7 @@
 	  // This intentionally forwards size and variant (if set) to the
 	  // underlying component, to allow it to render size and style variants.
 	  return /*#__PURE__*/jsxRuntimeExports.jsx(Component, {
-	    className: classNames(className, prefix, split && `${prefix}-split`, (dropdownContext == null ? void 0 : dropdownContext.show) && 'show'),
+	    className: classNames(className, prefix, split && `${prefix}-split`, (dropdownContext == null ? undefined : dropdownContext.show) && 'show'),
 	    ...toggleProps,
 	    ...props
 	  });
@@ -15697,7 +15676,7 @@
 	  };
 	  const handleToggle = useEventCallback((nextShow, meta) => {
 	    if (meta.originalEvent.currentTarget === document && (meta.source !== 'keydown' || meta.originalEvent.key === 'Escape')) meta.source = 'rootClose';
-	    if (isClosingPermitted(meta.source)) onToggle == null ? void 0 : onToggle(nextShow, meta);
+	    if (isClosingPermitted(meta.source)) onToggle == null ? undefined : onToggle(nextShow, meta);
 	  });
 	  const alignEnd = align === 'end';
 	  const placement = getDropdownMenuPlacement(alignEnd, drop, isRTL);
@@ -16439,7 +16418,7 @@
 	  }
 	  props.onClick = useEventCallback(e => {
 	    if (disabled) return;
-	    onClick == null ? void 0 : onClick(e);
+	    onClick == null ? undefined : onClick(e);
 	    if (key == null) {
 	      return;
 	    }
@@ -16527,11 +16506,11 @@
 	  };
 	  const handleSelect = (key, event) => {
 	    if (key == null) return;
-	    onSelect == null ? void 0 : onSelect(key, event);
-	    parentOnSelect == null ? void 0 : parentOnSelect(key, event);
+	    onSelect == null ? undefined : onSelect(key, event);
+	    parentOnSelect == null ? undefined : parentOnSelect(key, event);
 	  };
 	  const handleKeyDown = event => {
-	    onKeyDown == null ? void 0 : onKeyDown(event);
+	    onKeyDown == null ? undefined : onKeyDown(event);
 	    if (!tabContext) {
 	      return;
 	    }
@@ -16557,7 +16536,7 @@
 	  reactExports.useEffect(() => {
 	    if (listNode.current && needsRefocusRef.current) {
 	      const activeChild = listNode.current.querySelector(`[${EVENT_KEY_ATTR}][aria-selected=true]`);
-	      activeChild == null ? void 0 : activeChild.focus();
+	      activeChild == null ? undefined : activeChild.focus();
 	    }
 	    needsRefocusRef.current = false;
 	  });
@@ -16684,7 +16663,7 @@
 	 */
 
 	function activeElement(doc) {
-	  if (doc === void 0) {
+	  if (doc === undefined) {
 	    doc = ownerDocument();
 	  }
 
@@ -16817,7 +16796,7 @@
 	};
 	function useWaitForDOMRef(ref, onResolved) {
 	  const window = useWindow();
-	  const [resolvedRef, setRef] = reactExports.useState(() => resolveContainerRef(ref, window == null ? void 0 : window.document));
+	  const [resolvedRef, setRef] = reactExports.useState(() => resolveContainerRef(ref, window == null ? undefined : window.document));
 	  if (!resolvedRef) {
 	    const earlyRef = resolveContainerRef(ref);
 	    if (earlyRef) setRef(earlyRef);
@@ -16918,10 +16897,10 @@
 	      const onFinish = () => {
 	        if (options.isStale()) return;
 	        if (options.in) {
-	          onEntered == null ? void 0 : onEntered(options.element, options.initial);
+	          onEntered == null ? undefined : onEntered(options.element, options.initial);
 	        } else {
 	          setExited(true);
-	          onExited == null ? void 0 : onExited(options.element);
+	          onExited == null ? undefined : onExited(options.element);
 	        }
 	      };
 	      Promise.resolve(transition(options)).then(onFinish, error => {
@@ -16963,7 +16942,7 @@
 	let manager;
 	function getManager(window) {
 	  if (!manager) manager = new ModalManager({
-	    ownerDocument: window == null ? void 0 : window.document
+	    ownerDocument: window == null ? undefined : window.document
 	  });
 	  return manager;
 	}
@@ -17057,12 +17036,12 @@
 	  });
 	  const handleHide = useEventCallback(() => {
 	    modal.remove();
-	    removeKeydownListenerRef.current == null ? void 0 : removeKeydownListenerRef.current();
-	    removeFocusListenerRef.current == null ? void 0 : removeFocusListenerRef.current();
+	    removeKeydownListenerRef.current == null ? undefined : removeKeydownListenerRef.current();
+	    removeFocusListenerRef.current == null ? undefined : removeFocusListenerRef.current();
 	    if (restoreFocus) {
 	      var _lastFocusRef$current;
 	      // Support: <=IE11 doesn't support `focus()` on svg elements (RB: #917)
-	      (_lastFocusRef$current = lastFocusRef.current) == null ? void 0 : _lastFocusRef$current.focus == null ? void 0 : _lastFocusRef$current.focus(restoreFocusOptions);
+	      (_lastFocusRef$current = lastFocusRef.current) == null ? undefined : _lastFocusRef$current.focus == null ? undefined : _lastFocusRef$current.focus(restoreFocusOptions);
 	      lastFocusRef.current = null;
 	    }
 	  });
@@ -17102,14 +17081,14 @@
 	    if (e.target !== e.currentTarget) {
 	      return;
 	    }
-	    onBackdropClick == null ? void 0 : onBackdropClick(e);
+	    onBackdropClick == null ? undefined : onBackdropClick(e);
 	    if (backdrop === true) {
 	      onHide();
 	    }
 	  });
 	  const handleDocumentKeyDown = useEventCallback(e => {
 	    if (keyboard && e.keyCode === 27 && modal.isTopModal()) {
-	      onEscapeKeyDown == null ? void 0 : onEscapeKeyDown(e);
+	      onEscapeKeyDown == null ? undefined : onEscapeKeyDown(e);
 	      if (!e.defaultPrevented) {
 	        onHide();
 	      }
@@ -17119,7 +17098,7 @@
 	  const removeKeydownListenerRef = reactExports.useRef();
 	  const handleHidden = (...args) => {
 	    setExited(true);
-	    onExited == null ? void 0 : onExited(...args);
+	    onExited == null ? undefined : onExited(...args);
 	  };
 	  if (!container) {
 	    return null;
@@ -17320,8 +17299,8 @@
 	}, ref) => {
 	  const context = reactExports.useContext(ModalContext);
 	  const handleClick = useEventCallback(() => {
-	    context == null ? void 0 : context.onHide();
-	    onHide == null ? void 0 : onHide();
+	    context == null ? undefined : context.onHide();
+	    onHide == null ? undefined : onHide();
 	  });
 	  return /*#__PURE__*/jsxRuntimeExports.jsxs("div", {
 	    ref: ref,
@@ -17455,7 +17434,7 @@
 	  });
 	  useWillUnmount(() => {
 	    removeEventListener(window, 'resize', handleWindowResize);
-	    removeStaticModalAnimationRef.current == null ? void 0 : removeStaticModalAnimationRef.current();
+	    removeStaticModalAnimationRef.current == null ? undefined : removeStaticModalAnimationRef.current();
 	  });
 
 	  // We prevent the modal from closing during a drag by detecting where the
@@ -17491,11 +17470,11 @@
 	      ignoreBackdropClickRef.current = false;
 	      return;
 	    }
-	    onHide == null ? void 0 : onHide();
+	    onHide == null ? undefined : onHide();
 	  };
 	  const handleEscapeKeyDown = e => {
 	    if (keyboard) {
-	      onEscapeKeyDown == null ? void 0 : onEscapeKeyDown(e);
+	      onEscapeKeyDown == null ? undefined : onEscapeKeyDown(e);
 	    } else {
 	      // Call preventDefault to stop modal from closing in @restart/ui.
 	      e.preventDefault();
@@ -17509,21 +17488,21 @@
 	    if (node) {
 	      updateDialogStyle(node);
 	    }
-	    onEnter == null ? void 0 : onEnter(node, isAppearing);
+	    onEnter == null ? undefined : onEnter(node, isAppearing);
 	  };
 	  const handleExit = node => {
-	    removeStaticModalAnimationRef.current == null ? void 0 : removeStaticModalAnimationRef.current();
-	    onExit == null ? void 0 : onExit(node);
+	    removeStaticModalAnimationRef.current == null ? undefined : removeStaticModalAnimationRef.current();
+	    onExit == null ? undefined : onExit(node);
 	  };
 	  const handleEntering = (node, isAppearing) => {
-	    onEntering == null ? void 0 : onEntering(node, isAppearing);
+	    onEntering == null ? undefined : onEntering(node, isAppearing);
 
 	    // FIXME: This should work even when animation is disabled.
 	    addEventListener(window, 'resize', handleWindowResize);
 	  };
 	  const handleExited = node => {
 	    if (node) node.style.display = ''; // RHL removes it sometimes
-	    onExited == null ? void 0 : onExited(node);
+	    onExited == null ? undefined : onExited(node);
 
 	    // FIXME: This should work even when animation is disabled.
 	    removeEventListener(window, 'resize', handleWindowResize);
@@ -17883,7 +17862,7 @@
 	 */
 
 	function useMediaQuery(query, targetWindow) {
-	  if (targetWindow === void 0) {
+	  if (targetWindow === undefined) {
 	    targetWindow = typeof window === 'undefined' ? undefined : window;
 	  }
 	  var mql = getMatcher(query, targetWindow);
@@ -17908,7 +17887,7 @@
 	      mql.removeListener(handleChange);
 	      mql.refCount--;
 	      if (mql.refCount <= 0) {
-	        matchers == null ? void 0 : matchers.delete(mql.media);
+	        matchers == null ? undefined : matchers.delete(mql.media);
 	      }
 	      mql = undefined;
 	    };
@@ -18138,8 +18117,8 @@
 	    setShowOffcanvas(responsive ? show && !hideResponsiveOffcanvas : show);
 	  }, [show, responsive, hideResponsiveOffcanvas]);
 	  const handleHide = useEventCallback(() => {
-	    onToggle == null ? void 0 : onToggle();
-	    onHide == null ? void 0 : onHide();
+	    onToggle == null ? undefined : onToggle();
+	    onHide == null ? undefined : onHide();
 	  });
 	  const modalContext = reactExports.useMemo(() => ({
 	    onHide: handleHide
@@ -18158,11 +18137,11 @@
 	  }
 	  const handleEnter = (node, ...args) => {
 	    if (node) node.style.visibility = 'visible';
-	    onEnter == null ? void 0 : onEnter(node, ...args);
+	    onEnter == null ? undefined : onEnter(node, ...args);
 	  };
 	  const handleExited = (node, ...args) => {
 	    if (node) node.style.visibility = '';
-	    onExited == null ? void 0 : onExited(...args);
+	    onExited == null ? undefined : onExited(...args);
 	  };
 	  const renderBackdrop = reactExports.useCallback(backdropProps => /*#__PURE__*/jsxRuntimeExports.jsx("div", {
 	    ...backdropProps,
@@ -18254,9 +18233,9 @@
 	  });
 	  const bsPrefix = useBootstrapPrefix(initialBsPrefix, 'navbar');
 	  const handleCollapse = reactExports.useCallback((...args) => {
-	    onSelect == null ? void 0 : onSelect(...args);
+	    onSelect == null ? undefined : onSelect(...args);
 	    if (collapseOnSelect && expanded) {
-	      onToggle == null ? void 0 : onToggle(false);
+	      onToggle == null ? undefined : onToggle(false);
 	    }
 	  }, [onSelect, collapseOnSelect, expanded, onToggle]);
 
@@ -18269,7 +18248,7 @@
 	  let expandClass = `${bsPrefix}-expand`;
 	  if (typeof expand === 'string') expandClass = `${expandClass}-${expand}`;
 	  const navbarContext = reactExports.useMemo(() => ({
-	    onToggle: () => onToggle == null ? void 0 : onToggle(!expanded),
+	    onToggle: () => onToggle == null ? undefined : onToggle(!expanded),
 	    bsPrefix,
 	    expanded: !!expanded,
 	    expand
@@ -18521,13 +18500,13 @@
 	}, ref) => {
 	  const decoratedBsPrefix = useBootstrapPrefix(bsPrefix, 'popover');
 	  const isRTL = useIsRTL();
-	  const [primaryPlacement] = (placement == null ? void 0 : placement.split('-')) || [];
+	  const [primaryPlacement] = (placement == null ? undefined : placement.split('-')) || [];
 	  const bsDirection = getOverlayDirection(primaryPlacement, isRTL);
 	  let computedStyle = style;
 	  if (show && !hasDoneInitialMeasure) {
 	    computedStyle = {
 	      ...style,
-	      ...getInitialPopperStyles(popper == null ? void 0 : popper.strategy)
+	      ...getInitialPopperStyles(popper == null ? undefined : popper.strategy)
 	    };
 	  }
 	  return /*#__PURE__*/jsxRuntimeExports.jsxs("div", {
@@ -18602,11 +18581,11 @@
 	  const actualTransition = transition === true ? Fade : transition || undefined;
 	  const handleFirstUpdate = useEventCallback(state => {
 	    setFirstRenderedState(state);
-	    popperConfig == null ? void 0 : popperConfig.onFirstUpdate == null ? void 0 : popperConfig.onFirstUpdate(state);
+	    popperConfig == null ? undefined : popperConfig.onFirstUpdate == null ? undefined : popperConfig.onFirstUpdate(state);
 	  });
 	  useIsomorphicEffect(() => {
 	    if (firstRenderedState) {
-	      popperRef.current.scheduleUpdate == null ? void 0 : popperRef.current.scheduleUpdate();
+	      popperRef.current.scheduleUpdate == null ? undefined : popperRef.current.scheduleUpdate();
 	    }
 	  }, [firstRenderedState]);
 	  reactExports.useEffect(() => {
@@ -18631,12 +18610,12 @@
 	      var _popperObj$state, _popperObj$state$modi;
 	      wrapRefs(overlayProps, arrowProps);
 	      // Need to get placement from popper object, handling case when overlay is flipped using 'flip' prop
-	      const updatedPlacement = popperObj == null ? void 0 : popperObj.placement;
+	      const updatedPlacement = popperObj == null ? undefined : popperObj.placement;
 	      const popper = Object.assign(popperRef.current, {
-	        state: popperObj == null ? void 0 : popperObj.state,
-	        scheduleUpdate: popperObj == null ? void 0 : popperObj.update,
+	        state: popperObj == null ? undefined : popperObj.state,
+	        scheduleUpdate: popperObj == null ? undefined : popperObj.update,
 	        placement: updatedPlacement,
-	        outOfBoundaries: (popperObj == null ? void 0 : (_popperObj$state = popperObj.state) == null ? void 0 : (_popperObj$state$modi = _popperObj$state.modifiersData.hide) == null ? void 0 : _popperObj$state$modi.isReferenceHidden) || false,
+	        outOfBoundaries: (popperObj == null ? undefined : (_popperObj$state = popperObj.state) == null ? undefined : (_popperObj$state$modi = _popperObj$state.modifiersData.hide) == null ? undefined : _popperObj$state$modi.isReferenceHidden) || false,
 	        strategy: popperConfig.strategy
 	      });
 	      const hasDoneInitialMeasure = !!firstRenderedState;
@@ -19433,7 +19412,7 @@
 	  bsPrefix = useBootstrapPrefix(bsPrefix, 'toast-header');
 	  const context = reactExports.useContext(ToastContext);
 	  const handleClick = useEventCallback(e => {
-	    context == null ? void 0 : context.onClose == null ? void 0 : context.onClose(e);
+	    context == null ? undefined : context.onClose == null ? undefined : context.onClose(e);
 	  });
 	  return /*#__PURE__*/jsxRuntimeExports.jsxs("div", {
 	    ref: ref,
@@ -19478,7 +19457,7 @@
 	  const autohideToast = !!(autohide && show);
 	  const autohideFunc = reactExports.useCallback(() => {
 	    if (autohideToast) {
-	      onCloseRef.current == null ? void 0 : onCloseRef.current();
+	      onCloseRef.current == null ? undefined : onCloseRef.current();
 	    }
 	  }, [autohideToast]);
 	  reactExports.useEffect(() => {
@@ -19613,7 +19592,7 @@
 	      onChange([...values, inputVal], event);
 	    }
 	  };
-	  !(type !== 'radio' || !!name) ? invariant_1(false, 'A `name` is required to group the toggle buttons when the `type` ' + 'is set to "radio"')  : void 0;
+	  !(type !== 'radio' || !!name) ? invariant_1(false, 'A `name` is required to group the toggle buttons when the `type` ' + 'is set to "radio"')  : undefined;
 	  return /*#__PURE__*/jsxRuntimeExports.jsx(ButtonGroup, {
 	    ...controlledProps,
 	    ref: ref,
@@ -19655,13 +19634,13 @@
 	}, ref) => {
 	  bsPrefix = useBootstrapPrefix(bsPrefix, 'tooltip');
 	  const isRTL = useIsRTL();
-	  const [primaryPlacement] = (placement == null ? void 0 : placement.split('-')) || [];
+	  const [primaryPlacement] = (placement == null ? undefined : placement.split('-')) || [];
 	  const bsDirection = getOverlayDirection(primaryPlacement, isRTL);
 	  let computedStyle = style;
 	  if (show && !hasDoneInitialMeasure) {
 	    computedStyle = {
 	      ...style,
-	      ...getInitialPopperStyles(popper == null ? void 0 : popper.strategy)
+	      ...getInitialPopperStyles(popper == null ? undefined : popper.strategy)
 	    };
 	  }
 	  return /*#__PURE__*/jsxRuntimeExports.jsxs("div", {
@@ -19817,16 +19796,16 @@
 	};
 	var MasonryResponsive = function MasonryResponsive(_ref) {
 	  var _ref$columnsCountBrea = _ref.columnsCountBreakPoints,
-	    columnsCountBreakPoints = _ref$columnsCountBrea === void 0 ? {
+	    columnsCountBreakPoints = _ref$columnsCountBrea === undefined ? {
 	      350: 1,
 	      750: 2,
 	      900: 3
 	    } : _ref$columnsCountBrea,
 	    children = _ref.children,
 	    _ref$className = _ref.className,
-	    className = _ref$className === void 0 ? null : _ref$className,
+	    className = _ref$className === undefined ? null : _ref$className,
 	    _ref$style = _ref.style,
-	    style = _ref$style === void 0 ? null : _ref$style;
+	    style = _ref$style === undefined ? null : _ref$style;
 	  var windowWidth = useWindowWidth();
 	  var columnsCount = reactExports.useMemo(function () {
 	    var breakPoints = Object.keys(columnsCountBreakPoints).sort(function (a, b) {
@@ -19908,7 +19887,7 @@
 	        this.update_setting = this.update_setting.bind(this);
 	    }
 	    update_setting(e) {
-	        let checked = e === null || e === void 0 ? void 0 : e.target.checked;
+	        let checked = e === null || e === undefined ? undefined : e.target.checked;
 	        const { setting, param, instance } = this.props;
 	        SendWebSocketAction(instance.hass, "s4h/setting", {
 	            id: setting.id,
@@ -20027,7 +20006,7 @@
 	function _objectSpread2$1(target) {
 	  for (var i = 1; i < arguments.length; i++) {
 	    var source = null != arguments[i] ? arguments[i] : {};
-	    i % 2 ? ownKeys$1(Object(source), !0).forEach(function (key) {
+	    i % 2 ? ownKeys$1(Object(source), true).forEach(function (key) {
 	      _defineProperty$1(target, key, source[key]);
 	    }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys$1(Object(source)).forEach(function (key) {
 	      Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
@@ -20059,7 +20038,7 @@
 	  }
 	}
 	function _createClass(Constructor, protoProps, staticProps) {
-	  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+	  _defineProperties(Constructor.prototype, protoProps);
 	  Object.defineProperty(Constructor, "prototype", {
 	    writable: false
 	  });
@@ -20152,7 +20131,7 @@
 	} catch (e) {}
 	var _ref = _WINDOW.navigator || {},
 	  _ref$userAgent = _ref.userAgent,
-	  userAgent = _ref$userAgent === void 0 ? '' : _ref$userAgent;
+	  userAgent = _ref$userAgent === undefined ? '' : _ref$userAgent;
 	var WINDOW = _WINDOW;
 	var DOCUMENT = _DOCUMENT;
 	var MUTATION_OBSERVER = _MUTATION_OBSERVER;
@@ -20473,11 +20452,11 @@
 	function transformForCss(_ref2) {
 	  var transform = _ref2.transform,
 	    _ref2$width = _ref2.width,
-	    width = _ref2$width === void 0 ? UNITS_IN_GRID : _ref2$width,
+	    width = _ref2$width === undefined ? UNITS_IN_GRID : _ref2$width,
 	    _ref2$height = _ref2.height,
-	    height = _ref2$height === void 0 ? UNITS_IN_GRID : _ref2$height,
+	    height = _ref2$height === undefined ? UNITS_IN_GRID : _ref2$height,
 	    _ref2$startCentered = _ref2.startCentered,
-	    startCentered = _ref2$startCentered === void 0 ? false : _ref2$startCentered;
+	    startCentered = _ref2$startCentered === undefined ? false : _ref2$startCentered;
 	  var val = '';
 	  if (startCentered && IS_IE) {
 	    val += "translate(".concat(transform.x / d - width / 2, "em, ").concat(transform.y / d - height / 2, "em) ");
@@ -20558,9 +20537,9 @@
 	function toHtml(abstractNodes) {
 	  var tag = abstractNodes.tag,
 	    _abstractNodes$attrib = abstractNodes.attributes,
-	    attributes = _abstractNodes$attrib === void 0 ? {} : _abstractNodes$attrib,
+	    attributes = _abstractNodes$attrib === undefined ? {} : _abstractNodes$attrib,
 	    _abstractNodes$childr = abstractNodes.children,
-	    children = _abstractNodes$childr === void 0 ? [] : _abstractNodes$childr;
+	    children = _abstractNodes$childr === undefined ? [] : _abstractNodes$childr;
 	  if (typeof abstractNodes === 'string') {
 	    return htmlEscape(abstractNodes);
 	  } else {
@@ -20686,7 +20665,7 @@
 	function defineIcons(prefix, icons) {
 	  var params = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
 	  var _params$skipHooks = params.skipHooks,
-	    skipHooks = _params$skipHooks === void 0 ? false : _params$skipHooks;
+	    skipHooks = _params$skipHooks === undefined ? false : _params$skipHooks;
 	  var normalized = normalizeIcons(icons);
 	  if (typeof namespace.hooks.addPack === 'function' && !skipHooks) {
 	    namespace.hooks.addPack(prefix, normalizeIcons(icons));
@@ -20847,7 +20826,7 @@
 	function getCanonicalPrefix(styleOrPrefix) {
 	  var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 	  var _params$family = params.family,
-	    family = _params$family === void 0 ? FAMILY_CLASSIC : _params$family;
+	    family = _params$family === undefined ? FAMILY_CLASSIC : _params$family;
 	  var style = PREFIX_TO_STYLE[family][styleOrPrefix];
 	  var prefix = STYLE_TO_PREFIX[family][styleOrPrefix] || STYLE_TO_PREFIX[family][style];
 	  var defined = styleOrPrefix in namespace.styles ? styleOrPrefix : null;
@@ -20858,7 +20837,7 @@
 	  var _famProps;
 	  var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 	  var _params$skipLookups = params.skipLookups,
-	    skipLookups = _params$skipLookups === void 0 ? false : _params$skipLookups;
+	    skipLookups = _params$skipLookups === undefined ? false : _params$skipLookups;
 	  var famProps = (_famProps = {}, _defineProperty$1(_famProps, FAMILY_CLASSIC, "".concat(config.cssPrefix, "-").concat(FAMILY_CLASSIC)), _defineProperty$1(_famProps, FAMILY_SHARP, "".concat(config.cssPrefix, "-").concat(FAMILY_SHARP)), _famProps);
 	  var givenPrefix = null;
 	  var family = FAMILY_CLASSIC;
@@ -21135,7 +21114,7 @@
 	var autoReplace = function autoReplace() {
 	  var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 	  var _params$autoReplaceSv = params.autoReplaceSvgRoot,
-	    autoReplaceSvgRoot = _params$autoReplaceSv === void 0 ? DOCUMENT : _params$autoReplaceSv;
+	    autoReplaceSvgRoot = _params$autoReplaceSv === undefined ? DOCUMENT : _params$autoReplaceSv;
 	  if ((Object.keys(namespace.styles).length > 0 || config.autoFetchSvg) && IS_DOM && config.autoReplaceSvg) api.dom.i2svg({
 	    node: autoReplaceSvgRoot
 	  });
@@ -21219,7 +21198,7 @@
 	    titleId = params.titleId,
 	    extra = params.extra,
 	    _params$watchable = params.watchable,
-	    watchable = _params$watchable === void 0 ? false : _params$watchable;
+	    watchable = _params$watchable === undefined ? false : _params$watchable;
 	  var _ref = mask.found ? mask : main,
 	    width = _ref.width,
 	    height = _ref.height;
@@ -21291,7 +21270,7 @@
 	    title = params.title,
 	    extra = params.extra,
 	    _params$watchable2 = params.watchable,
-	    watchable = _params$watchable2 === void 0 ? false : _params$watchable2;
+	    watchable = _params$watchable2 === undefined ? false : _params$watchable2;
 	  var attributes = _objectSpread2$1(_objectSpread2$1(_objectSpread2$1({}, extra.attributes), title ? {
 	    'title': title
 	  } : {}), {}, {
@@ -21493,7 +21472,7 @@
 	function convertSVG(abstractObj) {
 	  var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 	  var _params$ceFn = params.ceFn,
-	    ceFn = _params$ceFn === void 0 ? abstractObj.tag === 'svg' ? createElementNS : createElement : _params$ceFn;
+	    ceFn = _params$ceFn === undefined ? abstractObj.tag === 'svg' ? createElementNS : createElement : _params$ceFn;
 	  if (typeof abstractObj === 'string') {
 	    return DOCUMENT.createTextNode(abstractObj);
 	  }
@@ -21606,13 +21585,13 @@
 	    return;
 	  }
 	  var _options$treeCallback = options.treeCallback,
-	    treeCallback = _options$treeCallback === void 0 ? noop$2 : _options$treeCallback,
+	    treeCallback = _options$treeCallback === undefined ? noop$2 : _options$treeCallback,
 	    _options$nodeCallback = options.nodeCallback,
-	    nodeCallback = _options$nodeCallback === void 0 ? noop$2 : _options$nodeCallback,
+	    nodeCallback = _options$nodeCallback === undefined ? noop$2 : _options$nodeCallback,
 	    _options$pseudoElemen = options.pseudoElementsCallback,
-	    pseudoElementsCallback = _options$pseudoElemen === void 0 ? noop$2 : _options$pseudoElemen,
+	    pseudoElementsCallback = _options$pseudoElemen === undefined ? noop$2 : _options$pseudoElemen,
 	    _options$observeMutat = options.observeMutationsRoot,
-	    observeMutationsRoot = _options$observeMutat === void 0 ? DOCUMENT : _options$observeMutat;
+	    observeMutationsRoot = _options$observeMutat === undefined ? DOCUMENT : _options$observeMutat;
 	  mo = new MUTATION_OBSERVER(function (objects) {
 	    if (disabled) return;
 	    var defaultPrefix = getDefaultUsablePrefix();
@@ -21868,23 +21847,23 @@
 	var render = function render(iconDefinition) {
 	  var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 	  var _params$transform = params.transform,
-	    transform = _params$transform === void 0 ? meaninglessTransform : _params$transform,
+	    transform = _params$transform === undefined ? meaninglessTransform : _params$transform,
 	    _params$symbol = params.symbol,
-	    symbol = _params$symbol === void 0 ? false : _params$symbol,
+	    symbol = _params$symbol === undefined ? false : _params$symbol,
 	    _params$mask = params.mask,
-	    mask = _params$mask === void 0 ? null : _params$mask,
+	    mask = _params$mask === undefined ? null : _params$mask,
 	    _params$maskId = params.maskId,
-	    maskId = _params$maskId === void 0 ? null : _params$maskId,
+	    maskId = _params$maskId === undefined ? null : _params$maskId,
 	    _params$title = params.title,
-	    title = _params$title === void 0 ? null : _params$title,
+	    title = _params$title === undefined ? null : _params$title,
 	    _params$titleId = params.titleId,
-	    titleId = _params$titleId === void 0 ? null : _params$titleId,
+	    titleId = _params$titleId === undefined ? null : _params$titleId,
 	    _params$classes = params.classes,
-	    classes = _params$classes === void 0 ? [] : _params$classes,
+	    classes = _params$classes === undefined ? [] : _params$classes,
 	    _params$attributes = params.attributes,
-	    attributes = _params$attributes === void 0 ? {} : _params$attributes,
+	    attributes = _params$attributes === undefined ? {} : _params$attributes,
 	    _params$styles = params.styles,
-	    styles = _params$styles === void 0 ? {} : _params$styles;
+	    styles = _params$styles === undefined ? {} : _params$styles;
 	  if (!iconDefinition) return;
 	  var prefix = iconDefinition.prefix,
 	    iconName = iconDefinition.iconName,
@@ -21947,9 +21926,9 @@
 	  provides: function provides(providers$$1) {
 	    providers$$1.i2svg = function (params) {
 	      var _params$node = params.node,
-	        node = _params$node === void 0 ? DOCUMENT : _params$node,
+	        node = _params$node === undefined ? DOCUMENT : _params$node,
 	        _params$callback = params.callback,
-	        callback = _params$callback === void 0 ? function () {} : _params$callback;
+	        callback = _params$callback === undefined ? function () {} : _params$callback;
 	      return onTree(node, callback);
 	    };
 	    providers$$1.generateSvgReplacementMutation = function (node, nodeMeta) {
@@ -22023,7 +22002,7 @@
 	      layer: function layer(assembler) {
 	        var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 	        var _params$classes = params.classes,
-	          classes = _params$classes === void 0 ? [] : _params$classes;
+	          classes = _params$classes === undefined ? [] : _params$classes;
 	        return domVariants({
 	          type: 'layer'
 	        }, function () {
@@ -22055,13 +22034,13 @@
 	      counter: function counter(content) {
 	        var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 	        var _params$title = params.title,
-	          title = _params$title === void 0 ? null : _params$title,
+	          title = _params$title === undefined ? null : _params$title,
 	          _params$classes = params.classes,
-	          classes = _params$classes === void 0 ? [] : _params$classes,
+	          classes = _params$classes === undefined ? [] : _params$classes,
 	          _params$attributes = params.attributes,
-	          attributes = _params$attributes === void 0 ? {} : _params$attributes,
+	          attributes = _params$attributes === undefined ? {} : _params$attributes,
 	          _params$styles = params.styles,
-	          styles = _params$styles === void 0 ? {} : _params$styles;
+	          styles = _params$styles === undefined ? {} : _params$styles;
 	        return domVariants({
 	          type: 'counter',
 	          content: content
@@ -22090,15 +22069,15 @@
 	      text: function text(content) {
 	        var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 	        var _params$transform = params.transform,
-	          transform = _params$transform === void 0 ? meaninglessTransform : _params$transform,
+	          transform = _params$transform === undefined ? meaninglessTransform : _params$transform,
 	          _params$title = params.title,
-	          title = _params$title === void 0 ? null : _params$title,
+	          title = _params$title === undefined ? null : _params$title,
 	          _params$classes = params.classes,
-	          classes = _params$classes === void 0 ? [] : _params$classes,
+	          classes = _params$classes === undefined ? [] : _params$classes,
 	          _params$attributes = params.attributes,
-	          attributes = _params$attributes === void 0 ? {} : _params$attributes,
+	          attributes = _params$attributes === undefined ? {} : _params$attributes,
 	          _params$styles = params.styles,
-	          styles = _params$styles === void 0 ? {} : _params$styles;
+	          styles = _params$styles === undefined ? {} : _params$styles;
 	        return domVariants({
 	          type: 'text',
 	          content: content
@@ -22276,7 +22255,7 @@
 	  provides: function provides(providers$$1) {
 	    providers$$1.pseudoElements2svg = function (params) {
 	      var _params$node = params.node,
-	        node = _params$node === void 0 ? DOCUMENT : _params$node;
+	        node = _params$node === undefined ? DOCUMENT : _params$node;
 	      if (config.searchPseudoElements) {
 	        searchPseudoElements(node);
 	      }
@@ -22669,7 +22648,7 @@
 	function _objectSpread2(target) {
 	  for (var i = 1; i < arguments.length; i++) {
 	    var source = null != arguments[i] ? arguments[i] : {};
-	    i % 2 ? ownKeys(Object(source), !0).forEach(function (key) {
+	    i % 2 ? ownKeys(Object(source), true).forEach(function (key) {
 	      _defineProperty(target, key, source[key]);
 	    }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) {
 	      Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
@@ -22871,12 +22850,12 @@
 	    attrs: {}
 	  });
 	  var _extraProps$style = extraProps.style,
-	    existingStyle = _extraProps$style === void 0 ? {} : _extraProps$style,
+	    existingStyle = _extraProps$style === undefined ? {} : _extraProps$style,
 	    remaining = _objectWithoutProperties(extraProps, _excluded$1);
 	  mixins.attrs['style'] = _objectSpread2(_objectSpread2({}, mixins.attrs['style']), existingStyle);
 	  /* eslint-enable */
 
-	  return createElement.apply(void 0, [element.tag, _objectSpread2(_objectSpread2({}, mixins.attrs), remaining)].concat(_toConsumableArray(children)));
+	  return createElement.apply(undefined, [element.tag, _objectSpread2(_objectSpread2({}, mixins.attrs), remaining)].concat(_toConsumableArray(children)));
 	}
 	var PRODUCTION = false;
 	try {
@@ -23142,7 +23121,7 @@
 	 */
 
 	function createBrowserHistory(options) {
-	  if (options === void 0) {
+	  if (options === undefined) {
 	    options = {};
 	  }
 	  function createBrowserLocation(window, globalHistory) {
@@ -23188,7 +23167,7 @@
 	 */
 
 	function createLocation(current, to, state, key) {
-	  if (state === void 0) {
+	  if (state === undefined) {
 	    state = null;
 	  }
 	  let location = _extends$2({
@@ -23243,7 +23222,7 @@
 	  return parsedPath;
 	}
 	function getUrlBasedHistory(getLocation, createHref, validateLocation, options) {
-	  if (options === void 0) {
+	  if (options === undefined) {
 	    options = {};
 	  }
 	  let {
@@ -23382,7 +23361,7 @@
 	 */
 
 	function matchRoutes(routes, locationArg, basename) {
-	  if (basename === void 0) {
+	  if (basename === undefined) {
 	    basename = "/";
 	  }
 	  let location = typeof locationArg === "string" ? parsePath(locationArg) : locationArg;
@@ -23406,13 +23385,13 @@
 	  return matches;
 	}
 	function flattenRoutes(routes, branches, parentsMeta, parentPath) {
-	  if (branches === void 0) {
+	  if (branches === undefined) {
 	    branches = [];
 	  }
-	  if (parentsMeta === void 0) {
+	  if (parentsMeta === undefined) {
 	    parentsMeta = [];
 	  }
-	  if (parentPath === void 0) {
+	  if (parentPath === undefined) {
 	    parentPath = "";
 	  }
 	  let flattenRoute = (route, index, relativePath) => {
@@ -23613,10 +23592,10 @@
 	  };
 	}
 	function compilePath(path, caseSensitive, end) {
-	  if (caseSensitive === void 0) {
+	  if (caseSensitive === undefined) {
 	    caseSensitive = false;
 	  }
-	  if (end === void 0) {
+	  if (end === undefined) {
 	    end = true;
 	  }
 	  warning(path === "*" || !path.endsWith("*") || path.endsWith("/*"), "Route path \"" + path + "\" will be treated as if it were " + ("\"" + path.replace(/\*$/, "/*") + "\" because the `*` character must ") + "always follow a `/` in the pattern. To get rid of this warning, " + ("please change the route path to \"" + path.replace(/\*$/, "/*") + "\"."));
@@ -23708,7 +23687,7 @@
 	 */
 
 	function resolvePath(to, fromPathname) {
-	  if (fromPathname === void 0) {
+	  if (fromPathname === undefined) {
 	    fromPathname = "/";
 	  }
 	  let {
@@ -23771,7 +23750,7 @@
 	 */
 
 	function resolveTo(toArg, routePathnames, locationPathname, isPathRelative) {
-	  if (isPathRelative === void 0) {
+	  if (isPathRelative === undefined) {
 	    isPathRelative = false;
 	  }
 	  let to;
@@ -23923,11 +23902,11 @@
 	function useHref(to, _temp) {
 	  let {
 	    relative
-	  } = _temp === void 0 ? {} : _temp;
+	  } = _temp === undefined ? {} : _temp;
 	  !useInRouterContext() ? invariant(false,
 	  // TODO: This error is probably because they somehow have 2 versions of the
 	  // router loaded. We can help them understand how to avoid that.
-	  "useHref() may be used only in the context of a <Router> component.")  : void 0;
+	  "useHref() may be used only in the context of a <Router> component.")  : undefined;
 	  let {
 	    basename,
 	    navigator
@@ -23977,7 +23956,7 @@
 	  !useInRouterContext() ? invariant(false,
 	  // TODO: This error is probably because they somehow have 2 versions of the
 	  // router loaded. We can help them understand how to avoid that.
-	  "useLocation() may be used only in the context of a <Router> component.")  : void 0;
+	  "useLocation() may be used only in the context of a <Router> component.")  : undefined;
 	  return reactExports.useContext(LocationContext).location;
 	}
 	/**
@@ -23994,7 +23973,7 @@
 	  !useInRouterContext() ? invariant(false,
 	  // TODO: This error is probably because they somehow have 2 versions of the
 	  // router loaded. We can help them understand how to avoid that.
-	  "useNavigate() may be used only in the context of a <Router> component.")  : void 0;
+	  "useNavigate() may be used only in the context of a <Router> component.")  : undefined;
 	  let {
 	    basename,
 	    navigator
@@ -24011,7 +23990,7 @@
 	    activeRef.current = true;
 	  });
 	  let navigate = reactExports.useCallback(function (to, options) {
-	    if (options === void 0) {
+	    if (options === undefined) {
 	      options = {};
 	    }
 	    warning(activeRef.current, "You should call navigate() in a React.useEffect(), not when " + "your component is first rendered.") ;
@@ -24041,7 +24020,7 @@
 	function useResolvedPath(to, _temp2) {
 	  let {
 	    relative
-	  } = _temp2 === void 0 ? {} : _temp2;
+	  } = _temp2 === undefined ? {} : _temp2;
 	  let {
 	    matches
 	  } = reactExports.useContext(RouteContext);
@@ -24064,7 +24043,7 @@
 	  !useInRouterContext() ? invariant(false,
 	  // TODO: This error is probably because they somehow have 2 versions of the
 	  // router loaded. We can help them understand how to avoid that.
-	  "useRoutes() may be used only in the context of a <Router> component.")  : void 0;
+	  "useRoutes() may be used only in the context of a <Router> component.")  : undefined;
 	  let {
 	    navigator
 	  } = reactExports.useContext(NavigationContext);
@@ -24106,7 +24085,7 @@
 	  if (locationArg) {
 	    var _parsedLocationArg$pa;
 	    let parsedLocationArg = typeof locationArg === "string" ? parsePath(locationArg) : locationArg;
-	    !(parentPathnameBase === "/" || ((_parsedLocationArg$pa = parsedLocationArg.pathname) == null ? void 0 : _parsedLocationArg$pa.startsWith(parentPathnameBase))) ? invariant(false, "When overriding the location using `<Routes location>` or `useRoutes(routes, location)`, " + "the location pathname must begin with the portion of the URL pathname that was " + ("matched by all parent routes. The current pathname base is \"" + parentPathnameBase + "\" ") + ("but pathname \"" + parsedLocationArg.pathname + "\" was given in the `location` prop."))  : void 0;
+	    !(parentPathnameBase === "/" || ((_parsedLocationArg$pa = parsedLocationArg.pathname) == null ? undefined : _parsedLocationArg$pa.startsWith(parentPathnameBase))) ? invariant(false, "When overriding the location using `<Routes location>` or `useRoutes(routes, location)`, " + "the location pathname must begin with the portion of the URL pathname that was " + ("matched by all parent routes. The current pathname base is \"" + parentPathnameBase + "\" ") + ("but pathname \"" + parsedLocationArg.pathname + "\" was given in the `location` prop."))  : undefined;
 	    location = parsedLocationArg;
 	  } else {
 	    location = locationFromContext;
@@ -24243,7 +24222,7 @@
 	  }, children);
 	}
 	function _renderMatches(matches, parentMatches, dataRouterState) {
-	  if (parentMatches === void 0) {
+	  if (parentMatches === undefined) {
 	    parentMatches = [];
 	  }
 	  if (matches == null) {
@@ -24257,14 +24236,14 @@
 	  }
 	  let renderedMatches = matches; // If we have data errors, trim matches to the highest error boundary
 
-	  let errors = dataRouterState == null ? void 0 : dataRouterState.errors;
+	  let errors = dataRouterState == null ? undefined : dataRouterState.errors;
 	  if (errors != null) {
-	    let errorIndex = renderedMatches.findIndex(m => m.route.id && (errors == null ? void 0 : errors[m.route.id]));
-	    !(errorIndex >= 0) ? invariant(false, "Could not find a matching route for the current errors: " + errors)  : void 0;
+	    let errorIndex = renderedMatches.findIndex(m => m.route.id && (errors == null ? undefined : errors[m.route.id]));
+	    !(errorIndex >= 0) ? invariant(false, "Could not find a matching route for the current errors: " + errors)  : undefined;
 	    renderedMatches = renderedMatches.slice(0, Math.min(renderedMatches.length, errorIndex + 1));
 	  }
 	  return renderedMatches.reduceRight((outlet, match, index) => {
-	    let error = match.route.id ? errors == null ? void 0 : errors[match.route.id] : null; // Only data routers handle errors
+	    let error = match.route.id ? errors == null ? undefined : errors[match.route.id] : null; // Only data routers handle errors
 
 	    let errorElement = dataRouterState ? match.route.errorElement || /*#__PURE__*/reactExports.createElement(DefaultErrorElement, null) : null;
 	    let matches = parentMatches.concat(renderedMatches.slice(0, index + 1));
@@ -24310,18 +24289,18 @@
 	}
 	function useDataRouterState(hookName) {
 	  let state = reactExports.useContext(DataRouterStateContext);
-	  !state ? invariant(false, getDataRouterConsoleError$1(hookName))  : void 0;
+	  !state ? invariant(false, getDataRouterConsoleError$1(hookName))  : undefined;
 	  return state;
 	}
 	function useRouteContext(hookName) {
 	  let route = reactExports.useContext(RouteContext);
-	  !route ? invariant(false, getDataRouterConsoleError$1(hookName))  : void 0;
+	  !route ? invariant(false, getDataRouterConsoleError$1(hookName))  : undefined;
 	  return route;
 	}
 	function useCurrentRouteId(hookName) {
 	  let route = useRouteContext(hookName);
 	  let thisRoute = route.matches[route.matches.length - 1];
-	  !thisRoute.route.id ? invariant(false, hookName + " can only be used on routes that contain a unique \"id\"")  : void 0;
+	  !thisRoute.route.id ? invariant(false, hookName + " can only be used on routes that contain a unique \"id\"")  : undefined;
 	  return thisRoute.route.id;
 	}
 	/**
@@ -24341,7 +24320,7 @@
 	    return error;
 	  } // Otherwise look for errors from our data router state
 
-	  return (_state$errors = state.errors) == null ? void 0 : _state$errors[routeId];
+	  return (_state$errors = state.errors) == null ? undefined : _state$errors[routeId];
 	}
 	const alreadyWarned = {};
 	function warningOnce(key, cond, message) {
@@ -24370,7 +24349,7 @@
 	  !useInRouterContext() ? invariant(false,
 	  // TODO: This error is probably because they somehow have 2 versions of
 	  // the router loaded. We can help them understand how to avoid that.
-	  "<Navigate> may be used only in the context of a <Router> component.")  : void 0;
+	  "<Navigate> may be used only in the context of a <Router> component.")  : undefined;
 	  warning(!reactExports.useContext(NavigationContext).static, "<Navigate> must not be used on the initial render in a <StaticRouter>. " + "This is a no-op, but you should modify your code so the <Navigate> is " + "only ever rendered in response to some user interaction or state change.") ;
 	  let dataRouterState = reactExports.useContext(DataRouterStateContext);
 	  let navigate = useNavigate();
@@ -24417,7 +24396,7 @@
 	    navigator,
 	    static: staticProp = false
 	  } = _ref4;
-	  !!useInRouterContext() ? invariant(false, "You cannot render a <Router> inside another <Router>." + " You should never have more than one in your app.")  : void 0; // Preserve trailing slashes on basename, so we can let the user control
+	  !!useInRouterContext() ? invariant(false, "You cannot render a <Router> inside another <Router>." + " You should never have more than one in your app.")  : undefined; // Preserve trailing slashes on basename, so we can let the user control
 	  // the enforcement of trailing slashes throughout the app
 
 	  let basename = basenameProp.replace(/^\/*/, "/");
@@ -24501,7 +24480,7 @@
 	 */
 
 	function createRoutesFromChildren(children, parentPath) {
-	  if (parentPath === void 0) {
+	  if (parentPath === undefined) {
 	    parentPath = [];
 	  }
 	  let routes = [];
@@ -24516,8 +24495,8 @@
 	      routes.push.apply(routes, createRoutesFromChildren(element.props.children, parentPath));
 	      return;
 	    }
-	    !(element.type === Route) ? invariant(false, "[" + (typeof element.type === "string" ? element.type : element.type.name) + "] is not a <Route> component. All component children of <Routes> must be a <Route> or <React.Fragment>")  : void 0;
-	    !(!element.props.index || !element.props.children) ? invariant(false, "An index route cannot have child routes.")  : void 0;
+	    !(element.type === Route) ? invariant(false, "[" + (typeof element.type === "string" ? element.type : element.type.name) + "] is not a <Route> component. All component children of <Routes> must be a <Route> or <React.Fragment>")  : undefined;
+	    !(!element.props.index || !element.props.children) ? invariant(false, "An index route cannot have child routes.")  : undefined;
 	    let treePath = [...parentPath, index];
 	    let route = {
 	      id: element.props.id || treePath.join("-"),
@@ -24863,7 +24842,7 @@
 	    if (event.defaultPrevented) return;
 	    event.preventDefault();
 	    let submitter = event.nativeEvent.submitter;
-	    let submitMethod = (submitter == null ? void 0 : submitter.getAttribute("formmethod")) || method;
+	    let submitMethod = (submitter == null ? undefined : submitter.getAttribute("formmethod")) || method;
 	    submit(submitter || event.currentTarget, {
 	      method: submitMethod,
 	      replace,
@@ -24901,7 +24880,7 @@
 	}
 	function useDataRouterContext(hookName) {
 	  let ctx = reactExports.useContext(DataRouterContext);
-	  !ctx ? invariant(false, getDataRouterConsoleError(hookName))  : void 0;
+	  !ctx ? invariant(false, getDataRouterConsoleError(hookName))  : undefined;
 	  return ctx;
 	}
 	/**
@@ -24917,7 +24896,7 @@
 	    state,
 	    preventScrollReset,
 	    relative
-	  } = _temp === void 0 ? {} : _temp;
+	  } = _temp === undefined ? {} : _temp;
 	  let navigate = useNavigate();
 	  let location = useLocation();
 	  let path = useResolvedPath(to, {
@@ -24944,7 +24923,7 @@
 	  } = useDataRouterContext(DataRouterHook.UseSubmitImpl);
 	  let defaultAction = useFormAction();
 	  return reactExports.useCallback(function (target, options) {
-	    if (options === void 0) {
+	    if (options === undefined) {
 	      options = {};
 	    }
 	    if (typeof document === "undefined") {
@@ -24965,7 +24944,7 @@
 	      formEncType: encType
 	    };
 	    if (fetcherKey) {
-	      !(routeId != null) ? invariant(false, "No routeId available for useFetcher()")  : void 0;
+	      !(routeId != null) ? invariant(false, "No routeId available for useFetcher()")  : undefined;
 	      router.fetch(fetcherKey, routeId, href, opts);
 	    } else {
 	      router.navigate(href, opts);
@@ -24975,12 +24954,12 @@
 	function useFormAction(action, _temp2) {
 	  let {
 	    relative
-	  } = _temp2 === void 0 ? {} : _temp2;
+	  } = _temp2 === undefined ? {} : _temp2;
 	  let {
 	    basename
 	  } = reactExports.useContext(NavigationContext);
 	  let routeContext = reactExports.useContext(RouteContext);
-	  !routeContext ? invariant(false, "useFormAction must be used inside a RouteContext")  : void 0;
+	  !routeContext ? invariant(false, "useFormAction must be used inside a RouteContext")  : undefined;
 	  let [match] = routeContext.matches.slice(-1); // Shallow clone path so we can modify it below, otherwise we modify the
 	  // object referenced by useMemo inside useResolvedPath
 
@@ -25025,9 +25004,9 @@
 	    const loc = useLocation();
 	    const ToggleSidebar = () => {
 	        var _a, _b;
-	        const ha = (_a = document.querySelector("home-assistant")) === null || _a === void 0 ? void 0 : _a.shadowRoot;
-	        const ham = (_b = ha === null || ha === void 0 ? void 0 : ha.querySelector("home-assistant-main")) === null || _b === void 0 ? void 0 : _b.shadowRoot;
-	        const ad = ham === null || ham === void 0 ? void 0 : ham.querySelector("app-drawer");
+	        const ha = (_a = document.querySelector("home-assistant")) === null || _a === undefined ? undefined : _a.shadowRoot;
+	        const ham = (_b = ha === null || ha === undefined ? undefined : ha.querySelector("home-assistant-main")) === null || _b === undefined ? undefined : _b.shadowRoot;
+	        const ad = ham === null || ham === undefined ? undefined : ham.querySelector("app-drawer");
 	        ad.opened = true;
 	    };
 	    return React.createElement(React.Fragment, null,
@@ -25082,9 +25061,9 @@
 	        /* eslint-disable no-unused-vars */
 	        const { hass, panel, showMenu, narrow } = this.props;
 	        /* eslint-enable no-unused-vars */
-	        if (!((_a = this.state) === null || _a === void 0 ? void 0 : _a.app))
+	        if (!((_a = this.state) === null || _a === undefined ? undefined : _a.app))
 	            return React.createElement("div", null, "Loading...");
-	        var instance = (_b = this.state.app) === null || _b === void 0 ? void 0 : _b.instances[0];
+	        var instance = (_b = this.state.app) === null || _b === undefined ? undefined : _b.instances[0];
 	        return (React.createElement(BrowserRouter, { basename: "/shelly" },
 	            React.createElement("div", { className: "Panel" },
 	                React.createElement(ShellyNavbar, { narrow: narrow }),

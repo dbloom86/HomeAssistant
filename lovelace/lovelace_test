@@ -380,8 +380,8 @@
                       "hold_action": {
                         "action": "toggle"
                       },
-                      "badge_icon": "{% if state_attr('climate.verwarming_woonkamer', 'current_heating_setpoint')|float > state_attr('climate.verwarming_woonkamer', 'local_temperature')|float %}\n  mdi:radiator\n{% elif state_attr('climate.verwarming_woonkamer', 'current_heating_setpoint')|float < state_attr('climate.verwarming_woonkamer', 'local_temperature')|float %}\n  mdi:snowflake\n{% else %}  {% endif %}\n",
-                      "badge_color": "{% if state_attr('climate.verwarming_woonkamer', 'current_heating_setpoint')|float > state_attr('climate.verwarming_woonkamer', 'local_temperature')|float %}\n  red\n{% elif state_attr('climate.verwarming_woonkamer', 'current_heating_setpoint')|float < state_attr('climate.verwarming_woonkamer', 'local_temperature')|float %}\n  #03A9F4\n{% else %} {% endif %}\n",
+                      "badge_icon": "{% if state_attr('climate.verwarming_woonkamer', 'current_heating_setpoint')|float > state_attr('climate.toon_thermostat', 'current_temperature')|float %}\n  mdi:radiator\n{% elif state_attr('climate.verwarming_woonkamer', 'current_heating_setpoint')|float < state_attr('climate.toon_thermostat', 'current_temperature')|float %}\n  mdi:snowflake\n{% else %}  {% endif %}\n",
+                      "badge_color": "{% if state_attr('climate.verwarming_woonkamer', 'current_heating_setpoint')|float > state_attr('climate.toon_thermostat', 'current_temperature')|float %}\n  red\n{% elif state_attr('climate.verwarming_woonkamer', 'current_heating_setpoint')|float < state_attr('climate.toon_thermostat', 'current_temperature')|float %}\n  #03A9F4\n{% else %} {% endif %}\n",
                       "card_mod": {
                         "style": {
                           "mushroom-state-info$": ".primary {\n  font-size: 12px !important;\n  position: relative;\n  top: -35px;\n  left: -120px;\n  overflow: visible !important;\n  white-space: normal !important;\n}\n.secondary {\n  font-size: 12px !important;\n  position: relative;\n  overflow: visible !important;\n  top: -35px;\n  left: -120px;\n}\n",
@@ -531,8 +531,8 @@
                       "hold_action": {
                         "action": "toggle"
                       },
-                      "badge_icon": "{% if state_attr('climate.verwarming_keuken', 'current_heating_setpoint')|float > state_attr('climate.verwarming_keuken', 'local_temperature')|float %}\n  mdi:radiator\n{% elif state_attr('climate.verwarming_keuken', 'current_heating_setpoint')|float < state_attr('climate.verwarming_keuken', 'local_temperature')|float %}\n  mdi:snowflake\n{% else %}  {% endif %}\n",
-                      "badge_color": "{% if state_attr('climate.verwarming_keuken', 'current_heating_setpoint')|float > state_attr('climate.verwarming_keuken', 'local_temperature')|float %}\n  red\n{% elif state_attr('climate.verwarming_keuken', 'current_heating_setpoint')|float < state_attr('climate.verwarming_keuken', 'local_temperature')|float %}\n  #03A9F4\n{% else %} {% endif %}\n",
+                      "badge_icon": "{% if state_attr('climate.verwarming_keuken', 'current_heating_setpoint')|float > state_attr('climate.toon_thermostat', 'current_temperature')|float %}\n  mdi:radiator\n{% elif state_attr('climate.verwarming_keuken', 'current_heating_setpoint')|float < state_attr('climate.toon_thermostat', 'current_temperature')|float %}\n  mdi:snowflake\n{% else %}  {% endif %}\n",
+                      "badge_color": "{% if state_attr('climate.verwarming_keuken', 'current_heating_setpoint')|float > state_attr('climate.toon_thermostat', 'current_temperature')|float %}\n  red\n{% elif state_attr('climate.verwarming_keuken', 'current_heating_setpoint')|float < state_attr('climate.toon_thermostat', 'current_temperature')|float %}\n  #03A9F4\n{% else %} {% endif %}\n",
                       "card_mod": {
                         "style": {
                           "mushroom-state-info$": ".primary {\n  font-size: 12px !important;\n  position: relative;\n  top: -35px;\n  left: -120px;\n  overflow: visible !important;\n  white-space: normal !important;\n}\n.secondary {\n  font-size: 12px !important;\n  position: relative;\n  overflow: visible !important;\n  top: -35px;\n  left: -120px;\n}\n",
