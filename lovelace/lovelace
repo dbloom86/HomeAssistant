@@ -6238,104 +6238,10 @@
                           }
                         },
                         {
-                          "type": "custom:button-card",
-                          "entity": "switch.docker_unifi_network_application",
-                          "hold_action": {
-                            "action": "url",
-                            "url_path": "https://unifi.bloomlan.nl/"
-                          },
-                          "aspect_ratio": "4/3",
-                          "name": "Unifi Controller",
-                          "entity_picture": "/local/Pictures/addons/unifi-ico.png",
-                          "size": "45%",
-                          "show_entity_picture": true,
-                          "show_label": true,
-                          "label": "[[[ return `${states[ 'sensor.docker_unifi_network_application_status' ].state}` ]]]",
-                          "color_type": "card",
-                          "styles": {
-                            "name": [
-                              {
-                                "font-size": "12px"
-                              },
-                              {
-                                "font-weight": "bold"
-                              },
-                              {
-                                "color": "var(--primary-text-color)"
-                              }
-                            ],
-                            "label": [
-                              {
-                                "font-size": "12px"
-                              },
-                              {
-                                "color": "var(--primary-text-color)"
-                              }
-                            ]
-                          },
-                          "state": [
-                            {
-                              "value": "off",
-                              "color": "rgb(255, 77, 77, 0.4)"
-                            },
-                            {
-                              "value": "on",
-                              "color": "rgb(255, 77, 77, 0)"
-                            }
-                          ],
-                          "card_mod": {
-                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
-                          }
+                          "type": "custom:gap-card"
                         },
                         {
-                          "type": "custom:button-card",
-                          "entity": "switch.docker_unifi_db",
-                          "hold_action": {
-                            "action": "url",
-                            "url_path": "https://unifi.bloomlan.nl/"
-                          },
-                          "aspect_ratio": "4/3",
-                          "name": "Unifi DB",
-                          "entity_picture": "/local/Pictures/addons/mongodb-ico.png",
-                          "size": "45%",
-                          "show_entity_picture": true,
-                          "show_label": true,
-                          "label": "[[[ return `${states[ 'sensor.docker_unifi_db_status' ].state}` ]]]",
-                          "color_type": "card",
-                          "styles": {
-                            "name": [
-                              {
-                                "font-size": "12px"
-                              },
-                              {
-                                "font-weight": "bold"
-                              },
-                              {
-                                "color": "var(--primary-text-color)"
-                              }
-                            ],
-                            "label": [
-                              {
-                                "font-size": "12px"
-                              },
-                              {
-                                "color": "var(--primary-text-color)"
-                              }
-                            ]
-                          },
-                          "state": [
-                            {
-                              "value": "off",
-                              "color": "rgb(255, 77, 77, 0.4)"
-                            },
-                            {
-                              "value": "on",
-                              "color": "rgb(255, 77, 77, 0)"
-                            }
-                          ],
-                          "card_mod": {
-                            "style": "ha-card {\n      border: solid 1px var(--primary-color);\n}\n"
-                          }
+                          "type": "custom:gap-card"
                         }
                       ]
                     },
