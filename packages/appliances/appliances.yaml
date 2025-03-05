@@ -60,23 +60,39 @@ automation:
     - condition: state
       entity_id: group.ouders
       state: 'home'
-    action:
-      service: >
-        {% if (is_state('device_tracker.telefoon_duncan_2', 'home')) and (is_state('device_tracker.telefoon_sab', 'home'))  %}
-          notify.all_mobile
-        {% elif is_state('device_tracker.telefoon_duncan_2', 'home') %}
-          notify.mobile_app_telefoon_duncan
-        {% elif is_state('device_tracker.telefoon_sab', 'home') %}
-          notify.mobile_app_telefoon_sab
-        {% endif %}
+    actions:
+    - action: >
+          {% if (is_state('device_tracker.telefoon_duncan_2', 'home')) and (is_state('device_tracker.telefoon_sab', 'home'))  %}
+            notify.all_mobile
+          {% elif is_state('device_tracker.telefoon_duncan_2', 'home') %}
+            notify.mobile_app_telefoon_duncan
+          {% elif is_state('device_tracker.telefoon_sab', 'home') %}
+            notify.mobile_app_telefoon_sab
+          {% endif %}
       data:
-        title: De wasmachine is klaar
-        message: Wil je de wasmachine uitzetten?
-        data:
-          group: wasmachine
-          icon_url: /local/Custom_Icons/wasmachine-ico.png
-          ttl: 0
-          priority: high
+          title: De wasmachine is klaar
+          message: Wil je de wasmachine uitzetten?
+          data:
+            group: wasmachine
+            icon_url: /local/Custom_Icons/wasmachine-ico.png
+            ttl: 0
+            priority: high
+    - action: tts.speak
+      metadata: {}
+      data:
+        cache: true
+        media_player_entity_id: media_player.nesthub052e
+        message: Goedendag, de wasmachine is klaar
+      target:
+        entity_id: tts.google_translate_nl_nl
+    - action: tts.speak
+      metadata: {}
+      data:
+        cache: true
+        message: Goedendag, de wasmachine is klaar
+        media_player_entity_id: media_player.sonos_woonkamer
+      target:
+        entity_id: tts.google_translate_nl_nl       
     id: 69f61c8b6bd1447aa49592ef3d50f831
 
     #================================  
@@ -104,8 +120,8 @@ automation:
           {% else %}
           false
           {% endif %}
-    action:
-      service: >
+    actions:
+    - action: >
         {% if (is_state('device_tracker.telefoon_duncan_2', 'home')) and (is_state('device_tracker.telefoon_sab', 'home'))  %}
           notify.all_mobile
         {% elif is_state('device_tracker.telefoon_duncan_2', 'home') %}
@@ -121,4 +137,20 @@ automation:
           icon_url: /local/Custom_Icons/droger-ico.png
           ttl: 0
           priority: high
+    - action: tts.speak
+      metadata: {}
+      data:
+        cache: true
+        media_player_entity_id: media_player.nesthub052e
+        message: Goedendag, de droger is klaar
+      target:
+        entity_id: tts.google_translate_nl_nl
+    - action: tts.speak
+      metadata: {}
+      data:
+        cache: true
+        message: Goedendag, de droger is klaar
+        media_player_entity_id: media_player.sonos_woonkamer
+      target:
+        entity_id: tts.google_translate_nl_nl    
     id: 69f61c8b6k86g47aa49592ef3d50f831

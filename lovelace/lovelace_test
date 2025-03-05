@@ -44,6 +44,34 @@
               "chips": [
                 {
                   "type": "entity",
+                  "entity": "person.duncan",
+                  "content_info": "state",
+                  "name": "Duncan",
+                  "use_entity_picture": true
+                },
+                {
+                  "type": "entity",
+                  "entity": "person.sabrine",
+                  "use_entity_picture": true
+                },
+                {
+                  "type": "entity",
+                  "entity": "person.luca",
+                  "use_entity_picture": true
+                },
+                {
+                  "type": "entity",
+                  "entity": "person.fynn",
+                  "use_entity_picture": true
+                }
+              ],
+              "alignment": "center"
+            },
+            {
+              "type": "custom:mushroom-chips-card",
+              "chips": [
+                {
+                  "type": "entity",
                   "entity": "sensor.chromecast_tx",
                   "name": "System",
                   "icon": "mdi:server",
@@ -117,194 +145,6 @@
                           }
                         }
                       ]
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "horizontal-stack",
-              "cards": [
-                {
-                  "type": "custom:stack-in-card",
-                  "mode": "vertical",
-                  "cards": [
-                    {
-                      "type": "custom:mushroom-person-card",
-                      "entity": "person.sabrine",
-                      "use_entity_picture": true,
-                      "hide_name": false,
-                      "layout": "horizontal",
-                      "card_mod": {
-                        "style": "ha-card {\n  box-shadow: none;\n  background: none;\n  --ha-card-border-width: 0;\n}\n"
-                      }
-                    },
-                    {
-                      "type": "custom:mushroom-chips-card",
-                      "chips": [
-                        {
-                          "type": "entity",
-                          "entity": "binary_sensor.telefoon_sab_is_charging",
-                          "content_info": "none",
-                          "card_mod": {
-                            "style": "ha-card {\n  box-shadow: 0px 0px;\n}\n"
-                          },
-                          "icon_color": "{% if state=='on' %}\ngreen\n{% elif state=='off' %}\nyellow\n{% else %}\nred\n{% endif %}"
-                        },
-                        {
-                          "type": "entity",
-                          "entity": "sensor.telefoon_sab_battery_level",
-                          "card_mod": {
-                            "style": "ha-card {\n  box-shadow: 0px 0px;\n}\n"
-                          }
-                        },
-                        {
-                          "type": "entity",
-                          "entity": "proximity.home_sabrine",
-                          "card_mod": {
-                            "style": "ha-card {\n  box-shadow: 0px 0px;\n}\n"
-                          }
-                        }
-                      ],
-                      "alignment": "center"
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:stack-in-card",
-                  "mode": "vertical",
-                  "cards": [
-                    {
-                      "type": "custom:mushroom-person-card",
-                      "entity": "person.duncan",
-                      "use_entity_picture": true,
-                      "hide_name": false,
-                      "layout": "horizontal",
-                      "card_mod": {
-                        "style": "ha-card {\n  box-shadow: none;\n  background: none;\n  --ha-card-border-width: 0;\n}\n"
-                      }
-                    },
-                    {
-                      "type": "custom:mushroom-chips-card",
-                      "chips": [
-                        {
-                          "type": "entity",
-                          "entity": "binary_sensor.telefoon_duncan_is_charging_2",
-                          "content_info": "none",
-                          "card_mod": {
-                            "style": "ha-card {\n  box-shadow: 0px 0px;\n}\n"
-                          },
-                          "icon_color": "{% set state=states('binary_sensor.telefoon_duncan_is_charging_2') %}\n{% if state=='on' %}\ngreen\n{% elif state=='off' %}\nyellow\n{% else %}\nred\n{% endif %}"
-                        },
-                        {
-                          "type": "entity",
-                          "entity": "sensor.telefoon_duncan_battery_level_2",
-                          "card_mod": {
-                            "style": "ha-card {\n  box-shadow: 0px 0px;\n}\n"
-                          }
-                        },
-                        {
-                          "type": "entity",
-                          "entity": "proximity.home_duncan",
-                          "card_mod": {
-                            "style": "ha-card {\n  box-shadow: 0px 0px;\n}\n"
-                          }
-                        }
-                      ],
-                      "alignment": "center"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "horizontal-stack",
-              "cards": [
-                {
-                  "type": "custom:stack-in-card",
-                  "mode": "vertical",
-                  "cards": [
-                    {
-                      "type": "custom:mushroom-person-card",
-                      "entity": "person.luca",
-                      "use_entity_picture": true,
-                      "hide_name": false,
-                      "card_mod": {
-                        "style": "ha-card {\n  box-shadow: none;\n  background: none;\n  --ha-card-border-width: 0;\n}\n"
-                      }
-                    },
-                    {
-                      "type": "custom:mushroom-chips-card",
-                      "chips": [
-                        {
-                          "type": "entity",
-                          "entity": "binary_sensor.luca_s_tablet_is_charging",
-                          "content_info": "none",
-                          "card_mod": {
-                            "style": "ha-card {\n  box-shadow: 0px 0px;\n}\n"
-                          },
-                          "icon_color": "{% set state=states('binary_sensor.tablet_luca_is_aan_het_opladen') %}\n{% if state=='on' %}\ngreen\n{% elif state=='off' %}\nyellow\n{% else %}\nred\n{% endif %}"
-                        },
-                        {
-                          "type": "entity",
-                          "entity": "sensor.luca_s_tablet_battery_level",
-                          "card_mod": {
-                            "style": "ha-card {\n  box-shadow: 0px 0px;\n}\n"
-                          }
-                        },
-                        {
-                          "type": "entity",
-                          "entity": "proximity.home_luca",
-                          "card_mod": {
-                            "style": "ha-card {\n  box-shadow: 0px 0px;\n}\n"
-                          }
-                        }
-                      ],
-                      "alignment": "center"
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:stack-in-card",
-                  "mode": "vertical",
-                  "cards": [
-                    {
-                      "type": "custom:mushroom-person-card",
-                      "entity": "person.fynn",
-                      "use_entity_picture": true,
-                      "hide_name": false,
-                      "card_mod": {
-                        "style": "ha-card {\n  box-shadow: none;\n  background: none;\n  --ha-card-border-width: 0;\n}\n"
-                      }
-                    },
-                    {
-                      "type": "custom:mushroom-chips-card",
-                      "chips": [
-                        {
-                          "type": "entity",
-                          "entity": "binary_sensor.fynns_tablet_is_charging",
-                          "content_info": "none",
-                          "card_mod": {
-                            "style": "ha-card {\n  box-shadow: 0px 0px;\n}\n"
-                          },
-                          "icon_color": "{% set state=states('binary_sensor.fynns_tablet_is_charging') %}\n{% if state=='on' %}\ngreen\n{% elif state=='off' %}\nyellow\n{% else %}\nred\n{% endif %}"
-                        },
-                        {
-                          "type": "entity",
-                          "entity": "sensor.fynns_tablet_battery_level",
-                          "card_mod": {
-                            "style": "ha-card {\n  box-shadow: 0px 0px;\n}\n"
-                          }
-                        },
-                        {
-                          "type": "entity",
-                          "entity": "proximity.home_fynn",
-                          "card_mod": {
-                            "style": "ha-card {\n  box-shadow: 0px 0px;\n}\n"
-                          }
-                        }
-                      ],
-                      "alignment": "center"
                     }
                   ]
                 }
@@ -1841,7 +1681,30 @@
         {
           "title": "Test3",
           "path": "test3",
-          "cards": []
+          "cards": [
+            {
+              "type": "media-control",
+              "entity": "media_player.nesthub052e"
+            }
+          ],
+          "badges": [
+            {
+              "type": "entity",
+              "entity": "person.duncan"
+            },
+            {
+              "type": "entity",
+              "entity": "person.fynn"
+            },
+            {
+              "type": "entity",
+              "entity": "person.luca"
+            },
+            {
+              "type": "entity",
+              "entity": "person.sabrine"
+            }
+          ]
         }
       ]
     }
