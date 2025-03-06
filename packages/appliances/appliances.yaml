@@ -77,22 +77,17 @@ automation:
             icon_url: /local/Custom_Icons/wasmachine-ico.png
             ttl: 0
             priority: high
-    - action: tts.speak
+    - action: chime_tts.say
       metadata: {}
       data:
-        cache: true
-        media_player_entity_id: media_player.nesthub052e
-        message: Goedendag, de wasmachine is klaar
+        chime_path: /config/www/Custom_Sounds/Chime.mp3
+        message: Goedendag, de wasmachine is klaar.
+        volume_level: 0.5
+        announce: true
       target:
-        entity_id: tts.google_translate_nl_nl
-    - action: tts.speak
-      metadata: {}
-      data:
-        cache: true
-        message: Goedendag, de wasmachine is klaar
-        media_player_entity_id: media_player.sonos_woonkamer
-      target:
-        entity_id: tts.google_translate_nl_nl       
+        device_id:
+          - 407814b5fab7b9f31d26b2c6370131f5
+          - 7cf1501464637063c40475ab9e34a8e9     
     id: 69f61c8b6bd1447aa49592ef3d50f831
 
     #================================  
@@ -137,20 +132,15 @@ automation:
           icon_url: /local/Custom_Icons/droger-ico.png
           ttl: 0
           priority: high
-    - action: tts.speak
+    - action: chime_tts.say
       metadata: {}
       data:
-        cache: true
-        media_player_entity_id: media_player.nesthub052e
-        message: Goedendag, de droger is klaar
+        chime_path: /config/www/Custom_Sounds/Chime.mp3
+        message: Goedendag, de droger is klaar.
+        volume_level: 0.5
+        announce: true
       target:
-        entity_id: tts.google_translate_nl_nl
-    - action: tts.speak
-      metadata: {}
-      data:
-        cache: true
-        message: Goedendag, de droger is klaar
-        media_player_entity_id: media_player.sonos_woonkamer
-      target:
-        entity_id: tts.google_translate_nl_nl    
+        device_id:
+          - 407814b5fab7b9f31d26b2c6370131f5
+          - 7cf1501464637063c40475ab9e34a8e9   
     id: 69f61c8b6k86g47aa49592ef3d50f831
