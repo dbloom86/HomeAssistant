@@ -1823,7 +1823,7 @@
 		        var has = Function.call.bind(hasOwnProperty);
 		        for (var typeSpecName in typeSpecs) {
 		          if (has(typeSpecs, typeSpecName)) {
-		            var error$1 = undefined; // Prop type validation may throw. In case they do, we don't want to
+		            var error$1 = void 0; // Prop type validation may throw. In case they do, we don't want to
 		            // fail the render phase where it didn't fail before. So we log it.
 		            // After these have been cleaned up, we'll let them throw.
 
@@ -2444,8 +2444,8 @@
 	    }
 	    update_config(e) {
 	        const { config, instance } = this.props;
-	        let value = (e === null || e === undefined ? undefined : e.target.type) == "checkbox" ?
-	            e === null || e === undefined ? undefined : e.target.checked : e === null || e === undefined ? undefined : e.target.value;
+	        let value = (e === null || e === void 0 ? void 0 : e.target.type) == "checkbox" ?
+	            e === null || e === void 0 ? void 0 : e.target.checked : e === null || e === void 0 ? void 0 : e.target.value;
 	        SendWebSocketAction(instance.hass, "s4h/config", {
 	            id: config.id,
 	            instanceid: instance.instance_id,
@@ -2626,7 +2626,7 @@
 	    for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
 	      args[_key - 1] = arguments[_key];
 	    }
-	    if (handler) handler.apply(undefined, [value].concat(args));
+	    if (handler) handler.apply(void 0, [value].concat(args));
 	    setState(value);
 	  }, [handler])];
 	}
@@ -3179,7 +3179,7 @@
 	        var has = Function.call.bind(hasOwnProperty);
 	        for (var typeSpecName in typeSpecs) {
 	          if (has(typeSpecs, typeSpecName)) {
-	            var error$1 = undefined; // Prop type validation may throw. In case they do, we don't want to
+	            var error$1 = void 0; // Prop type validation may throw. In case they do, we don't want to
 	            // fail the render phase where it didn't fail before. So we log it.
 	            // After these have been cleaned up, we'll let them throw.
 
@@ -3797,6 +3797,10 @@
 	  breakpoints: DEFAULT_BREAKPOINTS,
 	  minBreakpoint: DEFAULT_MIN_BREAKPOINT
 	});
+	const {
+	  Consumer,
+	  Provider
+	} = ThemeContext;
 	function useBootstrapPrefix(prefix, defaultPrefix) {
 	  const {
 	    prefixes
@@ -7248,7 +7252,7 @@
 	// TODO: Should we use domElement.firstChild.nodeValue to compare?
 	if(typeof nextProp==='string'){if(domElement.textContent!==nextProp){if(rawProps[SUPPRESS_HYDRATION_WARNING]!==true){checkForUnmatchedText(domElement.textContent,nextProp,isConcurrentMode,shouldWarnDev);}updatePayload=[CHILDREN,nextProp];}}else if(typeof nextProp==='number'){if(domElement.textContent!==''+nextProp){if(rawProps[SUPPRESS_HYDRATION_WARNING]!==true){checkForUnmatchedText(domElement.textContent,nextProp,isConcurrentMode,shouldWarnDev);}updatePayload=[CHILDREN,''+nextProp];}}}else if(registrationNameDependencies.hasOwnProperty(propKey)){if(nextProp!=null){if(typeof nextProp!=='function'){warnForInvalidEventListener(propKey,nextProp);}if(propKey==='onScroll'){listenToNonDelegatedEvent('scroll',domElement);}}}else if(shouldWarnDev&&true&&// Convince Flow we've calculated it (it's DEV-only in this method.)
 	typeof isCustomComponentTag==='boolean'){// Validate that the properties correspond to their expected values.
-	var serverValue=undefined;var propertyInfo=getPropertyInfo(propKey);if(rawProps[SUPPRESS_HYDRATION_WARNING]===true);else if(propKey===SUPPRESS_CONTENT_EDITABLE_WARNING||propKey===SUPPRESS_HYDRATION_WARNING||// Controlled attributes are not validated
+	var serverValue=void 0;var propertyInfo=getPropertyInfo(propKey);if(rawProps[SUPPRESS_HYDRATION_WARNING]===true);else if(propKey===SUPPRESS_CONTENT_EDITABLE_WARNING||propKey===SUPPRESS_HYDRATION_WARNING||// Controlled attributes are not validated
 	// TODO: Only ignore them on controlled tags.
 	propKey==='value'||propKey==='checked'||propKey==='selected');else if(propKey===DANGEROUSLY_SET_INNER_HTML){var serverHTML=domElement.innerHTML;var nextHtml=nextProp?nextProp[HTML$1]:undefined;if(nextHtml!=null){var expectedHTML=normalizeHTML(domElement,nextHtml);if(expectedHTML!==serverHTML){warnForPropDifference(propKey,serverHTML,expectedHTML);}}}else if(propKey===STYLE){// $FlowFixMe - Should be inferred as not undefined.
 	extraAttributeNames.delete(propKey);if(canDiffStyleForHydrationWarning){var expectedStyle=createDangerousStringForStyles(nextProp);serverValue=domElement.getAttribute('style');if(expectedStyle!==serverValue){warnForPropDifference(propKey,serverValue,expectedStyle);}}}else if(isCustomComponentTag&&true){// $FlowFixMe - Should be inferred as not undefined.
@@ -7458,7 +7462,7 @@
 	return inst.stateNode;}// Without this first invariant, passing a non-DOM-component triggers the next
 	// invariant for a missing parent, which is super confusing.
 	throw new Error('getNodeFromInstance: Invalid argument.');}function getFiberCurrentPropsFromNode(node){return node[internalPropsKey]||null;}function updateFiberProps(node,props){node[internalPropsKey]=props;}function getEventListenerSet(node){var elementListenerSet=node[internalEventHandlersKey];if(elementListenerSet===undefined){elementListenerSet=node[internalEventHandlersKey]=new Set();}return elementListenerSet;}var loggedTypeFailures={};var ReactDebugCurrentFrame$1=ReactSharedInternals.ReactDebugCurrentFrame;function setCurrentlyValidatingElement(element){{if(element){var owner=element._owner;var stack=describeUnknownElementTypeFrameInDEV(element.type,element._source,owner?owner.type:null);ReactDebugCurrentFrame$1.setExtraStackFrame(stack);}else {ReactDebugCurrentFrame$1.setExtraStackFrame(null);}}}function checkPropTypes(typeSpecs,values,location,componentName,element){{// $FlowFixMe This is okay but Flow doesn't know it.
-	var has=Function.call.bind(hasOwnProperty);for(var typeSpecName in typeSpecs){if(has(typeSpecs,typeSpecName)){var error$1=undefined;// Prop type validation may throw. In case they do, we don't want to
+	var has=Function.call.bind(hasOwnProperty);for(var typeSpecName in typeSpecs){if(has(typeSpecs,typeSpecName)){var error$1=void 0;// Prop type validation may throw. In case they do, we don't want to
 	// fail the render phase where it didn't fail before. So we log it.
 	// After these have been cleaned up, we'll let them throw.
 	try{// This is intentionally an invariant that gets caught. It's the same
@@ -7616,7 +7620,7 @@
 	// cannot be called outside the render phase.
 	currentlyRenderingFiber=null;lastContextDependency=null;lastFullyObservedContext=null;{isDisallowedContextReadInDEV=false;}}function enterDisallowedContextReadInDEV(){{isDisallowedContextReadInDEV=true;}}function exitDisallowedContextReadInDEV(){{isDisallowedContextReadInDEV=false;}}function pushProvider(providerFiber,context,nextValue){{push(valueCursor,context._currentValue,providerFiber);context._currentValue=nextValue;{if(context._currentRenderer!==undefined&&context._currentRenderer!==null&&context._currentRenderer!==rendererSigil){error('Detected multiple renderers concurrently rendering the '+'same context provider. This is currently unsupported.');}context._currentRenderer=rendererSigil;}}}function popProvider(context,providerFiber){var currentValue=valueCursor.current;pop(valueCursor,providerFiber);{{context._currentValue=currentValue;}}}function scheduleContextWorkOnParentPath(parent,renderLanes,propagationRoot){// Update the child lanes of all the ancestors, including the alternates.
 	var node=parent;while(node!==null){var alternate=node.alternate;if(!isSubsetOfLanes(node.childLanes,renderLanes)){node.childLanes=mergeLanes(node.childLanes,renderLanes);if(alternate!==null){alternate.childLanes=mergeLanes(alternate.childLanes,renderLanes);}}else if(alternate!==null&&!isSubsetOfLanes(alternate.childLanes,renderLanes)){alternate.childLanes=mergeLanes(alternate.childLanes,renderLanes);}if(node===propagationRoot){break;}node=node.return;}{if(node!==propagationRoot){error('Expected to find the propagation root when scheduling context work. '+'This error is likely caused by a bug in React. Please file an issue.');}}}function propagateContextChange(workInProgress,context,renderLanes){{propagateContextChange_eager(workInProgress,context,renderLanes);}}function propagateContextChange_eager(workInProgress,context,renderLanes){var fiber=workInProgress.child;if(fiber!==null){// Set the return pointer of the child to the work-in-progress fiber.
-	fiber.return=workInProgress;}while(fiber!==null){var nextFiber=undefined;// Visit this fiber.
+	fiber.return=workInProgress;}while(fiber!==null){var nextFiber=void 0;// Visit this fiber.
 	var list=fiber.dependencies;if(list!==null){nextFiber=fiber.child;var dependency=list.firstContext;while(dependency!==null){// Check if the context matches.
 	if(dependency.context===context){// Match! Schedule an update on this fiber.
 	if(fiber.tag===ClassComponent){// Schedule a force update on the work-in-progress.
@@ -9274,7 +9278,7 @@
 	{if(finishedWork.type===finishedWork.elementType&&!didWarnAboutReassigningProps){if(instance.props!==finishedWork.memoizedProps){error('Expected %s props to match memoized props before '+'getSnapshotBeforeUpdate. '+'This might either be because of a bug in React, or because '+'a component reassigns its own `this.props`. '+'Please file an issue.',getComponentNameFromFiber(finishedWork)||'instance');}if(instance.state!==finishedWork.memoizedState){error('Expected %s state to match memoized state before '+'getSnapshotBeforeUpdate. '+'This might either be because of a bug in React, or because '+'a component reassigns its own `this.state`. '+'Please file an issue.',getComponentNameFromFiber(finishedWork)||'instance');}}}var snapshot=instance.getSnapshotBeforeUpdate(finishedWork.elementType===finishedWork.type?prevProps:resolveDefaultProps(finishedWork.type,prevProps),prevState);{var didWarnSet=didWarnAboutUndefinedSnapshotBeforeUpdate;if(snapshot===undefined&&!didWarnSet.has(finishedWork.type)){didWarnSet.add(finishedWork.type);error('%s.getSnapshotBeforeUpdate(): A snapshot value (or null) '+'must be returned. You have returned undefined.',getComponentNameFromFiber(finishedWork));}}instance.__reactInternalSnapshotBeforeUpdate=snapshot;}break;}case HostRoot:{{var root=finishedWork.stateNode;clearContainer(root.containerInfo);}break;}case HostComponent:case HostText:case HostPortal:case IncompleteClassComponent:// Nothing to do for these component types
 	break;default:{throw new Error('This unit of work tag should not have side-effects. This error is '+'likely caused by a bug in React. Please file an issue.');}}resetCurrentFiber();}}function commitHookEffectListUnmount(flags,finishedWork,nearestMountedAncestor){var updateQueue=finishedWork.updateQueue;var lastEffect=updateQueue!==null?updateQueue.lastEffect:null;if(lastEffect!==null){var firstEffect=lastEffect.next;var effect=firstEffect;do{if((effect.tag&flags)===flags){// Unmount
 	var destroy=effect.destroy;effect.destroy=undefined;if(destroy!==undefined){{if((flags&Passive$1)!==NoFlags$1){markComponentPassiveEffectUnmountStarted(finishedWork);}else if((flags&Layout)!==NoFlags$1){markComponentLayoutEffectUnmountStarted(finishedWork);}}{if((flags&Insertion)!==NoFlags$1){setIsRunningInsertionEffect(true);}}safelyCallDestroy(finishedWork,nearestMountedAncestor,destroy);{if((flags&Insertion)!==NoFlags$1){setIsRunningInsertionEffect(false);}}{if((flags&Passive$1)!==NoFlags$1){markComponentPassiveEffectUnmountStopped();}else if((flags&Layout)!==NoFlags$1){markComponentLayoutEffectUnmountStopped();}}}}effect=effect.next;}while(effect!==firstEffect);}}function commitHookEffectListMount(flags,finishedWork){var updateQueue=finishedWork.updateQueue;var lastEffect=updateQueue!==null?updateQueue.lastEffect:null;if(lastEffect!==null){var firstEffect=lastEffect.next;var effect=firstEffect;do{if((effect.tag&flags)===flags){{if((flags&Passive$1)!==NoFlags$1){markComponentPassiveEffectMountStarted(finishedWork);}else if((flags&Layout)!==NoFlags$1){markComponentLayoutEffectMountStarted(finishedWork);}}// Mount
-	var create=effect.create;{if((flags&Insertion)!==NoFlags$1){setIsRunningInsertionEffect(true);}}effect.destroy=create();{if((flags&Insertion)!==NoFlags$1){setIsRunningInsertionEffect(false);}}{if((flags&Passive$1)!==NoFlags$1){markComponentPassiveEffectMountStopped();}else if((flags&Layout)!==NoFlags$1){markComponentLayoutEffectMountStopped();}}{var destroy=effect.destroy;if(destroy!==undefined&&typeof destroy!=='function'){var hookName=undefined;if((effect.tag&Layout)!==NoFlags){hookName='useLayoutEffect';}else if((effect.tag&Insertion)!==NoFlags){hookName='useInsertionEffect';}else {hookName='useEffect';}var addendum=undefined;if(destroy===null){addendum=' You returned null. If your effect does not require clean '+'up, return undefined (or nothing).';}else if(typeof destroy.then==='function'){addendum='\n\nIt looks like you wrote '+hookName+'(async () => ...) or returned a Promise. '+'Instead, write the async function inside your effect '+'and call it immediately:\n\n'+hookName+'(() => {\n'+'  async function fetchData() {\n'+'    // You can await here\n'+'    const response = await MyAPI.getData(someId);\n'+'    // ...\n'+'  }\n'+'  fetchData();\n'+"}, [someId]); // Or [] if effect doesn't need props or state\n\n"+'Learn more about data fetching with Hooks: https://reactjs.org/link/hooks-data-fetching';}else {addendum=' You returned: '+destroy;}error('%s must not return anything besides a function, '+'which is used for clean-up.%s',hookName,addendum);}}}effect=effect.next;}while(effect!==firstEffect);}}function commitPassiveEffectDurations(finishedRoot,finishedWork){{// Only Profilers with work in their subtree will have an Update effect scheduled.
+	var create=effect.create;{if((flags&Insertion)!==NoFlags$1){setIsRunningInsertionEffect(true);}}effect.destroy=create();{if((flags&Insertion)!==NoFlags$1){setIsRunningInsertionEffect(false);}}{if((flags&Passive$1)!==NoFlags$1){markComponentPassiveEffectMountStopped();}else if((flags&Layout)!==NoFlags$1){markComponentLayoutEffectMountStopped();}}{var destroy=effect.destroy;if(destroy!==undefined&&typeof destroy!=='function'){var hookName=void 0;if((effect.tag&Layout)!==NoFlags){hookName='useLayoutEffect';}else if((effect.tag&Insertion)!==NoFlags){hookName='useInsertionEffect';}else {hookName='useEffect';}var addendum=void 0;if(destroy===null){addendum=' You returned null. If your effect does not require clean '+'up, return undefined (or nothing).';}else if(typeof destroy.then==='function'){addendum='\n\nIt looks like you wrote '+hookName+'(async () => ...) or returned a Promise. '+'Instead, write the async function inside your effect '+'and call it immediately:\n\n'+hookName+'(() => {\n'+'  async function fetchData() {\n'+'    // You can await here\n'+'    const response = await MyAPI.getData(someId);\n'+'    // ...\n'+'  }\n'+'  fetchData();\n'+"}, [someId]); // Or [] if effect doesn't need props or state\n\n"+'Learn more about data fetching with Hooks: https://reactjs.org/link/hooks-data-fetching';}else {addendum=' You returned: '+destroy;}error('%s must not return anything besides a function, '+'which is used for clean-up.%s',hookName,addendum);}}}effect=effect.next;}while(effect!==firstEffect);}}function commitPassiveEffectDurations(finishedRoot,finishedWork){{// Only Profilers with work in their subtree will have an Update effect scheduled.
 	if((finishedWork.flags&Update)!==NoFlags){switch(finishedWork.tag){case Profiler:{var passiveEffectDuration=finishedWork.stateNode.passiveEffectDuration;var _finishedWork$memoize=finishedWork.memoizedProps,id=_finishedWork$memoize.id,onPostCommit=_finishedWork$memoize.onPostCommit;// This value will still reflect the previous commit phase.
 	// It does not get reset until the start of the next commit phase.
 	var commitTime=getCommitTime();var phase=finishedWork.alternate===null?'mount':'update';{if(isCurrentUpdateNested()){phase='nested-update';}}if(typeof onPostCommit==='function'){onPostCommit(id,phase,passiveEffectDuration,commitTime);}// Bubble times to the next nearest ancestor Profiler.
@@ -9869,7 +9873,7 @@
 	// nothing should rely on this, but relying on it here means that we don't
 	// need an additional field on the work in progress.
 	var current=completedWork.alternate;var returnFiber=completedWork.return;// Check if the work completed or if something threw.
-	if((completedWork.flags&Incomplete)===NoFlags){setCurrentFiber(completedWork);var next=undefined;if((completedWork.mode&ProfileMode)===NoMode){next=completeWork(current,completedWork,subtreeRenderLanes);}else {startProfilerTimer(completedWork);next=completeWork(current,completedWork,subtreeRenderLanes);// Update render duration assuming we didn't error.
+	if((completedWork.flags&Incomplete)===NoFlags){setCurrentFiber(completedWork);var next=void 0;if((completedWork.mode&ProfileMode)===NoMode){next=completeWork(current,completedWork,subtreeRenderLanes);}else {startProfilerTimer(completedWork);next=completeWork(current,completedWork,subtreeRenderLanes);// Update render duration assuming we didn't error.
 	stopProfilerTimerIfRunningAndRecordDelta(completedWork,false);}resetCurrentFiber();if(next!==null){// Completing this fiber spawned new work. Work on that next.
 	workInProgress=next;return;}}else {// This fiber did not complete because something threw. Pop values off
 	// the stack without entering the complete phase. If this is a boundary,
@@ -10526,7 +10530,7 @@
 	    };
 	  };
 	  _proto.updateStatus = function updateStatus(mounting, nextStatus) {
-	    if (mounting === undefined) {
+	    if (mounting === void 0) {
 	      mounting = false;
 	    }
 	    if (nextStatus !== null) {
@@ -10791,7 +10795,7 @@
 	    for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
 	      args[_key - 1] = arguments[_key];
 	    }
-	    return pt.apply(undefined, [props].concat(args));
+	    return pt.apply(void 0, [props].concat(args));
 	  },
 	  /**
 	   * Add a custom transition end trigger. Called with the transitioning
@@ -10962,7 +10966,7 @@
 	 * @param cancelable whether the event should be cancelable
 	 */
 	function triggerEvent(node, eventName, bubbles, cancelable) {
-	  if (cancelable === undefined) {
+	  if (cancelable === void 0) {
 	    cancelable = true;
 	  }
 	  if (node) {
@@ -10978,7 +10982,7 @@
 	  return parseFloat(str) * mult;
 	}
 	function emulateTransitionEnd(element, duration, padding) {
-	  if (padding === undefined) {
+	  if (padding === void 0) {
 	    padding = 5;
 	  }
 	  var called = false;
@@ -11331,8 +11335,8 @@
 	        eventKeyPassed = [eventKey];
 	      }
 	    }
-	    onSelect == null ? undefined : onSelect(eventKeyPassed, e);
-	    onClick == null ? undefined : onClick(e);
+	    onSelect == null ? void 0 : onSelect(eventKeyPassed, e);
+	    onClick == null ? void 0 : onClick(e);
 	  };
 	}
 	const AccordionButton = /*#__PURE__*/reactExports.forwardRef(({
@@ -11511,7 +11515,7 @@
 	 * @param capture Whether or not to listen during the capture event phase
 	 */
 	function useEventListener(eventTarget, event, listener, capture) {
-	  if (capture === undefined) {
+	  if (capture === void 0) {
 	    capture = false;
 	  }
 	  var handler = useEventCallback(listener);
@@ -11653,7 +11657,7 @@
 	      event.stopPropagation();
 	      return;
 	    }
-	    onClick == null ? undefined : onClick(event);
+	    onClick == null ? void 0 : onClick(event);
 	  };
 	  const handleKeyDown = event => {
 	    if (event.key === ' ') {
@@ -11730,7 +11734,7 @@
 	  }, props));
 	  const handleKeyDown = useEventCallback(e => {
 	    buttonProps.onKeyDown(e);
-	    onKeyDown == null ? undefined : onKeyDown(e);
+	    onKeyDown == null ? void 0 : onKeyDown(e);
 	  });
 	  if (isTrivialHref(props.href) || props.role === 'button') {
 	    return /*#__PURE__*/jsxRuntimeExports.jsx("a", Object.assign({
@@ -11766,7 +11770,7 @@
 	}, ref) => {
 	  const handleEnter = reactExports.useCallback((node, isAppearing) => {
 	    triggerBrowserReflow(node);
-	    props.onEnter == null ? undefined : props.onEnter(node, isAppearing);
+	    props.onEnter == null ? void 0 : props.onEnter(node, isAppearing);
 	  }, [props]);
 	  return /*#__PURE__*/jsxRuntimeExports.jsx(TransitionWrapper, {
 	    ref: ref,
@@ -11997,7 +12001,7 @@
 	    ...props,
 	    children: /*#__PURE__*/jsxRuntimeExports.jsx("ol", {
 	      ...listProps,
-	      className: classNames(prefix, listProps == null ? undefined : listProps.className),
+	      className: classNames(prefix, listProps == null ? void 0 : listProps.className),
 	      children: children
 	    })
 	  });
@@ -12292,7 +12296,7 @@
 	      return clearTimeout(handleRef.current);
 	    };
 	    function set(fn, delayMs) {
-	      if (delayMs === undefined) {
+	      if (delayMs === void 0) {
 	        delayMs = 0;
 	      }
 	      if (!isMounted()) return;
@@ -12479,7 +12483,7 @@
 	      nextActiveIndex = numChildren - 1;
 	    }
 	    nextDirectionRef.current = 'prev';
-	    onSelect == null ? undefined : onSelect(nextActiveIndex, event);
+	    onSelect == null ? void 0 : onSelect(nextActiveIndex, event);
 	  }, [isSliding, renderedActiveIndex, onSelect, wrap, numChildren]);
 
 	  // This is used in the setInterval, so it should not invalidate.
@@ -12495,7 +12499,7 @@
 	      nextActiveIndex = 0;
 	    }
 	    nextDirectionRef.current = 'next';
-	    onSelect == null ? undefined : onSelect(nextActiveIndex, event);
+	    onSelect == null ? void 0 : onSelect(nextActiveIndex, event);
 	  });
 	  const elementRef = reactExports.useRef();
 	  reactExports.useImperativeHandle(ref, () => ({
@@ -12520,18 +12524,18 @@
 	      // These callbacks will be handled by the <Transition> callbacks.
 	      return;
 	    }
-	    onSlide == null ? undefined : onSlide(renderedActiveIndex, slideDirection);
-	    onSlid == null ? undefined : onSlid(renderedActiveIndex, slideDirection);
+	    onSlide == null ? void 0 : onSlide(renderedActiveIndex, slideDirection);
+	    onSlid == null ? void 0 : onSlid(renderedActiveIndex, slideDirection);
 	  }, [renderedActiveIndex]);
 	  const orderClassName = `${prefix}-item-${direction}`;
 	  const directionalClassName = `${prefix}-item-${slideDirection}`;
 	  const handleEnter = reactExports.useCallback(node => {
 	    triggerBrowserReflow(node);
-	    onSlide == null ? undefined : onSlide(renderedActiveIndex, slideDirection);
+	    onSlide == null ? void 0 : onSlide(renderedActiveIndex, slideDirection);
 	  }, [onSlide, renderedActiveIndex, slideDirection]);
 	  const handleEntered = reactExports.useCallback(() => {
 	    setIsSliding(false);
-	    onSlid == null ? undefined : onSlid(renderedActiveIndex, slideDirection);
+	    onSlid == null ? void 0 : onSlid(renderedActiveIndex, slideDirection);
 	  }, [onSlid, renderedActiveIndex, slideDirection]);
 	  const handleKeyDown = reactExports.useCallback(event => {
 	    if (keyboard && !/input|textarea/i.test(event.target.tagName)) {
@@ -12554,17 +12558,17 @@
 	          return;
 	      }
 	    }
-	    onKeyDown == null ? undefined : onKeyDown(event);
+	    onKeyDown == null ? void 0 : onKeyDown(event);
 	  }, [keyboard, onKeyDown, prev, next, isRTL]);
 	  const handleMouseOver = reactExports.useCallback(event => {
 	    if (pause === 'hover') {
 	      setPaused(true);
 	    }
-	    onMouseOver == null ? undefined : onMouseOver(event);
+	    onMouseOver == null ? void 0 : onMouseOver(event);
 	  }, [pause, onMouseOver]);
 	  const handleMouseOut = reactExports.useCallback(event => {
 	    setPaused(false);
-	    onMouseOut == null ? undefined : onMouseOut(event);
+	    onMouseOut == null ? void 0 : onMouseOut(event);
 	  }, [onMouseOut]);
 	  const touchStartXRef = reactExports.useRef(0);
 	  const touchDeltaXRef = reactExports.useRef(0);
@@ -12575,7 +12579,7 @@
 	    if (pause === 'hover') {
 	      setPaused(true);
 	    }
-	    onTouchStart == null ? undefined : onTouchStart(event);
+	    onTouchStart == null ? void 0 : onTouchStart(event);
 	  }, [pause, onTouchStart]);
 	  const handleTouchMove = reactExports.useCallback(event => {
 	    if (event.touches && event.touches.length > 1) {
@@ -12583,7 +12587,7 @@
 	    } else {
 	      touchDeltaXRef.current = event.touches[0].clientX - touchStartXRef.current;
 	    }
-	    onTouchMove == null ? undefined : onTouchMove(event);
+	    onTouchMove == null ? void 0 : onTouchMove(event);
 	  }, [onTouchMove]);
 	  const handleTouchEnd = reactExports.useCallback(event => {
 	    if (touch) {
@@ -12601,7 +12605,7 @@
 	        setPaused(false);
 	      }, interval || undefined);
 	    }
-	    onTouchEnd == null ? undefined : onTouchEnd(event);
+	    onTouchEnd == null ? void 0 : onTouchEnd(event);
 	  }, [touch, pause, prev, next, touchUnpauseTimeout, interval, onTouchEnd]);
 	  const shouldPlay = interval != null && !paused && !isSliding;
 	  const intervalHandleRef = reactExports.useRef();
@@ -12621,7 +12625,7 @@
 	  const indicatorOnClicks = reactExports.useMemo(() => indicators && Array.from({
 	    length: numChildren
 	  }, (_, index) => event => {
-	    onSelect == null ? undefined : onSelect(index, event);
+	    onSelect == null ? void 0 : onSelect(index, event);
 	  }), [indicators, numChildren, onSelect]);
 	  return /*#__PURE__*/jsxRuntimeExports.jsxs(Component, {
 	    ref: elementRef,
@@ -12954,10 +12958,10 @@
 	}
 
 	function getBoundingClientRect(element, includeScale, isFixedStrategy) {
-	  if (includeScale === undefined) {
+	  if (includeScale === void 0) {
 	    includeScale = false;
 	  }
-	  if (isFixedStrategy === undefined) {
+	  if (isFixedStrategy === void 0) {
 	    isFixedStrategy = false;
 	  }
 	  var clientRect = element.getBoundingClientRect();
@@ -13192,7 +13196,7 @@
 	  var state = _ref2.state,
 	    options = _ref2.options;
 	  var _options$element = options.element,
-	    arrowElement = _options$element === undefined ? '[data-popper-arrow]' : _options$element;
+	    arrowElement = _options$element === void 0 ? '[data-popper-arrow]' : _options$element;
 	  if (arrowElement == null) {
 	    return;
 	  } // CSS selector
@@ -13263,9 +13267,9 @@
 	    roundOffsets = _ref2.roundOffsets,
 	    isFixed = _ref2.isFixed;
 	  var _offsets$x = offsets.x,
-	    x = _offsets$x === undefined ? 0 : _offsets$x,
+	    x = _offsets$x === void 0 ? 0 : _offsets$x,
 	    _offsets$y = offsets.y,
-	    y = _offsets$y === undefined ? 0 : _offsets$y;
+	    y = _offsets$y === void 0 ? 0 : _offsets$y;
 	  var _ref3 = typeof roundOffsets === 'function' ? roundOffsets({
 	    x: x,
 	    y: y
@@ -13332,11 +13336,11 @@
 	  var state = _ref5.state,
 	    options = _ref5.options;
 	  var _options$gpuAccelerat = options.gpuAcceleration,
-	    gpuAcceleration = _options$gpuAccelerat === undefined ? true : _options$gpuAccelerat,
+	    gpuAcceleration = _options$gpuAccelerat === void 0 ? true : _options$gpuAccelerat,
 	    _options$adaptive = options.adaptive,
-	    adaptive = _options$adaptive === undefined ? true : _options$adaptive,
+	    adaptive = _options$adaptive === void 0 ? true : _options$adaptive,
 	    _options$roundOffsets = options.roundOffsets,
-	    roundOffsets = _options$roundOffsets === undefined ? true : _options$roundOffsets;
+	    roundOffsets = _options$roundOffsets === void 0 ? true : _options$roundOffsets;
 	  {
 	    var transitionProperty = getComputedStyle$1(state.elements.popper).transitionProperty || '';
 	    if (adaptive && ['transform', 'top', 'right', 'bottom', 'left'].some(function (property) {
@@ -13390,9 +13394,9 @@
 	    instance = _ref.instance,
 	    options = _ref.options;
 	  var _options$scroll = options.scroll,
-	    scroll = _options$scroll === undefined ? true : _options$scroll,
+	    scroll = _options$scroll === void 0 ? true : _options$scroll,
 	    _options$resize = options.resize,
-	    resize = _options$resize === undefined ? true : _options$resize;
+	    resize = _options$resize === void 0 ? true : _options$resize;
 	  var window = getWindow(state.elements.popper);
 	  var scrollParents = [].concat(state.scrollParents.reference, state.scrollParents.popper);
 	  if (scroll) {
@@ -13498,7 +13502,7 @@
 	  var _element$ownerDocumen;
 	  var html = getDocumentElement(element);
 	  var winScroll = getWindowScroll(element);
-	  var body = (_element$ownerDocumen = element.ownerDocument) == null ? undefined : _element$ownerDocumen.body;
+	  var body = (_element$ownerDocumen = element.ownerDocument) == null ? void 0 : _element$ownerDocumen.body;
 	  var width = max(html.scrollWidth, html.clientWidth, body ? body.scrollWidth : 0, body ? body.clientWidth : 0);
 	  var height = max(html.scrollHeight, html.clientHeight, body ? body.scrollHeight : 0, body ? body.clientHeight : 0);
 	  var x = -winScroll.scrollLeft + getWindowScrollBarX(element);
@@ -13543,11 +13547,11 @@
 
 	function listScrollParents(element, list) {
 	  var _element$ownerDocumen;
-	  if (list === undefined) {
+	  if (list === void 0) {
 	    list = [];
 	  }
 	  var scrollParent = getScrollParent(element);
-	  var isBody = scrollParent === ((_element$ownerDocumen = element.ownerDocument) == null ? undefined : _element$ownerDocumen.body);
+	  var isBody = scrollParent === ((_element$ownerDocumen = element.ownerDocument) == null ? void 0 : _element$ownerDocumen.body);
 	  var win = getWindow(scrollParent);
 	  var target = isBody ? [win].concat(win.visualViewport || [], isScrollParent(scrollParent) ? scrollParent : []) : scrollParent;
 	  var updatedList = list.concat(target);
@@ -13672,24 +13676,24 @@
 	}
 
 	function detectOverflow(state, options) {
-	  if (options === undefined) {
+	  if (options === void 0) {
 	    options = {};
 	  }
 	  var _options = options,
 	    _options$placement = _options.placement,
-	    placement = _options$placement === undefined ? state.placement : _options$placement,
+	    placement = _options$placement === void 0 ? state.placement : _options$placement,
 	    _options$strategy = _options.strategy,
-	    strategy = _options$strategy === undefined ? state.strategy : _options$strategy,
+	    strategy = _options$strategy === void 0 ? state.strategy : _options$strategy,
 	    _options$boundary = _options.boundary,
-	    boundary = _options$boundary === undefined ? clippingParents : _options$boundary,
+	    boundary = _options$boundary === void 0 ? clippingParents : _options$boundary,
 	    _options$rootBoundary = _options.rootBoundary,
-	    rootBoundary = _options$rootBoundary === undefined ? viewport : _options$rootBoundary,
+	    rootBoundary = _options$rootBoundary === void 0 ? viewport : _options$rootBoundary,
 	    _options$elementConte = _options.elementContext,
-	    elementContext = _options$elementConte === undefined ? popper : _options$elementConte,
+	    elementContext = _options$elementConte === void 0 ? popper : _options$elementConte,
 	    _options$altBoundary = _options.altBoundary,
-	    altBoundary = _options$altBoundary === undefined ? false : _options$altBoundary,
+	    altBoundary = _options$altBoundary === void 0 ? false : _options$altBoundary,
 	    _options$padding = _options.padding,
-	    padding = _options$padding === undefined ? 0 : _options$padding;
+	    padding = _options$padding === void 0 ? 0 : _options$padding;
 	  var paddingObject = mergePaddingObject(typeof padding !== 'number' ? padding : expandToHashMap(padding, basePlacements));
 	  var altContext = elementContext === popper ? reference : popper;
 	  var popperRect = state.rects.popper;
@@ -13699,7 +13703,6 @@
 	  var popperOffsets = computeOffsets({
 	    reference: referenceClientRect,
 	    element: popperRect,
-	    strategy: 'absolute',
 	    placement: placement
 	  });
 	  var popperClientRect = rectToClientRect(Object.assign({}, popperRect, popperOffsets));
@@ -13726,7 +13729,7 @@
 	}
 
 	function computeAutoPlacement(state, options) {
-	  if (options === undefined) {
+	  if (options === void 0) {
 	    options = {};
 	  }
 	  var _options = options,
@@ -13736,7 +13739,7 @@
 	    padding = _options.padding,
 	    flipVariations = _options.flipVariations,
 	    _options$allowedAutoP = _options.allowedAutoPlacements,
-	    allowedAutoPlacements = _options$allowedAutoP === undefined ? placements : _options$allowedAutoP;
+	    allowedAutoPlacements = _options$allowedAutoP === void 0 ? placements : _options$allowedAutoP;
 	  var variation = getVariation(placement);
 	  var placements$1 = variation ? flipVariations ? variationPlacements : variationPlacements.filter(function (placement) {
 	    return getVariation(placement) === variation;
@@ -13780,16 +13783,16 @@
 	    return;
 	  }
 	  var _options$mainAxis = options.mainAxis,
-	    checkMainAxis = _options$mainAxis === undefined ? true : _options$mainAxis,
+	    checkMainAxis = _options$mainAxis === void 0 ? true : _options$mainAxis,
 	    _options$altAxis = options.altAxis,
-	    checkAltAxis = _options$altAxis === undefined ? true : _options$altAxis,
+	    checkAltAxis = _options$altAxis === void 0 ? true : _options$altAxis,
 	    specifiedFallbackPlacements = options.fallbackPlacements,
 	    padding = options.padding,
 	    boundary = options.boundary,
 	    rootBoundary = options.rootBoundary,
 	    altBoundary = options.altBoundary,
 	    _options$flipVariatio = options.flipVariations,
-	    flipVariations = _options$flipVariatio === undefined ? true : _options$flipVariatio,
+	    flipVariations = _options$flipVariatio === void 0 ? true : _options$flipVariatio,
 	    allowedAutoPlacements = options.allowedAutoPlacements;
 	  var preferredPlacement = state.options.placement;
 	  var basePlacement = getBasePlacement(preferredPlacement);
@@ -13885,7 +13888,7 @@
 	};
 
 	function getSideOffsets(overflow, rect, preventedOffsets) {
-	  if (preventedOffsets === undefined) {
+	  if (preventedOffsets === void 0) {
 	    preventedOffsets = {
 	      x: 0,
 	      y: 0
@@ -13962,7 +13965,7 @@
 	    options = _ref2.options,
 	    name = _ref2.name;
 	  var _options$offset = options.offset,
-	    offset = _options$offset === undefined ? [0, 0] : _options$offset;
+	    offset = _options$offset === void 0 ? [0, 0] : _options$offset;
 	  var data = placements.reduce(function (acc, placement) {
 	    acc[placement] = distanceAndSkiddingToXY(placement, state.rects, offset);
 	    return acc;
@@ -13995,7 +13998,6 @@
 	  state.modifiersData[name] = computeOffsets({
 	    reference: state.rects.reference,
 	    element: state.rects.popper,
-	    strategy: 'absolute',
 	    placement: state.placement
 	  });
 	} // eslint-disable-next-line import/no-unused-modules
@@ -14017,17 +14019,17 @@
 	    options = _ref.options,
 	    name = _ref.name;
 	  var _options$mainAxis = options.mainAxis,
-	    checkMainAxis = _options$mainAxis === undefined ? true : _options$mainAxis,
+	    checkMainAxis = _options$mainAxis === void 0 ? true : _options$mainAxis,
 	    _options$altAxis = options.altAxis,
-	    checkAltAxis = _options$altAxis === undefined ? false : _options$altAxis,
+	    checkAltAxis = _options$altAxis === void 0 ? false : _options$altAxis,
 	    boundary = options.boundary,
 	    rootBoundary = options.rootBoundary,
 	    altBoundary = options.altBoundary,
 	    padding = options.padding,
 	    _options$tether = options.tether,
-	    tether = _options$tether === undefined ? true : _options$tether,
+	    tether = _options$tether === void 0 ? true : _options$tether,
 	    _options$tetherOffset = options.tetherOffset,
-	    tetherOffset = _options$tetherOffset === undefined ? 0 : _options$tetherOffset;
+	    tetherOffset = _options$tetherOffset === void 0 ? 0 : _options$tetherOffset;
 	  var overflow = detectOverflow(state, {
 	    boundary: boundary,
 	    rootBoundary: rootBoundary,
@@ -14091,7 +14093,7 @@
 	    var maxOffset = isBasePlacement ? -referenceRect[len] / 2 + additive + arrowLen + arrowPaddingMax + normalizedTetherOffsetValue.mainAxis : maxLen + arrowLen + arrowPaddingMax + normalizedTetherOffsetValue.mainAxis;
 	    var arrowOffsetParent = state.elements.arrow && getOffsetParent(state.elements.arrow);
 	    var clientOffset = arrowOffsetParent ? mainAxis === 'y' ? arrowOffsetParent.clientTop || 0 : arrowOffsetParent.clientLeft || 0 : 0;
-	    var offsetModifierValue = (_offsetModifierState$ = offsetModifierState == null ? undefined : offsetModifierState[mainAxis]) != null ? _offsetModifierState$ : 0;
+	    var offsetModifierValue = (_offsetModifierState$ = offsetModifierState == null ? void 0 : offsetModifierState[mainAxis]) != null ? _offsetModifierState$ : 0;
 	    var tetherMin = offset + minOffset - offsetModifierValue - clientOffset;
 	    var tetherMax = offset + maxOffset - offsetModifierValue;
 	    var preventedOffset = within(tether ? min(min$1, tetherMin) : min$1, offset, tether ? max(max$1, tetherMax) : max$1);
@@ -14107,7 +14109,7 @@
 	    var _min = _offset + overflow[_mainSide];
 	    var _max = _offset - overflow[_altSide];
 	    var isOriginSide = [top, left].indexOf(basePlacement) !== -1;
-	    var _offsetModifierValue = (_offsetModifierState$2 = offsetModifierState == null ? undefined : offsetModifierState[altAxis]) != null ? _offsetModifierState$2 : 0;
+	    var _offsetModifierValue = (_offsetModifierState$2 = offsetModifierState == null ? void 0 : offsetModifierState[altAxis]) != null ? _offsetModifierState$2 : 0;
 	    var _tetherMin = isOriginSide ? _min : _offset - referenceRect[_len] - popperRect[_len] - _offsetModifierValue + normalizedTetherOffsetValue.altAxis;
 	    var _tetherMax = isOriginSide ? _offset + referenceRect[_len] + popperRect[_len] - _offsetModifierValue - normalizedTetherOffsetValue.altAxis : _max;
 	    var _preventedOffset = tether && isOriginSide ? withinMaxClamp(_tetherMin, _offset, _tetherMax) : within(tether ? _tetherMin : _min, _offset, tether ? _tetherMax : _max);
@@ -14149,7 +14151,7 @@
 	// Composite means it takes into account transforms as well as layout.
 
 	function getCompositeRect(elementOrVirtualElement, offsetParent, isFixed) {
-	  if (isFixed === undefined) {
+	  if (isFixed === void 0) {
 	    isFixed = false;
 	  }
 	  var isOffsetParentAnElement = isHTMLElement(offsetParent);
@@ -14356,16 +14358,16 @@
 	  });
 	}
 	function popperGenerator(generatorOptions) {
-	  if (generatorOptions === undefined) {
+	  if (generatorOptions === void 0) {
 	    generatorOptions = {};
 	  }
 	  var _generatorOptions = generatorOptions,
 	    _generatorOptions$def = _generatorOptions.defaultModifiers,
-	    defaultModifiers = _generatorOptions$def === undefined ? [] : _generatorOptions$def,
+	    defaultModifiers = _generatorOptions$def === void 0 ? [] : _generatorOptions$def,
 	    _generatorOptions$def2 = _generatorOptions.defaultOptions,
-	    defaultOptions = _generatorOptions$def2 === undefined ? DEFAULT_OPTIONS : _generatorOptions$def2;
+	    defaultOptions = _generatorOptions$def2 === void 0 ? DEFAULT_OPTIONS : _generatorOptions$def2;
 	  return function createPopper(reference, popper, options) {
-	    if (options === undefined) {
+	    if (options === void 0) {
 	      options = defaultOptions;
 	    }
 	    var state = {
@@ -14488,7 +14490,7 @@
 	          var _state$orderedModifie = state.orderedModifiers[index],
 	            fn = _state$orderedModifie.fn,
 	            _state$orderedModifie2 = _state$orderedModifie.options,
-	            _options = _state$orderedModifie2 === undefined ? {} : _state$orderedModifie2,
+	            _options = _state$orderedModifie2 === void 0 ? {} : _state$orderedModifie2,
 	            name = _state$orderedModifie.name;
 	          if (typeof fn === 'function') {
 	            state = fn({
@@ -14533,7 +14535,7 @@
 	      state.orderedModifiers.forEach(function (_ref3) {
 	        var name = _ref3.name,
 	          _ref3$options = _ref3.options,
-	          options = _ref3$options === undefined ? {} : _ref3$options,
+	          options = _ref3$options === void 0 ? {} : _ref3$options,
 	          effect = _ref3.effect;
 	        if (typeof effect === 'function') {
 	          var cleanupFn = effect({
@@ -14609,7 +14611,7 @@
 	      popper,
 	      reference
 	    } = state.elements;
-	    const role = (_popper$getAttribute = popper.getAttribute('role')) == null ? undefined : _popper$getAttribute.toLowerCase();
+	    const role = (_popper$getAttribute = popper.getAttribute('role')) == null ? void 0 : _popper$getAttribute.toLowerCase();
 	    if (popper.id && role === 'tooltip' && 'setAttribute' in reference) {
 	      const ids = reference.getAttribute('aria-describedby');
 	      if (ids && ids.split(',').indexOf(popper.id) !== -1) {
@@ -14647,11 +14649,11 @@
 	  const popperInstanceRef = reactExports.useRef();
 	  const update = reactExports.useCallback(() => {
 	    var _popperInstanceRef$cu;
-	    (_popperInstanceRef$cu = popperInstanceRef.current) == null ? undefined : _popperInstanceRef$cu.update();
+	    (_popperInstanceRef$cu = popperInstanceRef.current) == null ? void 0 : _popperInstanceRef$cu.update();
 	  }, []);
 	  const forceUpdate = reactExports.useCallback(() => {
 	    var _popperInstanceRef$cu2;
-	    (_popperInstanceRef$cu2 = popperInstanceRef.current) == null ? undefined : _popperInstanceRef$cu2.forceUpdate();
+	    (_popperInstanceRef$cu2 = popperInstanceRef.current) == null ? void 0 : _popperInstanceRef$cu2.forceUpdate();
 	  }, []);
 	  const [popperState, setState] = useSafeState(reactExports.useState({
 	    placement,
@@ -14863,7 +14865,7 @@
 	      mobileSafariHackListeners = [].slice.call(doc.body.children).map(el => listen(el, 'mousemove', noop$8));
 	    }
 	    return () => {
-	      removeInitialTriggerListener == null ? undefined : removeInitialTriggerListener();
+	      removeInitialTriggerListener == null ? void 0 : removeInitialTriggerListener();
 	      removeMouseCaptureListener();
 	      removeMouseListener();
 	      mobileSafariHackListeners.forEach(remove => remove());
@@ -14878,7 +14880,7 @@
 	  }
 
 	  // eslint-disable-next-line no-unused-expressions
-	  modifiers == null ? undefined : modifiers.forEach(m => {
+	  modifiers == null ? void 0 : modifiers.forEach(m => {
 	    result[m.name] = m;
 	  });
 	  return result;
@@ -14910,21 +14912,21 @@
 	    modifiers: toModifierArray(Object.assign({}, modifiers, {
 	      eventListeners: {
 	        enabled: enableEvents,
-	        options: (_modifiers$eventListe = modifiers.eventListeners) == null ? undefined : _modifiers$eventListe.options
+	        options: (_modifiers$eventListe = modifiers.eventListeners) == null ? void 0 : _modifiers$eventListe.options
 	      },
 	      preventOverflow: Object.assign({}, modifiers.preventOverflow, {
 	        options: containerPadding ? Object.assign({
 	          padding: containerPadding
-	        }, (_modifiers$preventOve = modifiers.preventOverflow) == null ? undefined : _modifiers$preventOve.options) : (_modifiers$preventOve2 = modifiers.preventOverflow) == null ? undefined : _modifiers$preventOve2.options
+	        }, (_modifiers$preventOve = modifiers.preventOverflow) == null ? void 0 : _modifiers$preventOve.options) : (_modifiers$preventOve2 = modifiers.preventOverflow) == null ? void 0 : _modifiers$preventOve2.options
 	      }),
 	      offset: {
 	        options: Object.assign({
 	          offset
-	        }, (_modifiers$offset = modifiers.offset) == null ? undefined : _modifiers$offset.options)
+	        }, (_modifiers$offset = modifiers.offset) == null ? void 0 : _modifiers$offset.options)
 	      },
 	      arrow: Object.assign({}, modifiers.arrow, {
 	        enabled: !!arrowElement,
-	        options: Object.assign({}, (_modifiers$arrow = modifiers.arrow) == null ? undefined : _modifiers$arrow.options, {
+	        options: Object.assign({}, (_modifiers$arrow = modifiers.arrow) == null ? void 0 : _modifiers$arrow.options, {
 	          element: arrowElement
 	        })
 	      }),
@@ -14974,12 +14976,12 @@
 	    enableEventListeners = true,
 	    usePopper: shouldUsePopper = !!context
 	  } = options;
-	  const show = (context == null ? undefined : context.show) == null ? !!options.show : context.show;
+	  const show = (context == null ? void 0 : context.show) == null ? !!options.show : context.show;
 	  if (show && !hasShownRef.current) {
 	    hasShownRef.current = true;
 	  }
 	  const handleClose = e => {
-	    context == null ? undefined : context.toggle(false, e);
+	    context == null ? void 0 : context.toggle(false, e);
 	  };
 	  const {
 	    placement,
@@ -14999,7 +15001,7 @@
 	  }));
 	  const menuProps = Object.assign({
 	    ref: setMenu || noop$7,
-	    'aria-labelledby': toggleElement == null ? undefined : toggleElement.id
+	    'aria-labelledby': toggleElement == null ? void 0 : toggleElement.id
 	  }, popper.attributes.popper, {
 	    style: popper.styles.popper
 	  });
@@ -15007,7 +15009,7 @@
 	    show,
 	    placement,
 	    hasShown: hasShownRef.current,
-	    toggle: context == null ? undefined : context.toggle,
+	    toggle: context == null ? void 0 : context.toggle,
 	    popper: shouldUsePopper ? popper : null,
 	    arrowProps: shouldUsePopper ? Object.assign({
 	      ref: attachArrowRef
@@ -15089,7 +15091,7 @@
 
 	const isRoleMenu = el => {
 	  var _el$getAttribute;
-	  return ((_el$getAttribute = el.getAttribute('role')) == null ? undefined : _el$getAttribute.toLowerCase()) === 'menu';
+	  return ((_el$getAttribute = el.getAttribute('role')) == null ? void 0 : _el$getAttribute.toLowerCase()) === 'menu';
 	};
 	const noop$6 = () => {};
 
@@ -15195,7 +15197,7 @@
 	  const isActive = active == null && key != null ? makeEventKey(activeKey) === eventKey : active;
 	  const handleClick = useEventCallback(event => {
 	    if (disabled) return;
-	    onClick == null ? undefined : onClick(event);
+	    onClick == null ? void 0 : onClick(event);
 	    if (onSelectCtx && !event.isPropagationStopped()) {
 	      onSelectCtx(eventKey, event);
 	    }
@@ -15283,17 +15285,17 @@
 	  const lastSourceEvent = reactExports.useRef(null);
 	  const focusInDropdown = reactExports.useRef(false);
 	  const onSelectCtx = reactExports.useContext(SelectableContext);
-	  const toggle = reactExports.useCallback((nextShow, event, source = event == null ? undefined : event.type) => {
+	  const toggle = reactExports.useCallback((nextShow, event, source = event == null ? void 0 : event.type) => {
 	    onToggle(nextShow, {
 	      originalEvent: event,
 	      source
 	    });
 	  }, [onToggle]);
 	  const handleSelect = useEventCallback((key, event) => {
-	    onSelect == null ? undefined : onSelect(key, event);
+	    onSelect == null ? void 0 : onSelect(key, event);
 	    toggle(false, event, 'select');
 	    if (!event.isPropagationStopped()) {
-	      onSelectCtx == null ? undefined : onSelectCtx(key, event);
+	      onSelectCtx == null ? void 0 : onSelectCtx(key, event);
 	    }
 	  });
 	  const context = reactExports.useMemo(() => ({
@@ -15348,8 +15350,8 @@
 	      key
 	    } = event;
 	    const target = event.target;
-	    const fromMenu = (_menuRef$current = menuRef.current) == null ? undefined : _menuRef$current.contains(target);
-	    const fromToggle = (_toggleRef$current = toggleRef.current) == null ? undefined : _toggleRef$current.contains(target);
+	    const fromMenu = (_menuRef$current = menuRef.current) == null ? void 0 : _menuRef$current.contains(target);
+	    const fromToggle = (_toggleRef$current = toggleRef.current) == null ? void 0 : _toggleRef$current.contains(target);
 
 	    // Second only to https://github.com/twbs/bootstrap/blob/8cfbf6933b8a0146ac3fbc369f19e520bd1ebdac/js/src/dropdown.js#L400
 	    // in inscrutability
@@ -15463,7 +15465,7 @@
 
 	  // eslint-disable-next-line react-hooks/rules-of-hooks
 	  const warningRef = reactExports.useCallback(refValue => {
-	    !(refValue == null || !refValue.isReactComponent) ? invariant_1(false, `${componentName} injected a ref to a provided \`as\` component that resolved to a component instance instead of a DOM element. ` + 'Use `React.forwardRef` to provide the injected ref to the class component as a prop in order to pass it directly to a DOM element')  : undefined;
+	    !(refValue == null || !refValue.isReactComponent) ? invariant_1(false, `${componentName} injected a ref to a provided \`as\` component that resolved to a component instance instead of a DOM element. ` + 'Use `React.forwardRef` to provide the injected ref to the class component as a prop in order to pass it directly to a DOM element')  : void 0;
 	  }, [componentName]);
 	  // eslint-disable-next-line react-hooks/rules-of-hooks
 	  return useMergedRefs(warningRef, ref);
@@ -15559,14 +15561,14 @@
 	  useIsomorphicEffect(() => {
 	    // Popper's initial position for the menu is incorrect when
 	    // renderOnMount=true. Need to call update() to correct it.
-	    if (show) popper == null ? undefined : popper.update();
+	    if (show) popper == null ? void 0 : popper.update();
 	  }, [show]);
 	  if (!hasShown && !renderOnMount && !isInputGroup) return null;
 
 	  // For custom components provide additional, non-DOM, props;
 	  if (typeof Component !== 'string') {
 	    menuProps.show = show;
-	    menuProps.close = () => toggle == null ? undefined : toggle(false);
+	    menuProps.close = () => toggle == null ? void 0 : toggle(false);
 	    menuProps.align = align;
 	  }
 	  let style = props.style;
@@ -15615,7 +15617,7 @@
 	  // This intentionally forwards size and variant (if set) to the
 	  // underlying component, to allow it to render size and style variants.
 	  return /*#__PURE__*/jsxRuntimeExports.jsx(Component, {
-	    className: classNames(className, prefix, split && `${prefix}-split`, (dropdownContext == null ? undefined : dropdownContext.show) && 'show'),
+	    className: classNames(className, prefix, split && `${prefix}-split`, (dropdownContext == null ? void 0 : dropdownContext.show) && 'show'),
 	    ...toggleProps,
 	    ...props
 	  });
@@ -15676,7 +15678,7 @@
 	  };
 	  const handleToggle = useEventCallback((nextShow, meta) => {
 	    if (meta.originalEvent.currentTarget === document && (meta.source !== 'keydown' || meta.originalEvent.key === 'Escape')) meta.source = 'rootClose';
-	    if (isClosingPermitted(meta.source)) onToggle == null ? undefined : onToggle(nextShow, meta);
+	    if (isClosingPermitted(meta.source)) onToggle == null ? void 0 : onToggle(nextShow, meta);
 	  });
 	  const alignEnd = align === 'end';
 	  const placement = getDropdownMenuPlacement(alignEnd, drop, isRTL);
@@ -16418,7 +16420,7 @@
 	  }
 	  props.onClick = useEventCallback(e => {
 	    if (disabled) return;
-	    onClick == null ? undefined : onClick(e);
+	    onClick == null ? void 0 : onClick(e);
 	    if (key == null) {
 	      return;
 	    }
@@ -16506,11 +16508,11 @@
 	  };
 	  const handleSelect = (key, event) => {
 	    if (key == null) return;
-	    onSelect == null ? undefined : onSelect(key, event);
-	    parentOnSelect == null ? undefined : parentOnSelect(key, event);
+	    onSelect == null ? void 0 : onSelect(key, event);
+	    parentOnSelect == null ? void 0 : parentOnSelect(key, event);
 	  };
 	  const handleKeyDown = event => {
-	    onKeyDown == null ? undefined : onKeyDown(event);
+	    onKeyDown == null ? void 0 : onKeyDown(event);
 	    if (!tabContext) {
 	      return;
 	    }
@@ -16536,7 +16538,7 @@
 	  reactExports.useEffect(() => {
 	    if (listNode.current && needsRefocusRef.current) {
 	      const activeChild = listNode.current.querySelector(`[${EVENT_KEY_ATTR}][aria-selected=true]`);
-	      activeChild == null ? undefined : activeChild.focus();
+	      activeChild == null ? void 0 : activeChild.focus();
 	    }
 	    needsRefocusRef.current = false;
 	  });
@@ -16663,7 +16665,7 @@
 	 */
 
 	function activeElement(doc) {
-	  if (doc === undefined) {
+	  if (doc === void 0) {
 	    doc = ownerDocument();
 	  }
 
@@ -16796,7 +16798,7 @@
 	};
 	function useWaitForDOMRef(ref, onResolved) {
 	  const window = useWindow();
-	  const [resolvedRef, setRef] = reactExports.useState(() => resolveContainerRef(ref, window == null ? undefined : window.document));
+	  const [resolvedRef, setRef] = reactExports.useState(() => resolveContainerRef(ref, window == null ? void 0 : window.document));
 	  if (!resolvedRef) {
 	    const earlyRef = resolveContainerRef(ref);
 	    if (earlyRef) setRef(earlyRef);
@@ -16897,10 +16899,10 @@
 	      const onFinish = () => {
 	        if (options.isStale()) return;
 	        if (options.in) {
-	          onEntered == null ? undefined : onEntered(options.element, options.initial);
+	          onEntered == null ? void 0 : onEntered(options.element, options.initial);
 	        } else {
 	          setExited(true);
-	          onExited == null ? undefined : onExited(options.element);
+	          onExited == null ? void 0 : onExited(options.element);
 	        }
 	      };
 	      Promise.resolve(transition(options)).then(onFinish, error => {
@@ -16942,7 +16944,7 @@
 	let manager;
 	function getManager(window) {
 	  if (!manager) manager = new ModalManager({
-	    ownerDocument: window == null ? undefined : window.document
+	    ownerDocument: window == null ? void 0 : window.document
 	  });
 	  return manager;
 	}
@@ -17036,12 +17038,12 @@
 	  });
 	  const handleHide = useEventCallback(() => {
 	    modal.remove();
-	    removeKeydownListenerRef.current == null ? undefined : removeKeydownListenerRef.current();
-	    removeFocusListenerRef.current == null ? undefined : removeFocusListenerRef.current();
+	    removeKeydownListenerRef.current == null ? void 0 : removeKeydownListenerRef.current();
+	    removeFocusListenerRef.current == null ? void 0 : removeFocusListenerRef.current();
 	    if (restoreFocus) {
 	      var _lastFocusRef$current;
 	      // Support: <=IE11 doesn't support `focus()` on svg elements (RB: #917)
-	      (_lastFocusRef$current = lastFocusRef.current) == null ? undefined : _lastFocusRef$current.focus == null ? undefined : _lastFocusRef$current.focus(restoreFocusOptions);
+	      (_lastFocusRef$current = lastFocusRef.current) == null ? void 0 : _lastFocusRef$current.focus == null ? void 0 : _lastFocusRef$current.focus(restoreFocusOptions);
 	      lastFocusRef.current = null;
 	    }
 	  });
@@ -17081,14 +17083,14 @@
 	    if (e.target !== e.currentTarget) {
 	      return;
 	    }
-	    onBackdropClick == null ? undefined : onBackdropClick(e);
+	    onBackdropClick == null ? void 0 : onBackdropClick(e);
 	    if (backdrop === true) {
 	      onHide();
 	    }
 	  });
 	  const handleDocumentKeyDown = useEventCallback(e => {
 	    if (keyboard && e.keyCode === 27 && modal.isTopModal()) {
-	      onEscapeKeyDown == null ? undefined : onEscapeKeyDown(e);
+	      onEscapeKeyDown == null ? void 0 : onEscapeKeyDown(e);
 	      if (!e.defaultPrevented) {
 	        onHide();
 	      }
@@ -17098,7 +17100,7 @@
 	  const removeKeydownListenerRef = reactExports.useRef();
 	  const handleHidden = (...args) => {
 	    setExited(true);
-	    onExited == null ? undefined : onExited(...args);
+	    onExited == null ? void 0 : onExited(...args);
 	  };
 	  if (!container) {
 	    return null;
@@ -17299,8 +17301,8 @@
 	}, ref) => {
 	  const context = reactExports.useContext(ModalContext);
 	  const handleClick = useEventCallback(() => {
-	    context == null ? undefined : context.onHide();
-	    onHide == null ? undefined : onHide();
+	    context == null ? void 0 : context.onHide();
+	    onHide == null ? void 0 : onHide();
 	  });
 	  return /*#__PURE__*/jsxRuntimeExports.jsxs("div", {
 	    ref: ref,
@@ -17434,7 +17436,7 @@
 	  });
 	  useWillUnmount(() => {
 	    removeEventListener(window, 'resize', handleWindowResize);
-	    removeStaticModalAnimationRef.current == null ? undefined : removeStaticModalAnimationRef.current();
+	    removeStaticModalAnimationRef.current == null ? void 0 : removeStaticModalAnimationRef.current();
 	  });
 
 	  // We prevent the modal from closing during a drag by detecting where the
@@ -17470,11 +17472,11 @@
 	      ignoreBackdropClickRef.current = false;
 	      return;
 	    }
-	    onHide == null ? undefined : onHide();
+	    onHide == null ? void 0 : onHide();
 	  };
 	  const handleEscapeKeyDown = e => {
 	    if (keyboard) {
-	      onEscapeKeyDown == null ? undefined : onEscapeKeyDown(e);
+	      onEscapeKeyDown == null ? void 0 : onEscapeKeyDown(e);
 	    } else {
 	      // Call preventDefault to stop modal from closing in @restart/ui.
 	      e.preventDefault();
@@ -17488,21 +17490,21 @@
 	    if (node) {
 	      updateDialogStyle(node);
 	    }
-	    onEnter == null ? undefined : onEnter(node, isAppearing);
+	    onEnter == null ? void 0 : onEnter(node, isAppearing);
 	  };
 	  const handleExit = node => {
-	    removeStaticModalAnimationRef.current == null ? undefined : removeStaticModalAnimationRef.current();
-	    onExit == null ? undefined : onExit(node);
+	    removeStaticModalAnimationRef.current == null ? void 0 : removeStaticModalAnimationRef.current();
+	    onExit == null ? void 0 : onExit(node);
 	  };
 	  const handleEntering = (node, isAppearing) => {
-	    onEntering == null ? undefined : onEntering(node, isAppearing);
+	    onEntering == null ? void 0 : onEntering(node, isAppearing);
 
 	    // FIXME: This should work even when animation is disabled.
 	    addEventListener(window, 'resize', handleWindowResize);
 	  };
 	  const handleExited = node => {
 	    if (node) node.style.display = ''; // RHL removes it sometimes
-	    onExited == null ? undefined : onExited(node);
+	    onExited == null ? void 0 : onExited(node);
 
 	    // FIXME: This should work even when animation is disabled.
 	    removeEventListener(window, 'resize', handleWindowResize);
@@ -17862,7 +17864,7 @@
 	 */
 
 	function useMediaQuery(query, targetWindow) {
-	  if (targetWindow === undefined) {
+	  if (targetWindow === void 0) {
 	    targetWindow = typeof window === 'undefined' ? undefined : window;
 	  }
 	  var mql = getMatcher(query, targetWindow);
@@ -17887,7 +17889,7 @@
 	      mql.removeListener(handleChange);
 	      mql.refCount--;
 	      if (mql.refCount <= 0) {
-	        matchers == null ? undefined : matchers.delete(mql.media);
+	        matchers == null ? void 0 : matchers.delete(mql.media);
 	      }
 	      mql = undefined;
 	    };
@@ -18117,8 +18119,8 @@
 	    setShowOffcanvas(responsive ? show && !hideResponsiveOffcanvas : show);
 	  }, [show, responsive, hideResponsiveOffcanvas]);
 	  const handleHide = useEventCallback(() => {
-	    onToggle == null ? undefined : onToggle();
-	    onHide == null ? undefined : onHide();
+	    onToggle == null ? void 0 : onToggle();
+	    onHide == null ? void 0 : onHide();
 	  });
 	  const modalContext = reactExports.useMemo(() => ({
 	    onHide: handleHide
@@ -18137,11 +18139,11 @@
 	  }
 	  const handleEnter = (node, ...args) => {
 	    if (node) node.style.visibility = 'visible';
-	    onEnter == null ? undefined : onEnter(node, ...args);
+	    onEnter == null ? void 0 : onEnter(node, ...args);
 	  };
 	  const handleExited = (node, ...args) => {
 	    if (node) node.style.visibility = '';
-	    onExited == null ? undefined : onExited(...args);
+	    onExited == null ? void 0 : onExited(...args);
 	  };
 	  const renderBackdrop = reactExports.useCallback(backdropProps => /*#__PURE__*/jsxRuntimeExports.jsx("div", {
 	    ...backdropProps,
@@ -18233,9 +18235,9 @@
 	  });
 	  const bsPrefix = useBootstrapPrefix(initialBsPrefix, 'navbar');
 	  const handleCollapse = reactExports.useCallback((...args) => {
-	    onSelect == null ? undefined : onSelect(...args);
+	    onSelect == null ? void 0 : onSelect(...args);
 	    if (collapseOnSelect && expanded) {
-	      onToggle == null ? undefined : onToggle(false);
+	      onToggle == null ? void 0 : onToggle(false);
 	    }
 	  }, [onSelect, collapseOnSelect, expanded, onToggle]);
 
@@ -18248,7 +18250,7 @@
 	  let expandClass = `${bsPrefix}-expand`;
 	  if (typeof expand === 'string') expandClass = `${expandClass}-${expand}`;
 	  const navbarContext = reactExports.useMemo(() => ({
-	    onToggle: () => onToggle == null ? undefined : onToggle(!expanded),
+	    onToggle: () => onToggle == null ? void 0 : onToggle(!expanded),
 	    bsPrefix,
 	    expanded: !!expanded,
 	    expand
@@ -18500,13 +18502,13 @@
 	}, ref) => {
 	  const decoratedBsPrefix = useBootstrapPrefix(bsPrefix, 'popover');
 	  const isRTL = useIsRTL();
-	  const [primaryPlacement] = (placement == null ? undefined : placement.split('-')) || [];
+	  const [primaryPlacement] = (placement == null ? void 0 : placement.split('-')) || [];
 	  const bsDirection = getOverlayDirection(primaryPlacement, isRTL);
 	  let computedStyle = style;
 	  if (show && !hasDoneInitialMeasure) {
 	    computedStyle = {
 	      ...style,
-	      ...getInitialPopperStyles(popper == null ? undefined : popper.strategy)
+	      ...getInitialPopperStyles(popper == null ? void 0 : popper.strategy)
 	    };
 	  }
 	  return /*#__PURE__*/jsxRuntimeExports.jsxs("div", {
@@ -18581,11 +18583,11 @@
 	  const actualTransition = transition === true ? Fade : transition || undefined;
 	  const handleFirstUpdate = useEventCallback(state => {
 	    setFirstRenderedState(state);
-	    popperConfig == null ? undefined : popperConfig.onFirstUpdate == null ? undefined : popperConfig.onFirstUpdate(state);
+	    popperConfig == null ? void 0 : popperConfig.onFirstUpdate == null ? void 0 : popperConfig.onFirstUpdate(state);
 	  });
 	  useIsomorphicEffect(() => {
 	    if (firstRenderedState) {
-	      popperRef.current.scheduleUpdate == null ? undefined : popperRef.current.scheduleUpdate();
+	      popperRef.current.scheduleUpdate == null ? void 0 : popperRef.current.scheduleUpdate();
 	    }
 	  }, [firstRenderedState]);
 	  reactExports.useEffect(() => {
@@ -18610,12 +18612,12 @@
 	      var _popperObj$state, _popperObj$state$modi;
 	      wrapRefs(overlayProps, arrowProps);
 	      // Need to get placement from popper object, handling case when overlay is flipped using 'flip' prop
-	      const updatedPlacement = popperObj == null ? undefined : popperObj.placement;
+	      const updatedPlacement = popperObj == null ? void 0 : popperObj.placement;
 	      const popper = Object.assign(popperRef.current, {
-	        state: popperObj == null ? undefined : popperObj.state,
-	        scheduleUpdate: popperObj == null ? undefined : popperObj.update,
+	        state: popperObj == null ? void 0 : popperObj.state,
+	        scheduleUpdate: popperObj == null ? void 0 : popperObj.update,
 	        placement: updatedPlacement,
-	        outOfBoundaries: (popperObj == null ? undefined : (_popperObj$state = popperObj.state) == null ? undefined : (_popperObj$state$modi = _popperObj$state.modifiersData.hide) == null ? undefined : _popperObj$state$modi.isReferenceHidden) || false,
+	        outOfBoundaries: (popperObj == null ? void 0 : (_popperObj$state = popperObj.state) == null ? void 0 : (_popperObj$state$modi = _popperObj$state.modifiersData.hide) == null ? void 0 : _popperObj$state$modi.isReferenceHidden) || false,
 	        strategy: popperConfig.strategy
 	      });
 	      const hasDoneInitialMeasure = !!firstRenderedState;
@@ -19412,7 +19414,7 @@
 	  bsPrefix = useBootstrapPrefix(bsPrefix, 'toast-header');
 	  const context = reactExports.useContext(ToastContext);
 	  const handleClick = useEventCallback(e => {
-	    context == null ? undefined : context.onClose == null ? undefined : context.onClose(e);
+	    context == null ? void 0 : context.onClose == null ? void 0 : context.onClose(e);
 	  });
 	  return /*#__PURE__*/jsxRuntimeExports.jsxs("div", {
 	    ref: ref,
@@ -19457,7 +19459,7 @@
 	  const autohideToast = !!(autohide && show);
 	  const autohideFunc = reactExports.useCallback(() => {
 	    if (autohideToast) {
-	      onCloseRef.current == null ? undefined : onCloseRef.current();
+	      onCloseRef.current == null ? void 0 : onCloseRef.current();
 	    }
 	  }, [autohideToast]);
 	  reactExports.useEffect(() => {
@@ -19592,7 +19594,7 @@
 	      onChange([...values, inputVal], event);
 	    }
 	  };
-	  !(type !== 'radio' || !!name) ? invariant_1(false, 'A `name` is required to group the toggle buttons when the `type` ' + 'is set to "radio"')  : undefined;
+	  !(type !== 'radio' || !!name) ? invariant_1(false, 'A `name` is required to group the toggle buttons when the `type` ' + 'is set to "radio"')  : void 0;
 	  return /*#__PURE__*/jsxRuntimeExports.jsx(ButtonGroup, {
 	    ...controlledProps,
 	    ref: ref,
@@ -19634,13 +19636,13 @@
 	}, ref) => {
 	  bsPrefix = useBootstrapPrefix(bsPrefix, 'tooltip');
 	  const isRTL = useIsRTL();
-	  const [primaryPlacement] = (placement == null ? undefined : placement.split('-')) || [];
+	  const [primaryPlacement] = (placement == null ? void 0 : placement.split('-')) || [];
 	  const bsDirection = getOverlayDirection(primaryPlacement, isRTL);
 	  let computedStyle = style;
 	  if (show && !hasDoneInitialMeasure) {
 	    computedStyle = {
 	      ...style,
-	      ...getInitialPopperStyles(popper == null ? undefined : popper.strategy)
+	      ...getInitialPopperStyles(popper == null ? void 0 : popper.strategy)
 	    };
 	  }
 	  return /*#__PURE__*/jsxRuntimeExports.jsxs("div", {
@@ -19796,16 +19798,16 @@
 	};
 	var MasonryResponsive = function MasonryResponsive(_ref) {
 	  var _ref$columnsCountBrea = _ref.columnsCountBreakPoints,
-	    columnsCountBreakPoints = _ref$columnsCountBrea === undefined ? {
+	    columnsCountBreakPoints = _ref$columnsCountBrea === void 0 ? {
 	      350: 1,
 	      750: 2,
 	      900: 3
 	    } : _ref$columnsCountBrea,
 	    children = _ref.children,
 	    _ref$className = _ref.className,
-	    className = _ref$className === undefined ? null : _ref$className,
+	    className = _ref$className === void 0 ? null : _ref$className,
 	    _ref$style = _ref.style,
-	    style = _ref$style === undefined ? null : _ref$style;
+	    style = _ref$style === void 0 ? null : _ref$style;
 	  var windowWidth = useWindowWidth();
 	  var columnsCount = reactExports.useMemo(function () {
 	    var breakPoints = Object.keys(columnsCountBreakPoints).sort(function (a, b) {
@@ -19887,7 +19889,7 @@
 	        this.update_setting = this.update_setting.bind(this);
 	    }
 	    update_setting(e) {
-	        let checked = e === null || e === undefined ? undefined : e.target.checked;
+	        let checked = e === null || e === void 0 ? void 0 : e.target.checked;
 	        const { setting, param, instance } = this.props;
 	        SendWebSocketAction(instance.hass, "s4h/setting", {
 	            id: setting.id,
@@ -20038,7 +20040,7 @@
 	  }
 	}
 	function _createClass(Constructor, protoProps, staticProps) {
-	  _defineProperties(Constructor.prototype, protoProps);
+	  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
 	  Object.defineProperty(Constructor, "prototype", {
 	    writable: false
 	  });
@@ -20131,7 +20133,7 @@
 	} catch (e) {}
 	var _ref = _WINDOW.navigator || {},
 	  _ref$userAgent = _ref.userAgent,
-	  userAgent = _ref$userAgent === undefined ? '' : _ref$userAgent;
+	  userAgent = _ref$userAgent === void 0 ? '' : _ref$userAgent;
 	var WINDOW = _WINDOW;
 	var DOCUMENT = _DOCUMENT;
 	var MUTATION_OBSERVER = _MUTATION_OBSERVER;
@@ -20452,18 +20454,14 @@
 	function transformForCss(_ref2) {
 	  var transform = _ref2.transform,
 	    _ref2$width = _ref2.width,
-	    width = _ref2$width === undefined ? UNITS_IN_GRID : _ref2$width,
+	    width = _ref2$width === void 0 ? UNITS_IN_GRID : _ref2$width,
 	    _ref2$height = _ref2.height,
-	    height = _ref2$height === undefined ? UNITS_IN_GRID : _ref2$height,
-	    _ref2$startCentered = _ref2.startCentered,
-	    startCentered = _ref2$startCentered === undefined ? false : _ref2$startCentered;
+	    height = _ref2$height === void 0 ? UNITS_IN_GRID : _ref2$height;
 	  var val = '';
-	  if (startCentered && IS_IE) {
+	  if (IS_IE) {
 	    val += "translate(".concat(transform.x / d - width / 2, "em, ").concat(transform.y / d - height / 2, "em) ");
-	  } else if (startCentered) {
-	    val += "translate(calc(-50% + ".concat(transform.x / d, "em), calc(-50% + ").concat(transform.y / d, "em)) ");
 	  } else {
-	    val += "translate(".concat(transform.x / d, "em, ").concat(transform.y / d, "em) ");
+	    val += "translate(calc(-50% + ".concat(transform.x / d, "em), calc(-50% + ").concat(transform.y / d, "em)) ");
 	  }
 	  val += "scale(".concat(transform.size / d * (transform.flipX ? -1 : 1), ", ").concat(transform.size / d * (transform.flipY ? -1 : 1), ") ");
 	  val += "rotate(".concat(transform.rotate, "deg) ");
@@ -20537,9 +20535,9 @@
 	function toHtml(abstractNodes) {
 	  var tag = abstractNodes.tag,
 	    _abstractNodes$attrib = abstractNodes.attributes,
-	    attributes = _abstractNodes$attrib === undefined ? {} : _abstractNodes$attrib,
+	    attributes = _abstractNodes$attrib === void 0 ? {} : _abstractNodes$attrib,
 	    _abstractNodes$childr = abstractNodes.children,
-	    children = _abstractNodes$childr === undefined ? [] : _abstractNodes$childr;
+	    children = _abstractNodes$childr === void 0 ? [] : _abstractNodes$childr;
 	  if (typeof abstractNodes === 'string') {
 	    return htmlEscape(abstractNodes);
 	  } else {
@@ -20665,7 +20663,7 @@
 	function defineIcons(prefix, icons) {
 	  var params = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
 	  var _params$skipHooks = params.skipHooks,
-	    skipHooks = _params$skipHooks === undefined ? false : _params$skipHooks;
+	    skipHooks = _params$skipHooks === void 0 ? false : _params$skipHooks;
 	  var normalized = normalizeIcons(icons);
 	  if (typeof namespace.hooks.addPack === 'function' && !skipHooks) {
 	    namespace.hooks.addPack(prefix, normalizeIcons(icons));
@@ -20826,7 +20824,7 @@
 	function getCanonicalPrefix(styleOrPrefix) {
 	  var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 	  var _params$family = params.family,
-	    family = _params$family === undefined ? FAMILY_CLASSIC : _params$family;
+	    family = _params$family === void 0 ? FAMILY_CLASSIC : _params$family;
 	  var style = PREFIX_TO_STYLE[family][styleOrPrefix];
 	  var prefix = STYLE_TO_PREFIX[family][styleOrPrefix] || STYLE_TO_PREFIX[family][style];
 	  var defined = styleOrPrefix in namespace.styles ? styleOrPrefix : null;
@@ -20837,7 +20835,7 @@
 	  var _famProps;
 	  var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 	  var _params$skipLookups = params.skipLookups,
-	    skipLookups = _params$skipLookups === undefined ? false : _params$skipLookups;
+	    skipLookups = _params$skipLookups === void 0 ? false : _params$skipLookups;
 	  var famProps = (_famProps = {}, _defineProperty$1(_famProps, FAMILY_CLASSIC, "".concat(config.cssPrefix, "-").concat(FAMILY_CLASSIC)), _defineProperty$1(_famProps, FAMILY_SHARP, "".concat(config.cssPrefix, "-").concat(FAMILY_SHARP)), _famProps);
 	  var givenPrefix = null;
 	  var family = FAMILY_CLASSIC;
@@ -21114,7 +21112,7 @@
 	var autoReplace = function autoReplace() {
 	  var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 	  var _params$autoReplaceSv = params.autoReplaceSvgRoot,
-	    autoReplaceSvgRoot = _params$autoReplaceSv === undefined ? DOCUMENT : _params$autoReplaceSv;
+	    autoReplaceSvgRoot = _params$autoReplaceSv === void 0 ? DOCUMENT : _params$autoReplaceSv;
 	  if ((Object.keys(namespace.styles).length > 0 || config.autoFetchSvg) && IS_DOM && config.autoReplaceSvg) api.dom.i2svg({
 	    node: autoReplaceSvgRoot
 	  });
@@ -21198,7 +21196,7 @@
 	    titleId = params.titleId,
 	    extra = params.extra,
 	    _params$watchable = params.watchable,
-	    watchable = _params$watchable === undefined ? false : _params$watchable;
+	    watchable = _params$watchable === void 0 ? false : _params$watchable;
 	  var _ref = mask.found ? mask : main,
 	    width = _ref.width,
 	    height = _ref.height;
@@ -21270,7 +21268,7 @@
 	    title = params.title,
 	    extra = params.extra,
 	    _params$watchable2 = params.watchable,
-	    watchable = _params$watchable2 === undefined ? false : _params$watchable2;
+	    watchable = _params$watchable2 === void 0 ? false : _params$watchable2;
 	  var attributes = _objectSpread2$1(_objectSpread2$1(_objectSpread2$1({}, extra.attributes), title ? {
 	    'title': title
 	  } : {}), {}, {
@@ -21283,7 +21281,6 @@
 	  if (transformIsMeaningful(transform)) {
 	    styles['transform'] = transformForCss({
 	      transform: transform,
-	      startCentered: true,
 	      width: width,
 	      height: height
 	    });
@@ -21403,9 +21400,6 @@
 	  }
 	  return new Promise(function (resolve, reject) {
 	    ({
-	      found: false,
-	      width: 512,
-	      height: 512,
 	      icon: callProvided('missingIconAbstract') || {}
 	    });
 	    if (givenPrefix === 'fa') {
@@ -21472,7 +21466,7 @@
 	function convertSVG(abstractObj) {
 	  var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 	  var _params$ceFn = params.ceFn,
-	    ceFn = _params$ceFn === undefined ? abstractObj.tag === 'svg' ? createElementNS : createElement : _params$ceFn;
+	    ceFn = _params$ceFn === void 0 ? abstractObj.tag === 'svg' ? createElementNS : createElement : _params$ceFn;
 	  if (typeof abstractObj === 'string') {
 	    return DOCUMENT.createTextNode(abstractObj);
 	  }
@@ -21585,13 +21579,13 @@
 	    return;
 	  }
 	  var _options$treeCallback = options.treeCallback,
-	    treeCallback = _options$treeCallback === undefined ? noop$2 : _options$treeCallback,
+	    treeCallback = _options$treeCallback === void 0 ? noop$2 : _options$treeCallback,
 	    _options$nodeCallback = options.nodeCallback,
-	    nodeCallback = _options$nodeCallback === undefined ? noop$2 : _options$nodeCallback,
+	    nodeCallback = _options$nodeCallback === void 0 ? noop$2 : _options$nodeCallback,
 	    _options$pseudoElemen = options.pseudoElementsCallback,
-	    pseudoElementsCallback = _options$pseudoElemen === undefined ? noop$2 : _options$pseudoElemen,
+	    pseudoElementsCallback = _options$pseudoElemen === void 0 ? noop$2 : _options$pseudoElemen,
 	    _options$observeMutat = options.observeMutationsRoot,
-	    observeMutationsRoot = _options$observeMutat === undefined ? DOCUMENT : _options$observeMutat;
+	    observeMutationsRoot = _options$observeMutat === void 0 ? DOCUMENT : _options$observeMutat;
 	  mo = new MUTATION_OBSERVER(function (objects) {
 	    if (disabled) return;
 	    var defaultPrefix = getDefaultUsablePrefix();
@@ -21847,23 +21841,23 @@
 	var render = function render(iconDefinition) {
 	  var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 	  var _params$transform = params.transform,
-	    transform = _params$transform === undefined ? meaninglessTransform : _params$transform,
+	    transform = _params$transform === void 0 ? meaninglessTransform : _params$transform,
 	    _params$symbol = params.symbol,
-	    symbol = _params$symbol === undefined ? false : _params$symbol,
+	    symbol = _params$symbol === void 0 ? false : _params$symbol,
 	    _params$mask = params.mask,
-	    mask = _params$mask === undefined ? null : _params$mask,
+	    mask = _params$mask === void 0 ? null : _params$mask,
 	    _params$maskId = params.maskId,
-	    maskId = _params$maskId === undefined ? null : _params$maskId,
+	    maskId = _params$maskId === void 0 ? null : _params$maskId,
 	    _params$title = params.title,
-	    title = _params$title === undefined ? null : _params$title,
+	    title = _params$title === void 0 ? null : _params$title,
 	    _params$titleId = params.titleId,
-	    titleId = _params$titleId === undefined ? null : _params$titleId,
+	    titleId = _params$titleId === void 0 ? null : _params$titleId,
 	    _params$classes = params.classes,
-	    classes = _params$classes === undefined ? [] : _params$classes,
+	    classes = _params$classes === void 0 ? [] : _params$classes,
 	    _params$attributes = params.attributes,
-	    attributes = _params$attributes === undefined ? {} : _params$attributes,
+	    attributes = _params$attributes === void 0 ? {} : _params$attributes,
 	    _params$styles = params.styles,
-	    styles = _params$styles === undefined ? {} : _params$styles;
+	    styles = _params$styles === void 0 ? {} : _params$styles;
 	  if (!iconDefinition) return;
 	  var prefix = iconDefinition.prefix,
 	    iconName = iconDefinition.iconName,
@@ -21926,9 +21920,9 @@
 	  provides: function provides(providers$$1) {
 	    providers$$1.i2svg = function (params) {
 	      var _params$node = params.node,
-	        node = _params$node === undefined ? DOCUMENT : _params$node,
+	        node = _params$node === void 0 ? DOCUMENT : _params$node,
 	        _params$callback = params.callback,
-	        callback = _params$callback === undefined ? function () {} : _params$callback;
+	        callback = _params$callback === void 0 ? function () {} : _params$callback;
 	      return onTree(node, callback);
 	    };
 	    providers$$1.generateSvgReplacementMutation = function (node, nodeMeta) {
@@ -22002,7 +21996,7 @@
 	      layer: function layer(assembler) {
 	        var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 	        var _params$classes = params.classes,
-	          classes = _params$classes === undefined ? [] : _params$classes;
+	          classes = _params$classes === void 0 ? [] : _params$classes;
 	        return domVariants({
 	          type: 'layer'
 	        }, function () {
@@ -22034,13 +22028,13 @@
 	      counter: function counter(content) {
 	        var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 	        var _params$title = params.title,
-	          title = _params$title === undefined ? null : _params$title,
+	          title = _params$title === void 0 ? null : _params$title,
 	          _params$classes = params.classes,
-	          classes = _params$classes === undefined ? [] : _params$classes,
+	          classes = _params$classes === void 0 ? [] : _params$classes,
 	          _params$attributes = params.attributes,
-	          attributes = _params$attributes === undefined ? {} : _params$attributes,
+	          attributes = _params$attributes === void 0 ? {} : _params$attributes,
 	          _params$styles = params.styles,
-	          styles = _params$styles === undefined ? {} : _params$styles;
+	          styles = _params$styles === void 0 ? {} : _params$styles;
 	        return domVariants({
 	          type: 'counter',
 	          content: content
@@ -22069,15 +22063,15 @@
 	      text: function text(content) {
 	        var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 	        var _params$transform = params.transform,
-	          transform = _params$transform === undefined ? meaninglessTransform : _params$transform,
+	          transform = _params$transform === void 0 ? meaninglessTransform : _params$transform,
 	          _params$title = params.title,
-	          title = _params$title === undefined ? null : _params$title,
+	          title = _params$title === void 0 ? null : _params$title,
 	          _params$classes = params.classes,
-	          classes = _params$classes === undefined ? [] : _params$classes,
+	          classes = _params$classes === void 0 ? [] : _params$classes,
 	          _params$attributes = params.attributes,
-	          attributes = _params$attributes === undefined ? {} : _params$attributes,
+	          attributes = _params$attributes === void 0 ? {} : _params$attributes,
 	          _params$styles = params.styles,
-	          styles = _params$styles === undefined ? {} : _params$styles;
+	          styles = _params$styles === void 0 ? {} : _params$styles;
 	        return domVariants({
 	          type: 'text',
 	          content: content
@@ -22255,7 +22249,7 @@
 	  provides: function provides(providers$$1) {
 	    providers$$1.pseudoElements2svg = function (params) {
 	      var _params$node = params.node,
-	        node = _params$node === undefined ? DOCUMENT : _params$node;
+	        node = _params$node === void 0 ? DOCUMENT : _params$node;
 	      if (config.searchPseudoElements) {
 	        searchPseudoElements(node);
 	      }
@@ -22850,12 +22844,12 @@
 	    attrs: {}
 	  });
 	  var _extraProps$style = extraProps.style,
-	    existingStyle = _extraProps$style === undefined ? {} : _extraProps$style,
+	    existingStyle = _extraProps$style === void 0 ? {} : _extraProps$style,
 	    remaining = _objectWithoutProperties(extraProps, _excluded$1);
 	  mixins.attrs['style'] = _objectSpread2(_objectSpread2({}, mixins.attrs['style']), existingStyle);
 	  /* eslint-enable */
 
-	  return createElement.apply(undefined, [element.tag, _objectSpread2(_objectSpread2({}, mixins.attrs), remaining)].concat(_toConsumableArray(children)));
+	  return createElement.apply(void 0, [element.tag, _objectSpread2(_objectSpread2({}, mixins.attrs), remaining)].concat(_toConsumableArray(children)));
 	}
 	var PRODUCTION = false;
 	try {
@@ -23121,7 +23115,7 @@
 	 */
 
 	function createBrowserHistory(options) {
-	  if (options === undefined) {
+	  if (options === void 0) {
 	    options = {};
 	  }
 	  function createBrowserLocation(window, globalHistory) {
@@ -23167,7 +23161,7 @@
 	 */
 
 	function createLocation(current, to, state, key) {
-	  if (state === undefined) {
+	  if (state === void 0) {
 	    state = null;
 	  }
 	  let location = _extends$2({
@@ -23222,7 +23216,7 @@
 	  return parsedPath;
 	}
 	function getUrlBasedHistory(getLocation, createHref, validateLocation, options) {
-	  if (options === undefined) {
+	  if (options === void 0) {
 	    options = {};
 	  }
 	  let {
@@ -23361,7 +23355,7 @@
 	 */
 
 	function matchRoutes(routes, locationArg, basename) {
-	  if (basename === undefined) {
+	  if (basename === void 0) {
 	    basename = "/";
 	  }
 	  let location = typeof locationArg === "string" ? parsePath(locationArg) : locationArg;
@@ -23385,13 +23379,13 @@
 	  return matches;
 	}
 	function flattenRoutes(routes, branches, parentsMeta, parentPath) {
-	  if (branches === undefined) {
+	  if (branches === void 0) {
 	    branches = [];
 	  }
-	  if (parentsMeta === undefined) {
+	  if (parentsMeta === void 0) {
 	    parentsMeta = [];
 	  }
-	  if (parentPath === undefined) {
+	  if (parentPath === void 0) {
 	    parentPath = "";
 	  }
 	  let flattenRoute = (route, index, relativePath) => {
@@ -23592,10 +23586,10 @@
 	  };
 	}
 	function compilePath(path, caseSensitive, end) {
-	  if (caseSensitive === undefined) {
+	  if (caseSensitive === void 0) {
 	    caseSensitive = false;
 	  }
-	  if (end === undefined) {
+	  if (end === void 0) {
 	    end = true;
 	  }
 	  warning(path === "*" || !path.endsWith("*") || path.endsWith("/*"), "Route path \"" + path + "\" will be treated as if it were " + ("\"" + path.replace(/\*$/, "/*") + "\" because the `*` character must ") + "always follow a `/` in the pattern. To get rid of this warning, " + ("please change the route path to \"" + path.replace(/\*$/, "/*") + "\"."));
@@ -23687,7 +23681,7 @@
 	 */
 
 	function resolvePath(to, fromPathname) {
-	  if (fromPathname === undefined) {
+	  if (fromPathname === void 0) {
 	    fromPathname = "/";
 	  }
 	  let {
@@ -23750,7 +23744,7 @@
 	 */
 
 	function resolveTo(toArg, routePathnames, locationPathname, isPathRelative) {
-	  if (isPathRelative === undefined) {
+	  if (isPathRelative === void 0) {
 	    isPathRelative = false;
 	  }
 	  let to;
@@ -23902,11 +23896,11 @@
 	function useHref(to, _temp) {
 	  let {
 	    relative
-	  } = _temp === undefined ? {} : _temp;
+	  } = _temp === void 0 ? {} : _temp;
 	  !useInRouterContext() ? invariant(false,
 	  // TODO: This error is probably because they somehow have 2 versions of the
 	  // router loaded. We can help them understand how to avoid that.
-	  "useHref() may be used only in the context of a <Router> component.")  : undefined;
+	  "useHref() may be used only in the context of a <Router> component.")  : void 0;
 	  let {
 	    basename,
 	    navigator
@@ -23956,7 +23950,7 @@
 	  !useInRouterContext() ? invariant(false,
 	  // TODO: This error is probably because they somehow have 2 versions of the
 	  // router loaded. We can help them understand how to avoid that.
-	  "useLocation() may be used only in the context of a <Router> component.")  : undefined;
+	  "useLocation() may be used only in the context of a <Router> component.")  : void 0;
 	  return reactExports.useContext(LocationContext).location;
 	}
 	/**
@@ -23973,7 +23967,7 @@
 	  !useInRouterContext() ? invariant(false,
 	  // TODO: This error is probably because they somehow have 2 versions of the
 	  // router loaded. We can help them understand how to avoid that.
-	  "useNavigate() may be used only in the context of a <Router> component.")  : undefined;
+	  "useNavigate() may be used only in the context of a <Router> component.")  : void 0;
 	  let {
 	    basename,
 	    navigator
@@ -23990,7 +23984,7 @@
 	    activeRef.current = true;
 	  });
 	  let navigate = reactExports.useCallback(function (to, options) {
-	    if (options === undefined) {
+	    if (options === void 0) {
 	      options = {};
 	    }
 	    warning(activeRef.current, "You should call navigate() in a React.useEffect(), not when " + "your component is first rendered.") ;
@@ -24020,7 +24014,7 @@
 	function useResolvedPath(to, _temp2) {
 	  let {
 	    relative
-	  } = _temp2 === undefined ? {} : _temp2;
+	  } = _temp2 === void 0 ? {} : _temp2;
 	  let {
 	    matches
 	  } = reactExports.useContext(RouteContext);
@@ -24043,7 +24037,7 @@
 	  !useInRouterContext() ? invariant(false,
 	  // TODO: This error is probably because they somehow have 2 versions of the
 	  // router loaded. We can help them understand how to avoid that.
-	  "useRoutes() may be used only in the context of a <Router> component.")  : undefined;
+	  "useRoutes() may be used only in the context of a <Router> component.")  : void 0;
 	  let {
 	    navigator
 	  } = reactExports.useContext(NavigationContext);
@@ -24085,7 +24079,7 @@
 	  if (locationArg) {
 	    var _parsedLocationArg$pa;
 	    let parsedLocationArg = typeof locationArg === "string" ? parsePath(locationArg) : locationArg;
-	    !(parentPathnameBase === "/" || ((_parsedLocationArg$pa = parsedLocationArg.pathname) == null ? undefined : _parsedLocationArg$pa.startsWith(parentPathnameBase))) ? invariant(false, "When overriding the location using `<Routes location>` or `useRoutes(routes, location)`, " + "the location pathname must begin with the portion of the URL pathname that was " + ("matched by all parent routes. The current pathname base is \"" + parentPathnameBase + "\" ") + ("but pathname \"" + parsedLocationArg.pathname + "\" was given in the `location` prop."))  : undefined;
+	    !(parentPathnameBase === "/" || ((_parsedLocationArg$pa = parsedLocationArg.pathname) == null ? void 0 : _parsedLocationArg$pa.startsWith(parentPathnameBase))) ? invariant(false, "When overriding the location using `<Routes location>` or `useRoutes(routes, location)`, " + "the location pathname must begin with the portion of the URL pathname that was " + ("matched by all parent routes. The current pathname base is \"" + parentPathnameBase + "\" ") + ("but pathname \"" + parsedLocationArg.pathname + "\" was given in the `location` prop."))  : void 0;
 	    location = parsedLocationArg;
 	  } else {
 	    location = locationFromContext;
@@ -24222,7 +24216,7 @@
 	  }, children);
 	}
 	function _renderMatches(matches, parentMatches, dataRouterState) {
-	  if (parentMatches === undefined) {
+	  if (parentMatches === void 0) {
 	    parentMatches = [];
 	  }
 	  if (matches == null) {
@@ -24236,14 +24230,14 @@
 	  }
 	  let renderedMatches = matches; // If we have data errors, trim matches to the highest error boundary
 
-	  let errors = dataRouterState == null ? undefined : dataRouterState.errors;
+	  let errors = dataRouterState == null ? void 0 : dataRouterState.errors;
 	  if (errors != null) {
-	    let errorIndex = renderedMatches.findIndex(m => m.route.id && (errors == null ? undefined : errors[m.route.id]));
-	    !(errorIndex >= 0) ? invariant(false, "Could not find a matching route for the current errors: " + errors)  : undefined;
+	    let errorIndex = renderedMatches.findIndex(m => m.route.id && (errors == null ? void 0 : errors[m.route.id]));
+	    !(errorIndex >= 0) ? invariant(false, "Could not find a matching route for the current errors: " + errors)  : void 0;
 	    renderedMatches = renderedMatches.slice(0, Math.min(renderedMatches.length, errorIndex + 1));
 	  }
 	  return renderedMatches.reduceRight((outlet, match, index) => {
-	    let error = match.route.id ? errors == null ? undefined : errors[match.route.id] : null; // Only data routers handle errors
+	    let error = match.route.id ? errors == null ? void 0 : errors[match.route.id] : null; // Only data routers handle errors
 
 	    let errorElement = dataRouterState ? match.route.errorElement || /*#__PURE__*/reactExports.createElement(DefaultErrorElement, null) : null;
 	    let matches = parentMatches.concat(renderedMatches.slice(0, index + 1));
@@ -24289,18 +24283,18 @@
 	}
 	function useDataRouterState(hookName) {
 	  let state = reactExports.useContext(DataRouterStateContext);
-	  !state ? invariant(false, getDataRouterConsoleError$1(hookName))  : undefined;
+	  !state ? invariant(false, getDataRouterConsoleError$1(hookName))  : void 0;
 	  return state;
 	}
 	function useRouteContext(hookName) {
 	  let route = reactExports.useContext(RouteContext);
-	  !route ? invariant(false, getDataRouterConsoleError$1(hookName))  : undefined;
+	  !route ? invariant(false, getDataRouterConsoleError$1(hookName))  : void 0;
 	  return route;
 	}
 	function useCurrentRouteId(hookName) {
 	  let route = useRouteContext(hookName);
 	  let thisRoute = route.matches[route.matches.length - 1];
-	  !thisRoute.route.id ? invariant(false, hookName + " can only be used on routes that contain a unique \"id\"")  : undefined;
+	  !thisRoute.route.id ? invariant(false, hookName + " can only be used on routes that contain a unique \"id\"")  : void 0;
 	  return thisRoute.route.id;
 	}
 	/**
@@ -24320,7 +24314,7 @@
 	    return error;
 	  } // Otherwise look for errors from our data router state
 
-	  return (_state$errors = state.errors) == null ? undefined : _state$errors[routeId];
+	  return (_state$errors = state.errors) == null ? void 0 : _state$errors[routeId];
 	}
 	const alreadyWarned = {};
 	function warningOnce(key, cond, message) {
@@ -24349,7 +24343,7 @@
 	  !useInRouterContext() ? invariant(false,
 	  // TODO: This error is probably because they somehow have 2 versions of
 	  // the router loaded. We can help them understand how to avoid that.
-	  "<Navigate> may be used only in the context of a <Router> component.")  : undefined;
+	  "<Navigate> may be used only in the context of a <Router> component.")  : void 0;
 	  warning(!reactExports.useContext(NavigationContext).static, "<Navigate> must not be used on the initial render in a <StaticRouter>. " + "This is a no-op, but you should modify your code so the <Navigate> is " + "only ever rendered in response to some user interaction or state change.") ;
 	  let dataRouterState = reactExports.useContext(DataRouterStateContext);
 	  let navigate = useNavigate();
@@ -24396,7 +24390,7 @@
 	    navigator,
 	    static: staticProp = false
 	  } = _ref4;
-	  !!useInRouterContext() ? invariant(false, "You cannot render a <Router> inside another <Router>." + " You should never have more than one in your app.")  : undefined; // Preserve trailing slashes on basename, so we can let the user control
+	  !!useInRouterContext() ? invariant(false, "You cannot render a <Router> inside another <Router>." + " You should never have more than one in your app.")  : void 0; // Preserve trailing slashes on basename, so we can let the user control
 	  // the enforcement of trailing slashes throughout the app
 
 	  let basename = basenameProp.replace(/^\/*/, "/");
@@ -24480,7 +24474,7 @@
 	 */
 
 	function createRoutesFromChildren(children, parentPath) {
-	  if (parentPath === undefined) {
+	  if (parentPath === void 0) {
 	    parentPath = [];
 	  }
 	  let routes = [];
@@ -24495,8 +24489,8 @@
 	      routes.push.apply(routes, createRoutesFromChildren(element.props.children, parentPath));
 	      return;
 	    }
-	    !(element.type === Route) ? invariant(false, "[" + (typeof element.type === "string" ? element.type : element.type.name) + "] is not a <Route> component. All component children of <Routes> must be a <Route> or <React.Fragment>")  : undefined;
-	    !(!element.props.index || !element.props.children) ? invariant(false, "An index route cannot have child routes.")  : undefined;
+	    !(element.type === Route) ? invariant(false, "[" + (typeof element.type === "string" ? element.type : element.type.name) + "] is not a <Route> component. All component children of <Routes> must be a <Route> or <React.Fragment>")  : void 0;
+	    !(!element.props.index || !element.props.children) ? invariant(false, "An index route cannot have child routes.")  : void 0;
 	    let treePath = [...parentPath, index];
 	    let route = {
 	      id: element.props.id || treePath.join("-"),
@@ -24842,7 +24836,7 @@
 	    if (event.defaultPrevented) return;
 	    event.preventDefault();
 	    let submitter = event.nativeEvent.submitter;
-	    let submitMethod = (submitter == null ? undefined : submitter.getAttribute("formmethod")) || method;
+	    let submitMethod = (submitter == null ? void 0 : submitter.getAttribute("formmethod")) || method;
 	    submit(submitter || event.currentTarget, {
 	      method: submitMethod,
 	      replace,
@@ -24880,7 +24874,7 @@
 	}
 	function useDataRouterContext(hookName) {
 	  let ctx = reactExports.useContext(DataRouterContext);
-	  !ctx ? invariant(false, getDataRouterConsoleError(hookName))  : undefined;
+	  !ctx ? invariant(false, getDataRouterConsoleError(hookName))  : void 0;
 	  return ctx;
 	}
 	/**
@@ -24896,7 +24890,7 @@
 	    state,
 	    preventScrollReset,
 	    relative
-	  } = _temp === undefined ? {} : _temp;
+	  } = _temp === void 0 ? {} : _temp;
 	  let navigate = useNavigate();
 	  let location = useLocation();
 	  let path = useResolvedPath(to, {
@@ -24923,7 +24917,7 @@
 	  } = useDataRouterContext(DataRouterHook.UseSubmitImpl);
 	  let defaultAction = useFormAction();
 	  return reactExports.useCallback(function (target, options) {
-	    if (options === undefined) {
+	    if (options === void 0) {
 	      options = {};
 	    }
 	    if (typeof document === "undefined") {
@@ -24944,7 +24938,7 @@
 	      formEncType: encType
 	    };
 	    if (fetcherKey) {
-	      !(routeId != null) ? invariant(false, "No routeId available for useFetcher()")  : undefined;
+	      !(routeId != null) ? invariant(false, "No routeId available for useFetcher()")  : void 0;
 	      router.fetch(fetcherKey, routeId, href, opts);
 	    } else {
 	      router.navigate(href, opts);
@@ -24954,12 +24948,12 @@
 	function useFormAction(action, _temp2) {
 	  let {
 	    relative
-	  } = _temp2 === undefined ? {} : _temp2;
+	  } = _temp2 === void 0 ? {} : _temp2;
 	  let {
 	    basename
 	  } = reactExports.useContext(NavigationContext);
 	  let routeContext = reactExports.useContext(RouteContext);
-	  !routeContext ? invariant(false, "useFormAction must be used inside a RouteContext")  : undefined;
+	  !routeContext ? invariant(false, "useFormAction must be used inside a RouteContext")  : void 0;
 	  let [match] = routeContext.matches.slice(-1); // Shallow clone path so we can modify it below, otherwise we modify the
 	  // object referenced by useMemo inside useResolvedPath
 
@@ -25004,9 +24998,9 @@
 	    const loc = useLocation();
 	    const ToggleSidebar = () => {
 	        var _a, _b;
-	        const ha = (_a = document.querySelector("home-assistant")) === null || _a === undefined ? undefined : _a.shadowRoot;
-	        const ham = (_b = ha === null || ha === undefined ? undefined : ha.querySelector("home-assistant-main")) === null || _b === undefined ? undefined : _b.shadowRoot;
-	        const ad = ham === null || ham === undefined ? undefined : ham.querySelector("app-drawer");
+	        const ha = (_a = document.querySelector("home-assistant")) === null || _a === void 0 ? void 0 : _a.shadowRoot;
+	        const ham = (_b = ha === null || ha === void 0 ? void 0 : ha.querySelector("home-assistant-main")) === null || _b === void 0 ? void 0 : _b.shadowRoot;
+	        const ad = ham === null || ham === void 0 ? void 0 : ham.querySelector("app-drawer");
 	        ad.opened = true;
 	    };
 	    return React.createElement(React.Fragment, null,
@@ -25061,9 +25055,9 @@
 	        /* eslint-disable no-unused-vars */
 	        const { hass, panel, showMenu, narrow } = this.props;
 	        /* eslint-enable no-unused-vars */
-	        if (!((_a = this.state) === null || _a === undefined ? undefined : _a.app))
+	        if (!((_a = this.state) === null || _a === void 0 ? void 0 : _a.app))
 	            return React.createElement("div", null, "Loading...");
-	        var instance = (_b = this.state.app) === null || _b === undefined ? undefined : _b.instances[0];
+	        var instance = (_b = this.state.app) === null || _b === void 0 ? void 0 : _b.instances[0];
 	        return (React.createElement(BrowserRouter, { basename: "/shelly" },
 	            React.createElement("div", { className: "Panel" },
 	                React.createElement(ShellyNavbar, { narrow: narrow }),
