@@ -2123,7 +2123,39 @@
                         },
                         {
                           "type": "custom:uptime-card",
-                          "entity": "sensor.uptimekuma_dns_server",
+                          "entity": "sensor.uptimekuma_pihole",
+                          "ok": "up",
+                          "ko": "down",
+                          "icon": "mdi:router-wireless",
+                          "ko_icon": "mdi:router-wireless-off",
+                          "hours_to_show": 168,
+                          "hour24": true,
+                          "status_adaptive_color": true,
+                          "bar": {
+                            "spacing": 4,
+                            "height": 10,
+                            "round": 10
+                          },
+                          "show": {
+                            "average": true,
+                            "icon": true,
+                            "footer": true,
+                            "status": false,
+                            "timeline": true
+                          },
+                          "alignment": {
+                            "header": "spaced"
+                          },
+                          "color": {
+                            "icon": "grey"
+                          },
+                          "card_mod": {
+                            "style": "ha-card {\n  box-shadow: none;\n  border: none !important;\n  font-size: 10px;\n  background: none;\n}\n"
+                          }
+                        },
+                        {
+                          "type": "custom:uptime-card",
+                          "entity": "sensor.uptimekuma_printserver",
                           "ok": "up",
                           "ko": "down",
                           "icon": "mdi:router-wireless",
@@ -2187,7 +2219,7 @@
                         },
                         {
                           "type": "custom:uptime-card",
-                          "entity": "sensor.uptimekuma_nginx_reverse_proxy",
+                          "entity": "sensor.uptimekuma_npm_reverse_proxy",
                           "ok": "up",
                           "ko": "down",
                           "icon": "mdi:router-wireless",
@@ -2219,7 +2251,7 @@
                         },
                         {
                           "type": "custom:uptime-card",
-                          "entity": "sensor.uptimekuma_unified_security_gateway",
+                          "entity": "sensor.uptimekuma_unified_cloud_gateway_ultra",
                           "ok": "up",
                           "ko": "down",
                           "icon": "mdi:router-wireless",
