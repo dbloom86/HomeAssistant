@@ -280,7 +280,7 @@ automation:
       event_data:
         action: RESET_MIEP_DIRTY_SENSORS
     action:
-    - action: press.button
+    - action: button.press
       target:
         entity_id: button.roborock_s6_reset_sensor_consumable
     - service: notify.mobile_app_telefoon_duncan
