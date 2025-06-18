@@ -356,16 +356,6 @@
         value_template: "{{ as_timestamp(state_attr('sensor.samba_backup', 'last_backup')) | timestamp_custom('%d-%m-%Y') }}"  
 
   #================================
-  # CUPS
-  #================================
-
-  - platform: cups
-    host: 192.168.2.207
-    is_cups_server: true
-    printers:
-      - CanonMG2555
-
-  #================================
   # Person Tracking
   #================================
 
