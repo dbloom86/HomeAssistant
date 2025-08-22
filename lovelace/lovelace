@@ -113,15 +113,13 @@
               "type": "vertical-stack",
               "cards": [
                 {
+                  "show_current": true,
+                  "show_forecast": true,
                   "type": "weather-forecast",
                   "entity": "weather.fam_bloom",
                   "name": "Weersverwachting Apeldoorn ",
-                  "show_forecast": true,
                   "theme": "ios-dark-mode",
-                  "forecast_type": "daily",
-                  "card_mod": {
-                    "style": "ha-card {\n  border: solid 2px var(--primary-color);\n  background-color: var(--ha-card-background);\n}\n"
-                  }
+                  "forecast_type": "daily"
                 },
                 {
                   "entities": [
@@ -134,7 +132,7 @@
                     },
                     {
                       "card_type": "markdown",
-                      "content": "<ha-icon icon= {{'mdi:delete-alert' if states('sensor.circulus_afval_vandaag') != 'Geen' else 'mdi:delete-outline'}}> </ha-icon> Vandaag, {{states('sensor.simple_date')}}: <font color = {% if states('sensor.circulus_afval_vandaag') == 'PMD' %}'#ff944d'\n            {% elif states('sensor.circulus_afval_vandaag') == 'GFT' %}'#00e64d'\n            {% elif states('sensor.circulus_afval_vandaag') == 'Papier' %}'#3399ff'\n            {% else %}'grey'\n            {% endif %}> **{{states('sensor.circulus_afval_vandaag')}}</font>**      \n      \n            \n<ha-icon icon= {{'mdi:delete-alert' if states('sensor.circulus_afval_morgen') != 'Geen' else 'mdi:delete-outline'}}> </ha-icon>  Morgen, {{states('sensor.simple_tomorrow')}}:  <font color = {% if states('sensor.circulus_afval_morgen') == 'PMD' %}'#ff944d'\n            {% elif states('sensor.circulus_afval_morgen') == 'GFT' %}'#00e64d'\n            {% elif states('sensor.circulus_afval_morgen') == 'Papier' %}'#3399ff'\n            {% else %}'grey'\n            {% endif %}> **{{states('sensor.circulus_afval_morgen')}}</font>**  \n",
+                      "content": "<ha-icon icon= {{'mdi:delete-alert' if states('sensor.circulus_afval_vandaag_2') != 'Geen' else 'mdi:delete-outline'}}> </ha-icon> Vandaag, {{states('sensor.simple_date')}}: <font color = {% if states('sensor.circulus_afval_vandaag_2') == 'PMD' %}'#ff944d'\n            {% elif states('sensor.circulus_afval_vandaag_2') == 'GFT' %}'#00e64d'\n            {% elif states('sensor.circulus_afval_vandaag_2') == 'Papier' %}'#3399ff'\n            {% else %}'grey'\n            {% endif %}> **{{states('sensor.circulus_afval_vandaag_2')}}</font>**      \n      \n            \n<ha-icon icon= {{'mdi:delete-alert' if states('sensor.circulus_afval_morgen') != 'Geen' else 'mdi:delete-outline'}}> </ha-icon>  Morgen, {{states('sensor.simple_tomorrow')}}:  <font color = {% if states('sensor.circulus_afval_morgen_2') == 'PMD' %}'#ff944d'\n            {% elif states('sensor.circulus_afval_morgen_2') == 'GFT' %}'#00e64d'\n            {% elif states('sensor.circulus_afval_morgen_2') == 'Papier' %}'#3399ff'\n            {% else %}'grey'\n            {% endif %}> **{{states('sensor.circulus_afval_morgen_2')}}</font>**  \n",
                       "card_mod": {
                         "style": "ha-card {\n  box-shadow: none;\n  border-radius: 10px;\n  border: none;\n  background: none;\n}\n"
                       },
@@ -148,15 +146,15 @@
                       "card_type": "glance",
                       "entities": [
                         {
-                          "entity": "sensor.circulus_afval_gft",
+                          "entity": "sensor.circulus_afval_gft_2",
                           "name": "GFT"
                         },
                         {
-                          "entity": "sensor.circulus_afval_papier",
+                          "entity": "sensor.circulus_afval_papier_2",
                           "name": "Papier"
                         },
                         {
-                          "entity": "sensor.circulus_afval_pmd",
+                          "entity": "sensor.circulus_afval_pmd_2",
                           "name": "PMD"
                         }
                       ],
@@ -4509,7 +4507,7 @@
                               }
                             ]
                           },
-                          "entity": "sensor.ups_status_2",
+                          "entity": "sensor.ups_status_3",
                           "name": "UPS Status",
                           "icon": "mdi:alert"
                         },
@@ -4578,7 +4576,7 @@
                               }
                             ]
                           },
-                          "entity": "sensor.ups_battery_chemistry_2",
+                          "entity": "sensor.ups_battery_chemistry_3",
                           "name": "Battery Type",
                           "icon": "mdi:car-battery"
                         }
@@ -4652,7 +4650,7 @@
                               }
                             ]
                           },
-                          "entity": "sensor.ups_battery_runtime_2",
+                          "entity": "sensor.ups_battery_runtime_3",
                           "name": "Battery Runtime",
                           "icon": "mdi:progress-clock"
                         },
@@ -4724,7 +4722,7 @@
                               }
                             ]
                           },
-                          "entity": "sensor.ups_self_test_result_2",
+                          "entity": "sensor.ups_self_test_result_3",
                           "name": "Self Test Result",
                           "icon": "mdi:battery-check"
                         }
@@ -4798,7 +4796,7 @@
                               }
                             ]
                           },
-                          "entity": "sensor.ups_battery_charge_2",
+                          "entity": "sensor.ups_battery_charge_3",
                           "name": "Battery Charge",
                           "icon": "mdi:power-plug"
                         },
@@ -4870,7 +4868,7 @@
                               }
                             ]
                           },
-                          "entity": "sensor.ups_beeper_status_2",
+                          "entity": "sensor.ups_beeper_status_3",
                           "name": "Beeper Status",
                           "icon": "mdi:alert-circle-outline"
                         }
@@ -4896,7 +4894,7 @@
                         "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n"
                       },
                       "entities": [
-                        "sensor.ups_load_2"
+                        "sensor.ups_load_3"
                       ],
                       "name": null,
                       "color_thresholds": [
@@ -4947,7 +4945,7 @@
                       },
                       "entities": [
                         {
-                          "entity": "sensor.ups_load_2"
+                          "entity": "sensor.ups_load_3"
                         }
                       ],
                       "name": "Battery Load",
@@ -4974,7 +4972,7 @@
                         "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n"
                       },
                       "entities": [
-                        "sensor.ups_battery_voltage_2"
+                        "sensor.ups_battery_voltage_3"
                       ],
                       "name": null,
                       "color_thresholds": [
@@ -5025,7 +5023,7 @@
                       },
                       "entities": [
                         {
-                          "entity": "sensor.ups_battery_voltage_2"
+                          "entity": "sensor.ups_battery_voltage_3"
                         }
                       ],
                       "name": "Battery Voltage",
@@ -5052,7 +5050,7 @@
                         "style": "ha-card { \n  --ha-card-background: \"rgba(0, 0, 0, 0.0)\";\n  --ha-card-box-shadow: 'none';\n  border-radius: 5px;\n}\n.info.flex {\n  font-size: 12px !important;\n}\n"
                       },
                       "entities": [
-                        "sensor.ups_input_voltage_2"
+                        "sensor.ups_input_voltage_3"
                       ],
                       "name": null,
                       "color_thresholds": [
@@ -5103,7 +5101,7 @@
                       },
                       "entities": [
                         {
-                          "entity": "sensor.ups_input_voltage_2"
+                          "entity": "sensor.ups_input_voltage_3"
                         }
                       ],
                       "name": "Input Voltage",
