@@ -2,13 +2,13 @@
 # Afval
 #================================
 
-sensor.circulus_afval_gft_2:
+sensor.afval_gft:
   entity_picture: /local/Custom_Icons/gft-400px.png
   
-sensor.circulus_afval_papier_2:
+sensor.afval_papier:
   entity_picture: /local/Custom_Icons/papier-en-karton-400px.png
   
-sensor.circulus_afval_pmd_2:
+sensor.afval_pmd:
   entity_picture: /local/Custom_Icons/pbd-400px.png
 
 #================================  

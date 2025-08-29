@@ -132,7 +132,7 @@
                     },
                     {
                       "card_type": "markdown",
-                      "content": "<ha-icon icon= {{'mdi:delete-alert' if states('sensor.circulus_afval_vandaag_2') != 'Geen' else 'mdi:delete-outline'}}> </ha-icon> Vandaag, {{states('sensor.simple_date')}}: <font color = {% if states('sensor.circulus_afval_vandaag_2') == 'PMD' %}'#ff944d'\n            {% elif states('sensor.circulus_afval_vandaag_2') == 'GFT' %}'#00e64d'\n            {% elif states('sensor.circulus_afval_vandaag_2') == 'Papier' %}'#3399ff'\n            {% else %}'grey'\n            {% endif %}> **{{states('sensor.circulus_afval_vandaag_2')}}</font>**      \n      \n            \n<ha-icon icon= {{'mdi:delete-alert' if states('sensor.circulus_afval_morgen_2') != 'Geen' else 'mdi:delete-outline'}}> </ha-icon>  Morgen, {{states('sensor.simple_tomorrow')}}:  <font color = {% if states('sensor.circulus_afval_morgen_2') == 'PMD' %}'#ff944d'\n            {% elif states('sensor.circulus_afval_morgen_2') == 'GFT' %}'#00e64d'\n            {% elif states('sensor.circulus_afval_morgen_2') == 'Papier' %}'#3399ff'\n            {% else %}'grey'\n            {% endif %}> **{{states('sensor.circulus_afval_morgen_2')}}</font>**  \n",
+                      "content": "<ha-icon icon= {{'mdi:delete-alert' if states('sensor.afval_vandaag') != 'Geen' else 'mdi:delete-outline'}}> </ha-icon> Vandaag, {{states('sensor.simple_date')}}: <font color = {% if states('sensor.afval_vandaag') == 'PMD' %}'#ff944d'\n            {% elif states('sensor.afval_vandaag') == 'GFT' %}'#00e64d'\n            {% elif states('sensor.afval_vandaag') == 'Papier' %}'#3399ff'\n            {% else %}'grey'\n            {% endif %}> **{{states('sensor.afval_vandaag')}}</font>**      \n      \n            \n<ha-icon icon= {{'mdi:delete-alert' if states('sensor.afval_morgen') != 'Geen' else 'mdi:delete-outline'}}> </ha-icon>  Morgen, {{states('sensor.simple_tomorrow')}}:  <font color = {% if states('sensor.circulus_afval_morgen_2') == 'PMD' %}'#ff944d'\n            {% elif states('sensor.afval_morgen') == 'GFT' %}'#00e64d'\n            {% elif states('sensor.afval_morgen') == 'Papier' %}'#3399ff'\n            {% else %}'grey'\n            {% endif %}> **{{states('sensor.afval_morgen')}}</font>**  \n",
                       "card_mod": {
                         "style": "ha-card {\n  box-shadow: none;\n  border-radius: 10px;\n  border: none;\n  background: none;\n}\n"
                       },
@@ -146,15 +146,15 @@
                       "card_type": "glance",
                       "entities": [
                         {
-                          "entity": "sensor.circulus_afval_gft_2",
+                          "entity": "sensor.afval_gft",
                           "name": "GFT"
                         },
                         {
-                          "entity": "sensor.circulus_afval_papier_2",
+                          "entity": "sensor.afval_papier",
                           "name": "Papier"
                         },
                         {
-                          "entity": "sensor.circulus_afval_pmd_2",
+                          "entity": "sensor.afval_pmd",
                           "name": "PMD"
                         }
                       ],
