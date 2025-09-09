@@ -56,7 +56,7 @@ SOFTWARE.
 [home-assistant]: https://home-assistant.io
 [license-shield]: https://img.shields.io/github/license/dbloom86/homeassistant?style=plastic
 [license]: https://github.com/dbloom86/HomeAssistant/blob/master/LICENSE
-[maintenance-shield]: https://img.shields.io/maintenance/yes/2024?style=plastic
+[maintenance-shield]: https://img.shields.io/maintenance/yes/2025?style=plastic
 [last-commit-shield]: https://img.shields.io/github/last-commit/dbloom86/homeassistant?style=plastic
 [stars-shield]: https://img.shields.io/github/stars/dbloom86/homeassistant?style=social
 [forks-shield]: https://img.shields.io/github/forks/dbloom86/homeassistant?style=social
